@@ -1,9 +1,10 @@
+<!-- game2.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>game3.html - Color Memory Challenge</title>
+<title>game2.html - Color Memory Challenge</title>
 
 <style>
 *{
@@ -16,10 +17,38 @@ body{
     font-family:Arial,Helvetica,sans-serif;
     background:#eef8ea;
     display:flex;
+    flex-direction: column; /* Stacks back button box vertically */
     justify-content:center;
     align-items:center;
     min-height:100vh;
     padding:20px;
+}
+
+/* Floating layout container for back navigation link */
+.back-btn-container {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.back-btn {
+    background: rgba(88, 204, 2, 0.1);
+    color: #46b000;
+    border: 2px solid #58cc02;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background: #58cc02;
+    color: #fff;
 }
 
 .container{
@@ -161,6 +190,11 @@ button:hover{
 </style>
 </head>
 <body>
+
+<!-- Pulls back up out of color/ and out of GAMES/ to reach index.html root lobby -->
+<div class="back-btn-container">
+    <a href="../../index.html" class="back-btn">⬅ Back to Lobby</a>
+</div>
 
 <div class="container">
 

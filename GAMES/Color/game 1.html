@@ -1,4 +1,4 @@
-<!-- game2.html -->
+<!-- game1.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +18,37 @@ body{
     background:linear-gradient(180deg,#58cc02,#46b000);
     min-height:100vh;
     display:flex;
+    flex-direction: column; /* Allows back button to stay on top */
     justify-content:center;
     align-items:center;
     padding:20px;
+}
+
+/* Back to Main Lobby button styling */
+.back-btn-container {
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background: #fff;
+    color: #46b000;
 }
 
 .card{
@@ -169,6 +197,11 @@ h1{
 </head>
 <body>
 
+<!-- Navigation container pulling backward 2 subfolder levels directly to index.html -->
+<div class="back-btn-container">
+    <a href="../../index.html" class="back-btn">⬅ Back to Lobby</a>
+</div>
+
 <div class="card">
 
     <h1>Choose the Correct Color</h1>
@@ -254,6 +287,7 @@ const gameScreen=document.getElementById("gameScreen");
 const resultScreen=document.getElementById("resultScreen");
 const scoreText=document.getElementById("scoreText");
 const performance=document.getElementById("performance");
+const playAgain=document.getElementById("playAgain");
 
 // =========================
 // Random helper
@@ -476,20 +510,13 @@ function showResults(){
 }
 
 // =========================
-// Restart
+// Play Again Button Event Link
 // =========================
+playAgain.addEventListener("click", startGame);
 
-document
-.getElementById("playAgain")
-.addEventListener("click",startGame);
-
-// =========================
-// Start
-// =========================
-
+// Initialize Loop
 startGame();
 
 </script>
-
 </body>
 </html>
