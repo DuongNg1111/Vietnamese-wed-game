@@ -114,80 +114,87 @@
             padding-left: 12px;
         }
         
+        /* Flex Grid to display cards beautifully */
         .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 25px;
         }
         
-        /* Game Cards UI */
+        /* Symmetrical Square Game Card Design */
         .game-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
             border: 1px solid #e2e8f0;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* Forces the card frame to be a perfect 1:1 square */
+            width: 280px;
+            height: 280px;
+            
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
             border-color: #cbd5e1;
         }
         
+        /* Top portion of the square card for the icon */
         .game-thumb {
-            height: 120px;
+            height: 40%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
         }
         
-        /* Bright Theme Thumbnail Backgrounds */
+        /* Thumbnail Background Colors */
         .thumb-pronouns { background: #ff7f50; }
-        .thumb-colors-1 { background: #fdcb6e; }
-        .thumb-colors-2 { background: #00cec9; }
+        .thumb-colors-1 { background: #58cc02; } 
+        .thumb-colors-2 { background: #ff9800; } 
         
+        /* Bottom portion of the square card for info and button */
         .game-info {
-            padding: 20px;
-            flex-grow: 1;
+            padding: 15px;
+            height: 60%;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
         
-        .game-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin: 0 0 10px 0;
-            font-family: monospace; /* Gives a clear filename aesthetic */
-            background-color: #f1f5f9;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
+        /* Text wrapper with vertical centering inside the space */
         .game-desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #7f8c8d;
-            margin: 15px 0 20px 0;
             line-height: 1.4;
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
+        /* Play Button anchored neatly at the bottom */
         .play-btn {
             display: block;
             text-align: center;
             background-color: #1abc9c;
             color: white;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 6px;
+            padding: 10px;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 0.95rem;
             transition: background-color 0.2s;
-            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .play-btn:hover {
@@ -199,6 +206,13 @@
             padding: 25px;
             color: #7f8c8d;
             font-size: 0.9rem;
+        }
+
+        /* Adjusts cards to center on tiny mobile screens */
+        @media(max-width: 640px) {
+            .game-grid {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -218,17 +232,17 @@
         <div class="game-type-section">
             <div class="category-title">Pronoun</div>
             <div class="game-grid">
-                <!-- Game 1: Family single pronoun -->
+                <!-- Pronoun Game 1 -->
                 <div class="game-card">
                     <div class="game-thumb thumb-pronouns">🗣️</div>
                     <div class="game-info">
-                        <div class="game-title">game 1</div>
-                        <p class="game-desc">Use the interactive side-by-side reference matrix chart to identify and select the correct kinship relationship terms based on relative age and gender groups.</p>
+                        <!-- Game title block completely removed -->
+                        <p class="game-desc">Master how to correctly address family members, relatives, and strangers based on the relationship chart matrix.</p>
                         <a href="GAMES/pronoun/game1.html" class="play-btn">Play Now</a>
                     </div>
                 </div>
             </div>
-        </div
+        </div>
 
         <!-- SECTION 2: COLOR -->
         <div class="game-type-section">
@@ -238,16 +252,16 @@
                 <div class="game-card">
                     <div class="game-thumb thumb-colors-1">🎨</div>
                     <div class="game-info">
-                        <div class="game-title">game 1</div>
+                        <!-- Game title block completely removed -->
                         <p class="game-desc">Read the Vietnamese text color name and quickly tap the correct matching visual color block button.</p>
                         <a href="GAMES/color/game1.html" class="play-btn">Play Now</a>
                     </div>
                 </div>
                 <!-- Color Game 2 -->
                 <div class="game-card">
-                    <div class="game-thumb thumb-colors-2">🌈</div>
+                    <div class="game-thumb thumb-colors-2">🧠</div>
                     <div class="game-info">
-                        <div class="game-title">game 2</div>
+                        <!-- Game title block completely removed -->
                         <p class="game-desc">Memorize the positions of four distinct hues before they vanish, then locate the requested Vietnamese color name.</p>
                         <a href="GAMES/color/game2.html" class="play-btn">Play Now</a>
                     </div>
