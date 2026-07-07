@@ -1,0 +1,495 @@
+<!-- game2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose the Correct Color</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#58cc02,#46b000);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    width:100%;
+    max-width:650px;
+    border-radius:24px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#46b000;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.question-number{
+    color:#666;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.choose-text{
+    font-size:20px;
+    color:#555;
+    margin-bottom:8px;
+}
+
+.word{
+    font-size:34px;
+    font-weight:bold;
+    color:#46b000;
+    margin-bottom:30px;
+}
+
+.answers{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.color-btn{
+    width:160px;
+    height:160px;
+    border-radius:22px;
+    border:4px solid transparent;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.color-btn:hover:not(.disabled){
+    transform:translateY(-6px) scale(1.04);
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
+}
+
+.color-btn.disabled{
+    cursor:default;
+}
+
+.message{
+    min-height:34px;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.correct-text{
+    color:#27ae60;
+}
+
+.wrong-text{
+    color:#e74c3c;
+}
+
+.green-border{
+    border-color:#2ecc71 !important;
+}
+
+.red-border{
+    border-color:#e74c3c !important;
+}
+
+.action-btn{
+    background:#58cc02;
+    color:#fff;
+    border:none;
+    border-radius:16px;
+    padding:15px 32px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.action-btn:hover{
+    background:#46b000;
+    transform:translateY(-2px);
+}
+
+.hidden{
+    display:none;
+}
+
+.score{
+    font-size:40px;
+    color:#46b000;
+    margin:20px 0;
+    font-weight:bold;
+}
+
+.performance{
+    font-size:26px;
+    margin-bottom:30px;
+    color:#555;
+}
+
+@media(max-width:600px){
+
+.card{
+    padding:22px;
+}
+
+.answers{
+    gap:18px;
+}
+
+.color-btn{
+    width:130px;
+    height:130px;
+}
+
+.word{
+    font-size:28px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <h1>Choose the Correct Color</h1>
+
+    <div class="subtitle">
+        Click the color that matches the Vietnamese text.
+    </div>
+
+    <div id="gameScreen">
+
+        <div class="question-number" id="questionNumber"></div>
+
+        <div class="choose-text">Choose:</div>
+
+        <div class="word" id="questionWord"></div>
+
+        <div class="answers" id="answers"></div>
+
+        <div class="message" id="message"></div>
+
+        <button id="nextBtn" class="action-btn hidden"></button>
+
+    </div>
+
+    <div id="resultScreen" class="hidden">
+
+        <h1>Great Job!</h1>
+
+        <div class="score" id="scoreText"></div>
+
+        <div class="performance" id="performance"></div>
+
+        <button class="action-btn" id="playAgain">
+            Play Again
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+// =========================
+// Vocabulary
+// =========================
+
+const COLORS=[
+{text:"Màu đỏ",color:"red"},
+{text:"Màu cam",color:"orange"},
+{text:"Màu vàng",color:"yellow"},
+{text:"Màu hồng",color:"hotpink"},
+{text:"Màu xanh lá",color:"limegreen"},
+{text:"Màu đen",color:"black"},
+{text:"Màu trắng",color:"white"}
+];
+
+// =========================
+// Constants
+// =========================
+
+const TOTAL_QUESTIONS = 15;
+
+// =========================
+// Game state
+// =========================
+
+let questions=[];
+let currentQuestion=0;
+let score=0;
+let answered=false;
+
+// =========================
+// DOM
+// =========================
+
+const questionNumber=document.getElementById("questionNumber");
+const questionWord=document.getElementById("questionWord");
+const answers=document.getElementById("answers");
+const message=document.getElementById("message");
+const nextBtn=document.getElementById("nextBtn");
+
+const gameScreen=document.getElementById("gameScreen");
+const resultScreen=document.getElementById("resultScreen");
+const scoreText=document.getElementById("scoreText");
+const performance=document.getElementById("performance");
+
+// =========================
+// Random helper
+// =========================
+
+function rand(max){
+    return Math.floor(Math.random()*max);
+}
+
+// =========================
+// Shuffle
+// =========================
+
+function shuffle(array){
+
+    for(let i=array.length-1;i>0;i--){
+
+        const j=Math.floor(Math.random()*(i+1));
+
+        [array[i],array[j]]=[array[j],array[i]];
+    }
+
+    return array;
+}
+
+// =========================
+// Generate questions
+// =========================
+
+function generateQuestions(){
+
+    questions=[];
+
+    for(let i=0;i<TOTAL_QUESTIONS;i++){
+
+        const correct=COLORS[rand(COLORS.length)];
+
+        let wrong;
+
+        do{
+            wrong=COLORS[rand(COLORS.length)];
+        }
+        while(wrong.color===correct.color);
+
+        const options=[correct,wrong];
+
+        shuffle(options);
+
+        questions.push({
+            correct,
+            options
+        });
+
+    }
+
+}
+
+// =========================
+// Start game
+// =========================
+
+function startGame(){
+
+    generateQuestions();
+
+    currentQuestion=0;
+    score=0;
+
+    gameScreen.classList.remove("hidden");
+    resultScreen.classList.add("hidden");
+
+    loadQuestion();
+
+}
+
+// =========================
+// Load question
+// =========================
+
+function loadQuestion(){
+
+    answered=false;
+
+    message.textContent="";
+    message.className="message";
+
+    nextBtn.classList.add("hidden");
+
+    const q=questions[currentQuestion];
+
+    questionNumber.textContent=`Question ${currentQuestion+1} / ${TOTAL_QUESTIONS}`;
+
+    questionWord.textContent=q.correct.text;
+
+    answers.innerHTML="";
+
+    q.options.forEach(option=>{
+
+        const btn=document.createElement("button");
+
+        btn.className="color-btn";
+
+        btn.dataset.correct=(option.color===q.correct.color);
+
+        btn.style.background=option.color;
+
+        if(option.color==="white"){
+            btn.style.border="4px solid #bbb";
+        }
+
+        btn.addEventListener("click",()=>handleAnswer(btn));
+
+        answers.appendChild(btn);
+
+    });
+
+}
+
+// =========================
+// Handle answer
+// =========================
+
+function handleAnswer(selected){
+
+    if(answered) return;
+
+    answered=true;
+
+    const buttons=document.querySelectorAll(".color-btn");
+
+    buttons.forEach(btn=>btn.classList.add("disabled"));
+
+    const correctButton=[...buttons].find(
+        btn=>btn.dataset.correct==="true"
+    );
+
+    if(selected.dataset.correct==="true"){
+
+        score++;
+
+        message.textContent="✅ Correct!";
+        message.classList.add("correct-text");
+
+        correctButton.classList.add("green-border");
+
+    }else{
+
+        message.textContent="❌ Wrong!";
+        message.classList.add("wrong-text");
+
+        selected.classList.add("red-border");
+
+        correctButton.classList.add("green-border");
+
+    }
+
+    nextBtn.classList.remove("hidden");
+
+    if(currentQuestion===TOTAL_QUESTIONS-1){
+
+        nextBtn.textContent="Finish";
+
+    }else{
+
+        nextBtn.textContent="Next Question →";
+
+    }
+
+}
+
+// =========================
+// Next button
+// =========================
+
+nextBtn.addEventListener("click",()=>{
+
+    currentQuestion++;
+
+    if(currentQuestion>=TOTAL_QUESTIONS){
+
+        showResults();
+
+    }else{
+
+        loadQuestion();
+
+    }
+
+});
+
+// =========================
+// Results
+// =========================
+
+function showResults(){
+
+    gameScreen.classList.add("hidden");
+    resultScreen.classList.remove("hidden");
+
+    scoreText.textContent=`${score} / ${TOTAL_QUESTIONS}`;
+
+    if(score===15){
+
+        performance.textContent="Perfect!";
+
+    }else if(score>=12){
+
+        performance.textContent="Excellent!";
+
+    }else if(score>=9){
+
+        performance.textContent="Good Job!";
+
+    }else{
+
+        performance.textContent="Keep Practicing!";
+
+    }
+
+}
+
+// =========================
+// Restart
+// =========================
+
+document
+.getElementById("playAgain")
+.addEventListener("click",startGame);
+
+// =========================
+// Start
+// =========================
+
+startGame();
+
+</script>
+
+</body>
+</html>

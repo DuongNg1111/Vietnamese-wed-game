@@ -2,220 +2,259 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vietnamese Pronouns Quiz Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Vietnamese with Duong</title>
+    <!-- Importing Kalam font from Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #f0f4f8;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        h1 { color: #2c3e50; margin-bottom: 5px; }
-        p.subtitle { color: #7f8c8d; margin-bottom: 25px; font-size: 16px; }
         
-        /* Layout chia làm 2 bên */
-        .game-layout {
-            display: flex;
-            gap: 30px;
-            max-width: 1200px;
+        /* Header Container with Lightly Blurred Background Image */
+        header {
+            position: relative;
             width: 100%;
-            align-items: flex-start;
+            text-align: center;
+            padding: 70px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* The Background Layer (Points to your uploaded 'banner.jpg') */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px) brightness(1.1);
+            z-index: 1;
         }
 
-        /* Bên trái: Khu vực chơi Game */
-        .game-box {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        /* Semi-transparent light mask to ensure contrast for dark text */
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: 1.5;
+        }
+        
+        /* Header Text Content Layer */
+        header h1 {
+            position: relative;
+            z-index: 2;
+            color: #000000;
+            margin: 0;
+            font-family: 'Kalam', cursive;
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        header p {
+            position: relative;
+            z-index: 2;
+            color: #2c3e50;
+            margin: 10px 0 0 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Main Layout Content */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px 0;
             text-align: center;
         }
-        .score { font-size: 20px; color: #27ae60; font-weight: bold; margin-bottom: 20px; }
-        .card {
-            background-color: #fffde7;
-            border: 2px dashed #f1c40f;
-            border-radius: 10px;
-            padding: 40px 20px;
-            margin: 20px 0;
-            min-height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            font-weight: 600;
+        
+        /* Centered Main Section Title */
+        .section-title {
+            font-size: 2.2rem;
             color: #2c3e50;
+            margin: 0 auto 40px auto;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 8px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Clean Game Type Sections */
+        .game-type-section {
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 0 0 20px 0;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            border-left: 5px solid #1abc9c;
+            padding-left: 12px;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Game Cards UI */
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        
+        .game-thumb {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        /* Bright Theme Thumbnail Backgrounds */
+        .thumb-pronouns { background: #ff7f50; }
+        .thumb-colors-1 { background: #fdcb6e; }
+        .thumb-colors-2 { background: #00cec9; }
+        
+        .game-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+        
+        .game-desc {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            margin: 0 0 20px 0;
             line-height: 1.4;
         }
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        button {
-            padding: 18px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #34495e;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-        button:hover { background-color: #2c3e50; transform: translateY(-2px); }
-        button:active { transform: translateY(0); }
-        .result-message {
-            margin-top: 25px;
-            font-size: 18px;
-            font-weight: bold;
-            min-height: 35px;
-        }
-        .correct { color: #27ae60; }
-        .wrong { color: #e74c3c; }
-
-        /* Bên phải: Bảng tra cứu dữ liệu (Dựng chuẩn theo ảnh của bạn) */
-        .cheat-sheet {
-            flex: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-        }
-        .cheat-sheet h2 { font-size: 18px; color: #34495e; margin-top: 0; text-align: center; }
         
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
+        .play-btn {
+            display: block;
             text-align: center;
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-top: auto;
         }
-        th, td { border: 1px solid #000; padding: 10px; }
-        .bg-yellow { background-color: #ffe599; font-weight: bold; }
-        .bg-green { background-color: #b6d7a8; font-weight: bold; }
-        .header-row { font-weight: bold; background-color: #f2f2f2; }
-        .left-header { font-weight: bold; text-align: left; background-color: #fff; width: 25%; }
-        .p-vn { font-size: 16px; font-weight: bold; color: #000; margin: 0; }
-        .p-en { font-size: 12px; color: #7f8c8d; margin: 0; }
-        .p-pro { font-size: 13px; color: #3498db; font-style: italic; margin: 0; }
+        
+        .play-btn:hover {
+            background-color: #16a085;
+        }
+        
+        footer {
+            margin-top: auto;
+            padding: 25px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-    <h1>🇻🇳 Vietnamese Pronouns Challenge</h1>
-    <p class="subtitle">Look at the cheat sheet on the right and choose the correct pronoun to address the person!</p>
+    <!-- BANNER WITH MANUAL REFRESH LOCAL BACKGROUND FILE -->
+    <header>
+        <h1>Survival Vietnamese with Duong</h1>
+        <p>Master practical Vietnamese through interactive arcade games!</p>
+    </header>
 
-    <div class="game-layout">
+    <!-- MAIN ARCADE CABINET -->
+    <div class="container">
+        <div class="section-title">🎮 Available Games</div>
         
-        <!-- LEFT: QUIZ GAME -->
-        <div class="game-box">
-            <div class="score">Score: <span id="score-val">0</span></div>
-            
-            <div class="card" id="question-text">Loading question...</div>
-
-            <div class="options" id="options-container"></div>
-            <div class="result-message" id="result-text"></div>
+        <!-- SECTION 1: PRONOUN -->
+        <div class="game-type-section">
+            <div class="category-title">Pronoun</div>
+            <div class="game-grid">
+                <!-- Game 1: Family single pronoun -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-pronouns">🗣️</div>
+                    <div class="game-info">
+                        <div class="game-title">Family single pronoun</div>
+                        <p class="game-desc">Master how to correctly address family members, relatives, and strangers based on the relationship chart matrix.</p>
+                        <a href="game_xungho.html" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- RIGHT: THE CHEAT SHEET TABLE -->
-        <div class="cheat-sheet">
-            <h2>💡 Pronoun Reference Table</h2>
-            <table>
-                <tr>
-                    <td rowspan="2" style="border: none;"></td>
-                    <td colspan="2" class="bg-yellow">YOUNGER</td>
-                    <td colspan="2" class="bg-green">OLDER</td>
-                </tr>
-                <tr class="header-row">
-                    <td>Male</td>
-                    <td>Female</td>
-                    <td>Male</td>
-                    <td>Female</td>
-                </tr>
-                <tr>
-                    <td class="left-header">Grandparents' generation</td>
-                    <td><p class="p-vn">Ông</p><p class="p-pro">/oong/</p><p class="p-en">grandpa</p></td>
-                    <td><p class="p-vn">Bà</p><p class="p-pro">/ba/</p><p class="p-en">grandma</p></td>
-                    <td><p class="p-vn">Ông</p><p class="p-pro">/oong/</p><p class="p-en">grandpa</p></td>
-                    <td><p class="p-vn">Bà</p><p class="p-pro">/ba/</p><p class="p-en">grandma</p></td>
-                </tr>
-                <tr>
-                    <td class="left-header">Parents' generation</td>
-                    <td><p class="p-vn">Chú</p><p class="p-pro">/choo/</p><p class="p-en">uncle</p></td>
-                    <td><p class="p-vn">Dì</p><p class="p-pro">/yee/</p><p class="p-en">aunt</p></td>
-                    <td colspan="2"><p class="p-vn">Bác</p><p class="p-pro">/bahk/</p><p class="p-en">uncle + aunt</p></td>
-                </tr>
-                <tr>
-                    <td class="left-header">Your generation</td>
-                    <td colspan="2"><p class="p-vn">Em</p><p class="p-pro">/em/</p><p class="p-en">Brother + sister</p></td>
-                    <td><p class="p-vn">Anh</p><p class="p-pro">/anh/</p><p class="p-en">brother</p></td>
-                    <td><p class="p-vn">Chị</p><p class="p-pro">/chee/</p><p class="p-en">sister</p></td>
-                </tr>
-                <tr>
-                    <td class="left-header">Younger generation</td>
-                    <td colspan="4"><p class="p-vn">Cháu</p><p class="p-pro">/chow/</p><p class="p-en">niece + nephew</p></td>
-                </tr>
-            </table>
+        <!-- SECTION 2: COLOR -->
+        <div class="game-type-section">
+            <div class="category-title">Color</div>
+            <div class="game-grid">
+                <!-- Color Game 1 Placeholder -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-colors-1">🎨</div>
+                    <div class="game-info">
+                        <div class="game-title">Color Catch Match</div>
+                        <p class="game-desc">Quickly pair Vietnamese color vocabulary terms with their correct visual hues under a ticking timer.</p>
+                        <a href="#" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                <!-- Color Game 2 Placeholder -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-colors-2">🌈</div>
+                    <div class="game-info">
+                        <div class="game-title">Spectrum Survivor</div>
+                        <p class="game-desc">Advance through compound word combinations and identify colors in real-world phrase contexts.</p>
+                        <a href="#" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
-<script>
-    // English questions based strictly on your chart data
-    const database = [
-        { q: "You meet a MAN from the Grandparents' generation. What do you call him?", a: ["Ông", "Bà", "Chú", "Bác"], c: "Ông" },
-        { q: "You meet a WOMAN from the Grandparents' generation. What do you call her?", a: ["Bà", "Ông", "Dì", "Chị"], c: "Bà" },
-        { q: "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?", a: ["Chú", "Bác", "Anh", "Ông"], c: "Chú" },
-        { q: "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?", a: ["Dì", "Cô", "Bác", "Chị"], c: "Dì" },
-        { q: "You meet someone from the Parents' generation who is OLDER than your parents (Male or Female). What do you call them?", a: ["Bác", "Chú", "Dì", "Ông"], c: "Bác" },
-        { q: "You talk to a MAN from YOUR generation who is OLDER than you. What do you call him?", a: ["Anh", "Em", "Chị", "Chú"], c: "Anh" },
-        { q: "You talk to a WOMAN from YOUR generation who is OLDER than you. What do you call her?", a: ["Chị", "Anh", "Em", "Cô"], c: "Chị" },
-        { q: "You talk to someone from YOUR generation who is YOUNGER than you. What do you call them?", a: ["Em", "Anh", "Chị", "Cháu"], c: "Em" },
-        { q: "You talk to a kid or teenager from the YOUNGER generation. What do you call them?", a: ["Cháu", "Em", "Con", "Bác"], c: "Cháu" }
-    ];
-
-    let score = 0;
-    let currentQuestion = {};
-
-    function nextQuestion() {
-        document.getElementById('result-text').innerHTML = "";
-        
-        const randomIndex = Math.floor(Math.random() * database.length);
-        currentQuestion = database[randomIndex];
-
-        document.getElementById('question-text').innerText = currentQuestion.q;
-
-        const shuffledOptions = [...currentQuestion.a].sort(() => Math.random() - 0.5);
-        
-        const container = document.getElementById('options-container');
-        container.innerHTML = ""; 
-
-        shuffledOptions.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.innerText = opt;
-            btn.onclick = () => checkAnswer(opt);
-            container.appendChild(btn);
-        });
-    }
-
-    function checkAnswer(selected) {
-        const resultText = document.getElementById('result-text');
-        if (selected === currentQuestion.c) {
-            score += 10;
-            resultText.innerHTML = "<span class='correct'>🎉 Correct! +10 points.</span>";
-            document.getElementById('score-val').innerText = score;
-            setTimeout(nextQuestion, 1500);
-        } else {
-            resultText.innerHTML = `<span class='wrong'>❌ Incorrect! Look at the table, the correct answer is "${currentQuestion.c}". Try again!</span>`;
-        }
-    }
-
-    // Start the first question on load
-    nextQuestion();
-</script>
+    <footer>
+        © 2026 Created by Survival Vietnamese with Duong
+    </footer>
 
 </body>
 </html>
