@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nối Màu Sắc - Học Tiếng Việt</title>
+
+<title>Matching Colors - Vietnamese Game</title>
+
+<!-- =========================================
+     GAME METADATA
+     Used automatically by the main lobby
+     ========================================= -->
+
+<meta name="game-title" content="Color Matching">
+
+<meta name="game-description" content="Match Vietnamese color names with the correct colors.">
+
+<meta name="game-icon" content="🎨">
+
+<meta name="game-explanation" content="Match each Vietnamese color name with its corresponding color by selecting the color first and then the correct Vietnamese word.">
+
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -15,14 +32,59 @@
 
 body{
     background:#e8f5e9;
+    min-height:100vh;
+    padding:20px;
 }
+
+
+/* =========================================
+   BACK TO LOBBY
+   ========================================= */
+
+.back-btn-container{
+    width:900px;
+    max-width:100%;
+    margin:0 auto 15px;
+}
+
+.back-btn{
+    background:rgba(46,125,50,0.1);
+    color:#2e7d32;
+    border:2px solid #4caf50;
+    border-radius:12px;
+    padding:10px 20px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.back-btn:hover{
+    background:#4caf50;
+    color:white;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
 
 h1{
     background:#2e7d32;
     color:white;
     text-align:center;
     padding:18px;
+    border-radius:15px;
+    max-width:900px;
+    margin:0 auto;
 }
+
+
+/* =========================================
+   SUBTITLE
+   ========================================= */
 
 .subtitle{
     text-align:center;
@@ -31,8 +93,14 @@ h1{
     font-size:20px;
 }
 
+
+/* =========================================
+   GAME AREA
+   ========================================= */
+
 #game{
     width:900px;
+    max-width:100%;
     margin:25px auto;
     display:flex;
     justify-content:space-between;
@@ -51,6 +119,11 @@ h1{
     margin:16px auto;
 }
 
+
+/* =========================================
+   COLOR ITEMS
+   ========================================= */
+
 .item{
     cursor:pointer;
     border:4px solid #4caf50;
@@ -60,6 +133,11 @@ h1{
 .item:hover{
     transform:scale(1.05);
 }
+
+
+/* =========================================
+   VIETNAMESE WORD TARGETS
+   ========================================= */
 
 .target{
     background:white;
@@ -76,6 +154,11 @@ h1{
     background:#dcedc8;
 }
 
+
+/* =========================================
+   GAME STATES
+   ========================================= */
+
 .selected{
     outline:6px solid #1b5e20;
 }
@@ -85,12 +168,22 @@ h1{
     cursor:default;
 }
 
+
+/* =========================================
+   CONNECTION LINES
+   ========================================= */
+
 canvas{
     position:absolute;
     left:0;
     top:0;
     pointer-events:none;
 }
+
+
+/* =========================================
+   RESULT MESSAGE
+   ========================================= */
 
 #message{
     text-align:center;
@@ -99,160 +192,447 @@ canvas{
     font-weight:bold;
     margin:25px;
 }
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media(max-width:700px){
+
+    body{
+        padding:15px;
+    }
+
+    #game{
+        width:100%;
+        gap:10px;
+    }
+
+    .column{
+        width:45%;
+    }
+
+    .item,
+    .target{
+        width:100%;
+        height:55px;
+    }
+
+    .target{
+        line-height:55px;
+        font-size:18px;
+    }
+
+    canvas{
+        width:100%;
+        height:100%;
+    }
+
+}
+
 </style>
 
 </head>
+
+
 <body>
 
-<h1>🎨 Matching colors</h1>
+
+<!-- =========================================
+     BACK TO LOBBY
+     ========================================= -->
+
+<div class="back-btn-container">
+
+    <a href="../../index.html" class="back-btn">
+        ⬅ Back to Lobby
+    </a>
+
+</div>
+
+
+<!-- =========================================
+     GAME TITLE
+     ========================================= -->
+
+<h1>
+    🎨 Matching Colors
+</h1>
+
+
+<!-- =========================================
+     GAME INSTRUCTION / EXPLANATION
+     ========================================= -->
 
 <div class="subtitle">
-Match the color names to the correct colors. 
+    Match the color names to the correct colors.
 </div>
+
+
+<!-- =========================================
+     GAME
+     ========================================= -->
 
 <div id="game">
 
-<div class="column" id="left"></div>
+    <div class="column" id="left"></div>
 
-<canvas id="canvas" width="900" height="650"></canvas>
+    <canvas
+        id="canvas"
+        width="900"
+        height="650">
+    </canvas>
 
-<div class="column" id="right"></div>
+    <div class="column" id="right"></div>
 
 </div>
 
+
+<!-- =========================================
+     RESULT MESSAGE
+     ========================================= -->
+
 <div id="message"></div>
+
 
 <script>
 
+
+/* =========================================
+   VOCABULARY
+   ========================================= */
+
 const questions = [
-    {color:"#ff0000", vietnamese:"Màu đỏ"},
-    {color:"#ff9800", vietnamese:"Màu cam"},
-    {color:"#ffeb3b", vietnamese:"Màu vàng"},
-    {color:"#ff69b4", vietnamese:"Màu hồng"},
-    {color:"#4caf50", vietnamese:"Màu xanh lá"},
-    {color:"#000000", vietnamese:"Màu đen"},
-    {color:"#ffffff", vietnamese:"Màu trắng"}
-];
 
-const left=document.getElementById("left");
-const right=document.getElementById("right");
+    {
+        color:"#ff0000",
+        vietnamese:"Màu đỏ"
+    },
 
-questions.forEach(q=>{
+    {
+        color:"#ff9800",
+        vietnamese:"Màu cam"
+    },
 
-    const div=document.createElement("div");
+    {
+        color:"#ffeb3b",
+        vietnamese:"Màu vàng"
+    },
 
-    div.className="item";
+    {
+        color:"#ff69b4",
+        vietnamese:"Màu hồng"
+    },
 
-    div.style.background=q.color;
+    {
+        color:"#4caf50",
+        vietnamese:"Màu xanh lá"
+    },
 
-    if(q.color=="#ffffff"){
-        div.style.border="4px solid #777";
+    {
+        color:"#000000",
+        vietnamese:"Màu đen"
+    },
+
+    {
+        color:"#ffffff",
+        vietnamese:"Màu trắng"
     }
 
-    div.dataset.answer=q.vietnamese;
+];
+
+
+/* =========================================
+   DOM ELEMENTS
+   ========================================= */
+
+const left =
+    document.getElementById("left");
+
+const right =
+    document.getElementById("right");
+
+const canvas =
+    document.getElementById("canvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+/* =========================================
+   CREATE COLOR ITEMS
+   ========================================= */
+
+questions.forEach(q => {
+
+    const div =
+        document.createElement("div");
+
+    div.className = "item";
+
+    div.style.background = q.color;
+
+    if(q.color === "#ffffff"){
+
+        div.style.border =
+            "4px solid #777";
+
+    }
+
+    div.dataset.answer =
+        q.vietnamese;
 
     left.appendChild(div);
 
 });
 
-const shuffled=[...questions].sort(()=>Math.random()-0.5);
 
-shuffled.forEach(q=>{
+/* =========================================
+   SHUFFLE VIETNAMESE WORDS
+   ========================================= */
 
-    const div=document.createElement("div");
+const shuffled =
+    [...questions].sort(
+        () => Math.random() - 0.5
+    );
 
-    div.className="target";
 
-    div.innerText=q.vietnamese;
+/* =========================================
+   CREATE TARGETS
+   ========================================= */
 
-    div.dataset.answer=q.vietnamese;
+shuffled.forEach(q => {
+
+    const div =
+        document.createElement("div");
+
+    div.className = "target";
+
+    div.innerText =
+        q.vietnamese;
+
+    div.dataset.answer =
+        q.vietnamese;
 
     right.appendChild(div);
 
 });
 
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
 
-let selected=null;
-let score=0;
+/* =========================================
+   GAME STATE
+   ========================================= */
 
-document.querySelectorAll(".item").forEach(item=>{
+let selected = null;
 
-    item.onclick=()=>{
+let score = 0;
 
-        if(item.classList.contains("correct")) return;
 
-        document.querySelectorAll(".item").forEach(i=>i.classList.remove("selected"));
+/* =========================================
+   SELECT COLOR
+   ========================================= */
 
-        item.classList.add("selected");
+document
+    .querySelectorAll(".item")
+    .forEach(item => {
 
-        selected=item;
+        item.onclick = () => {
 
-    };
+            if(
+                item.classList.contains("correct")
+            ){
 
-});
-
-document.querySelectorAll(".target").forEach(target=>{
-
-    target.onclick=()=>{
-
-        if(!selected) return;
-
-        if(target.classList.contains("correct")) return;
-
-        if(selected.dataset.answer===target.dataset.answer){
-
-            drawLine(selected,target);
-
-            selected.classList.remove("selected");
-            selected.classList.add("correct");
-            target.classList.add("correct");
-
-            selected=null;
-
-            score++;
-
-            if(score===questions.length){
-
-                document.getElementById("message").innerHTML=
-                "🎉 You nailed it!!!";
+                return;
 
             }
 
-        }else{
 
-            alert("❌ Incorrect, try again!");
+            document
+                .querySelectorAll(".item")
+                .forEach(i => {
 
-        }
+                    i.classList.remove(
+                        "selected"
+                    );
 
-    };
+                });
 
-});
 
-function drawLine(a,b){
+            item.classList.add(
+                "selected"
+            );
 
-    const game=document.getElementById("game").getBoundingClientRect();
 
-    const ra=a.getBoundingClientRect();
-    const rb=b.getBoundingClientRect();
+            selected = item;
 
-    const x1=ra.right-game.left;
-    const y1=ra.top+ra.height/2-game.top;
+        };
 
-    const x2=rb.left-game.left;
-    const y2=rb.top+rb.height/2-game.top;
+    });
+
+
+/* =========================================
+   SELECT TARGET
+   ========================================= */
+
+document
+    .querySelectorAll(".target")
+    .forEach(target => {
+
+        target.onclick = () => {
+
+            if(!selected){
+
+                return;
+
+            }
+
+
+            if(
+                target.classList.contains(
+                    "correct"
+                )
+            ){
+
+                return;
+
+            }
+
+
+            /* =============================
+               CORRECT ANSWER
+               ============================= */
+
+            if(
+                selected.dataset.answer ===
+                target.dataset.answer
+            ){
+
+                drawLine(
+                    selected,
+                    target
+                );
+
+
+                selected.classList.remove(
+                    "selected"
+                );
+
+                selected.classList.add(
+                    "correct"
+                );
+
+                target.classList.add(
+                    "correct"
+                );
+
+
+                selected = null;
+
+                score++;
+
+
+                /* =============================
+                   GAME COMPLETE
+                   ============================= */
+
+                if(
+                    score ===
+                    questions.length
+                ){
+
+                    document
+                        .getElementById("message")
+                        .innerHTML =
+                        "🎉 You nailed it!!!";
+
+                }
+
+            }
+
+
+            /* =============================
+               WRONG ANSWER
+               ============================= */
+
+            else{
+
+                alert(
+                    "❌ Incorrect, try again!"
+                );
+
+            }
+
+        };
+
+    });
+
+
+/* =========================================
+   DRAW CONNECTION LINE
+   ========================================= */
+
+function drawLine(a, b){
+
+    const game =
+        document
+            .getElementById("game")
+            .getBoundingClientRect();
+
+
+    const ra =
+        a.getBoundingClientRect();
+
+
+    const rb =
+        b.getBoundingClientRect();
+
+
+    const x1 =
+        ra.right -
+        game.left;
+
+
+    const y1 =
+        ra.top +
+        ra.height / 2 -
+        game.top;
+
+
+    const x2 =
+        rb.left -
+        game.left;
+
+
+    const y2 =
+        rb.top +
+        rb.height / 2 -
+        game.top;
+
 
     ctx.beginPath();
-    ctx.moveTo(x1,y1);
-    ctx.lineTo(x2,y2);
-    ctx.lineWidth=5;
-    ctx.strokeStyle="#2e7d32";
+
+    ctx.moveTo(
+        x1,
+        y1
+    );
+
+    ctx.lineTo(
+        x2,
+        y2
+    );
+
+    ctx.lineWidth = 5;
+
+    ctx.strokeStyle =
+        "#2e7d32";
+
     ctx.stroke();
 
 }
 
 </script>
+
 
 </body>
 </html>

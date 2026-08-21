@@ -2,247 +2,798 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vietnamese Listening Game</title>
 
 <style>
-body {
-    font-family: Arial;
-    text-align: center;
-    background: #eef6ff;
+
+*{
+    box-sizing:border-box;
 }
 
-.screen { display: none; }
-.active { display: block; }
+body {
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    background:#eef6ff;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:900px;
+    background:white;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+
+.screen {
+    display:none;
+}
+
+.active {
+    display:block;
+}
+
+/* =========================
+   INTRO / HOW TO PLAY
+========================= */
+
+.intro h1{
+    color:#1976d2;
+    margin-bottom:10px;
+}
+
+.intro-subtitle{
+    color:#666;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.instructions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin:30px 0;
+}
+
+.instruction-card{
+    background:#f5f9ff;
+    border-radius:18px;
+    padding:22px 15px;
+}
+
+.instruction-icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.instruction-card h3{
+    margin:8px 0;
+    color:#1976d2;
+}
+
+.instruction-card p{
+    color:#555;
+    line-height:1.5;
+    margin:0;
+}
+
+.start-btn{
+    padding:14px 35px;
+    border-radius:12px;
+    border:none;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.start-btn:hover{
+    background:#43a047;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   GAME
+========================= */
+
+#game h1{
+    color:#1976d2;
+    margin-bottom:10px;
+}
+
+.question-number{
+    color:#666;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.listen-btn{
+    padding:10px 20px;
+    border-radius:10px;
+    border:none;
+    background:#2196f3;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+.listen-btn:hover{
+    background:#1976d2;
+}
 
 .answers {
-    display: grid;
-    grid-template-columns: repeat(2, 320px);
-    gap: 15px;
-    justify-content: center;
-    margin: 30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:25px auto;
+    max-width:700px;
 }
 
 .answer {
-    padding: 12px;
-    background: white;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
+    padding:18px;
+    background:white;
+    border:2px solid #ccc;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.2s;
+    font-size:18px;
 }
 
 .answer:hover {
-    transform: scale(1.05);
+    transform:scale(1.03);
+    background:#f5f9ff;
 }
 
-.correct { background: #c8e6c9; }
-.wrong { background: #ffcdd2; }
+.answer.correct {
+    background:#c8e6c9;
+    border-color:#4caf50;
+}
+
+.answer.wrong {
+    background:#ffcdd2;
+    border-color:#f44336;
+}
+
+.answer.disabled{
+    cursor:default;
+}
 
 .result {
-    font-size: 40px;
-    height: 50px;
+    font-size:40px;
+    height:50px;
+    margin:10px 0;
 }
 
-button {
-    padding: 10px 18px;
-    border-radius: 10px;
-    border: none;
-    background: #4caf50;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
+.next-btn{
+    padding:10px 22px;
+    border-radius:10px;
+    border:none;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
 }
 
 .score {
-    margin-top: 10px;
+    margin-top:18px;
+    font-weight:bold;
+    color:#555;
 }
-</style>
 
+/* =========================
+   END SCREEN
+========================= */
+
+#end h1{
+    color:#4caf50;
+}
+
+.final-score{
+    font-size:32px;
+    font-weight:bold;
+    color:#1976d2;
+    margin:20px;
+}
+
+.play-again{
+    padding:12px 28px;
+    border-radius:10px;
+    border:none;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.play-again:hover{
+    background:#43a047;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .container{
+        padding:25px 18px;
+    }
+
+    .instructions{
+        grid-template-columns:1fr;
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+    }
+
+    .answer{
+        font-size:16px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
-<!-- INTRO -->
-<div id="intro" class="screen active">
+<div class="container">
+
+<!-- =====================================================
+     HOW TO PLAY
+===================================================== -->
+
+<div id="intro" class="screen active intro">
+
     <h1>🎧 Vietnamese Listening Game</h1>
-    <p>Listen and choose the correct English sentence</p>
-    <button onclick="startGame()">Start</button>
+
+    <div class="intro-subtitle">
+        Listen to Vietnamese and choose the correct English sentence.
+    </div>
+
+    <div class="instructions">
+
+        <div class="instruction-card">
+
+            <div class="instruction-icon">
+                🎧
+            </div>
+
+            <h3>1. Listen</h3>
+
+            <p>
+                Listen to the Vietnamese sentence carefully.
+            </p>
+
+        </div>
+
+
+        <div class="instruction-card">
+
+            <div class="instruction-icon">
+                🔎
+            </div>
+
+            <h3>2. Choose</h3>
+
+            <p>
+                Choose the English sentence with the same meaning.
+            </p>
+
+        </div>
+
+
+        <div class="instruction-card">
+
+            <div class="instruction-icon">
+                🔊
+            </div>
+
+            <h3>3. Listen Again</h3>
+
+            <p>
+                Need help? Click "Listen Again" to hear the sentence again.
+            </p>
+
+        </div>
+
+    </div>
+
+    <p style="color:#666;">
+        There are 20 questions. Try to get the highest score!
+    </p>
+
+    <button class="start-btn" onclick="startGame()">
+        Start Game
+    </button>
+
 </div>
 
-<!-- GAME -->
-<div id="game" class="screen">
-    <div>Question <span id="qnum">1</span>/20</div>
 
-    <button onclick="repeatAudio()">🔊 Listen Again</button>
+<!-- =====================================================
+     GAME
+===================================================== -->
+
+<div id="game" class="screen">
+
+    <h1>🎧 Vietnamese Listening Game</h1>
+
+    <div class="question-number">
+        Question <span id="qnum">1</span> / 20
+    </div>
+
+    <button class="listen-btn" onclick="repeatAudio()">
+        🔊 Listen Again
+    </button>
 
     <div class="answers" id="answers"></div>
 
     <div class="result" id="resultIcon"></div>
 
-    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">
-        Next
+    <button
+        id="nextBtn"
+        class="next-btn"
+        onclick="nextQuestion()"
+        style="display:none;"
+    >
+        Next →
     </button>
 
-    <div class="score">Score: <span id="score">0</span></div>
+    <div class="score">
+        Score: <span id="score">0</span>
+    </div>
+
 </div>
 
-<!-- END -->
+
+<!-- =====================================================
+     END
+===================================================== -->
+
 <div id="end" class="screen">
+
     <h1>🎉 Finished!</h1>
-    <p>Your score: <span id="finalScore"></span></p>
-    <button onclick="restart()">Play Again</button>
+
+    <p>Your final score:</p>
+
+    <div class="final-score" id="finalScore"></div>
+
+    <button class="play-again" onclick="restart()">
+        Play Again
+    </button>
+
 </div>
+
+</div>
+
 
 <script>
 
-/* ================= DATA ================= */
+/* =========================================================
+   DATA
+========================================================= */
 
 const baseQuestions = [
-{ vi:"Xin chào! Em tên gì?", en:"Hello! What is your name?" },
-{ vi:"Em đợi một chút nha!", en:"Wait a moment please!" },
-{ vi:"Anh đợi một chút nha", en:"Wait a moment please!" },
-{ vi:"Em hiểu không?", en:"Do you understand?" },
-{ vi:"Tới đây giúp anh với!", en:"Come here and help me!" },
-{ vi:"Chị cần em tới đây!", en:"I need you to come here!" },
-{ vi:"Tốt lắm", en:"Very good!" },
-{ vi:"Em khỏe không?", en:"Are you okay?" },
-{ vi:"Em ăn trưa chưa", en:"Have you had lunch yet?" },
-{ vi:"Anh ăn tối chưa", en:"Have you had dinner yet?" },
-{ vi:"Chị ăn sáng chưa?", en:"Have you had breakfast yet?" }
+
+    {
+        vi:"Xin chào! Em tên gì?",
+        en:"Hello! What is your name?"
+    },
+
+    {
+        vi:"Em đợi một chút nha!",
+        en:"Wait a moment please!"
+    },
+
+    {
+        vi:"Anh đợi một chút nha",
+        en:"Wait a moment please!"
+    },
+
+    {
+        vi:"Em hiểu không?",
+        en:"Do you understand?"
+    },
+
+    {
+        vi:"Tới đây giúp anh với!",
+        en:"Come here and help me!"
+    },
+
+    {
+        vi:"Chị cần em tới đây!",
+        en:"I need you to come here!"
+    },
+
+    {
+        vi:"Tốt lắm",
+        en:"Very good!"
+    },
+
+    {
+        vi:"Em khỏe không?",
+        en:"Are you okay?"
+    },
+
+    {
+        vi:"Em ăn trưa chưa",
+        en:"Have you had lunch yet?"
+    },
+
+    {
+        vi:"Anh ăn tối chưa",
+        en:"Have you had dinner yet?"
+    },
+
+    {
+        vi:"Chị ăn sáng chưa?",
+        en:"Have you had breakfast yet?"
+    }
+
 ];
 
-/* ================= STATE ================= */
+
+/* =========================================================
+   GAME STATE
+========================================================= */
 
 let questions = [];
+
 let current = 0;
+
 let score = 0;
+
 let answered = false;
 
-/* ================= HELP ================= */
 
-function shuffle(arr) {
-    return arr.sort(() => Math.random() - 0.5);
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(arr){
+
+    return [...arr].sort(
+        () => Math.random() - 0.5
+    );
+
 }
 
-/* 🔊 Google TTS */
-function speak(text) {
+
+/* =========================================================
+   GOOGLE TTS
+========================================================= */
+
+function speak(text){
+
     const url =
-    "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
-    + encodeURIComponent(text);
+        "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
+        + encodeURIComponent(text);
 
     new Audio(url).play();
+
 }
 
-function repeatAudio() {
+
+function repeatAudio(){
+
+    if(!questions[current]) return;
+
     speak(questions[current].vi);
+
 }
 
-/* ================= START ================= */
 
-function startGame() {
-    document.getElementById("intro").classList.remove("active");
-    document.getElementById("game").classList.add("active");
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startGame(){
+
+    document
+        .getElementById("intro")
+        .classList.remove("active");
+
+    document
+        .getElementById("end")
+        .classList.remove("active");
+
+    document
+        .getElementById("game")
+        .classList.add("active");
+
 
     questions = [];
 
-    // 🔥 tạo đúng 20 câu (có lặp lại)
-    for (let i = 0; i < 20; i++) {
-        let q = baseQuestions[Math.floor(Math.random() * baseQuestions.length)];
+
+    /*
+        Create exactly 20 questions.
+        Questions may repeat.
+    */
+
+    for(let i = 0; i < 20; i++){
+
+        const q =
+            baseQuestions[
+                Math.floor(
+                    Math.random() *
+                    baseQuestions.length
+                )
+            ];
+
         questions.push(q);
+
     }
+
 
     current = 0;
+
     score = 0;
 
+
+    document
+        .getElementById("score")
+        .innerText = score;
+
+
     loadQuestion();
+
 }
 
-/* ================= LOAD ================= */
 
-function loadQuestion() {
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion(){
+
     answered = false;
-    document.getElementById("nextBtn").style.display = "none";
-    document.getElementById("resultIcon").innerText = "";
 
-    if (current >= questions.length) {
+
+    document
+        .getElementById("nextBtn")
+        .style.display = "none";
+
+
+    document
+        .getElementById("resultIcon")
+        .innerText = "";
+
+
+    if(current >= questions.length){
+
         endGame();
+
         return;
+
     }
 
-    document.getElementById("qnum").innerText = current + 1;
 
-    const correct = questions[current];
+    document
+        .getElementById("qnum")
+        .innerText = current + 1;
 
-    let options = shuffle([...baseQuestions]).slice(0,4);
 
-    if (!options.find(o => o.en === correct.en)) {
+    const correct =
+        questions[current];
+
+
+    /*
+        Create 4 answer choices.
+    */
+
+    let options =
+        shuffle([...baseQuestions])
+        .slice(0,4);
+
+
+    /*
+        Make sure the correct answer
+        is included.
+    */
+
+    if(
+        !options.find(
+            o => o.en === correct.en
+        )
+    ){
+
         options[0] = correct;
+
     }
+
 
     options = shuffle(options);
 
-    const container = document.getElementById("answers");
+
+    const container =
+        document.getElementById("answers");
+
+
     container.innerHTML = "";
 
+
     options.forEach(opt => {
-        const div = document.createElement("div");
+
+        const div =
+            document.createElement("div");
+
+
         div.className = "answer";
+
+
         div.innerText = opt.en;
 
-        div.onclick = () => choose(div, opt.en === correct.en);
+
+        div.onclick = () => {
+
+            choose(
+                div,
+                opt.en === correct.en
+            );
+
+        };
+
 
         container.appendChild(div);
+
     });
 
+
+    /*
+        Automatically play audio.
+    */
+
     speak(correct.vi);
+
 }
 
-/* ================= CHOOSE ================= */
 
-function choose(el, correct) {
-    if (answered) return;
+/* =========================================================
+   CHOOSE ANSWER
+========================================================= */
+
+function choose(el, correct){
+
+    if(answered) return;
+
 
     answered = true;
 
-    if (correct) {
+
+    /*
+        Disable all answers
+        after choosing.
+    */
+
+    const allAnswers =
+        document.querySelectorAll(".answer");
+
+
+    allAnswers.forEach(answer => {
+
+        answer.classList.add("disabled");
+
+    });
+
+
+    if(correct){
+
         el.classList.add("correct");
+
         score++;
+
         showResult(true);
-    } else {
+
+    }else{
+
         el.classList.add("wrong");
+
         showResult(false);
+
     }
 
-    document.getElementById("score").innerText = score;
+
+    document
+        .getElementById("score")
+        .innerText = score;
+
 }
 
-/* ================= RESULT ================= */
 
-function showResult(ok) {
-    document.getElementById("resultIcon").innerText = ok ? "✔" : "❌";
-    document.getElementById("nextBtn").style.display = "inline-block";
+/* =========================================================
+   SHOW RESULT
+========================================================= */
+
+function showResult(ok){
+
+    document
+        .getElementById("resultIcon")
+        .innerText =
+        ok ? "✔" : "❌";
+
+
+    document
+        .getElementById("nextBtn")
+        .style.display = "inline-block";
+
+
+    if(current === questions.length - 1){
+
+        document
+            .getElementById("nextBtn")
+            .innerText = "Finish 🎉";
+
+    }else{
+
+        document
+            .getElementById("nextBtn")
+            .innerText = "Next →";
+
+    }
+
 }
 
-/* ================= NEXT ================= */
 
-function nextQuestion() {
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion(){
+
     current++;
+
     loadQuestion();
+
 }
 
-/* ================= END ================= */
 
-function endGame() {
-    document.getElementById("game").classList.remove("active");
-    document.getElementById("end").classList.add("active");
-    document.getElementById("finalScore").innerText = score + "/20";
+/* =========================================================
+   END GAME
+========================================================= */
+
+function endGame(){
+
+    document
+        .getElementById("game")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("end")
+        .classList.add("active");
+
+
+    document
+        .getElementById("finalScore")
+        .innerText =
+        score + " / 20";
+
 }
 
-/* ================= RESTART ================= */
 
-function restart() {
-    document.getElementById("end").classList.remove("active");
-    document.getElementById("game").classList.add("active");
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restart(){
+
+    document
+        .getElementById("end")
+        .classList.remove("active");
+
     startGame();
+
 }
 
 </script>

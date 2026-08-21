@@ -2,286 +2,889 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Number Listening Game</title>
 
 <style>
-body {
-    font-family: Arial;
-    text-align: center;
-    background: #eef6ff;
+
+*{
+    box-sizing:border-box;
 }
 
-.screen { display: none; }
-.active { display: block; }
-
-.answers {
-    display: grid;
-    grid-template-columns: repeat(2, 280px);
-    gap: 15px;
-    justify-content: center;
-    margin: 30px;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    text-align:center;
+    background:#eef6ff;
+    margin:0;
+    padding:20px;
+    color:#222;
 }
 
-.answer {
-    padding: 15px;
-    font-size: 20px;
-    background: white;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
+.screen{
+    display:none;
 }
 
-.answer:hover {
-    transform: scale(1.05);
+.active{
+    display:block;
 }
 
-.correct { background: #c8e6c9; }
-.wrong { background: #ffcdd2; }
-
-.result {
-    font-size: 40px;
-    height: 50px;
+.container{
+    width:100%;
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
-button {
-    padding: 10px 18px;
-    border-radius: 10px;
-    border: none;
-    background: #4caf50;
-    color: white;
-    cursor: pointer;
+h1{
+    margin-bottom:12px;
+    color:#1976d2;
 }
+
+.subtitle{
+    color:#666;
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.question-info{
+    font-size:20px;
+    font-weight:bold;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.listen-btn{
+    padding:14px 25px;
+    border-radius:12px;
+    border:none;
+    background:#2196f3;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.listen-btn:hover{
+    background:#1976d2;
+    transform:translateY(-2px);
+}
+
+.answers{
+    display:grid;
+    grid-template-columns:repeat(2,280px);
+    gap:15px;
+    justify-content:center;
+    margin:30px 0 20px;
+}
+
+.answer{
+    padding:18px;
+    font-size:21px;
+    font-weight:bold;
+    background:white;
+    border:3px solid #d9e8ff;
+    border-radius:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.answer:hover{
+    transform:translateY(-3px);
+    background:#f1f8ff;
+}
+
+.answer.correct{
+    background:#c8e6c9;
+    border-color:#4caf50;
+    color:#256b2b;
+    cursor:default;
+}
+
+.answer.wrong{
+    background:#ffcdd2;
+    border-color:#f44336;
+    color:#b71c1c;
+    cursor:default;
+}
+
+.answer.disabled{
+    cursor:default;
+}
+
+.result{
+    min-height:45px;
+    font-size:24px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.correct-text{
+    color:#2e7d32;
+}
+
+.wrong-text{
+    color:#c62828;
+}
+
+.correct-answer{
+    font-size:18px;
+    color:#555;
+    min-height:28px;
+    margin-bottom:15px;
+}
+
+.next-btn,
+.restart-btn{
+    padding:12px 25px;
+    border-radius:12px;
+    border:none;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.next-btn:hover,
+.restart-btn:hover{
+    background:#388e3c;
+    transform:translateY(-2px);
+}
+
+.score{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:#555;
+}
+
+.progress-wrap{
+    width:100%;
+    height:10px;
+    background:#e0e0e0;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0 25px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#2196f3;
+    transition:.3s;
+}
+
+.final-score{
+    font-size:34px;
+    font-weight:bold;
+    color:#1976d2;
+    margin:25px 0 10px;
+}
+
+.performance{
+    font-size:22px;
+    color:#555;
+    margin-bottom:25px;
+}
+
+@media(max-width:650px){
+
+    .container{
+        padding:25px 15px;
+        margin:20px auto;
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+        width:100%;
+    }
+
+    .answer{
+        width:100%;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<div class="container">
+
+<!-- ================= INTRO ================= -->
+
 <div id="intro" class="screen active">
+
     <h1>🔢 Number Listening Game</h1>
-    <p>Listen to 3 numbers and choose the correct sequence</p>
-    <button onclick="startGame()">Start</button>
+
+    <p class="subtitle">
+        Listen to 3 numbers and choose the correct sequence.
+    </p>
+
+    <button class="listen-btn" onclick="startGame()">
+        Start Game
+    </button>
+
 </div>
 
-<!-- GAME -->
-<div id="game" class="screen">
-    <div>Question <span id="qnum">1</span>/15</div>
 
-    <button onclick="repeatAudio()">🔊 Listen Again</button>
+<!-- ================= GAME ================= -->
+
+<div id="game" class="screen">
+
+    <h1>🎧 Listen & Choose</h1>
+
+    <div class="question-info">
+        Question <span id="qnum">1</span> / 15
+    </div>
+
+    <div class="progress-wrap">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <button class="listen-btn" onclick="repeatAudio()">
+        🔊 Listen Again
+    </button>
 
     <div class="answers" id="answers"></div>
 
     <div class="result" id="resultIcon"></div>
 
-    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">
-        Next
+    <div class="correct-answer" id="correctAnswer"></div>
+
+    <button
+        class="next-btn"
+        id="nextBtn"
+        onclick="nextQuestion()"
+        style="display:none;">
+        Next Question →
     </button>
 
-    <div>Score: <span id="score">0</span></div>
+    <div class="score">
+        Score: <span id="score">0</span> / 15
+    </div>
+
 </div>
 
-<!-- END -->
+
+<!-- ================= END ================= -->
+
 <div id="end" class="screen">
+
     <h1>🎉 Finished!</h1>
-    <p>Your score: <span id="finalScore"></span></p>
-    <button onclick="restart()">Play Again</button>
+
+    <div class="final-score" id="finalScore">
+        0 / 15
+    </div>
+
+    <div class="performance" id="performance"></div>
+
+    <button class="restart-btn" onclick="restart()">
+        Play Again
+    </button>
+
 </div>
+
+</div>
+
 
 <script>
 
-/* ================= DATA ================= */
+/* ==========================================================
+   NUMBER DATA
+========================================================== */
 
-const numbers = ["0","1","2","3","4","5","6","7","8","9","10"];
-
-const viNumbers = [
-"không","một","hai","ba","bốn","năm",
-"sáu","bảy","tám","chín","mười"
+const numbers = [
+    "không",
+    "một",
+    "hai",
+    "ba",
+    "bốn",
+    "năm",
+    "sáu",
+    "bảy",
+    "tám",
+    "chín",
+    "mười"
 ];
 
-/* ================= STATE ================= */
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS = 15;
+const NUMBERS_PER_QUESTION = 3;
+const TOTAL_OPTIONS = 4;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
 
 let questions = [];
 let current = 0;
 let score = 0;
 let answered = false;
+
 let currentAudios = [];
+let audioToken = 0;
 
-/* ================= HELPERS ================= */
 
-function shuffle(arr) {
-    return arr.sort(() => Math.random() - 0.5);
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array){
+
+    const arr = [...array];
+
+    for(let i = arr.length - 1; i > 0; i--){
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+
+    }
+
+    return arr;
 }
 
-/* 🔊 phát 1 audio */
-function playAudio(text, onEnd) {
-    const url =
-    "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
-    + encodeURIComponent(text);
 
-    const audio = new Audio(url);
-    currentAudios.push(audio);
+/* ==========================================================
+   CREATE RANDOM SEQUENCE
+========================================================== */
 
-    audio.play();
+function createSequence(){
 
-    audio.onended = () => {
-        if (onEnd) onEnd();
-    };
+    return [
+
+        Math.floor(Math.random() * numbers.length),
+
+        Math.floor(Math.random() * numbers.length),
+
+        Math.floor(Math.random() * numbers.length)
+
+    ];
+
 }
 
-/* 🔊 phát tuần tự 3 số (FIX CHÍNH) */
-function speakSequence(seq) {
 
-    // stop audio cũ
-    currentAudios.forEach(a => {
-        a.pause();
-        a.currentTime = 0;
+/* ==========================================================
+   SEQUENCE KEY
+========================================================== */
+
+function sequenceKey(sequence){
+
+    return sequence.join("-");
+
+}
+
+
+/* ==========================================================
+   CREATE UNIQUE QUESTIONS
+========================================================== */
+
+function generateQuestions(){
+
+    const result = [];
+    const used = new Set();
+
+    while(result.length < TOTAL_QUESTIONS){
+
+        const sequence = createSequence();
+
+        const key = sequenceKey(sequence);
+
+        if(!used.has(key)){
+
+            used.add(key);
+            result.push(sequence);
+
+        }
+
+    }
+
+    return result;
+
+}
+
+
+/* ==========================================================
+   STOP ALL AUDIO
+========================================================== */
+
+function stopAudio(){
+
+    audioToken++;
+
+    currentAudios.forEach(audio => {
+
+        try{
+
+            audio.pause();
+            audio.currentTime = 0;
+
+        }catch(error){}
+
     });
+
     currentAudios = [];
 
-    let i = 0;
+}
 
-    function playNext() {
-        if (i >= seq.length) return;
 
-        playAudio(viNumbers[seq[i]], () => {
-            i++;
-            setTimeout(playNext, 500); // delay giữa số
-        });
+/* ==========================================================
+   PLAY ONE AUDIO
+========================================================== */
+
+function playAudio(text, onEnd, token){
+
+    if(token !== audioToken) return;
+
+    const url =
+        "https://translate.google.com/translate_tts" +
+        "?ie=UTF-8" +
+        "&tl=vi" +
+        "&client=tw-ob" +
+        "&q=" +
+        encodeURIComponent(text);
+
+    const audio = new Audio(url);
+
+    currentAudios.push(audio);
+
+    audio.onended = () => {
+
+        if(token !== audioToken) return;
+
+        if(onEnd){
+            onEnd();
+        }
+
+    };
+
+    audio.onerror = () => {
+
+        if(token !== audioToken) return;
+
+        if(onEnd){
+            onEnd();
+        }
+
+    };
+
+    audio.play().catch(() => {});
+
+}
+
+
+/* ==========================================================
+   PLAY 3 NUMBERS IN SEQUENCE
+========================================================== */
+
+function speakSequence(sequence){
+
+    stopAudio();
+
+    const token = audioToken;
+
+    let index = 0;
+
+    function playNext(){
+
+        if(token !== audioToken) return;
+
+        if(index >= sequence.length) return;
+
+        const numberText = numbers[sequence[index]];
+
+        playAudio(
+            numberText,
+            () => {
+
+                index++;
+
+                if(index < sequence.length){
+
+                    setTimeout(() => {
+
+                        playNext();
+
+                    },450);
+
+                }
+
+            },
+            token
+        );
+
     }
 
     playNext();
+
 }
 
-function repeatAudio() {
+
+/* ==========================================================
+   REPEAT AUDIO
+========================================================== */
+
+function repeatAudio(){
+
+    if(!questions[current]) return;
+
     speakSequence(questions[current]);
+
 }
 
-/* ================= START ================= */
 
-function startGame() {
-    document.getElementById("intro").classList.remove("active");
-    document.getElementById("game").classList.add("active");
+/* ==========================================================
+   CREATE UNIQUE WRONG OPTIONS
+========================================================== */
 
-    questions = [];
+function generateOptions(correct){
 
-    for (let i = 0; i < 15; i++) {
-        let seq = [
-            Math.floor(Math.random()*11),
-            Math.floor(Math.random()*11),
-            Math.floor(Math.random()*11)
-        ];
-        questions.push(seq);
+    const options = [];
+
+    const used = new Set();
+
+    const correctKey = sequenceKey(correct);
+
+    options.push(correct);
+
+    used.add(correctKey);
+
+    while(options.length < TOTAL_OPTIONS){
+
+        const sequence = createSequence();
+
+        const key = sequenceKey(sequence);
+
+        if(!used.has(key)){
+
+            used.add(key);
+
+            options.push(sequence);
+
+        }
+
     }
+
+    return shuffle(options);
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    stopAudio();
+
+    document.getElementById("intro")
+        .classList.remove("active");
+
+    document.getElementById("end")
+        .classList.remove("active");
+
+    document.getElementById("game")
+        .classList.add("active");
+
+    questions = generateQuestions();
 
     current = 0;
     score = 0;
+    answered = false;
+
+    document.getElementById("score").innerText = score;
 
     loadQuestion();
+
 }
 
-/* ================= LOAD ================= */
 
-function loadQuestion() {
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion(){
+
+    stopAudio();
+
     answered = false;
-    document.getElementById("nextBtn").style.display = "none";
-    document.getElementById("resultIcon").innerText = "";
 
-    if (current >= questions.length) {
+    const resultIcon =
+        document.getElementById("resultIcon");
+
+    const correctAnswer =
+        document.getElementById("correctAnswer");
+
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    resultIcon.innerText = "";
+    resultIcon.className = "result";
+
+    correctAnswer.innerText = "";
+
+    nextBtn.style.display = "none";
+
+    if(current >= questions.length){
+
         endGame();
+
         return;
+
     }
 
-    document.getElementById("qnum").innerText = current + 1;
 
-    const correct = questions[current].join(" - ");
+    document.getElementById("qnum").innerText =
+        current + 1;
 
-    let options = [];
 
-    for (let i = 0; i < 4; i++) {
-        let seq = [
-            Math.floor(Math.random()*11),
-            Math.floor(Math.random()*11),
-            Math.floor(Math.random()*11)
-        ];
-        options.push(seq.join(" - "));
-    }
+    document.getElementById("progress").style.width =
+        ((current + 1) / TOTAL_QUESTIONS * 100) + "%";
 
-    options[0] = correct;
-    options = shuffle(options);
 
-    const container = document.getElementById("answers");
+    const correct = questions[current];
+
+    const options = generateOptions(correct);
+
+    const container =
+        document.getElementById("answers");
+
     container.innerHTML = "";
 
-    options.forEach(opt => {
-        const div = document.createElement("div");
-        div.className = "answer";
-        div.innerText = opt;
 
-        div.onclick = () => choose(div, opt === correct);
+    options.forEach(sequence => {
+
+        const div = document.createElement("div");
+
+        div.className = "answer";
+
+        div.innerText =
+            sequence.join(" - ");
+
+        div.dataset.sequence =
+            sequenceKey(sequence);
+
+        div.onclick = () => {
+
+            chooseAnswer(
+                div,
+                sequenceKey(sequence) === sequenceKey(correct)
+            );
+
+        };
 
         container.appendChild(div);
+
     });
 
-    // delay nhẹ tránh browser block
+
+    /*
+        Small delay so the question UI appears
+        before the audio starts.
+    */
+
     setTimeout(() => {
-        speakSequence(questions[current]);
-    }, 300);
+
+        if(!answered){
+
+            speakSequence(correct);
+
+        }
+
+    },350);
+
 }
 
-/* ================= CHOOSE ================= */
 
-function choose(el, correct) {
-    if (answered) return;
+/* ==========================================================
+   CHOOSE ANSWER
+========================================================== */
+
+function chooseAnswer(element, isCorrect){
+
+    if(answered) return;
 
     answered = true;
 
-    if (correct) {
-        el.classList.add("correct");
+    stopAudio();
+
+
+    const correct =
+        questions[current];
+
+    const correctKey =
+        sequenceKey(correct);
+
+
+    const allAnswers =
+        document.querySelectorAll(".answer");
+
+
+    /*
+        Disable all choices
+    */
+
+    allAnswers.forEach(answer => {
+
+        answer.classList.add("disabled");
+
+    });
+
+
+    /*
+        Find the correct answer
+    */
+
+    let correctElement = null;
+
+    allAnswers.forEach(answer => {
+
+        if(answer.dataset.sequence === correctKey){
+
+            correctElement = answer;
+
+        }
+
+    });
+
+
+    if(isCorrect){
+
+        element.classList.add("correct");
+
         score++;
-        showResult(true);
-    } else {
-        el.classList.add("wrong");
-        showResult(false);
+
+        document.getElementById("resultIcon").innerText =
+            "✔ Correct!";
+
+        document.getElementById("resultIcon")
+            .classList.add("correct-text");
+
+    }else{
+
+        element.classList.add("wrong");
+
+        if(correctElement){
+
+            correctElement.classList.add("correct");
+
+        }
+
+        document.getElementById("resultIcon").innerText =
+            "❌ Wrong!";
+
+        document.getElementById("resultIcon")
+            .classList.add("wrong-text");
+
+
+        document.getElementById("correctAnswer").innerText =
+            "Correct answer: " + correctKey.replaceAll("-", " - ");
+
     }
 
-    document.getElementById("score").innerText = score;
+
+    document.getElementById("score").innerText =
+        score;
+
+
+    document.getElementById("nextBtn").style.display =
+        "inline-block";
+
 }
 
-/* ================= RESULT ================= */
 
-function showResult(ok) {
-    document.getElementById("resultIcon").innerText = ok ? "✔" : "❌";
-    document.getElementById("nextBtn").style.display = "inline-block";
-}
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
 
-/* ================= NEXT ================= */
+function nextQuestion(){
 
-function nextQuestion() {
     current++;
+
     loadQuestion();
+
 }
 
-/* ================= END ================= */
 
-function endGame() {
-    document.getElementById("game").classList.remove("active");
-    document.getElementById("end").classList.add("active");
-    document.getElementById("finalScore").innerText = score + "/15";
+/* ==========================================================
+   END GAME
+========================================================== */
+
+function endGame(){
+
+    stopAudio();
+
+    document.getElementById("game")
+        .classList.remove("active");
+
+    document.getElementById("end")
+        .classList.add("active");
+
+
+    document.getElementById("finalScore").innerText =
+        score + " / " + TOTAL_QUESTIONS;
+
+
+    const percentage =
+        Math.round(
+            score / TOTAL_QUESTIONS * 100
+        );
+
+
+    let text = "";
+
+    if(percentage === 100){
+
+        text = "🏆 Perfect! Excellent listening!";
+
+    }else if(percentage >= 80){
+
+        text = "🎉 Excellent job!";
+
+    }else if(percentage >= 60){
+
+        text = "👍 Good job! Keep practicing!";
+
+    }else{
+
+        text = "📚 Keep practicing your numbers!";
+
+    }
+
+
+    document.getElementById("performance").innerText =
+        text;
+
 }
 
-/* ================= RESTART ================= */
 
-function restart() {
+/* ==========================================================
+   RESTART
+========================================================== */
 
-    currentAudios.forEach(a => {
-        a.pause();
-        a.currentTime = 0;
-    });
-    currentAudios = [];
+function restart(){
 
-    document.getElementById("end").classList.remove("active");
-    document.getElementById("game").classList.add("active");
-    startGame();
+    stopAudio();
+
+    document.getElementById("end")
+        .classList.remove("active");
+
+    document.getElementById("intro")
+        .classList.add("active");
+
 }
 
 </script>

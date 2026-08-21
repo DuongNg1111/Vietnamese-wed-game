@@ -4,7 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Choose the Correct Color</title>
+
+<!-- =========================
+     GAME METADATA
+========================= -->
 
 <meta name="game-title" content="Color Match">
 <meta name="game-description" content="Match Vietnamese color words with the correct colors.">
@@ -22,7 +27,7 @@ body{
     background:linear-gradient(180deg,#58cc02,#46b000);
     min-height:100vh;
     display:flex;
-    flex-direction: column; /* Allows back button to stay on top */
+    flex-direction: column;
     justify-content:center;
     align-items:center;
     padding:20px;
@@ -199,52 +204,92 @@ h1{
 }
 </style>
 </head>
+
 <body>
 
-<!-- Navigation container pulling backward 2 subfolder levels directly to index.html -->
+<!-- Navigation container -->
 <div class="back-btn-container">
-    <a href="../../index.html" class="back-btn">⬅ Back to Lobby</a>
+    <a href="../../index.html" class="back-btn">
+        ⬅ Back to Lobby
+    </a>
 </div>
+
 
 <div class="card">
 
-    <h1>Choose the Correct Color</h1>
+    <h1>
+        Choose the Correct Color
+    </h1>
 
     <div class="subtitle">
         Click the color that matches the Vietnamese text.
     </div>
 
+
     <div id="gameScreen">
 
-        <div class="question-number" id="questionNumber"></div>
+        <div
+            class="question-number"
+            id="questionNumber">
+        </div>
 
-        <div class="choose-text">Choose:</div>
+        <div class="choose-text">
+            Choose:
+        </div>
 
-        <div class="word" id="questionWord"></div>
+        <div
+            class="word"
+            id="questionWord">
+        </div>
 
-        <div class="answers" id="answers"></div>
+        <div
+            class="answers"
+            id="answers">
+        </div>
 
-        <div class="message" id="message"></div>
+        <div
+            class="message"
+            id="message">
+        </div>
 
-        <button id="nextBtn" class="action-btn hidden"></button>
+        <button
+            id="nextBtn"
+            class="action-btn hidden">
+        </button>
 
     </div>
 
-    <div id="resultScreen" class="hidden">
 
-        <h1>Great Job!</h1>
+    <div
+        id="resultScreen"
+        class="hidden">
 
-        <div class="score" id="scoreText"></div>
+        <h1>
+            Great Job!
+        </h1>
 
-        <div class="performance" id="performance"></div>
+        <div
+            class="score"
+            id="scoreText">
+        </div>
 
-        <button class="action-btn" id="playAgain">
+        <div
+            class="performance"
+            id="performance">
+        </div>
+
+        <button
+            class="action-btn"
+            id="playAgain">
+
             Play Again
+
         </button>
 
     </div>
 
 </div>
+
 
 <script>
 
@@ -253,20 +298,22 @@ h1{
 // =========================
 
 const COLORS=[
-{text:"Màu đỏ",color:"red"},
-{text:"Màu cam",color:"orange"},
-{text:"Màu vàng",color:"yellow"},
-{text:"Màu hồng",color:"hotpink"},
-{text:"Màu xanh lá",color:"limegreen"},
-{text:"Màu đen",color:"black"},
-{text:"Màu trắng",color:"white"}
+    {text:"Màu đỏ",color:"red"},
+    {text:"Màu cam",color:"orange"},
+    {text:"Màu vàng",color:"yellow"},
+    {text:"Màu hồng",color:"hotpink"},
+    {text:"Màu xanh lá",color:"limegreen"},
+    {text:"Màu đen",color:"black"},
+    {text:"Màu trắng",color:"white"}
 ];
+
 
 // =========================
 // Constants
 // =========================
 
 const TOTAL_QUESTIONS = 15;
+
 
 // =========================
 // Game state
@@ -277,21 +324,41 @@ let currentQuestion=0;
 let score=0;
 let answered=false;
 
+
 // =========================
 // DOM
 // =========================
 
-const questionNumber=document.getElementById("questionNumber");
-const questionWord=document.getElementById("questionWord");
-const answers=document.getElementById("answers");
-const message=document.getElementById("message");
-const nextBtn=document.getElementById("nextBtn");
+const questionNumber =
+    document.getElementById("questionNumber");
 
-const gameScreen=document.getElementById("gameScreen");
-const resultScreen=document.getElementById("resultScreen");
-const scoreText=document.getElementById("scoreText");
-const performance=document.getElementById("performance");
-const playAgain=document.getElementById("playAgain");
+const questionWord =
+    document.getElementById("questionWord");
+
+const answers =
+    document.getElementById("answers");
+
+const message =
+    document.getElementById("message");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const resultScreen =
+    document.getElementById("resultScreen");
+
+const scoreText =
+    document.getElementById("scoreText");
+
+const performance =
+    document.getElementById("performance");
+
+const playAgain =
+    document.getElementById("playAgain");
+
 
 // =========================
 // Random helper
@@ -301,6 +368,7 @@ function rand(max){
     return Math.floor(Math.random()*max);
 }
 
+
 // =========================
 // Shuffle
 // =========================
@@ -309,13 +377,16 @@ function shuffle(array){
 
     for(let i=array.length-1;i>0;i--){
 
-        const j=Math.floor(Math.random()*(i+1));
+        const j =
+            Math.floor(Math.random()*(i+1));
 
-        [array[i],array[j]]=[array[j],array[i]];
+        [array[i],array[j]] =
+            [array[j],array[i]];
     }
 
     return array;
 }
+
 
 // =========================
 // Generate questions
@@ -325,18 +396,31 @@ function generateQuestions(){
 
     questions=[];
 
-    for(let i=0;i<TOTAL_QUESTIONS;i++){
+    for(
+        let i=0;
+        i<TOTAL_QUESTIONS;
+        i++
+    ){
 
-        const correct=COLORS[rand(COLORS.length)];
+        const correct =
+            COLORS[rand(COLORS.length)];
 
         let wrong;
 
         do{
-            wrong=COLORS[rand(COLORS.length)];
-        }
-        while(wrong.color===correct.color);
 
-        const options=[correct,wrong];
+            wrong =
+                COLORS[rand(COLORS.length)];
+
+        }
+        while(
+            wrong.color===correct.color
+        );
+
+        const options=[
+            correct,
+            wrong
+        ];
 
         shuffle(options);
 
@@ -348,6 +432,7 @@ function generateQuestions(){
     }
 
 }
+
 
 // =========================
 // Start game
@@ -361,11 +446,13 @@ function startGame(){
     score=0;
 
     gameScreen.classList.remove("hidden");
+
     resultScreen.classList.add("hidden");
 
     loadQuestion();
 
 }
+
 
 // =========================
 // Load question
@@ -376,39 +463,52 @@ function loadQuestion(){
     answered=false;
 
     message.textContent="";
+
     message.className="message";
 
     nextBtn.classList.add("hidden");
 
-    const q=questions[currentQuestion];
+    const q =
+        questions[currentQuestion];
 
-    questionNumber.textContent=`Question ${currentQuestion+1} / ${TOTAL_QUESTIONS}`;
+    questionNumber.textContent =
+        `Question ${currentQuestion+1} / ${TOTAL_QUESTIONS}`;
 
-    questionWord.textContent=q.correct.text;
+    questionWord.textContent =
+        q.correct.text;
 
     answers.innerHTML="";
 
     q.options.forEach(option=>{
 
-        const btn=document.createElement("button");
+        const btn =
+            document.createElement("button");
 
         btn.className="color-btn";
 
-        btn.dataset.correct=(option.color===q.correct.color);
+        btn.dataset.correct =
+            (option.color===q.correct.color);
 
-        btn.style.background=option.color;
+        btn.style.background =
+            option.color;
 
         if(option.color==="white"){
-            btn.style.border="4px solid #bbb";
+
+            btn.style.border =
+                "4px solid #bbb";
         }
 
-        btn.addEventListener("click",()=>handleAnswer(btn));
+        btn.addEventListener(
+            "click",
+            ()=>handleAnswer(btn)
+        );
 
         answers.appendChild(btn);
 
     });
 
 }
+
 
 // =========================
 // Handle answer
@@ -420,67 +520,105 @@ function handleAnswer(selected){
 
     answered=true;
 
-    const buttons=document.querySelectorAll(".color-btn");
+    const buttons =
+        document.querySelectorAll(".color-btn");
 
-    buttons.forEach(btn=>btn.classList.add("disabled"));
-
-    const correctButton=[...buttons].find(
-        btn=>btn.dataset.correct==="true"
+    buttons.forEach(
+        btn =>
+            btn.classList.add("disabled")
     );
 
-    if(selected.dataset.correct==="true"){
+    const correctButton =
+        [...buttons].find(
+            btn =>
+                btn.dataset.correct==="true"
+        );
+
+    if(
+        selected.dataset.correct==="true"
+    ){
 
         score++;
 
-        message.textContent="✅ Correct!";
-        message.classList.add("correct-text");
+        message.textContent =
+            "✅ Correct!";
 
-        correctButton.classList.add("green-border");
+        message.classList.add(
+            "correct-text"
+        );
 
-    }else{
+        correctButton.classList.add(
+            "green-border"
+        );
 
-        message.textContent="❌ Wrong!";
-        message.classList.add("wrong-text");
+    }
+    else{
 
-        selected.classList.add("red-border");
+        message.textContent =
+            "❌ Wrong!";
 
-        correctButton.classList.add("green-border");
+        message.classList.add(
+            "wrong-text"
+        );
+
+        selected.classList.add(
+            "red-border"
+        );
+
+        correctButton.classList.add(
+            "green-border"
+        );
 
     }
 
     nextBtn.classList.remove("hidden");
 
-    if(currentQuestion===TOTAL_QUESTIONS-1){
+    if(
+        currentQuestion===
+        TOTAL_QUESTIONS-1
+    ){
 
-        nextBtn.textContent="Finish";
+        nextBtn.textContent =
+            "Finish";
 
-    }else{
+    }
+    else{
 
-        nextBtn.textContent="Next Question →";
+        nextBtn.textContent =
+            "Next Question →";
 
     }
 
 }
 
+
 // =========================
 // Next button
 // =========================
 
-nextBtn.addEventListener("click",()=>{
+nextBtn.addEventListener(
+    "click",
+    ()=>{
 
-    currentQuestion++;
+        currentQuestion++;
 
-    if(currentQuestion>=TOTAL_QUESTIONS){
+        if(
+            currentQuestion>=
+            TOTAL_QUESTIONS
+        ){
 
-        showResults();
+            showResults();
 
-    }else{
+        }
+        else{
 
-        loadQuestion();
+            loadQuestion();
+
+        }
 
     }
+);
 
-});
 
 // =========================
 // Results
@@ -489,38 +627,57 @@ nextBtn.addEventListener("click",()=>{
 function showResults(){
 
     gameScreen.classList.add("hidden");
+
     resultScreen.classList.remove("hidden");
 
-    scoreText.textContent=`${score} / ${TOTAL_QUESTIONS}`;
+    scoreText.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
 
     if(score===15){
 
-        performance.textContent="Perfect!";
+        performance.textContent =
+            "Perfect!";
 
-    }else if(score>=12){
+    }
+    else if(score>=12){
 
-        performance.textContent="Excellent!";
+        performance.textContent =
+            "Excellent!";
 
-    }else if(score>=9){
+    }
+    else if(score>=9){
 
-        performance.textContent="Good Job!";
+        performance.textContent =
+            "Good Job!";
 
-    }else{
+    }
+    else{
 
-        performance.textContent="Keep Practicing!";
+        performance.textContent =
+            "Keep Practicing!";
 
     }
 
 }
 
-// =========================
-// Play Again Button Event Link
-// =========================
-playAgain.addEventListener("click", startGame);
 
-// Initialize Loop
+// =========================
+// Play Again
+// =========================
+
+playAgain.addEventListener(
+    "click",
+    startGame
+);
+
+
+// =========================
+// Initialize
+// =========================
+
 startGame();
 
 </script>
+
 </body>
 </html>
