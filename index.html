@@ -3,280 +3,1277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play free, interactive arcade mini-games to master survival Vietnamese pronouns, colors, and travel phrases with Duong.">
-    <meta name="keywords" content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese pronouns, vietnamese vocabulary">
-    <meta name="author" content="Duong">    
+
+    <meta name="description" content="Play free, interactive arcade mini-games to master survival Vietnamese vocabulary, pronunciation, and communication skills with Duong.">
+    <meta name="keywords" content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese vocabulary, vietnamese practice">
+    <meta name="author" content="Duong">
+
     <title>Survival Vietnamese with Duong</title>
-    <!-- Importing Kalam font from Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
+
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            min-height: 100vh;
         }
-        
-        /* Header Container with Lightly Blurred Background Image */
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
         header {
             position: relative;
+
             width: 100%;
+
             text-align: center;
+
             padding: 70px 20px;
+
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
             overflow: hidden;
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-        
-        /* The Background Layer (Points to your uploaded 'banner.jpg') */
+
+
+        /* Banner background */
+
         header::before {
             content: "";
+
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
             background-image: url('banner.jpg');
             background-size: cover;
             background-position: center;
+
             filter: blur(2px) brightness(1.1);
+
             z-index: 1;
         }
 
-        /* Semi-transparent light mask to ensure contrast for dark text */
+
+        /* Light overlay */
+
         header::after {
             content: "";
+
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.4);
-            z-index: 1.5;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            background: rgba(255,255,255,0.4);
+
+            z-index: 1;
         }
-        
-        /* Header Text Content Layer */
+
+
+        /* Header title */
+
         header h1 {
             position: relative;
+
             z-index: 2;
+
             color: #000000;
+
             margin: 0;
+
             font-family: 'Kalam', cursive;
+
             font-size: 3.8rem;
+
             font-weight: 700;
+
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 1px 1px 2px rgba(255, 255, 255, 0.5);
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.8),
+                1px 1px 2px rgba(255,255,255,0.5);
         }
-        
+
+
+        /* Header subtitle */
+
         header p {
             position: relative;
+
             z-index: 2;
+
             color: #2c3e50;
+
             margin: 10px 0 0 0;
+
             font-size: 1.3rem;
+
             font-weight: 600;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.9);
         }
-        
-        /* Main Layout Content */
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
         .container {
             max-width: 1000px;
+
             width: 90%;
+
             margin: 40px 0;
-            text-align: center;
-        }
-        
-        /* Centered Main Section Title */
-        .section-title {
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin: 0 auto 40px auto;
-            border-bottom: 3px solid #1abc9c;
-            padding-bottom: 8px;
-            display: inline-block;
+
             text-align: center;
         }
 
-        /* Clean Game Type Sections */
+
+        /* Main title */
+
+        .section-title {
+            font-size: 2.2rem;
+
+            color: #2c3e50;
+
+            margin: 0 auto 40px auto;
+
+            border-bottom: 3px solid #1abc9c;
+
+            padding-bottom: 8px;
+
+            display: inline-block;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           CATEGORY SECTION
+        ========================= */
+
         .game-type-section {
             margin-bottom: 50px;
+
             text-align: left;
         }
 
+
+        /* Category title */
+
         .category-title {
             font-size: 1.8rem;
+
             color: #2c3e50;
-            margin: 0 0 20px 0;
+
+            margin: 0 0 6px 0;
+
             font-weight: bold;
+
             text-transform: capitalize;
+
             letter-spacing: 0.5px;
+
             border-left: 5px solid #1abc9c;
+
             padding-left: 12px;
         }
-        
-        /* Flex Grid to display cards beautifully */
+
+
+        /* Category subtitle */
+
+        .category-subtitle {
+            color: #7f8c8d;
+
+            font-size: 1rem;
+
+            line-height: 1.4;
+
+            margin: 0 0 20px 17px;
+        }
+
+
+        /* =========================
+           GAME GRID
+        ========================= */
+
         .game-grid {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 25px;
         }
-        
-        /* Symmetrical Square Game Card Design */
+
+
+        /* =========================
+           GAME CARD
+        ========================= */
+
         .game-card {
             background: white;
+
             border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+
+            box-shadow:
+                0 4px 10px rgba(0,0,0,0.04);
+
             border: 1px solid #e2e8f0;
+
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            
-            /* Forces the card frame to be a perfect 1:1 square */
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
             width: 280px;
+
             height: 280px;
-            
+
             display: flex;
+
             flex-direction: column;
+
             position: relative;
         }
-        
+
+
+        /* Hover */
+
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+
+            box-shadow:
+                0 12px 25px rgba(0,0,0,0.08);
+
             border-color: #cbd5e1;
         }
-        
-        /* Top portion of the square card for the icon */
+
+
+        /* =========================
+           GAME THUMBNAIL
+        ========================= */
+
         .game-thumb {
             height: 40%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 2.8rem;
+
+            background: #e8f8f5;
         }
-        
-        /* Thumbnail Background Colors */
-        .thumb-pronouns { background: #ff7f50; }
-        .thumb-colors-1 { background: #58cc02; } 
-        .thumb-colors-2 { background: #ff9800; } 
-        
-        /* Bottom portion of the square card for info and button */
+
+
+        /* =========================
+           GAME INFORMATION
+        ========================= */
+
         .game-info {
             padding: 15px;
+
             height: 60%;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: space-between;
         }
-        
-        /* Text wrapper with vertical centering inside the space */
+
+
+        /* Game title */
+
+        .game-title {
+            color: #2c3e50;
+
+            font-size: 1.1rem;
+
+            line-height: 1.3;
+
+            margin: 0 0 8px 0;
+
+            text-align: center;
+        }
+
+
+        /* Game description */
+
         .game-desc {
             font-size: 0.9rem;
+
             color: #7f8c8d;
+
             line-height: 1.4;
+
             margin: 0;
+
             text-align: center;
+
             flex-grow: 1;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
         }
-        
-        /* Play Button anchored neatly at the bottom */
+
+
+        /* =========================
+           PLAY BUTTON
+        ========================= */
+
         .play-btn {
             display: block;
+
             text-align: center;
+
             background-color: #1abc9c;
+
             color: white;
+
             text-decoration: none;
+
             padding: 10px;
+
             border-radius: 8px;
+
             font-weight: bold;
+
             font-size: 0.95rem;
-            transition: background-color 0.2s;
+
+            transition:
+                background-color 0.2s;
+
             width: 100%;
+
             box-sizing: border-box;
         }
-        
+
+
         .play-btn:hover {
             background-color: #16a085;
         }
-        
-        footer {
-            margin-top: auto;
-            padding: 25px;
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            text-align: center;
+
             color: #7f8c8d;
-            font-size: 0.9rem;
+
+            font-size: 1rem;
+
+            padding: 30px;
         }
 
-        /* Adjusts cards to center on tiny mobile screens */
-        @media(max-width: 640px) {
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error-message {
+            background: #fff3f3;
+
+            border: 1px solid #f5c2c2;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            color: #c0392b;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: auto;
+
+            padding: 25px;
+
+            color: #7f8c8d;
+
+            font-size: 0.9rem;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 640px) {
+
+            header {
+                padding: 50px 15px;
+            }
+
+            header h1 {
+                font-size: 2.7rem;
+            }
+
+            header p {
+                font-size: 1.05rem;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
             .game-grid {
                 justify-content: center;
             }
+
+            .game-card {
+                width: 280px;
+                height: 280px;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .category-subtitle {
+                font-size: 0.9rem;
+            }
         }
+
     </style>
 </head>
+
+
 <body>
 
-    <!-- BANNER WITH MANUAL REFRESH LOCAL BACKGROUND FILE -->
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
     <header>
-        <h1>Survival Vietnamese with Duong</h1>
-        <p>Master practical Vietnamese through interactive arcade games!</p>
+
+        <h1>
+            Survival Vietnamese with Duong
+        </h1>
+
+        <p>
+            Master practical Vietnamese through interactive arcade games!
+        </p>
+
     </header>
 
-    <!-- MAIN ARCADE CABINET -->
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
     <div class="container">
-        <div class="section-title">🎮 Available Games</div>
-        
-        <!-- SECTION 1: PRONOUN -->
-        <div class="game-type-section">
-            <div class="category-title">Pronoun</div>
-            <div class="game-grid">
-                <!-- Pronoun Game 1 -->
-                <div class="game-card">
-                    <div class="game-thumb thumb-pronouns">🗣️</div>
-                    <div class="game-info">
-                        <!-- Game title block completely removed -->
-                        <p class="game-desc">Master how to correctly address family members, relatives, and strangers based on the relationship chart matrix.</p>
-                        <a href="GAMES/pronoun/game1.html" class="play-btn">Play Now</a>
-                    </div>
-                </div>
-            </div>
+
+        <div class="section-title">
+            🎮 Available Games
         </div>
 
-        <!-- SECTION 2: COLOR -->
-        <div class="game-type-section">
-            <div class="category-title">Color</div>
-            <div class="game-grid">
-                <!-- Color Game 1 -->
-                <div class="game-card">
-                    <div class="game-thumb thumb-colors-1">🎨</div>
-                    <div class="game-info">
-                        <!-- Game title block completely removed -->
-                        <p class="game-desc">Read the Vietnamese text color name and quickly tap the correct matching visual color block button.</p>
-                        <a href="GAMES/color/game1.html" class="play-btn">Play Now</a>
-                    </div>
-                </div>
-                <!-- Color Game 2 -->
-                <div class="game-card">
-                    <div class="game-thumb thumb-colors-2">🧠</div>
-                    <div class="game-info">
-                        <!-- Game title block completely removed -->
-                        <p class="game-desc">Memorize the positions of four distinct hues before they vanish, then locate the requested Vietnamese color name.</p>
-                        <a href="GAMES/color/game2.html" class="play-btn">Play Now</a>
-                    </div>
-                </div>
+
+        <!--
+            Games will automatically
+            appear here.
+        -->
+
+        <div id="game-container">
+
+            <div class="loading">
+                Loading games...
             </div>
+
         </div>
 
     </div>
 
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
+
         © 2026 Created by Survival Vietnamese with Duong
+
     </footer>
+
+
+
+    <!-- =========================
+         AUTO GAME LOADER
+    ========================= -->
+
+    <script>
+
+        /*
+         * =====================================================
+         * CONFIGURATION
+         * =====================================================
+         */
+
+        const REPO_API =
+            "https://api.github.com/repos/DuongNg1111/Vietnamese-wed-game/contents/GAMES";
+
+
+        const GAMES_BASE =
+            "https://raw.githubusercontent.com/DuongNg1111/Vietnamese-wed-game/main/GAMES";
+
+
+
+        /*
+         * =====================================================
+         * LOAD CATEGORY INFORMATION
+         * =====================================================
+         */
+
+        async function loadCategories() {
+
+            const response =
+                await fetch("categories.json");
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load categories.json"
+                );
+            }
+
+            return await response.json();
+        }
+
+
+
+        /*
+         * =====================================================
+         * GET CONTENTS OF A GITHUB FOLDER
+         * =====================================================
+         */
+
+        async function getFolderContents(url) {
+
+            const response =
+                await fetch(url);
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Could not load folder: ${url}`
+                );
+            }
+
+            return await response.json();
+        }
+
+
+
+        /*
+         * =====================================================
+         * GET META TAG FROM GAME HTML
+         * =====================================================
+         */
+
+        function getMeta(html, name) {
+
+            const regex =
+                new RegExp(
+                    `<meta\\s+name=["']${name}["']\\s+content=["']([^"']*)["']`,
+                    "i"
+                );
+
+            const match =
+                html.match(regex);
+
+            return match
+                ? match[1]
+                : "";
+        }
+
+
+
+        /*
+         * =====================================================
+         * LOAD GAME METADATA
+         * =====================================================
+         */
+
+        async function getGameMetadata(
+            gameUrl,
+            fallbackName
+        ) {
+
+            try {
+
+                const response =
+                    await fetch(gameUrl);
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load game HTML"
+                    );
+                }
+
+                const html =
+                    await response.text();
+
+
+                return {
+
+                    title:
+                        getMeta(
+                            html,
+                            "game-title"
+                        ) || fallbackName,
+
+                    description:
+                        getMeta(
+                            html,
+                            "game-description"
+                        ) ||
+                        "Practice Vietnamese with this interactive game.",
+
+                    icon:
+                        getMeta(
+                            html,
+                            "game-icon"
+                        ) ||
+                        "🎮"
+                };
+
+            }
+
+            catch (error) {
+
+                console.warn(
+                    "Could not read metadata:",
+                    gameUrl
+                );
+
+
+                return {
+
+                    title:
+                        fallbackName,
+
+                    description:
+                        "Practice Vietnamese with this interactive game.",
+
+                    icon:
+                        "🎮"
+                };
+            }
+        }
+
+
+
+        /*
+         * =====================================================
+         * FIND GAMES INSIDE CATEGORY
+         * =====================================================
+         *
+         * Rules:
+         *
+         * 1. Direct .html file = game
+         *
+         * 2. Subfolder containing .html = game
+         *
+         * 3. images/audio/assets folders = ignored
+         *
+         */
+
+        async function findGames(
+            categoryUrl
+        ) {
+
+            const items =
+                await getFolderContents(
+                    categoryUrl
+                );
+
+
+            const games = [];
+
+
+            const ignoredFolders = [
+
+                "images",
+                "image",
+
+                "audio",
+                "audios",
+
+                "assets",
+
+                "css",
+                "js"
+
+            ];
+
+
+            for (
+                const item
+                of items
+            ) {
+
+
+                /*
+                 * ==============================
+                 * DIRECT HTML FILE
+                 * ==============================
+                 */
+
+                if (
+
+                    item.type === "file" &&
+
+                    item.name
+                        .toLowerCase()
+                        .endsWith(".html")
+
+                ) {
+
+                    games.push({
+
+                        path:
+                            item.path,
+
+                        name:
+                            item.name
+                                .replace(
+                                    /\.html$/i,
+                                    ""
+                                )
+
+                    });
+
+
+                    continue;
+                }
+
+
+
+                /*
+                 * ==============================
+                 * GAME FOLDER
+                 * ==============================
+                 */
+
+                if (
+                    item.type === "dir"
+                ) {
+
+
+                    if (
+                        ignoredFolders.includes(
+                            item.name.toLowerCase()
+                        )
+                    ) {
+
+                        continue;
+                    }
+
+
+                    const subItems =
+                        await getFolderContents(
+                            item.url
+                        );
+
+
+                    /*
+                     * Find HTML files
+                     * directly inside
+                     * the game folder.
+                     */
+
+                    const htmlFiles =
+                        subItems.filter(
+
+                            subItem =>
+
+                                subItem.type === "file" &&
+
+                                subItem.name
+                                    .toLowerCase()
+                                    .endsWith(".html")
+
+                        );
+
+
+                    for (
+                        const htmlFile
+                        of htmlFiles
+                    ) {
+
+                        games.push({
+
+                            path:
+                                htmlFile.path,
+
+                            name:
+                                htmlFile.name
+                                    .replace(
+                                        /\.html$/i,
+                                        ""
+                                    )
+
+                        });
+
+                    }
+
+                }
+
+            }
+
+
+            return games;
+        }
+
+
+
+        /*
+         * =====================================================
+         * CREATE GAME CARD
+         * =====================================================
+         */
+
+        async function createGameCard(
+            game
+        ) {
+
+
+            /*
+             * Convert GitHub path
+             * into raw GitHub URL.
+             */
+
+            const relativePath =
+                game.path
+                    .replace(
+                        /^GAMES\//,
+                        ""
+                    )
+                    .split("/")
+                    .map(
+                        part =>
+                            encodeURIComponent(part)
+                    )
+                    .join("/");
+
+
+            const gameUrl =
+                `${GAMES_BASE}/${relativePath}`;
+
+
+            /*
+             * Read metadata
+             */
+
+            const metadata =
+                await getGameMetadata(
+                    gameUrl,
+                    game.name
+                );
+
+
+            /*
+             * Create card
+             */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "game-card";
+
+
+            /*
+             * Create game URL
+             */
+
+            const playUrl =
+                game.path
+                    .split("/")
+                    .map(
+                        part =>
+                            encodeURIComponent(part)
+                    )
+                    .join("/");
+
+
+            card.innerHTML = `
+
+                <div class="game-thumb">
+                    ${metadata.icon}
+                </div>
+
+                <div class="game-info">
+
+                    <h3 class="game-title">
+                        ${metadata.title}
+                    </h3>
+
+                    <p class="game-desc">
+                        ${metadata.description}
+                    </p>
+
+                    <a
+                        href="${playUrl}"
+                        class="play-btn"
+                    >
+                        Play Now
+                    </a>
+
+                </div>
+
+            `;
+
+
+            return card;
+        }
+
+
+
+        /*
+         * =====================================================
+         * RENDER ALL CATEGORIES AND GAMES
+         * =====================================================
+         */
+
+        async function renderGames() {
+
+            const container =
+                document.getElementById(
+                    "game-container"
+                );
+
+
+            try {
+
+
+                /*
+                 * Load category metadata
+                 */
+
+                const categories =
+                    await loadCategories();
+
+
+                /*
+                 * Load GAMES folder
+                 */
+
+                const response =
+                    await fetch(
+                        REPO_API
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load GAMES folder."
+                    );
+                }
+
+
+                const categoryFolders =
+                    await response.json();
+
+
+                /*
+                 * Clear loading message
+                 */
+
+                container.innerHTML = "";
+
+
+
+                /*
+                 * Loop through categories
+                 */
+
+                for (
+                    const categoryFolder
+                    of categoryFolders
+                ) {
+
+
+                    /*
+                     * Ignore files.
+                     * We only want folders.
+                     */
+
+                    if (
+                        categoryFolder.type !==
+                        "dir"
+                    ) {
+
+                        continue;
+                    }
+
+
+                    const categoryName =
+                        categoryFolder.name;
+
+
+                    /*
+                     * Get category metadata.
+                     */
+
+                    const categoryInfo =
+                        categories[
+                            categoryName
+                        ] || {
+
+                            icon:
+                                "🎮",
+
+                            subtitle:
+                                "Practice Vietnamese with interactive games."
+
+                        };
+
+
+                    /*
+                     * Find games.
+                     */
+
+                    const games =
+                        await findGames(
+                            categoryFolder.url
+                        );
+
+
+                    /*
+                     * Empty category
+                     * should not appear.
+                     */
+
+                    if (
+                        games.length === 0
+                    ) {
+
+                        continue;
+                    }
+
+
+
+                    /*
+                     * ==============================
+                     * CATEGORY SECTION
+                     * ==============================
+                     */
+
+                    const section =
+                        document.createElement(
+                            "section"
+                        );
+
+                    section.className =
+                        "game-type-section";
+
+
+
+                    /*
+                     * Category title
+                     */
+
+                    const title =
+                        document.createElement(
+                            "div"
+                        );
+
+                    title.className =
+                        "category-title";
+
+
+                    title.textContent =
+                        `${categoryInfo.icon} ${categoryName}`;
+
+
+
+                    /*
+                     * Category subtitle
+                     */
+
+                    const subtitle =
+                        document.createElement(
+                            "p"
+                        );
+
+                    subtitle.className =
+                        "category-subtitle";
+
+
+                    subtitle.textContent =
+                        categoryInfo.subtitle;
+
+
+
+                    /*
+                     * Game grid
+                     */
+
+                    const grid =
+                        document.createElement(
+                            "div"
+                        );
+
+                    grid.className =
+                        "game-grid";
+
+
+
+                    /*
+                     * Add games
+                     */
+
+                    for (
+                        const game
+                        of games
+                    ) {
+
+                        const card =
+                            await createGameCard(
+                                game
+                            );
+
+                        grid.appendChild(
+                            card
+                        );
+
+                    }
+
+
+
+                    /*
+                     * Add everything
+                     * to category section
+                     */
+
+                    section.appendChild(
+                        title
+                    );
+
+                    section.appendChild(
+                        subtitle
+                    );
+
+                    section.appendChild(
+                        grid
+                    );
+
+
+                    /*
+                     * Add category
+                     * to page
+                     */
+
+                    container.appendChild(
+                        section
+                    );
+
+                }
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="error-message">
+
+                        <strong>
+                            Unable to load games.
+                        </strong>
+
+                        <br><br>
+
+                        Please refresh the page
+                        and try again.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        /*
+         * =====================================================
+         * START
+         * =====================================================
+         */
+
+        renderGames();
+
+    </script>
 
 </body>
 </html>
