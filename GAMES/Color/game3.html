@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nối Màu Sắc - Học Tiếng Việt</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#e8f5e9;
+}
+
+h1{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:18px;
+}
+
+.subtitle{
+    text-align:center;
+    margin:15px;
+    color:#2e7d32;
+    font-size:20px;
+}
+
+#game{
+    width:900px;
+    margin:25px auto;
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+}
+
+.column{
+    width:260px;
+}
+
+.item,
+.target{
+    width:220px;
+    height:60px;
+    border-radius:12px;
+    margin:16px auto;
+}
+
+.item{
+    cursor:pointer;
+    border:4px solid #4caf50;
+    transition:.2s;
+}
+
+.item:hover{
+    transform:scale(1.05);
+}
+
+.target{
+    background:white;
+    border:3px solid #81c784;
+    line-height:60px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.target:hover{
+    background:#dcedc8;
+}
+
+.selected{
+    outline:6px solid #1b5e20;
+}
+
+.correct{
+    opacity:.45;
+    cursor:default;
+}
+
+canvas{
+    position:absolute;
+    left:0;
+    top:0;
+    pointer-events:none;
+}
+
+#message{
+    text-align:center;
+    font-size:30px;
+    color:#2e7d32;
+    font-weight:bold;
+    margin:25px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>🎨 Matching colors</h1>
+
+<div class="subtitle">
+Match the color names to the correct colors. 
+</div>
+
+<div id="game">
+
+<div class="column" id="left"></div>
+
+<canvas id="canvas" width="900" height="650"></canvas>
+
+<div class="column" id="right"></div>
+
+</div>
+
+<div id="message"></div>
+
+<script>
+
+const questions = [
+    {color:"#ff0000", vietnamese:"Màu đỏ"},
+    {color:"#ff9800", vietnamese:"Màu cam"},
+    {color:"#ffeb3b", vietnamese:"Màu vàng"},
+    {color:"#ff69b4", vietnamese:"Màu hồng"},
+    {color:"#4caf50", vietnamese:"Màu xanh lá"},
+    {color:"#000000", vietnamese:"Màu đen"},
+    {color:"#ffffff", vietnamese:"Màu trắng"}
+];
+
+const left=document.getElementById("left");
+const right=document.getElementById("right");
+
+questions.forEach(q=>{
+
+    const div=document.createElement("div");
+
+    div.className="item";
+
+    div.style.background=q.color;
+
+    if(q.color=="#ffffff"){
+        div.style.border="4px solid #777";
+    }
+
+    div.dataset.answer=q.vietnamese;
+
+    left.appendChild(div);
+
+});
+
+const shuffled=[...questions].sort(()=>Math.random()-0.5);
+
+shuffled.forEach(q=>{
+
+    const div=document.createElement("div");
+
+    div.className="target";
+
+    div.innerText=q.vietnamese;
+
+    div.dataset.answer=q.vietnamese;
+
+    right.appendChild(div);
+
+});
+
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+let selected=null;
+let score=0;
+
+document.querySelectorAll(".item").forEach(item=>{
+
+    item.onclick=()=>{
+
+        if(item.classList.contains("correct")) return;
+
+        document.querySelectorAll(".item").forEach(i=>i.classList.remove("selected"));
+
+        item.classList.add("selected");
+
+        selected=item;
+
+    };
+
+});
+
+document.querySelectorAll(".target").forEach(target=>{
+
+    target.onclick=()=>{
+
+        if(!selected) return;
+
+        if(target.classList.contains("correct")) return;
+
+        if(selected.dataset.answer===target.dataset.answer){
+
+            drawLine(selected,target);
+
+            selected.classList.remove("selected");
+            selected.classList.add("correct");
+            target.classList.add("correct");
+
+            selected=null;
+
+            score++;
+
+            if(score===questions.length){
+
+                document.getElementById("message").innerHTML=
+                "🎉 You nailed it!!!";
+
+            }
+
+        }else{
+
+            alert("❌ Incorrect, try again!");
+
+        }
+
+    };
+
+});
+
+function drawLine(a,b){
+
+    const game=document.getElementById("game").getBoundingClientRect();
+
+    const ra=a.getBoundingClientRect();
+    const rb=b.getBoundingClientRect();
+
+    const x1=ra.right-game.left;
+    const y1=ra.top+ra.height/2-game.top;
+
+    const x2=rb.left-game.left;
+    const y2=rb.top+rb.height/2-game.top;
+
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.lineWidth=5;
+    ctx.strokeStyle="#2e7d32";
+    ctx.stroke();
+
+}
+
+</script>
+
+</body>
+</html>

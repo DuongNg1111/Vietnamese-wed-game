@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietnamese Demonstratives Game (8 Rounds - Auto-Save)</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --primary: #6c5ce7;
+            --primary-hover: #5b4bc4;
+            --success: #00b894;
+            --error: #d63031;
+            --text-color: #2d3436;
+            --nay-color: #ffeaa7;
+            --do-color: #fab1a0;
+            --kia-color: #74b9ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 900px;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        p.instruction {
+            color: #636e72;
+            margin-bottom: 30px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(108, 92, 231, 0.2);
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #b2bec3;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
+        /* Teacher Setup Panel */
+        .setup-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .audio-upload-row {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            align-items: center;
+            gap: 10px;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px dashed #b2bec3;
+            position: relative;
+        }
+
+        .audio-upload-row.has-file {
+            border-style: solid;
+            border-color: var(--success);
+            background: #e8f8f5;
+        }
+
+        .audio-upload-row label {
+            font-weight: 600;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .audio-upload-row input[type="file"] {
+            font-size: 0.8rem;
+            width: 100%;
+        }
+
+        .status-txt {
+            font-size: 0.75rem;
+            color: var(--success);
+            font-weight: bold;
+            display: block;
+            text-align: left;
+        }
+
+        /* Student Game Screen */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .progress-badge {
+            background: #e0e0e0;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .audio-controls {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .audio-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Drop Zones */
+        .zones-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .zone {
+            border-radius: 20px;
+            padding: 35px 10px 20px 10px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .zone h2 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .zone-nay { background-color: var(--nay-color); color: #2d3436; }
+        .zone-do { background-color: var(--do-color); color: #2d3436; }
+        .zone-kia { background-color: var(--kia-color); color: #2d3436; }
+
+        .zone.drag-over {
+            transform: scale(1.03);
+            outline: 3px dashed rgba(0,0,0,0.25);
+            outline-offset: -6px;
+        }
+
+        .zone-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 150px;
+        }
+
+        /* Stickers (Emojis) */
+        .sticker-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            min-height: 100px;
+            padding: 15px;
+            background: #fdfdfd;
+            border-radius: 16px;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .sticker {
+            font-size: 3.2rem;
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .sticker:hover {
+            transform: scale(1.15);
+        }
+
+        .sticker:active {
+            cursor: grabbing;
+        }
+
+        .sticker.dragging {
+            opacity: 0.5;
+        }
+
+        .sticker.correct {
+            cursor: default;
+            transform: scale(1);
+            animation: popIn 0.3s ease-out;
+        }
+        
+        .sticker.correct:hover {
+            transform: none;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Feedback */
+        .feedback-box {
+            min-height: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .feedback-error {
+            color: var(--error);
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .feedback-success {
+            color: var(--success);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .action-container {
+            min-height: 55px;
+        }
+
+        /* End Screen */
+        .end-screen h2 {
+            font-size: 2.5rem;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .upload-grid { grid-template-columns: 1fr; }
+            .zones-container { grid-template-columns: 1fr; }
+            .zone { min-height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="setup-screen" class="setup-panel">
+            <h1>Teacher Setup Panel</h1>
+            <p class="instruction" id="setup-info">Loading saved audio files...</p>
+            
+            <div class="upload-grid">
+                <div class="audio-upload-row" id="row-r1"><label>Round 1 (3 items):<span class="status-txt" id="status-r1">No file</span></label><input type="file" id="audio-r1" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r2"><label>Round 2 (3 items):<span class="status-txt" id="status-r2">No file</span></label><input type="file" id="audio-r2" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r3"><label>Round 3 (3 items):<span class="status-txt" id="status-r3">No file</span></label><input type="file" id="audio-r3" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r4"><label>Round 4 (3 items):<span class="status-txt" id="status-r4">No file</span></label><input type="file" id="audio-r4" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r5"><label>Round 5 (5 items):<span class="status-txt" id="status-r5">No file</span></label><input type="file" id="audio-r5" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r6"><label>Round 6 (5 items):<span class="status-txt" id="status-r6">No file</span></label><input type="file" id="audio-r6" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r7"><label>Round 7 (5 items):<span class="status-txt" id="status-r7">No file</span></label><input type="file" id="audio-r7" accept="audio/*"></div>
+                <div class="audio-upload-row" id="row-r8"><label>Round 8 (5 items):<span class="status-txt" id="status-r8">No file</span></label><input type="file" id="audio-r8" accept="audio/*"></div>
+            </div>
+
+            <button id="start-game-btn" style="margin-top: 20px;" disabled>Please wait...</button>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div class="game-header">
+                <h1>Vietnamese Demonstratives</h1>
+                <span id="progress-text" class="progress-badge">Round 1/8</span>
+            </div>
+
+            <p id="round-instruction" class="instruction">Listen to the guide audio and drag the correct objects to their locations!</p>
+
+            <div class="audio-controls">
+                <button id="listen-btn" class="audio-btn"><span>🔊</span> Listen Again</button>
+            </div>
+
+            <div class="zones-container">
+                <div class="zone zone-nay" data-zone="NÀY">
+                    <h2>This</h2>
+                    <div class="zone-items" id="zone-NAY"></div>
+                </div>
+                <div class="zone zone-do" data-zone="ĐÓ">
+                    <h2>That</h2>
+                    <div class="zone-items" id="zone-DO"></div>
+                </div>
+                <div class="zone zone-kia" data-zone="KIA">
+                    <h2>Over there</h2>
+                    <div class="zone-items" id="zone-KIA"></div>
+                </div>
+            </div>
+
+            <div class="sticker-pool" id="sticker-pool"></div>
+
+            <div id="feedback" class="feedback-box"></div>
+            <div class="action-container">
+                <button id="next-btn" class="hidden">Next Round ➔</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="hidden">
+            <div style="font-size: 5rem; margin-bottom: 20px;">🎉</div>
+            <h2>Congratulations!</h2>
+            <p class="instruction">You have successfully completed all 8 rounds!</p>
+            <button id="play-again-btn">Back to Setup</button>
+        </div>
+    </div>
+
+    <script>
+        const roundsData = [
+            [{ emoji: "🐮", zone: "KIA" }, { emoji: "🍊", zone: "ĐÓ" }, { emoji: "🥛", zone: "NÀY" }],
+            [{ emoji: "🍜", zone: "ĐÓ" }, { emoji: "🍎", zone: "NÀY" }, { emoji: "🐟", zone: "KIA" }],
+            [{ emoji: "🍌", zone: "NÀY" }, { emoji: "🍾", zone: "KIA" }, { emoji: "🍽️", zone: "ĐÓ" }],
+            [{ emoji: "🐷", zone: "KIA" }, { emoji: "🥑", zone: "NÀY" }, { emoji: "🍽️", zone: "ĐÓ" }],
+            [{ emoji: "🥛", zone: "NÀY" }, { emoji: "🐟", zone: "KIA" }, { emoji: "🍊", zone: "ĐÓ" }, { emoji: "🍜", zone: "NÀY" }, { emoji: "🍎", zone: "ĐÓ" }],
+            [{ emoji: "🐮", zone: "KIA" }, { emoji: "🍌", zone: "NÀY" }, { emoji: "🍾", zone: "ĐÓ" }, { emoji: "🍽️", zone: "KIA" }, { emoji: "🐷", zone: "NÀY" }],
+            [{ emoji: "🥑", zone: "ĐÓ" }, { emoji: "🥛", zone: "NÀY" }, { emoji: "🍜", zone: "KIA" }, { emoji: "🐟", zone: "ĐÓ" }, { emoji: "🍊", zone: "NÀY" }],
+            [{ emoji: "🍎", zone: "KIA" }, { emoji: "🍌", zone: "NÀY" }, { emoji: "🍾", zone: "ĐÓ" }, { emoji: "🐮", zone: "KIA" }, { emoji: "🍽️", zone: "NÀY" }]
+        ];
+
+        const allItemsList = [
+            { emoji: "🥛", text: "cái ly" }, { emoji: "🍜", text: "cái tô" }, { emoji: "🍽️", text: "cái dĩa" },
+            { emoji: "🍾", text: "cái chai" }, { emoji: "🍎", text: "trái táo" }, { emoji: "🥑", text: "trái bơ" },
+            { emoji: "🍊", text: "trái cam" }, { emoji: "🍌", text: "trái chuối" }, { emoji: "🐷", text: "con heo" },
+            { emoji: "🐮", text: "con bò" }, { emoji: "🐟", text: "con cá" }
+        ];
+
+        let currentRound = 0;
+        let audioBlobs = new Array(8).fill(null);
+        let audioURLs = new Array(8).fill(null);
+        let currentAudio = null;
+        let activeDraggedElement = null;
+        let roundCorrectPlacements = 0;
+
+        let db;
+        const request = indexedDB.open("AudioGameDB", 1);
+        
+        request.onupgradeneeded = function(e) {
+            db = e.target.result;
+            if (!db.objectStoreNames.contains("audios")) {
+                db.createObjectStore("audios", { keyPath: "id" });
+            }
+        };
+
+        request.onsuccess = function(e) {
+            db = e.target.result;
+            loadAllSavedAudios();
+        };
+
+        request.onerror = function() {
+            document.getElementById('setup-info').textContent = "Database loading error. Persistent saving unavailable.";
+            document.getElementById('start-game-btn').disabled = false;
+            document.getElementById('start-game-btn').textContent = "Start Game";
+        };
+
+        const setupScreen = document.getElementById('setup-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const endScreen = document.getElementById('end-screen');
+        const startGameBtn = document.getElementById('start-game-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const playAgainBtn = document.getElementById('play-again-btn');
+        const listenBtn = document.getElementById('listen-btn');
+        const progressText = document.getElementById('progress-text');
+        const roundInstruction = document.getElementById('round-instruction');
+        const feedback = document.getElementById('feedback');
+        const stickerPool = document.getElementById('sticker-pool');
+        const zones = document.querySelectorAll('.zone');
+
+        function loadAllSavedAudios() {
+            const transaction = db.transaction(["audios"], "readonly");
+            const store = transaction.objectStore("audios");
+            const getAll = store.getAll();
+
+            getAll.onsuccess = function() {
+                const results = getAll.result;
+                results.forEach(item => {
+                    const idx = parseInt(item.id.replace("r", "")) - 1;
+                    if(idx >= 0 && idx < 8) {
+                        audioBlobs[idx] = item.blob;
+                        updateUploadRowUI(idx + 1, true);
+                    }
+                });
+                document.getElementById('setup-info').textContent = "Upload new local audio files or use previously saved files.";
+                startGameBtn.disabled = false;
+                startGameBtn.textContent = "Start Game";
+            };
+        }
+
+        function updateUploadRowUI(roundNum, hasFile) {
+            const row = document.getElementById(`row-r${roundNum}`);
+            const txt = document.getElementById(`status-r${roundNum}`);
+            if (hasFile) {
+                row.classList.add('has-file');
+                txt.textContent = "✓ Saved / Ready";
+            } else {
+                row.classList.remove('has-file');
+                txt.textContent = "No file";
+            }
+        }
+
+        for (let i = 1; i <= 8; i++) {
+            document.getElementById(`audio-r${i}`).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const roundIdx = i - 1;
+                    audioBlobs[roundIdx] = file;
+                    updateUploadRowUI(i, true);
+                    
+                    const tx = db.transaction(["audios"], "readwrite");
+                    tx.objectStore("audios").put({ id: `r${i}`, blob: file });
+                }
+            });
+        }
+
+        startGameBtn.addEventListener('click', () => {
+            let missingRounds = [];
+            for(let i = 0; i < 8; i++) {
+                if (!audioBlobs[i]) missingRounds.push(i + 1);
+            }
+
+            if (missingRounds.length > 0) {
+                alert(`Please upload audio files for remaining rounds: ${missingRounds.join(', ')}`);
+                return;
+            }
+
+            audioURLs.forEach(url => { if(url) URL.revokeObjectURL(url); });
+            for(let i = 0; i < 8; i++) {
+                audioURLs[i] = URL.createObjectURL(audioBlobs[i]);
+            }
+
+            setupScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            initRound(0);
+        });
+
+        function initRound(roundIndex) {
+            currentRound = roundIndex;
+            roundCorrectPlacements = 0;
+            progressText.textContent = `Round ${currentRound + 1}/8`;
+            feedback.textContent = "";
+            feedback.className = "feedback-box";
+            nextBtn.classList.add('hidden');
+
+            const itemsCount = roundsData[currentRound].length;
+            roundInstruction.textContent = `Listen to the guide audio and drag the ${itemsCount} correct objects to their matching locations!`;
+
+            if(currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+            currentAudio = new Audio(audioURLs[currentRound]);
+
+            document.getElementById('zone-NAY').innerHTML = '';
+            document.getElementById('zone-DO').innerHTML = '';
+            document.getElementById('zone-KIA').innerHTML = '';
+
+            const shuffledItems = [...allItemsList].sort(() => Math.random() - 0.5);
+            stickerPool.innerHTML = '';
+            
+            shuffledItems.forEach(item => {
+                const span = document.createElement('span');
+                span.className = 'sticker';
+                span.textContent = item.emoji;
+                span.setAttribute('draggable', 'true');
+                span.setAttribute('id', `sticker-${item.emoji}-${Math.random().toString(36).substr(2, 4)}`);
+                span.title = item.text;
+                
+                span.addEventListener('dragstart', dragStart);
+                span.addEventListener('dragend', dragEnd);
+                stickerPool.appendChild(span);
+            });
+
+            playAudio();
+        }
+
+        function playAudio() {
+            if (currentAudio) {
+                currentAudio.currentTime = 0;
+                currentAudio.play().catch(e => console.log("Audio play blocked."));
+            }
+        }
+
+        listenBtn.addEventListener('click', playAudio);
+
+        function dragStart(e) {
+            activeDraggedElement = this;
+            this.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', this.id);
+        }
+
+        function dragEnd() {
+            this.classList.remove('dragging');
+            activeDraggedElement = null;
+            zones.forEach(z => z.classList.remove('drag-over'));
+        }
+
+        zones.forEach(zone => {
+            zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
+            zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+            zone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                if (!activeDraggedElement) return;
+
+                const emoji = activeDraggedElement.textContent;
+                const targetZoneName = this.getAttribute('data-zone');
+                const roundRules = roundsData[currentRound];
+                
+                const requiredCount = roundRules.filter(r => r.emoji === emoji && r.zone === targetZoneName).length;
+                const currentCount = this.querySelector('.zone-items').innerHTML.split(emoji).length - 1;
+
+                if (requiredCount > 0 && currentCount < requiredCount) {
+                    this.querySelector('.zone-items').appendChild(activeDraggedElement);
+                    activeDraggedElement.setAttribute('draggable', 'false');
+                    activeDraggedElement.classList.add('correct');
+                    
+                    showFeedback("Correct!", "feedback-success");
+                    roundCorrectPlacements++;
+
+                    if (roundCorrectPlacements === roundRules.length) {
+                        if(currentAudio) currentAudio.pause();
+                        showFeedback(`Excellent! You found all ${roundRules.length} objects for this round.`, "feedback-success");
+                        nextBtn.classList.remove('hidden');
+                    }
+                } else {
+                    showFeedback("Try again.", "feedback-error");
+                    stickerPool.appendChild(activeDraggedElement);
+                }
+            });
+        });
+
+        function showFeedback(text, className) {
+            feedback.textContent = text;
+            feedback.className = `feedback-box ${className}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentRound < 7) {
+                initRound(currentRound + 1);
+            } else {
+                gameScreen.classList.add('hidden');
+                endScreen.classList.remove('hidden');
+            }
+        });
+
+        playAgainBtn.addEventListener('click', () => {
+            endScreen.classList.add('hidden');
+            setupScreen.classList.remove('hidden');
+            loadAllSavedAudios();
+        });
+    </script>
+</body>
+</html>

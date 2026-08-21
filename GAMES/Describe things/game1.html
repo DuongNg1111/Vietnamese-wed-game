@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Find The Same Meaning</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: #f7f9fc;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color: #222;
+
+}
+
+
+
+.game {
+
+  width: min(1200px, 95vw);
+
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 30px 40px 35px;
+
+  box-shadow:
+  0 10px 35px rgba(0,0,0,.12);
+
+  text-align: center;
+
+}
+
+
+
+/* TITLE */
+
+h1 {
+
+  margin: 0 0 10px;
+
+  font-size: 34px;
+
+}
+
+
+
+.instruction {
+
+  color:#555;
+
+  font-size:17px;
+
+  margin-bottom:20px;
+
+}
+
+
+
+/* TOP BAR */
+
+
+.topbar {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:25px;
+
+  font-weight:bold;
+
+}
+
+
+.round {
+
+  color:#666;
+
+}
+
+
+.score {
+
+  font-size:18px;
+
+}
+
+
+
+/* WORD AREA */
+
+
+.labels,
+.words {
+
+  display:grid;
+
+  gap:20px;
+
+}
+
+
+
+/* VIETNAMESE */
+
+
+.target {
+
+  min-height:110px;
+
+  border-radius:18px;
+
+  border:3px dashed #6b8fc4;
+
+  background:#eaf2ff;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:28px;
+
+  font-weight:bold;
+
+  transition:.2s;
+
+}
+
+
+
+.target.over {
+
+  transform:scale(1.05);
+
+  background:#dcecff;
+
+}
+
+
+
+.target.correct {
+
+  background:#dff5e5;
+
+  border-style:solid;
+
+  border-color:#4caf70;
+
+}
+
+
+
+.target.wrong {
+
+  animation:shake .3s;
+
+}
+
+
+
+@keyframes shake {
+
+25%{
+ transform:translateX(-8px);
+}
+
+75%{
+ transform:translateX(8px);
+}
+
+}
+
+
+
+/* ENGLISH */
+
+
+.words {
+
+  margin-top:25px;
+
+}
+
+
+
+.word {
+
+  min-height:100px;
+
+  border-radius:18px;
+
+  background:#fff3d6;
+
+  border:3px solid #d8ad50;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:24px;
+
+  font-weight:bold;
+
+  cursor:grab;
+
+  user-select:none;
+
+  transition:.2s;
+
+}
+
+
+
+.word:hover {
+
+  transform:translateY(-4px);
+
+}
+
+
+
+.word.dragging {
+
+  opacity:.45;
+
+}
+
+
+
+.word.used {
+
+  visibility:hidden;
+
+  pointer-events:none;
+
+}
+
+
+
+/* MESSAGE */
+
+
+.message {
+
+  height:40px;
+
+  margin:20px 0 10px;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+}
+
+
+
+/* BUTTON */
+
+
+button {
+
+  background:#4779b8;
+
+  color:white;
+
+  border:none;
+
+  border-radius:12px;
+
+  padding:12px 30px;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+
+
+button:hover {
+
+  opacity:.9;
+
+}
+
+
+
+button:disabled {
+
+  opacity:.45;
+
+  cursor:default;
+
+}
+
+
+
+/* FINAL */
+
+
+.final {
+
+ display:none;
+
+}
+
+
+
+.final h2 {
+
+ font-size:32px;
+
+}
+
+
+
+.final-score {
+
+ font-size:26px;
+
+ margin:20px;
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:700px){
+
+
+.game{
+
+ padding:25px 15px;
+
+}
+
+
+.target{
+
+ font-size:20px;
+
+ min-height:80px;
+
+}
+
+
+
+.word{
+
+ font-size:18px;
+
+ min-height:80px;
+
+}
+
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<div class="game">
+
+
+
+<!-- GAME SCREEN -->
+
+<div id="gameScreen">
+
+
+<h1>
+🔎 FIND THE SAME MEANING
+</h1>
+
+
+<p class="instruction">
+
+Drag each English word to the Vietnamese word with the same meaning.
+
+</p>
+
+
+
+<div class="topbar">
+
+
+<div class="round" id="roundText">
+
+Round 1 / 15
+
+</div>
+
+
+<div class="score" id="scoreText">
+
+Score: 0
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="labels" id="targets">
+
+</div>
+
+
+
+
+<div class="words" id="words">
+
+</div>
+
+
+
+
+<div class="message" id="message">
+
+</div>
+
+
+
+<button id="nextBtn" disabled>
+
+Next Round →
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- FINAL SCREEN -->
+
+
+<div class="final" id="finalScreen">
+
+
+<h2>
+
+🎉 Great job!
+
+</h2>
+
+
+<div class="final-score" id="finalScore">
+
+</div>
+
+
+
+<button onclick="restartGame()">
+
+Play Again
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+const rounds = [
+
+{
+vi:["TO","NHỎ","NHANH"],
+en:["big","small","fast"],
+map:{
+big:"TO",
+small:"NHỎ",
+fast:"NHANH"
+}
+},
+
+
+{
+vi:["CHẬM","XA","GẦN"],
+en:["slow","far","near"],
+map:{
+slow:"CHẬM",
+far:"XA",
+near:"GẦN"
+}
+},
+
+
+{
+vi:["TO","NHỎ","RẺ","MẮC"],
+en:["large","tiny","cheap","expensive"],
+map:{
+large:"TO",
+tiny:"NHỎ",
+cheap:"RẺ",
+expensive:"MẮC"
+}
+},
+
+
+{
+vi:["NHANH","CHẬM","XA","GẦN"],
+en:["quick","slow","distant","close"],
+map:{
+quick:"NHANH",
+slow:"CHẬM",
+distant:"XA",
+close:"GẦN"
+}
+},
+
+
+{
+vi:["TO","NHỎ","NHANH","CHẬM"],
+en:["huge","little","rapid","slow"],
+map:{
+huge:"TO",
+little:"NHỎ",
+rapid:"NHANH",
+slow:"CHẬM"
+}
+},
+
+
+{
+vi:["XA","GẦN","RẺ","MẮC"],
+en:["far","nearby","cheap","costly"],
+map:{
+far:"XA",
+nearby:"GẦN",
+cheap:"RẺ",
+costly:"MẮC"
+}
+},
+
+
+{
+vi:["TO","NHỎ","NHANH","XA","RẺ"],
+en:["enormous","small","fast","far","cheap"],
+map:{
+enormous:"TO",
+small:"NHỎ",
+fast:"NHANH",
+far:"XA",
+cheap:"RẺ"
+}
+},
+
+
+{
+vi:["CHẬM","GẦN","MẮC","TO","NHỎ"],
+en:["slow","close","expensive","big","tiny"],
+map:{
+slow:"CHẬM",
+close:"GẦN",
+expensive:"MẮC",
+big:"TO",
+tiny:"NHỎ"
+}
+},
+
+
+{
+vi:["NHANH","CHẬM","XA","RẺ","MẮC"],
+en:["quick","slow","distant","cheap","pricey"],
+map:{
+quick:"NHANH",
+slow:"CHẬM",
+distant:"XA",
+cheap:"RẺ",
+pricey:"MẮC"
+}
+},
+
+
+{
+vi:["TO","NHỎ","GẦN","NHANH","MẮC"],
+en:["giant","little","near","rapid","expensive"],
+map:{
+giant:"TO",
+little:"NHỎ",
+near:"GẦN",
+rapid:"NHANH",
+expensive:"MẮC"
+}
+},
+
+
+{
+vi:["TO","NHỎ","NHANH","CHẬM","XA","GẦN"],
+en:["huge","small","fast","slow","far","near"],
+map:{
+huge:"TO",
+small:"NHỎ",
+fast:"NHANH",
+slow:"CHẬM",
+far:"XA",
+near:"GẦN"
+}
+},
+
+
+{
+vi:["RẺ","MẮC","TO","NHỎ","NHANH","CHẬM"],
+en:["cheap","expensive","large","tiny","quick","slow"],
+map:{
+cheap:"RẺ",
+expensive:"MẮC",
+large:"TO",
+tiny:"NHỎ",
+quick:"NHANH",
+slow:"CHẬM"
+}
+},
+
+
+{
+vi:["XA","GẦN","TO","NHANH","RẺ","MẮC"],
+en:["distant","close","big","rapid","cheap","costly"],
+map:{
+distant:"XA",
+close:"GẦN",
+big:"TO",
+rapid:"NHANH",
+cheap:"RẺ",
+costly:"MẮC"
+}
+},
+
+
+{
+vi:["NHỎ","CHẬM","XA","GẦN","TO","MẮC"],
+en:["little","slow","far","nearby","enormous","pricey"],
+map:{
+little:"NHỎ",
+slow:"CHẬM",
+far:"XA",
+nearby:"GẦN",
+enormous:"TO",
+pricey:"MẮC"
+}
+},
+
+
+{
+vi:["TO","NHỎ","NHANH","CHẬM","RẺ","MẮC"],
+en:["massive","tiny","fast","slow","cheap","expensive"],
+map:{
+massive:"TO",
+tiny:"NHỎ",
+fast:"NHANH",
+slow:"CHẬM",
+cheap:"RẺ",
+expensive:"MẮC"
+}
+}
+
+];
+
+
+
+let current = 0;
+let score = 0;
+let matched = 0;
+let draggedWord = null;
+
+
+
+const targetsEl =
+document.getElementById("targets");
+
+const wordsEl =
+document.getElementById("words");
+
+const messageEl =
+document.getElementById("message");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+
+
+function shuffle(arr){
+
+return [...arr].sort(
+()=>Math.random()-0.5
+);
+
+}
+
+
+
+const totalQuestions =
+rounds.reduce(
+(sum,r)=>sum+r.vi.length,
+0
+);
+
+
+
+function loadRound(){
+
+
+matched=0;
+draggedWord=null;
+
+
+messageEl.textContent="";
+
+nextBtn.disabled=true;
+
+
+let round=rounds[current];
+
+
+let count=round.vi.length;
+
+
+
+document.getElementById("roundText").textContent=
+`Round ${current+1} / ${rounds.length}`;
+
+
+
+document.getElementById("scoreText").textContent=
+`Score: ${score}`;
+
+
+
+targetsEl.style.gridTemplateColumns=
+`repeat(${count},1fr)`;
+
+wordsEl.style.gridTemplateColumns=
+`repeat(${count},1fr)`;
+
+
+targetsEl.innerHTML="";
+wordsEl.innerHTML="";
+
+
+
+
+
+round.vi.forEach(word=>{
+
+
+let box=document.createElement("div");
+
+box.className="target";
+
+box.textContent=word;
+
+box.dataset.vi=word;
+
+
+
+box.addEventListener("dragover",e=>{
+
+e.preventDefault();
+
+box.classList.add("over");
+
+});
+
+
+
+box.addEventListener("dragleave",()=>{
+
+box.classList.remove("over");
+
+});
+
+
+
+box.addEventListener("drop",e=>{
+
+
+e.preventDefault();
+
+box.classList.remove("over");
+
+
+
+if(!draggedWord ||
+box.classList.contains("correct"))
+return;
+
+
+
+let english =
+draggedWord.dataset.word;
+
+
+
+if(round.map[english]===box.dataset.vi){
+
+
+box.classList.add("correct");
+
+draggedWord.classList.add("used");
+
+
+matched++;
+
+score++;
+
+
+messageEl.textContent="✅ Correct!";
+
+messageEl.style.color="#3b8b58";
+
+
+
+document.getElementById("scoreText").textContent=
+`Score: ${score}`;
+
+
+
+if(matched===count){
+
+messageEl.textContent=
+"🎉 Perfect!";
+
+nextBtn.disabled=false;
+
+}
+
+
+
+}else{
+
+
+box.classList.add("wrong");
+
+
+setTimeout(()=>{
+
+box.classList.remove("wrong");
+
+},300);
+
+
+messageEl.textContent=
+"❌ Try again!";
+
+messageEl.style.color="#c54d4d";
+
+}
+
+
+
+});
+
+
+targetsEl.appendChild(box);
+
+
+});
+
+
+
+
+
+
+
+shuffle(round.en)
+.forEach(word=>{
+
+
+let card=document.createElement("div");
+
+
+card.className="word";
+
+card.draggable=true;
+
+card.dataset.word=word;
+
+card.textContent=word;
+
+
+
+card.addEventListener("dragstart",()=>{
+
+draggedWord=card;
+
+card.classList.add("dragging");
+
+});
+
+
+
+card.addEventListener("dragend",()=>{
+
+card.classList.remove("dragging");
+
+});
+
+
+
+wordsEl.appendChild(card);
+
+
+});
+
+
+}
+
+
+
+
+
+
+nextBtn.addEventListener("click",()=>{
+
+
+current++;
+
+
+if(current<rounds.length){
+
+loadRound();
+
+}else{
+
+
+document.getElementById("gameScreen")
+.style.display="none";
+
+
+document.getElementById("finalScreen")
+.style.display="block";
+
+
+
+document.getElementById("finalScore")
+.textContent=
+`Your score: ${score} / ${totalQuestions}`;
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+function restartGame(){
+
+current=0;
+
+score=0;
+
+matched=0;
+
+draggedWord=null;
+
+
+document.getElementById("finalScreen")
+.style.display="none";
+
+
+document.getElementById("gameScreen")
+.style.display="block";
+
+
+loadRound();
+
+}
+
+
+
+
+
+loadRound();
+
+</script>
+
+</body>
+</html>

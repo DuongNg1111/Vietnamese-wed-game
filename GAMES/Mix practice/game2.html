@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sean's Southern Accent - Fixed Version</title>
+    <style>
+        :root { --primary: #e67e22; --success: #27ae60; --error: #c0392b; --bg: #fdfaf6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); text-align: center; padding: 20px; margin: 0; }
+        .container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 2px solid #f39c12; }
+        #start-screen { display: flex; flex-direction: column; align-items: center; }
+        .start-btn { background: var(--primary); color: white; border: none; padding: 18px 50px; font-size: 24px; font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 6px #d35400; transition: 0.2s; }
+        #game-content { display: none; }
+        .progress-bar { width: 100%; height: 12px; background: #eee; border-radius: 6px; margin-bottom: 25px; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.5s; }
+        #audio-btn { background: #f39c12; color: white; border: none; padding: 25px 50px; font-size: 24px; border-radius: 20px; cursor: pointer; margin-bottom: 30px; box-shadow: 0 6px #e67e22; }
+        .choices-column { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+        .choice-btn { background: white; border: 3px solid #f1f2f6; border-radius: 15px; padding: 20px; cursor: pointer; transition: 0.3s; font-size: 20px; font-weight: 500; color: #2c3e50; text-align: left; }
+        .choice-btn.correct { border-color: var(--success); background: #eafaf1; color: var(--success); }
+        .choice-btn.wrong { border-color: var(--error); background: #fdedec; color: var(--error); }
+        #feedback { font-size: 22px; font-weight: bold; margin-top: 25px; height: 30px; }
+        #next-btn { display: none; margin: 25px auto 0; background: #2c3e50; color: white; border: none; padding: 15px 40px; border-radius: 50px; cursor: pointer; font-size: 18px; }
+        #win-screen { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="start-screen">
+        <div style="font-size: 80px; margin-bottom: 20px;">🗣️</div>
+        <h1>Listening Challenge</h1>
+        <p style="font-size: 18px; color: #7f8c8d; margin-bottom: 30px;">There are 15 questions. Listen and choose the correct answers!</p>
+        <button class="start-btn" onclick="startGame()">START NOW</button>
+    </div>
+
+    <div id="game-content">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <p style="color: #95a5a6;">Question <span id="round-count">1</span> / 15</p>
+        <button id="audio-btn" onclick="playCurrentPhrase()">🔊 Listen again</button>
+        <div class="choices-column" id="choicesGrid"></div>
+        <div id="feedback"></div>
+        <button id="next-btn" onclick="nextQuestion()">NEXT QUESTION ➔</button>
+    </div>
+
+    <div id="win-screen">
+        <h1 style="color: var(--success); font-size: 45px;">TỐT LẮM! 🏆</h1>
+        <p style="font-size: 20px;">You have finished the Listening Challenge!</p>
+        <button class="start-btn" onclick="location.reload()">Play again!</button>
+    </div>
+</div>
+
+<audio id="tts-player" style="display:none;"></audio>
+
+<script>
+    const phrases = [
+        {vi: "Xin chào! Em tên gì?", en: "Hello! What is your name?"},
+        {vi: "Em đợi một chút nha!", en: "Wait a moment, okay?"},
+        {vi: "Em hiểu không?", en: "Do you understand?"},
+        {vi: "Tới đây giúp anh với!", en: "Come here and help me!"},
+        {vi: "Chị cần em tới đây!", en: "I (sister) need you to come here!"},
+        {vi: "Tốt lắm", en: "Very good"},
+        {vi: "Em khỏe không?", en: "How are you?"},
+        {vi: "Bạn tên gì?", en: "What is your name? (Friend)"}
+    ];
+
+    let currentQuestion = 0;
+    const totalQuestions = 15;
+    let targetItem = null;
+    let answered = false;
+    let quizData = [];
+
+    function startGame() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('game-content').style.display = 'block';
+        
+        // Thuật toán chống lặp: Xáo trộn danh sách rồi nối tiếp nhau
+        let pool = [];
+        while(pool.length < totalQuestions) {
+            let shuffle = [...phrases].sort(() => Math.random() - 0.5);
+            pool = pool.concat(shuffle);
+        }
+        quizData = pool.slice(0, totalQuestions); // Lấy đúng 15 câu từ danh sách đã trộn
+        
+        loadQuestion();
+    }
+
+    function playCurrentPhrase() {
+        if(!targetItem) return;
+        // There are 15 questions. Listen and choose the correct answers.
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(targetItem.vi)}&tl=vi&client=tw-ob&ttsspeed=0.45`;
+        const p = document.getElementById('tts-player');
+        p.src = url;
+        p.play();
+    }
+
+    function loadQuestion() {
+        if (currentQuestion >= totalQuestions) {
+            showWinScreen();
+            return;
+        }
+
+        answered = false;
+        targetItem = quizData[currentQuestion];
+        document.getElementById('feedback').innerText = "";
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('round-count').innerText = currentQuestion + 1;
+        document.getElementById('progressFill').style.width = (currentQuestion / totalQuestions * 100) + "%";
+        
+        let choices = [targetItem];
+        while (choices.length < 3) {
+            let randomItem = phrases[Math.floor(Math.random() * phrases.length)];
+            if (!choices.find(i => i.en === randomItem.en)) choices.push(randomItem);
+        }
+        choices.sort(() => Math.random() - 0.5);
+
+        const grid = document.getElementById('choicesGrid');
+        grid.innerHTML = "";
+
+        choices.forEach(item => {
+            const btn = document.createElement('div');
+            btn.className = 'choice-btn';
+            btn.innerText = item.en;
+            btn.onclick = () => checkAnswer(btn, item);
+            grid.appendChild(btn);
+        });
+
+        setTimeout(playCurrentPhrase, 600);
+    }
+
+    function checkAnswer(btn, selectedItem) {
+        if (answered) return;
+        if (selectedItem.vi === targetItem.vi) {
+            btn.classList.add('correct');
+            document.getElementById('feedback').innerHTML = "<span style='color:var(--success)'>Tốt lắm! Well done ✅</span>";
+            answered = true;
+            document.getElementById('next-btn').style.display = 'block';
+        } else {
+            btn.classList.add('wrong');
+            document.getElementById('feedback').innerHTML = "<span style='color:var(--error)'>Incorrect! Please choose again ❌</span>";
+        }
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        loadQuestion();
+    }
+
+    function showWinScreen() {
+        document.getElementById('game-content').style.display = 'none';
+        document.getElementById('win-screen').style.display = 'block';
+    }
+</script>
+</body>
+</html>

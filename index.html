@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play free, interactive arcade mini-games to master survival Vietnamese pronouns, colors, and travel phrases with Duong.">
+    <meta name="keywords" content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese pronouns, vietnamese vocabulary">
+    <meta name="author" content="Duong">    
+    <title>Survival Vietnamese with Duong</title>
+    <!-- Importing Kalam font from Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Header Container with Lightly Blurred Background Image */
+        header {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            padding: 70px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* The Background Layer (Points to your uploaded 'banner.jpg') */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px) brightness(1.1);
+            z-index: 1;
+        }
+
+        /* Semi-transparent light mask to ensure contrast for dark text */
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: 1.5;
+        }
+        
+        /* Header Text Content Layer */
+        header h1 {
+            position: relative;
+            z-index: 2;
+            color: #000000;
+            margin: 0;
+            font-family: 'Kalam', cursive;
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        header p {
+            position: relative;
+            z-index: 2;
+            color: #2c3e50;
+            margin: 10px 0 0 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Main Layout Content */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        /* Centered Main Section Title */
+        .section-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin: 0 auto 40px auto;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 8px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Clean Game Type Sections */
+        .game-type-section {
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 0 0 20px 0;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            border-left: 5px solid #1abc9c;
+            padding-left: 12px;
+        }
+        
+        /* Flex Grid to display cards beautifully */
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        /* Symmetrical Square Game Card Design */
+        .game-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* Forces the card frame to be a perfect 1:1 square */
+            width: 280px;
+            height: 280px;
+            
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        
+        /* Top portion of the square card for the icon */
+        .game-thumb {
+            height: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+        }
+        
+        /* Thumbnail Background Colors */
+        .thumb-pronouns { background: #ff7f50; }
+        .thumb-colors-1 { background: #58cc02; } 
+        .thumb-colors-2 { background: #ff9800; } 
+        
+        /* Bottom portion of the square card for info and button */
+        .game-info {
+            padding: 15px;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Text wrapper with vertical centering inside the space */
+        .game-desc {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            line-height: 1.4;
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Play Button anchored neatly at the bottom */
+        .play-btn {
+            display: block;
+            text-align: center;
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .play-btn:hover {
+            background-color: #16a085;
+        }
+        
+        footer {
+            margin-top: auto;
+            padding: 25px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Adjusts cards to center on tiny mobile screens */
+        @media(max-width: 640px) {
+            .game-grid {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER WITH MANUAL REFRESH LOCAL BACKGROUND FILE -->
+    <header>
+        <h1>Survival Vietnamese with Duong</h1>
+        <p>Master practical Vietnamese through interactive arcade games!</p>
+    </header>
+
+    <!-- MAIN ARCADE CABINET -->
+    <div class="container">
+        <div class="section-title">🎮 Available Games</div>
+        
+        <!-- SECTION 1: PRONOUN -->
+        <div class="game-type-section">
+            <div class="category-title">Pronoun</div>
+            <div class="game-grid">
+                <!-- Pronoun Game 1 -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-pronouns">🗣️</div>
+                    <div class="game-info">
+                        <!-- Game title block completely removed -->
+                        <p class="game-desc">Master how to correctly address family members, relatives, and strangers based on the relationship chart matrix.</p>
+                        <a href="GAMES/pronoun/game1.html" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: COLOR -->
+        <div class="game-type-section">
+            <div class="category-title">Color</div>
+            <div class="game-grid">
+                <!-- Color Game 1 -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-colors-1">🎨</div>
+                    <div class="game-info">
+                        <!-- Game title block completely removed -->
+                        <p class="game-desc">Read the Vietnamese text color name and quickly tap the correct matching visual color block button.</p>
+                        <a href="GAMES/color/game1.html" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                <!-- Color Game 2 -->
+                <div class="game-card">
+                    <div class="game-thumb thumb-colors-2">🧠</div>
+                    <div class="game-info">
+                        <!-- Game title block completely removed -->
+                        <p class="game-desc">Memorize the positions of four distinct hues before they vanish, then locate the requested Vietnamese color name.</p>
+                        <a href="GAMES/color/game2.html" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Created by Survival Vietnamese with Duong
+    </footer>
+
+</body>
+</html>

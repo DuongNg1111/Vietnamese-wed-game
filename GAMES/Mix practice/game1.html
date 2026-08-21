@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vietnamese Listening Game</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #eef6ff;
+}
+
+.screen { display: none; }
+.active { display: block; }
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 320px);
+    gap: 15px;
+    justify-content: center;
+    margin: 30px;
+}
+
+.answer {
+    padding: 12px;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.answer:hover {
+    transform: scale(1.05);
+}
+
+.correct { background: #c8e6c9; }
+.wrong { background: #ffcdd2; }
+
+.result {
+    font-size: 40px;
+    height: 50px;
+}
+
+button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.score {
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="screen active">
+    <h1>🎧 Vietnamese Listening Game</h1>
+    <p>Listen and choose the correct English sentence</p>
+    <button onclick="startGame()">Start</button>
+</div>
+
+<!-- GAME -->
+<div id="game" class="screen">
+    <div>Question <span id="qnum">1</span>/20</div>
+
+    <button onclick="repeatAudio()">🔊 Listen Again</button>
+
+    <div class="answers" id="answers"></div>
+
+    <div class="result" id="resultIcon"></div>
+
+    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">
+        Next
+    </button>
+
+    <div class="score">Score: <span id="score">0</span></div>
+</div>
+
+<!-- END -->
+<div id="end" class="screen">
+    <h1>🎉 Finished!</h1>
+    <p>Your score: <span id="finalScore"></span></p>
+    <button onclick="restart()">Play Again</button>
+</div>
+
+<script>
+
+/* ================= DATA ================= */
+
+const baseQuestions = [
+{ vi:"Xin chào! Em tên gì?", en:"Hello! What is your name?" },
+{ vi:"Em đợi một chút nha!", en:"Wait a moment please!" },
+{ vi:"Anh đợi một chút nha", en:"Wait a moment please!" },
+{ vi:"Em hiểu không?", en:"Do you understand?" },
+{ vi:"Tới đây giúp anh với!", en:"Come here and help me!" },
+{ vi:"Chị cần em tới đây!", en:"I need you to come here!" },
+{ vi:"Tốt lắm", en:"Very good!" },
+{ vi:"Em khỏe không?", en:"Are you okay?" },
+{ vi:"Em ăn trưa chưa", en:"Have you had lunch yet?" },
+{ vi:"Anh ăn tối chưa", en:"Have you had dinner yet?" },
+{ vi:"Chị ăn sáng chưa?", en:"Have you had breakfast yet?" }
+];
+
+/* ================= STATE ================= */
+
+let questions = [];
+let current = 0;
+let score = 0;
+let answered = false;
+
+/* ================= HELP ================= */
+
+function shuffle(arr) {
+    return arr.sort(() => Math.random() - 0.5);
+}
+
+/* 🔊 Google TTS */
+function speak(text) {
+    const url =
+    "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
+    + encodeURIComponent(text);
+
+    new Audio(url).play();
+}
+
+function repeatAudio() {
+    speak(questions[current].vi);
+}
+
+/* ================= START ================= */
+
+function startGame() {
+    document.getElementById("intro").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+
+    questions = [];
+
+    // 🔥 tạo đúng 20 câu (có lặp lại)
+    for (let i = 0; i < 20; i++) {
+        let q = baseQuestions[Math.floor(Math.random() * baseQuestions.length)];
+        questions.push(q);
+    }
+
+    current = 0;
+    score = 0;
+
+    loadQuestion();
+}
+
+/* ================= LOAD ================= */
+
+function loadQuestion() {
+    answered = false;
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("resultIcon").innerText = "";
+
+    if (current >= questions.length) {
+        endGame();
+        return;
+    }
+
+    document.getElementById("qnum").innerText = current + 1;
+
+    const correct = questions[current];
+
+    let options = shuffle([...baseQuestions]).slice(0,4);
+
+    if (!options.find(o => o.en === correct.en)) {
+        options[0] = correct;
+    }
+
+    options = shuffle(options);
+
+    const container = document.getElementById("answers");
+    container.innerHTML = "";
+
+    options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "answer";
+        div.innerText = opt.en;
+
+        div.onclick = () => choose(div, opt.en === correct.en);
+
+        container.appendChild(div);
+    });
+
+    speak(correct.vi);
+}
+
+/* ================= CHOOSE ================= */
+
+function choose(el, correct) {
+    if (answered) return;
+
+    answered = true;
+
+    if (correct) {
+        el.classList.add("correct");
+        score++;
+        showResult(true);
+    } else {
+        el.classList.add("wrong");
+        showResult(false);
+    }
+
+    document.getElementById("score").innerText = score;
+}
+
+/* ================= RESULT ================= */
+
+function showResult(ok) {
+    document.getElementById("resultIcon").innerText = ok ? "✔" : "❌";
+    document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+/* ================= NEXT ================= */
+
+function nextQuestion() {
+    current++;
+    loadQuestion();
+}
+
+/* ================= END ================= */
+
+function endGame() {
+    document.getElementById("game").classList.remove("active");
+    document.getElementById("end").classList.add("active");
+    document.getElementById("finalScore").innerText = score + "/20";
+}
+
+/* ================= RESTART ================= */
+
+function restart() {
+    document.getElementById("end").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+    startGame();
+}
+
+</script>
+
+</body>
+</html>

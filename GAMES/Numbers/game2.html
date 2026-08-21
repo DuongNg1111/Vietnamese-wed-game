@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learn Numbers 0-19</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #eef6ff;
+}
+
+.screen { display: none; }
+.active { display: block; }
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(5, 120px);
+    gap: 15px;
+    justify-content: center;
+    margin: 30px;
+}
+
+.answer {
+    padding: 15px;
+    font-size: 22px;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.answer:hover {
+    transform: scale(1.1);
+}
+
+.correct { background: #c8e6c9; }
+.wrong { background: #ffcdd2; }
+
+button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.result {
+    font-size: 40px;
+    height: 50px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="screen active">
+    <h1>🔢 Learn Numbers 0 - 19</h1>
+    <p>Listen and choose the correct number</p>
+    <button onclick="startGame()">Start</button>
+</div>
+
+<!-- GAME -->
+<div id="game" class="screen">
+    <div>Question <span id="qnum">1</span>/20</div>
+
+    <button onclick="repeatAudio()">🔊 Listen Again</button>
+
+    <div class="answers" id="answers"></div>
+
+    <div class="result" id="resultIcon"></div>
+
+    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">
+        Next
+    </button>
+
+    <div>Score: <span id="score">0</span></div>
+</div>
+
+<!-- END -->
+<div id="end" class="screen">
+    <h1>🎉 Finished!</h1>
+    <p>Your score: <span id="finalScore"></span></p>
+    <button onclick="restart()">Play Again</button>
+</div>
+
+<script>
+
+/* ================= NUMBERS ================= */
+
+const numbers = [
+"0","1","2","3","4","5","6","7","8","9",
+"10","11","12","13","14","15","16","17","18","19"
+];
+
+/* tiếng Việt đọc số */
+const viNumbers = [
+"không","một","hai","ba","bốn","năm","sáu","bảy","tám","chín",
+"mười","mười một","mười hai","mười ba","mười bốn","mười lăm",
+"mười sáu","mười bảy","mười tám","mười chín"
+];
+
+let questions = [];
+let current = 0;
+let score = 0;
+let answered = false;
+
+/* shuffle */
+function shuffle(arr) {
+    return arr.sort(() => Math.random() - 0.5);
+}
+
+/* 🔊 Google TTS */
+function speak(text) {
+    const url =
+    "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
+    + encodeURIComponent(text);
+
+    new Audio(url).play();
+}
+
+function repeatAudio() {
+    speak(questions[current].viText);
+}
+
+/* ================= START ================= */
+
+function startGame() {
+    document.getElementById("intro").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+
+    questions = [];
+
+    for (let i = 0; i < 20; i++) {
+        let n = Math.floor(Math.random() * 20);
+
+        questions.push({
+            number: numbers[n],
+            viText: viNumbers[n]
+        });
+    }
+
+    current = 0;
+    score = 0;
+
+    loadQuestion();
+}
+
+/* ================= LOAD ================= */
+
+function loadQuestion() {
+    answered = false;
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("resultIcon").innerText = "";
+
+    if (current >= questions.length) {
+        endGame();
+        return;
+    }
+
+    document.getElementById("qnum").innerText = current + 1;
+
+    const correct = questions[current].number;
+
+    let options = shuffle([...numbers]).slice(0,5);
+
+    if (!options.includes(correct)) {
+        options[0] = correct;
+    }
+
+    options = shuffle(options);
+
+    const container = document.getElementById("answers");
+    container.innerHTML = "";
+
+    options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "answer";
+        div.innerText = opt;
+
+        div.onclick = () => choose(div, opt === correct);
+
+        container.appendChild(div);
+    });
+
+    speak(questions[current].viText);
+}
+
+/* ================= CHOOSE ================= */
+
+function choose(el, correct) {
+    if (answered) return;
+
+    answered = true;
+
+    if (correct) {
+        el.classList.add("correct");
+        score++;
+        showResult(true);
+    } else {
+        el.classList.add("wrong");
+        showResult(false);
+    }
+
+    document.getElementById("score").innerText = score;
+}
+
+/* ================= RESULT ================= */
+
+function showResult(ok) {
+    document.getElementById("resultIcon").innerText = ok ? "✔" : "❌";
+    document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+/* ================= NEXT ================= */
+
+function nextQuestion() {
+    current++;
+    loadQuestion();
+}
+
+/* ================= END ================= */
+
+function endGame() {
+    document.getElementById("game").classList.remove("active");
+    document.getElementById("end").classList.add("active");
+    document.getElementById("finalScore").innerText = score + "/20";
+}
+
+/* ================= RESTART ================= */
+
+function restart() {
+    document.getElementById("end").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+    startGame();
+}
+
+</script>
+
+</body>
+</html>
