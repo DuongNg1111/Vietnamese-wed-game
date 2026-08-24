@@ -51,6 +51,8 @@ body{
 
     display:flex;
 
+    flex-direction:column;
+
     justify-content:center;
 
     align-items:center;
@@ -58,6 +60,50 @@ body{
     padding:20px;
 
     color:#333;
+}
+
+
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
+
+.back-btn-container{
+
+    width:100%;
+
+    max-width:1100px;
+
+    margin:0 auto 15px;
+
+    text-align:left;
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    background:white;
+
+    color:#555;
+
+    border:2px solid #ddd;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+
+    background:#f0f0f0;
+
+    transform:translateY(-2px);
 }
 
 
@@ -678,6 +724,13 @@ button{
         font-size:15px;
     }
 
+    .back-btn{
+
+        padding:9px 15px;
+
+        font-size:14px;
+    }
+
 }
 
 </style>
@@ -686,6 +739,22 @@ button{
 
 
 <body>
+
+
+<!-- =======================================================
+     BACK TO LOBBY
+======================================================= -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../index.html"
+        class="back-btn"
+    >
+        ⬅ Back to Lobby
+    </a>
+
+</div>
 
 
 <div class="game-box">
@@ -699,12 +768,16 @@ button{
 
 
     <div class="game-icon">
+
         🔎
+
     </div>
 
 
     <h1>
+
         Find The Same Meaning
+
     </h1>
 
 
@@ -723,34 +796,51 @@ button{
     <div class="how-to-play">
 
         <h2>
+
             🎮 How to Play
+
         </h2>
 
-        <p>
-            👆 <strong>1.</strong>
-            Drag an English word.
-        </p>
 
         <p>
+
+            👆 <strong>1.</strong>
+            Drag an English word.
+
+        </p>
+
+
+        <p>
+
             🎯 <strong>2.</strong>
             Drop it on the Vietnamese word
             with the same meaning.
+
         </p>
 
+
         <p>
+
             ✅ <strong>3.</strong>
             Correct match = 1 point.
+
         </p>
 
+
         <p>
+
             ❌ <strong>4.</strong>
             Wrong match? Try again.
+
         </p>
 
+
         <p>
+
             📚 <strong>5.</strong>
             After each correct match,
             learn related English words.
+
         </p>
 
     </div>
@@ -763,13 +853,18 @@ button{
     <div class="game-info">
 
         <div>
+
             📝
             <strong>15 Rounds</strong>
+
         </div>
 
+
         <div>
+
             🎯
             <strong>3–6 Words per Round</strong>
+
         </div>
 
     </div>
@@ -800,7 +895,9 @@ button{
 
 
     <h1>
+
         🔎 Find The Same Meaning
+
     </h1>
 
 
@@ -815,11 +912,16 @@ button{
     <div class="game-status">
 
         <div id="roundText">
+
             Round 1 / 15
+
         </div>
 
+
         <div id="scoreText">
+
             Score: 0
+
         </div>
 
     </div>
@@ -879,7 +981,9 @@ button{
 
 
     <h2>
+
         🎉 Great Job!
+
     </h2>
 
 
@@ -1513,7 +1617,6 @@ function loadRound(){
     shuffle(round.vi).forEach(
         vietnamese => {
 
-
             const box =
                 document.createElement("div");
 
@@ -1716,7 +1819,6 @@ function loadRound(){
 
     shuffle(round.en).forEach(
         english => {
-
 
             const card =
                 document.createElement("div");
