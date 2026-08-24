@@ -854,142 +854,206 @@
 
     <script>
 
-
-        /* =====================================================
-           CONFIG
-        ===================================================== */
-
-        const GAMES_BASE =
-            "GAMES";
-
+        const GAMES_BASE = "GAMES";
 
 
         /* =====================================================
-           LOAD CATEGORIES.JSON
+        LOAD CATEGORIES
         ===================================================== */
 
         async function loadCategories() {
 
-            const response =
-                await fetch(
-                    "categories.json"
-                );
-
+            const response = await fetch(
+                "categories.json",
+                { cache: "no-store" }
+            );
 
             if (!response.ok) {
-
                 throw new Error(
                     "Could not load categories.json"
                 );
-
             }
 
-
             return await response.json();
-
         }
 
 
+        /* =====================================================
+        ESCAPE HTML
+        ===================================================== */
+
+        function escapeHtml(text) {
+
+            const div = document.createElement("div");
+
+            div.textContent = String(text ?? "");
+
+            return div.innerHTML;
+        }
+
 
         /* =====================================================
-           GET META TAG
+        ENCODE PATH
+        ===================================================== */
+
+        function encodePath(path) {
+
+            if (typeof path !== "string") {
+                throw new Error(
+                    "Game path must be a string."
+                );
+            }
+
+            return path
+                .split("/")
+                .map(part => encodeURIComponent(part))
+                .join("/");
+        }
+
+
+        /* =====================================================
+        GET META FROM GAME HTML
         ===================================================== */
 
         function getMeta(html, name) {
 
-            const regex = new RegExp(
-                `<meta[^>]+name=["']${name}["'][^>]+content=["']([^"']*)["'][^>]*>`,
-                "i"
+            const doc = new DOMParser().parseFromString(
+                html,
+                "text/html"
             );
 
-            const match = html.match(regex);
+            const meta = doc.querySelector(
+                `meta[name="${name}"]`
+            );
+
+            return meta
+                ? meta.getAttribute("content") || ""
+                : "";
+        }
+
+
+        /* =====================================================
+        CREATE FALLBACK GAME NAME
+        ===================================================== */
+
+        function createFallbackName(gamePath) {
+
+            const parts = gamePath.split("/");
+
+            let fileName =
+                parts[parts.length - 1];
+
+            fileName =
+                fileName.replace(
+                    /\.html$/i,
+                    ""
+                );
+
+            /*
+            * If the game is called game1,
+            * game2, etc., create a nicer fallback.
+            *
+            * Example:
+            * game1 -> Game 1
+            */
+
+            const match =
+                fileName.match(
+                    /^game(\d+)$/i
+                );
 
             if (match) {
-                return match[1];
+
+                return `Game ${match[1]}`;
+
             }
 
-            return "";
+            return fileName
+                .replace(/[-_]/g, " ")
+                .replace(/\b\w/g, char => char.toUpperCase());
 
         }
 
+
         /* =====================================================
-           LOAD GAME METADATA
+        LOAD GAME METADATA
         ===================================================== */
 
-        async function getGameMetadata(
-            gameUrl,
-            fallbackName
-        ) {
+        async function getGameMetadata(gamePath) {
+
+            const gameUrl =
+                `${GAMES_BASE}/${encodePath(gamePath)}`;
+
+            const fallbackName =
+                createFallbackName(gamePath);
 
             try {
 
                 const response =
                     await fetch(
-                        gameUrl
+                        gameUrl,
+                        { cache: "no-store" }
                     );
-
 
                 if (!response.ok) {
-
                     throw new Error(
-                        "Could not load game"
+                        `HTTP ${response.status}`
                     );
-
                 }
-
 
                 const html =
                     await response.text();
 
+                const title =
+                    getMeta(
+                        html,
+                        "game-title"
+                    );
+
+                const description =
+                    getMeta(
+                        html,
+                        "game-description"
+                    );
+
+                const icon =
+                    getMeta(
+                        html,
+                        "game-icon"
+                    );
 
                 return {
 
                     title:
-                        getMeta(
-                            html,
-                            "game-title"
-                        ) ||
-                        fallbackName,
-
+                        title || fallbackName,
 
                     description:
-                        getMeta(
-                            html,
-                            "game-description"
-                        ) ||
+                        description ||
                         "Practice Vietnamese with this interactive game.",
 
-
                     icon:
-                        getMeta(
-                            html,
-                            "game-icon"
-                        ) ||
-                        "🎮"
+                        icon || "🎮"
 
                 };
 
             }
 
-
             catch (error) {
 
                 console.warn(
-                    "Could not read metadata:",
-                    gameUrl
+                    "Could not load game metadata:",
+                    gameUrl,
+                    error
                 );
-
 
                 return {
 
-                    title:
-                        fallbackName,
+                    title: fallbackName,
 
                     description:
                         "Practice Vietnamese with this interactive game.",
 
-                    icon:
-                        "🎮"
+                    icon: "🎮"
 
                 };
 
@@ -998,80 +1062,49 @@
         }
 
 
-
         /* =====================================================
-           CREATE GAME CARD
+        CREATE GAME CARD
         ===================================================== */
 
-        async function createGameCard(
-            categoryName,
-            gamePath
-        ) {
-
+        async function createGameCard(gamePath) {
 
             /*
-             * Build URL
-             */
+            * Make sure gamePath is actually a string
+            */
 
-            const gameUrl =
-                `${GAMES_BASE}/${encodePath(gamePath)}`;
+            if (typeof gamePath !== "string") {
 
+                console.error(
+                    "Invalid game path:",
+                    gamePath
+                );
 
-            /*
-             * Get filename
-             */
+                return null;
 
-            const parts =
-                gamePath.split("/");
-
-
-            const fileName =
-                parts[parts.length - 1];
+            }
 
 
-            const fallbackName =
-                fileName
-                    .replace(
-                        /\.html$/i,
-                        ""
-                    );
+            const encodedPath =
+                encodePath(gamePath);
 
 
+            const playUrl =
+                `${GAMES_BASE}/${encodedPath}`;
 
-            /*
-             * Load metadata
-             */
 
             const metadata =
                 await getGameMetadata(
-                    gameUrl,
-                    fallbackName
+                    gamePath
                 );
 
-
-
-            /*
-             * Create card
-             */
 
             const card =
                 document.createElement(
                     "div"
                 );
 
-
             card.className =
                 "game-card";
-
-
-
-            /*
-             * Build relative link
-             */
-
-            const playUrl =
-                `${GAMES_BASE}/${encodePath(gamePath)}`;
-
 
 
             card.innerHTML = `
@@ -1107,55 +1140,8 @@
         }
 
 
-
         /* =====================================================
-           ENCODE PATH
-        ===================================================== */
-
-        function encodePath(
-            path
-        ) {
-
-            return path
-                .split("/")
-                .map(
-                    part =>
-                        encodeURIComponent(
-                            part
-                        )
-                )
-                .join("/");
-
-        }
-
-
-
-        /* =====================================================
-           ESCAPE HTML
-        ===================================================== */
-
-        function escapeHtml(
-            text
-        ) {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.textContent =
-                text;
-
-
-            return div.innerHTML;
-
-        }
-
-
-
-        /* =====================================================
-           RENDER GAMES
+        RENDER GAMES
         ===================================================== */
 
         async function renderGames() {
@@ -1168,11 +1154,6 @@
 
             try {
 
-
-                /*
-                 * Load JSON
-                 */
-
                 const categories =
                     await loadCategories();
 
@@ -1183,34 +1164,49 @@
                 let totalGames = 0;
 
 
-
                 /*
-                 * Loop through categories
-                 */
+                * Loop through categories
+                */
 
                 for (
                     const categoryName
                     of Object.keys(categories)
                 ) {
 
-
                     const categoryInfo =
-                        categories[
-                            categoryName
-                        ];
+                        categories[categoryName];
 
 
                     /*
-                     * Get games array
-                     */
+                    * Safety check
+                    */
+
+                    if (
+                        !categoryInfo ||
+                        typeof categoryInfo !== "object"
+                    ) {
+
+                        continue;
+
+                    }
+
+
+                    /*
+                    * Get games
+                    */
 
                     const games =
-                        categoryInfo.games || [];
+                        Array.isArray(
+                            categoryInfo.games
+                        )
+                            ? categoryInfo.games
+                            : [];
 
 
                     /*
-                     * Skip empty categories
-                     */
+                    * Skip category
+                    * if there are no games
+                    */
 
                     if (
                         games.length === 0
@@ -1221,117 +1217,132 @@
                     }
 
 
-                    totalGames +=
-                        games.length;
-
-
-
                     /*
-                     * CATEGORY SECTION
-                     */
+                    * CATEGORY SECTION
+                    */
 
                     const section =
                         document.createElement(
                             "section"
                         );
 
-
                     section.className =
                         "game-type-section";
 
 
-
                     /*
-                     * TITLE
-                     */
+                    * CATEGORY TITLE
+                    */
 
                     const title =
                         document.createElement(
                             "div"
                         );
 
-
                     title.className =
                         "category-title";
-
 
                     title.textContent =
                         `${categoryInfo.icon || "🎮"} ${categoryName}`;
 
 
-
                     /*
-                     * SUBTITLE
-                     */
+                    * CATEGORY SUBTITLE
+                    */
 
                     const subtitle =
                         document.createElement(
                             "p"
                         );
 
-
                     subtitle.className =
                         "category-subtitle";
-
 
                     subtitle.textContent =
                         categoryInfo.subtitle ||
                         "Practice Vietnamese with interactive games.";
 
 
-
                     /*
-                     * GRID
-                     */
+                    * GAME GRID
+                    */
 
                     const grid =
                         document.createElement(
                             "div"
                         );
 
-
                     grid.className =
                         "game-grid";
 
 
-
                     /*
-                     * ADD GAMES
-                     */
+                    * ADD EACH GAME
+                    */
 
                     for (
                         const gamePath
                         of games
                     ) {
 
+                        /*
+                        * Only accept strings
+                        */
+
+                        if (
+                            typeof gamePath !== "string"
+                        ) {
+
+                            console.warn(
+                                "Skipping invalid game path:",
+                                gamePath
+                            );
+
+                            continue;
+
+                        }
+
+
                         const card =
                             await createGameCard(
-                                categoryName,
                                 gamePath
                             );
 
 
-                        grid.appendChild(
-                            card
-                        );
+                        if (card) {
+
+                            grid.appendChild(
+                                card
+                            );
+
+                            totalGames++;
+
+                        }
 
                     }
 
 
-
                     /*
-                     * ADD TO SECTION
-                     */
+                    * Only display category
+                    * if it actually contains games
+                    */
+
+                    if (
+                        grid.children.length === 0
+                    ) {
+
+                        continue;
+
+                    }
+
 
                     section.appendChild(
                         title
                     );
 
-
                     section.appendChild(
                         subtitle
                     );
-
 
                     section.appendChild(
                         grid
@@ -1345,10 +1356,9 @@
                 }
 
 
-
                 /*
-                 * NO GAMES
-                 */
+                * NO GAMES
+                */
 
                 if (
                     totalGames === 0
@@ -1364,13 +1374,9 @@
 
                             <br><br>
 
-                            Add game file names
-                            to the
-                            <strong>
-                                "games"
-                            </strong>
-                            array in
-                            categories.json.
+                            Make sure each category
+                            in categories.json has a
+                            <strong>games</strong> array.
 
                         </div>
 
@@ -1384,6 +1390,7 @@
             catch (error) {
 
                 console.error(
+                    "Game loader error:",
                     error
                 );
 
@@ -1399,11 +1406,8 @@
                         <br><br>
 
                         Please check that
-                        <strong>
-                            categories.json
-                        </strong>
-                        exists and contains
-                        valid JSON.
+                        <strong>categories.json</strong>
+                        exists and contains valid JSON.
 
                         <br><br>
 
@@ -1420,15 +1424,13 @@
         }
 
 
-
         /* =====================================================
-           START
+        START
         ===================================================== */
 
         renderGames();
 
-
-    </script>
+        </script>
 
 
 </body>
