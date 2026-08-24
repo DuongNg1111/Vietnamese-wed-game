@@ -1,250 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vietnamese Listening Game</title>
 
-<meta name="game-title" content="Vietnamese Listening Challenge">
-<meta name="game-description" content="Listen to Vietnamese sentences and choose the correct English meaning.">
-<meta name="game-icon" content="🎧">
+<title>Vietnamese Comparison Challenge</title>
+
+<meta name="game-title" content="Vietnamese Comparison Challenge">
+<meta name="game-description" content="Build Vietnamese comparison sentences by arranging the words in the correct order.">
+<meta name="game-icon" content="⚖️">
 
 <style>
 
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    user-select:none;
+    -webkit-user-select:none;
 }
 
-body {
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    text-align:center;
-    background:#eef6ff;
+body{
+    background:linear-gradient(135deg,#e8f3ff,#f7fbff);
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     padding:20px;
+    color:#333;
 }
 
-.container{
-    width:100%;
-    max-width:900px;
+.game-card{
     background:white;
-    border-radius:24px;
-    padding:35px;
-    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    width:100%;
+    max-width:800px;
+    border-radius:22px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    padding:30px;
 }
 
-.screen {
-    display:none;
+.hidden{
+    display:none !important;
 }
 
-.active {
-    display:block;
+
+/* ==========================================================
+   START SCREEN
+========================================================== */
+
+.start-screen{
+    text-align:center;
 }
 
-/* =========================
-   INTRO / HOW TO PLAY
-========================= */
-
-.intro h1{
-    color:#1976d2;
+.game-icon{
+    font-size:64px;
     margin-bottom:10px;
 }
 
-.intro-subtitle{
-    color:#666;
-    font-size:18px;
-    margin-bottom:30px;
-}
-
-.instructions{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin:30px 0;
-}
-
-.instruction-card{
-    background:#f5f9ff;
-    border-radius:18px;
-    padding:22px 15px;
-}
-
-.instruction-icon{
-    font-size:35px;
-    margin-bottom:12px;
-}
-
-.instruction-card h3{
-    margin:8px 0;
+.start-screen h1{
+    font-size:2.2rem;
     color:#1976d2;
+    margin-bottom:8px;
 }
 
-.instruction-card p{
-    color:#555;
-    line-height:1.5;
-    margin:0;
+.subtitle{
+    font-size:1.15rem;
+    color:#64748b;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.rules-box{
+    background:#f5f9ff;
+    border-radius:15px;
+    padding:20px;
+    max-width:500px;
+    margin:0 auto 25px;
+    text-align:left;
+    line-height:1.6;
+}
+
+.rules-box p{
+    margin:8px 0;
 }
 
 .start-btn{
-    padding:14px 35px;
-    border-radius:12px;
+    padding:14px 40px;
     border:none;
-    background:#4caf50;
+    border-radius:12px;
+    background:#2196f3;
     color:white;
-    cursor:pointer;
-    font-size:18px;
+    font-size:1.2rem;
     font-weight:bold;
+    cursor:pointer;
     transition:.2s;
 }
 
 .start-btn:hover{
-    background:#43a047;
-    transform:translateY(-2px);
+    background:#1976d2;
+    transform:scale(1.03);
 }
 
-/* =========================
-   GAME
-========================= */
 
-#game h1{
-    color:#1976d2;
-    margin-bottom:10px;
-}
+/* ==========================================================
+   GAME HEADER
+========================================================== */
 
-.question-number{
-    color:#666;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.listen-btn{
-    padding:10px 20px;
-    border-radius:10px;
-    border:none;
-    background:#2196f3;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
+.header-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:2px solid #f1f5f9;
+    padding-bottom:16px;
     margin-bottom:20px;
 }
 
-.listen-btn:hover{
+.game-title-sm{
+    font-size:1.1rem;
+    font-weight:bold;
+    color:#1976d2;
+}
+
+.target-tag{
+    font-size:.85rem;
+    background:#e3f2fd;
+    color:#1976d2;
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.stats-bar{
+    display:flex;
+    gap:10px;
+}
+
+.stat-item{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:#f8fafc;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid #e2e8f0;
+    font-weight:bold;
+}
+
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.progress-container{
+    width:100%;
+    height:10px;
+    background:#e2e8f0;
+    border-radius:5px;
+    overflow:hidden;
+    margin-bottom:20px;
+}
+
+.progress-fill{
+    height:100%;
+    background:#2196f3;
+    width:0%;
+    transition:width .3s ease;
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-meta{
+    margin-bottom:10px;
+}
+
+.q-number{
+    font-size:1rem;
+    font-weight:bold;
+    color:#64748b;
+}
+
+.english-prompt{
+    font-size:1.5rem;
+    font-weight:bold;
+    text-align:center;
+    margin:15px 0 25px;
+    min-height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.instruction-text{
+    font-size:.85rem;
+    font-weight:bold;
+    color:#64748b;
+    text-align:center;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+
+/* ==========================================================
+   ANSWER ZONE
+========================================================== */
+
+.drop-zone-container{
+    background:#f8fafc;
+    border:2px dashed #cbd5e1;
+    border-radius:12px;
+    padding:12px;
+    min-height:80px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:24px;
+    position:relative;
+}
+
+.drop-zone-placeholder{
+    color:#94a3b8;
+    font-size:1rem;
+    pointer-events:none;
+    position:absolute;
+}
+
+
+/* ==========================================================
+   WORD CARDS
+========================================================== */
+
+.cards-pool{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    min-height:65px;
+    margin-bottom:24px;
+    padding:8px;
+}
+
+.word-card{
+    padding:12px 20px;
+    font-size:1.15rem;
+    font-weight:bold;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.15s;
+    box-shadow:0 4px 6px rgba(0,0,0,.05);
+}
+
+.word-card:active{
+    transform:scale(.95);
+}
+
+.cards-pool .word-card{
+    background:#fff9c4;
+    border:2px solid #fde047;
+    color:#854d0e;
+}
+
+.cards-pool .word-card:hover{
+    transform:translateY(-2px);
+}
+
+.drop-zone-container .word-card{
+    background:#38bdf8;
+    border:2px solid #0284c7;
+    color:white;
+}
+
+
+/* ==========================================================
+   CONTROLS
+========================================================== */
+
+.controls-area{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.btn{
+    padding:12px 32px;
+    font-size:1rem;
+    font-weight:bold;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:#2196f3;
+    color:white;
+}
+
+.btn-primary:hover{
     background:#1976d2;
 }
 
-.answers {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin:25px auto;
-    max-width:700px;
+.btn-secondary{
+    background:#e2e8f0;
+    color:#333;
 }
 
-.answer {
-    padding:18px;
-    background:white;
-    border:2px solid #ccc;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.2s;
-    font-size:18px;
+.btn-secondary:hover{
+    background:#cbd5e1;
 }
 
-.answer:hover {
-    transform:scale(1.03);
-    background:#f5f9ff;
-}
 
-.answer.correct {
-    background:#c8e6c9;
-    border-color:#4caf50;
-}
+/* ==========================================================
+   FEEDBACK
+========================================================== */
 
-.answer.wrong {
-    background:#ffcdd2;
-    border-color:#f44336;
-}
-
-.answer.disabled{
-    cursor:default;
-}
-
-.result {
-    font-size:40px;
-    height:50px;
-    margin:10px 0;
-}
-
-.next-btn{
-    padding:10px 22px;
-    border-radius:10px;
-    border:none;
-    background:#4caf50;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.score {
-    margin-top:18px;
+.feedback-message{
+    text-align:center;
+    font-size:1.15rem;
     font-weight:bold;
-    color:#555;
+    min-height:28px;
 }
 
-/* =========================
-   END SCREEN
-========================= */
+.feedback-message.correct{
+    color:#16a34a;
+}
 
-#end h1{
-    color:#4caf50;
+.feedback-message.incorrect{
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   FINISH SCREEN
+========================================================== */
+
+.finish-screen{
+    text-align:center;
+}
+
+.finish-icon{
+    font-size:64px;
+    margin-bottom:10px;
+}
+
+.finish-screen h1{
+    color:#1976d2;
+    margin-bottom:20px;
 }
 
 .final-score{
-    font-size:32px;
+    font-size:1.8rem;
     font-weight:bold;
     color:#1976d2;
-    margin:20px;
 }
 
-.play-again{
-    padding:12px 28px;
-    border-radius:10px;
-    border:none;
-    background:#4caf50;
-    color:white;
-    cursor:pointer;
-    font-size:17px;
+.final-time{
+    font-size:1.2rem;
+    font-weight:bold;
+    margin-top:12px;
 }
 
-.play-again:hover{
-    background:#43a047;
+.rank-badge{
+    display:inline-block;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#1976d2;
+    background:#e3f2fd;
+    padding:8px 20px;
+    border-radius:20px;
+    margin:20px 0 10px;
 }
 
-/* =========================
+.best-time{
+    color:#64748b;
+    margin-bottom:15px;
+}
+
+.new-best{
+    color:#b45309;
+    background:#fef3c7;
+    padding:5px 12px;
+    border-radius:12px;
+    font-weight:bold;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+
+/* ==========================================================
    MOBILE
-========================= */
+========================================================== */
 
-@media(max-width:700px){
+@media(max-width:640px){
 
-    .container{
-        padding:25px 18px;
+    .game-card{
+        padding:20px 16px;
     }
 
-    .instructions{
-        grid-template-columns:1fr;
+    .start-screen h1{
+        font-size:1.8rem;
     }
 
-    .answers{
-        grid-template-columns:1fr;
+    .header-bar{
+        flex-direction:column;
+        gap:12px;
+        align-items:flex-start;
     }
 
-    .answer{
-        font-size:16px;
+    .stats-bar{
+        width:100%;
+        justify-content:space-between;
     }
 
+    .english-prompt{
+        font-size:1.25rem;
+    }
+
+    .word-card{
+        padding:10px 14px;
+        font-size:1rem;
+    }
+
+    .controls-area{
+        flex-direction:column;
+    }
+
+    .controls-area .btn{
+        width:100%;
+    }
 }
 
 </style>
@@ -252,551 +450,874 @@ body {
 
 <body>
 
-<div class="container">
+<div class="game-card">
 
-<!-- =====================================================
-     HOW TO PLAY
-===================================================== -->
 
-<div id="intro" class="screen active intro">
+<!-- ==========================================================
+     START SCREEN
+========================================================== -->
 
-    <h1>🎧 Vietnamese Listening Game</h1>
+<div id="start-screen" class="start-screen">
 
-    <div class="intro-subtitle">
-        Listen to Vietnamese and choose the correct English sentence.
+    <div class="game-icon">⚖️</div>
+
+    <h1>Vietnamese Comparison Challenge</h1>
+
+    <div class="subtitle">
+        Build Vietnamese comparison sentences
     </div>
 
-    <div class="instructions">
+    <div class="rules-box">
 
-        <div class="instruction-card">
+        <p>🧩 <strong>Task:</strong> Arrange the words to make a correct Vietnamese sentence.</p>
 
-            <div class="instruction-icon">
-                🎧
-            </div>
+        <p>📝 <strong>Questions:</strong> 20 sentences</p>
 
-            <h3>1. Listen</h3>
+        <p>⏱️ <strong>Target:</strong> Finish in under 3:00</p>
 
-            <p>
-                Listen to the Vietnamese sentence carefully.
-            </p>
-
-        </div>
-
-
-        <div class="instruction-card">
-
-            <div class="instruction-icon">
-                🔎
-            </div>
-
-            <h3>2. Choose</h3>
-
-            <p>
-                Choose the English sentence with the same meaning.
-            </p>
-
-        </div>
-
-
-        <div class="instruction-card">
-
-            <div class="instruction-icon">
-                🔊
-            </div>
-
-            <h3>3. Listen Again</h3>
-
-            <p>
-                Need help? Click "Listen Again" to hear the sentence again.
-            </p>
-
-        </div>
 
     </div>
 
-    <p style="color:#666;">
-        There are 20 questions. Try to get the highest score!
-    </p>
-
-    <button class="start-btn" onclick="startGame()">
-        Start Game
+    <button id="start-btn" class="start-btn">
+        Start Challenge
     </button>
 
 </div>
 
 
-<!-- =====================================================
-     GAME
-===================================================== -->
+<!-- ==========================================================
+     GAME SCREEN
+========================================================== -->
 
-<div id="game" class="screen">
+<div id="game-screen" class="hidden">
 
-    <h1>🎧 Vietnamese Listening Game</h1>
+    <div class="header-bar">
 
-    <div class="question-number">
-        Question <span id="qnum">1</span> / 20
+        <div>
+
+            <span class="game-title-sm">
+                Vietnamese Comparison
+            </span>
+
+            <span class="target-tag">
+                Target: 3:00
+            </span>
+
+        </div>
+
+        <div class="stats-bar">
+
+            <div class="stat-item">
+                ⏱️ <span id="timer-display">00:00</span>
+            </div>
+
+            <div class="stat-item">
+                ⭐ <span id="score-display">0</span>
+            </div>
+
+            <div class="stat-item">
+                🔥 <span id="streak-display">0</span>
+            </div>
+
+        </div>
+
     </div>
 
-    <button class="listen-btn" onclick="repeatAudio()">
-        🔊 Listen Again
-    </button>
 
-    <div class="answers" id="answers"></div>
+    <div class="progress-container">
 
-    <div class="result" id="resultIcon"></div>
+        <div
+            id="progress-fill"
+            class="progress-fill">
+        </div>
+
+    </div>
+
+
+    <div class="question-meta">
+
+        <span
+            id="question-tracker"
+            class="q-number">
+            Question 1 / 20
+        </span>
+
+    </div>
+
+
+    <div
+        id="english-prompt"
+        class="english-prompt">
+        The lemon is more sour than the orange.
+    </div>
+
+
+    <div class="instruction-text">
+        TAP THE WORDS TO BUILD THE SENTENCE
+    </div>
+
+
+    <div
+        id="drop-zone"
+        class="drop-zone-container">
+
+        <div
+            id="drop-placeholder"
+            class="drop-zone-placeholder">
+            Tap words below...
+        </div>
+
+    </div>
+
+
+    <div
+        id="cards-pool"
+        class="cards-pool">
+    </div>
+
+
+    <div class="controls-area">
+
+        <button
+            id="clear-btn"
+            class="btn btn-secondary">
+            CLEAR
+        </button>
+
+        <button
+            id="check-btn"
+            class="btn btn-primary">
+            CHECK
+        </button>
+
+    </div>
+
+
+    <div
+        id="feedback-msg"
+        class="feedback-message">
+    </div>
+
+</div>
+
+
+<!-- ==========================================================
+     FINISH SCREEN
+========================================================== -->
+
+<div id="finish-screen" class="finish-screen hidden">
+
+    <div class="finish-icon">
+        🎉
+    </div>
+
+    <h1>
+        Challenge Complete!
+    </h1>
+
+    <div
+        id="final-score"
+        class="final-score">
+        ⭐ 0 Points
+    </div>
+
+    <div class="final-time">
+        Your Time:
+        <span id="final-time">00:00</span>
+    </div>
+
+    <div
+        id="new-best-tag"
+        class="new-best hidden">
+        NEW BEST TIME!
+    </div>
+
+    <div
+        id="rank-badge"
+        class="rank-badge">
+        Vietnamese Speed Master!
+    </div>
+
+    <div
+        id="best-time-display"
+        class="best-time">
+        Best Time: --:--
+    </div>
 
     <button
-        id="nextBtn"
-        class="next-btn"
-        onclick="nextQuestion()"
-        style="display:none;"
-    >
-        Next →
-    </button>
-
-    <div class="score">
-        Score: <span id="score">0</span>
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     END
-===================================================== -->
-
-<div id="end" class="screen">
-
-    <h1>🎉 Finished!</h1>
-
-    <p>Your final score:</p>
-
-    <div class="final-score" id="finalScore"></div>
-
-    <button class="play-again" onclick="restart()">
+        id="play-again-btn"
+        class="btn btn-primary">
         Play Again
     </button>
 
 </div>
+
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   DATA
-========================================================= */
+/* ==========================================================
+   QUESTIONS
+========================================================== */
 
-const baseQuestions = [
+const questionsData = [
 
-    {
-        vi:"Xin chào! Em tên gì?",
-        en:"Hello! What is your name?"
-    },
+{
+    english:"The lemon is more sour than the orange.",
+    targetWords:["Trái chanh","chua","hơn","trái cam"]
+},
 
-    {
-        vi:"Em đợi một chút nha!",
-        en:"Wait a moment please!"
-    },
+{
+    english:"The milk is as cold as purified water.",
+    targetWords:["Sữa","lạnh","bằng","nước lọc"]
+},
 
-    {
-        vi:"Anh đợi một chút nha",
-        en:"Wait a moment please!"
-    },
+{
+    english:"The chicken is the biggest.",
+    targetWords:["Con gà","to","nhất"]
+},
 
-    {
-        vi:"Em hiểu không?",
-        en:"Do you understand?"
-    },
+{
+    english:"The beef is saltier than the vegetables.",
+    targetWords:["Bò","mặn","hơn","rau"]
+},
 
-    {
-        vi:"Tới đây giúp anh với!",
-        en:"Come here and help me!"
-    },
+{
+    english:"The coffee is as hot as the tea.",
+    targetWords:["Cà phê","nóng","bằng","trà"]
+},
 
-    {
-        vi:"Chị cần em tới đây!",
-        en:"I need you to come here!"
-    },
+{
+    english:"The mango is the sweetest.",
+    targetWords:["Trái xoài","ngọt","nhất"]
+},
 
-    {
-        vi:"Tốt lắm",
-        en:"Very good!"
-    },
+{
+    english:"The cat is smaller than the monkey.",
+    targetWords:["Con mèo","nhỏ","hơn","con khỉ"]
+},
 
-    {
-        vi:"Em khỏe không?",
-        en:"Are you okay?"
-    },
+{
+    english:"Orange juice is the most delicious.",
+    targetWords:["Nước cam","ngon","nhất"]
+},
 
-    {
-        vi:"Em ăn trưa chưa",
-        en:"Have you had lunch yet?"
-    },
+{
+    english:"The apple is as sweet as the coconut.",
+    targetWords:["Trái táo","ngọt","bằng","trái dừa"]
+},
 
-    {
-        vi:"Anh ăn tối chưa",
-        en:"Have you had dinner yet?"
-    },
+{
+    english:"The fish is more delicious than the corn.",
+    targetWords:["Cá","ngon","hơn","bắp"]
+},
 
-    {
-        vi:"Chị ăn sáng chưa?",
-        en:"Have you had breakfast yet?"
-    }
+{
+    english:"The plate is the most beautiful.",
+    targetWords:["Cái dĩa","đẹp","nhất"]
+},
+
+{
+    english:"The duck is uglier than the bird.",
+    targetWords:["Con vịt","xấu","hơn","con chim"]
+},
+
+{
+    english:"The noodles are as delicious as the chicken.",
+    targetWords:["Mì","ngon","bằng","gà"]
+},
+
+{
+    english:"The cucumber is smaller than the potato.",
+    targetWords:["Dưa leo","nhỏ","hơn","khoai tây"]
+},
+
+{
+    english:"The coconut is the biggest.",
+    targetWords:["Trái dừa","to","nhất"]
+},
+
+{
+    english:"The coffee is more bitter than the milk.",
+    targetWords:["Cà phê","đắng","hơn","sữa"]
+},
+
+{
+    english:"The tomato is as beautiful as the avocado.",
+    targetWords:["Cà chua","đẹp","bằng","trái bơ"]
+},
+
+{
+    english:"The fish is the most delicious.",
+    targetWords:["Cá","ngon","nhất"]
+},
+
+{
+    english:"The pig is taller than the duck.",
+    targetWords:["Con heo","cao","hơn","con vịt"]
+},
+
+{
+    english:"The lemon is the sourest.",
+    targetWords:["Trái chanh","chua","nhất"]
+}
 
 ];
 
 
-/* =========================================================
+/* ==========================================================
    GAME STATE
-========================================================= */
+========================================================== */
 
-let questions = [];
+let currentQuestionIndex=0;
+let score=0;
+let streak=0;
 
-let current = 0;
+let timerSeconds=0;
+let timerInterval=null;
 
-let score = 0;
-
-let answered = false;
-
-
-/* =========================================================
-   SHUFFLE
-========================================================= */
-
-function shuffle(arr){
-
-    return [...arr].sort(
-        () => Math.random() - 0.5
-    );
-
-}
+let bestTimeSeconds=
+    localStorage.getItem(
+        "vietnameseComparisonBestTime"
+    )
+    ? parseInt(
+        localStorage.getItem(
+            "vietnameseComparisonBestTime"
+        )
+    )
+    : null;
 
 
-/* =========================================================
-   GOOGLE TTS
-========================================================= */
+/* ==========================================================
+   DOM
+========================================================== */
 
-function speak(text){
+const startScreen=
+    document.getElementById("start-screen");
 
-    const url =
-        "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q="
-        + encodeURIComponent(text);
+const gameScreen=
+    document.getElementById("game-screen");
 
-    new Audio(url).play();
+const finishScreen=
+    document.getElementById("finish-screen");
 
-}
+const startBtn=
+    document.getElementById("start-btn");
+
+const clearBtn=
+    document.getElementById("clear-btn");
+
+const checkBtn=
+    document.getElementById("check-btn");
+
+const playAgainBtn=
+    document.getElementById("play-again-btn");
+
+const timerDisplay=
+    document.getElementById("timer-display");
+
+const scoreDisplay=
+    document.getElementById("score-display");
+
+const streakDisplay=
+    document.getElementById("streak-display");
+
+const progressFill=
+    document.getElementById("progress-fill");
+
+const questionTracker=
+    document.getElementById("question-tracker");
+
+const englishPrompt=
+    document.getElementById("english-prompt");
+
+const dropZone=
+    document.getElementById("drop-zone");
+
+const dropPlaceholder=
+    document.getElementById("drop-placeholder");
+
+const cardsPool=
+    document.getElementById("cards-pool");
+
+const feedbackMsg=
+    document.getElementById("feedback-msg");
+
+const finalScore=
+    document.getElementById("final-score");
+
+const finalTime=
+    document.getElementById("final-time");
+
+const newBestTag=
+    document.getElementById("new-best-tag");
+
+const rankBadge=
+    document.getElementById("rank-badge");
+
+const bestTimeDisplay=
+    document.getElementById("best-time-display");
 
 
-function repeatAudio(){
+/* ==========================================================
+   EVENTS
+========================================================== */
 
-    if(!questions[current]) return;
+startBtn.addEventListener(
+    "click",
+    startGame
+);
 
-    speak(questions[current].vi);
+playAgainBtn.addEventListener(
+    "click",
+    resetGame
+);
 
-}
+clearBtn.addEventListener(
+    "click",
+    clearAnswer
+);
+
+checkBtn.addEventListener(
+    "click",
+    checkAnswer
+);
 
 
-/* =========================================================
-   START GAME
-========================================================= */
+/* ==========================================================
+   GAME START
+========================================================== */
 
 function startGame(){
 
-    document
-        .getElementById("intro")
-        .classList.remove("active");
+    startScreen.classList.add("hidden");
 
-    document
-        .getElementById("end")
-        .classList.remove("active");
+    finishScreen.classList.add("hidden");
 
-    document
-        .getElementById("game")
-        .classList.add("active");
+    gameScreen.classList.remove("hidden");
 
+    currentQuestionIndex=0;
+    score=0;
+    streak=0;
+    timerSeconds=0;
 
-    questions = [];
+    scoreDisplay.textContent=score;
 
+    streakDisplay.textContent=streak;
 
-    /*
-        Create exactly 20 questions.
-        Questions may repeat.
-    */
+    timerDisplay.textContent="00:00";
 
-    for(let i = 0; i < 20; i++){
-
-        const q =
-            baseQuestions[
-                Math.floor(
-                    Math.random() *
-                    baseQuestions.length
-                )
-            ];
-
-        questions.push(q);
-
-    }
-
-
-    current = 0;
-
-    score = 0;
-
-
-    document
-        .getElementById("score")
-        .innerText = score;
-
+    startTimer();
 
     loadQuestion();
 
 }
 
 
-/* =========================================================
+/* ==========================================================
+   RESET
+========================================================== */
+
+function resetGame(){
+
+    finishScreen.classList.add("hidden");
+
+    startGame();
+
+}
+
+
+/* ==========================================================
+   TIMER
+========================================================== */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    timerInterval=setInterval(()=>{
+
+        timerSeconds++;
+
+        timerDisplay.textContent=
+            formatTime(timerSeconds);
+
+    },1000);
+
+}
+
+
+function stopTimer(){
+
+    clearInterval(timerInterval);
+
+}
+
+
+function formatTime(totalSeconds){
+
+    const mins=
+        Math.floor(totalSeconds/60);
+
+    const secs=
+        totalSeconds%60;
+
+    return `${mins
+        .toString()
+        .padStart(2,"0")}:${secs
+        .toString()
+        .padStart(2,"0")}`;
+
+}
+
+
+/* ==========================================================
    LOAD QUESTION
-========================================================= */
+========================================================== */
 
 function loadQuestion(){
 
-    answered = false;
+    const q=
+        questionsData[currentQuestionIndex];
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display = "none";
+    questionTracker.textContent=
+        `Question ${currentQuestionIndex+1} / ${questionsData.length}`;
 
 
-    document
-        .getElementById("resultIcon")
-        .innerText = "";
+    progressFill.style.width=
+        `${(currentQuestionIndex/
+        questionsData.length)*100}%`;
 
 
-    if(current >= questions.length){
+    englishPrompt.textContent=
+        q.english;
 
-        endGame();
 
-        return;
+    feedbackMsg.textContent="";
+
+    feedbackMsg.className=
+        "feedback-message";
+
+
+    dropZone
+        .querySelectorAll(".word-card")
+        .forEach(card=>card.remove());
+
+
+    cardsPool.innerHTML="";
+
+
+    updatePlaceholder();
+
+
+    const scrambled=
+        [...q.targetWords]
+        .sort(()=>Math.random()-.5);
+
+
+    scrambled.forEach(word=>{
+
+        const card=
+            createWordCard(word);
+
+        cardsPool.appendChild(card);
+
+    });
+
+}
+
+
+/* ==========================================================
+   CREATE WORD CARD
+========================================================== */
+
+function createWordCard(text){
+
+    const card=
+        document.createElement("div");
+
+    card.className="word-card";
+
+    card.textContent=text;
+
+
+    card.addEventListener(
+        "click",
+        ()=>{
+
+            if(card.parentElement===cardsPool){
+
+                dropZone.appendChild(card);
+
+            }else{
+
+                cardsPool.appendChild(card);
+
+            }
+
+            updatePlaceholder();
+
+            feedbackMsg.textContent="";
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+/* ==========================================================
+   PLACEHOLDER
+========================================================== */
+
+function updatePlaceholder(){
+
+    const cards=
+        dropZone.querySelectorAll(
+            ".word-card"
+        );
+
+    dropPlaceholder.style.display=
+        cards.length===0
+        ?"block"
+        :"none";
+
+}
+
+
+/* ==========================================================
+   CLEAR
+========================================================== */
+
+function clearAnswer(){
+
+    const cards=
+        dropZone.querySelectorAll(
+            ".word-card"
+        );
+
+    cards.forEach(card=>{
+
+        cardsPool.appendChild(card);
+
+    });
+
+    updatePlaceholder();
+
+    feedbackMsg.textContent="";
+
+}
+
+
+/* ==========================================================
+   CHECK ANSWER
+========================================================== */
+
+function checkAnswer(){
+
+    const q=
+        questionsData[currentQuestionIndex];
+
+
+    const placedCards=
+        [
+            ...dropZone.querySelectorAll(
+                ".word-card"
+            )
+        ];
+
+
+    const userWords=
+        placedCards.map(
+            card=>card.textContent.trim()
+        );
+
+
+    const isCorrect=
+        userWords.length===
+        q.targetWords.length
+        &&
+        userWords.every(
+            (word,index)=>
+                word===q.targetWords[index]
+        );
+
+
+    if(isCorrect){
+
+        feedbackMsg.textContent=
+            "Correct! 🎉";
+
+        feedbackMsg.className=
+            "feedback-message correct";
+
+
+        streak++;
+
+
+        let points=100;
+
+
+        if(streak>=5){
+
+            points+=100;
+
+        }else if(streak>=3){
+
+            points+=50;
+
+        }
+
+
+        score+=points;
+
+
+        scoreDisplay.textContent=
+            score;
+
+        streakDisplay.textContent=
+            streak;
+
+
+        setTimeout(()=>{
+
+            currentQuestionIndex++;
+
+
+            if(
+                currentQuestionIndex<
+                questionsData.length
+            ){
+
+                loadQuestion();
+
+            }else{
+
+                finishGame();
+
+            }
+
+        },700);
+
+
+    }else{
+
+        feedbackMsg.textContent=
+            "Not quite! Try again.";
+
+        feedbackMsg.className=
+            "feedback-message incorrect";
+
+
+        streak=0;
+
+        streakDisplay.textContent=
+            streak;
 
     }
 
-
-    document
-        .getElementById("qnum")
-        .innerText = current + 1;
+}
 
 
-    const correct =
-        questions[current];
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    stopTimer();
 
 
-    /*
-        Create 4 answer choices.
-    */
+    gameScreen.classList.add(
+        "hidden"
+    );
 
-    let options =
-        shuffle([...baseQuestions])
-        .slice(0,4);
+    finishScreen.classList.remove(
+        "hidden"
+    );
 
 
-    /*
-        Make sure the correct answer
-        is included.
-    */
+    finalScore.textContent=
+        `⭐ ${score} Points`;
+
+
+    finalTime.textContent=
+        formatTime(timerSeconds);
+
+
+    let isNewBest=false;
+
 
     if(
-        !options.find(
-            o => o.en === correct.en
-        )
+        bestTimeSeconds===null
+        ||
+        timerSeconds<bestTimeSeconds
     ){
 
-        options[0] = correct;
+        bestTimeSeconds=
+            timerSeconds;
+
+        localStorage.setItem(
+            "vietnameseComparisonBestTime",
+            bestTimeSeconds
+        );
+
+        isNewBest=true;
 
     }
 
 
-    options = shuffle(options);
+    if(isNewBest){
 
-
-    const container =
-        document.getElementById("answers");
-
-
-    container.innerHTML = "";
-
-
-    options.forEach(opt => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className = "answer";
-
-
-        div.innerText = opt.en;
-
-
-        div.onclick = () => {
-
-            choose(
-                div,
-                opt.en === correct.en
-            );
-
-        };
-
-
-        container.appendChild(div);
-
-    });
-
-
-    /*
-        Automatically play audio.
-    */
-
-    speak(correct.vi);
-
-}
-
-
-/* =========================================================
-   CHOOSE ANSWER
-========================================================= */
-
-function choose(el, correct){
-
-    if(answered) return;
-
-
-    answered = true;
-
-
-    /*
-        Disable all answers
-        after choosing.
-    */
-
-    const allAnswers =
-        document.querySelectorAll(".answer");
-
-
-    allAnswers.forEach(answer => {
-
-        answer.classList.add("disabled");
-
-    });
-
-
-    if(correct){
-
-        el.classList.add("correct");
-
-        score++;
-
-        showResult(true);
+        newBestTag.classList.remove(
+            "hidden"
+        );
 
     }else{
 
-        el.classList.add("wrong");
-
-        showResult(false);
+        newBestTag.classList.add(
+            "hidden"
+        );
 
     }
 
 
-    document
-        .getElementById("score")
-        .innerText = score;
+    if(bestTimeSeconds!==null){
 
-}
+        bestTimeDisplay.textContent=
+            `Best Time: ${formatTime(
+                bestTimeSeconds
+            )}`;
 
-
-/* =========================================================
-   SHOW RESULT
-========================================================= */
-
-function showResult(ok){
-
-    document
-        .getElementById("resultIcon")
-        .innerText =
-        ok ? "✔" : "❌";
+    }
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display = "inline-block";
+    if(timerSeconds<=180){
 
+        rankBadge.textContent=
+            "Vietnamese Speed Master!";
 
-    if(current === questions.length - 1){
+    }else if(timerSeconds<=240){
 
-        document
-            .getElementById("nextBtn")
-            .innerText = "Finish 🎉";
+        rankBadge.textContent=
+            "Excellent!";
+
+    }else if(timerSeconds<=300){
+
+        rankBadge.textContent=
+            "Great Job!";
 
     }else{
 
-        document
-            .getElementById("nextBtn")
-            .innerText = "Next →";
+        rankBadge.textContent=
+            "Good Practice!";
 
     }
-
-}
-
-
-/* =========================================================
-   NEXT QUESTION
-========================================================= */
-
-function nextQuestion(){
-
-    current++;
-
-    loadQuestion();
-
-}
-
-
-/* =========================================================
-   END GAME
-========================================================= */
-
-function endGame(){
-
-    document
-        .getElementById("game")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("end")
-        .classList.add("active");
-
-
-    document
-        .getElementById("finalScore")
-        .innerText =
-        score + " / 20";
-
-}
-
-
-/* =========================================================
-   RESTART
-========================================================= */
-
-function restart(){
-
-    document
-        .getElementById("end")
-        .classList.remove("active");
-
-    startGame();
 
 }
 

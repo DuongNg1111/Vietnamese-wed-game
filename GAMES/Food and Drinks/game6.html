@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fast Choice - Vietnamese Vocabulary</title>
+
+<meta name="game-title" content="Fast Choice">
+<meta name="game-description" content="Choose the correct Vietnamese description for each picture.">
+<meta name="game-icon" content="⚡">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    background:#f4f6f8;
+
+    margin:0;
+    padding:20px;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.game-box{
+
+    background:white;
+
+    width:90%;
+    max-width:750px;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+
+    text-align:center;
+
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#introScreen h1{
+
+    color:#333;
+
+    font-size:34px;
+
+    margin-bottom:20px;
+
+}
+
+#introScreen h2{
+
+    color:#444;
+
+    margin-bottom:20px;
+
+}
+
+#introScreen p{
+
+    font-size:18px;
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+
+.start-btn{
+
+    margin-top:20px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:#2196f3;
+
+    color:white;
+
+    transition:0.2s;
+
+}
+
+.start-btn:hover{
+
+    background:#1976d2;
+
+    transform:scale(1.03);
+
+}
+
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+#gameScreen{
+
+    display:none;
+
+}
+
+#gameScreen h1{
+
+    color:#333;
+
+}
+
+#info{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+    color:#444;
+
+}
+
+#emoji{
+
+    font-size:160px;
+
+    margin:20px 0;
+
+}
+
+.option{
+
+    display:block;
+
+    width:500px;
+
+    max-width:95%;
+
+    margin:15px auto;
+
+    padding:18px;
+
+    font-size:24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:#2196f3;
+
+    color:white;
+
+    transition:0.2s;
+
+}
+
+.option:hover{
+
+    transform:scale(1.03);
+
+    background:#1976d2;
+
+}
+
+.option:disabled{
+
+    cursor:default;
+
+    opacity:0.9;
+
+}
+
+#message{
+
+    min-height:40px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-top:20px;
+
+}
+
+#result{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    margin-top:30px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .game-box{
+
+        width:95%;
+
+        padding:25px 20px;
+
+    }
+
+    #introScreen h1{
+
+        font-size:28px;
+
+    }
+
+    #emoji{
+
+        font-size:120px;
+
+    }
+
+    .option{
+
+        font-size:20px;
+
+        padding:15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game-box">
+
+
+    <!-- =========================
+         INTRO SCREEN
+    ========================= -->
+
+    <div id="introScreen">
+
+        <h1>
+            ⚡ Fast Choice
+        </h1>
+
+        <p>
+            Welcome to the Fast Choice vocabulary game!
+        </p>
+
+        <p>
+            🍌 Look at the picture and choose the correct Vietnamese description.
+        </p>
+
+        <p>
+            📝 Total Questions: <b>15</b>
+        </p>
+
+        <button
+            class="start-btn"
+            id="startBtn"
+        >
+            Start Game
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         GAME SCREEN
+    ========================= -->
+
+    <div id="gameScreen">
+
+        <h1>
+            ⚡ Fast Choice
+        </h1>
+
+        <div id="info">
+
+            Question:
+            <span id="question">1</span>
+            /15
+
+            &nbsp; | &nbsp;
+
+            Score:
+            <span id="score">0</span>
+
+        </div>
+
+
+        <div id="emoji"></div>
+
+
+        <div id="options"></div>
+
+
+        <div id="message"></div>
+
+
+        <div id="result"></div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   GAME DATA
+========================= */
+
+const items = [
+
+    {
+        emoji:"🍌",
+        answer:"trái chuối màu vàng"
+    },
+
+    {
+        emoji:"🥑",
+        answer:"trái bơ màu xanh lá"
+    },
+
+    {
+        emoji:"🍎",
+        answer:"trái táo màu đỏ"
+    },
+
+    {
+        emoji:"🥥",
+        answer:"trái dừa màu trắng"
+    },
+
+    {
+        emoji:"🍋",
+        answer:"trái chanh màu vàng"
+    },
+
+    {
+        emoji:"🍊",
+        answer:"trái cam màu cam"
+    }
+
+];
+
+
+let question = 0;
+
+let score = 0;
+
+let currentItem = null;
+
+
+/* =========================
+   SHUFFLE
+========================= */
+
+function shuffle(arr){
+
+    return [...arr]
+        .sort(() => Math.random() - 0.5);
+
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+document.getElementById("startBtn").onclick = function(){
+
+    document.getElementById("introScreen")
+        .style.display = "none";
+
+    document.getElementById("gameScreen")
+        .style.display = "block";
+
+    nextQuestion();
+
+};
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion(){
+
+    if(question >= 15){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    question++;
+
+
+    document.getElementById("question")
+        .textContent = question;
+
+
+    document.getElementById("message")
+        .textContent = "";
+
+
+    currentItem =
+        items[
+            Math.floor(
+                Math.random() * items.length
+            )
+        ];
+
+
+    document.getElementById("emoji")
+        .textContent = currentItem.emoji;
+
+
+    let wrong;
+
+
+    do{
+
+        wrong =
+            items[
+                Math.floor(
+                    Math.random() * items.length
+                )
+            ].answer;
+
+    }
+
+    while(
+        wrong === currentItem.answer
+    );
+
+
+    const choices =
+        shuffle([
+
+            currentItem.answer,
+
+            wrong
+
+        ]);
+
+
+    const options =
+        document.getElementById("options");
+
+
+    options.innerHTML = "";
+
+
+    choices.forEach((choice,index)=>{
+
+
+        const btn =
+            document.createElement("button");
+
+
+        btn.className = "option";
+
+
+        btn.textContent =
+            `${index === 0 ? "A" : "B"}. ${choice}`;
+
+
+        btn.onclick =
+            () => checkAnswer(choice);
+
+
+        options.appendChild(btn);
+
+    });
+
+}
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+function checkAnswer(choice){
+
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+
+    buttons.forEach(btn => {
+
+        btn.disabled = true;
+
+    });
+
+
+    const message =
+        document.getElementById("message");
+
+
+    if(choice === currentItem.answer){
+
+
+        score++;
+
+
+        document.getElementById("score")
+            .textContent = score;
+
+
+        message.style.color = "green";
+
+        message.textContent =
+            "✓ Correct!";
+
+
+    }
+
+    else{
+
+
+        message.style.color = "red";
+
+        message.textContent =
+            "✗ " + currentItem.answer;
+
+    }
+
+
+    setTimeout(
+        nextQuestion,
+        1500
+    );
+
+}
+
+
+/* =========================
+   FINISH GAME
+========================= */
+
+function finishGame(){
+
+
+    document.getElementById("emoji")
+        .style.display = "none";
+
+
+    document.getElementById("options")
+        .innerHTML = "";
+
+
+    document.getElementById("message")
+        .innerHTML = "";
+
+
+    let performance = "";
+
+
+    if(score >= 14){
+
+        performance =
+            "Excellent!";
+
+    }
+
+    else if(score >= 11){
+
+        performance =
+            "Great Job!";
+
+    }
+
+    else if(score >= 8){
+
+        performance =
+            "Good Work!";
+
+    }
+
+    else{
+
+        performance =
+            "Keep Practicing!";
+
+    }
+
+
+    document.getElementById("result")
+        .innerHTML = `
+
+            🏆 Game Finished
+
+            <br><br>
+
+            Final Score:
+            ${score}/15
+
+            <br><br>
+
+            ${performance}
+
+            <br><br>
+
+            <button
+                class="start-btn"
+                onclick="restartGame()"
+            >
+                Play Again
+            </button>
+
+        `;
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartGame(){
+
+
+    question = 0;
+
+    score = 0;
+
+
+    document.getElementById("score")
+        .textContent = "0";
+
+
+    document.getElementById("result")
+        .innerHTML = "";
+
+
+    document.getElementById("emoji")
+        .style.display = "block";
+
+
+    nextQuestion();
+
+}
+
+
+</script>
+
+</body>
+
+</html>

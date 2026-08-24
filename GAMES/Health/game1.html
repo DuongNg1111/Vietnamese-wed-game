@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Match English with Vietnamese</title>
+
+
+<style>
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f3ff,
+            #f7fbff
+        );
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    color:#333;
+}
+
+
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.container{
+    width:100%;
+    max-width:950px;
+
+    background:white;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.12);
+
+    padding:35px;
+}
+
+
+/* ==========================================================
+   INTRO SCREEN
+========================================================== */
+
+#introScreen{
+    text-align:center;
+
+    padding:20px 10px 10px;
+}
+
+.game-icon{
+    font-size:72px;
+
+    margin-bottom:10px;
+}
+
+#introScreen h1{
+    color:#1976d2;
+
+    font-size:34px;
+
+    margin-bottom:15px;
+}
+
+.intro-description{
+    max-width:600px;
+
+    margin:0 auto 25px;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    color:#666;
+}
+
+
+/* ==========================================================
+   GAME INFO
+========================================================== */
+
+.game-info{
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin:25px 0;
+}
+
+.game-info div{
+    background:#f5f9ff;
+
+    border:1px solid #d9e8ff;
+
+    border-radius:12px;
+
+    padding:13px 18px;
+
+    color:#555;
+
+    font-size:16px;
+}
+
+.game-info span{
+    margin-right:6px;
+}
+
+
+/* ==========================================================
+   START BUTTON
+========================================================== */
+
+#startBtn{
+    margin-top:10px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    background:#2196f3;
+
+    color:white;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+#startBtn:hover{
+    background:#1976d2;
+
+    transform:translateY(-2px);
+}
+
+
+/* ==========================================================
+   GAME AREA
+========================================================== */
+
+#gameArea{
+    display:none;
+}
+
+.game-title{
+    text-align:center;
+
+    color:#1976d2;
+
+    margin-bottom:20px;
+
+    font-size:30px;
+}
+
+
+/* ==========================================================
+   INFO
+========================================================== */
+
+.info{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:18px;
+}
+
+.infoBox{
+    background:#f5f9ff;
+
+    border-radius:15px;
+
+    padding:14px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.06);
+}
+
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+
+.progressWrap{
+    width:100%;
+
+    height:14px;
+
+    background:#ddd;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+}
+
+.progressBar{
+    height:100%;
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2196f3,
+            #64b5f6
+        );
+
+    transition:
+        width 1s linear;
+}
+
+
+/* ==========================================================
+   COLUMNS
+========================================================== */
+
+.columns{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+}
+
+.column h2{
+    text-align:center;
+
+    margin-bottom:15px;
+
+    color:#1976d2;
+}
+
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+.card{
+    background:white;
+
+    border:2px solid #d9e8ff;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:12px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-size:1.2rem;
+
+    transition:.25s;
+
+    user-select:none;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.06);
+}
+
+.card:hover{
+    transform:translateY(-3px);
+
+    background:#eef6ff;
+}
+
+.selected{
+    border-color:#2196f3;
+
+    background:#d8ecff;
+}
+
+.correct{
+    background:#4caf50 !important;
+
+    color:white;
+
+    border-color:#4caf50;
+
+    cursor:default;
+}
+
+.wrong{
+    background:#f44336 !important;
+
+    color:white;
+}
+
+
+/* ==========================================================
+   FINISH SCREEN
+========================================================== */
+
+.finished{
+    text-align:center;
+
+    display:none;
+
+    animation:fade .5s;
+}
+
+.finished h2{
+    color:#1976d2;
+
+    margin-bottom:15px;
+
+    font-size:32px;
+}
+
+.finished p{
+    font-size:1.3rem;
+
+    margin:10px 0;
+}
+
+
+/* ==========================================================
+   PLAY AGAIN BUTTON
+========================================================== */
+
+.play-again{
+    margin-top:20px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    background:#2196f3;
+
+    color:white;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+.play-again:hover{
+    background:#1976d2;
+
+    transform:translateY(-2px);
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:700px){
+
+    body{
+        padding:15px;
+    }
+
+    .container{
+        padding:25px 20px;
+
+        border-radius:20px;
+    }
+
+    #introScreen h1{
+        font-size:29px;
+    }
+
+    .intro-description{
+        font-size:16px;
+    }
+
+    .game-info{
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .game-info div{
+        width:100%;
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .columns{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        font-size:1.05rem;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ======================================================
+         INTRO SCREEN
+    ====================================================== -->
+
+    <div id="introScreen">
+
+        <div class="game-icon">
+            🔤
+        </div>
+
+
+        <h1>
+            Match English with Vietnamese
+        </h1>
+
+
+        <p class="intro-description">
+
+            Match each English word with
+            its correct Vietnamese meaning.
+            Try to complete all the pairs
+            before time runs out!
+
+        </p>
+
+
+        <div class="game-info">
+
+            <div>
+                📝
+                <strong>9 Rounds</strong>
+            </div>
+
+            <div>
+                🔤
+                <strong>3 Pairs / Round</strong>
+            </div>
+
+            <div>
+                ⏱️
+                <strong>10 Seconds</strong>
+            </div>
+
+        </div>
+
+
+        <button
+            id="startBtn"
+            onclick="startGame()"
+        >
+
+            Start Game →
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         GAME AREA
+    ====================================================== -->
+
+    <div id="gameArea">
+
+
+        <h1 class="game-title">
+            🔤 Match English with Vietnamese
+        </h1>
+
+
+        <div class="info">
+
+
+            <div class="infoBox">
+
+                Round
+
+                <br>
+
+                <span id="round">
+                    1
+                </span>
+
+                /
+
+                9
+
+            </div>
+
+
+            <div class="infoBox">
+
+                Score
+
+                <br>
+
+                <span id="score">
+                    0
+                </span>
+
+                /
+
+                27
+
+            </div>
+
+
+            <div class="infoBox">
+
+                Time Left
+
+                <br>
+
+                <span id="time">
+                    10
+                </span>
+
+                s
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="progressWrap">
+
+            <div
+                class="progressBar"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+
+        <div class="columns">
+
+
+            <!-- ENGLISH -->
+
+            <div class="column">
+
+                <h2>
+                    English
+                </h2>
+
+                <div
+                    id="englishList"
+                ></div>
+
+            </div>
+
+
+
+            <!-- VIETNAMESE -->
+
+            <div class="column">
+
+                <h2>
+                    Vietnamese
+                </h2>
+
+                <div
+                    id="vietnameseList"
+                ></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ======================================================
+         FINISH SCREEN
+    ====================================================== -->
+
+    <div
+        class="finished"
+        id="finishScreen"
+    >
+
+
+        <div class="game-icon">
+            🎉
+        </div>
+
+
+        <h2>
+            Game Finished!
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Final Score:
+            </strong>
+
+            <span id="finalScore"></span>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Percentage:
+            </strong>
+
+            <span id="percent"></span>
+
+        </p>
+
+
+        <p id="message"></p>
+
+
+        <button
+            class="play-again"
+            onclick="startGame()"
+        >
+
+            Play Again →
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==========================================================
+   VOCABULARY
+========================================================== */
+
+const vocabulary = [
+
+    {
+        en:"cough",
+        vi:"ho"
+    },
+
+    {
+        en:"have a cold",
+        vi:"cảm"
+    },
+
+    {
+        en:"tired",
+        vi:"mệt"
+    },
+
+    {
+        en:"hurt",
+        vi:"đau"
+    },
+
+    {
+        en:"headache",
+        vi:"nhức đầu"
+    },
+
+    {
+        en:"fever",
+        vi:"sốt"
+    },
+
+    {
+        en:"go to bed",
+        vi:"đi ngủ"
+    },
+
+    {
+        en:"go out",
+        vi:"đi chơi"
+    },
+
+    {
+        en:"be late",
+        vi:"đi trễ"
+    }
+
+];
+
+
+const TOTAL_ROUNDS = 9;
+
+const PAIRS_PER_ROUND = 3;
+
+
+let round = 1;
+
+let score = 0;
+
+let timer;
+
+let timeLeft = 10;
+
+let currentPairs = [];
+
+let selectedEnglish = null;
+
+let selectedVietnamese = null;
+
+let matchedCount = 0;
+
+let roundFinished = false;
+
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(arr){
+
+    let a = [...arr];
+
+    for(
+        let i = a.length - 1;
+        i > 0;
+        i--
+    ){
+
+        let j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [a[i],a[j]] =
+            [a[j],a[i]];
+
+    }
+
+    return a;
+
+}
+
+
+
+/* ==========================================================
+   SOUND EFFECTS
+========================================================== */
+
+const audioCtx =
+    new (
+        window.AudioContext ||
+        window.webkitAudioContext
+    )();
+
+
+function beep(
+    freq,
+    duration,
+    type="sine",
+    volume=.15
+){
+
+    const osc =
+        audioCtx.createOscillator();
+
+    const gain =
+        audioCtx.createGain();
+
+
+    osc.type = type;
+
+    osc.frequency.value = freq;
+
+    gain.gain.value = volume;
+
+
+    osc.connect(gain);
+
+    gain.connect(
+        audioCtx.destination
+    );
+
+
+    osc.start();
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            0.0001,
+            audioCtx.currentTime + duration
+        );
+
+
+    osc.stop(
+        audioCtx.currentTime + duration
+    );
+
+}
+
+
+function soundCorrect(){
+
+    beep(
+        700,
+        .15,
+        "triangle"
+    );
+
+
+    setTimeout(
+        () =>
+            beep(
+                900,
+                .12,
+                "triangle"
+            ),
+        70
+    );
+
+}
+
+
+function soundWrong(){
+
+    beep(
+        180,
+        .25,
+        "sawtooth"
+    );
+
+}
+
+
+function soundFinish(){
+
+    beep(500,.18);
+
+    setTimeout(
+        () => beep(700,.18),
+        180
+    );
+
+    setTimeout(
+        () => beep(900,.28),
+        360
+    );
+
+}
+
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    round = 1;
+
+    score = 0;
+
+
+    document.getElementById(
+        "introScreen"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "finishScreen"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "gameArea"
+    ).style.display = "block";
+
+
+    updateScore();
+
+    loadRound();
+
+}
+
+
+
+/* ==========================================================
+   UPDATE SCORE
+========================================================== */
+
+function updateScore(){
+
+    document.getElementById(
+        "score"
+    ).textContent = score;
+
+}
+
+
+
+/* ==========================================================
+   LOAD ROUND
+========================================================== */
+
+function loadRound(){
+
+    roundFinished = false;
+
+    matchedCount = 0;
+
+    selectedEnglish = null;
+
+    selectedVietnamese = null;
+
+
+    document.getElementById(
+        "round"
+    ).textContent = round;
+
+
+    timeLeft = 10;
+
+
+    document.getElementById(
+        "time"
+    ).textContent = timeLeft;
+
+
+    const progress =
+        document.getElementById(
+            "progress"
+        );
+
+
+    progress.style.width =
+        "100%";
+
+
+    clearInterval(timer);
+
+
+
+    /* Select 3 random pairs */
+
+    currentPairs =
+        shuffle(vocabulary)
+            .slice(
+                0,
+                PAIRS_PER_ROUND
+            );
+
+
+    const english =
+        shuffle(
+            currentPairs.map(
+                x => x.en
+            )
+        );
+
+
+    const vietnamese =
+        shuffle(
+            currentPairs.map(
+                x => x.vi
+            )
+        );
+
+
+    const enDiv =
+        document.getElementById(
+            "englishList"
+        );
+
+
+    const viDiv =
+        document.getElementById(
+            "vietnameseList"
+        );
+
+
+    enDiv.innerHTML = "";
+
+    viDiv.innerHTML = "";
+
+
+
+    /* ======================================================
+       ENGLISH CARDS
+    ====================================================== */
+
+    english.forEach(
+        word => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.textContent =
+                word;
+
+
+            card.dataset.word =
+                word;
+
+
+            card.onclick =
+                () =>
+                    selectEnglish(card);
+
+
+            enDiv.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+
+    /* ======================================================
+       VIETNAMESE CARDS
+    ====================================================== */
+
+    vietnamese.forEach(
+        word => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.textContent =
+                word;
+
+
+            card.dataset.word =
+                word;
+
+
+            card.onclick =
+                () =>
+                    selectVietnamese(card);
+
+
+            viDiv.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+
+    /* ======================================================
+       TIMER
+    ====================================================== */
+
+    timer =
+        setInterval(
+            () => {
+
+                timeLeft--;
+
+
+                document.getElementById(
+                    "time"
+                ).textContent =
+                    timeLeft;
+
+
+                progress.style.width =
+                    (
+                        timeLeft / 10 * 100
+                    ) + "%";
+
+
+                if(
+                    timeLeft <= 0
+                ){
+
+                    clearInterval(timer);
+
+                    endRound();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+
+/* ==========================================================
+   SELECT ENGLISH
+========================================================== */
+
+function selectEnglish(card){
+
+    if(roundFinished)
+        return;
+
+
+    if(
+        card.classList.contains(
+            "correct"
+        )
+    )
+        return;
+
+
+    document
+        .querySelectorAll(
+            "#englishList .card"
+        )
+        .forEach(
+            c => {
+
+                if(
+                    !c.classList.contains(
+                        "correct"
+                    )
+                ){
+
+                    c.classList.remove(
+                        "selected"
+                    );
+
+                }
+
+            }
+        );
+
+
+    selectedEnglish = card;
+
+    card.classList.add(
+        "selected"
+    );
+
+
+    checkMatch();
+
+}
+
+
+
+/* ==========================================================
+   SELECT VIETNAMESE
+========================================================== */
+
+function selectVietnamese(card){
+
+    if(roundFinished)
+        return;
+
+
+    if(
+        card.classList.contains(
+            "correct"
+        )
+    )
+        return;
+
+
+    document
+        .querySelectorAll(
+            "#vietnameseList .card"
+        )
+        .forEach(
+            c => {
+
+                if(
+                    !c.classList.contains(
+                        "correct"
+                    )
+                ){
+
+                    c.classList.remove(
+                        "selected"
+                    );
+
+                }
+
+            }
+        );
+
+
+    selectedVietnamese = card;
+
+    card.classList.add(
+        "selected"
+    );
+
+
+    checkMatch();
+
+}
+
+
+
+/* ==========================================================
+   CHECK MATCH
+========================================================== */
+
+function checkMatch(){
+
+    if(
+        !selectedEnglish ||
+        !selectedVietnamese
+    )
+        return;
+
+
+    const en =
+        selectedEnglish.dataset.word;
+
+
+    const vi =
+        selectedVietnamese.dataset.word;
+
+
+    const ok =
+        currentPairs.find(
+            p =>
+                p.en === en &&
+                p.vi === vi
+        );
+
+
+    if(ok){
+
+        selectedEnglish
+            .classList
+            .remove("selected");
+
+
+        selectedVietnamese
+            .classList
+            .remove("selected");
+
+
+        selectedEnglish
+            .classList
+            .add("correct");
+
+
+        selectedVietnamese
+            .classList
+            .add("correct");
+
+
+        score++;
+
+        matchedCount++;
+
+
+        updateScore();
+
+        soundCorrect();
+
+
+        selectedEnglish = null;
+
+        selectedVietnamese = null;
+
+
+        if(
+            matchedCount ===
+            PAIRS_PER_ROUND
+        ){
+
+            clearInterval(timer);
+
+            endRound();
+
+        }
+
+    }
+
+    else{
+
+        const e =
+            selectedEnglish;
+
+        const v =
+            selectedVietnamese;
+
+
+        e.classList.add(
+            "wrong"
+        );
+
+
+        v.classList.add(
+            "wrong"
+        );
+
+
+        soundWrong();
+
+
+        setTimeout(
+            () => {
+
+                e.classList.remove(
+                    "wrong",
+                    "selected"
+                );
+
+
+                v.classList.remove(
+                    "wrong",
+                    "selected"
+                );
+
+            },
+            500
+        );
+
+
+        selectedEnglish = null;
+
+        selectedVietnamese = null;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   END ROUND
+========================================================== */
+
+function endRound(){
+
+    if(roundFinished)
+        return;
+
+
+    roundFinished = true;
+
+
+    setTimeout(
+        () => {
+
+            round++;
+
+
+            if(
+                round >
+                TOTAL_ROUNDS
+            ){
+
+                finishGame();
+
+            }
+
+            else{
+
+                loadRound();
+
+            }
+
+        },
+        1000
+    );
+
+}
+
+
+
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    clearInterval(timer);
+
+    soundFinish();
+
+
+    document.getElementById(
+        "gameArea"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "finishScreen"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        score + " / 27";
+
+
+    const percent =
+        Math.round(
+            score / 27 * 100
+        );
+
+
+    document.getElementById(
+        "percent"
+    ).textContent =
+        percent + "%";
+
+
+    let msg = "";
+
+
+    if(percent >= 85){
+
+        msg =
+            "🏆 Excellent!";
+
+    }
+
+    else if(percent >= 60){
+
+        msg =
+            "🎉 Good Job!";
+
+    }
+
+    else{
+
+        msg =
+            "📚 Keep Practicing!";
+
+    }
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+        msg;
+
+}
+
+
+</script>
+
+</body>
+
+</html>

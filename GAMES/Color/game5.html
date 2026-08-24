@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese Color Quiz</title>
+
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* =========================
+   GAME CONTAINER
+========================= */
+
+.game-box{
+    width:90%;
+    max-width:750px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.08);
+
+    text-align:center;
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#introScreen{
+    padding:20px 10px 10px;
+}
+
+.game-icon{
+    font-size:72px;
+    margin-bottom:10px;
+}
+
+#introScreen h1{
+    color:#2c3e50;
+    font-size:36px;
+    margin:10px 0 15px;
+}
+
+.intro-description{
+    max-width:560px;
+
+    margin:0 auto 25px;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    color:#666;
+}
+
+
+/* =========================
+   GAME INFO
+========================= */
+
+.game-info{
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin:25px 0;
+}
+
+.game-info div{
+    background:#f4f8fb;
+
+    border:1px solid #e1e8ee;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
+    color:#555;
+
+    font-size:16px;
+}
+
+.game-info span{
+    margin-right:6px;
+}
+
+
+/* =========================
+   START BUTTON
+========================= */
+
+#startBtn{
+    margin-top:10px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2196f3;
+
+    color:white;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+#startBtn:hover{
+    background:#1976d2;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+#gameScreen h1{
+    color:#333;
+
+    margin-top:0;
+}
+
+#info{
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin:20px 0;
+}
+
+
+/* =========================
+   COLOR BOX
+========================= */
+
+#colorBox{
+    width:250px;
+
+    height:250px;
+
+    margin:30px auto;
+
+    border:3px solid #ddd;
+
+    border-radius:20px;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.option{
+    display:block;
+
+    width:300px;
+
+    max-width:90%;
+
+    margin:15px auto;
+
+    padding:18px;
+
+    font-size:26px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:#3498db;
+
+    color:white;
+
+    transition:0.2s;
+}
+
+.option:hover{
+    transform:scale(1.03);
+
+    background:#2980b9;
+}
+
+.option:disabled{
+    cursor:default;
+
+    opacity:0.9;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+#message{
+    height:40px;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    margin-top:20px;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+#result{
+    font-size:30px;
+
+    margin-top:30px;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   RESTART BUTTON
+========================= */
+
+.restart-btn{
+    margin-top:20px;
+
+    padding:14px 28px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#2196f3;
+
+    color:white;
+}
+
+.restart-btn:hover{
+    background:#1976d2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:15px;
+    }
+
+    .game-box{
+        width:100%;
+
+        padding:30px 20px;
+
+        border-radius:20px;
+    }
+
+    #introScreen h1{
+        font-size:29px;
+    }
+
+    .intro-description{
+        font-size:16px;
+    }
+
+    .game-info{
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .game-info div{
+        width:100%;
+    }
+
+    #colorBox{
+        width:200px;
+
+        height:200px;
+    }
+
+    .option{
+        font-size:22px;
+
+        padding:16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game-box">
+
+
+    <!-- =========================
+         INTRO SCREEN
+    ========================= -->
+
+    <div id="introScreen">
+
+        <div class="game-icon">
+            🎨
+        </div>
+
+        <h1>
+            Vietnamese Color Quiz
+        </h1>
+
+        <p class="intro-description">
+
+            Practice Vietnamese color words by
+            matching each color with the correct
+            Vietnamese word.
+
+        </p>
+
+
+        <div class="game-info">
+
+            <div>
+                📝
+                <strong>15 Questions</strong>
+            </div>
+
+            <div>
+                🎯
+                <strong>Choose the correct answer</strong>
+            </div>
+
+        </div>
+
+
+        <button
+            id="startBtn"
+            onclick="startGame()"
+        >
+
+            Start Game →
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         GAME SCREEN
+    ========================= -->
+
+    <div
+        id="gameScreen"
+        style="display:none;"
+    >
+
+        <h1>
+            🎨 Vietnamese Color Quiz
+        </h1>
+
+
+        <div id="info">
+
+            Question:
+            <span id="question">1</span>/15
+
+            |
+
+            Score:
+            <span id="score">0</span>
+
+        </div>
+
+
+        <div id="colorBox"></div>
+
+
+        <div id="options"></div>
+
+
+        <div id="message"></div>
+
+
+        <div id="result"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   COLOR DATA
+========================= */
+
+const colors = [
+
+    {
+        name:"màu đỏ",
+        color:"#ff0000"
+    },
+
+    {
+        name:"màu cam",
+        color:"#ff8800"
+    },
+
+    {
+        name:"màu vàng",
+        color:"#ffd700"
+    },
+
+    {
+        name:"màu xanh lá",
+        color:"#00aa00"
+    },
+
+    {
+        name:"màu hồng",
+        color:"#ff69b4"
+    },
+
+    {
+        name:"màu đen",
+        color:"#000000"
+    },
+
+    {
+        name:"màu trắng",
+        color:"#ffffff"
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let currentAnswer = null;
+
+
+
+/* =========================
+   SHUFFLE
+========================= */
+
+function shuffle(arr){
+
+    return [
+        ...arr
+    ].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+
+/* =========================
+   START GAME
+========================= */
+
+function startGame(){
+
+    document.getElementById(
+        "introScreen"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "gameScreen"
+    ).style.display = "block";
+
+
+    nextQuestion();
+
+}
+
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion(){
+
+    if(
+        currentQuestion >= 15
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    currentQuestion++;
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        currentQuestion;
+
+
+    document.getElementById(
+        "message"
+    ).textContent = "";
+
+
+    currentAnswer =
+        colors[
+            Math.floor(
+                Math.random() *
+                colors.length
+            )
+        ];
+
+
+    document.getElementById(
+        "colorBox"
+    ).style.background =
+        currentAnswer.color;
+
+
+
+    /* =========================
+       CREATE WRONG ANSWER
+    ========================= */
+
+    let wrong;
+
+
+    do{
+
+        wrong =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+    }
+
+    while(
+        wrong.name ===
+        currentAnswer.name
+    );
+
+
+
+    /* =========================
+       CREATE OPTIONS
+    ========================= */
+
+    const choices =
+        shuffle([
+            currentAnswer,
+            wrong
+        ]);
+
+
+    const optionsDiv =
+        document.getElementById(
+            "options"
+        );
+
+
+    optionsDiv.innerHTML = "";
+
+
+    choices.forEach(
+        choice => {
+
+            const btn =
+                document.createElement(
+                    "button"
+                );
+
+
+            btn.className =
+                "option";
+
+
+            btn.textContent =
+                choice.name;
+
+
+            btn.onclick =
+                () =>
+                    checkAnswer(
+                        choice
+                    );
+
+
+            optionsDiv.appendChild(
+                btn
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+function checkAnswer(choice){
+
+    const buttons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    buttons.forEach(
+        btn =>
+            btn.disabled = true
+    );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+
+    if(
+        choice.name ===
+        currentAnswer.name
+    ){
+
+        score++;
+
+
+        document.getElementById(
+            "score"
+        ).textContent =
+            score;
+
+
+        message.style.color =
+            "green";
+
+
+        message.textContent =
+            "✓ Correct";
+
+    }
+
+    else{
+
+        message.style.color =
+            "red";
+
+
+        message.textContent =
+            "✗ Correct answer: " +
+            currentAnswer.name;
+
+    }
+
+
+    setTimeout(
+        nextQuestion,
+        1500
+    );
+
+}
+
+
+
+/* =========================
+   FINISH GAME
+========================= */
+
+function finishGame(){
+
+    document.getElementById(
+        "colorBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "options"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "message"
+    ).innerHTML = "";
+
+
+
+    let performance = "";
+
+
+    if(score >= 14){
+
+        performance =
+            "Excellent!";
+
+    }
+
+    else if(score >= 11){
+
+        performance =
+            "Great Job!";
+
+    }
+
+    else if(score >= 8){
+
+        performance =
+            "Good Work!";
+
+    }
+
+    else{
+
+        performance =
+            "Keep Practicing!";
+
+    }
+
+
+
+    document.getElementById(
+        "result"
+    ).innerHTML = `
+
+        🏆 Game Finished
+
+        <br><br>
+
+        Final Score:
+        ${score}/15
+
+        <br><br>
+
+        ${performance}
+
+        <br><br>
+
+        <button
+            class="restart-btn"
+            onclick="restartGame()"
+        >
+
+            Play Again
+
+        </button>
+
+    `;
+
+}
+
+
+
+/* =========================
+   RESTART GAME
+========================= */
+
+function restartGame(){
+
+    currentQuestion = 0;
+
+    score = 0;
+
+
+    document.getElementById(
+        "score"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "result"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "colorBox"
+    ).style.display = "block";
+
+
+    nextQuestion();
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

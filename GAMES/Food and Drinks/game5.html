@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="game-title" content="Fast Translation Flip">
+<meta name="game-description" content="Quickly recall Vietnamese food and everyday vocabulary by revealing hidden translations.">
+<meta name="game-icon" content="⚡">
+
+<title>Fast Translation Flip Game</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f6f8;
+    padding:20px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+h1{text-align:center;}
+
+#info,#title{
+    text-align:center;
+    margin:5px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    margin-top:20px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:14px;
+    text-align:center;
+    font-size:22px;
+}
+
+th{
+    background:#e8f5e9;
+}
+
+.flip{
+    background:#fff9c4;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.revealed{
+    background:#c8e6c9 !important;
+}
+
+.controls{
+    text-align:center;
+    margin-top:20px;
+}
+
+button{
+    padding:10px 20px;
+    margin:5px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.show{background:#ff9800;color:white;}
+.next{background:#2196f3;color:white;}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Fast Translation</h1>
+
+<div id="info"></div>
+<div id="title"></div>
+
+<table>
+<thead>
+<tr>
+<th>English</th>
+<th>Vietnamese</th>
+</tr>
+</thead>
+
+<tbody id="body"></tbody>
+</table>
+
+<div class="controls">
+<button class="show" onclick="showAll()">Show All</button>
+<button class="next" onclick="next()">Next Round</button>
+</div>
+
+</div>
+
+<script>
+
+const rounds = [
+
+{title:"Round 1",hide:"vi",
+rows:[
+["Coffee","Cà phê"],
+["Tea","Trà"],
+["Garlic","Tỏi"],
+["Fever","Sốt"],
+["Bowl","Tô"]
+]},
+
+{title:"Round 2",hide:"en",
+rows:[
+["Chicken","Gà"],
+["Salt","Muối"],
+["Fish","Cá"],
+["Water","Nước lọc"],
+["Bitter","Đắng"]
+]},
+
+{title:"Round 3",pattern:["en","vi","en","vi","en"],
+rows:[
+["Beef","Bò"],
+["Glass","Ly"],
+["Egg","Trứng"],
+["Spicy","Cay"],
+["Milk","Sữa"]
+]},
+
+{title:"Round 4",pattern:["vi","en","vi","en","vi"],
+rows:[
+["Orange Juice","Nước cam"],
+["Bowl","Tô"],
+["Cough","Ho"],
+["Plate","Dĩa"],
+["Sugar","Đường"]
+]},
+
+{title:"Round 5",hide:"vi",
+rows:[
+["Coffee","Cà phê"],
+["Tea","Trà"],
+["Lemonade","Nước chanh"],
+["Pepper","Tiêu"],
+["Egg","Trứng"]
+]},
+
+{title:"Round 6",hide:"en",
+rows:[
+["Beef","Bò"],
+["Chicken","Gà"],
+["Fish","Cá"],
+["Fever","Sốt"],
+["Salt","Muối"]
+]},
+
+{title:"Round 7",pattern:["en","vi","en","vi","en"],
+rows:[
+["Milk","Sữa"],
+["Garlic","Tỏi"],
+["Headache","Nhức đầu"],
+["Water","Nước lọc"],
+["Spicy","Cay"]
+]},
+
+{title:"Round 8",hide:"vi",
+rows:[
+["Coffee","Cà phê"],
+["Bowl","Tô"],
+["Glass","Ly"],
+["Tea","Trà"],
+["Sugar","Đường"]
+]},
+
+{title:"Round 9",hide:"en",
+rows:[
+["Chicken","Gà"],
+["Fish","Cá"],
+["Beef","Bò"],
+["Cough","Ho"],
+["Milk","Sữa"]
+]},
+
+{title:"Round 10",pattern:["vi","en","vi","en","vi"],
+rows:[
+["Egg","Trứng"],
+["Water","Nước lọc"],
+["Orange Juice","Nước cam"],
+["Salt","Muối"],
+["Fever","Sốt"]
+]}
+
+];
+
+let i=0;
+
+function load(){
+
+const r = rounds[i];
+
+document.getElementById("info").innerText =
+`Round ${i+1}/${rounds.length}`;
+
+document.getElementById("title").innerText = r.title;
+
+const body = document.getElementById("body");
+body.innerHTML = "";
+
+r.rows.forEach((row,index)=>{
+
+let en = row[0];
+let vi = row[1];
+
+let enCell = `<td>${en}</td>`;
+let viCell = `<td>${vi}</td>`;
+
+// hide full column
+if(r.hide==="vi"){
+viCell = `<td class="flip" onclick="flip(this,'${vi}')">???</td>`;
+}
+
+if(r.hide==="en"){
+enCell = `<td class="flip" onclick="flip(this,'${en}')">???</td>`;
+}
+
+// pattern mode
+if(r.pattern){
+
+if(r.pattern[index]==="en"){
+enCell = `<td class="flip" onclick="flip(this,'${en}')">???</td>`;
+}
+
+if(r.pattern[index]==="vi"){
+viCell = `<td class="flip" onclick="flip(this,'${vi}')">???</td>`;
+}
+
+}
+
+body.innerHTML += `<tr>${enCell}${viCell}</tr>`;
+});
+
+}
+
+function flip(el,text){
+if(el.classList.contains("revealed")) return;
+el.innerText = text;
+el.classList.add("revealed");
+}
+
+function showAll(){
+
+const r = rounds[i];
+const body = document.getElementById("body");
+
+body.innerHTML = "";
+
+r.rows.forEach(row=>{
+body.innerHTML += `<tr>
+<td>${row[0]}</td>
+<td>${row[1]}</td>
+</tr>`;
+});
+
+}
+
+function next(){
+i++;
+if(i>=rounds.length){
+document.querySelector(".container").innerHTML =
+"<h1>🎉 Finished 10 Rounds!</h1>";
+return;
+}
+load();
+}
+
+load();
+
+</script>
+
+</body>
+</html>

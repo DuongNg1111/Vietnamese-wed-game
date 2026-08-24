@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Number Listening Game</title>
+<title>Vietnamese Number Challenge</title>
 
-<meta name="game-title" content="Number Listening Game">
-<meta name="game-description" content="Listen to Vietnamese numbers from 0 to 19 and choose the correct number.">
+<meta name="game-title" content="Vietnamese Number Challenge">
+<meta name="game-description" content="Read Vietnamese number words and choose the correct number sequence.">
 <meta name="game-icon" content="🔢">
 
 <style>
@@ -18,27 +17,13 @@
 }
 
 body{
-
-    margin:0;
-
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:#eef6ff;
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
+    font-family:Arial,Helvetica,sans-serif;
     text-align:center;
-
+    background:#eef6ff;
+    margin:0;
+    padding:20px;
     color:#222;
-
 }
-
 
 .screen{
     display:none;
@@ -48,452 +33,261 @@ body{
     display:block;
 }
 
-
-.game-container{
-
-    width:min(850px,95vw);
-
+.container{
+    width:100%;
+    max-width:850px;
+    margin:40px auto;
     background:white;
-
     padding:35px;
-
     border-radius:24px;
-
-    box-shadow:0 10px 35px rgba(0,0,0,.12);
-
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
-
 
 h1{
-
-    margin-top:0;
-
-    font-size:32px;
-
+    margin-bottom:12px;
+    color:#1976d2;
 }
 
+.subtitle{
+    color:#666;
+    font-size:18px;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.question-info{
+    font-size:20px;
+    font-weight:bold;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.number-words{
+    background:#f5f9ff;
+    border:2px solid #d9e8ff;
+    border-radius:16px;
+    padding:25px 20px;
+    margin:25px auto;
+    max-width:650px;
+    font-size:28px;
+    font-weight:bold;
+    color:#1976d2;
+}
 
 .instruction{
-
     color:#666;
-
-    font-size:18px;
-
-    margin-bottom:25px;
-
-}
-
-
-/* TOP */
-
-.topbar{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+    font-size:16px;
     margin-bottom:20px;
-
-    font-weight:bold;
-
 }
-
-
-.progress-wrap{
-
-    width:100%;
-
-    height:10px;
-
-    background:#e0e0e0;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:25px;
-
-}
-
-
-.progress{
-
-    height:100%;
-
-    width:0%;
-
-    background:#4caf50;
-
-    transition:.3s;
-
-}
-
-
-/* LISTEN BUTTON */
-
-.listen-btn{
-
-    padding:15px 28px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#2196f3;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-bottom:25px;
-
-    transition:.2s;
-
-}
-
-
-.listen-btn:hover{
-
-    transform:scale(1.05);
-
-    background:#1976d2;
-
-}
-
-
-/* ANSWERS */
 
 .answers{
-
     display:grid;
-
-    grid-template-columns:repeat(5,1fr);
-
+    grid-template-columns:repeat(2,280px);
     gap:15px;
-
     justify-content:center;
-
-    margin:20px auto;
-
-    max-width:650px;
-
+    margin:30px 0 20px;
 }
-
 
 .answer{
-
-    padding:18px 10px;
-
-    font-size:23px;
-
+    padding:18px;
+    font-size:24px;
     font-weight:bold;
-
     background:white;
-
-    border:2px solid #ccc;
-
-    border-radius:12px;
-
+    border:3px solid #d9e8ff;
+    border-radius:14px;
     cursor:pointer;
-
     transition:.2s;
-
 }
-
 
 .answer:hover{
-
-    transform:translateY(-4px);
-
-    border-color:#2196f3;
-
-    background:#f3f9ff;
-
+    transform:translateY(-3px);
+    background:#f1f8ff;
 }
-
 
 .answer.correct{
-
     background:#c8e6c9;
-
     border-color:#4caf50;
-
-    color:#256b2a;
-
+    color:#256b2b;
     cursor:default;
-
 }
-
 
 .answer.wrong{
-
     background:#ffcdd2;
-
-    border-color:#ef5350;
-
+    border-color:#f44336;
     color:#b71c1c;
-
+    cursor:default;
 }
-
 
 .answer.disabled{
-
     cursor:default;
-
 }
-
 
 .result{
-
-    font-size:40px;
-
-    height:55px;
-
-    margin:10px 0;
-
+    min-height:45px;
+    font-size:24px;
+    font-weight:bold;
+    margin:15px 0;
 }
 
+.correct-text{
+    color:#2e7d32;
+}
 
-.feedback{
+.wrong-text{
+    color:#c62828;
+}
 
-    min-height:28px;
-
+.correct-answer{
     font-size:18px;
-
-    font-weight:bold;
-
+    color:#555;
+    min-height:28px;
+    margin-bottom:15px;
 }
 
-
-.next-btn{
-
+.next-btn,
+.restart-btn,
+.start-btn{
     padding:12px 25px;
-
+    border-radius:12px;
     border:none;
-
-    border-radius:10px;
-
     background:#4caf50;
-
     color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
     cursor:pointer;
-
-    margin-top:10px;
-
+    font-size:17px;
+    font-weight:bold;
+    transition:.2s;
 }
 
-
-.next-btn:hover{
-
+.next-btn:hover,
+.restart-btn:hover,
+.start-btn:hover{
     background:#388e3c;
-
+    transform:translateY(-2px);
 }
 
+.score{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:#555;
+}
 
-/* FINAL */
+.progress-wrap{
+    width:100%;
+    height:10px;
+    background:#e0e0e0;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0 25px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#2196f3;
+    transition:.3s;
+}
 
 .final-score{
-
-    font-size:26px;
-
-    margin:20px;
-
+    font-size:34px;
+    font-weight:bold;
+    color:#1976d2;
+    margin:25px 0 10px;
 }
 
-
-.play-again{
-
-    padding:13px 28px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#4caf50;
-
-    color:white;
-
-    font-size:17px;
-
-    cursor:pointer;
-
+.performance{
+    font-size:22px;
+    color:#555;
+    margin-bottom:25px;
 }
-
-
-/* MOBILE */
 
 @media(max-width:650px){
 
-    .game-container{
-
+    .container{
         padding:25px 15px;
-
-    }
-
-    h1{
-
-        font-size:26px;
-
+        margin:20px auto;
     }
 
     .answers{
-
-        grid-template-columns:repeat(2,1fr);
-
+        grid-template-columns:1fr;
+        width:100%;
     }
 
     .answer{
+        width:100%;
+    }
 
-        font-size:21px;
-
-        padding:16px;
-
+    .number-words{
+        font-size:23px;
     }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<div class="game-container">
-
+<div class="container">
 
 <!-- ================= INTRO ================= -->
 
 <div id="intro" class="screen active">
 
-    <h1>🔢 Number Listening Game</h1>
+    <h1>🔢 Vietnamese Number Challenge</h1>
 
-    <p class="instruction">
-
-        Listen to the Vietnamese number and choose the correct number.
-
+    <p class="subtitle">
+        Read the Vietnamese number words and choose the correct number sequence.
     </p>
 
-    <p>
-
-        20 questions • Numbers 0–19
-
-    </p>
-
-    <button class="play-again" onclick="startGame()">
-
+    <button class="start-btn" onclick="startGame()">
         Start Game
-
     </button>
 
 </div>
-
 
 
 <!-- ================= GAME ================= -->
 
 <div id="game" class="screen">
 
+    <h1>🔢 Number Challenge</h1>
 
-    <div class="topbar">
-
-        <div>
-
-            Question
-
-            <span id="qnum">1</span>
-
-            /20
-
-        </div>
-
-        <div>
-
-            Score:
-
-            <span id="score">0</span>
-
-        </div>
-
+    <div class="question-info">
+        Question <span id="qnum">1</span> / 15
     </div>
-
-
 
     <div class="progress-wrap">
-
         <div class="progress" id="progress"></div>
-
     </div>
 
-
-
-    <button class="listen-btn" onclick="repeatAudio()">
-
-        🔊 Listen Again
-
-    </button>
-
-
-
-    <div
-
-        class="answers"
-
-        id="answers">
-
+    <div class="instruction">
+        What numbers do these Vietnamese words represent?
     </div>
 
-
-
-    <div
-
-        class="result"
-
-        id="resultIcon">
-
+    <div class="number-words" id="numberWords">
+        một - năm - tám
     </div>
 
+    <div class="answers" id="answers"></div>
 
+    <div class="result" id="resultIcon"></div>
 
-    <div
-
-        class="feedback"
-
-        id="feedback">
-
-    </div>
-
-
+    <div class="correct-answer" id="correctAnswer"></div>
 
     <button
-
         class="next-btn"
-
         id="nextBtn"
-
         onclick="nextQuestion()"
-
         style="display:none;">
-
-        Next →
-
+        Next Question →
     </button>
 
+    <div class="score">
+        Score: <span id="score">0</span> / 15
+    </div>
 
 </div>
-
 
 
 <!-- ================= END ================= -->
@@ -502,70 +296,28 @@ h1{
 
     <h1>🎉 Finished!</h1>
 
-    <p>You completed all 20 questions.</p>
-
-    <div class="final-score">
-
-        Your score:
-
-        <strong id="finalScore"></strong>
-
+    <div class="final-score" id="finalScore">
+        0 / 15
     </div>
 
-    <button
+    <div class="performance" id="performance"></div>
 
-        class="play-again"
-
-        onclick="restart()">
-
+    <button class="restart-btn" onclick="restart()">
         Play Again
-
     </button>
 
 </div>
 
-
 </div>
 
 
-
 <script>
-
 
 /* ==========================================================
    NUMBER DATA
 ========================================================== */
 
-
 const numbers = [
-
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19"
-
-];
-
-
-const viNumbers = [
-
     "không",
     "một",
     "hai",
@@ -576,241 +328,171 @@ const viNumbers = [
     "bảy",
     "tám",
     "chín",
-
-    "mười",
-    "mười một",
-    "mười hai",
-    "mười ba",
-    "mười bốn",
-    "mười lăm",
-    "mười sáu",
-    "mười bảy",
-    "mười tám",
-    "mười chín"
-
+    "mười"
 ];
 
 
-
 /* ==========================================================
-   STATE
+   GAME SETTINGS
 ========================================================== */
 
+const TOTAL_QUESTIONS = 15;
+const NUMBERS_PER_QUESTION = 3;
+const TOTAL_OPTIONS = 4;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
 
 let questions = [];
-
 let current = 0;
-
 let score = 0;
-
 let answered = false;
-
-let currentAudio = null;
-
 
 
 /* ==========================================================
    SHUFFLE
 ========================================================== */
 
-
 function shuffle(array){
 
     const arr = [...array];
 
-    for(
+    for(let i = arr.length - 1; i > 0; i--){
 
-        let i = arr.length - 1;
+        const j = Math.floor(Math.random() * (i + 1));
 
-        i > 0;
-
-        i--
-
-    ){
-
-        const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
-
-        [arr[i], arr[j]] =
-        [arr[j], arr[i]];
+        [arr[i], arr[j]] = [arr[j], arr[i]];
 
     }
 
     return arr;
+}
+
+
+/* ==========================================================
+   CREATE RANDOM SEQUENCE
+========================================================== */
+
+function createSequence(){
+
+    return [
+
+        Math.floor(Math.random() * numbers.length),
+
+        Math.floor(Math.random() * numbers.length),
+
+        Math.floor(Math.random() * numbers.length)
+
+    ];
 
 }
 
 
-
 /* ==========================================================
-   STOP AUDIO
+   SEQUENCE KEY
 ========================================================== */
 
+function sequenceKey(sequence){
 
-function stopAudio(){
+    return sequence.join("-");
 
-    if(currentAudio){
+}
 
-        currentAudio.pause();
 
-        currentAudio.currentTime = 0;
+/* ==========================================================
+   CREATE UNIQUE QUESTIONS
+========================================================== */
 
-        currentAudio = null;
+function generateQuestions(){
+
+    const result = [];
+    const used = new Set();
+
+    while(result.length < TOTAL_QUESTIONS){
+
+        const sequence = createSequence();
+
+        const key = sequenceKey(sequence);
+
+        if(!used.has(key)){
+
+            used.add(key);
+            result.push(sequence);
+
+        }
 
     }
 
-}
-
-
-
-/* ==========================================================
-   GOOGLE TTS
-========================================================== */
-
-
-function speak(text){
-
-    stopAudio();
-
-    const url =
-        "https://translate.google.com/translate_tts" +
-        "?ie=UTF-8" +
-        "&tl=vi" +
-        "&client=tw-ob" +
-        "&q=" +
-        encodeURIComponent(text);
-
-
-    currentAudio = new Audio(url);
-
-    currentAudio.play().catch(()=>{});
+    return result;
 
 }
 
 
-
 /* ==========================================================
-   REPEAT AUDIO
+   CREATE UNIQUE WRONG OPTIONS
 ========================================================== */
 
+function generateOptions(correct){
 
-function repeatAudio(){
+    const options = [];
+    const used = new Set();
 
-    if(
+    const correctKey = sequenceKey(correct);
 
-        current >= questions.length
+    options.push(correct);
+    used.add(correctKey);
 
-    ){
+    while(options.length < TOTAL_OPTIONS){
 
-        return;
+        const sequence = createSequence();
+
+        const key = sequenceKey(sequence);
+
+        if(!used.has(key)){
+
+            used.add(key);
+            options.push(sequence);
+
+        }
 
     }
 
-
-    speak(
-
-        questions[current].viText
-
-    );
+    return shuffle(options);
 
 }
-
-
-
-/* ==========================================================
-   CREATE QUESTIONS
-========================================================== */
-
-
-function createQuestions(){
-
-    questions = [];
-
-
-    /*
-        Shuffle all 20 numbers first.
-
-        This means each number appears once
-        before any number is repeated.
-    */
-
-    let pool = [];
-
-
-    while(pool.length < 20){
-
-        pool = pool.concat(
-
-            shuffle(
-
-                numbers.map((number,index)=>({
-
-                    number:number,
-
-                    viText:viNumbers[index]
-
-                }))
-
-            )
-
-        );
-
-    }
-
-
-    questions = pool.slice(0,20);
-
-}
-
 
 
 /* ==========================================================
    START GAME
 ========================================================== */
 
-
 function startGame(){
 
-
-    stopAudio();
-
-
     document
-
         .getElementById("intro")
-
         .classList.remove("active");
 
-
     document
-
         .getElementById("end")
-
         .classList.remove("active");
 
-
     document
-
         .getElementById("game")
-
         .classList.add("active");
 
 
-    current = 0;
+    questions = generateQuestions();
 
+    current = 0;
     score = 0;
+    answered = false;
 
 
     document
-
         .getElementById("score")
-
-        .innerText = "0";
-
-
-    createQuestions();
+        .innerText = score;
 
 
     loadQuestion();
@@ -818,47 +500,34 @@ function startGame(){
 }
 
 
-
 /* ==========================================================
    LOAD QUESTION
 ========================================================== */
 
-
 function loadQuestion(){
-
-
-    stopAudio();
-
 
     answered = false;
 
 
-    document
+    const resultIcon =
+        document.getElementById("resultIcon");
 
-        .getElementById("nextBtn")
+    const correctAnswer =
+        document.getElementById("correctAnswer");
 
-        .style.display = "none";
-
-
-    document
-
-        .getElementById("resultIcon")
-
-        .innerText = "";
+    const nextBtn =
+        document.getElementById("nextBtn");
 
 
-    document
+    resultIcon.innerText = "";
+    resultIcon.className = "result";
 
-        .getElementById("feedback")
+    correctAnswer.innerText = "";
 
-        .innerText = "";
+    nextBtn.style.display = "none";
 
 
-    if(
-
-        current >= questions.length
-
-    ){
+    if(current >= questions.length){
 
         endGame();
 
@@ -868,368 +537,334 @@ function loadQuestion(){
 
 
     document
-
         .getElementById("qnum")
-
         .innerText = current + 1;
 
 
     document
-
-        .getElementById("score")
-
-        .innerText = score;
-
+        .getElementById("progress")
+        .style.width =
+        ((current + 1) / TOTAL_QUESTIONS * 100) + "%";
 
 
-    /* Progress */
+    const correct = questions[current];
 
-    const progress =
 
-        ((current) / questions.length) * 100;
-
+    /*
+        Display Vietnamese number words.
+        
+        Example:
+        một - năm - tám
+    */
 
     document
-
-        .getElementById("progress")
-
-        .style.width = progress + "%";
-
-
-
-    const correct =
-
-        questions[current].number;
+        .getElementById("numberWords")
+        .innerText =
+        correct
+            .map(index => numbers[index])
+            .join(" - ");
 
 
+    /*
+        Create 4 answer choices.
+        
+        IMPORTANT:
+        Answers are displayed as NUMBERS,
+        not Vietnamese words.
+        
+        Example:
+        1 - 5 - 8
+    */
 
-    /* ======================================================
-       CREATE 5 UNIQUE OPTIONS
-    ====================================================== */
-
-
-    let optionNumbers =
-
-        shuffle(numbers)
-
-        .filter(n => n !== correct)
-
-        .slice(0,4);
-
-
-    optionNumbers.push(correct);
-
-
-    optionNumbers =
-
-        shuffle(optionNumbers);
-
+    const options =
+        generateOptions(correct);
 
 
     const container =
-
         document.getElementById("answers");
 
 
     container.innerHTML = "";
 
 
-
-    optionNumbers.forEach(number => {
-
+    options.forEach(sequence => {
 
         const div =
-
             document.createElement("div");
-
 
         div.className = "answer";
 
 
-        div.innerText = number;
+        /*
+            Convert indexes to actual digits.
+            
+            0 → 0
+            1 → 1
+            2 → 2
+            ...
+            10 → 10
+        */
+
+        div.innerText =
+            sequence.join(" - ");
 
 
-        div.dataset.number = number;
+        div.dataset.sequence =
+            sequenceKey(sequence);
 
 
-        div.onclick = () =>
+        div.onclick = () => {
 
-            choose(
-
+            chooseAnswer(
                 div,
-
-                number === correct
-
+                sequenceKey(sequence) ===
+                sequenceKey(correct)
             );
+
+        };
 
 
         container.appendChild(div);
 
-
     });
 
-
-
-    /*
-        Small delay so browser has time
-        to render the question.
-    */
-
-    setTimeout(()=>{
-
-        speak(
-
-            questions[current].viText
-
-        );
-
-    },300);
-
 }
-
 
 
 /* ==========================================================
    CHOOSE ANSWER
 ========================================================== */
 
+function chooseAnswer(element, isCorrect){
 
-function choose(el, correct){
+    if(answered) return;
 
-
-    if(answered){
-
-        return;
-
-    }
+    answered = true;
 
 
+    const correct =
+        questions[current];
 
-    if(correct){
+    const correctKey =
+        sequenceKey(correct);
 
 
-        answered = true;
+    const allAnswers =
+        document.querySelectorAll(".answer");
 
 
-        el.classList.add("correct");
+    /*
+        Disable all choices
+    */
 
+    allAnswers.forEach(answer => {
+
+        answer.classList.add("disabled");
+
+    });
+
+
+    /*
+        Find correct answer
+    */
+
+    let correctElement = null;
+
+
+    allAnswers.forEach(answer => {
+
+        if(
+            answer.dataset.sequence ===
+            correctKey
+        ){
+
+            correctElement = answer;
+
+        }
+
+    });
+
+
+    if(isCorrect){
+
+        element.classList.add("correct");
 
         score++;
 
 
         document
+            .getElementById("resultIcon")
+            .innerText =
+            "✔ Correct!";
 
-            .getElementById("score")
-
-            .innerText = score;
-
-
-        showResult(true);
-
-
-        /*
-            Disable all answers
-        */
 
         document
-
-            .querySelectorAll(".answer")
-
-            .forEach(card => {
-
-                card.classList.add("disabled");
-
-                card.style.pointerEvents = "none";
-
-            });
-
+            .getElementById("resultIcon")
+            .classList.add("correct-text");
 
     }else{
 
+        element.classList.add("wrong");
 
-        /*
-            Wrong answer does NOT end
-            the question.
 
-            Student can try again.
-        */
+        if(correctElement){
 
-        el.classList.add("wrong");
+            correctElement.classList.add("correct");
+
+        }
 
 
         document
-
-            .getElementById("feedback")
-
+            .getElementById("resultIcon")
             .innerText =
+            "❌ Wrong!";
 
-            "❌ Try again!";
+
+        document
+            .getElementById("resultIcon")
+            .classList.add("wrong-text");
 
 
-        setTimeout(()=>{
+        /*
+            Show correct number sequence
+        */
 
-            el.classList.remove("wrong");
+        document
+            .getElementById("correctAnswer")
+            .innerText =
+            "Correct answer: " +
+            correctKey.replaceAll("-", " - ");
 
-        },600);
+    }
+
+
+    document
+        .getElementById("score")
+        .innerText =
+        score;
+
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "inline-block";
+
+
+    /*
+        Change button text
+        on final question
+    */
+
+    if(current === TOTAL_QUESTIONS - 1){
+
+        document
+            .getElementById("nextBtn")
+            .innerText =
+            "Finish 🎉";
+
+    }else{
+
+        document
+            .getElementById("nextBtn")
+            .innerText =
+            "Next Question →";
 
     }
 
 }
-
-
-
-/* ==========================================================
-   RESULT
-========================================================== */
-
-
-function showResult(ok){
-
-
-    document
-
-        .getElementById("resultIcon")
-
-        .innerText =
-
-        ok ? "✔" : "❌";
-
-
-    document
-
-        .getElementById("feedback")
-
-        .innerText =
-
-        ok
-
-        ? "Correct! 🎉"
-
-        : "Try again!";
-
-
-    document
-
-        .getElementById("nextBtn")
-
-        .style.display =
-
-        "inline-block";
-
-}
-
 
 
 /* ==========================================================
    NEXT QUESTION
 ========================================================== */
 
-
 function nextQuestion(){
 
-
-    stopAudio();
-
-
     current++;
-
 
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
    END GAME
 ========================================================== */
 
-
 function endGame(){
 
-
-    stopAudio();
-
-
     document
-
         .getElementById("game")
-
         .classList.remove("active");
 
-
     document
-
         .getElementById("end")
-
         .classList.add("active");
 
 
     document
+        .getElementById("finalScore")
+        .innerText =
+        score + " / " + TOTAL_QUESTIONS;
 
-        .getElementById("progress")
 
-        .style.width = "100%";
+    const percentage =
+        Math.round(
+            score / TOTAL_QUESTIONS * 100
+        );
+
+
+    let text = "";
+
+
+    if(percentage === 100){
+
+        text =
+            "🏆 Perfect! Excellent number recognition!";
+
+    }else if(percentage >= 80){
+
+        text =
+            "🎉 Excellent job!";
+
+    }else if(percentage >= 60){
+
+        text =
+            "👍 Good job! Keep practicing!";
+
+    }else{
+
+        text =
+            "📚 Keep practicing your Vietnamese numbers!";
+
+    }
 
 
     document
-
-        .getElementById("finalScore")
-
+        .getElementById("performance")
         .innerText =
-
-        score + " / 20";
+        text;
 
 }
-
 
 
 /* ==========================================================
    RESTART
 ========================================================== */
 
-
 function restart(){
 
-
-    stopAudio();
-
-
     document
-
         .getElementById("end")
-
         .classList.remove("active");
 
-
     document
-
-        .getElementById("game")
-
+        .getElementById("intro")
         .classList.add("active");
-
-
-    current = 0;
-
-    score = 0;
-
-
-    createQuestions();
-
-
-    document
-
-        .getElementById("score")
-
-        .innerText = "0";
-
-
-    loadQuestion();
 
 }
 
 </script>
 
 </body>
-
 </html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="game-title" content="Odd One Out - Vietnamese Vocabulary Review">
+<meta name="game-description" content="Find the Vietnamese word that does not belong in each group.">
+<meta name="game-icon" content="🎲">
+
+<title>Odd One Out - Vietnamese Vocabulary Review</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial, sans-serif;
+    background:#f4f6f8;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+#score{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.question-number{
+    text-align:center;
+    font-size:18px;
+    color:#666;
+    margin-bottom:10px;
+}
+
+.question-title{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:30px;
+}
+
+.words{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.word{
+    border:2px solid #ddd;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    cursor:pointer;
+    background:white;
+    transition:.2s;
+}
+
+.word:hover{
+    transform:scale(1.03);
+}
+
+.correct{
+    background:#c8e6c9 !important;
+    border-color:#4caf50 !important;
+}
+
+.wrong{
+    background:#ffcdd2 !important;
+    border-color:#f44336 !important;
+}
+
+#result{
+    text-align:center;
+    margin-top:25px;
+    min-height:60px;
+    font-size:24px;
+}
+
+#nextBtn{
+    display:none;
+    margin:20px auto 0;
+    padding:12px 30px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    background:#2196f3;
+    color:white;
+}
+
+#nextBtn:hover{
+    opacity:.9;
+}
+
+.finish{
+    text-align:center;
+    font-size:34px;
+    color:#2e7d32;
+    padding:30px;
+}
+
+.answer{
+    margin-top:10px;
+    font-size:20px;
+}
+
+@media(max-width:700px){
+
+.words{
+    grid-template-columns:1fr;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🎲 Odd One Out</h1>
+
+<div id="score">Score: 0 / 13</div>
+
+<div class="card">
+
+<div class="question-number" id="questionNumber"></div>
+
+<div class="question-title">
+Which word does NOT belong?
+</div>
+
+<div class="words" id="words"></div>
+
+<div id="result"></div>
+
+<div style="text-align:center;">
+<button id="nextBtn">Next Question ➜</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+words:["Cà phê","Trà","Nước chanh","Tỏi"],
+answer:"Tỏi"
+},
+
+{
+words:["Bò","Gà","Cá","Muối"],
+answer:"Muối"
+},
+
+{
+words:["Tô","Ly","Dĩa","Trứng"],
+answer:"Trứng"
+},
+
+{
+words:["Cay","Ngọt","Đắng","Bò"],
+answer:"Bò"
+},
+
+{
+words:["Sốt","Ho","Nhức đầu","Cà phê"],
+answer:"Cà phê"
+},
+
+{
+words:["Muối","Tỏi","Tiêu","Trà"],
+answer:"Trà"
+},
+
+{
+words:["Ăn sáng","Ăn trưa","Ăn tối","Nước chanh"],
+answer:"Nước chanh"
+},
+
+{
+words:["Hôm qua","Hôm nay","Ngày mai","Gà"],
+answer:"Gà"
+},
+
+{
+words:["Cay","Ngọt","Sốt","Đắng"],
+answer:"Sốt"
+},
+
+{
+words:["Tô","Dĩa","Ly","Tỏi"],
+answer:"Tỏi"
+},
+
+{
+words:["Gà","Cá","Bò","Cà phê"],
+answer:"Cà phê"
+},
+
+{
+words:["Buổi sáng","Buổi chiều","Buổi tối","Muối"],
+answer:"Muối"
+},
+
+{
+words:["Nước lọc","Sữa","Nước cam","Nhức đầu"],
+answer:"Nhức đầu"
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let locked = false;
+
+const wordsEl = document.getElementById("words");
+const resultEl = document.getElementById("result");
+const scoreEl = document.getElementById("score");
+const nextBtn = document.getElementById("nextBtn");
+const questionNumberEl = document.getElementById("questionNumber");
+
+function loadQuestion(){
+
+locked = false;
+
+const q = questions[currentQuestion];
+
+questionNumberEl.textContent =
+`Question ${currentQuestion + 1} of ${questions.length}`;
+
+wordsEl.innerHTML = "";
+resultEl.innerHTML = "";
+nextBtn.style.display = "none";
+
+const shuffledWords = [...q.words]
+.sort(() => Math.random() - 0.5);
+
+shuffledWords.forEach(word => {
+
+const div = document.createElement("div");
+
+div.className = "word";
+div.textContent = word;
+
+div.onclick = () => checkAnswer(div, word);
+
+wordsEl.appendChild(div);
+
+});
+
+}
+
+function checkAnswer(element, word){
+
+if(locked) return;
+
+locked = true;
+
+const q = questions[currentQuestion];
+
+const allWords = document.querySelectorAll(".word");
+
+if(word === q.answer){
+
+element.classList.add("correct");
+
+score++;
+
+scoreEl.textContent =
+`Score: ${score} / ${questions.length}`;
+
+resultEl.innerHTML =
+`
+✅ Correct!
+<div class="answer">
+"${q.answer}" does not belong.
+</div>
+`;
+
+}else{
+
+element.classList.add("wrong");
+
+allWords.forEach(item => {
+
+if(item.textContent === q.answer){
+item.classList.add("correct");
+}
+
+});
+
+resultEl.innerHTML =
+`
+❌ Wrong!
+<div class="answer">
+Correct answer: <b>${q.answer}</b>
+</div>
+`;
+}
+
+nextBtn.style.display = "inline-block";
+
+}
+
+nextBtn.addEventListener("click", () => {
+
+currentQuestion++;
+
+if(currentQuestion >= questions.length){
+
+document.querySelector(".card").innerHTML =
+`
+<div class="finish">
+🎉 Game Finished!<br><br>
+Final Score<br>
+${score} / ${questions.length}
+</div>
+`;
+
+return;
+}
+
+loadQuestion();
+
+});
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
