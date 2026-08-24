@@ -4,7 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Match the Pictures with the Words</title>
 
@@ -43,21 +47,58 @@ body{
 
     margin:0;
 
-    font-family:Arial, Helvetica, sans-serif;
+    padding:20px;
 
-    background:#f5f7fa;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#f7f9fc;
 
     min-height:100vh;
 
-    display:flex;
+    color:#222;
+}
 
-    justify-content:center;
 
-    align-items:center;
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
 
-    padding:20px;
+.back-btn-container{
 
-    color:#333;
+    width:min(950px,95vw);
+
+    margin:0 auto 15px;
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    background:white;
+
+    color:#555;
+
+    border:2px solid #ddd;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+
+    background:#f0f0f0;
+
+    transform:translateY(-2px);
 }
 
 
@@ -67,9 +108,9 @@ body{
 
 .game-box{
 
-    width:100%;
+    width:min(950px,95vw);
 
-    max-width:950px;
+    margin:0 auto;
 
     background:white;
 
@@ -102,24 +143,24 @@ body{
 
 #introScreen h1{
 
-    font-size:34px;
-
     margin:10px 0 15px;
 
-    color:#2c3e50;
+    font-size:34px;
+
+    color:#333;
 }
 
 .intro-description{
 
-    max-width:600px;
+    max-width:620px;
 
     margin:0 auto 25px;
+
+    color:#666;
 
     font-size:18px;
 
     line-height:1.6;
-
-    color:#666;
 }
 
 
@@ -166,59 +207,81 @@ button{
 
     border-radius:12px;
 
-    cursor:pointer;
+    padding:13px 30px;
+
+    font-size:17px;
 
     font-weight:bold;
+
+    cursor:pointer;
 
     transition:.2s;
 }
 
-#startBtn{
-
-    margin-top:10px;
-
-    padding:14px 35px;
-
-    background:#2196f3;
-
-    color:white;
-
-    font-size:19px;
-}
-
-#startBtn:hover{
-
-    background:#1976d2;
+button:hover{
 
     transform:translateY(-2px);
 }
 
+button:disabled{
+
+    opacity:.5;
+
+    cursor:default;
+
+    transform:none;
+}
+
 
 /* =========================================================
-   GAME HEADER
+   PRIMARY BUTTON
 ========================================================= */
 
-#gameScreen h1{
+.primary-btn{
+
+    background:#4779b8;
+
+    color:white;
+}
+
+.primary-btn:hover{
+
+    background:#3d6ba5;
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
+
+    display:none;
+}
+
+.game-title{
 
     margin:0 0 10px;
 
-    color:#2c3e50;
-
     font-size:30px;
+
+    color:#333;
 }
 
 .instruction{
+
+    margin:0 auto 25px;
 
     color:#666;
 
     font-size:17px;
 
-    margin-bottom:25px;
+    line-height:1.5;
 }
 
 
 /* =========================================================
-   GAME INFO BAR
+   GAME STATUS
 ========================================================= */
 
 .game-status{
@@ -228,6 +291,8 @@ button{
     justify-content:space-between;
 
     align-items:center;
+
+    gap:15px;
 
     margin-bottom:25px;
 
@@ -242,9 +307,14 @@ button{
     color:#555;
 }
 
+.score-text{
+
+    font-size:18px;
+}
+
 
 /* =========================================================
-   QUESTION
+   QUESTION CARD
 ========================================================= */
 
 .question{
@@ -257,12 +327,12 @@ button{
 
     padding:25px;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
-.question h2{
+.question-title{
 
-    margin:0 0 20px;
+    margin:0 0 22px;
 
     font-size:20px;
 
@@ -271,7 +341,7 @@ button{
 
 
 /* =========================================================
-   IMAGES
+   IMAGE AREA
 ========================================================= */
 
 .images{
@@ -293,11 +363,11 @@ button{
 
     padding:15px;
 
+    background:white;
+
     border:2px dashed #cfd8e3;
 
     border-radius:14px;
-
-    background:white;
 
     transition:.2s;
 }
@@ -314,6 +384,10 @@ button{
     height:100px;
 
     object-fit:contain;
+
+    display:block;
+
+    margin:0 auto;
 }
 
 
@@ -325,7 +399,9 @@ button{
 
     margin-top:12px;
 
-    min-height:40px;
+    min-height:42px;
+
+    padding:8px;
 
     display:flex;
 
@@ -346,11 +422,20 @@ button{
     transition:.2s;
 }
 
+.drop-zone.over{
+
+    background:#e3f2fd;
+
+    border:2px solid #90caf9;
+}
+
 .drop-zone.correct{
 
     background:#4caf70;
 
     color:white;
+
+    border:2px solid #4caf70;
 }
 
 .drop-zone.wrong{
@@ -362,21 +447,26 @@ button{
     animation:shake .3s;
 }
 
+
 @keyframes shake{
 
     25%{
+
         transform:translateX(-6px);
+
     }
 
     75%{
+
         transform:translateX(6px);
+
     }
 
 }
 
 
 /* =========================================================
-   WORDS
+   WORD AREA
 ========================================================= */
 
 .words{
@@ -389,14 +479,16 @@ button{
 
     gap:12px;
 
-    min-height:45px;
+    min-height:50px;
+
+    padding-top:5px;
 }
 
 .word{
 
-    background:#e3f2fd;
+    background:#fff3d6;
 
-    border:2px solid #90caf9;
+    border:2px solid #d8ad50;
 
     padding:12px 20px;
 
@@ -417,12 +509,33 @@ button{
 
     transform:translateY(-3px);
 
-    background:#d4ebff;
+    background:#ffe8b5;
 }
 
 .word:active{
 
     cursor:grabbing;
+}
+
+.word.dragging{
+
+    opacity:.5;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message{
+
+    min-height:35px;
+
+    margin:15px 0;
+
+    font-size:18px;
+
+    font-weight:bold;
 }
 
 
@@ -434,16 +547,16 @@ button{
 
     display:none;
 
-    padding:20px;
+    padding:20px 10px;
 }
 
 #finalScreen h2{
 
+    margin:0 0 20px;
+
+    color:#4779b8;
+
     font-size:32px;
-
-    color:#2c3e50;
-
-    margin-bottom:15px;
 }
 
 .final-score{
@@ -453,35 +566,15 @@ button{
     font-weight:bold;
 
     margin:20px 0;
-
-    color:#444;
 }
 
 .final-message{
 
-    font-size:20px;
+    font-size:21px;
 
-    color:#666;
+    margin:15px 0 25px;
 
-    margin-bottom:25px;
-}
-
-.restart-btn{
-
-    padding:14px 30px;
-
-    background:#2196f3;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.restart-btn:hover{
-
-    background:#1976d2;
-
-    transform:translateY(-2px);
+    color:#555;
 }
 
 
@@ -498,9 +591,16 @@ button{
 
     .game-box{
 
-        padding:25px 15px;
+        width:100%;
+
+        padding:25px 18px;
 
         border-radius:20px;
+    }
+
+    .back-btn-container{
+
+        width:100%;
     }
 
     #introScreen h1{
@@ -513,12 +613,19 @@ button{
         font-size:16px;
     }
 
-    .game-status{
+    .game-info{
 
-        font-size:14px;
+        flex-direction:column;
+
+        align-items:stretch;
     }
 
-    #gameScreen h1{
+    .game-info div{
+
+        width:100%;
+    }
+
+    .game-title{
 
         font-size:25px;
     }
@@ -528,9 +635,24 @@ button{
         font-size:15px;
     }
 
+    .game-status{
+
+        font-size:14px;
+    }
+
+    .score-text{
+
+        font-size:16px;
+    }
+
     .question{
 
-        padding:18px;
+        padding:18px 12px;
+    }
+
+    .question-title{
+
+        font-size:18px;
     }
 
     .image-box{
@@ -564,130 +686,190 @@ button{
 <body>
 
 
+<!-- =========================================================
+     BACK TO LOBBY
+========================================================= -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../../index.html"
+        class="back-btn"
+    >
+        ⬅ Back to Lobby
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     GAME BOX
+========================================================= -->
+
 <div class="game-box">
 
 
-<!-- =======================================================
-     INTRO SCREEN
-======================================================= -->
+    <!-- =====================================================
+         INTRO SCREEN
+    ====================================================== -->
 
-<div id="introScreen">
+    <div id="introScreen">
 
-    <div class="game-icon">
-        🍉
-    </div>
-
-    <h1>
-        Match the Pictures with the Words
-    </h1>
-
-    <p class="intro-description">
-
-        Match each Vietnamese word with
-        the correct picture.
-
-    </p>
-
-
-    <div class="game-info">
-
-        <div>
-            📝
-            <strong>20 Questions</strong>
+        <div class="game-icon">
+            🍉
         </div>
 
-        <div>
-            🎯
-            <strong>Drag & Drop</strong>
+
+        <h1>
+            Match the Pictures with the Words
+        </h1>
+
+
+        <p class="intro-description">
+
+            Match each Vietnamese food and drink
+            word with the correct picture.
+
+        </p>
+
+
+        <div class="game-info">
+
+            <div>
+
+                📝
+
+                <strong>
+                    20 Questions
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                🎯
+
+                <strong>
+                    Drag & Drop
+                </strong>
+
+            </div>
+
         </div>
 
+
+        <button
+            class="primary-btn"
+            onclick="startGame()"
+        >
+
+            Start Game →
+
+        </button>
+
     </div>
 
 
-    <button
-        id="startBtn"
-        onclick="startGame()"
-    >
 
-        Start Game →
+    <!-- =====================================================
+         GAME SCREEN
+    ====================================================== -->
 
-    </button>
-
-</div>
+    <div id="gameScreen">
 
 
+        <h1 class="game-title">
 
-<!-- =======================================================
-     GAME SCREEN
-======================================================= -->
+            🍉 Match the Pictures with the Words
 
-<div
-    id="gameScreen"
-    style="display:none;"
->
-
-    <h1>
-        🍉 Match the Pictures with the Words
-    </h1>
-
-    <p class="instruction">
-
-        Drag each Vietnamese word to the correct picture.
-
-    </p>
+        </h1>
 
 
-    <div class="game-status">
+        <p class="instruction">
 
-        <div id="questionText">
-            Question 1 / 20
+            Drag each Vietnamese word to
+            the correct picture.
+
+        </p>
+
+
+        <div class="game-status">
+
+
+            <div id="questionText">
+
+                Question 1 / 20
+
+            </div>
+
+
+            <div class="score-text">
+
+                Score:
+                <span id="scoreText">
+                    0
+                </span>
+
+            </div>
+
+
         </div>
 
-        <div id="scoreText">
-            Score: 0
+
+        <div id="game"></div>
+
+
+        <div
+            class="message"
+            id="message"
+        >
         </div>
 
+
     </div>
 
 
-    <div id="game"></div>
 
-</div>
+    <!-- =====================================================
+         FINAL SCREEN
+    ====================================================== -->
+
+    <div id="finalScreen">
 
 
+        <h2>
 
-<!-- =======================================================
-     FINAL SCREEN
-======================================================= -->
+            🎉 Game Finished!
 
-<div id="finalScreen">
+        </h2>
 
-    <h2>
-        🎉 Great Job!
-    </h2>
 
-    <div
-        class="final-score"
-        id="finalScore"
-    >
+        <div
+            class="final-score"
+            id="finalScore"
+        >
+        </div>
+
+
+        <div
+            class="final-message"
+            id="finalMessage"
+        >
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="restartGame()"
+        >
+
+            Play Again
+
+        </button>
+
+
     </div>
-
-    <div
-        class="final-message"
-        id="finalMessage"
-    >
-    </div>
-
-    <button
-        class="restart-btn"
-        onclick="restartGame()"
-    >
-
-        Play Again
-
-    </button>
-
-</div>
 
 
 </div>
@@ -695,7 +877,6 @@ button{
 
 
 <script>
-
 
 /* =========================================================
    VOCABULARY
@@ -822,11 +1003,62 @@ const items = [
 
 const TOTAL_QUESTIONS = 20;
 
+
+/*
+   Questions 1–15:
+   2 pictures = 2 points
+
+   Questions 16–20:
+   4 pictures = 4 points
+
+   Maximum:
+   15 × 2 + 5 × 4 = 50
+*/
+
+const TOTAL_POINTS = 50;
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
 let currentQuestion = 0;
 
 let score = 0;
 
-let draggedWord = null;
+let questionCompleted = false;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById("introScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+const game =
+    document.getElementById("game");
+
+const questionText =
+    document.getElementById("questionText");
+
+const scoreText =
+    document.getElementById("scoreText");
+
+const message =
+    document.getElementById("message");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const finalMessage =
+    document.getElementById("finalMessage");
 
 
 /* =========================================================
@@ -847,6 +1079,7 @@ function shuffle(array){
             Math.floor(
                 Math.random() * (i + 1)
             );
+
 
         [
             copy[i],
@@ -874,17 +1107,18 @@ function startGame(){
 
     score = 0;
 
-    document.getElementById(
-        "introScreen"
-    ).style.display = "none";
+    questionCompleted = false;
 
-    document.getElementById(
-        "finalScreen"
-    ).style.display = "none";
 
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "block";
+    introScreen.style.display =
+        "none";
+
+    finalScreen.style.display =
+        "none";
+
+    gameScreen.style.display =
+        "block";
+
 
     updateStatus();
 
@@ -899,15 +1133,12 @@ function startGame(){
 
 function updateStatus(){
 
-    document.getElementById(
-        "questionText"
-    ).textContent =
+    questionText.textContent =
         `Question ${currentQuestion + 1} / ${TOTAL_QUESTIONS}`;
 
-    document.getElementById(
-        "scoreText"
-    ).textContent =
-        `Score: ${score}`;
+
+    scoreText.textContent =
+        score;
 
 }
 
@@ -918,38 +1149,28 @@ function updateStatus(){
 
 function loadQuestion(){
 
-    draggedWord = null;
+    questionCompleted = false;
 
-    const game =
-        document.getElementById("game");
+    message.textContent = "";
+
+    message.style.color = "";
+
 
     game.innerHTML = "";
-
-
-    const question =
-        document.createElement("div");
-
-    question.className =
-        "question";
-
-
-    question.innerHTML =
-        `<h2>Match the words with the pictures</h2>`;
-
-
-    /* =====================================================
-       SELECT ITEMS
-    ===================================================== */
-
-    let selected;
-
-    let words;
 
 
     /*
        Questions 1–15:
        2 pictures + 2 words
+
+       Questions 16–20:
+       4 pictures + 5 words
     */
+
+    let selected;
+
+    let words;
+
 
     if(currentQuestion < 15){
 
@@ -961,16 +1182,11 @@ function loadQuestion(){
 
     }
 
-
-    /*
-       Questions 16–20:
-       4 pictures + 5 words
-    */
-
     else{
 
         selected =
             shuffle(items).slice(0,4);
+
 
         const extra =
             items.find(
@@ -978,64 +1194,150 @@ function loadQuestion(){
                     !selected.includes(item)
             );
 
-        words =
-            [
-                ...selected,
-                extra
-            ];
+
+        words = [
+
+            ...selected,
+
+            extra
+
+        ];
 
     }
+
+
+    /* =====================================================
+       QUESTION CARD
+    ===================================================== */
+
+    const question =
+        document.createElement("div");
+
+    question.className =
+        "question";
+
+
+    const title =
+        document.createElement("h2");
+
+    title.className =
+        "question-title";
+
+    title.textContent =
+        "Match the words with the pictures";
+
+
+    question.appendChild(title);
 
 
     /* =====================================================
        IMAGE AREA
     ===================================================== */
 
-    const imagesDiv =
+    const images =
         document.createElement("div");
 
-    imagesDiv.className =
+    images.className =
         "images";
 
 
     selected.forEach(item => {
 
-        const box =
+        const imageBox =
             document.createElement("div");
 
-        box.className =
+        imageBox.className =
             "image-box";
 
 
         const img =
             document.createElement("img");
 
+
+        /*
+           Images should be inside:
+
+           images/
+           ├── bo.png
+           ├── ca.png
+           ├── cam.png
+           └── ...
+        */
+
         img.src =
             `images/${item.name}.png`;
+
 
         img.alt =
             item.vi;
 
 
-        const zone =
+        img.onerror =
+            function(){
+
+                this.style.display =
+                    "none";
+
+            };
+
+
+        /* =================================================
+           DROP ZONE
+        ================================================= */
+
+        const dropZone =
             document.createElement("div");
 
-        zone.className =
+        dropZone.className =
             "drop-zone";
 
-        zone.textContent =
+
+        dropZone.textContent =
             "Drop word here";
+
+
+        dropZone.dataset.answer =
+            item.name;
 
 
         /* =================================================
            DRAG OVER
         ================================================= */
 
-        zone.addEventListener(
+        dropZone.addEventListener(
             "dragover",
-            e => {
+            event => {
 
-                e.preventDefault();
+                event.preventDefault();
+
+
+                if(
+                    !dropZone.classList.contains(
+                        "correct"
+                    )
+                ){
+
+                    dropZone.classList.add(
+                        "over"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           DRAG LEAVE
+        ================================================= */
+
+        dropZone.addEventListener(
+            "dragleave",
+            () => {
+
+                dropZone.classList.remove(
+                    "over"
+                );
 
             }
         );
@@ -1045,15 +1347,20 @@ function loadQuestion(){
            DROP
         ================================================= */
 
-        zone.addEventListener(
+        dropZone.addEventListener(
             "drop",
-            e => {
+            event => {
 
-                e.preventDefault();
+                event.preventDefault();
+
+
+                dropZone.classList.remove(
+                    "over"
+                );
 
 
                 if(
-                    zone.classList.contains(
+                    dropZone.classList.contains(
                         "correct"
                     )
                 ){
@@ -1064,54 +1371,66 @@ function loadQuestion(){
 
 
                 const draggedName =
-                    e.dataTransfer.getData(
+                    event.dataTransfer.getData(
                         "name"
                     );
 
-                const draggedText =
-                    e.dataTransfer.getData(
+
+                const draggedWord =
+                    event.dataTransfer.getData(
                         "word"
                     );
 
+
                 const draggedId =
-                    e.dataTransfer.getData(
+                    event.dataTransfer.getData(
                         "id"
                     );
 
 
                 /* =========================================
                    CORRECT
-                ========================================= */
+                ========================================== */
 
                 if(
                     draggedName ===
                     item.name
                 ){
 
-                    zone.textContent =
-                        draggedText;
+                    dropZone.textContent =
+                        draggedWord;
 
-                    zone.classList.add(
+
+                    dropZone.classList.add(
                         "correct"
                     );
 
 
-                    const draggedElement =
+                    const wordElement =
                         document.getElementById(
                             draggedId
                         );
 
 
-                    if(draggedElement){
+                    if(wordElement){
 
-                        draggedElement.remove();
+                        wordElement.remove();
 
                     }
 
 
                     score++;
 
+
                     updateStatus();
+
+
+                    message.style.color =
+                        "#3b8b58";
+
+
+                    message.textContent =
+                        "✅ Correct!";
 
 
                     checkQuestionComplete();
@@ -1121,33 +1440,42 @@ function loadQuestion(){
 
                 /* =========================================
                    WRONG
-                ========================================= */
+                ========================================== */
 
                 else{
 
-                    zone.classList.add(
+                    dropZone.classList.add(
                         "wrong"
                     );
 
 
-                    zone.textContent =
+                    dropZone.textContent =
                         "Try again!";
+
+
+                    message.style.color =
+                        "#c54d4d";
+
+
+                    message.textContent =
+                        "❌ Try again!";
 
 
                     setTimeout(
                         () => {
 
                             if(
-                                !zone.classList.contains(
+                                !dropZone.classList.contains(
                                     "correct"
                                 )
                             ){
 
-                                zone.classList.remove(
+                                dropZone.classList.remove(
                                     "wrong"
                                 );
 
-                                zone.textContent =
+
+                                dropZone.textContent =
                                     "Drop word here";
 
                             }
@@ -1162,11 +1490,11 @@ function loadQuestion(){
         );
 
 
-        box.appendChild(img);
+        imageBox.appendChild(img);
 
-        box.appendChild(zone);
+        imageBox.appendChild(dropZone);
 
-        imagesDiv.appendChild(box);
+        images.appendChild(imageBox);
 
     });
 
@@ -1175,10 +1503,10 @@ function loadQuestion(){
        WORD AREA
     ===================================================== */
 
-    const wordsDiv =
+    const wordsContainer =
         document.createElement("div");
 
-    wordsDiv.className =
+    wordsContainer.className =
         "words";
 
 
@@ -1187,18 +1515,23 @@ function loadQuestion(){
         const word =
             document.createElement("div");
 
+
         word.className =
             "word";
 
+
         word.textContent =
             item.vi;
+
 
         word.draggable =
             true;
 
 
         word.id =
-            `word-${currentQuestion}-${item.name}-${Math.random()}`;
+            `word-${currentQuestion}-${item.name}-${Math.random()
+                .toString(36)
+                .substring(2,9)}`;
 
 
         /* =================================================
@@ -1207,41 +1540,62 @@ function loadQuestion(){
 
         word.addEventListener(
             "dragstart",
-            e => {
+            event => {
 
-                draggedWord =
-                    word;
-
-                e.dataTransfer.setData(
+                event.dataTransfer.setData(
                     "name",
                     item.name
                 );
 
-                e.dataTransfer.setData(
+
+                event.dataTransfer.setData(
                     "word",
                     item.vi
                 );
 
-                e.dataTransfer.setData(
+
+                event.dataTransfer.setData(
                     "id",
                     word.id
+                );
+
+
+                word.classList.add(
+                    "dragging"
                 );
 
             }
         );
 
 
-        wordsDiv.appendChild(word);
+        /* =================================================
+           DRAG END
+        ================================================= */
+
+        word.addEventListener(
+            "dragend",
+            () => {
+
+                word.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        wordsContainer.appendChild(word);
 
     });
 
 
     question.appendChild(
-        imagesDiv
+        images
     );
 
+
     question.appendChild(
-        wordsDiv
+        wordsContainer
     );
 
 
@@ -1256,7 +1610,7 @@ function loadQuestion(){
 
 
 /* =========================================================
-   CHECK QUESTION
+   CHECK QUESTION COMPLETE
 ========================================================= */
 
 function checkQuestionComplete(){
@@ -1276,11 +1630,25 @@ function checkQuestionComplete(){
         );
 
 
-    if(completed){
+    if(
+        completed &&
+        !questionCompleted
+    ){
+
+        questionCompleted = true;
+
+
+        message.style.color =
+            "#3b8b58";
+
+
+        message.textContent =
+            "🎉 Perfect!";
+
 
         setTimeout(
             nextQuestion,
-            700
+            900
         );
 
     }
@@ -1320,72 +1688,72 @@ function nextQuestion(){
 
 function finishGame(){
 
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "none";
+    gameScreen.style.display =
+        "none";
 
 
-    document.getElementById(
-        "finalScreen"
-    ).style.display = "block";
+    finalScreen.style.display =
+        "block";
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        `Final Score: ${score}`;
+    finalScore.textContent =
+        `Final Score: ${score} / ${TOTAL_POINTS}`;
 
 
     const percentage =
         Math.round(
             score /
-            TOTAL_QUESTIONS *
+            TOTAL_POINTS *
             100
         );
 
 
-    let message;
+    let result;
 
 
-    if(percentage >= 90){
+    if(
+        percentage >= 90
+    ){
 
-        message =
+        result =
             "🏆 Excellent!";
 
     }
 
-    else if(percentage >= 70){
+    else if(
+        percentage >= 70
+    ){
 
-        message =
+        result =
             "🎉 Great Job!";
 
     }
 
-    else if(percentage >= 50){
+    else if(
+        percentage >= 50
+    ){
 
-        message =
+        result =
             "👍 Good Work!";
 
     }
 
     else{
 
-        message =
+        result =
             "📚 Keep Practicing!";
 
     }
 
 
-    document.getElementById(
-        "finalMessage"
-    ).textContent =
-        `${percentage}% — ${message}`;
+    finalMessage.textContent =
+        `${percentage}% — ${result}`;
 
 }
 
 
 /* =========================================================
-   RESTART
+   RESTART GAME
 ========================================================= */
 
 function restartGame(){
@@ -1395,6 +1763,7 @@ function restartGame(){
 }
 
 </script>
+
 
 </body>
 

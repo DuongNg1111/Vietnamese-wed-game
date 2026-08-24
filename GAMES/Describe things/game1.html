@@ -8,13 +8,26 @@
 
 <title>Find The Same Meaning</title>
 
-<meta name="game-title" content="Find The Same Meaning">
+<meta
+    name="game-title"
+    content="Find The Same Meaning"
+>
+
 <meta
     name="game-description"
     content="Match English words with Vietnamese words that have the same meaning."
 >
-<meta name="game-icon" content="🔎">
-<meta name="game-explanation" content="true">
+
+<meta
+    name="game-icon"
+    content="🔎"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
 
 <style>
 
@@ -27,16 +40,23 @@
 }
 
 body{
+
     margin:0;
+
     padding:20px;
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:#f7f9fc;
 
     min-height:100vh;
 
     color:#222;
+
 }
 
 
@@ -45,31 +65,45 @@ body{
 ========================================================= */
 
 .back-btn-container{
-    max-width:1000px;
+
+    width:min(1000px,95vw);
+
     margin:0 auto 15px;
+
 }
 
+
 .back-btn{
+
     display:inline-block;
 
     padding:10px 18px;
 
     background:white;
+
     color:#555;
 
     border:2px solid #ddd;
+
     border-radius:10px;
 
     text-decoration:none;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
 
+
 .back-btn:hover{
+
     background:#f0f0f0;
+
     transform:translateY(-2px);
+
 }
+
 
 
 /* =========================================================
@@ -77,7 +111,8 @@ body{
 ========================================================= */
 
 .game{
-    width:min(1000px, 95vw);
+
+    width:min(1000px,95vw);
 
     margin:0 auto;
 
@@ -91,7 +126,9 @@ body{
         0 10px 35px rgba(0,0,0,.10);
 
     text-align:center;
+
 }
+
 
 
 /* =========================================================
@@ -99,24 +136,30 @@ body{
 ========================================================= */
 
 h1{
+
     margin:0 0 10px;
 
     font-size:32px;
 
     color:#333;
+
 }
 
+
 .instruction{
+
     margin:0 auto 25px;
 
-    max-width:700px;
+    max-width:720px;
 
     color:#666;
 
     font-size:17px;
 
     line-height:1.5;
+
 }
+
 
 
 /* =========================================================
@@ -124,39 +167,77 @@ h1{
 ========================================================= */
 
 .topbar{
+
     display:flex;
 
     justify-content:space-between;
+
     align-items:center;
+
+    gap:15px;
 
     margin-bottom:25px;
 
     font-weight:bold;
 
     color:#555;
+
 }
 
-.round{
+
+.round-text{
+
     color:#666;
+
 }
 
-.score{
+
+.score-text{
+
     font-size:18px;
+
 }
+
+
+
+/* =========================================================
+   SECTION LABELS
+========================================================= */
+
+.section-title{
+
+    margin:15px 0 10px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#777;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
 
 
 /* =========================================================
    TARGETS
 ========================================================= */
 
-.labels{
+.targets{
+
     display:grid;
 
     gap:15px;
+
 }
 
+
 .target{
-    min-height:95px;
+
+    min-height:90px;
 
     border-radius:16px;
 
@@ -172,20 +253,28 @@ h1{
 
     padding:15px;
 
-    font-size:24px;
+    font-size:23px;
 
     font-weight:bold;
 
     transition:.2s;
+
+    user-select:none;
+
 }
 
+
 .target.over{
+
     transform:scale(1.03);
 
     background:#dcecff;
+
 }
 
+
 .target.correct{
+
     background:#dff5e5;
 
     border-style:solid;
@@ -193,23 +282,33 @@ h1{
     border-color:#4caf70;
 
     color:#3b7650;
+
 }
 
+
 .target.wrong{
+
     animation:shake .3s;
+
 }
+
 
 @keyframes shake{
 
     25%{
+
         transform:translateX(-7px);
+
     }
 
     75%{
+
         transform:translateX(7px);
+
     }
 
 }
+
 
 
 /* =========================================================
@@ -217,15 +316,19 @@ h1{
 ========================================================= */
 
 .words{
+
     display:grid;
 
     gap:15px;
 
     margin-top:20px;
+
 }
 
+
 .word{
-    min-height:85px;
+
+    min-height:80px;
 
     border-radius:16px;
 
@@ -249,24 +352,37 @@ h1{
 
     user-select:none;
 
+    touch-action:none;
+
     transition:.2s;
+
 }
 
+
 .word:hover{
+
     transform:translateY(-3px);
 
     background:#ffe8b5;
+
 }
+
 
 .word.dragging{
+
     opacity:.45;
+
 }
 
+
 .word.used{
+
     visibility:hidden;
 
     pointer-events:none;
+
 }
+
 
 
 /* =========================================================
@@ -274,6 +390,7 @@ h1{
 ========================================================= */
 
 .message{
+
     min-height:35px;
 
     margin:20px 0 10px;
@@ -281,7 +398,9 @@ h1{
     font-size:19px;
 
     font-weight:bold;
+
 }
+
 
 
 /* =========================================================
@@ -289,6 +408,7 @@ h1{
 ========================================================= */
 
 .explanation{
+
     margin:15px auto 20px;
 
     padding:16px 20px;
@@ -308,25 +428,36 @@ h1{
     line-height:1.5;
 
     text-align:left;
+
 }
+
 
 .explanation strong{
+
     color:#4779b8;
+
 }
 
+
 .explanation .related{
+
     display:block;
 
-    margin-top:6px;
+    margin-top:7px;
 
     font-size:14px;
 
     color:#68788a;
+
 }
 
+
 .hidden{
-    display:none;
+
+    display:none !important;
+
 }
+
 
 
 /* =========================================================
@@ -334,6 +465,7 @@ h1{
 ========================================================= */
 
 button{
+
     border:none;
 
     border-radius:12px;
@@ -351,21 +483,29 @@ button{
     color:white;
 
     transition:.2s;
+
 }
 
+
 button:hover{
+
     background:#3d6ba5;
 
     transform:translateY(-2px);
+
 }
 
+
 button:disabled{
+
     opacity:.45;
 
     cursor:default;
 
     transform:none;
+
 }
+
 
 
 /* =========================================================
@@ -373,30 +513,42 @@ button:disabled{
 ========================================================= */
 
 .final{
+
     display:none;
 
     padding:20px 10px;
+
 }
 
+
 .final h2{
+
     margin:0 0 20px;
 
     font-size:32px;
 
     color:#4779b8;
+
 }
 
+
 .final-score{
+
     font-size:26px;
 
     margin:15px 0;
+
 }
 
+
 .final-message{
+
     font-size:21px;
 
     margin:15px 0 25px;
+
 }
+
 
 
 /* =========================================================
@@ -406,43 +558,114 @@ button:disabled{
 @media(max-width:700px){
 
     body{
+
         padding:15px;
+
     }
 
+
     .game{
+
         width:100%;
 
         padding:25px 18px;
 
         border-radius:20px;
+
     }
+
 
     h1{
+
         font-size:27px;
+
     }
+
 
     .instruction{
+
         font-size:16px;
+
     }
+
 
     .topbar{
+
         font-size:15px;
+
     }
 
-    .score{
+
+    .score-text{
+
         font-size:16px;
+
     }
+
 
     .target{
-        min-height:80px;
 
-        font-size:20px;
-    }
-
-    .word{
         min-height:75px;
 
+        font-size:20px;
+
+    }
+
+
+    .word{
+
+        min-height:70px;
+
         font-size:18px;
+
+    }
+
+
+    .explanation{
+
+        font-size:15px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        gap:7px;
+
+        margin-bottom:20px;
+
+    }
+
+
+    .target{
+
+        font-size:18px;
+
+    }
+
+
+    .word{
+
+        font-size:17px;
+
+    }
+
+
+    button{
+
+        width:100%;
+
     }
 
 }
@@ -450,6 +673,7 @@ button:disabled{
 </style>
 
 </head>
+
 
 
 <body>
@@ -471,8 +695,9 @@ button:disabled{
 </div>
 
 
+
 <!-- =========================================================
-     GAME
+     GAME CONTAINER
 ========================================================= -->
 
 <div class="game">
@@ -483,6 +708,7 @@ button:disabled{
     ====================================================== -->
 
     <div id="gameScreen">
+
 
         <h1>
             🔎 Find The Same Meaning
@@ -497,63 +723,105 @@ button:disabled{
         </p>
 
 
+
+        <!-- TOP BAR -->
+
         <div class="topbar">
 
-            <div class="round" id="roundText">
+
+            <div
+                class="round-text"
+                id="roundText"
+            >
+
                 Round 1 / 15
+
             </div>
 
-            <div class="score" id="scoreText">
+
+            <div
+                class="score-text"
+                id="scoreText"
+            >
+
                 Score: 0
+
             </div>
+
 
         </div>
 
 
-        <!-- Vietnamese targets -->
+
+        <!-- VIETNAMESE -->
+
+        <div class="section-title">
+
+            🇻🇳 Vietnamese
+
+        </div>
+
 
         <div
-            class="labels"
+            class="targets"
             id="targets"
         >
+
         </div>
 
 
-        <!-- English words -->
+
+        <!-- ENGLISH -->
+
+        <div class="section-title">
+
+            🇬🇧 English
+
+        </div>
+
 
         <div
             class="words"
             id="words"
         >
+
         </div>
 
 
-        <!-- Feedback -->
+
+        <!-- MESSAGE -->
 
         <div
             class="message"
             id="message"
         >
+
         </div>
 
 
-        <!-- Explanation -->
+
+        <!-- EXPLANATION -->
 
         <div
-            id="explanation"
             class="explanation hidden"
+            id="explanation"
         >
+
         </div>
 
 
-        <!-- Next round -->
+
+        <!-- NEXT BUTTON -->
 
         <button
             id="nextBtn"
             disabled
         >
+
             Next Round →
+
         </button>
+
 
     </div>
 
@@ -568,8 +836,11 @@ button:disabled{
         id="finalScreen"
     >
 
+
         <h2>
+
             🎉 Game Finished!
+
         </h2>
 
 
@@ -577,6 +848,7 @@ button:disabled{
             class="final-score"
             id="finalScore"
         >
+
         </div>
 
 
@@ -584,14 +856,18 @@ button:disabled{
             class="final-message"
             id="finalMessage"
         >
+
         </div>
 
 
         <button
             onclick="restartGame()"
         >
+
             Play Again
+
         </button>
+
 
     </div>
 
@@ -610,8 +886,17 @@ button:disabled{
 const rounds = [
 
     {
-        vi:["TO","NHỎ","NHANH"],
-        en:["big","small","fast"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "NHANH"
+        ],
+
+        en:[
+            "big",
+            "small",
+            "fast"
+        ],
 
         map:{
             big:"TO",
@@ -620,9 +905,19 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["CHẬM","XA","GẦN"],
-        en:["slow","far","near"],
+        vi:[
+            "CHẬM",
+            "XA",
+            "GẦN"
+        ],
+
+        en:[
+            "slow",
+            "far",
+            "near"
+        ],
 
         map:{
             slow:"CHẬM",
@@ -631,9 +926,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","NHỎ","RẺ","MẮC"],
-        en:["large","tiny","cheap","expensive"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "RẺ",
+            "MẮC"
+        ],
+
+        en:[
+            "large",
+            "tiny",
+            "cheap",
+            "expensive"
+        ],
 
         map:{
             large:"TO",
@@ -643,9 +950,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["NHANH","CHẬM","XA","GẦN"],
-        en:["quick","slow","distant","close"],
+        vi:[
+            "NHANH",
+            "CHẬM",
+            "XA",
+            "GẦN"
+        ],
+
+        en:[
+            "quick",
+            "slow",
+            "distant",
+            "close"
+        ],
 
         map:{
             quick:"NHANH",
@@ -655,9 +974,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","NHỎ","NHANH","CHẬM"],
-        en:["huge","little","rapid","slow"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "NHANH",
+            "CHẬM"
+        ],
+
+        en:[
+            "huge",
+            "little",
+            "rapid",
+            "slow"
+        ],
 
         map:{
             huge:"TO",
@@ -667,9 +998,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["XA","GẦN","RẺ","MẮC"],
-        en:["far","nearby","cheap","costly"],
+        vi:[
+            "XA",
+            "GẦN",
+            "RẺ",
+            "MẮC"
+        ],
+
+        en:[
+            "far",
+            "nearby",
+            "cheap",
+            "costly"
+        ],
 
         map:{
             far:"XA",
@@ -679,9 +1022,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["CAO","THẤP","ĐẸP","XẤU"],
-        en:["tall","low","beautiful","ugly"],
+        vi:[
+            "CAO",
+            "THẤP",
+            "ĐẸP",
+            "XẤU"
+        ],
+
+        en:[
+            "tall",
+            "low",
+            "beautiful",
+            "ugly"
+        ],
 
         map:{
             tall:"CAO",
@@ -691,9 +1046,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","CAO","NHỎ","THẤP"],
-        en:["huge","high","tiny","low"],
+        vi:[
+            "TO",
+            "CAO",
+            "NHỎ",
+            "THẤP"
+        ],
+
+        en:[
+            "huge",
+            "high",
+            "tiny",
+            "low"
+        ],
 
         map:{
             huge:"TO",
@@ -703,9 +1070,21 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["ĐẸP","XẤU","NHANH","CHẬM"],
-        en:["pretty","ugly","quick","slow"],
+        vi:[
+            "ĐẸP",
+            "XẤU",
+            "NHANH",
+            "CHẬM"
+        ],
+
+        en:[
+            "pretty",
+            "ugly",
+            "quick",
+            "slow"
+        ],
 
         map:{
             pretty:"ĐẸP",
@@ -715,9 +1094,23 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","NHỎ","GẦN","NHANH","MẮC"],
-        en:["giant","little","near","rapid","expensive"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "GẦN",
+            "NHANH",
+            "MẮC"
+        ],
+
+        en:[
+            "giant",
+            "little",
+            "near",
+            "rapid",
+            "expensive"
+        ],
 
         map:{
             giant:"TO",
@@ -728,9 +1121,23 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["CAO","THẤP","XA","GẦN","RẺ"],
-        en:["tall","short","distant","close","cheap"],
+        vi:[
+            "CAO",
+            "THẤP",
+            "XA",
+            "GẦN",
+            "RẺ"
+        ],
+
+        en:[
+            "tall",
+            "short",
+            "distant",
+            "close",
+            "cheap"
+        ],
 
         map:{
             tall:"CAO",
@@ -741,9 +1148,23 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["ĐẸP","XẤU","TO","NHỎ","MẮC"],
-        en:["lovely","unattractive","large","tiny","pricey"],
+        vi:[
+            "ĐẸP",
+            "XẤU",
+            "TO",
+            "NHỎ",
+            "MẮC"
+        ],
+
+        en:[
+            "lovely",
+            "unattractive",
+            "large",
+            "tiny",
+            "pricey"
+        ],
 
         map:{
             lovely:"ĐẸP",
@@ -754,9 +1175,25 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["XA","GẦN","TO","CAO","THẤP","RẺ"],
-        en:["far","nearby","big","high","low","cheap"],
+        vi:[
+            "XA",
+            "GẦN",
+            "TO",
+            "CAO",
+            "THẤP",
+            "RẺ"
+        ],
+
+        en:[
+            "far",
+            "nearby",
+            "big",
+            "high",
+            "low",
+            "cheap"
+        ],
 
         map:{
             far:"XA",
@@ -768,9 +1205,25 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["NHỎ","CHẬM","XẤU","ĐẸP","TO","MẮC"],
-        en:["small","slow","ugly","beautiful","enormous","costly"],
+        vi:[
+            "NHỎ",
+            "CHẬM",
+            "XẤU",
+            "ĐẸP",
+            "TO",
+            "MẮC"
+        ],
+
+        en:[
+            "small",
+            "slow",
+            "ugly",
+            "beautiful",
+            "enormous",
+            "costly"
+        ],
 
         map:{
             small:"NHỎ",
@@ -782,9 +1235,25 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","NHỎ","NHANH","CHẬM","CAO","THẤP"],
-        en:["massive","tiny","fast","slow","tall","short"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "NHANH",
+            "CHẬM",
+            "CAO",
+            "THẤP"
+        ],
+
+        en:[
+            "massive",
+            "tiny",
+            "fast",
+            "slow",
+            "tall",
+            "short"
+        ],
 
         map:{
             massive:"TO",
@@ -799,6 +1268,7 @@ const rounds = [
 ];
 
 
+
 /* =========================================================
    EXPLANATIONS
 ========================================================= */
@@ -806,66 +1276,114 @@ const rounds = [
 const explanations = {
 
     "TO":{
-        meaning:"TO means big or large in Vietnamese.",
-        related:"big, large, huge, giant, enormous, massive"
+        meaning:
+            "TO means big or large in Vietnamese.",
+
+        related:
+            "big, large, huge, giant, enormous, massive"
     },
+
 
     "NHỎ":{
-        meaning:"NHỎ means small or little in Vietnamese.",
-        related:"small, tiny, little"
+        meaning:
+            "NHỎ means small or little in Vietnamese.",
+
+        related:
+            "small, tiny, little"
     },
+
 
     "NHANH":{
-        meaning:"NHANH means fast or quick in Vietnamese.",
-        related:"fast, quick, rapid"
+        meaning:
+            "NHANH means fast or quick in Vietnamese.",
+
+        related:
+            "fast, quick, rapid"
     },
+
 
     "CHẬM":{
-        meaning:"CHẬM means slow in Vietnamese.",
-        related:"slow"
+        meaning:
+            "CHẬM means slow in Vietnamese.",
+
+        related:
+            "slow"
     },
+
 
     "XA":{
-        meaning:"XA means far or distant in Vietnamese.",
-        related:"far, distant"
+        meaning:
+            "XA means far or distant in Vietnamese.",
+
+        related:
+            "far, distant"
     },
+
 
     "GẦN":{
-        meaning:"GẦN means near, nearby, or close in Vietnamese.",
-        related:"near, nearby, close"
+        meaning:
+            "GẦN means near, nearby, or close in Vietnamese.",
+
+        related:
+            "near, nearby, close"
     },
+
 
     "RẺ":{
-        meaning:"RẺ means cheap or inexpensive in Vietnamese.",
-        related:"cheap"
+        meaning:
+            "RẺ means cheap or inexpensive in Vietnamese.",
+
+        related:
+            "cheap"
     },
+
 
     "MẮC":{
-        meaning:"MẮC means expensive or costly in Vietnamese.",
-        related:"expensive, costly, pricey"
+        meaning:
+            "MẮC means expensive or costly in Vietnamese.",
+
+        related:
+            "expensive, costly, pricey"
     },
+
 
     "CAO":{
-        meaning:"CAO means tall when describing a person, or high when describing a level, place, or object.",
-        related:"tall, high"
+        meaning:
+            "CAO means tall when describing a person, or high when describing a level, place, or object.",
+
+        related:
+            "tall, high"
     },
+
 
     "THẤP":{
-        meaning:"THẤP means short when describing height, or low when describing a level or position.",
-        related:"short, low"
+        meaning:
+            "THẤP means short when describing height, or low when describing a level or position.",
+
+        related:
+            "short, low"
     },
+
 
     "ĐẸP":{
-        meaning:"ĐẸP means beautiful or pretty in Vietnamese.",
-        related:"beautiful, pretty, lovely"
+        meaning:
+            "ĐẸP means beautiful or pretty in Vietnamese.",
+
+        related:
+            "beautiful, pretty, lovely"
     },
 
+
     "XẤU":{
-        meaning:"XẤU means ugly or unattractive in Vietnamese.",
-        related:"ugly, unattractive"
+        meaning:
+            "XẤU means ugly or unattractive in Vietnamese.",
+
+        related:
+            "ugly, unattractive"
     }
 
 };
+
 
 
 /* =========================================================
@@ -881,30 +1399,52 @@ let matched = 0;
 let draggedWord = null;
 
 
+
 /* =========================================================
    DOM
 ========================================================= */
 
 const targetsEl =
-    document.getElementById("targets");
+    document.getElementById(
+        "targets"
+    );
+
 
 const wordsEl =
-    document.getElementById("words");
+    document.getElementById(
+        "words"
+    );
+
 
 const messageEl =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
+
 
 const explanationEl =
-    document.getElementById("explanation");
+    document.getElementById(
+        "explanation"
+    );
+
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
+
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
+
 
 const finalScreen =
-    document.getElementById("finalScreen");
+    document.getElementById(
+        "finalScreen"
+    );
+
 
 
 /* =========================================================
@@ -913,32 +1453,47 @@ const finalScreen =
 
 function shuffle(array){
 
-    const newArray = [...array];
+    const newArray = [
+        ...array
+    ];
+
 
     for(
-        let i = newArray.length - 1;
+
+        let i =
+            newArray.length - 1;
+
         i > 0;
+
         i--
+
     ){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
+
 
         [
             newArray[i],
             newArray[j]
+
         ] = [
+
             newArray[j],
             newArray[i]
+
         ];
 
     }
 
+
     return newArray;
 
 }
+
 
 
 /* =========================================================
@@ -960,14 +1515,20 @@ function loadRound(){
     nextBtn.disabled = true;
 
 
-    explanationEl.classList.add("hidden");
+    explanationEl.classList.add(
+        "hidden"
+    );
+
 
     explanationEl.innerHTML = "";
 
 
-    const round = rounds[current];
+    const round =
+        rounds[current];
 
-    const count = round.vi.length;
+
+    const count =
+        round.vi.length;
 
 
     document.getElementById(
@@ -995,14 +1556,20 @@ function loadRound(){
     wordsEl.innerHTML = "";
 
 
+
     /* =====================================================
        VIETNAMESE TARGETS
     ===================================================== */
 
-    shuffle(round.vi).forEach(word => {
+    shuffle(
+        round.vi
+    ).forEach(word => {
+
 
         const box =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         box.className =
@@ -1017,17 +1584,25 @@ function loadRound(){
             word;
 
 
+
+        /* DRAG OVER */
+
         box.addEventListener(
             "dragover",
             event => {
 
                 event.preventDefault();
 
+
                 if(
-                    !box.classList.contains("correct")
+                    !box.classList.contains(
+                        "correct"
+                    )
                 ){
 
-                    box.classList.add("over");
+                    box.classList.add(
+                        "over"
+                    );
 
                 }
 
@@ -1035,15 +1610,23 @@ function loadRound(){
         );
 
 
+
+        /* DRAG LEAVE */
+
         box.addEventListener(
             "dragleave",
             () => {
 
-                box.classList.remove("over");
+                box.classList.remove(
+                    "over"
+                );
 
             }
         );
 
+
+
+        /* DROP */
 
         box.addEventListener(
             "drop",
@@ -1051,12 +1634,17 @@ function loadRound(){
 
                 event.preventDefault();
 
-                box.classList.remove("over");
+
+                box.classList.remove(
+                    "over"
+                );
 
 
                 if(
                     !draggedWord ||
-                    box.classList.contains("correct")
+                    box.classList.contains(
+                        "correct"
+                    )
                 ){
 
                     return;
@@ -1068,19 +1656,23 @@ function loadRound(){
                     draggedWord.dataset.word;
 
 
-                /* =========================================
+                /* =========================
                    CORRECT
-                ========================================== */
+                ========================= */
 
                 if(
                     round.map[english] ===
                     box.dataset.vi
                 ){
 
-                    box.classList.add("correct");
+                    box.classList.add(
+                        "correct"
+                    );
 
 
-                    draggedWord.classList.add("used");
+                    draggedWord.classList.add(
+                        "used"
+                    );
 
 
                     matched++;
@@ -1090,6 +1682,7 @@ function loadRound(){
 
                     messageEl.textContent =
                         "✅ Correct!";
+
 
                     messageEl.style.color =
                         "#3b8b58";
@@ -1123,13 +1716,15 @@ function loadRound(){
                 }
 
 
-                /* =========================================
+                /* =========================
                    WRONG
-                ========================================== */
+                ========================= */
 
                 else{
 
-                    box.classList.add("wrong");
+                    box.classList.add(
+                        "wrong"
+                    );
 
 
                     setTimeout(
@@ -1160,19 +1755,27 @@ function loadRound(){
         );
 
 
-        targetsEl.appendChild(box);
+        targetsEl.appendChild(
+            box
+        );
 
     });
+
 
 
     /* =====================================================
        ENGLISH WORDS
     ===================================================== */
 
-    shuffle(round.en).forEach(word => {
+    shuffle(
+        round.en
+    ).forEach(word => {
+
 
         const card =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         card.className =
@@ -1191,6 +1794,9 @@ function loadRound(){
             word;
 
 
+
+        /* DRAG START */
+
         card.addEventListener(
             "dragstart",
             () => {
@@ -1207,6 +1813,9 @@ function loadRound(){
         );
 
 
+
+        /* DRAG END */
+
         card.addEventListener(
             "dragend",
             () => {
@@ -1219,11 +1828,15 @@ function loadRound(){
         );
 
 
-        wordsEl.appendChild(card);
+
+        wordsEl.appendChild(
+            card
+        );
 
     });
 
 }
+
 
 
 /* =========================================================
@@ -1236,11 +1849,15 @@ function showExplanation(
 ){
 
     const data =
-        explanations[vietnamese];
+        explanations[
+            vietnamese
+        ];
 
 
     if(!data){
+
         return;
+
     }
 
 
@@ -1248,9 +1865,15 @@ function showExplanation(
 
         <strong>💡 Learn:</strong>
 
-        <strong>${english}</strong>
+        <strong>
+            ${english}
+        </strong>
+
         →
-        <strong>${vietnamese}</strong>
+
+        <strong>
+            ${vietnamese}
+        </strong>
 
         <br><br>
 
@@ -1273,6 +1896,7 @@ function showExplanation(
 }
 
 
+
 /* =========================================================
    NEXT ROUND
 ========================================================= */
@@ -1281,11 +1905,13 @@ nextBtn.addEventListener(
     "click",
     () => {
 
+
         current++;
 
 
         if(
-            current < rounds.length
+            current <
+            rounds.length
         ){
 
             loadRound();
@@ -1302,6 +1928,7 @@ nextBtn.addEventListener(
 );
 
 
+
 /* =========================================================
    FINISH GAME
 ========================================================= */
@@ -1316,16 +1943,20 @@ function finishGame(){
         "block";
 
 
+    const totalPairs =
+        getTotalPairs();
+
+
     document.getElementById(
         "finalScore"
     ).textContent =
-        `Final Score: ${score} / ${getTotalPairs()}`;
+        `Final Score: ${score} / ${totalPairs}`;
 
 
     const percentage =
         Math.round(
             score /
-            getTotalPairs() *
+            totalPairs *
             100
         );
 
@@ -1333,14 +1964,18 @@ function finishGame(){
     let message = "";
 
 
-    if(percentage >= 85){
+    if(
+        percentage >= 85
+    ){
 
         message =
             "🏆 Excellent!";
 
     }
 
-    else if(percentage >= 60){
+    else if(
+        percentage >= 60
+    ){
 
         message =
             "🎉 Good Job!";
@@ -1363,6 +1998,7 @@ function finishGame(){
 }
 
 
+
 /* =========================================================
    TOTAL PAIRS
 ========================================================= */
@@ -1370,12 +2006,19 @@ function finishGame(){
 function getTotalPairs(){
 
     return rounds.reduce(
-        (total, round) =>
-            total + round.vi.length,
+        (
+            total,
+            round
+        ) =>
+
+            total +
+            round.vi.length,
+
         0
     );
 
 }
+
 
 
 /* =========================================================
@@ -1404,6 +2047,7 @@ function restartGame(){
     loadRound();
 
 }
+
 
 
 /* =========================================================

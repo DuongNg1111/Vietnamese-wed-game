@@ -23,6 +23,12 @@
     content="🔎"
 >
 
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
 <style>
 
 /* =========================================================
@@ -34,45 +40,24 @@
 }
 
 body{
+
     margin:0;
-    font-family:Arial,sans-serif;
-    background:#f7f9fc;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#f5f7fa;
+
     min-height:100vh;
-    color:#222;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
     padding:20px;
-}
 
-
-/* =========================================================
-   BACK TO LOBBY
-========================================================= */
-
-.back-btn-container{
-    max-width:1200px;
-    margin:0 auto 20px;
-    text-align:left;
-}
-
-.back-btn{
-    display:inline-block;
-
-    padding:10px 18px;
-
-    background:white;
-    color:#555;
-
-    border:2px solid #ddd;
-    border-radius:10px;
-
-    text-decoration:none;
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-.back-btn:hover{
-    background:#f0f0f0;
-    transform:translateY(-2px);
+    color:#333;
 }
 
 
@@ -80,19 +65,20 @@ body{
    GAME CONTAINER
 ========================================================= */
 
-.game{
-    width:min(1200px,95vw);
+.game-box{
 
-    margin:0 auto;
+    width:100%;
+
+    max-width:1100px;
 
     background:white;
 
     border-radius:24px;
 
-    padding:30px 40px 35px;
+    padding:35px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.12);
+        0 10px 35px rgba(0,0,0,.10);
 
     text-align:center;
 }
@@ -103,28 +89,33 @@ body{
 ========================================================= */
 
 #introScreen{
+
     padding:15px 10px 10px;
 }
 
 .game-icon{
-    font-size:64px;
-    margin-bottom:8px;
+
+    font-size:70px;
+
+    margin-bottom:10px;
 }
 
 #introScreen h1{
-    margin:0 0 12px;
 
     font-size:34px;
+
+    margin:10px 0 15px;
 
     color:#2c3e50;
 }
 
 .intro-description{
+
     max-width:650px;
 
     margin:0 auto 25px;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
 
@@ -160,7 +151,6 @@ body{
     color:#4779b8;
 
     font-size:22px;
-
 }
 
 .how-to-play p{
@@ -172,7 +162,6 @@ body{
     line-height:1.5;
 
     color:#3d5066;
-
 }
 
 
@@ -210,28 +199,33 @@ body{
 
 
 /* =========================================================
-   START BUTTON
+   BUTTON
 ========================================================= */
 
-#startBtn{
-
-    padding:14px 35px;
+button{
 
     border:none;
 
     border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+#startBtn{
+
+    margin-top:5px;
+
+    padding:14px 35px;
 
     background:#4779b8;
 
     color:white;
 
     font-size:19px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
 }
 
 #startBtn:hover{
@@ -243,21 +237,17 @@ body{
 
 
 /* =========================================================
-   GAME TITLE
+   GAME SCREEN
 ========================================================= */
 
 #gameScreen h1{
 
     margin:0 0 10px;
 
+    color:#2c3e50;
+
     font-size:32px;
-
 }
-
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
 
 .instruction{
 
@@ -265,15 +255,15 @@ body{
 
     font-size:17px;
 
-    margin:0 0 20px;
+    margin:0 0 25px;
 }
 
 
 /* =========================================================
-   TOP BAR
+   GAME STATUS
 ========================================================= */
 
-.topbar{
+.game-status{
 
     display:flex;
 
@@ -283,12 +273,15 @@ body{
 
     margin-bottom:25px;
 
+    padding:12px 16px;
+
+    background:#f4f8fb;
+
+    border-radius:12px;
+
     font-weight:bold;
-}
 
-.round{
-
-    color:#666;
+    color:#555;
 }
 
 .score{
@@ -298,27 +291,23 @@ body{
 
 
 /* =========================================================
-   TARGETS + WORDS
+   TARGETS
 ========================================================= */
 
-.labels,
-.words{
+.labels{
 
     display:grid;
 
-    gap:20px;
+    gap:15px;
+
+    width:100%;
 }
-
-
-/* =========================================================
-   VIETNAMESE TARGET
-========================================================= */
 
 .target{
 
-    min-height:110px;
+    min-height:95px;
 
-    border-radius:18px;
+    border-radius:16px;
 
     border:3px dashed #6b8fc4;
 
@@ -330,7 +319,9 @@ body{
 
     justify-content:center;
 
-    font-size:28px;
+    padding:15px;
+
+    font-size:24px;
 
     font-weight:bold;
 
@@ -339,7 +330,7 @@ body{
 
 .target.over{
 
-    transform:scale(1.05);
+    transform:scale(1.03);
 
     background:#dcecff;
 }
@@ -351,6 +342,8 @@ body{
     border-style:solid;
 
     border-color:#4caf70;
+
+    color:#3b7650;
 }
 
 .target.wrong{
@@ -361,11 +354,11 @@ body{
 @keyframes shake{
 
     25%{
-        transform:translateX(-8px);
+        transform:translateX(-7px);
     }
 
     75%{
-        transform:translateX(8px);
+        transform:translateX(7px);
     }
 
 }
@@ -377,14 +370,20 @@ body{
 
 .words{
 
-    margin-top:25px;
+    display:grid;
+
+    gap:15px;
+
+    width:100%;
+
+    margin-top:20px;
 }
 
 .word{
 
-    min-height:100px;
+    min-height:85px;
 
-    border-radius:18px;
+    border-radius:16px;
 
     background:#fff3d6;
 
@@ -392,11 +391,13 @@ body{
 
     display:flex;
 
-    justify-content:center;
-
     align-items:center;
 
-    font-size:24px;
+    justify-content:center;
+
+    padding:15px;
+
+    font-size:21px;
 
     font-weight:bold;
 
@@ -409,7 +410,14 @@ body{
 
 .word:hover{
 
-    transform:translateY(-4px);
+    transform:translateY(-3px);
+
+    background:#ffe8b5;
+}
+
+.word:active{
+
+    cursor:grabbing;
 }
 
 .word.dragging{
@@ -431,11 +439,11 @@ body{
 
 .message{
 
-    min-height:40px;
+    min-height:35px;
 
     margin:20px 0 10px;
 
-    font-size:18px;
+    font-size:19px;
 
     font-weight:bold;
 }
@@ -473,6 +481,17 @@ body{
     color:#4779b8;
 }
 
+.related{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    color:#68788a;
+}
+
 .hidden{
 
     display:none;
@@ -480,38 +499,34 @@ body{
 
 
 /* =========================================================
-   BUTTON
+   NEXT BUTTON
 ========================================================= */
 
-button{
+#nextBtn{
+
+    padding:13px 30px;
 
     background:#4779b8;
 
     color:white;
 
-    border:none;
-
-    border-radius:12px;
-
-    padding:12px 30px;
-
     font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
 }
 
-button:hover{
+#nextBtn:hover{
 
-    opacity:.9;
+    background:#38689f;
+
+    transform:translateY(-2px);
 }
 
-button:disabled{
+#nextBtn:disabled{
 
     opacity:.45;
 
     cursor:default;
+
+    transform:none;
 }
 
 
@@ -519,23 +534,58 @@ button:disabled{
    FINAL SCREEN
 ========================================================= */
 
-.final{
+#finalScreen{
 
     display:none;
+
+    padding:20px;
 }
 
-.final h2{
+#finalScreen h2{
 
     font-size:32px;
 
     color:#4779b8;
+
+    margin:0 0 20px;
 }
 
 .final-score{
 
     font-size:26px;
 
-    margin:20px;
+    font-weight:bold;
+
+    margin:20px 0;
+
+    color:#444;
+}
+
+.final-message{
+
+    font-size:20px;
+
+    color:#666;
+
+    margin-bottom:25px;
+}
+
+.restart-btn{
+
+    padding:14px 30px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.restart-btn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
 }
 
 
@@ -546,14 +596,15 @@ button:disabled{
 @media(max-width:700px){
 
     body{
+
         padding:15px;
     }
 
-    .game{
+    .game-box{
 
-        width:100%;
+        padding:25px 15px;
 
-        padding:25px 15px 30px;
+        border-radius:20px;
     }
 
     #introScreen h1{
@@ -588,18 +639,43 @@ button:disabled{
         width:100%;
     }
 
+    #gameScreen h1{
+
+        font-size:27px;
+    }
+
+    .instruction{
+
+        font-size:15px;
+    }
+
+    .game-status{
+
+        font-size:14px;
+    }
+
+    .score{
+
+        font-size:16px;
+    }
+
     .target{
 
-        font-size:20px;
-
         min-height:80px;
+
+        font-size:20px;
     }
 
     .word{
 
-        font-size:18px;
+        min-height:75px;
 
-        min-height:80px;
+        font-size:18px;
+    }
+
+    .explanation{
+
+        font-size:15px;
     }
 
 }
@@ -612,30 +688,15 @@ button:disabled{
 <body>
 
 
-<!-- =========================================================
-     BACK TO LOBBY
-========================================================= -->
-
-<div class="back-btn-container">
-
-    <a
-        href="../../../index.html"
-        class="back-btn"
-    >
-        ⬅ Back to Lobby
-    </a>
-
-</div>
+<div class="game-box">
 
 
-<div class="game">
-
-
-<!-- =========================================================
+<!-- =======================================================
      INTRO SCREEN
-========================================================= -->
+======================================================= -->
 
 <div id="introScreen">
+
 
     <div class="game-icon">
         🔎
@@ -655,9 +716,9 @@ button:disabled{
     </p>
 
 
-    <!-- =========================
-         ONE HOW-TO-PLAY SLIDE
-    ========================= -->
+    <!-- =================================================
+         HOW TO PLAY
+    ================================================= -->
 
     <div class="how-to-play">
 
@@ -688,16 +749,16 @@ button:disabled{
 
         <p>
             📚 <strong>5.</strong>
-            Learn the related English words
-            after each correct match.
+            After each correct match,
+            learn related English words.
         </p>
 
     </div>
 
 
-    <!-- =========================
+    <!-- =================================================
          GAME INFO
-    ========================= -->
+    ================================================= -->
 
     <div class="game-info">
 
@@ -718,17 +779,24 @@ button:disabled{
         id="startBtn"
         onclick="startGame()"
     >
+
         Start Game →
+
     </button>
+
 
 </div>
 
 
-<!-- =========================================================
-     GAME SCREEN
-========================================================= -->
 
-<div id="gameScreen" style="display:none;">
+<!-- =======================================================
+     GAME SCREEN
+======================================================= -->
+
+<div
+    id="gameScreen"
+    style="display:none;"
+>
 
 
     <h1>
@@ -744,25 +812,20 @@ button:disabled{
     </p>
 
 
-    <div class="topbar">
+    <div class="game-status">
 
-        <div
-            class="round"
-            id="roundText"
-        >
+        <div id="roundText">
             Round 1 / 15
         </div>
 
-
-        <div
-            class="score"
-            id="scoreText"
-        >
+        <div id="scoreText">
             Score: 0
         </div>
 
     </div>
 
+
+    <!-- Vietnamese targets -->
 
     <div
         class="labels"
@@ -770,11 +833,15 @@ button:disabled{
     ></div>
 
 
+    <!-- English words -->
+
     <div
         class="words"
         id="words"
     ></div>
 
+
+    <!-- Feedback -->
 
     <div
         class="message"
@@ -782,9 +849,7 @@ button:disabled{
     ></div>
 
 
-    <!-- =========================
-         EXPLANATION
-    ========================= -->
+    <!-- Explanation -->
 
     <div
         id="explanation"
@@ -796,24 +861,25 @@ button:disabled{
         id="nextBtn"
         disabled
     >
+
         Next Round →
+
     </button>
 
 
 </div>
 
 
-<!-- =========================================================
-     FINAL SCREEN
-========================================================= -->
 
-<div
-    class="final"
-    id="finalScreen"
->
+<!-- =======================================================
+     FINAL SCREEN
+======================================================= -->
+
+<div id="finalScreen">
+
 
     <h2>
-        🎉 Great job!
+        🎉 Great Job!
     </h2>
 
 
@@ -823,27 +889,41 @@ button:disabled{
     ></div>
 
 
-    <button onclick="restartGame()">
+    <div
+        class="final-message"
+        id="finalMessage"
+    ></div>
+
+
+    <button
+        class="restart-btn"
+        onclick="restartGame()"
+    >
+
         Play Again
+
     </button>
 
+
 </div>
 
 
 </div>
+
 
 
 <script>
 
 
-// =====================================================
-// GAME DATA
-// =====================================================
+/* =========================================================
+   GAME DATA
+========================================================= */
 
 const rounds = [
 
     {
         vi:["TO","NHỎ","NHANH"],
+
         en:["big","small","fast"],
 
         map:{
@@ -853,8 +933,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["CHẬM","XA","GẦN"],
+
         en:["slow","far","near"],
 
         map:{
@@ -864,8 +946,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["TO","NHỎ","RẺ","MẮC"],
+
         en:["large","tiny","cheap","expensive"],
 
         map:{
@@ -876,8 +960,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["NHANH","CHẬM","XA","GẦN"],
+
         en:["quick","slow","distant","close"],
 
         map:{
@@ -888,8 +974,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["TO","NHỎ","NHANH","CHẬM"],
+
         en:["huge","little","rapid","slow"],
 
         map:{
@@ -900,8 +988,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["XA","GẦN","RẺ","MẮC"],
+
         en:["far","nearby","cheap","costly"],
 
         map:{
@@ -912,8 +1002,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["CAO","THẤP","ĐẸP","XẤU"],
+
         en:["tall","low","beautiful","ugly"],
 
         map:{
@@ -924,8 +1016,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["TO","CAO","NHỎ","THẤP"],
+
         en:["huge","high","tiny","low"],
 
         map:{
@@ -936,8 +1030,10 @@ const rounds = [
         }
     },
 
+
     {
         vi:["ĐẸP","XẤU","NHANH","CHẬM"],
+
         en:["pretty","ugly","quick","slow"],
 
         map:{
@@ -948,9 +1044,17 @@ const rounds = [
         }
     },
 
+
     {
         vi:["TO","NHỎ","GẦN","NHANH","MẮC"],
-        en:["giant","little","near","rapid","expensive"],
+
+        en:[
+            "giant",
+            "little",
+            "near",
+            "rapid",
+            "expensive"
+        ],
 
         map:{
             giant:"TO",
@@ -961,9 +1065,17 @@ const rounds = [
         }
     },
 
+
     {
         vi:["CAO","THẤP","XA","GẦN","RẺ"],
-        en:["tall","short","distant","close","cheap"],
+
+        en:[
+            "tall",
+            "short",
+            "distant",
+            "close",
+            "cheap"
+        ],
 
         map:{
             tall:"CAO",
@@ -974,9 +1086,17 @@ const rounds = [
         }
     },
 
+
     {
         vi:["ĐẸP","XẤU","TO","NHỎ","MẮC"],
-        en:["lovely","unattractive","large","tiny","pricey"],
+
+        en:[
+            "lovely",
+            "unattractive",
+            "large",
+            "tiny",
+            "pricey"
+        ],
 
         map:{
             lovely:"ĐẸP",
@@ -987,9 +1107,18 @@ const rounds = [
         }
     },
 
+
     {
         vi:["XA","GẦN","TO","CAO","THẤP","RẺ"],
-        en:["far","nearby","big","high","low","cheap"],
+
+        en:[
+            "far",
+            "nearby",
+            "big",
+            "high",
+            "low",
+            "cheap"
+        ],
 
         map:{
             far:"XA",
@@ -1001,9 +1130,25 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["NHỎ","CHẬM","XẤU","ĐẸP","TO","MẮC"],
-        en:["small","slow","ugly","beautiful","enormous","costly"],
+        vi:[
+            "NHỎ",
+            "CHẬM",
+            "XẤU",
+            "ĐẸP",
+            "TO",
+            "MẮC"
+        ],
+
+        en:[
+            "small",
+            "slow",
+            "ugly",
+            "beautiful",
+            "enormous",
+            "costly"
+        ],
 
         map:{
             small:"NHỎ",
@@ -1015,9 +1160,25 @@ const rounds = [
         }
     },
 
+
     {
-        vi:["TO","NHỎ","NHANH","CHẬM","CAO","THẤP"],
-        en:["massive","tiny","fast","slow","tall","short"],
+        vi:[
+            "TO",
+            "NHỎ",
+            "NHANH",
+            "CHẬM",
+            "CAO",
+            "THẤP"
+        ],
+
+        en:[
+            "massive",
+            "tiny",
+            "fast",
+            "slow",
+            "tall",
+            "short"
+        ],
 
         map:{
             massive:"TO",
@@ -1032,13 +1193,14 @@ const rounds = [
 ];
 
 
-// =====================================================
-// EXPLANATIONS
-// =====================================================
+/* =========================================================
+   EXPLANATIONS
+========================================================= */
 
 const explanations = {
 
     "TO":{
+
         meaning:
             "TO means big or large in Vietnamese.",
 
@@ -1046,7 +1208,9 @@ const explanations = {
             "big, large, huge, giant, enormous, massive"
     },
 
+
     "NHỎ":{
+
         meaning:
             "NHỎ means small or little in Vietnamese.",
 
@@ -1054,7 +1218,9 @@ const explanations = {
             "small, tiny, little"
     },
 
+
     "NHANH":{
+
         meaning:
             "NHANH means fast or quick in Vietnamese.",
 
@@ -1062,7 +1228,9 @@ const explanations = {
             "fast, quick, rapid"
     },
 
+
     "CHẬM":{
+
         meaning:
             "CHẬM means slow in Vietnamese.",
 
@@ -1070,7 +1238,9 @@ const explanations = {
             "slow"
     },
 
+
     "XA":{
+
         meaning:
             "XA means far or distant in Vietnamese.",
 
@@ -1078,7 +1248,9 @@ const explanations = {
             "far, distant"
     },
 
+
     "GẦN":{
+
         meaning:
             "GẦN means near, nearby, or close in Vietnamese.",
 
@@ -1086,7 +1258,9 @@ const explanations = {
             "near, nearby, close"
     },
 
+
     "RẺ":{
+
         meaning:
             "RẺ means cheap or inexpensive in Vietnamese.",
 
@@ -1094,7 +1268,9 @@ const explanations = {
             "cheap"
     },
 
+
     "MẮC":{
+
         meaning:
             "MẮC means expensive or costly in Vietnamese.",
 
@@ -1102,7 +1278,9 @@ const explanations = {
             "expensive, costly, pricey"
     },
 
+
     "CAO":{
+
         meaning:
             "CAO means tall when describing a person, or high when describing a level, place, or object.",
 
@@ -1110,7 +1288,9 @@ const explanations = {
             "tall, high"
     },
 
+
     "THẤP":{
+
         meaning:
             "THẤP means short when describing height, or low when describing a level or position.",
 
@@ -1118,7 +1298,9 @@ const explanations = {
             "short, low"
     },
 
+
     "ĐẸP":{
+
         meaning:
             "ĐẸP means beautiful or pretty in Vietnamese.",
 
@@ -1126,7 +1308,9 @@ const explanations = {
             "beautiful, pretty, lovely"
     },
 
+
     "XẤU":{
+
         meaning:
             "XẤU means ugly or unattractive in Vietnamese.",
 
@@ -1137,9 +1321,9 @@ const explanations = {
 };
 
 
-// =====================================================
-// GAME STATE
-// =====================================================
+/* =========================================================
+   GAME STATE
+========================================================= */
 
 let current = 0;
 
@@ -1150,9 +1334,18 @@ let matched = 0;
 let draggedWord = null;
 
 
-// =====================================================
-// DOM
-// =====================================================
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById("introScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const finalScreen =
+    document.getElementById("finalScreen");
 
 const targetsEl =
     document.getElementById("targets");
@@ -1169,35 +1362,63 @@ const explanationEl =
 const nextBtn =
     document.getElementById("nextBtn");
 
+const roundText =
+    document.getElementById("roundText");
 
-// =====================================================
-// SHUFFLE
-// =====================================================
-
-function shuffle(arr){
-
-    return [...arr].sort(
-        () => Math.random() - 0.5
-    );
-
-}
+const scoreText =
+    document.getElementById("scoreText");
 
 
-// =====================================================
-// TOTAL QUESTIONS
-// =====================================================
+/* =========================================================
+   TOTAL PAIRS
+========================================================= */
 
-const totalQuestions =
+const totalPairs =
     rounds.reduce(
-        (sum, round) =>
-            sum + round.vi.length,
+        (total, round) =>
+            total + round.vi.length,
         0
     );
 
 
-// =====================================================
-// START GAME
-// =====================================================
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array){
+
+    const copy = [...array];
+
+    for(
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
+        ];
+
+    }
+
+    return copy;
+
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
 
 function startGame(){
 
@@ -1210,19 +1431,14 @@ function startGame(){
     draggedWord = null;
 
 
-    document.getElementById(
-        "introScreen"
-    ).style.display = "none";
+    introScreen.style.display =
+        "none";
 
+    finalScreen.style.display =
+        "none";
 
-    document.getElementById(
-        "finalScreen"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "block";
+    gameScreen.style.display =
+        "block";
 
 
     loadRound();
@@ -1230,9 +1446,9 @@ function startGame(){
 }
 
 
-// =====================================================
-// LOAD ROUND
-// =====================================================
+/* =========================================================
+   LOAD ROUND
+========================================================= */
 
 function loadRound(){
 
@@ -1240,277 +1456,337 @@ function loadRound(){
 
     draggedWord = null;
 
-    messageEl.textContent = "";
 
-    messageEl.style.color = "";
+    messageEl.textContent =
+        "";
 
-    nextBtn.disabled = true;
+    messageEl.style.color =
+        "";
+
+
+    nextBtn.disabled =
+        true;
 
 
     explanationEl.classList.add(
         "hidden"
     );
 
-    explanationEl.innerHTML = "";
+    explanationEl.innerHTML =
+        "";
 
 
-    const round = rounds[current];
+    const round =
+        rounds[current];
 
-    const count = round.vi.length;
+    const count =
+        round.vi.length;
 
 
-    document.getElementById(
-        "roundText"
-    ).textContent =
+    roundText.textContent =
         `Round ${current + 1} / ${rounds.length}`;
 
 
-    document.getElementById(
-        "scoreText"
-    ).textContent =
+    scoreText.textContent =
         `Score: ${score}`;
 
 
     targetsEl.style.gridTemplateColumns =
-        `repeat(${count}, 1fr)`;
+        `repeat(${count}, minmax(0, 1fr))`;
 
 
     wordsEl.style.gridTemplateColumns =
-        `repeat(${count}, 1fr)`;
+        `repeat(${count}, minmax(0, 1fr))`;
 
 
-    targetsEl.innerHTML = "";
+    targetsEl.innerHTML =
+        "";
 
-    wordsEl.innerHTML = "";
-
-
-    // =================================================
-    // VIETNAMESE TARGETS
-    // =================================================
-
-    round.vi.forEach(word => {
-
-        const box =
-            document.createElement("div");
+    wordsEl.innerHTML =
+        "";
 
 
-        box.className = "target";
+    /* =====================================================
+       VIETNAMESE TARGETS
+    ===================================================== */
+
+    shuffle(round.vi).forEach(
+        vietnamese => {
 
 
-        box.textContent = word;
+            const box =
+                document.createElement("div");
 
 
-        box.dataset.vi = word;
+            box.className =
+                "target";
 
 
-        box.addEventListener(
-            "dragover",
-            e => {
-
-                e.preventDefault();
-
-                box.classList.add("over");
-
-            }
-        );
+            box.textContent =
+                vietnamese;
 
 
-        box.addEventListener(
-            "dragleave",
-            () => {
-
-                box.classList.remove(
-                    "over"
-                );
-
-            }
-        );
+            box.dataset.vi =
+                vietnamese;
 
 
-        box.addEventListener(
-            "drop",
-            e => {
+            /* =============================================
+               DRAG OVER
+            ============================================== */
 
-                e.preventDefault();
+            box.addEventListener(
+                "dragover",
+                event => {
 
-                box.classList.remove(
-                    "over"
-                );
-
-
-                if(
-                    !draggedWord ||
-                    box.classList.contains(
-                        "correct"
-                    )
-                ){
-
-                    return;
-
-                }
-
-
-                const english =
-                    draggedWord.dataset.word;
-
-
-                // CORRECT
-
-                if(
-                    round.map[english] ===
-                    box.dataset.vi
-                ){
-
-                    box.classList.add(
-                        "correct"
-                    );
-
-
-                    draggedWord.classList.add(
-                        "used"
-                    );
-
-
-                    matched++;
-
-                    score++;
-
-
-                    messageEl.textContent =
-                        "✅ Correct!";
-
-
-                    messageEl.style.color =
-                        "#3b8b58";
-
-
-                    document.getElementById(
-                        "scoreText"
-                    ).textContent =
-                        `Score: ${score}`;
-
-
-                    showExplanation(
-                        english,
-                        box.dataset.vi
-                    );
+                    event.preventDefault();
 
 
                     if(
-                        matched === count
+                        !box.classList.contains(
+                            "correct"
+                        )
                     ){
 
-                        messageEl.textContent =
-                            "🎉 Perfect!";
-
-
-                        nextBtn.disabled =
-                            false;
+                        box.classList.add(
+                            "over"
+                        );
 
                     }
 
                 }
+            );
 
 
-                // WRONG
+            /* =============================================
+               DRAG LEAVE
+            ============================================== */
 
-                else{
+            box.addEventListener(
+                "dragleave",
+                () => {
 
-                    box.classList.add(
-                        "wrong"
+                    box.classList.remove(
+                        "over"
                     );
-
-
-                    setTimeout(
-                        () => {
-
-                            box.classList.remove(
-                                "wrong"
-                            );
-
-                        },
-                        300
-                    );
-
-
-                    messageEl.textContent =
-                        "❌ Try again!";
-
-
-                    messageEl.style.color =
-                        "#c54d4d";
 
                 }
-
-            }
-        );
+            );
 
 
-        targetsEl.appendChild(box);
+            /* =============================================
+               DROP
+            ============================================== */
 
-    });
+            box.addEventListener(
+                "drop",
+                event => {
 
-
-    // =================================================
-    // ENGLISH WORDS
-    // =================================================
-
-    shuffle(round.en).forEach(word => {
-
-        const card =
-            document.createElement("div");
+                    event.preventDefault();
 
 
-        card.className = "word";
+                    box.classList.remove(
+                        "over"
+                    );
 
 
-        card.draggable = true;
+                    if(
+                        !draggedWord ||
+                        box.classList.contains(
+                            "correct"
+                        )
+                    ){
+
+                        return;
+
+                    }
 
 
-        card.dataset.word = word;
+                    const english =
+                        draggedWord.dataset.word;
 
 
-        card.textContent = word;
+                    /* =====================================
+                       CORRECT
+                    ====================================== */
+
+                    if(
+                        round.map[english] ===
+                        box.dataset.vi
+                    ){
+
+                        box.classList.add(
+                            "correct"
+                        );
 
 
-        card.addEventListener(
-            "dragstart",
-            () => {
-
-                draggedWord = card;
-
-                card.classList.add(
-                    "dragging"
-                );
-
-            }
-        );
+                        draggedWord.classList.add(
+                            "used"
+                        );
 
 
-        card.addEventListener(
-            "dragend",
-            () => {
+                        matched++;
 
-                card.classList.remove(
-                    "dragging"
-                );
-
-                draggedWord = null;
-
-            }
-        );
+                        score++;
 
 
-        wordsEl.appendChild(card);
+                        messageEl.textContent =
+                            "✅ Correct!";
 
-    });
+
+                        messageEl.style.color =
+                            "#3b8b58";
+
+
+                        scoreText.textContent =
+                            `Score: ${score}`;
+
+
+                        showExplanation(
+                            english,
+                            box.dataset.vi
+                        );
+
+
+                        if(
+                            matched === count
+                        ){
+
+                            messageEl.textContent =
+                                "🎉 Perfect!";
+
+
+                            nextBtn.disabled =
+                                false;
+
+                        }
+
+                    }
+
+
+                    /* =====================================
+                       WRONG
+                    ====================================== */
+
+                    else{
+
+                        box.classList.add(
+                            "wrong"
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                box.classList.remove(
+                                    "wrong"
+                                );
+
+                            },
+                            300
+                        );
+
+
+                        messageEl.textContent =
+                            "❌ Try again!";
+
+
+                        messageEl.style.color =
+                            "#c54d4d";
+
+                    }
+
+
+                    draggedWord = null;
+
+                }
+            );
+
+
+            targetsEl.appendChild(
+                box
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       ENGLISH WORDS
+    ===================================================== */
+
+    shuffle(round.en).forEach(
+        english => {
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "word";
+
+
+            card.draggable =
+                true;
+
+
+            card.dataset.word =
+                english;
+
+
+            card.textContent =
+                english;
+
+
+            /* =============================================
+               DRAG START
+            ============================================== */
+
+            card.addEventListener(
+                "dragstart",
+                () => {
+
+                    draggedWord =
+                        card;
+
+
+                    card.classList.add(
+                        "dragging"
+                    );
+
+                }
+            );
+
+
+            /* =============================================
+               DRAG END
+            ============================================== */
+
+            card.addEventListener(
+                "dragend",
+                () => {
+
+                    card.classList.remove(
+                        "dragging"
+                    );
+
+                }
+            );
+
+
+            wordsEl.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
 
-// =====================================================
-// SHOW EXPLANATION
-// =====================================================
+/* =========================================================
+   SHOW EXPLANATION
+========================================================= */
 
 function showExplanation(
     english,
@@ -1540,12 +1816,7 @@ function showExplanation(
 
         ${data.meaning}
 
-        <br>
-
-        <span style="
-            font-size:14px;
-            color:#68788a;
-        ">
+        <span class="related">
 
             Related English words:
             ${data.related}
@@ -1562,9 +1833,9 @@ function showExplanation(
 }
 
 
-// =====================================================
-// NEXT ROUND
-// =====================================================
+/* =========================================================
+   NEXT ROUND
+========================================================= */
 
 nextBtn.addEventListener(
     "click",
@@ -1591,33 +1862,89 @@ nextBtn.addEventListener(
 );
 
 
-// =====================================================
-// FINISH GAME
-// =====================================================
+/* =========================================================
+   FINISH GAME
+========================================================= */
 
 function finishGame(){
 
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "none";
+    gameScreen.style.display =
+        "none";
 
 
-    document.getElementById(
-        "finalScreen"
-    ).style.display = "block";
+    finalScreen.style.display =
+        "block";
+
+
+    finalScreen.querySelector(
+        "h2"
+    ).textContent =
+        "🎉 Great Job!";
 
 
     document.getElementById(
         "finalScore"
     ).textContent =
-        `Your score: ${score} / ${totalQuestions}`;
+        `Your score: ${score} / ${totalPairs}`;
+
+
+    const percentage =
+        Math.round(
+            score /
+            totalPairs *
+            100
+        );
+
+
+    let message;
+
+
+    if(
+        percentage >= 90
+    ){
+
+        message =
+            "🏆 Excellent!";
+
+    }
+
+    else if(
+        percentage >= 70
+    ){
+
+        message =
+            "🎉 Great Job!";
+
+    }
+
+    else if(
+        percentage >= 50
+    ){
+
+        message =
+            "👍 Good Work!";
+
+    }
+
+    else{
+
+        message =
+            "📚 Keep Practicing!";
+
+    }
+
+
+    document.getElementById(
+        "finalMessage"
+    ).textContent =
+        `${percentage}% — ${message}`;
 
 }
 
 
-// =====================================================
-// RESTART GAME
-// =====================================================
+/* =========================================================
+   RESTART GAME
+========================================================= */
 
 function restartGame(){
 
@@ -1630,17 +1957,16 @@ function restartGame(){
     draggedWord = null;
 
 
-    document.getElementById(
-        "finalScreen"
-    ).style.display = "none";
+    finalScreen.style.display =
+        "none";
 
 
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "block";
+    introScreen.style.display =
+        "block";
 
 
-    loadRound();
+    gameScreen.style.display =
+        "none";
 
 }
 

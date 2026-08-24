@@ -9,310 +9,685 @@
 <title>Odd One Out - Vietnamese Vocabulary Review</title>
 
 <meta name="game-title" content="Odd One Out">
-<meta name="game-description" content="Find the Vietnamese word that does not belong in each group.">
+<meta
+    name="game-description"
+    content="Find the Vietnamese word that does not belong in each group."
+>
 <meta name="game-icon" content="🎲">
 <meta name="game-explanation" content="true">
 
+
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
     box-sizing:border-box;
 }
 
 body{
+
     margin:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#f7f9fc;
+
+    min-height:100vh;
+
+    color:#222;
+
     padding:20px;
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#333;
 }
 
-/* ============================= */
-/* BACK TO LOBBY */
-/* ============================= */
+
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
 
 .back-btn-container{
-    max-width:900px;
-    margin:0 auto 20px;
+
+    max-width:750px;
+
+    margin:0 auto 15px;
+
     text-align:left;
 }
 
 .back-btn{
+
     display:inline-block;
+
     padding:10px 18px;
+
     background:white;
+
     color:#555;
+
     border:2px solid #ddd;
+
     border-radius:10px;
+
     text-decoration:none;
+
     font-weight:bold;
+
     transition:.2s;
 }
 
 .back-btn:hover{
+
     background:#f0f0f0;
+
     transform:translateY(-2px);
 }
 
-/* ============================= */
-/* MAIN CONTAINER */
-/* ============================= */
 
-.container{
-    max-width:900px;
-    margin:auto;
-}
+/* =========================================================
+   GAME CONTAINER
+========================================================= */
 
-/* ============================= */
-/* GAME HEADER */
-/* ============================= */
+.game-box{
 
-h1{
-    text-align:center;
-    margin:10px 0;
-    font-size:32px;
-}
+    width:100%;
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    font-size:18px;
-    margin-bottom:25px;
-}
+    max-width:750px;
 
-/* ============================= */
-/* INTRO / TUTORIAL */
-/* ============================= */
+    margin:0 auto;
 
-.intro{
     background:white;
-    padding:35px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
+
+    border-radius:24px;
+
+    padding:35px 40px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.10);
+
     text-align:center;
 }
 
-.intro h2{
-    margin-top:0;
-    font-size:28px;
+
+/* =========================================================
+   INTRO SCREEN
+========================================================= */
+
+#introScreen{
+
+    padding:10px 5px;
 }
 
-.intro p{
-    font-size:18px;
-    line-height:1.6;
-    color:#555;
-}
+.game-icon{
 
-.start-btn,
-.next-btn,
-.play-again-btn{
-    margin-top:20px;
-    padding:13px 30px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
-    background:#2196f3;
-    color:white;
-    font-weight:bold;
-}
+    font-size:70px;
 
-.start-btn:hover,
-.next-btn:hover,
-.play-again-btn:hover{
-    opacity:.9;
-}
-
-/* ============================= */
-/* GAME CARD */
-/* ============================= */
-
-.game-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    font-weight:bold;
-    color:#555;
-}
-
-.question-number{
-    text-align:center;
-    font-size:18px;
-    color:#666;
     margin-bottom:10px;
 }
 
-.question-title{
-    text-align:center;
-    font-size:30px;
-    font-weight:bold;
-    margin-bottom:30px;
+#introScreen h1{
+
+    margin:10px 0 15px;
+
+    font-size:34px;
+
+    color:#2c3e50;
 }
 
-/* ============================= */
-/* WORDS */
-/* ============================= */
+.intro-description{
+
+    max-width:580px;
+
+    margin:0 auto 25px;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    color:#666;
+}
+
+
+/* =========================================================
+   HOW TO PLAY
+========================================================= */
+
+.how-to-play{
+
+    max-width:600px;
+
+    margin:0 auto 25px;
+
+    padding:20px 25px;
+
+    background:#f0f7ff;
+
+    border-left:5px solid #4779b8;
+
+    border-radius:14px;
+
+    text-align:left;
+}
+
+.how-to-play h2{
+
+    margin:0 0 12px;
+
+    color:#4779b8;
+
+    font-size:22px;
+}
+
+.how-to-play p{
+
+    margin:8px 0;
+
+    font-size:16px;
+
+    line-height:1.5;
+
+    color:#3d5066;
+}
+
+
+/* =========================================================
+   GAME INFO
+========================================================= */
+
+.game-info{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin:20px 0 25px;
+}
+
+.game-info div{
+
+    background:#f4f8fb;
+
+    border:1px solid #e1e8ee;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
+    color:#555;
+
+    font-size:16px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button{
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+#startBtn{
+
+    padding:14px 35px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:19px;
+}
+
+#startBtn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
+}
+
+.next-btn{
+
+    padding:13px 30px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.next-btn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
+}
+
+.play-again-btn{
+
+    padding:14px 30px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.play-again-btn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
+
+    display:none;
+}
+
+#gameScreen h1{
+
+    margin:0 0 10px;
+
+    color:#2c3e50;
+
+    font-size:32px;
+}
+
+.instruction{
+
+    color:#555;
+
+    font-size:17px;
+
+    margin:0 0 20px;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:20px 0 25px;
+
+    font-weight:bold;
+
+    font-size:17px;
+}
+
+.round{
+
+    color:#666;
+}
+
+.score{
+
+    color:#333;
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-title{
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    color:#333;
+
+    margin:25px 0 30px;
+}
+
+
+/* =========================================================
+   WORDS
+========================================================= */
 
 .words{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:15px;
 }
 
 .word{
+
     border:2px solid #ddd;
-    border-radius:12px;
+
+    border-radius:14px;
+
     padding:20px;
+
+    min-height:85px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
     text-align:center;
-    font-size:24px;
+
+    font-size:23px;
+
     cursor:pointer;
+
     background:white;
+
     transition:.2s;
+
     user-select:none;
 }
 
 .word:hover{
-    transform:scale(1.03);
+
+    transform:translateY(-3px);
+
     background:#f8fbff;
+
+    border-color:#b8cbe0;
 }
 
 .word.correct{
-    background:#c8e6c9 !important;
-    border-color:#4caf50 !important;
+
+    background:#dff5e5 !important;
+
+    border-color:#4caf70 !important;
+
+    color:#2e7d32;
+
     cursor:default;
 }
 
 .word.wrong{
-    background:#ffcdd2 !important;
-    border-color:#f44336 !important;
+
+    background:#ffe0e0 !important;
+
+    border-color:#e74c3c !important;
+
+    color:#c0392b;
+
+    animation:shake .3s;
 }
 
-/* ============================= */
-/* MESSAGE */
-/* ============================= */
+@keyframes shake{
+
+    25%{
+        transform:translateX(-7px);
+    }
+
+    75%{
+        transform:translateX(7px);
+    }
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
 
 #result{
-    text-align:center;
-    margin-top:25px;
+
     min-height:55px;
-    font-size:22px;
+
+    margin-top:25px;
+
+    font-size:20px;
+
     font-weight:bold;
+
+    line-height:1.5;
 }
 
 .answer{
-    margin-top:8px;
-    font-size:18px;
+
+    margin-top:6px;
+
+    font-size:17px;
+
     font-weight:normal;
 }
 
-/* ============================= */
-/* EXPLANATION */
-/* ============================= */
+
+/* =========================================================
+   EXPLANATION
+========================================================= */
 
 .explanation{
+
     margin:20px auto 0;
-    padding:18px 20px;
-    max-width:750px;
+
+    padding:16px 20px;
+
+    max-width:650px;
+
     background:#f0f7ff;
+
     border-left:5px solid #4779b8;
+
     border-radius:12px;
+
     color:#3d5066;
+
     font-size:16px;
+
     line-height:1.6;
+
     text-align:left;
 }
 
 .explanation strong{
+
     color:#4779b8;
 }
 
 .hidden{
+
     display:none;
 }
 
-/* ============================= */
-/* NEXT BUTTON */
-/* ============================= */
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
 
 .next-area{
-    text-align:center;
+
+    margin-top:20px;
 }
 
 #nextBtn{
+
     display:none;
 }
 
-/* ============================= */
-/* FINAL SCREEN */
-/* ============================= */
 
-.final{
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
+
+#finalScreen{
+
     display:none;
-    background:white;
-    padding:40px 30px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-    text-align:center;
+
+    padding:20px 10px;
 }
 
-.final h2{
-    font-size:32px;
-    color:#2e7d32;
+.final-icon{
+
+    font-size:65px;
+
+    margin-bottom:10px;
+}
+
+#finalScreen h1{
+
+    color:#2c3e50;
+
+    font-size:34px;
+
+    margin:10px 0 20px;
 }
 
 .final-score{
-    font-size:28px;
-    margin:20px 0;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    margin:15px 0;
+}
+
+.final-percent{
+
+    font-size:20px;
+
+    color:#555;
+
+    margin:10px 0;
 }
 
 .final-message{
+
     font-size:20px;
+
+    font-weight:bold;
+
     color:#555;
+
+    line-height:1.5;
+
+    margin:20px 0 25px;
 }
 
-/* ============================= */
-/* MOBILE */
-/* ============================= */
 
-@media(max-width:700px){
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
 
     body{
+
         padding:15px;
     }
 
-    h1{
-        font-size:26px;
+    .game-box{
+
+        padding:30px 20px;
+
+        border-radius:20px;
     }
 
-    .game-card,
-    .intro,
-    .final{
-        padding:20px;
+    #introScreen h1,
+    #gameScreen h1{
+
+        font-size:28px;
+    }
+
+    .game-icon{
+
+        font-size:58px;
+    }
+
+    .intro-description{
+
+        font-size:16px;
+    }
+
+    .how-to-play{
+
+        padding:18px;
+    }
+
+    .how-to-play p{
+
+        font-size:15px;
+    }
+
+    .game-info{
+
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .game-info div{
+
+        width:100%;
+    }
+
+    .topbar{
+
+        font-size:15px;
+    }
+
+    .question-title{
+
+        font-size:22px;
+
+        line-height:1.5;
     }
 
     .words{
+
         grid-template-columns:1fr;
     }
 
     .word{
+
         font-size:20px;
+
+        min-height:75px;
+
         padding:17px;
     }
 
-    .question-title{
-        font-size:24px;
+    #result{
+
+        font-size:18px;
     }
 
-    .topbar{
+    .explanation{
+
         font-size:15px;
+
+        padding:15px;
     }
 
 }
@@ -321,79 +696,160 @@ h1{
 
 </head>
 
+
 <body>
 
 
-<!-- ============================= */
-/* BACK TO LOBBY */
-/* ============================= -->
+<!-- =========================================================
+     BACK TO LOBBY
+========================================================= -->
 
 <div class="back-btn-container">
 
-    <a href="../../../index.html" class="back-btn">
+    <a
+        href="../../../index.html"
+        class="back-btn"
+    >
         ⬅ Back to Lobby
     </a>
 
 </div>
 
 
-<div class="container">
+
+<div class="game-box">
 
 
-<!-- ============================= */
-/* INTRO SCREEN */
-/* ============================= -->
+<!-- =========================================================
+     INTRO SCREEN
+========================================================= -->
 
-<div class="intro" id="introScreen">
+<div id="introScreen">
 
-    <h1>🎲 Odd One Out</h1>
-
-    <div class="subtitle">
-        Vietnamese Vocabulary Review
+    <div class="game-icon">
+        🎲
     </div>
 
-    <h2>How to Play</h2>
 
-    <p>
-        Look at the Vietnamese words and find the one
-        that does <strong>NOT</strong> belong in the group.
+    <h1>
+        Odd One Out
+    </h1>
+
+
+    <p class="intro-description">
+
+        Find the Vietnamese word that does
+        <strong>not</strong> belong in each group.
+
     </p>
 
-    <p>
-        🎯 Choose one answer for each question.
-    </p>
 
-    <p>
-        📚 Learn why the answer is different after each question.
-    </p>
+    <!-- =====================================================
+         HOW TO PLAY
+    ===================================================== -->
 
-    <p>
-        📝 Total Questions:
-        <strong>13</strong>
-    </p>
+    <div class="how-to-play">
 
-    <button class="start-btn" onclick="startGame()">
-        Start Game
+        <h2>
+            🎮 How to Play
+        </h2>
+
+        <p>
+            👀 <strong>1.</strong>
+            Look at the four Vietnamese words.
+        </p>
+
+        <p>
+            🎯 <strong>2.</strong>
+            Choose the word that does
+            <strong>NOT</strong> belong.
+        </p>
+
+        <p>
+            ✅ <strong>3.</strong>
+            Correct answer = 1 point.
+        </p>
+
+        <p>
+            ❌ <strong>4.</strong>
+            If your answer is wrong,
+            the correct answer will be shown.
+        </p>
+
+        <p>
+            📚 <strong>5.</strong>
+            Read the explanation to learn
+            why the word is different.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         GAME INFO
+    ===================================================== -->
+
+    <div class="game-info">
+
+        <div>
+            📝
+            <strong>13 Questions</strong>
+        </div>
+
+        <div>
+            🎯
+            <strong>Choose the odd word</strong>
+        </div>
+
+    </div>
+
+
+    <button
+        id="startBtn"
+        onclick="startGame()"
+    >
+
+        Start Game →
+
     </button>
 
 </div>
 
 
-<!-- ============================= */
-/* GAME SCREEN */
-/* ============================= -->
 
-<div class="game-card" id="gameScreen" style="display:none;">
+<!-- =========================================================
+     GAME SCREEN
+========================================================= -->
 
-    <h1>🎲 Odd One Out</h1>
+<div id="gameScreen">
+
+
+    <h1>
+        🎲 Odd One Out
+    </h1>
+
+
+    <p class="instruction">
+
+        Which Vietnamese word does NOT belong?
+
+    </p>
+
 
     <div class="topbar">
 
-        <div id="questionNumber">
+        <div
+            class="round"
+            id="questionNumber"
+        >
             Question 1 of 13
         </div>
 
-        <div id="score">
+
+        <div
+            class="score"
+            id="score"
+        >
             Score: 0 / 13
         </div>
 
@@ -401,11 +857,18 @@ h1{
 
 
     <div class="question-title">
-        Which word does NOT belong?
+
+        Which word does
+        <strong>NOT</strong>
+        belong?
+
     </div>
 
 
-    <div class="words" id="words">
+    <div
+        class="words"
+        id="words"
+    >
     </div>
 
 
@@ -413,9 +876,14 @@ h1{
     </div>
 
 
-    <!-- ONE CONSOLIDATED EXPLANATION -->
+    <!-- =====================================================
+         EXPLANATION
+    ===================================================== -->
 
-    <div id="explanation" class="explanation hidden">
+    <div
+        id="explanation"
+        class="explanation hidden"
+    >
     </div>
 
 
@@ -424,36 +892,62 @@ h1{
         <button
             id="nextBtn"
             class="next-btn"
-            onclick="nextQuestion()">
+            onclick="nextQuestion()"
+        >
 
-            Next Question ➜
+            Next Question →
 
         </button>
 
     </div>
 
+
 </div>
 
 
-<!-- ============================= */
-/* FINAL SCREEN */
-/* ============================= -->
 
-<div class="final" id="finalScreen">
+<!-- =========================================================
+     FINAL SCREEN
+========================================================= -->
 
-    <h2>
-        🎉 Game Finished!
-    </h2>
+<div id="finalScreen">
 
-    <div class="final-score" id="finalScore">
+
+    <div class="final-icon">
+        🎉
     </div>
 
-    <div class="final-message" id="finalMessage">
+
+    <h1>
+        Game Finished!
+    </h1>
+
+
+    <div
+        class="final-score"
+        id="finalScore"
+    >
     </div>
+
+
+    <div
+        class="final-percent"
+        id="finalPercent"
+    >
+    </div>
+
+
+    <div
+        class="final-message"
+        id="finalMessage"
+    >
+    </div>
+
 
     <button
         class="play-again-btn"
-        onclick="restartGame()">
+        onclick="restartGame()"
+    >
 
         Play Again
 
@@ -465,144 +959,281 @@ h1{
 </div>
 
 
+
 <script>
 
-
-/* =====================================
-   QUESTIONS
-===================================== */
+/* =========================================================
+   QUESTION DATA
+========================================================= */
 
 const questions = [
 
     {
-        words:["Cà phê","Trà","Nước chanh","Tỏi"],
+        words:[
+            "Cà phê",
+            "Trà",
+            "Nước chanh",
+            "Tỏi"
+        ],
+
         answer:"Tỏi",
-        explanation:"Cà phê, trà, and nước chanh are drinks. Tỏi is food."
+
+        explanation:
+            "Cà phê, trà, and nước chanh are drinks. Tỏi is food."
     },
 
+
     {
-        words:["Bò","Gà","Cá","Muối"],
+        words:[
+            "Bò",
+            "Gà",
+            "Cá",
+            "Muối"
+        ],
+
         answer:"Muối",
-        explanation:"Bò, gà, and cá are types of meat or animal-based food. Muối is a seasoning."
+
+        explanation:
+            "Bò, gà, and cá are meat or animal-based foods. Muối is a seasoning."
     },
 
+
     {
-        words:["Tô","Ly","Dĩa","Trứng"],
+        words:[
+            "Tô",
+            "Ly",
+            "Dĩa",
+            "Trứng"
+        ],
+
         answer:"Trứng",
-        explanation:"Tô, ly, and dĩa are things used for serving food or drinks. Trứng is food."
+
+        explanation:
+            "Tô, ly, and dĩa are used for serving food or drinks. Trứng is food."
     },
 
+
     {
-        words:["Cay","Ngọt","Đắng","Bò"],
+        words:[
+            "Cay",
+            "Ngọt",
+            "Đắng",
+            "Bò"
+        ],
+
         answer:"Bò",
-        explanation:"Cay, ngọt, and đắng describe tastes. Bò is a type of food."
+
+        explanation:
+            "Cay, ngọt, and đắng describe tastes. Bò is a type of food."
     },
 
+
     {
-        words:["Sốt","Ho","Nhức đầu","Cà phê"],
+        words:[
+            "Sốt",
+            "Ho",
+            "Nhức đầu",
+            "Cà phê"
+        ],
+
         answer:"Cà phê",
-        explanation:"Sốt, ho, and nhức đầu are health-related words. Cà phê is a drink."
+
+        explanation:
+            "Sốt, ho, and nhức đầu are health-related words. Cà phê is a drink."
     },
 
+
     {
-        words:["Muối","Tỏi","Tiêu","Trà"],
+        words:[
+            "Muối",
+            "Tỏi",
+            "Tiêu",
+            "Trà"
+        ],
+
         answer:"Trà",
-        explanation:"Muối, tỏi, and tiêu are ingredients or seasonings. Trà is a drink."
+
+        explanation:
+            "Muối, tỏi, and tiêu are ingredients or seasonings. Trà is a drink."
     },
 
+
     {
-        words:["Ăn sáng","Ăn trưa","Ăn tối","Nước chanh"],
+        words:[
+            "Ăn sáng",
+            "Ăn trưa",
+            "Ăn tối",
+            "Nước chanh"
+        ],
+
         answer:"Nước chanh",
-        explanation:"Ăn sáng, ăn trưa, and ăn tối are meals or eating times. Nước chanh is a drink."
+
+        explanation:
+            "Ăn sáng, ăn trưa, and ăn tối are meals or eating times. Nước chanh is a drink."
     },
 
+
     {
-        words:["Hôm qua","Hôm nay","Ngày mai","Gà"],
+        words:[
+            "Hôm qua",
+            "Hôm nay",
+            "Ngày mai",
+            "Gà"
+        ],
+
         answer:"Gà",
-        explanation:"Hôm qua, hôm nay, and ngày mai are words related to time. Gà is food."
+
+        explanation:
+            "Hôm qua, hôm nay, and ngày mai are words related to time. Gà is food."
     },
 
+
     {
-        words:["Cay","Ngọt","Sốt","Đắng"],
+        words:[
+            "Cay",
+            "Ngọt",
+            "Sốt",
+            "Đắng"
+        ],
+
         answer:"Sốt",
-        explanation:"Cay, ngọt, and đắng describe tastes. Sốt means fever or high temperature."
+
+        explanation:
+            "Cay, ngọt, and đắng describe tastes. Sốt means fever or high temperature."
     },
 
+
     {
-        words:["Tô","Dĩa","Ly","Tỏi"],
+        words:[
+            "Tô",
+            "Dĩa",
+            "Ly",
+            "Tỏi"
+        ],
+
         answer:"Tỏi",
-        explanation:"Tô, dĩa, and ly are containers or tableware. Tỏi is an ingredient."
+
+        explanation:
+            "Tô, dĩa, and ly are containers or tableware. Tỏi is an ingredient."
     },
 
+
     {
-        words:["Gà","Cá","Bò","Cà phê"],
+        words:[
+            "Gà",
+            "Cá",
+            "Bò",
+            "Cà phê"
+        ],
+
         answer:"Cà phê",
-        explanation:"Gà, cá, and bò are foods. Cà phê is a drink."
+
+        explanation:
+            "Gà, cá, and bò are foods. Cà phê is a drink."
     },
 
+
     {
-        words:["Buổi sáng","Buổi chiều","Buổi tối","Muối"],
+        words:[
+            "Buổi sáng",
+            "Buổi chiều",
+            "Buổi tối",
+            "Muối"
+        ],
+
         answer:"Muối",
-        explanation:"Buổi sáng, buổi chiều, and buổi tối describe parts of the day. Muối is a seasoning."
+
+        explanation:
+            "Buổi sáng, buổi chiều, and buổi tối describe parts of the day. Muối is a seasoning."
     },
 
+
     {
-        words:["Nước lọc","Sữa","Nước cam","Nhức đầu"],
+        words:[
+            "Nước lọc",
+            "Sữa",
+            "Nước cam",
+            "Nhức đầu"
+        ],
+
         answer:"Nhức đầu",
-        explanation:"Nước lọc, sữa, and nước cam are drinks. Nhức đầu is a health-related expression meaning headache."
+
+        explanation:
+            "Nước lọc, sữa, and nước cam are drinks. Nhức đầu is a health-related expression meaning headache."
     }
 
 ];
 
 
-/* =====================================
+/* =========================================================
    GAME STATE
-===================================== */
+========================================================= */
 
 let currentQuestion = 0;
+
 let score = 0;
+
 let locked = false;
 
 
-/* =====================================
-   DOM
-===================================== */
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
 
 const introScreen =
-    document.getElementById("introScreen");
+    document.getElementById(
+        "introScreen"
+    );
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
 
 const finalScreen =
-    document.getElementById("finalScreen");
+    document.getElementById(
+        "finalScreen"
+    );
 
 const wordsEl =
-    document.getElementById("words");
+    document.getElementById(
+        "words"
+    );
 
 const resultEl =
-    document.getElementById("result");
+    document.getElementById(
+        "result"
+    );
 
 const explanationEl =
-    document.getElementById("explanation");
+    document.getElementById(
+        "explanation"
+    );
 
 const scoreEl =
-    document.getElementById("score");
+    document.getElementById(
+        "score"
+    );
 
 const questionNumberEl =
-    document.getElementById("questionNumber");
+    document.getElementById(
+        "questionNumber"
+    );
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
 
 
-/* =====================================
+/* =========================================================
    SHUFFLE
-===================================== */
+========================================================= */
 
 function shuffle(array){
 
     const shuffled = [...array];
+
 
     for(
         let i = shuffled.length - 1;
@@ -615,6 +1246,7 @@ function shuffle(array){
                 Math.random() * (i + 1)
             );
 
+
         [
             shuffled[i],
             shuffled[j]
@@ -626,14 +1258,15 @@ function shuffle(array){
 
     }
 
+
     return shuffled;
 
 }
 
 
-/* =====================================
+/* =========================================================
    START GAME
-===================================== */
+========================================================= */
 
 function startGame(){
 
@@ -641,11 +1274,18 @@ function startGame(){
 
     score = 0;
 
-    introScreen.style.display = "none";
+    locked = false;
 
-    finalScreen.style.display = "none";
 
-    gameScreen.style.display = "block";
+    introScreen.style.display =
+        "none";
+
+    finalScreen.style.display =
+        "none";
+
+    gameScreen.style.display =
+        "block";
+
 
     updateScore();
 
@@ -654,9 +1294,9 @@ function startGame(){
 }
 
 
-/* =====================================
+/* =========================================================
    UPDATE SCORE
-===================================== */
+========================================================= */
 
 function updateScore(){
 
@@ -666,15 +1306,16 @@ function updateScore(){
 }
 
 
-/* =====================================
+/* =========================================================
    LOAD QUESTION
-===================================== */
+========================================================= */
 
 function loadQuestion(){
 
     locked = false;
 
-    const q =
+
+    const question =
         questions[currentQuestion];
 
 
@@ -688,72 +1329,102 @@ function loadQuestion(){
 
     explanationEl.innerHTML = "";
 
-    explanationEl.classList.add("hidden");
+    explanationEl.classList.add(
+        "hidden"
+    );
 
-    nextBtn.style.display = "none";
+    nextBtn.style.display =
+        "none";
 
 
     const shuffledWords =
-        shuffle(q.words);
+        shuffle(
+            question.words
+        );
 
 
-    shuffledWords.forEach(word => {
+    shuffledWords.forEach(
+        word => {
 
-        const div =
-            document.createElement("div");
-
-
-        div.className = "word";
-
-        div.textContent = word;
+            const wordElement =
+                document.createElement(
+                    "div"
+                );
 
 
-        div.onclick = () => {
+            wordElement.className =
+                "word";
 
-            checkAnswer(
-                div,
-                word
+
+            wordElement.textContent =
+                word;
+
+
+            wordElement.addEventListener(
+                "click",
+                () => {
+
+                    checkAnswer(
+                        wordElement,
+                        word
+                    );
+
+                }
             );
 
-        };
 
+            wordsEl.appendChild(
+                wordElement
+            );
 
-        wordsEl.appendChild(div);
-
-    });
+        }
+    );
 
 }
 
 
-/* =====================================
+/* =========================================================
    CHECK ANSWER
-===================================== */
+========================================================= */
 
 function checkAnswer(
     element,
-    word
+    selectedWord
 ){
 
-    if(locked) return;
+    if(locked){
+
+        return;
+
+    }
+
 
     locked = true;
 
 
-    const q =
+    const question =
         questions[currentQuestion];
 
 
     const allWords =
-        document.querySelectorAll(".word");
+        document.querySelectorAll(
+            ".word"
+        );
 
 
-    /* ==============================
+    /* =====================================================
        CORRECT
-    ============================== */
+    ===================================================== */
 
-    if(word === q.answer){
+    if(
+        selectedWord ===
+        question.answer
+    ){
 
-        element.classList.add("correct");
+        element.classList.add(
+            "correct"
+        );
+
 
         score++;
 
@@ -761,54 +1432,69 @@ function checkAnswer(
 
 
         resultEl.innerHTML = `
+
             ✅ Correct!
+
             <div class="answer">
-                "${q.answer}" does not belong.
+
+                "${question.answer}"
+                does not belong.
+
             </div>
+
         `;
 
     }
 
 
-    /* ==============================
+    /* =====================================================
        WRONG
-    ============================== */
+    ===================================================== */
 
     else{
 
-        element.classList.add("wrong");
+        element.classList.add(
+            "wrong"
+        );
 
 
-        allWords.forEach(item => {
+        allWords.forEach(
+            wordElement => {
 
-            if(
-                item.textContent ===
-                q.answer
-            ){
+                if(
+                    wordElement.textContent ===
+                    question.answer
+                ){
 
-                item.classList.add(
-                    "correct"
-                );
+                    wordElement.classList.add(
+                        "correct"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
 
         resultEl.innerHTML = `
+
             ❌ Wrong!
+
             <div class="answer">
+
                 Correct answer:
-                <b>${q.answer}</b>
+                <b>${question.answer}</b>
+
             </div>
+
         `;
 
     }
 
 
-    /* ==============================
-       SHOW ONE EXPLANATION
-    ============================== */
+    /* =====================================================
+       EXPLANATION
+    ===================================================== */
 
     explanationEl.innerHTML = `
 
@@ -816,7 +1502,7 @@ function checkAnswer(
 
         <br>
 
-        ${q.explanation}
+        ${question.explanation}
 
     `;
 
@@ -832,9 +1518,9 @@ function checkAnswer(
 }
 
 
-/* =====================================
+/* =========================================================
    NEXT QUESTION
-===================================== */
+========================================================= */
 
 function nextQuestion(){
 
@@ -858,14 +1544,15 @@ function nextQuestion(){
 }
 
 
-/* =====================================
+/* =========================================================
    FINISH GAME
-===================================== */
+========================================================= */
 
 function finishGame(){
 
     gameScreen.style.display =
         "none";
+
 
     finalScreen.style.display =
         "block";
@@ -877,7 +1564,7 @@ function finishGame(){
         `Final Score: ${score} / ${questions.length}`;
 
 
-    const percent =
+    const percentage =
         Math.round(
             score /
             questions.length *
@@ -885,17 +1572,27 @@ function finishGame(){
         );
 
 
-    let message = "";
+    document.getElementById(
+        "finalPercent"
+    ).textContent =
+        `${percentage}%`;
 
 
-    if(percent >= 85){
+    let message;
+
+
+    if(
+        percentage >= 85
+    ){
 
         message =
             "🏆 Excellent! You really know your Vietnamese vocabulary!";
 
     }
 
-    else if(percent >= 60){
+    else if(
+        percentage >= 60
+    ){
 
         message =
             "🎉 Good job! Keep practicing!";
@@ -918,24 +1615,37 @@ function finishGame(){
 }
 
 
-/* =====================================
-   RESTART
-===================================== */
+/* =========================================================
+   RESTART GAME
+========================================================= */
 
 function restartGame(){
 
-    startGame();
+    currentQuestion = 0;
+
+    score = 0;
+
+    locked = false;
+
+
+    finalScreen.style.display =
+        "none";
+
+
+    gameScreen.style.display =
+        "none";
+
+
+    introScreen.style.display =
+        "block";
+
+
+    updateScore();
 
 }
-
-
-/* =====================================
-   START
-===================================== */
-
-// Game starts from the intro screen.
 
 </script>
 
 </body>
+
 </html>

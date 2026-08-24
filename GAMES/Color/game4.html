@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -49,6 +48,45 @@ body{
     box-shadow:0 8px 25px rgba(0,0,0,0.1);
 
     text-align:center;
+
+}
+
+
+/* =========================
+   LOBBY BUTTON
+========================= */
+
+.lobby-btn{
+
+    display:block;
+
+    margin-bottom:15px;
+
+    padding:8px 14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#f1f3f5;
+
+    color:#555;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.lobby-btn:hover{
+
+    background:#e2e6ea;
+
+    transform:translateX(-2px);
 
 }
 
@@ -311,6 +349,18 @@ select{
 
 
     <!-- =========================
+         LOBBY
+    ========================= -->
+
+    <button
+        class="lobby-btn"
+        onclick="goToLobby()"
+    >
+        ← Back to Lobby
+    </button>
+
+
+    <!-- =========================
          INTRO SCREEN
     ========================= -->
 
@@ -398,6 +448,18 @@ select{
 
 
 <script>
+
+
+/* =========================
+   LOBBY
+========================= */
+
+function goToLobby(){
+
+    window.location.href =
+        "../../index.html";
+
+}
 
 
 /* =========================

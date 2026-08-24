@@ -27,16 +27,22 @@
 }
 
 body{
+
     margin:0;
+
     padding:20px;
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:#f7f9fc;
 
     min-height:100vh;
 
     color:#222;
+
 }
 
 
@@ -45,30 +51,41 @@ body{
 ========================================================= */
 
 .back-btn-container{
-    max-width:850px;
+
+    width:min(850px,95vw);
+
     margin:0 auto 15px;
+
 }
 
 .back-btn{
+
     display:inline-block;
 
     padding:10px 18px;
 
     background:white;
+
     color:#555;
 
     border:2px solid #ddd;
+
     border-radius:10px;
 
     text-decoration:none;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
 
 .back-btn:hover{
+
     background:#f0f0f0;
+
     transform:translateY(-2px);
+
 }
 
 
@@ -77,45 +94,66 @@ body{
 ========================================================= */
 
 .game-box{
-    width:min(850px, 95vw);
+
+    width:min(850px,95vw);
 
     margin:0 auto;
 
     background:white;
 
-    border-radius:24px;
-
     padding:35px;
+
+    border-radius:24px;
 
     box-shadow:
         0 10px 35px rgba(0,0,0,.10);
 
     text-align:center;
+
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   SCREEN
 ========================================================= */
 
-#introScreen{
-    padding:15px 10px 10px;
+.screen{
+
+    display:none;
+
 }
 
+.screen.active{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
 .game-icon{
+
     font-size:70px;
+
     margin-bottom:10px;
+
 }
 
 #introScreen h1{
+
     margin:10px 0 15px;
 
     font-size:34px;
 
     color:#333;
+
 }
 
 .intro-description{
+
     max-width:600px;
 
     margin:0 auto 25px;
@@ -125,14 +163,12 @@ body{
     font-size:18px;
 
     line-height:1.6;
+
 }
 
 
-/* =========================================================
-   GAME INFO
-========================================================= */
-
 .game-info{
+
     display:flex;
 
     justify-content:center;
@@ -142,9 +178,11 @@ body{
     flex-wrap:wrap;
 
     margin:25px 0;
+
 }
 
 .game-info div{
+
     background:#f4f8fb;
 
     border:1px solid #e1e8ee;
@@ -156,14 +194,16 @@ body{
     color:#555;
 
     font-size:16px;
+
 }
 
 
 /* =========================================================
-   BUTTON
+   BUTTONS
 ========================================================= */
 
 button{
+
     border:none;
 
     border-radius:12px;
@@ -177,40 +217,53 @@ button{
     cursor:pointer;
 
     transition:.2s;
+
 }
 
 button:hover{
+
     transform:translateY(-2px);
+
 }
 
 button:disabled{
+
     cursor:default;
-    opacity:.5;
+
+    opacity:.7;
+
+    transform:none;
+
 }
 
 
-/* START / PLAY AGAIN */
-
 .primary-btn{
+
     background:#4779b8;
+
     color:white;
+
 }
 
 .primary-btn:hover{
+
     background:#3d6ba5;
+
 }
 
 
 /* =========================================================
-   GAME HEADER
+   GAME TITLE
 ========================================================= */
 
 .game-title{
+
     margin:0 0 20px;
 
     font-size:30px;
 
     color:#333;
+
 }
 
 
@@ -219,45 +272,68 @@ button:disabled{
 ========================================================= */
 
 .topbar{
+
     display:flex;
 
     justify-content:space-between;
+
     align-items:center;
 
     gap:15px;
 
-    margin-bottom:20px;
+    margin-bottom:15px;
 
     font-weight:bold;
 
     color:#555;
+
 }
 
-.round-text{
+.question-count{
+
     color:#666;
+
 }
 
-.score-text{
+.score{
+
+    color:#4779b8;
+
     font-size:18px;
+
 }
 
 
 /* =========================================================
-   COLOR BOX
+   PROGRESS
 ========================================================= */
 
-#colorBox{
-    width:230px;
-    height:230px;
+.progress-wrap{
 
-    margin:25px auto;
+    width:100%;
 
-    border:3px solid #ddd;
+    height:9px;
+
+    background:#eee;
 
     border-radius:20px;
 
-    box-shadow:
-        0 5px 15px rgba(0,0,0,.08);
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#4779b8;
+
+    transition:.3s;
+
 }
 
 
@@ -266,11 +342,35 @@ button:disabled{
 ========================================================= */
 
 .instruction{
+
     margin:10px 0 20px;
 
     color:#666;
 
-    font-size:17px;
+    font-size:18px;
+
+}
+
+
+/* =========================================================
+   COLOR BOX
+========================================================= */
+
+#colorBox{
+
+    width:230px;
+
+    height:230px;
+
+    margin:20px auto 30px;
+
+    border:3px solid #ddd;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.08);
+
 }
 
 
@@ -279,23 +379,26 @@ button:disabled{
 ========================================================= */
 
 #options{
-    display:flex;
 
-    flex-direction:column;
+    display:grid;
 
-    align-items:center;
+    grid-template-columns:
+        1fr 1fr;
 
-    gap:12px;
+    gap:14px;
 
-    margin-top:20px;
+    max-width:650px;
+
+    margin:0 auto;
+
 }
 
+
 .option{
-    width:320px;
 
-    max-width:90%;
+    width:100%;
 
-    padding:16px 20px;
+    padding:17px 15px;
 
     background:#fff3d6;
 
@@ -303,15 +406,51 @@ button:disabled{
 
     color:#333;
 
-    font-size:22px;
+    font-size:21px;
 
-    border-radius:14px;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 .option:hover{
+
     background:#ffe8b5;
 
+    border-color:#c99425;
+
     transform:translateY(-2px);
+
+}
+
+
+.option.correct{
+
+    background:#c8e6c9;
+
+    border-color:#4caf50;
+
+    color:#256b2a;
+
+}
+
+.option.wrong{
+
+    background:#ffcdd2;
+
+    border-color:#ef5350;
+
+    color:#b71c1c;
+
+}
+
+.option.disabled{
+
+    pointer-events:none;
+
 }
 
 
@@ -320,6 +459,7 @@ button:disabled{
 ========================================================= */
 
 #message{
+
     min-height:40px;
 
     margin:20px 0 5px;
@@ -327,37 +467,50 @@ button:disabled{
     font-size:20px;
 
     font-weight:bold;
+
 }
 
 
 /* =========================================================
-   RESULT SCREEN
+   RESULT
 ========================================================= */
 
 #resultScreen{
-    display:none;
+
+    text-align:center;
 
     padding:20px 10px;
+
 }
 
 #resultScreen h2{
+
     margin:0 0 20px;
 
     color:#4779b8;
 
     font-size:32px;
+
 }
 
 .final-score{
-    font-size:26px;
 
-    margin:15px 0;
+    font-size:28px;
+
+    margin:20px 0;
+
+    color:#333;
+
 }
 
 .performance{
+
     font-size:21px;
 
-    margin:15px 0 25px;
+    color:#666;
+
+    margin-bottom:25px;
+
 }
 
 
@@ -368,64 +521,105 @@ button:disabled{
 @media(max-width:600px){
 
     body{
+
         padding:15px;
+
     }
 
+
     .game-box{
+
         width:100%;
 
         padding:25px 18px;
 
         border-radius:20px;
+
     }
+
 
     #introScreen h1{
+
         font-size:28px;
+
     }
+
 
     .intro-description{
+
         font-size:16px;
+
     }
 
+
     .game-info{
+
         flex-direction:column;
 
         align-items:stretch;
+
     }
+
 
     .game-info div{
+
         width:100%;
+
     }
+
 
     .game-title{
+
         font-size:25px;
+
     }
+
 
     .topbar{
+
         font-size:15px;
+
     }
 
-    .score-text{
+
+    .score{
+
         font-size:16px;
+
     }
+
 
     #colorBox{
+
         width:190px;
+
         height:190px;
 
-        margin:20px auto;
+        margin:20px auto 25px;
+
     }
+
+
+    #options{
+
+        grid-template-columns:1fr;
+
+    }
+
 
     .option{
-        width:100%;
 
-        font-size:20px;
+        font-size:19px;
 
         padding:15px;
+
     }
 
+
     #message{
+
         font-size:18px;
+
     }
 
 }
@@ -454,6 +648,7 @@ button:disabled{
 </div>
 
 
+
 <!-- =========================================================
      GAME BOX
 ========================================================= -->
@@ -465,21 +660,25 @@ button:disabled{
          INTRO SCREEN
     ====================================================== -->
 
-    <div id="introScreen">
+    <div
+        id="introScreen"
+        class="screen active"
+    >
 
         <div class="game-icon">
             🎨
         </div>
 
+
         <h1>
             Vietnamese Color Quiz
         </h1>
 
+
         <p class="intro-description">
 
-            Practice Vietnamese color words by
-            matching each color with the correct
-            Vietnamese word.
+            Look at the color and choose
+            the correct Vietnamese word.
 
         </p>
 
@@ -493,7 +692,7 @@ button:disabled{
 
             <div>
                 🎯
-                <strong>Choose the correct answer</strong>
+                <strong>4 Choices</strong>
             </div>
 
         </div>
@@ -516,38 +715,64 @@ button:disabled{
 
     <div
         id="gameScreen"
-        style="display:none;"
+        class="screen"
     >
 
+
         <h1 class="game-title">
+
             🎨 Vietnamese Color Quiz
+
         </h1>
 
 
+        <!-- TOP BAR -->
+
         <div class="topbar">
 
-            <div class="round-text">
+
+            <div class="question-count">
 
                 Question
+
                 <span id="question">
                     1
                 </span>
-                / 15
+
+                /15
 
             </div>
 
 
-            <div class="score-text">
+            <div class="score">
 
                 Score:
+
                 <span id="score">
                     0
                 </span>
 
             </div>
 
+
         </div>
 
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-wrap">
+
+            <div
+                class="progress"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+
+        <!-- QUESTION -->
 
         <p class="instruction">
 
@@ -556,13 +781,27 @@ button:disabled{
         </p>
 
 
+
+        <!-- COLOR -->
+
         <div id="colorBox"></div>
 
 
-        <div id="options"></div>
+
+        <!-- OPTIONS -->
+
+        <div
+            id="options"
+        ></div>
 
 
-        <div id="message"></div>
+
+        <!-- FEEDBACK -->
+
+        <div
+            id="message"
+        ></div>
+
 
     </div>
 
@@ -572,21 +811,31 @@ button:disabled{
          RESULT SCREEN
     ====================================================== -->
 
-    <div id="resultScreen">
+    <div
+        id="resultScreen"
+        class="screen"
+    >
+
 
         <h2>
+
             🎉 Game Finished!
+
         </h2>
 
 
         <div class="final-score">
 
             Final Score:
+
             <strong>
+
                 <span id="finalScore">
                     0
                 </span>
-                / 15
+
+                /15
+
             </strong>
 
         </div>
@@ -595,16 +844,18 @@ button:disabled{
         <div
             class="performance"
             id="performance"
-        >
-        </div>
+        ></div>
 
 
         <button
             class="primary-btn"
             onclick="restartGame()"
         >
+
             Play Again
+
         </button>
+
 
     </div>
 
@@ -614,7 +865,6 @@ button:disabled{
 
 
 <script>
-
 
 /* =========================================================
    GAME DATA
@@ -661,15 +911,19 @@ const colors = [
 
 
 /* =========================================================
-   GAME SETTINGS
+   SETTINGS
 ========================================================= */
 
 const TOTAL_QUESTIONS = 15;
 
+const TOTAL_OPTIONS = 4;
+
 
 /* =========================================================
-   GAME STATE
+   STATE
 ========================================================= */
+
+let questions = [];
 
 let currentQuestion = 0;
 
@@ -677,7 +931,7 @@ let score = 0;
 
 let currentAnswer = null;
 
-let previousAnswer = null;
+let answered = false;
 
 
 /* =========================================================
@@ -685,34 +939,59 @@ let previousAnswer = null;
 ========================================================= */
 
 const introScreen =
-    document.getElementById("introScreen");
+    document.getElementById(
+        "introScreen"
+    );
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
 
 const resultScreen =
-    document.getElementById("resultScreen");
+    document.getElementById(
+        "resultScreen"
+    );
 
 const colorBox =
-    document.getElementById("colorBox");
+    document.getElementById(
+        "colorBox"
+    );
 
 const optionsDiv =
-    document.getElementById("options");
+    document.getElementById(
+        "options"
+    );
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 const questionText =
-    document.getElementById("question");
+    document.getElementById(
+        "question"
+    );
 
 const scoreText =
-    document.getElementById("score");
+    document.getElementById(
+        "score"
+    );
+
+const progress =
+    document.getElementById(
+        "progress"
+    );
 
 const finalScore =
-    document.getElementById("finalScore");
+    document.getElementById(
+        "finalScore"
+    );
 
 const performance =
-    document.getElementById("performance");
+    document.getElementById(
+        "performance"
+    );
 
 
 /* =========================================================
@@ -721,10 +1000,11 @@ const performance =
 
 function shuffle(array){
 
-    const newArray = [...array];
+    const arr = [...array];
+
 
     for(
-        let i = newArray.length - 1;
+        let i = arr.length - 1;
         i > 0;
         i--
     ){
@@ -734,55 +1014,80 @@ function shuffle(array){
                 Math.random() * (i + 1)
             );
 
+
         [
-            newArray[i],
-            newArray[j]
+            arr[i],
+            arr[j]
         ] = [
-            newArray[j],
-            newArray[i]
+            arr[j],
+            arr[i]
         ];
 
     }
 
-    return newArray;
+
+    return arr;
 
 }
 
 
 /* =========================================================
-   GET RANDOM COLOR
-   Avoid the same color twice in a row
+   CREATE QUESTIONS
 ========================================================= */
 
-function getRandomColor(){
+function createQuestions(){
 
-    let availableColors =
-        colors.filter(
-            color =>
-                color !== previousAnswer
-        );
+    /*
+       Create 15 questions.
+
+       Colors can appear more than once,
+       but the same color will not appear
+       twice in a row.
+    */
+
+    questions = [];
+
+    let previousColor = null;
 
 
-    if(availableColors.length === 0){
+    for(
+        let i = 0;
+        i < TOTAL_QUESTIONS;
+        i++
+    ){
 
-        availableColors = colors;
+        let available =
+            colors.filter(
+                color =>
+                    color !== previousColor
+            );
+
+
+        if(
+            available.length === 0
+        ){
+
+            available = colors;
+
+        }
+
+
+        const selected =
+            available[
+                Math.floor(
+                    Math.random() *
+                    available.length
+                )
+            ];
+
+
+        questions.push(selected);
+
+
+        previousColor =
+            selected;
 
     }
-
-
-    const selected =
-        availableColors[
-            Math.floor(
-                Math.random() *
-                availableColors.length
-            )
-        ];
-
-
-    previousAnswer = selected;
-
-
-    return selected;
 
 }
 
@@ -799,178 +1104,188 @@ function startGame(){
 
     currentAnswer = null;
 
-    previousAnswer = null;
+    answered = false;
 
 
-    introScreen.style.display = "none";
-
-    resultScreen.style.display = "none";
-
-    gameScreen.style.display = "block";
+    createQuestions();
 
 
-    scoreText.textContent = "0";
+    introScreen
+        .classList
+        .remove("active");
 
 
-    nextQuestion();
+    resultScreen
+        .classList
+        .remove("active");
+
+
+    gameScreen
+        .classList
+        .add("active");
+
+
+    scoreText.textContent =
+        "0";
+
+
+    loadQuestion();
 
 }
 
 
 /* =========================================================
-   NEXT QUESTION
+   LOAD QUESTION
 ========================================================= */
 
-function nextQuestion(){
+function loadQuestion(){
 
-    if(
-        currentQuestion >= TOTAL_QUESTIONS
-    ){
+    answered = false;
 
-        finishGame();
+
+    const question =
+        questions[currentQuestion];
+
+
+    currentAnswer =
+        question;
+
+
+    questionText.textContent =
+        currentQuestion + 1;
+
+
+    progress.style.width =
+        (
+            currentQuestion /
+            TOTAL_QUESTIONS *
+            100
+        ) + "%";
+
+
+    colorBox.style.backgroundColor =
+        question.color;
+
+
+    message.textContent =
+        "";
+
+
+    message.style.color =
+        "";
+
+
+    optionsDiv.innerHTML =
+        "";
+
+
+    /*
+       Create wrong answers
+    */
+
+    const wrongAnswers =
+        shuffle(
+
+            colors.filter(
+                color =>
+                    color !== question
+            )
+
+        ).slice(
+            0,
+            TOTAL_OPTIONS - 1
+        );
+
+
+    /*
+       1 correct + 3 wrong
+    */
+
+    const options =
+        shuffle([
+
+            question,
+
+            ...wrongAnswers
+
+        ]);
+
+
+    options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "option";
+
+
+            button.textContent =
+                option.name;
+
+
+            button.onclick =
+                () => {
+
+                    chooseAnswer(
+                        button,
+                        option
+                    );
+
+                };
+
+
+            optionsDiv.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHOOSE ANSWER
+========================================================= */
+
+function chooseAnswer(
+    button,
+    selected
+){
+
+    if(answered){
 
         return;
 
     }
 
 
-    currentQuestion++;
-
-
-    questionText.textContent =
-        currentQuestion;
-
-
-    message.textContent = "";
-
-    message.style.color = "";
-
-
-    currentAnswer =
-        getRandomColor();
-
-
-    colorBox.style.backgroundColor =
-        currentAnswer.color;
-
-
-    /* =====================================================
-       CREATE WRONG ANSWER
-    ====================================================== */
-
-    let wrongAnswer;
-
-
-    do{
-
-        wrongAnswer =
-            colors[
-                Math.floor(
-                    Math.random() *
-                    colors.length
-                )
-            ];
-
-    }
-
-    while(
-        wrongAnswer === currentAnswer
-    );
-
-
-    /* =====================================================
-       CREATE TWO OPTIONS
-    ====================================================== */
-
-    const choices =
-        shuffle([
-            currentAnswer,
-            wrongAnswer
-        ]);
-
-
-    optionsDiv.innerHTML = "";
-
-
-    choices.forEach(choice => {
-
-        const button =
-            document.createElement("button");
-
-
-        button.className =
-            "option";
-
-
-        button.textContent =
-            choice.name;
-
-
-        button.onclick = function(){
-
-            checkAnswer(
-                choice,
-                button
-            );
-
-        };
-
-
-        optionsDiv.appendChild(button);
-
-    });
-
-}
-
-
-/* =========================================================
-   CHECK ANSWER
-========================================================= */
-
-function checkAnswer(
-    choice,
-    selectedButton
-){
-
-    const buttons =
-        document.querySelectorAll(
-            ".option"
-        );
-
-
-    /* Prevent multiple clicks */
-
-    buttons.forEach(button => {
-
-        button.disabled = true;
-
-    });
-
-
-    /* =====================================================
+    /*
        CORRECT
-    ====================================================== */
+    */
 
     if(
-        choice.name ===
-        currentAnswer.name
+        selected === currentAnswer
     ){
+
+        answered = true;
+
+
+        button.classList.add(
+            "correct"
+        );
+
 
         score++;
 
 
         scoreText.textContent =
             score;
-
-
-        selectedButton.style.background =
-            "#4caf70";
-
-        selectedButton.style.borderColor =
-            "#4caf70";
-
-        selectedButton.style.color =
-            "white";
 
 
         message.style.color =
@@ -981,45 +1296,105 @@ function checkAnswer(
             "✅ Correct!";
 
 
+        disableOptions();
+
+
         setTimeout(
             nextQuestion,
-            1000
+            900
         );
+
+
+        return;
 
     }
 
 
-    /* =====================================================
+    /*
        WRONG
-    ====================================================== */
 
-    else{
+       Learner can try again.
+    */
 
-        selectedButton.style.background =
-            "#ef5350";
-
-        selectedButton.style.borderColor =
-            "#ef5350";
-
-        selectedButton.style.color =
-            "white";
+    button.classList.add(
+        "wrong"
+    );
 
 
-        message.style.color =
-            "#c54d4d";
+    message.style.color =
+        "#c54d4d";
 
 
-        message.textContent =
-            "❌ Correct answer: " +
-            currentAnswer.name;
+    message.textContent =
+        "❌ Try again!";
 
 
-        setTimeout(
-            nextQuestion,
-            1500
+    setTimeout(
+        () => {
+
+            button.classList.remove(
+                "wrong"
+            );
+
+            if(!answered){
+
+                message.textContent =
+                    "";
+
+            }
+
+        },
+        600
+    );
+
+}
+
+
+/* =========================================================
+   DISABLE OPTIONS
+========================================================= */
+
+function disableOptions(){
+
+    document
+        .querySelectorAll(
+            ".option"
+        )
+        .forEach(
+            button => {
+
+                button.classList.add(
+                    "disabled"
+                );
+
+            }
         );
 
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+
+    if(
+        currentQuestion >=
+        TOTAL_QUESTIONS
+    ){
+
+        finishGame();
+
+        return;
+
     }
+
+
+    loadQuestion();
 
 }
 
@@ -1030,61 +1405,85 @@ function checkAnswer(
 
 function finishGame(){
 
-    gameScreen.style.display = "none";
+    progress.style.width =
+        "100%";
 
-    resultScreen.style.display = "block";
+
+    gameScreen
+        .classList
+        .remove("active");
+
+
+    resultScreen
+        .classList
+        .add("active");
 
 
     finalScore.textContent =
         score;
 
 
-    const percent =
+    const percentage =
         Math.round(
-            (score / TOTAL_QUESTIONS) * 100
+            score /
+            TOTAL_QUESTIONS *
+            100
         );
 
 
-    if(score >= 14){
+    let resultMessage;
 
-        performance.textContent =
-            "🏆 Excellent!";
 
-    }
+    if(
+        percentage === 100
+    ){
 
-    else if(score >= 11){
-
-        performance.textContent =
-            "🎉 Great Job!";
+        resultMessage =
+            "🏆 Perfect! Excellent!";
 
     }
 
-    else if(score >= 8){
+    else if(
+        percentage >= 80
+    ){
 
-        performance.textContent =
-            "👍 Good Work!";
+        resultMessage =
+            "🎉 Excellent job!";
+
+    }
+
+    else if(
+        percentage >= 60
+    ){
+
+        resultMessage =
+            "👍 Good job! Keep practicing!";
 
     }
 
     else{
 
-        performance.textContent =
-            "📚 Keep Practicing!";
+        resultMessage =
+            "📚 Keep practicing your colors!";
 
     }
+
+
+    performance.textContent =
+        resultMessage;
 
 }
 
 
 /* =========================================================
-   RESTART GAME
+   RESTART
 ========================================================= */
 
 function restartGame(){
 
-    resultScreen.style.display = "none";
-
-    gameScreen.style.display = "block";
+    resultScreen
+        .classList
+        .remove("active");
 
 
     startGame();
