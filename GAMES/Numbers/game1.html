@@ -29,6 +29,15 @@ body{
     color:#222;
 }
 
+.game-container{
+    position:relative;
+    width:min(850px,95vw);
+    background:white;
+    padding:65px 35px 35px;
+    border-radius:24px;
+    box-shadow:0 10px 35px rgba(0,0,0,.12);
+}
+
 .screen{
     display:none;
 }
@@ -37,13 +46,38 @@ body{
     display:block;
 }
 
-.game-container{
-    width:min(850px,95vw);
-    background:white;
-    padding:35px;
-    border-radius:24px;
-    box-shadow:0 10px 35px rgba(0,0,0,.12);
+/* =========================
+   BACK TO LOBBY
+========================= */
+
+.lobby-btn{
+    position:absolute;
+    top:20px;
+    left:22px;
+
+    padding:8px 14px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#eef5fc;
+    color:#1976d2;
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.2s;
 }
+
+.lobby-btn:hover{
+    background:#dcecff;
+    transform:translateX(-2px);
+}
+
+/* =========================
+   HEADINGS
+========================= */
 
 h1{
     margin-top:0;
@@ -54,8 +88,34 @@ h1{
 .instruction{
     color:#666;
     font-size:18px;
-    margin-bottom:25px;
+    margin-bottom:20px;
     line-height:1.5;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.next-btn,
+.play-again,
+.start-btn{
+    padding:13px 28px;
+    border:none;
+    border-radius:10px;
+    background:#4caf50;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    margin-top:10px;
+}
+
+.next-btn:hover,
+.play-again:hover,
+.start-btn:hover{
+    background:#388e3c;
+    transform:translateY(-2px);
 }
 
 /* =========================
@@ -157,6 +217,10 @@ h1{
     pointer-events:none;
 }
 
+/* =========================
+   RESULT
+========================= */
+
 .result{
     font-size:40px;
     height:50px;
@@ -175,32 +239,6 @@ h1{
 
 .wrong-text{
     color:#c62828;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.next-btn,
-.play-again,
-.start-btn{
-    padding:13px 28px;
-    border:none;
-    border-radius:10px;
-    background:#4caf50;
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
-    margin-top:10px;
-}
-
-.next-btn:hover,
-.play-again:hover,
-.start-btn:hover{
-    background:#388e3c;
-    transform:translateY(-2px);
 }
 
 /* =========================
@@ -227,7 +265,7 @@ h1{
 @media(max-width:650px){
 
     .game-container{
-        padding:25px 15px;
+        padding:60px 15px 25px;
     }
 
     h1{
@@ -247,6 +285,13 @@ h1{
         font-size:27px;
     }
 
+    .lobby-btn{
+        top:16px;
+        left:16px;
+        font-size:13px;
+        padding:7px 12px;
+    }
+
 }
 
 </style>
@@ -257,6 +302,15 @@ h1{
 
 
 <div class="game-container">
+
+
+<!-- ================= BACK TO LOBBY ================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()">
+    ← Back to Lobby
+</button>
 
 
 <!-- ================= INTRO ================= -->
@@ -359,7 +413,7 @@ h1{
 
 <div id="end" class="screen">
 
-    <h1>🎉 Finished!</h1>
+    <h1>🎉 Game Complete!</h1>
 
     <p>
         You completed all 20 questions.
@@ -698,7 +752,6 @@ function loadQuestion(){
 
 
         /*
-            IMPORTANT:
             Answer is a NUMBER,
             not Vietnamese text.
         */
@@ -746,10 +799,6 @@ function chooseAnswer(element,isCorrect){
 
 
     if(isCorrect){
-
-        /*
-            Correct answer ends the question.
-        */
 
         answered = true;
 
@@ -960,13 +1009,18 @@ function endGame(){
 
 function restart(){
 
-    document
-        .getElementById("end")
-        .classList.remove("active");
+    startGame();
 
-    document
-        .getElementById("intro")
-        .classList.add("active");
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href = "../../index.html";
 
 }
 

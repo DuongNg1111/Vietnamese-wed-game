@@ -4,108 +4,133 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vietnamese Color Quiz</title>
 
-<meta
-    name="game-title"
-    content="Vietnamese Color Quiz"
->
-
+<meta name="game-title" content="Vietnamese Color Quiz">
 <meta
     name="game-description"
     content="Practice Vietnamese color words by matching each color with the correct Vietnamese word."
 >
-
-<meta
-    name="game-icon"
-    content="🎨"
->
+<meta name="game-icon" content="🎨">
+<meta name="game-explanation" content="false">
 
 <style>
 
-/* =========================
+/* =========================================================
    GLOBAL
-========================= */
+========================================================= */
 
 *{
     box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
     margin:0;
     padding:20px;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#f7f9fc;
+
     min-height:100vh;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    color:#222;
 }
 
 
-/* =========================
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
+
+.back-btn-container{
+    max-width:850px;
+    margin:0 auto 15px;
+}
+
+.back-btn{
+    display:inline-block;
+
+    padding:10px 18px;
+
+    background:white;
+    color:#555;
+
+    border:2px solid #ddd;
+    border-radius:10px;
+
+    text-decoration:none;
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#f0f0f0;
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
    GAME CONTAINER
-========================= */
+========================================================= */
 
 .game-box{
-    width:90%;
-    max-width:750px;
+    width:min(850px, 95vw);
+
+    margin:0 auto;
 
     background:white;
 
-    padding:40px;
-
     border-radius:24px;
 
+    padding:35px;
+
     box-shadow:
-        0 8px 30px rgba(0,0,0,0.08);
+        0 10px 35px rgba(0,0,0,.10);
 
     text-align:center;
 }
 
 
-/* =========================
+/* =========================================================
    INTRO SCREEN
-========================= */
+========================================================= */
 
 #introScreen{
-    padding:20px 10px 10px;
+    padding:15px 10px 10px;
 }
 
 .game-icon{
-    font-size:72px;
+    font-size:70px;
     margin-bottom:10px;
 }
 
 #introScreen h1{
-    color:#2c3e50;
-    font-size:36px;
     margin:10px 0 15px;
+
+    font-size:34px;
+
+    color:#333;
 }
 
 .intro-description{
-    max-width:560px;
+    max-width:600px;
 
     margin:0 auto 25px;
+
+    color:#666;
 
     font-size:18px;
 
     line-height:1.6;
-
-    color:#666;
 }
 
 
-/* =========================
+/* =========================================================
    GAME INFO
-========================= */
+========================================================= */
 
 .game-info{
     display:flex;
@@ -133,181 +158,212 @@ body{
     font-size:16px;
 }
 
-.game-info span{
-    margin-right:6px;
-}
 
+/* =========================================================
+   BUTTON
+========================================================= */
 
-/* =========================
-   START BUTTON
-========================= */
-
-#startBtn{
-    margin-top:10px;
-
-    padding:14px 35px;
-
+button{
     border:none;
 
     border-radius:12px;
 
-    background:#2196f3;
+    padding:13px 30px;
 
-    color:white;
-
-    font-size:19px;
+    font-size:17px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.2s;
+    transition:.2s;
 }
 
-#startBtn:hover{
-    background:#1976d2;
+button:hover{
+    transform:translateY(-2px);
+}
+
+button:disabled{
+    cursor:default;
+    opacity:.5;
+}
+
+
+/* START / PLAY AGAIN */
+
+.primary-btn{
+    background:#4779b8;
+    color:white;
+}
+
+.primary-btn:hover{
+    background:#3d6ba5;
+}
+
+
+/* =========================================================
+   GAME HEADER
+========================================================= */
+
+.game-title{
+    margin:0 0 20px;
+
+    font-size:30px;
+
+    color:#333;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+    font-weight:bold;
+
+    color:#555;
+}
+
+.round-text{
+    color:#666;
+}
+
+.score-text{
+    font-size:18px;
+}
+
+
+/* =========================================================
+   COLOR BOX
+========================================================= */
+
+#colorBox{
+    width:230px;
+    height:230px;
+
+    margin:25px auto;
+
+    border:3px solid #ddd;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.instruction{
+    margin:10px 0 20px;
+
+    color:#666;
+
+    font-size:17px;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+#options{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.option{
+    width:320px;
+
+    max-width:90%;
+
+    padding:16px 20px;
+
+    background:#fff3d6;
+
+    border:2px solid #d8ad50;
+
+    color:#333;
+
+    font-size:22px;
+
+    border-radius:14px;
+}
+
+.option:hover{
+    background:#ffe8b5;
 
     transform:translateY(-2px);
 }
 
 
-/* =========================
-   GAME SCREEN
-========================= */
-
-#gameScreen h1{
-    color:#333;
-
-    margin-top:0;
-}
-
-#info{
-    font-size:22px;
-
-    font-weight:bold;
-
-    margin:20px 0;
-}
-
-
-/* =========================
-   COLOR BOX
-========================= */
-
-#colorBox{
-    width:250px;
-
-    height:250px;
-
-    margin:30px auto;
-
-    border:3px solid #ddd;
-
-    border-radius:20px;
-}
-
-
-/* =========================
-   OPTIONS
-========================= */
-
-.option{
-    display:block;
-
-    width:300px;
-
-    max-width:90%;
-
-    margin:15px auto;
-
-    padding:18px;
-
-    font-size:26px;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    background:#3498db;
-
-    color:white;
-
-    transition:0.2s;
-}
-
-.option:hover{
-    transform:scale(1.03);
-
-    background:#2980b9;
-}
-
-.option:disabled{
-    cursor:default;
-
-    opacity:0.9;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   FEEDBACK
+========================================================= */
 
 #message{
-    height:40px;
+    min-height:40px;
 
-    font-size:26px;
-
-    font-weight:bold;
-
-    margin-top:20px;
-}
-
-
-/* =========================
-   RESULT
-========================= */
-
-#result{
-    font-size:30px;
-
-    margin-top:30px;
-
-    font-weight:bold;
-}
-
-
-/* =========================
-   RESTART BUTTON
-========================= */
-
-.restart-btn{
-    margin-top:20px;
-
-    padding:14px 28px;
+    margin:20px 0 5px;
 
     font-size:20px;
 
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    background:#2196f3;
-
-    color:white;
-}
-
-.restart-btn:hover{
-    background:#1976d2;
+    font-weight:bold;
 }
 
 
-/* =========================
+/* =========================================================
+   RESULT SCREEN
+========================================================= */
+
+#resultScreen{
+    display:none;
+
+    padding:20px 10px;
+}
+
+#resultScreen h2{
+    margin:0 0 20px;
+
+    color:#4779b8;
+
+    font-size:32px;
+}
+
+.final-score{
+    font-size:26px;
+
+    margin:15px 0;
+}
+
+.performance{
+    font-size:21px;
+
+    margin:15px 0 25px;
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
@@ -318,13 +374,13 @@ body{
     .game-box{
         width:100%;
 
-        padding:30px 20px;
+        padding:25px 18px;
 
         border-radius:20px;
     }
 
     #introScreen h1{
-        font-size:29px;
+        font-size:28px;
     }
 
     .intro-description{
@@ -334,23 +390,42 @@ body{
     .game-info{
         flex-direction:column;
 
-        align-items:center;
+        align-items:stretch;
     }
 
     .game-info div{
         width:100%;
     }
 
-    #colorBox{
-        width:200px;
+    .game-title{
+        font-size:25px;
+    }
 
-        height:200px;
+    .topbar{
+        font-size:15px;
+    }
+
+    .score-text{
+        font-size:16px;
+    }
+
+    #colorBox{
+        width:190px;
+        height:190px;
+
+        margin:20px auto;
     }
 
     .option{
-        font-size:22px;
+        width:100%;
 
-        padding:16px;
+        font-size:20px;
+
+        padding:15px;
+    }
+
+    #message{
+        font-size:18px;
     }
 
 }
@@ -363,12 +438,32 @@ body{
 <body>
 
 
+<!-- =========================================================
+     BACK TO LOBBY
+========================================================= -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../../index.html"
+        class="back-btn"
+    >
+        ⬅ Back to Lobby
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     GAME BOX
+========================================================= -->
+
 <div class="game-box">
 
 
-    <!-- =========================
+    <!-- =====================================================
          INTRO SCREEN
-    ========================= -->
+    ====================================================== -->
 
     <div id="introScreen">
 
@@ -405,43 +500,60 @@ body{
 
 
         <button
-            id="startBtn"
+            class="primary-btn"
             onclick="startGame()"
         >
-
             Start Game →
-
         </button>
 
     </div>
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          GAME SCREEN
-    ========================= -->
+    ====================================================== -->
 
     <div
         id="gameScreen"
         style="display:none;"
     >
 
-        <h1>
+        <h1 class="game-title">
             🎨 Vietnamese Color Quiz
         </h1>
 
 
-        <div id="info">
+        <div class="topbar">
 
-            Question:
-            <span id="question">1</span>/15
+            <div class="round-text">
 
-            |
+                Question
+                <span id="question">
+                    1
+                </span>
+                / 15
 
-            Score:
-            <span id="score">0</span>
+            </div>
+
+
+            <div class="score-text">
+
+                Score:
+                <span id="score">
+                    0
+                </span>
+
+            </div>
 
         </div>
+
+
+        <p class="instruction">
+
+            What is this color in Vietnamese?
+
+        </p>
 
 
         <div id="colorBox"></div>
@@ -452,8 +564,47 @@ body{
 
         <div id="message"></div>
 
+    </div>
 
-        <div id="result"></div>
+
+
+    <!-- =====================================================
+         RESULT SCREEN
+    ====================================================== -->
+
+    <div id="resultScreen">
+
+        <h2>
+            🎉 Game Finished!
+        </h2>
+
+
+        <div class="final-score">
+
+            Final Score:
+            <strong>
+                <span id="finalScore">
+                    0
+                </span>
+                / 15
+            </strong>
+
+        </div>
+
+
+        <div
+            class="performance"
+            id="performance"
+        >
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="restartGame()"
+        >
+            Play Again
+        </button>
 
     </div>
 
@@ -465,9 +616,9 @@ body{
 <script>
 
 
-/* =========================
-   COLOR DATA
-========================= */
+/* =========================================================
+   GAME DATA
+========================================================= */
 
 const colors = [
 
@@ -509,44 +660,156 @@ const colors = [
 ];
 
 
+/* =========================================================
+   GAME SETTINGS
+========================================================= */
+
+const TOTAL_QUESTIONS = 15;
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
 let currentQuestion = 0;
 
 let score = 0;
 
 let currentAnswer = null;
 
+let previousAnswer = null;
 
 
-/* =========================
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById("introScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const resultScreen =
+    document.getElementById("resultScreen");
+
+const colorBox =
+    document.getElementById("colorBox");
+
+const optionsDiv =
+    document.getElementById("options");
+
+const message =
+    document.getElementById("message");
+
+const questionText =
+    document.getElementById("question");
+
+const scoreText =
+    document.getElementById("score");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const performance =
+    document.getElementById("performance");
+
+
+/* =========================================================
    SHUFFLE
-========================= */
+========================================================= */
 
-function shuffle(arr){
+function shuffle(array){
 
-    return [
-        ...arr
-    ].sort(
-        () => Math.random() - 0.5
-    );
+    const newArray = [...array];
+
+    for(
+        let i = newArray.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            newArray[i],
+            newArray[j]
+        ] = [
+            newArray[j],
+            newArray[i]
+        ];
+
+    }
+
+    return newArray;
 
 }
 
 
+/* =========================================================
+   GET RANDOM COLOR
+   Avoid the same color twice in a row
+========================================================= */
 
-/* =========================
+function getRandomColor(){
+
+    let availableColors =
+        colors.filter(
+            color =>
+                color !== previousAnswer
+        );
+
+
+    if(availableColors.length === 0){
+
+        availableColors = colors;
+
+    }
+
+
+    const selected =
+        availableColors[
+            Math.floor(
+                Math.random() *
+                availableColors.length
+            )
+        ];
+
+
+    previousAnswer = selected;
+
+
+    return selected;
+
+}
+
+
+/* =========================================================
    START GAME
-========================= */
+========================================================= */
 
 function startGame(){
 
-    document.getElementById(
-        "introScreen"
-    ).style.display = "none";
+    currentQuestion = 0;
+
+    score = 0;
+
+    currentAnswer = null;
+
+    previousAnswer = null;
 
 
-    document.getElementById(
-        "gameScreen"
-    ).style.display = "block";
+    introScreen.style.display = "none";
+
+    resultScreen.style.display = "none";
+
+    gameScreen.style.display = "block";
+
+
+    scoreText.textContent = "0";
 
 
     nextQuestion();
@@ -554,15 +817,14 @@ function startGame(){
 }
 
 
-
-/* =========================
+/* =========================================================
    NEXT QUESTION
-========================= */
+========================================================= */
 
 function nextQuestion(){
 
     if(
-        currentQuestion >= 15
+        currentQuestion >= TOTAL_QUESTIONS
     ){
 
         finishGame();
@@ -575,43 +837,33 @@ function nextQuestion(){
     currentQuestion++;
 
 
-    document.getElementById(
-        "question"
-    ).textContent =
+    questionText.textContent =
         currentQuestion;
 
 
-    document.getElementById(
-        "message"
-    ).textContent = "";
+    message.textContent = "";
+
+    message.style.color = "";
 
 
     currentAnswer =
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
+        getRandomColor();
 
 
-    document.getElementById(
-        "colorBox"
-    ).style.background =
+    colorBox.style.backgroundColor =
         currentAnswer.color;
 
 
-
-    /* =========================
+    /* =====================================================
        CREATE WRONG ANSWER
-    ========================= */
+    ====================================================== */
 
-    let wrong;
+    let wrongAnswer;
 
 
     do{
 
-        wrong =
+        wrongAnswer =
             colors[
                 Math.floor(
                     Math.random() *
@@ -622,72 +874,63 @@ function nextQuestion(){
     }
 
     while(
-        wrong.name ===
-        currentAnswer.name
+        wrongAnswer === currentAnswer
     );
 
 
-
-    /* =========================
-       CREATE OPTIONS
-    ========================= */
+    /* =====================================================
+       CREATE TWO OPTIONS
+    ====================================================== */
 
     const choices =
         shuffle([
             currentAnswer,
-            wrong
+            wrongAnswer
         ]);
-
-
-    const optionsDiv =
-        document.getElementById(
-            "options"
-        );
 
 
     optionsDiv.innerHTML = "";
 
 
-    choices.forEach(
-        choice => {
+    choices.forEach(choice => {
 
-            const btn =
-                document.createElement(
-                    "button"
-                );
+        const button =
+            document.createElement("button");
 
 
-            btn.className =
-                "option";
+        button.className =
+            "option";
 
 
-            btn.textContent =
-                choice.name;
+        button.textContent =
+            choice.name;
 
 
-            btn.onclick =
-                () =>
-                    checkAnswer(
-                        choice
-                    );
+        button.onclick = function(){
 
-
-            optionsDiv.appendChild(
-                btn
+            checkAnswer(
+                choice,
+                button
             );
 
-        }
-    );
+        };
+
+
+        optionsDiv.appendChild(button);
+
+    });
 
 }
 
 
-
-/* =========================
+/* =========================================================
    CHECK ANSWER
-========================= */
+========================================================= */
 
-function checkAnswer(choice){
+function checkAnswer(
+    choice,
+    selectedButton
+){
 
     const buttons =
         document.querySelectorAll(
@@ -695,18 +938,18 @@ function checkAnswer(choice){
         );
 
 
-    buttons.forEach(
-        btn =>
-            btn.disabled = true
-    );
+    /* Prevent multiple clicks */
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+    });
 
 
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
+    /* =====================================================
+       CORRECT
+    ====================================================== */
 
     if(
         choice.name ===
@@ -716,163 +959,139 @@ function checkAnswer(choice){
         score++;
 
 
-        document.getElementById(
-            "score"
-        ).textContent =
+        scoreText.textContent =
             score;
 
 
+        selectedButton.style.background =
+            "#4caf70";
+
+        selectedButton.style.borderColor =
+            "#4caf70";
+
+        selectedButton.style.color =
+            "white";
+
+
         message.style.color =
-            "green";
+            "#3b8b58";
 
 
         message.textContent =
-            "✓ Correct";
+            "✅ Correct!";
+
+
+        setTimeout(
+            nextQuestion,
+            1000
+        );
 
     }
+
+
+    /* =====================================================
+       WRONG
+    ====================================================== */
 
     else{
 
+        selectedButton.style.background =
+            "#ef5350";
+
+        selectedButton.style.borderColor =
+            "#ef5350";
+
+        selectedButton.style.color =
+            "white";
+
+
         message.style.color =
-            "red";
+            "#c54d4d";
 
 
         message.textContent =
-            "✗ Correct answer: " +
+            "❌ Correct answer: " +
             currentAnswer.name;
 
+
+        setTimeout(
+            nextQuestion,
+            1500
+        );
+
     }
-
-
-    setTimeout(
-        nextQuestion,
-        1500
-    );
 
 }
 
 
-
-/* =========================
+/* =========================================================
    FINISH GAME
-========================= */
+========================================================= */
 
 function finishGame(){
 
-    document.getElementById(
-        "colorBox"
-    ).style.display = "none";
+    gameScreen.style.display = "none";
+
+    resultScreen.style.display = "block";
 
 
-    document.getElementById(
-        "options"
-    ).innerHTML = "";
+    finalScore.textContent =
+        score;
 
 
-    document.getElementById(
-        "message"
-    ).innerHTML = "";
-
-
-
-    let performance = "";
+    const percent =
+        Math.round(
+            (score / TOTAL_QUESTIONS) * 100
+        );
 
 
     if(score >= 14){
 
-        performance =
-            "Excellent!";
+        performance.textContent =
+            "🏆 Excellent!";
 
     }
 
     else if(score >= 11){
 
-        performance =
-            "Great Job!";
+        performance.textContent =
+            "🎉 Great Job!";
 
     }
 
     else if(score >= 8){
 
-        performance =
-            "Good Work!";
+        performance.textContent =
+            "👍 Good Work!";
 
     }
 
     else{
 
-        performance =
-            "Keep Practicing!";
+        performance.textContent =
+            "📚 Keep Practicing!";
 
     }
 
-
-
-    document.getElementById(
-        "result"
-    ).innerHTML = `
-
-        🏆 Game Finished
-
-        <br><br>
-
-        Final Score:
-        ${score}/15
-
-        <br><br>
-
-        ${performance}
-
-        <br><br>
-
-        <button
-            class="restart-btn"
-            onclick="restartGame()"
-        >
-
-            Play Again
-
-        </button>
-
-    `;
-
 }
 
 
-
-/* =========================
+/* =========================================================
    RESTART GAME
-========================= */
+========================================================= */
 
 function restartGame(){
 
-    currentQuestion = 0;
+    resultScreen.style.display = "none";
 
-    score = 0;
-
-
-    document.getElementById(
-        "score"
-    ).textContent = "0";
+    gameScreen.style.display = "block";
 
 
-    document.getElementById(
-        "result"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "colorBox"
-    ).style.display = "block";
-
-
-    nextQuestion();
+    startGame();
 
 }
 
-
 </script>
-
 
 </body>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,9 +8,20 @@
 
 <title>Vietnamese Comparison Challenge</title>
 
-<meta name="game-title" content="Vietnamese Comparison Challenge">
-<meta name="game-description" content="Build Vietnamese comparison sentences by arranging the words in the correct order.">
-<meta name="game-icon" content="⚖️">
+<meta
+    name="game-title"
+    content="Vietnamese Comparison Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Build Vietnamese comparison sentences by arranging the words in the correct order."
+>
+
+<meta
+    name="game-icon"
+    content="⚖️"
+>
 
 <style>
 
@@ -401,6 +413,18 @@ body{
     margin-bottom:10px;
 }
 
+.finish-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.finish-buttons .btn{
+    min-width:170px;
+}
+
 
 /* ==========================================================
    MOBILE
@@ -443,12 +467,24 @@ body{
     .controls-area .btn{
         width:100%;
     }
+
+    .finish-buttons{
+        flex-direction:column;
+    }
+
+    .finish-buttons .btn{
+        width:100%;
+    }
+
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <div class="game-card">
 
@@ -457,11 +493,18 @@ body{
      START SCREEN
 ========================================================== -->
 
-<div id="start-screen" class="start-screen">
+<div
+    id="start-screen"
+    class="start-screen"
+>
 
-    <div class="game-icon">⚖️</div>
+    <div class="game-icon">
+        ⚖️
+    </div>
 
-    <h1>Vietnamese Comparison Challenge</h1>
+    <h1>
+        Vietnamese Comparison Challenge
+    </h1>
 
     <div class="subtitle">
         Build Vietnamese comparison sentences
@@ -469,16 +512,27 @@ body{
 
     <div class="rules-box">
 
-        <p>🧩 <strong>Task:</strong> Arrange the words to make a correct Vietnamese sentence.</p>
+        <p>
+            🧩 <strong>Task:</strong>
+            Arrange the words to make a correct Vietnamese sentence.
+        </p>
 
-        <p>📝 <strong>Questions:</strong> 20 sentences</p>
+        <p>
+            📝 <strong>Questions:</strong>
+            20 sentences
+        </p>
 
-        <p>⏱️ <strong>Target:</strong> Finish in under 3:00</p>
-
+        <p>
+            ⏱️ <strong>Target:</strong>
+            Finish in under 3:00
+        </p>
 
     </div>
 
-    <button id="start-btn" class="start-btn">
+    <button
+        id="start-btn"
+        class="start-btn"
+    >
         Start Challenge
     </button>
 
@@ -489,7 +543,10 @@ body{
      GAME SCREEN
 ========================================================== -->
 
-<div id="game-screen" class="hidden">
+<div
+    id="game-screen"
+    class="hidden"
+>
 
     <div class="header-bar">
 
@@ -508,15 +565,24 @@ body{
         <div class="stats-bar">
 
             <div class="stat-item">
-                ⏱️ <span id="timer-display">00:00</span>
+                ⏱️
+                <span id="timer-display">
+                    00:00
+                </span>
             </div>
 
             <div class="stat-item">
-                ⭐ <span id="score-display">0</span>
+                ⭐
+                <span id="score-display">
+                    0
+                </span>
             </div>
 
             <div class="stat-item">
-                🔥 <span id="streak-display">0</span>
+                🔥
+                <span id="streak-display">
+                    0
+                </span>
             </div>
 
         </div>
@@ -528,8 +594,8 @@ body{
 
         <div
             id="progress-fill"
-            class="progress-fill">
-        </div>
+            class="progress-fill"
+        ></div>
 
     </div>
 
@@ -538,7 +604,8 @@ body{
 
         <span
             id="question-tracker"
-            class="q-number">
+            class="q-number"
+        >
             Question 1 / 20
         </span>
 
@@ -547,7 +614,8 @@ body{
 
     <div
         id="english-prompt"
-        class="english-prompt">
+        class="english-prompt"
+    >
         The lemon is more sour than the orange.
     </div>
 
@@ -559,11 +627,13 @@ body{
 
     <div
         id="drop-zone"
-        class="drop-zone-container">
+        class="drop-zone-container"
+    >
 
         <div
             id="drop-placeholder"
-            class="drop-zone-placeholder">
+            class="drop-zone-placeholder"
+        >
             Tap words below...
         </div>
 
@@ -572,7 +642,8 @@ body{
 
     <div
         id="cards-pool"
-        class="cards-pool">
+        class="cards-pool"
+    >
     </div>
 
 
@@ -580,13 +651,15 @@ body{
 
         <button
             id="clear-btn"
-            class="btn btn-secondary">
+            class="btn btn-secondary"
+        >
             CLEAR
         </button>
 
         <button
             id="check-btn"
-            class="btn btn-primary">
+            class="btn btn-primary"
+        >
             CHECK
         </button>
 
@@ -595,7 +668,8 @@ body{
 
     <div
         id="feedback-msg"
-        class="feedback-message">
+        class="feedback-message"
+    >
     </div>
 
 </div>
@@ -605,7 +679,10 @@ body{
      FINISH SCREEN
 ========================================================== -->
 
-<div id="finish-screen" class="finish-screen hidden">
+<div
+    id="finish-screen"
+    class="finish-screen hidden"
+>
 
     <div class="finish-icon">
         🎉
@@ -617,38 +694,57 @@ body{
 
     <div
         id="final-score"
-        class="final-score">
+        class="final-score"
+    >
         ⭐ 0 Points
     </div>
 
     <div class="final-time">
         Your Time:
-        <span id="final-time">00:00</span>
+        <span id="final-time">
+            00:00
+        </span>
     </div>
 
     <div
         id="new-best-tag"
-        class="new-best hidden">
+        class="new-best hidden"
+    >
         NEW BEST TIME!
     </div>
 
     <div
         id="rank-badge"
-        class="rank-badge">
+        class="rank-badge"
+    >
         Vietnamese Speed Master!
     </div>
 
     <div
         id="best-time-display"
-        class="best-time">
+        class="best-time"
+    >
         Best Time: --:--
     </div>
 
-    <button
-        id="play-again-btn"
-        class="btn btn-primary">
-        Play Again
-    </button>
+
+    <div class="finish-buttons">
+
+        <button
+            id="play-again-btn"
+            class="btn btn-primary"
+        >
+            Play Again
+        </button>
+
+        <button
+            id="lobby-btn"
+            class="btn btn-secondary"
+        >
+            ← Back to Lobby
+        </button>
+
+    </div>
 
 </div>
 
@@ -657,6 +753,7 @@ body{
 
 
 <script>
+
 
 /* ==========================================================
    QUESTIONS
@@ -771,14 +868,14 @@ const questionsData = [
    GAME STATE
 ========================================================== */
 
-let currentQuestionIndex=0;
-let score=0;
-let streak=0;
+let currentQuestionIndex = 0;
+let score = 0;
+let streak = 0;
 
-let timerSeconds=0;
-let timerInterval=null;
+let timerSeconds = 0;
+let timerInterval = null;
 
-let bestTimeSeconds=
+let bestTimeSeconds =
     localStorage.getItem(
         "vietnameseComparisonBestTime"
     )
@@ -794,70 +891,73 @@ let bestTimeSeconds=
    DOM
 ========================================================== */
 
-const startScreen=
+const startScreen =
     document.getElementById("start-screen");
 
-const gameScreen=
+const gameScreen =
     document.getElementById("game-screen");
 
-const finishScreen=
+const finishScreen =
     document.getElementById("finish-screen");
 
-const startBtn=
+const startBtn =
     document.getElementById("start-btn");
 
-const clearBtn=
+const clearBtn =
     document.getElementById("clear-btn");
 
-const checkBtn=
+const checkBtn =
     document.getElementById("check-btn");
 
-const playAgainBtn=
+const playAgainBtn =
     document.getElementById("play-again-btn");
 
-const timerDisplay=
+const lobbyBtn =
+    document.getElementById("lobby-btn");
+
+const timerDisplay =
     document.getElementById("timer-display");
 
-const scoreDisplay=
+const scoreDisplay =
     document.getElementById("score-display");
 
-const streakDisplay=
+const streakDisplay =
     document.getElementById("streak-display");
 
-const progressFill=
+const progressFill =
     document.getElementById("progress-fill");
 
-const questionTracker=
+const questionTracker =
     document.getElementById("question-tracker");
 
-const englishPrompt=
+const englishPrompt =
     document.getElementById("english-prompt");
 
-const dropZone=
+const dropZone =
     document.getElementById("drop-zone");
 
-const dropPlaceholder=
+const dropPlaceholder =
     document.getElementById("drop-placeholder");
 
-const cardsPool=
+const cardsPool =
     document.getElementById("cards-pool");
 
-const feedbackMsg=
+const feedbackMsg =
     document.getElementById("feedback-msg");
 
-const finalScore=
+const finalScore =
     document.getElementById("final-score");
 
-const finalTime=
+const finalTime =
     document.getElementById("final-time");
 
-const newBestTag=
+const newBestTag =
     document.getElementById("new-best-tag");
 
-const rankBadge=
+const rankBadge =
     document.getElementById("rank-badge");
 
-const bestTimeDisplay=
+const bestTimeDisplay =
     document.getElementById("best-time-display");
 
 
@@ -887,6 +987,21 @@ checkBtn.addEventListener(
 
 
 /* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+lobbyBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "../../index.html";
+
+    }
+);
+
+
+/* ==========================================================
    GAME START
 ========================================================== */
 
@@ -898,16 +1013,19 @@ function startGame(){
 
     gameScreen.classList.remove("hidden");
 
-    currentQuestionIndex=0;
-    score=0;
-    streak=0;
-    timerSeconds=0;
+    currentQuestionIndex = 0;
 
-    scoreDisplay.textContent=score;
+    score = 0;
 
-    streakDisplay.textContent=streak;
+    streak = 0;
 
-    timerDisplay.textContent="00:00";
+    timerSeconds = 0;
+
+    scoreDisplay.textContent = score;
+
+    streakDisplay.textContent = streak;
+
+    timerDisplay.textContent = "00:00";
 
     startTimer();
 
@@ -937,14 +1055,17 @@ function startTimer(){
 
     clearInterval(timerInterval);
 
-    timerInterval=setInterval(()=>{
+    timerInterval = setInterval(
+        () => {
 
-        timerSeconds++;
+            timerSeconds++;
 
-        timerDisplay.textContent=
-            formatTime(timerSeconds);
+            timerDisplay.textContent =
+                formatTime(timerSeconds);
 
-    },1000);
+        },
+        1000
+    );
 
 }
 
@@ -958,11 +1079,13 @@ function stopTimer(){
 
 function formatTime(totalSeconds){
 
-    const mins=
-        Math.floor(totalSeconds/60);
+    const mins =
+        Math.floor(
+            totalSeconds / 60
+        );
 
-    const secs=
-        totalSeconds%60;
+    const secs =
+        totalSeconds % 60;
 
     return `${mins
         .toString()
@@ -979,53 +1102,67 @@ function formatTime(totalSeconds){
 
 function loadQuestion(){
 
-    const q=
-        questionsData[currentQuestionIndex];
+    const q =
+        questionsData[
+            currentQuestionIndex
+        ];
 
 
-    questionTracker.textContent=
-        `Question ${currentQuestionIndex+1} / ${questionsData.length}`;
+    questionTracker.textContent =
+        `Question ${
+            currentQuestionIndex + 1
+        } / ${
+            questionsData.length
+        }`;
 
 
-    progressFill.style.width=
-        `${(currentQuestionIndex/
-        questionsData.length)*100}%`;
+    progressFill.style.width =
+        `${
+            (currentQuestionIndex /
+            questionsData.length) * 100
+        }%`;
 
 
-    englishPrompt.textContent=
+    englishPrompt.textContent =
         q.english;
 
 
-    feedbackMsg.textContent="";
+    feedbackMsg.textContent = "";
 
-    feedbackMsg.className=
+    feedbackMsg.className =
         "feedback-message";
 
 
     dropZone
         .querySelectorAll(".word-card")
-        .forEach(card=>card.remove());
+        .forEach(
+            card => card.remove()
+        );
 
 
-    cardsPool.innerHTML="";
+    cardsPool.innerHTML = "";
 
 
     updatePlaceholder();
 
 
-    const scrambled=
+    const scrambled =
         [...q.targetWords]
-        .sort(()=>Math.random()-.5);
+        .sort(
+            () => Math.random() - 0.5
+        );
 
 
-    scrambled.forEach(word=>{
+    scrambled.forEach(
+        word => {
 
-        const card=
-            createWordCard(word);
+            const card =
+                createWordCard(word);
 
-        cardsPool.appendChild(card);
+            cardsPool.appendChild(card);
 
-    });
+        }
+    );
 
 }
 
@@ -1036,19 +1173,24 @@ function loadQuestion(){
 
 function createWordCard(text){
 
-    const card=
+    const card =
         document.createElement("div");
 
-    card.className="word-card";
+    card.className =
+        "word-card";
 
-    card.textContent=text;
+    card.textContent =
+        text;
 
 
     card.addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            if(card.parentElement===cardsPool){
+            if(
+                card.parentElement ===
+                cardsPool
+            ){
 
                 dropZone.appendChild(card);
 
@@ -1060,7 +1202,7 @@ function createWordCard(text){
 
             updatePlaceholder();
 
-            feedbackMsg.textContent="";
+            feedbackMsg.textContent = "";
 
         }
     );
@@ -1077,15 +1219,15 @@ function createWordCard(text){
 
 function updatePlaceholder(){
 
-    const cards=
+    const cards =
         dropZone.querySelectorAll(
             ".word-card"
         );
 
-    dropPlaceholder.style.display=
-        cards.length===0
-        ?"block"
-        :"none";
+    dropPlaceholder.style.display =
+        cards.length === 0
+        ? "block"
+        : "none";
 
 }
 
@@ -1096,20 +1238,22 @@ function updatePlaceholder(){
 
 function clearAnswer(){
 
-    const cards=
+    const cards =
         dropZone.querySelectorAll(
             ".word-card"
         );
 
-    cards.forEach(card=>{
+    cards.forEach(
+        card => {
 
-        cardsPool.appendChild(card);
+            cardsPool.appendChild(card);
 
-    });
+        }
+    );
 
     updatePlaceholder();
 
-    feedbackMsg.textContent="";
+    feedbackMsg.textContent = "";
 
 }
 
@@ -1120,11 +1264,13 @@ function clearAnswer(){
 
 function checkAnswer(){
 
-    const q=
-        questionsData[currentQuestionIndex];
+    const q =
+        questionsData[
+            currentQuestionIndex
+        ];
 
 
-    const placedCards=
+    const placedCards =
         [
             ...dropZone.querySelectorAll(
                 ".word-card"
@@ -1132,91 +1278,96 @@ function checkAnswer(){
         ];
 
 
-    const userWords=
+    const userWords =
         placedCards.map(
-            card=>card.textContent.trim()
+            card =>
+                card.textContent.trim()
         );
 
 
-    const isCorrect=
-        userWords.length===
-        q.targetWords.length
+    const isCorrect =
+        userWords.length ===
+            q.targetWords.length
         &&
         userWords.every(
-            (word,index)=>
-                word===q.targetWords[index]
+            (word,index) =>
+                word ===
+                q.targetWords[index]
         );
 
 
     if(isCorrect){
 
-        feedbackMsg.textContent=
+        feedbackMsg.textContent =
             "Correct! 🎉";
 
-        feedbackMsg.className=
+        feedbackMsg.className =
             "feedback-message correct";
 
 
         streak++;
 
 
-        let points=100;
+        let points = 100;
 
 
-        if(streak>=5){
+        if(streak >= 5){
 
-            points+=100;
+            points += 100;
 
-        }else if(streak>=3){
+        }else if(streak >= 3){
 
-            points+=50;
+            points += 50;
 
         }
 
 
-        score+=points;
+        score += points;
 
 
-        scoreDisplay.textContent=
+        scoreDisplay.textContent =
             score;
 
-        streakDisplay.textContent=
+        streakDisplay.textContent =
             streak;
 
 
-        setTimeout(()=>{
+        setTimeout(
+            () => {
 
-            currentQuestionIndex++;
+                currentQuestionIndex++;
 
 
-            if(
-                currentQuestionIndex<
-                questionsData.length
-            ){
+                if(
+                    currentQuestionIndex <
+                    questionsData.length
+                ){
 
-                loadQuestion();
+                    loadQuestion();
 
-            }else{
+                }else{
 
-                finishGame();
+                    finishGame();
 
-            }
+                }
 
-        },700);
+            },
+            700
+        );
 
 
     }else{
 
-        feedbackMsg.textContent=
+        feedbackMsg.textContent =
             "Not quite! Try again.";
 
-        feedbackMsg.className=
+        feedbackMsg.className =
             "feedback-message incorrect";
 
 
-        streak=0;
+        streak = 0;
 
-        streakDisplay.textContent=
+        streakDisplay.textContent =
             streak;
 
     }
@@ -1242,24 +1393,24 @@ function finishGame(){
     );
 
 
-    finalScore.textContent=
+    finalScore.textContent =
         `⭐ ${score} Points`;
 
 
-    finalTime.textContent=
+    finalTime.textContent =
         formatTime(timerSeconds);
 
 
-    let isNewBest=false;
+    let isNewBest = false;
 
 
     if(
-        bestTimeSeconds===null
+        bestTimeSeconds === null
         ||
-        timerSeconds<bestTimeSeconds
+        timerSeconds < bestTimeSeconds
     ){
 
-        bestTimeSeconds=
+        bestTimeSeconds =
             timerSeconds;
 
         localStorage.setItem(
@@ -1267,7 +1418,7 @@ function finishGame(){
             bestTimeSeconds
         );
 
-        isNewBest=true;
+        isNewBest = true;
 
     }
 
@@ -1287,34 +1438,38 @@ function finishGame(){
     }
 
 
-    if(bestTimeSeconds!==null){
+    if(
+        bestTimeSeconds !== null
+    ){
 
-        bestTimeDisplay.textContent=
-            `Best Time: ${formatTime(
-                bestTimeSeconds
-            )}`;
+        bestTimeDisplay.textContent =
+            `Best Time: ${
+                formatTime(
+                    bestTimeSeconds
+                )
+            }`;
 
     }
 
 
-    if(timerSeconds<=180){
+    if(timerSeconds <= 180){
 
-        rankBadge.textContent=
+        rankBadge.textContent =
             "Vietnamese Speed Master!";
 
-    }else if(timerSeconds<=240){
+    }else if(timerSeconds <= 240){
 
-        rankBadge.textContent=
+        rankBadge.textContent =
             "Excellent!";
 
-    }else if(timerSeconds<=300){
+    }else if(timerSeconds <= 300){
 
-        rankBadge.textContent=
+        rankBadge.textContent =
             "Great Job!";
 
     }else{
 
-        rankBadge.textContent=
+        rankBadge.textContent =
             "Good Practice!";
 
     }

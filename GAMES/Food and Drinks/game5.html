@@ -1,287 +1,1058 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fast Translation Flip</title>
 
 <meta name="game-title" content="Fast Translation Flip">
 <meta name="game-description" content="Quickly recall Vietnamese food and everyday vocabulary by revealing hidden translations.">
 <meta name="game-icon" content="⚡">
-
-<title>Fast Translation Flip Game</title>
+<meta name="game-explanation" content="true">
 
 <style>
-body{
-    font-family:Arial;
-    background:#f4f6f8;
-    padding:20px;
+
+*{
+    box-sizing:border-box;
 }
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    color:#333;
+}
+
+/* ============================= */
+/* BACK TO LOBBY */
+/* ============================= */
+
+.back-btn-container{
+    max-width:900px;
+    margin:0 auto 20px;
+    text-align:left;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:white;
+    color:#555;
+    border:2px solid #ddd;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#f0f0f0;
+    transform:translateY(-2px);
+}
+
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
 
 .container{
     max-width:900px;
     margin:auto;
 }
 
-h1{text-align:center;}
+/* ============================= */
+/* TITLE */
+/* ============================= */
 
-#info,#title{
+h1{
     text-align:center;
-    margin:5px 0;
+    margin:10px 0;
+    font-size:32px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+/* ============================= */
+/* INTRO */
+/* ============================= */
+
+.intro{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.intro h2{
+    font-size:28px;
+    margin-top:0;
+}
+
+.intro p{
+    font-size:18px;
+    line-height:1.6;
+    color:#555;
+}
+
+.start-btn,
+.next-btn,
+.play-again-btn{
+    margin-top:20px;
+    padding:13px 30px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    background:#2196f3;
+    color:white;
+    font-weight:bold;
+}
+
+.start-btn:hover,
+.next-btn:hover,
+.play-again-btn:hover{
+    opacity:.9;
+}
+
+/* ============================= */
+/* GAME */
+/* ============================= */
+
+.game-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    font-weight:bold;
+    color:#555;
+}
+
+.round-title{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
+.table-wrap{
+    overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
     background:white;
-    margin-top:20px;
 }
 
-th,td{
+th,
+td{
     border:1px solid #ddd;
-    padding:14px;
+    padding:15px;
     text-align:center;
-    font-size:22px;
+    font-size:20px;
 }
 
 th{
     background:#e8f5e9;
+    font-weight:bold;
 }
 
 .flip{
     background:#fff9c4;
     cursor:pointer;
     font-weight:bold;
+    transition:.2s;
+}
+
+.flip:hover{
+    background:#fff3a8;
 }
 
 .revealed{
     background:#c8e6c9 !important;
+    cursor:default;
 }
+
+/* ============================= */
+/* CONTROLS */
+/* ============================= */
 
 .controls{
     text-align:center;
     margin-top:20px;
 }
 
-button{
-    padding:10px 20px;
-    margin:5px;
-    font-size:18px;
+.show-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#ff9800;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
     cursor:pointer;
 }
 
-.show{background:#ff9800;color:white;}
-.next{background:#2196f3;color:white;}
+.show-btn:hover{
+    opacity:.9;
+}
+
+/* ============================= */
+/* EXPLANATION */
+/* ============================= */
+
+.explanation{
+    margin:20px auto 0;
+    padding:18px 20px;
+    max-width:750px;
+    background:#f0f7ff;
+    border-left:5px solid #4779b8;
+    border-radius:12px;
+    color:#3d5066;
+    font-size:16px;
+    line-height:1.6;
+    text-align:left;
+}
+
+.explanation strong{
+    color:#4779b8;
+}
+
+.hidden{
+    display:none;
+}
+
+/* ============================= */
+/* FINAL */
+/* ============================= */
+
+.final{
+    display:none;
+    background:white;
+    padding:40px 30px;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.final h2{
+    font-size:32px;
+    color:#2e7d32;
+}
+
+.final-score{
+    font-size:28px;
+    margin:20px 0;
+}
+
+.final-message{
+    font-size:20px;
+    color:#555;
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media(max-width:700px){
+
+    body{
+        padding:15px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    .game-card,
+    .intro,
+    .final{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:12px 8px;
+        font-size:17px;
+    }
+
+    .topbar{
+        font-size:15px;
+    }
+
+}
 
 </style>
+
 </head>
 
 <body>
 
+
+<!-- ============================= */
+/* BACK TO LOBBY */
+/* ============================= -->
+
+<div class="back-btn-container">
+
+    <a href="../../../index.html" class="back-btn">
+        ⬅ Back to Lobby
+    </a>
+
+</div>
+
+
 <div class="container">
 
-<h1>⚡ Fast Translation</h1>
 
-<div id="info"></div>
-<div id="title"></div>
+<!-- ============================= */
+/* INTRO SCREEN */
+/* ============================= -->
 
-<table>
-<thead>
-<tr>
-<th>English</th>
-<th>Vietnamese</th>
-</tr>
-</thead>
+<div class="intro" id="introScreen">
 
-<tbody id="body"></tbody>
-</table>
+    <h1>⚡ Fast Translation Flip</h1>
 
-<div class="controls">
-<button class="show" onclick="showAll()">Show All</button>
-<button class="next" onclick="next()">Next Round</button>
+    <div class="subtitle">
+        Vietnamese Vocabulary Review
+    </div>
+
+    <h2>How to Play</h2>
+
+    <p>
+        Look at the English and Vietnamese words.
+        Some translations are hidden.
+    </p>
+
+    <p>
+        👆 Click <strong>???</strong> to reveal the hidden word.
+    </p>
+
+    <p>
+        🧠 Try to remember the translation before revealing it.
+    </p>
+
+    <p>
+        📝 Total Rounds:
+        <strong>10</strong>
+    </p>
+
+    <button
+        class="start-btn"
+        onclick="startGame()">
+
+        Start Game
+
+    </button>
+
 </div>
 
+
+<!-- ============================= */
+/* GAME SCREEN */
+/* ============================= */
+
+<div
+    class="game-card"
+    id="gameScreen"
+    style="display:none;"
+>
+
+    <h1>⚡ Fast Translation Flip</h1>
+
+    <div class="topbar">
+
+        <div id="roundInfo">
+            Round 1 / 10
+        </div>
+
+        <div id="revealedInfo">
+            Revealed: 0 / 5
+        </div>
+
+    </div>
+
+
+    <div
+        class="round-title"
+        id="roundTitle">
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        English
+                    </th>
+
+                    <th>
+                        Vietnamese
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="show-btn"
+            id="showAllBtn"
+            onclick="showAll()">
+
+            Show All
+
+        </button>
+
+    </div>
+
+
+    <!-- ONE CONSOLIDATED EXPLANATION -->
+
+    <div
+        id="explanation"
+        class="explanation hidden">
+    </div>
+
+
+    <div style="text-align:center;">
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextRound()">
+
+            Next Round ➜
+
+        </button>
+
+    </div>
+
 </div>
+
+
+<!-- ============================= */
+/* FINAL SCREEN */
+/* ============================= -->
+
+<div class="final" id="finalScreen">
+
+    <h2>
+        🎉 Finished!
+    </h2>
+
+    <div
+        class="final-score"
+        id="finalScore">
+    </div>
+
+    <div
+        class="final-message"
+        id="finalMessage">
+    </div>
+
+    <button
+        class="play-again-btn"
+        onclick="restartGame()">
+
+        Play Again
+
+    </button>
+
+</div>
+
+
+</div>
+
 
 <script>
 
+
+/* =====================================
+   ROUND DATA
+===================================== */
+
 const rounds = [
 
-{title:"Round 1",hide:"vi",
-rows:[
-["Coffee","Cà phê"],
-["Tea","Trà"],
-["Garlic","Tỏi"],
-["Fever","Sốt"],
-["Bowl","Tô"]
-]},
+    {
+        title:"Round 1",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Tea","Trà"],
+            ["Garlic","Tỏi"],
+            ["Fever","Sốt"],
+            ["Bowl","Tô"]
+        ]
+    },
 
-{title:"Round 2",hide:"en",
-rows:[
-["Chicken","Gà"],
-["Salt","Muối"],
-["Fish","Cá"],
-["Water","Nước lọc"],
-["Bitter","Đắng"]
-]},
+    {
+        title:"Round 2",
+        hide:"en",
+        rows:[
+            ["Chicken","Gà"],
+            ["Salt","Muối"],
+            ["Fish","Cá"],
+            ["Water","Nước lọc"],
+            ["Bitter","Đắng"]
+        ]
+    },
 
-{title:"Round 3",pattern:["en","vi","en","vi","en"],
-rows:[
-["Beef","Bò"],
-["Glass","Ly"],
-["Egg","Trứng"],
-["Spicy","Cay"],
-["Milk","Sữa"]
-]},
+    {
+        title:"Round 3",
+        pattern:["en","vi","en","vi","en"],
+        rows:[
+            ["Beef","Bò"],
+            ["Glass","Ly"],
+            ["Egg","Trứng"],
+            ["Spicy","Cay"],
+            ["Milk","Sữa"]
+        ]
+    },
 
-{title:"Round 4",pattern:["vi","en","vi","en","vi"],
-rows:[
-["Orange Juice","Nước cam"],
-["Bowl","Tô"],
-["Cough","Ho"],
-["Plate","Dĩa"],
-["Sugar","Đường"]
-]},
+    {
+        title:"Round 4",
+        pattern:["vi","en","vi","en","vi"],
+        rows:[
+            ["Orange Juice","Nước cam"],
+            ["Bowl","Tô"],
+            ["Cough","Ho"],
+            ["Plate","Dĩa"],
+            ["Sugar","Đường"]
+        ]
+    },
 
-{title:"Round 5",hide:"vi",
-rows:[
-["Coffee","Cà phê"],
-["Tea","Trà"],
-["Lemonade","Nước chanh"],
-["Pepper","Tiêu"],
-["Egg","Trứng"]
-]},
+    {
+        title:"Round 5",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Tea","Trà"],
+            ["Lemonade","Nước chanh"],
+            ["Pepper","Tiêu"],
+            ["Egg","Trứng"]
+        ]
+    },
 
-{title:"Round 6",hide:"en",
-rows:[
-["Beef","Bò"],
-["Chicken","Gà"],
-["Fish","Cá"],
-["Fever","Sốt"],
-["Salt","Muối"]
-]},
+    {
+        title:"Round 6",
+        hide:"en",
+        rows:[
+            ["Beef","Bò"],
+            ["Chicken","Gà"],
+            ["Fish","Cá"],
+            ["Fever","Sốt"],
+            ["Salt","Muối"]
+        ]
+    },
 
-{title:"Round 7",pattern:["en","vi","en","vi","en"],
-rows:[
-["Milk","Sữa"],
-["Garlic","Tỏi"],
-["Headache","Nhức đầu"],
-["Water","Nước lọc"],
-["Spicy","Cay"]
-]},
+    {
+        title:"Round 7",
+        pattern:["en","vi","en","vi","en"],
+        rows:[
+            ["Milk","Sữa"],
+            ["Garlic","Tỏi"],
+            ["Headache","Nhức đầu"],
+            ["Water","Nước lọc"],
+            ["Spicy","Cay"]
+        ]
+    },
 
-{title:"Round 8",hide:"vi",
-rows:[
-["Coffee","Cà phê"],
-["Bowl","Tô"],
-["Glass","Ly"],
-["Tea","Trà"],
-["Sugar","Đường"]
-]},
+    {
+        title:"Round 8",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Bowl","Tô"],
+            ["Glass","Ly"],
+            ["Tea","Trà"],
+            ["Sugar","Đường"]
+        ]
+    },
 
-{title:"Round 9",hide:"en",
-rows:[
-["Chicken","Gà"],
-["Fish","Cá"],
-["Beef","Bò"],
-["Cough","Ho"],
-["Milk","Sữa"]
-]},
+    {
+        title:"Round 9",
+        hide:"en",
+        rows:[
+            ["Chicken","Gà"],
+            ["Fish","Cá"],
+            ["Beef","Bò"],
+            ["Cough","Ho"],
+            ["Milk","Sữa"]
+        ]
+    },
 
-{title:"Round 10",pattern:["vi","en","vi","en","vi"],
-rows:[
-["Egg","Trứng"],
-["Water","Nước lọc"],
-["Orange Juice","Nước cam"],
-["Salt","Muối"],
-["Fever","Sốt"]
-]}
+    {
+        title:"Round 10",
+        pattern:["vi","en","vi","en","vi"],
+        rows:[
+            ["Egg","Trứng"],
+            ["Water","Nước lọc"],
+            ["Orange Juice","Nước cam"],
+            ["Salt","Muối"],
+            ["Fever","Sốt"]
+        ]
+    }
 
 ];
 
-let i=0;
 
-function load(){
+/* =====================================
+   GAME STATE
+===================================== */
 
-const r = rounds[i];
+let currentRound = 0;
 
-document.getElementById("info").innerText =
-`Round ${i+1}/${rounds.length}`;
+let revealedCount = 0;
 
-document.getElementById("title").innerText = r.title;
+let totalHidden = 0;
 
-const body = document.getElementById("body");
-body.innerHTML = "";
 
-r.rows.forEach((row,index)=>{
+/* =====================================
+   DOM
+===================================== */
 
-let en = row[0];
-let vi = row[1];
+const introScreen =
+    document.getElementById("introScreen");
 
-let enCell = `<td>${en}</td>`;
-let viCell = `<td>${vi}</td>`;
+const gameScreen =
+    document.getElementById("gameScreen");
 
-// hide full column
-if(r.hide==="vi"){
-viCell = `<td class="flip" onclick="flip(this,'${vi}')">???</td>`;
+const finalScreen =
+    document.getElementById("finalScreen");
+
+const tableBody =
+    document.getElementById("tableBody");
+
+const roundInfo =
+    document.getElementById("roundInfo");
+
+const roundTitle =
+    document.getElementById("roundTitle");
+
+const revealedInfo =
+    document.getElementById("revealedInfo");
+
+const explanation =
+    document.getElementById("explanation");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const showAllBtn =
+    document.getElementById("showAllBtn");
+
+
+/* =====================================
+   START GAME
+===================================== */
+
+function startGame(){
+
+    currentRound = 0;
+
+    introScreen.style.display = "none";
+
+    finalScreen.style.display = "none";
+
+    gameScreen.style.display = "block";
+
+    loadRound();
+
 }
 
-if(r.hide==="en"){
-enCell = `<td class="flip" onclick="flip(this,'${en}')">???</td>`;
+
+/* =====================================
+   LOAD ROUND
+===================================== */
+
+function loadRound(){
+
+    const r =
+        rounds[currentRound];
+
+
+    revealedCount = 0;
+
+    totalHidden = 0;
+
+
+    tableBody.innerHTML = "";
+
+    explanation.innerHTML = "";
+
+    explanation.classList.add("hidden");
+
+    nextBtn.style.display = "none";
+
+    showAllBtn.style.display = "inline-block";
+
+
+    roundInfo.textContent =
+        `Round ${currentRound + 1} / ${rounds.length}`;
+
+
+    roundTitle.textContent =
+        r.title;
+
+
+    r.rows.forEach((row,index)=>{
+
+        const en = row[0];
+
+        const vi = row[1];
+
+
+        let enCell = "";
+
+        let viCell = "";
+
+
+        /* ==========================
+           HIDE VIETNAMESE
+        ========================== */
+
+        if(r.hide === "vi"){
+
+            enCell =
+                `<td>${en}</td>`;
+
+            viCell = `
+                <td
+                    class="flip"
+                    onclick="flip(this,'${escapeHTML(vi)}')"
+                >
+                    ???
+                </td>
+            `;
+
+            totalHidden++;
+
+        }
+
+
+        /* ==========================
+           HIDE ENGLISH
+        ========================== */
+
+        else if(r.hide === "en"){
+
+            enCell = `
+                <td
+                    class="flip"
+                    onclick="flip(this,'${escapeHTML(en)}')"
+                >
+                    ???
+                </td>
+            `;
+
+            viCell =
+                `<td>${vi}</td>`;
+
+            totalHidden++;
+
+        }
+
+
+        /* ==========================
+           PATTERN MODE
+        ========================== */
+
+        else if(r.pattern){
+
+            if(r.pattern[index] === "en"){
+
+                enCell = `
+                    <td
+                        class="flip"
+                        onclick="flip(this,'${escapeHTML(en)}')"
+                    >
+                        ???
+                    </td>
+                `;
+
+                viCell =
+                    `<td>${vi}</td>`;
+
+                totalHidden++;
+
+            }
+
+            else{
+
+                enCell =
+                    `<td>${en}</td>`;
+
+                viCell = `
+                    <td
+                        class="flip"
+                        onclick="flip(this,'${escapeHTML(vi)}')"
+                    >
+                        ???
+                    </td>
+                `;
+
+                totalHidden++;
+
+            }
+
+        }
+
+
+        tableBody.innerHTML += `
+            <tr>
+                ${enCell}
+                ${viCell}
+            </tr>
+        `;
+
+    });
+
+
+    updateRevealed();
+
 }
 
-// pattern mode
-if(r.pattern){
 
-if(r.pattern[index]==="en"){
-enCell = `<td class="flip" onclick="flip(this,'${en}')">???</td>`;
-}
+/* =====================================
+   ESCAPE HTML
+===================================== */
 
-if(r.pattern[index]==="vi"){
-viCell = `<td class="flip" onclick="flip(this,'${vi}')">???</td>`;
-}
+function escapeHTML(text){
 
-}
-
-body.innerHTML += `<tr>${enCell}${viCell}</tr>`;
-});
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
-function flip(el,text){
-if(el.classList.contains("revealed")) return;
-el.innerText = text;
-el.classList.add("revealed");
+
+/* =====================================
+   FLIP
+===================================== */
+
+function flip(
+    element,
+    text
+){
+
+    if(
+        element.classList.contains(
+            "revealed"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    element.innerText = text;
+
+    element.classList.add(
+        "revealed"
+    );
+
+
+    revealedCount++;
+
+    updateRevealed();
+
+
+    if(
+        revealedCount >= totalHidden
+    ){
+
+        showExplanation();
+
+    }
+
 }
+
+
+/* =====================================
+   UPDATE REVEALED
+===================================== */
+
+function updateRevealed(){
+
+    revealedInfo.textContent =
+        `Revealed: ${revealedCount} / ${totalHidden}`;
+
+}
+
+
+/* =====================================
+   SHOW ALL
+===================================== */
 
 function showAll(){
 
-const r = rounds[i];
-const body = document.getElementById("body");
+    const hiddenCells =
+        document.querySelectorAll(
+            ".flip:not(.revealed)"
+        );
 
-body.innerHTML = "";
 
-r.rows.forEach(row=>{
-body.innerHTML += `<tr>
-<td>${row[0]}</td>
-<td>${row[1]}</td>
-</tr>`;
-});
+    hiddenCells.forEach(cell => {
+
+        cell.click();
+
+    });
+
+
+    showAllBtn.style.display =
+        "none";
 
 }
 
-function next(){
-i++;
-if(i>=rounds.length){
-document.querySelector(".container").innerHTML =
-"<h1>🎉 Finished 10 Rounds!</h1>";
-return;
-}
-load();
+
+/* =====================================
+   EXPLANATION
+===================================== */
+
+function showExplanation(){
+
+    const r =
+        rounds[currentRound];
+
+
+    explanation.innerHTML = `
+
+        <strong>💡 Learn:</strong>
+
+        <br>
+
+        Try to remember these translations
+        and use them in real conversations.
+
+        <br><br>
+
+        <strong>Vocabulary:</strong>
+
+        ${r.rows
+            .map(
+                row =>
+                `${row[0]} → ${row[1]}`
+            )
+            .join(" • ")
+        }
+
+    `;
+
+
+    explanation.classList.remove(
+        "hidden"
+    );
+
+
+    nextBtn.style.display =
+        "inline-block";
+
 }
 
-load();
+
+/* =====================================
+   NEXT ROUND
+===================================== */
+
+function nextRound(){
+
+    currentRound++;
+
+
+    if(
+        currentRound >= rounds.length
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    loadRound();
+
+}
+
+
+/* =====================================
+   FINISH GAME
+===================================== */
+
+function finishGame(){
+
+    gameScreen.style.display =
+        "none";
+
+    finalScreen.style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        `🎉 You completed ${rounds.length} rounds!`;
+
+
+    document.getElementById(
+        "finalMessage"
+    ).textContent =
+        "Great work! Keep reviewing your Vietnamese vocabulary.";
+
+}
+
+
+/* =====================================
+   RESTART
+===================================== */
+
+function restartGame(){
+
+    startGame();
+
+}
 
 </script>
 
 </body>
+
 </html>

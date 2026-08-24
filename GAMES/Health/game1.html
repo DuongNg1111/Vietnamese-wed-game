@@ -4,29 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Match English with Vietnamese</title>
 
-<meta
-    name="game-title"
-    content="Match English with Vietnamese"
->
-
-<meta
-    name="game-description"
-    content="Match English words with their correct Vietnamese meanings."
->
-
-<meta
-    name="game-icon"
-    content="🔤"
->
-
+<meta name="game-title" content="Match English with Vietnamese">
+<meta name="game-description" content="Match English words with their correct Vietnamese meanings.">
+<meta name="game-icon" content="🔤">
+<meta name="game-explanation" content="true">
 
 <style>
 
@@ -54,9 +39,7 @@ body{
     min-height:100vh;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     padding:20px;
@@ -66,13 +49,12 @@ body{
 
 
 /* ==========================================================
-   MAIN CONTAINER
+   CONTAINER
 ========================================================== */
 
 .container{
 
     width:100%;
-
     max-width:950px;
 
     background:white;
@@ -82,7 +64,50 @@ body{
     box-shadow:
         0 15px 40px rgba(0,0,0,.12);
 
-    padding:35px;
+    padding:30px;
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+.back-btn-container{
+
+    text-align:left;
+
+    margin-bottom:15px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:9px 16px;
+
+    background:white;
+
+    color:#555;
+
+    border:2px solid #ddd;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+.back-btn:hover{
+
+    background:#f0f0f0;
+
+    transform:translateY(-2px);
 
 }
 
@@ -95,19 +120,17 @@ body{
 
     text-align:center;
 
-    padding:20px 10px 10px;
+    padding:10px;
 
 }
 
-
 .game-icon{
 
-    font-size:72px;
+    font-size:70px;
 
     margin-bottom:10px;
 
 }
-
 
 #introScreen h1{
 
@@ -118,7 +141,6 @@ body{
     margin-bottom:15px;
 
 }
-
 
 .intro-description{
 
@@ -153,7 +175,6 @@ body{
 
 }
 
-
 .game-info div{
 
     background:#f5f9ff;
@@ -171,18 +192,11 @@ body{
 }
 
 
-.game-info span{
-
-    margin-right:6px;
-
-}
-
-
 /* ==========================================================
-   START BUTTON
+   BUTTON
 ========================================================== */
 
-#startBtn{
+.main-btn{
 
     margin-top:10px;
 
@@ -206,12 +220,66 @@ body{
 
 }
 
-
-#startBtn:hover{
+.main-btn:hover{
 
     background:#1976d2;
 
     transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   TUTORIAL
+========================================================== */
+
+#tutorialScreen{
+
+    display:none;
+
+    text-align:center;
+
+    padding:10px;
+
+}
+
+#tutorialScreen h1{
+
+    color:#1976d2;
+
+    margin-bottom:20px;
+
+}
+
+.tutorial-box{
+
+    background:#f5f9ff;
+
+    border:2px solid #d9e8ff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    max-width:650px;
+
+    margin:0 auto;
+
+}
+
+.tutorial-box p{
+
+    font-size:19px;
+
+    line-height:1.7;
+
+    margin-bottom:12px;
+
+}
+
+.tutorial-box strong{
+
+    color:#1976d2;
 
 }
 
@@ -225,7 +293,6 @@ body{
     display:none;
 
 }
-
 
 .game-title{
 
@@ -248,15 +315,13 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     gap:15px;
 
     margin-bottom:18px;
 
 }
-
 
 .infoBox{
 
@@ -277,7 +342,7 @@ body{
 
 
 /* ==========================================================
-   PROGRESS BAR
+   PROGRESS
 ========================================================== */
 
 .progressWrap{
@@ -296,7 +361,6 @@ body{
 
 }
 
-
 .progressBar{
 
     height:100%;
@@ -310,8 +374,13 @@ body{
             #64b5f6
         );
 
-    transition:
-        width 1s linear;
+    transition:width 1s linear;
+
+}
+
+.progressBar.timeout{
+
+    background:#f44336;
 
 }
 
@@ -324,13 +393,11 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:25px;
 
 }
-
 
 .column h2{
 
@@ -374,7 +441,6 @@ body{
 
 }
 
-
 .card:hover{
 
     transform:translateY(-3px);
@@ -383,7 +449,6 @@ body{
 
 }
 
-
 .selected{
 
     border-color:#2196f3;
@@ -391,7 +456,6 @@ body{
     background:#d8ecff;
 
 }
-
 
 .correct{
 
@@ -404,7 +468,6 @@ body{
     cursor:default;
 
 }
-
 
 .wrong{
 
@@ -429,7 +492,6 @@ body{
 
 }
 
-
 .finished h2{
 
     color:#1976d2;
@@ -440,7 +502,6 @@ body{
 
 }
 
-
 .finished p{
 
     font-size:1.3rem;
@@ -449,16 +510,23 @@ body{
 
 }
 
-
-/* ==========================================================
-   PLAY AGAIN BUTTON
-========================================================== */
-
-.play-again{
+.finish-buttons{
 
     margin-top:20px;
 
-    padding:14px 35px;
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.play-again{
+
+    padding:14px 30px;
 
     border:none;
 
@@ -470,26 +538,21 @@ body{
 
     cursor:pointer;
 
-    font-size:19px;
+    font-size:18px;
 
     font-weight:bold;
 
-    transition:.25s;
-
 }
-
 
 .play-again:hover{
 
     background:#1976d2;
 
-    transform:translateY(-2px);
-
 }
 
 
 /* ==========================================================
-   ANIMATIONS
+   ANIMATION
 ========================================================== */
 
 @keyframes fade{
@@ -498,8 +561,7 @@ body{
 
         opacity:0;
 
-        transform:
-            translateY(15px);
+        transform:translateY(15px);
 
     }
 
@@ -507,8 +569,7 @@ body{
 
         opacity:1;
 
-        transform:
-            translateY(0);
+        transform:translateY(0);
 
     }
 
@@ -527,15 +588,11 @@ body{
 
     }
 
-
     .container{
 
         padding:25px 20px;
 
-        border-radius:20px;
-
     }
-
 
     #introScreen h1{
 
@@ -543,13 +600,11 @@ body{
 
     }
 
-
     .intro-description{
 
         font-size:16px;
 
     }
-
 
     .game-info{
 
@@ -559,13 +614,11 @@ body{
 
     }
 
-
     .game-info div{
 
         width:100%;
 
     }
-
 
     .info{
 
@@ -573,13 +626,11 @@ body{
 
     }
 
-
     .columns{
 
         grid-template-columns:1fr;
 
     }
-
 
     .card{
 
@@ -601,6 +652,22 @@ body{
 
 
     <!-- ======================================================
+         BACK TO LOBBY
+    ====================================================== -->
+
+    <div class="back-btn-container">
+
+        <a
+            href="../../../index.html"
+            class="back-btn"
+        >
+            ⬅ Back to Lobby
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================
          INTRO SCREEN
     ====================================================== -->
 
@@ -610,11 +677,9 @@ body{
             🔤
         </div>
 
-
         <h1>
             Match English with Vietnamese
         </h1>
-
 
         <p class="intro-description">
 
@@ -623,38 +688,77 @@ body{
 
         </p>
 
-
         <div class="game-info">
 
             <div>
-                📝
-                <strong>9 Rounds</strong>
+                📝 <strong>9 Rounds</strong>
             </div>
 
             <div>
-                🔤
-                <strong>3 Pairs / Round</strong>
+                🔤 <strong>3 Pairs / Round</strong>
             </div>
 
             <div>
-                ⏱️
-                <strong>10 Seconds</strong>
+                ⏱️ <strong>10 Seconds</strong>
             </div>
 
         </div>
 
-
         <button
-            id="startBtn"
-            onclick="startGame()"
+            class="main-btn"
+            onclick="showTutorial()"
         >
-
-            Start Game →
-
+            Start →
         </button>
 
     </div>
 
+
+    <!-- ======================================================
+         TUTORIAL SCREEN
+    ====================================================== -->
+
+    <div id="tutorialScreen">
+
+        <h1>
+            How to Play
+        </h1>
+
+        <div class="tutorial-box">
+
+            <p>
+                🔤 You will see
+                <strong>3 English words</strong>
+                and
+                <strong>3 Vietnamese words</strong>.
+            </p>
+
+            <p>
+                🎯 Click one English word,
+                then click its correct Vietnamese meaning.
+            </p>
+
+            <p>
+                ⏱️ You have
+                <strong>10 seconds</strong>
+                to match all 3 pairs.
+            </p>
+
+            <p>
+                ⭐ Each correct pair gives you
+                <strong>1 point</strong>.
+            </p>
+
+        </div>
+
+        <button
+            class="main-btn"
+            onclick="startGame()"
+        >
+            Start Game →
+        </button>
+
+    </div>
 
 
     <!-- ======================================================
@@ -663,16 +767,12 @@ body{
 
     <div id="gameArea">
 
-
         <h1 class="game-title">
-
             🔤 Match English with Vietnamese
-
         </h1>
 
 
         <div class="info">
-
 
             <div class="infoBox">
 
@@ -680,13 +780,8 @@ body{
 
                 <br>
 
-                <span id="round">
-                    1
-                </span>
-
-                /
-
-                9
+                <span id="round">1</span>
+                / 9
 
             </div>
 
@@ -697,13 +792,8 @@ body{
 
                 <br>
 
-                <span id="score">
-                    0
-                </span>
-
-                /
-
-                27
+                <span id="score">0</span>
+                / 27
 
             </div>
 
@@ -714,17 +804,12 @@ body{
 
                 <br>
 
-                <span id="time">
-                    10
-                </span>
-
+                <span id="time">10</span>
                 s
 
             </div>
 
-
         </div>
-
 
 
         <div class="progressWrap">
@@ -735,7 +820,6 @@ body{
             ></div>
 
         </div>
-
 
 
         <div class="columns">
@@ -749,12 +833,9 @@ body{
                     English
                 </h2>
 
-                <div
-                    id="englishList"
-                ></div>
+                <div id="englishList"></div>
 
             </div>
-
 
 
             <!-- VIETNAMESE -->
@@ -765,18 +846,14 @@ body{
                     Vietnamese
                 </h2>
 
-                <div
-                    id="vietnameseList"
-                ></div>
+                <div id="vietnameseList"></div>
 
             </div>
 
 
         </div>
 
-
     </div>
-
 
 
     <!-- ======================================================
@@ -788,51 +865,36 @@ body{
         id="finishScreen"
     >
 
-
         <div class="game-icon">
             🎉
         </div>
-
 
         <h2>
             Game Finished!
         </h2>
 
-
         <p>
-
-            <strong>
-                Final Score:
-            </strong>
-
+            <strong>Final Score:</strong>
             <span id="finalScore"></span>
-
         </p>
-
 
         <p>
-
-            <strong>
-                Percentage:
-            </strong>
-
+            <strong>Percentage:</strong>
             <span id="percent"></span>
-
         </p>
-
 
         <p id="message"></p>
 
+        <div class="finish-buttons">
 
-        <button
-            class="play-again"
-            onclick="startGame()"
-        >
+            <button
+                class="play-again"
+                onclick="startGame()"
+            >
+                Play Again →
+            </button>
 
-            Play Again →
-
-        </button>
-
+        </div>
 
     </div>
 
@@ -840,9 +902,7 @@ body{
 </div>
 
 
-
 <script>
-
 
 /* ==========================================================
    VOCABULARY
@@ -902,6 +962,8 @@ const TOTAL_ROUNDS = 9;
 
 const PAIRS_PER_ROUND = 3;
 
+const TIME_PER_ROUND = 10;
+
 
 let round = 1;
 
@@ -909,7 +971,7 @@ let score = 0;
 
 let timer;
 
-let timeLeft = 10;
+let timeLeft = TIME_PER_ROUND;
 
 let currentPairs = [];
 
@@ -920,7 +982,6 @@ let selectedVietnamese = null;
 let matchedCount = 0;
 
 let roundFinished = false;
-
 
 
 /* ==========================================================
@@ -942,7 +1003,6 @@ function shuffle(arr){
                 Math.random() * (i + 1)
             );
 
-
         [a[i],a[j]] =
             [a[j],a[i]];
 
@@ -952,6 +1012,22 @@ function shuffle(arr){
 
 }
 
+
+/* ==========================================================
+   SHOW TUTORIAL
+========================================================== */
+
+function showTutorial(){
+
+    document.getElementById(
+        "introScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "tutorialScreen"
+    ).style.display = "block";
+
+}
 
 
 /* ==========================================================
@@ -966,28 +1042,27 @@ function startGame(){
 
     score = 0;
 
-
     document.getElementById(
         "introScreen"
     ).style.display = "none";
 
+    document.getElementById(
+        "tutorialScreen"
+    ).style.display = "none";
 
     document.getElementById(
         "finishScreen"
     ).style.display = "none";
 
-
     document.getElementById(
         "gameArea"
     ).style.display = "block";
-
 
     updateScore();
 
     loadRound();
 
 }
-
 
 
 /* ==========================================================
@@ -1001,7 +1076,6 @@ function updateScore(){
     ).textContent = score;
 
 }
-
 
 
 /* ==========================================================
@@ -1018,43 +1092,33 @@ function loadRound(){
 
     selectedVietnamese = null;
 
-
     document.getElementById(
         "round"
     ).textContent = round;
 
-
-    timeLeft = 10;
-
+    timeLeft = TIME_PER_ROUND;
 
     document.getElementById(
         "time"
     ).textContent = timeLeft;
 
-
     const progress =
-        document.getElementById(
-            "progress"
-        );
-
+        document.getElementById("progress");
 
     progress.style.width = "100%";
 
+    progress.classList.remove("timeout");
 
     clearInterval(timer);
 
 
-
     /* ======================================================
-       SELECT 3 RANDOM PAIRS
+       SELECT RANDOM PAIRS
     ====================================================== */
 
     currentPairs =
         shuffle(vocabulary)
-            .slice(
-                0,
-                PAIRS_PER_ROUND
-            );
+        .slice(0,PAIRS_PER_ROUND);
 
 
     const english =
@@ -1078,7 +1142,6 @@ function loadRound(){
             "englishList"
         );
 
-
     const viDiv =
         document.getElementById(
             "vietnameseList"
@@ -1090,71 +1153,50 @@ function loadRound(){
     viDiv.innerHTML = "";
 
 
-
     /* ======================================================
        ENGLISH CARDS
     ====================================================== */
 
-    english.forEach(
-        word => {
+    english.forEach(word => {
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        const card =
+            document.createElement("div");
 
+        card.className = "card";
 
-            card.className = "card";
+        card.textContent = word;
 
+        card.dataset.word = word;
 
-            card.textContent = word;
+        card.onclick =
+            () => selectEnglish(card);
 
+        enDiv.appendChild(card);
 
-            card.dataset.word = word;
-
-
-            card.onclick =
-                () => selectEnglish(card);
-
-
-            enDiv.appendChild(card);
-
-        }
-    );
-
+    });
 
 
     /* ======================================================
        VIETNAMESE CARDS
     ====================================================== */
 
-    vietnamese.forEach(
-        word => {
+    vietnamese.forEach(word => {
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        const card =
+            document.createElement("div");
 
+        card.className = "card";
 
-            card.className = "card";
+        card.textContent = word;
 
+        card.dataset.word = word;
 
-            card.textContent = word;
+        card.onclick =
+            () => selectVietnamese(card);
 
+        viDiv.appendChild(card);
 
-            card.dataset.word = word;
-
-
-            card.onclick =
-                () => selectVietnamese(card);
-
-
-            viDiv.appendChild(card);
-
-        }
-    );
-
+    });
 
 
     /* ======================================================
@@ -1162,40 +1204,33 @@ function loadRound(){
     ====================================================== */
 
     timer =
-        setInterval(
-            () => {
+        setInterval(() => {
 
-                timeLeft--;
+            timeLeft--;
 
+            document.getElementById(
+                "time"
+            ).textContent = timeLeft;
 
-                document.getElementById(
-                    "time"
-                ).textContent =
-                    timeLeft;
-
-
-                progress.style.width =
-                    (
-                        timeLeft / 10 * 100
-                    ) + "%";
+            progress.style.width =
+                (
+                    timeLeft /
+                    TIME_PER_ROUND *
+                    100
+                ) + "%";
 
 
-                if(
-                    timeLeft <= 0
-                ){
+            if(timeLeft <= 0){
 
-                    clearInterval(timer);
+                clearInterval(timer);
 
-                    endRound();
+                handleTimeout();
 
-                }
+            }
 
-            },
-            1000
-        );
+        },1000);
 
 }
-
 
 
 /* ==========================================================
@@ -1207,7 +1242,6 @@ function selectEnglish(card){
     if(roundFinished)
         return;
 
-
     if(
         card.classList.contains("correct")
     )
@@ -1218,32 +1252,28 @@ function selectEnglish(card){
         .querySelectorAll(
             "#englishList .card"
         )
-        .forEach(
-            c => {
+        .forEach(c => {
 
-                if(
-                    !c.classList.contains("correct")
-                ){
+            if(
+                !c.classList.contains("correct")
+            ){
 
-                    c.classList.remove(
-                        "selected"
-                    );
-
-                }
+                c.classList.remove(
+                    "selected"
+                );
 
             }
-        );
+
+        });
 
 
     selectedEnglish = card;
 
     card.classList.add("selected");
 
-
     checkMatch();
 
 }
-
 
 
 /* ==========================================================
@@ -1255,7 +1285,6 @@ function selectVietnamese(card){
     if(roundFinished)
         return;
 
-
     if(
         card.classList.contains("correct")
     )
@@ -1266,32 +1295,28 @@ function selectVietnamese(card){
         .querySelectorAll(
             "#vietnameseList .card"
         )
-        .forEach(
-            c => {
+        .forEach(c => {
 
-                if(
-                    !c.classList.contains("correct")
-                ){
+            if(
+                !c.classList.contains("correct")
+            ){
 
-                    c.classList.remove(
-                        "selected"
-                    );
-
-                }
+                c.classList.remove(
+                    "selected"
+                );
 
             }
-        );
+
+        });
 
 
     selectedVietnamese = card;
 
     card.classList.add("selected");
 
-
     checkMatch();
 
 }
-
 
 
 /* ==========================================================
@@ -1310,12 +1335,11 @@ function checkMatch(){
     const en =
         selectedEnglish.dataset.word;
 
-
     const vi =
         selectedVietnamese.dataset.word;
 
 
-    const ok =
+    const correctPair =
         currentPairs.find(
             p =>
                 p.en === en &&
@@ -1323,12 +1347,11 @@ function checkMatch(){
         );
 
 
-    if(ok){
+    if(correctPair){
 
         selectedEnglish
             .classList
             .remove("selected");
-
 
         selectedVietnamese
             .classList
@@ -1338,7 +1361,6 @@ function checkMatch(){
         selectedEnglish
             .classList
             .add("correct");
-
 
         selectedVietnamese
             .classList
@@ -1349,7 +1371,6 @@ function checkMatch(){
 
         matchedCount++;
 
-
         updateScore();
 
 
@@ -1357,6 +1378,8 @@ function checkMatch(){
 
         selectedVietnamese = null;
 
+
+        /* ALL PAIRS MATCHED */
 
         if(
             matchedCount ===
@@ -1373,36 +1396,39 @@ function checkMatch(){
 
     else{
 
-        const e =
+        const englishCard =
             selectedEnglish;
 
-
-        const v =
+        const vietnameseCard =
             selectedVietnamese;
 
 
-        e.classList.add("wrong");
+        englishCard
+            .classList
+            .add("wrong");
 
-        v.classList.add("wrong");
+        vietnameseCard
+            .classList
+            .add("wrong");
 
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                e.classList.remove(
+            englishCard
+                .classList
+                .remove(
                     "wrong",
                     "selected"
                 );
 
-
-                v.classList.remove(
+            vietnameseCard
+                .classList
+                .remove(
                     "wrong",
                     "selected"
                 );
 
-            },
-            500
-        );
+        },500);
 
 
         selectedEnglish = null;
@@ -1414,6 +1440,39 @@ function checkMatch(){
 }
 
 
+/* ==========================================================
+   TIME OUT
+========================================================== */
+
+function handleTimeout(){
+
+    if(roundFinished)
+        return;
+
+    roundFinished = true;
+
+    const progress =
+        document.getElementById(
+            "progress"
+        );
+
+    progress.style.width = "0%";
+
+    progress.classList.add("timeout");
+
+    document.getElementById(
+        "time"
+    ).textContent = "Time Out!";
+
+
+    setTimeout(() => {
+
+        nextRound();
+
+    },1000);
+
+}
+
 
 /* ==========================================================
    END ROUND
@@ -1424,39 +1483,43 @@ function endRound(){
     if(roundFinished)
         return;
 
-
     roundFinished = true;
-
 
     clearInterval(timer);
 
 
-    setTimeout(
-        () => {
+    setTimeout(() => {
 
-            round++;
+        nextRound();
 
-
-            if(
-                round > TOTAL_ROUNDS
-            ){
-
-                finishGame();
-
-            }
-
-            else{
-
-                loadRound();
-
-            }
-
-        },
-        1000
-    );
+    },800);
 
 }
 
+
+/* ==========================================================
+   NEXT ROUND
+========================================================== */
+
+function nextRound(){
+
+    round++;
+
+    if(
+        round > TOTAL_ROUNDS
+    ){
+
+        finishGame();
+
+    }
+
+    else{
+
+        loadRound();
+
+    }
+
+}
 
 
 /* ==========================================================
@@ -1467,11 +1530,9 @@ function finishGame(){
 
     clearInterval(timer);
 
-
     document.getElementById(
         "gameArea"
     ).style.display = "none";
-
 
     document.getElementById(
         "finishScreen"
@@ -1496,35 +1557,46 @@ function finishGame(){
         percent + "%";
 
 
-    let msg = "";
+    let message = "";
 
 
     if(percent >= 85){
 
-        msg = "🏆 Excellent!";
+        message = "🏆 Excellent!";
 
     }
 
     else if(percent >= 60){
 
-        msg = "🎉 Good Job!";
+        message = "🎉 Good Job!";
 
     }
 
     else{
 
-        msg = "📚 Keep Practicing!";
+        message = "📚 Keep Practicing!";
 
     }
 
 
     document.getElementById(
         "message"
-    ).textContent =
-        msg;
+    ).textContent = message;
 
 }
 
+
+/* ==========================================================
+   INITIAL STATE
+========================================================== */
+
+document.getElementById(
+    "gameArea"
+).style.display = "none";
+
+document.getElementById(
+    "tutorialScreen"
+).style.display = "none";
 
 </script>
 

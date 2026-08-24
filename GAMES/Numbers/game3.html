@@ -38,12 +38,46 @@ body{
 }
 
 .game-container{
+    position:relative;
     width:min(850px,95vw);
     background:white;
-    padding:35px;
+    padding:65px 35px 35px;
     border-radius:24px;
     box-shadow:0 10px 35px rgba(0,0,0,.12);
 }
+
+/* =========================
+   BACK TO LOBBY
+========================= */
+
+.lobby-btn{
+    position:absolute;
+    top:20px;
+    left:22px;
+
+    padding:8px 14px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#eef5fc;
+    color:#1976d2;
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.lobby-btn:hover{
+    background:#dcecff;
+    transform:translateX(-2px);
+}
+
+/* =========================
+   HEADINGS
+========================= */
 
 h1{
     margin-top:0;
@@ -56,7 +90,6 @@ h1{
     font-size:18px;
     margin-bottom:25px;
 }
-
 
 /* =========================
    TOP BAR
@@ -87,7 +120,6 @@ h1{
     transition:.3s;
 }
 
-
 /* =========================
    NUMBER
 ========================= */
@@ -104,7 +136,6 @@ h1{
     font-size:18px;
     margin-bottom:30px;
 }
-
 
 /* =========================
    ANSWERS
@@ -150,8 +181,8 @@ h1{
 
 .answer.disabled{
     cursor:default;
+    pointer-events:none;
 }
-
 
 /* =========================
    RESULT
@@ -170,7 +201,6 @@ h1{
     font-weight:bold;
     color:#555;
 }
-
 
 /* =========================
    BUTTONS
@@ -196,7 +226,6 @@ h1{
     transform:translateY(-2px);
 }
 
-
 /* =========================
    FINAL
 ========================= */
@@ -205,6 +234,7 @@ h1{
     font-size:30px;
     margin:25px 0;
     color:#1976d2;
+    font-weight:bold;
 }
 
 .performance{
@@ -213,7 +243,6 @@ h1{
     margin-bottom:25px;
 }
 
-
 /* =========================
    MOBILE
 ========================= */
@@ -221,7 +250,7 @@ h1{
 @media(max-width:650px){
 
     .game-container{
-        padding:25px 15px;
+        padding:60px 15px 25px;
     }
 
     h1{
@@ -241,6 +270,13 @@ h1{
         padding:16px;
     }
 
+    .lobby-btn{
+        top:16px;
+        left:16px;
+        font-size:13px;
+        padding:7px 12px;
+    }
+
 }
 
 </style>
@@ -250,6 +286,15 @@ h1{
 <body>
 
 <div class="game-container">
+
+
+<!-- ================= BACK TO LOBBY ================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()">
+    ← Back to Lobby
+</button>
 
 
 <!-- ================= INTRO ================= -->
@@ -266,7 +311,9 @@ h1{
         15 questions • Numbers 0–19
     </p>
 
-    <button class="play-btn" onclick="startGame()">
+    <button
+        class="play-btn"
+        onclick="startGame()">
         Start Game
     </button>
 
@@ -294,7 +341,12 @@ h1{
 
 
     <div class="progress-wrap">
-        <div class="progress" id="progress"></div>
+
+        <div
+            class="progress"
+            id="progress">
+        </div>
+
     </div>
 
 
@@ -343,18 +395,16 @@ h1{
 
 <div id="end" class="screen">
 
-    <h1>🎉 Finished!</h1>
+    <h1>🎉 Game Complete!</h1>
 
-    <p>You completed all 15 questions.</p>
+    <p>
+        You completed all 15 questions.
+    </p>
 
-    <div class="final-score">
-
-        Your score:
-
-        <strong id="finalScore">
-            0 / 15
-        </strong>
-
+    <div
+        class="final-score"
+        id="finalScore">
+        0 / 15
     </div>
 
     <div
@@ -365,9 +415,7 @@ h1{
     <button
         class="play-btn"
         onclick="restart()">
-
         Play Again
-
     </button>
 
 </div>
@@ -384,10 +432,26 @@ h1{
 
 const numbers = [
 
-    "0","1","2","3","4",
-    "5","6","7","8","9",
-    "10","11","12","13","14",
-    "15","16","17","18","19"
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19"
 
 ];
 
@@ -423,7 +487,6 @@ const viNumbers = [
 ========================================================== */
 
 const TOTAL_QUESTIONS = 15;
-
 const TOTAL_OPTIONS = 4;
 
 
@@ -506,10 +569,13 @@ function startGame(){
 
     score = 0;
 
+    answered = false;
+
 
     document
         .getElementById("score")
-        .innerText = "0";
+        .innerText =
+        "0";
 
 
     createQuestions();
@@ -530,17 +596,20 @@ function loadQuestion(){
 
     document
         .getElementById("nextBtn")
-        .style.display = "none";
+        .style.display =
+        "none";
 
 
     document
         .getElementById("resultIcon")
-        .innerText = "";
+        .innerText =
+        "";
 
 
     document
         .getElementById("feedback")
-        .innerText = "";
+        .innerText =
+        "";
 
 
     document
@@ -552,7 +621,9 @@ function loadQuestion(){
     document
         .getElementById("progress")
         .style.width =
-        (current / TOTAL_QUESTIONS * 100) + "%";
+        (current /
+        TOTAL_QUESTIONS *
+        100) + "%";
 
 
     const correct =
@@ -587,16 +658,23 @@ function loadQuestion(){
         shuffle(
 
             viNumbers.filter(
-                word => word !== correctWord
+                word =>
+                word !== correctWord
             )
 
-        ).slice(0, TOTAL_OPTIONS - 1);
+        ).slice(
+            0,
+            TOTAL_OPTIONS - 1
+        );
 
 
     const options =
         shuffle([
+
             correctWord,
+
             ...wrongWords
+
         ]);
 
 
@@ -642,7 +720,10 @@ function loadQuestion(){
    CHOOSE ANSWER
 ========================================================== */
 
-function chooseAnswer(element, isCorrect){
+function chooseAnswer(
+    element,
+    isCorrect
+){
 
     if(answered){
         return;
@@ -654,7 +735,9 @@ function chooseAnswer(element, isCorrect){
         answered = true;
 
 
-        element.classList.add("correct");
+        element.classList.add(
+            "correct"
+        );
 
 
         score++;
@@ -686,7 +769,9 @@ function chooseAnswer(element, isCorrect){
             .querySelectorAll(".answer")
             .forEach(card => {
 
-                card.classList.add("disabled");
+                card.classList.add(
+                    "disabled"
+                );
 
                 card.style.pointerEvents =
                     "none";
@@ -700,6 +785,30 @@ function chooseAnswer(element, isCorrect){
             "inline-block";
 
 
+        /*
+           Change button on final question
+        */
+
+        if(
+            current ===
+            TOTAL_QUESTIONS - 1
+        ){
+
+            document
+                .getElementById("nextBtn")
+                .innerText =
+                "Finish 🎉";
+
+        }else{
+
+            document
+                .getElementById("nextBtn")
+                .innerText =
+                "Next →";
+
+        }
+
+
     }else{
 
         /*
@@ -707,7 +816,9 @@ function chooseAnswer(element, isCorrect){
            let learner try again.
         */
 
-        element.classList.add("wrong");
+        element.classList.add(
+            "wrong"
+        );
 
 
         document
@@ -718,7 +829,9 @@ function chooseAnswer(element, isCorrect){
 
         setTimeout(() => {
 
-            element.classList.remove("wrong");
+            element.classList.remove(
+                "wrong"
+            );
 
         },600);
 
@@ -735,7 +848,11 @@ function nextQuestion(){
 
     current++;
 
-    if(current >= TOTAL_QUESTIONS){
+
+    if(
+        current >=
+        TOTAL_QUESTIONS
+    ){
 
         endGame();
 
@@ -773,29 +890,41 @@ function endGame(){
     document
         .getElementById("finalScore")
         .innerText =
-        score + " / " + TOTAL_QUESTIONS;
+        score +
+        " / " +
+        TOTAL_QUESTIONS;
 
 
     const percentage =
         Math.round(
-            score / TOTAL_QUESTIONS * 100
+
+            score /
+            TOTAL_QUESTIONS *
+            100
+
         );
 
 
     let message;
 
 
-    if(percentage === 100){
+    if(
+        percentage === 100
+    ){
 
         message =
             "🏆 Perfect! Excellent!";
 
-    }else if(percentage >= 80){
+    }else if(
+        percentage >= 80
+    ){
 
         message =
             "🎉 Excellent job!";
 
-    }else if(percentage >= 60){
+    }else if(
+        percentage >= 60
+    ){
 
         message =
             "👍 Good job! Keep practicing!";
@@ -822,14 +951,19 @@ function endGame(){
 
 function restart(){
 
-    document
-        .getElementById("end")
-        .classList.remove("active");
+    startGame();
+
+}
 
 
-    document
-        .getElementById("intro")
-        .classList.add("active");
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        "../../index.html";
 
 }
 

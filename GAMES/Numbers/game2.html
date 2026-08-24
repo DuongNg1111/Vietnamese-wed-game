@@ -34,16 +34,51 @@ body{
 }
 
 .container{
+    position:relative;
     width:100%;
     max-width:850px;
     margin:40px auto;
     background:white;
-    padding:35px;
+    padding:65px 35px 35px;
     border-radius:24px;
     box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
+/* =========================
+   BACK TO LOBBY
+========================= */
+
+.lobby-btn{
+    position:absolute;
+    top:20px;
+    left:22px;
+
+    padding:8px 14px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#eef5fc;
+    color:#1976d2;
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.lobby-btn:hover{
+    background:#dcecff;
+    transform:translateX(-2px);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
 h1{
+    margin-top:0;
     margin-bottom:12px;
     color:#1976d2;
 }
@@ -54,6 +89,10 @@ h1{
     margin-bottom:25px;
     line-height:1.5;
 }
+
+/* =========================
+   QUESTION
+========================= */
 
 .question-info{
     font-size:20px;
@@ -79,6 +118,10 @@ h1{
     font-size:16px;
     margin-bottom:20px;
 }
+
+/* =========================
+   ANSWERS
+========================= */
 
 .answers{
     display:grid;
@@ -120,7 +163,12 @@ h1{
 
 .answer.disabled{
     cursor:default;
+    pointer-events:none;
 }
+
+/* =========================
+   RESULT
+========================= */
 
 .result{
     min-height:45px;
@@ -144,6 +192,10 @@ h1{
     margin-bottom:15px;
 }
 
+/* =========================
+   BUTTONS
+========================= */
+
 .next-btn,
 .restart-btn,
 .start-btn{
@@ -165,12 +217,20 @@ h1{
     transform:translateY(-2px);
 }
 
+/* =========================
+   SCORE
+========================= */
+
 .score{
     margin-top:20px;
     font-size:18px;
     font-weight:bold;
     color:#555;
 }
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress-wrap{
     width:100%;
@@ -188,6 +248,10 @@ h1{
     transition:.3s;
 }
 
+/* =========================
+   END
+========================= */
+
 .final-score{
     font-size:34px;
     font-weight:bold;
@@ -201,10 +265,14 @@ h1{
     margin-bottom:25px;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:650px){
 
     .container{
-        padding:25px 15px;
+        padding:60px 15px 25px;
         margin:20px auto;
     }
 
@@ -221,6 +289,13 @@ h1{
         font-size:23px;
     }
 
+    .lobby-btn{
+        top:16px;
+        left:16px;
+        font-size:13px;
+        padding:7px 12px;
+    }
+
 }
 
 </style>
@@ -229,6 +304,16 @@ h1{
 <body>
 
 <div class="container">
+
+
+<!-- ================= BACK TO LOBBY ================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()">
+    ← Back to Lobby
+</button>
+
 
 <!-- ================= INTRO ================= -->
 
@@ -240,7 +325,13 @@ h1{
         Read the Vietnamese number words and choose the correct number sequence.
     </p>
 
-    <button class="start-btn" onclick="startGame()">
+    <p>
+        15 questions • 3 numbers each
+    </p>
+
+    <button
+        class="start-btn"
+        onclick="startGame()">
         Start Game
     </button>
 
@@ -258,22 +349,38 @@ h1{
     </div>
 
     <div class="progress-wrap">
-        <div class="progress" id="progress"></div>
+
+        <div
+            class="progress"
+            id="progress">
+        </div>
+
     </div>
 
     <div class="instruction">
         What numbers do these Vietnamese words represent?
     </div>
 
-    <div class="number-words" id="numberWords">
+    <div
+        class="number-words"
+        id="numberWords">
         một - năm - tám
     </div>
 
-    <div class="answers" id="answers"></div>
+    <div
+        class="answers"
+        id="answers">
+    </div>
 
-    <div class="result" id="resultIcon"></div>
+    <div
+        class="result"
+        id="resultIcon">
+    </div>
 
-    <div class="correct-answer" id="correctAnswer"></div>
+    <div
+        class="correct-answer"
+        id="correctAnswer">
+    </div>
 
     <button
         class="next-btn"
@@ -294,19 +401,31 @@ h1{
 
 <div id="end" class="screen">
 
-    <h1>🎉 Finished!</h1>
+    <h1>🎉 Game Complete!</h1>
 
-    <div class="final-score" id="finalScore">
+    <p>
+        You completed all 15 questions.
+    </p>
+
+    <div
+        class="final-score"
+        id="finalScore">
         0 / 15
     </div>
 
-    <div class="performance" id="performance"></div>
+    <div
+        class="performance"
+        id="performance">
+    </div>
 
-    <button class="restart-btn" onclick="restart()">
+    <button
+        class="restart-btn"
+        onclick="restart()">
         Play Again
     </button>
 
 </div>
+
 
 </div>
 
@@ -318,6 +437,7 @@ h1{
 ========================================================== */
 
 const numbers = [
+
     "không",
     "một",
     "hai",
@@ -329,6 +449,7 @@ const numbers = [
     "tám",
     "chín",
     "mười"
+
 ];
 
 
@@ -361,13 +482,18 @@ function shuffle(array){
 
     for(let i = arr.length - 1; i > 0; i--){
 
-        const j = Math.floor(Math.random() * (i + 1));
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        [arr[i], arr[j]] =
+        [arr[j], arr[i]];
 
     }
 
     return arr;
+
 }
 
 
@@ -379,11 +505,17 @@ function createSequence(){
 
     return [
 
-        Math.floor(Math.random() * numbers.length),
+        Math.floor(
+            Math.random() * numbers.length
+        ),
 
-        Math.floor(Math.random() * numbers.length),
+        Math.floor(
+            Math.random() * numbers.length
+        ),
 
-        Math.floor(Math.random() * numbers.length)
+        Math.floor(
+            Math.random() * numbers.length
+        )
 
     ];
 
@@ -412,13 +544,16 @@ function generateQuestions(){
 
     while(result.length < TOTAL_QUESTIONS){
 
-        const sequence = createSequence();
+        const sequence =
+            createSequence();
 
-        const key = sequenceKey(sequence);
+        const key =
+            sequenceKey(sequence);
 
         if(!used.has(key)){
 
             used.add(key);
+
             result.push(sequence);
 
         }
@@ -439,20 +574,26 @@ function generateOptions(correct){
     const options = [];
     const used = new Set();
 
-    const correctKey = sequenceKey(correct);
+    const correctKey =
+        sequenceKey(correct);
 
     options.push(correct);
+
     used.add(correctKey);
+
 
     while(options.length < TOTAL_OPTIONS){
 
-        const sequence = createSequence();
+        const sequence =
+            createSequence();
 
-        const key = sequenceKey(sequence);
+        const key =
+            sequenceKey(sequence);
 
         if(!used.has(key)){
 
             used.add(key);
+
             options.push(sequence);
 
         }
@@ -483,16 +624,20 @@ function startGame(){
         .classList.add("active");
 
 
-    questions = generateQuestions();
+    questions =
+        generateQuestions();
 
     current = 0;
+
     score = 0;
+
     answered = false;
 
 
     document
         .getElementById("score")
-        .innerText = score;
+        .innerText =
+        score;
 
 
     loadQuestion();
@@ -520,6 +665,7 @@ function loadQuestion(){
 
 
     resultIcon.innerText = "";
+
     resultIcon.className = "result";
 
     correctAnswer.innerText = "";
@@ -538,23 +684,23 @@ function loadQuestion(){
 
     document
         .getElementById("qnum")
-        .innerText = current + 1;
+        .innerText =
+        current + 1;
 
 
     document
         .getElementById("progress")
         .style.width =
-        ((current + 1) / TOTAL_QUESTIONS * 100) + "%";
+        ((current + 1) /
+        TOTAL_QUESTIONS * 100) + "%";
 
 
-    const correct = questions[current];
+    const correct =
+        questions[current];
 
 
     /*
         Display Vietnamese number words.
-        
-        Example:
-        một - năm - tám
     */
 
     document
@@ -566,14 +712,7 @@ function loadQuestion(){
 
 
     /*
-        Create 4 answer choices.
-        
-        IMPORTANT:
-        Answers are displayed as NUMBERS,
-        not Vietnamese words.
-        
-        Example:
-        1 - 5 - 8
+        Create answer choices.
     */
 
     const options =
@@ -592,17 +731,13 @@ function loadQuestion(){
         const div =
             document.createElement("div");
 
-        div.className = "answer";
+
+        div.className =
+            "answer";
 
 
         /*
-            Convert indexes to actual digits.
-            
-            0 → 0
-            1 → 1
-            2 → 2
-            ...
-            10 → 10
+            Display actual numbers.
         */
 
         div.innerText =
@@ -616,9 +751,12 @@ function loadQuestion(){
         div.onclick = () => {
 
             chooseAnswer(
+
                 div,
+
                 sequenceKey(sequence) ===
                 sequenceKey(correct)
+
             );
 
         };
@@ -635,15 +773,19 @@ function loadQuestion(){
    CHOOSE ANSWER
 ========================================================== */
 
-function chooseAnswer(element, isCorrect){
+function chooseAnswer(element,isCorrect){
 
-    if(answered) return;
+    if(answered){
+        return;
+    }
+
 
     answered = true;
 
 
     const correct =
         questions[current];
+
 
     const correctKey =
         sequenceKey(correct);
@@ -654,7 +796,7 @@ function chooseAnswer(element, isCorrect){
 
 
     /*
-        Disable all choices
+        Disable all choices.
     */
 
     allAnswers.forEach(answer => {
@@ -665,7 +807,7 @@ function chooseAnswer(element, isCorrect){
 
 
     /*
-        Find correct answer
+        Find correct answer.
     */
 
     let correctElement = null;
@@ -700,7 +842,8 @@ function chooseAnswer(element, isCorrect){
 
         document
             .getElementById("resultIcon")
-            .classList.add("correct-text");
+            .className =
+            "result correct-text";
 
     }else{
 
@@ -722,18 +865,22 @@ function chooseAnswer(element, isCorrect){
 
         document
             .getElementById("resultIcon")
-            .classList.add("wrong-text");
+            .className =
+            "result wrong-text";
 
 
         /*
-            Show correct number sequence
+            Show correct sequence.
         */
 
         document
             .getElementById("correctAnswer")
             .innerText =
             "Correct answer: " +
-            correctKey.replaceAll("-", " - ");
+            correctKey.replaceAll(
+                "-",
+                " - "
+            );
 
     }
 
@@ -749,11 +896,6 @@ function chooseAnswer(element, isCorrect){
         .style.display =
         "inline-block";
 
-
-    /*
-        Change button text
-        on final question
-    */
 
     if(current === TOTAL_QUESTIONS - 1){
 
@@ -797,9 +939,16 @@ function endGame(){
         .getElementById("game")
         .classList.remove("active");
 
+
     document
         .getElementById("end")
         .classList.add("active");
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
 
 
     document
@@ -810,7 +959,9 @@ function endGame(){
 
     const percentage =
         Math.round(
-            score / TOTAL_QUESTIONS * 100
+            score /
+            TOTAL_QUESTIONS *
+            100
         );
 
 
@@ -854,13 +1005,19 @@ function endGame(){
 
 function restart(){
 
-    document
-        .getElementById("end")
-        .classList.remove("active");
+    startGame();
 
-    document
-        .getElementById("intro")
-        .classList.add("active");
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        "../../index.html";
 
 }
 
