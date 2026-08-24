@@ -1,1263 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Play free, interactive arcade mini-games to master survival Vietnamese vocabulary, pronunciation, and communication skills with Duong."
-    >
-
-    <meta
-        name="keywords"
-        content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese vocabulary, vietnamese practice"
-    >
-
-    <meta
-        name="author"
-        content="Duong"
-    >
-
-    <title>
-        Survival Vietnamese with Duong
-    </title>
-
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <style>
-
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-
-            margin: 0;
-
-            min-height: 100vh;
-
-            font-family:
-                'Segoe UI',
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
-
-            color: #263238;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #eefaff 0%,
-                    #f8fcff 48%,
-                    #fffaf2 100%
-                );
-
-        }
-
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
-
-        header {
-
-            position: relative;
-
-            width: 100%;
-
-            min-height: 330px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 65px 20px;
-
-            overflow: hidden;
-
-            border-bottom-left-radius: 45px;
-
-            border-bottom-right-radius: 45px;
-
-            box-shadow:
-                0 8px 30px
-                rgba(30, 80, 110, 0.12);
-
-        }
-
-
-        header::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background-image:
-                url('banner.jpg');
-
-            background-size: cover;
-
-            background-position: center;
-
-            filter:
-                brightness(1.08)
-                saturate(0.9);
-
-            transform:
-                scale(1.03);
-
-            z-index: 0;
-
-        }
-
-
-        header::after {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(255,255,255,0.35),
-                    rgba(255,255,255,0.58)
-                );
-
-            z-index: 1;
-
-        }
-
-
-        header h1 {
-
-            position: relative;
-
-            z-index: 2;
-
-            margin: 0;
-
-            font-family:
-                'Kalam',
-                cursive;
-
-            font-size:
-                clamp(
-                    2.8rem,
-                    6vw,
-                    4.6rem
-                );
-
-            line-height: 1;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            color: #183b56;
-
-            text-shadow:
-                0 2px 0
-                rgba(255,255,255,0.8);
-
-        }
-
-
-        header p {
-
-            position: relative;
-
-            z-index: 2;
-
-            margin:
-                18px auto 0;
-
-            max-width: 650px;
-
-            font-size: 1.15rem;
-
-            line-height: 1.5;
-
-            font-weight: 600;
-
-            color: #405a6d;
-
-        }
-
-
-        .header-line {
-
-            position: relative;
-
-            z-index: 2;
-
-            width: 70px;
-
-            height: 5px;
-
-            margin-top: 20px;
-
-            border-radius: 10px;
-
-            background: #1abc9c;
-
-        }
-
-
-
-        /* =====================================================
-           MAIN
-        ===================================================== */
-
-        .container {
-
-            width:
-                min(
-                    1100px,
-                    92%
-                );
-
-            margin:
-                45px auto 70px;
-
-        }
-
-
-        .section-title {
-
-            margin:
-                0 0 35px;
-
-            text-align: center;
-
-            font-size: 2rem;
-
-            font-weight: 800;
-
-            color: #263238;
-
-        }
-
-
-        .section-title::after {
-
-            content: "";
-
-            display: block;
-
-            width: 65px;
-
-            height: 5px;
-
-            margin:
-                10px auto 0;
-
-            border-radius: 10px;
-
-            background: #1abc9c;
-
-        }
-
-
-
-        /* =====================================================
-           CATEGORY
-        ===================================================== */
-
-        .game-type-section {
-
-            margin-bottom: 35px;
-
-            padding: 25px;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.9
-                );
-
-            border:
-                1px solid
-                rgba(
-                    220,
-                    235,
-                    242,
-                    0.9
-                );
-
-            border-radius: 24px;
-
-            box-shadow:
-                0 8px 25px
-                rgba(
-                    40,
-                    80,
-                    110,
-                    0.07
-                );
-
-        }
-
-
-        .category-title {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            margin: 0;
-
-            font-size: 1.5rem;
-
-            line-height: 1.3;
-
-            font-weight: 800;
-
-            color: #263238;
-
-        }
-
-
-        .category-subtitle {
-
-            margin:
-                6px 0 20px;
-
-            color: #78909c;
-
-            font-size: 0.95rem;
-
-            line-height: 1.45;
-
-        }
-
-
-
-        /* =====================================================
-           GAME GRID
-        ===================================================== */
-
-        .game-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(
-                        220px,
-                        1fr
-                    )
-                );
-
-            gap: 18px;
-
-        }
-
-
-
-        /* =====================================================
-           GAME CARD
-        ===================================================== */
-
-        .game-card {
-
-            position: relative;
-
-            min-height: 235px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            overflow: hidden;
-
-            background: #ffffff;
-
-            border:
-                1px solid
-                #e5edf2;
-
-            border-radius: 18px;
-
-            box-shadow:
-                0 5px 15px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.055
-                );
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-
-        }
-
-
-        .game-card:hover {
-
-            transform:
-                translateY(-6px);
-
-            box-shadow:
-                0 14px 28px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.11
-                );
-
-        }
-
-
-        .game-thumb {
-
-            height: 95px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 3rem;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #e4f8ff,
-                    #effff9
-                );
-
-            border-bottom:
-                1px solid
-                #edf3f6;
-
-        }
-
-
-        .game-info {
-
-            flex: 1;
-
-            display: flex;
-
-            flex-direction: column;
-
-            padding: 15px;
-
-        }
-
-
-        .game-title {
-
-            margin:
-                0 0 7px;
-
-            color: #263238;
-
-            font-size: 1.05rem;
-
-            font-weight: 800;
-
-            line-height: 1.3;
-
-            text-align: center;
-
-        }
-
-
-        .game-desc {
-
-            flex: 1;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            margin:
-                0 0 12px;
-
-            color: #78909c;
-
-            font-size: 0.88rem;
-
-            line-height: 1.4;
-
-            text-align: center;
-
-        }
-
-
-        .play-btn {
-
-            display: block;
-
-            width: 100%;
-
-            padding:
-                10px 14px;
-
-            border-radius: 10px;
-
-            background:
-                #1abc9c;
-
-            color: white;
-
-            text-decoration: none;
-
-            text-align: center;
-
-            font-size: 0.9rem;
-
-            font-weight: 800;
-
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
-
-        }
-
-
-        .play-btn:hover {
-
-            background:
-                #159a80;
-
-            transform:
-                scale(1.02);
-
-        }
-
-
-
-        /* =====================================================
-           LOADING
-        ===================================================== */
-
-        .loading {
-
-            padding: 50px;
-
-            text-align: center;
-
-            color: #78909c;
-
-            font-size: 1rem;
-
-        }
-
-
-
-        /* =====================================================
-           ERROR
-        ===================================================== */
-
-        .error-message {
-
-            padding: 25px;
-
-            background:
-                #fff5f5;
-
-            border:
-                1px solid
-                #f3cccc;
-
-            border-radius: 16px;
-
-            color:
-                #c0392b;
-
-            text-align: center;
-
-        }
-
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-
-            padding:
-                30px 20px 40px;
-
-            color:
-                #90a4ae;
-
-            font-size:
-                0.85rem;
-
-            text-align:
-                center;
-
-        }
-
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (
-            max-width: 640px
-        ) {
-
-            header {
-
-                min-height:
-                    280px;
-
-                padding:
-                    55px 18px 50px;
-
-                border-bottom-left-radius:
-                    30px;
-
-                border-bottom-right-radius:
-                    30px;
-
-            }
-
-
-            header h1 {
-
-                font-size:
-                    2.7rem;
-
-            }
-
-
-            header p {
-
-                font-size:
-                    1rem;
-
-            }
-
-
-            .container {
-
-                width:
-                    94%;
-
-                margin-top:
-                    30px;
-
-            }
-
-
-            .section-title {
-
-                font-size:
-                    1.7rem;
-
-                margin-bottom:
-                    25px;
-
-            }
-
-
-            .game-type-section {
-
-                padding:
-                    18px;
-
-                border-radius:
-                    20px;
-
-                margin-bottom:
-                    22px;
-
-            }
-
-
-            .category-title {
-
-                font-size:
-                    1.3rem;
-
-            }
-
-
-            .category-subtitle {
-
-                font-size:
-                    0.88rem;
-
-            }
-
-
-            .game-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    14px;
-
-            }
-
-
-            .game-card {
-
-                min-height:
-                    215px;
-
-            }
-
-
-            .game-thumb {
-
-                height:
-                    80px;
-
-                font-size:
-                    2.5rem;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-
-<body>
-
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
-    <header>
-
-        <h1>
-            🌴 Survival Vietnamese
-        </h1>
-
-        <p>
-            Learn Vietnamese. Play games.
-            Survive real life.
-        </p>
-
-        <div class="header-line"></div>
-
-    </header>
-
-
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
-    <main class="container">
-
-        <div class="section-title">
-            🎮 Choose Your Game
-        </div>
-
-
-        <div id="game-container">
-
-            <div class="loading">
-                Loading games...
-            </div>
-
-        </div>
-
-    </main>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        © 2026 Created by
-        Survival Vietnamese with Duong
-
-    </footer>
-
-
-
-    <!-- =====================================================
-         GAME LOADER
-         NO GITHUB API
-    ====================================================== -->
-
-    <script>
-
-        const GAMES_BASE = "GAMES";
-
-
-        /* =====================================================
-        LOAD CATEGORIES.JSON
-        ===================================================== */
-
-        async function loadCategories() {
-
-            const response = await fetch(
-                "categories.json",
-                {
-                    cache: "no-store"
-                }
-            );
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
-
-            }
-
-            return await response.json();
-        }
-
-
-        /* =====================================================
-        ESCAPE HTML
-        ===================================================== */
-
-        function escapeHtml(value) {
-
-            const div =
-                document.createElement("div");
-
-            div.textContent =
-                String(value ?? "");
-
-            return div.innerHTML;
-        }
-
-
-        /* =====================================================
-        ENCODE PATH
-        ===================================================== */
-
-        function encodePath(path) {
-
-            return path
-                .split("/")
-                .map(
-                    part =>
-                        encodeURIComponent(part)
-                )
-                .join("/");
-        }
-
-
-        /* =====================================================
-        CREATE GAME CARD
-        ===================================================== */
-
-        function createGameCard(game) {
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "game-card";
-
-
-            const gamePath =
-                game.path;
-
-
-            const playUrl =
-                `${GAMES_BASE}/${encodePath(gamePath)}`;
-
-
-            card.innerHTML = `
-
-                <div class="game-thumb">
-
-                    ${escapeHtml(
-                        game.icon || "🎮"
-                    )}
-
-                </div>
-
-
-                <div class="game-info">
-
-                    <h3 class="game-title">
-
-                        ${escapeHtml(
-                            game.title || "Untitled Game"
-                        )}
-
-                    </h3>
-
-
-                    <p class="game-desc">
-
-                        ${escapeHtml(
-                            game.description ||
-                            "Practice Vietnamese with this interactive game."
-                        )}
-
-                    </p>
-
-
-                    <a
-                        href="${playUrl}"
-                        class="play-btn"
-                    >
-                        Play Now →
-                    </a>
-
-                </div>
-
-            `;
-
-
-            return card;
-        }
-
-
-        /* =====================================================
-        RENDER
-        ===================================================== */
-
-        async function renderGames() {
-
-            const container =
-                document.getElementById(
-                    "game-container"
-                );
-
-
-            try {
-
-                const categories =
-                    await loadCategories();
-
-
-                container.innerHTML = "";
-
-
-                let totalGames = 0;
-
-
-                /*
-                * LOOP CATEGORIES
-                */
-
-                for (
-                    const categoryName
-                    of Object.keys(categories)
-                ) {
-
-                    const category =
-                        categories[categoryName];
-
-
-                    if (
-                        !category ||
-                        typeof category !== "object"
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    const games =
-                        Array.isArray(category.games)
-                            ? category.games
-                            : [];
-
-
-                    if (
-                        games.length === 0
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    /*
-                    * CATEGORY SECTION
-                    */
-
-                    const section =
-                        document.createElement(
-                            "section"
-                        );
-
-                    section.className =
-                        "game-type-section";
-
-
-                    /*
-                    * CATEGORY TITLE
-                    */
-
-                    const title =
-                        document.createElement(
-                            "div"
-                        );
-
-                    title.className =
-                        "category-title";
-
-                    title.textContent =
-                        `${category.icon || "🎮"} ${categoryName}`;
-
-
-                    /*
-                    * CATEGORY SUBTITLE
-                    */
-
-                    const subtitle =
-                        document.createElement(
-                            "p"
-                        );
-
-                    subtitle.className =
-                        "category-subtitle";
-
-                    subtitle.textContent =
-                        category.subtitle ||
-                        "Practice Vietnamese with interactive games.";
-
-
-                    /*
-                    * GAME GRID
-                    */
-
-                    const grid =
-                        document.createElement(
-                            "div"
-                        );
-
-                    grid.className =
-                        "game-grid";
-
-
-                    /*
-                    * GAMES
-                    */
-
-                    for (
-                        const game
-                        of games
-                    ) {
-
-                        /*
-                        * Safety check
-                        */
-
-                        if (
-                            !game ||
-                            typeof game !== "object" ||
-                            typeof game.path !== "string"
-                        ) {
-
-                            console.warn(
-                                "Invalid game:",
-                                game
-                            );
-
-                            continue;
-
-                        }
-
-
-                        const card =
-                            createGameCard(game);
-
-
-                        grid.appendChild(
-                            card
-                        );
-
-
-                        totalGames++;
-
-                    }
-
-
-                    /*
-                    * Add section
-                    */
-
-                    if (
-                        grid.children.length > 0
-                    ) {
-
-                        section.appendChild(
-                            title
-                        );
-
-                        section.appendChild(
-                            subtitle
-                        );
-
-                        section.appendChild(
-                            grid
-                        );
-
-                        container.appendChild(
-                            section
-                        );
-
-                    }
-
-                }
-
-
-                /*
-                * NO GAMES
-                */
-
-                if (
-                    totalGames === 0
-                ) {
-
-                    container.innerHTML = `
-
-                        <div class="error-message">
-
-                            <strong>
-                                No games found.
-                            </strong>
-
-                            <br><br>
-
-                            Please check
-                            <strong>
-                                categories.json
-                            </strong>.
-
-                        </div>
-
-                    `;
-
-                }
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Game loader error:",
-                    error
-                );
-
-
-                container.innerHTML = `
-
-                    <div class="error-message">
-
-                        <strong>
-                            Unable to load games.
-                        </strong>
-
-                        <br><br>
-
-                        Please check that
-                        <strong>
-                            categories.json
-                        </strong>
-                        exists and contains valid JSON.
-
-                        <br><br>
-
-                        <small>
-                            ${escapeHtml(
-                                error.message
-                            )}
-                        </small>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
-
-
-        /* =====================================================
-        START
-        ===================================================== */
-
-        renderGames();
-
-        </script>
-
-
-</body>
-
-</html>
+{
+  "Color": {
+    "icon": "🎨",
+    "subtitle": "Recognize and use common Vietnamese color words.",
+    "games": [
+      {
+        "path": "Color/game1.html",
+        "title": "Color Matching",
+        "description": "Match Vietnamese color words with the correct colors.",
+        "icon": "🎨"
+      },
+      {
+        "path": "Color/game2.html",
+        "title": "Color Memory",
+        "description": "Memorize Vietnamese color positions, then find the requested color.",
+        "icon": "🧠"
+      },
+      {
+        "path": "Color/game3.html",
+        "title": "Color Game 3",
+        "description": "Practice Vietnamese colors with an interactive game.",
+        "icon": "🎨"
+      },
+      {
+        "path": "Color/game4.html",
+        "title": "Color Game 4",
+        "description": "Practice Vietnamese colors with an interactive game.",
+        "icon": "🎨"
+      },
+      {
+        "path": "Color/game5.html",
+        "title": "Color Game 5",
+        "description": "Practice Vietnamese colors with an interactive game.",
+        "icon": "🎨"
+      }
+    ]
+  },
+
+  "Describe things": {
+    "icon": "✨",
+    "subtitle": "Use simple Vietnamese words to describe people and things.",
+    "games": [
+      {
+        "path": "Describe things/game1.html",
+        "title": "Describe Things",
+        "description": "Practice simple Vietnamese words for describing people and things.",
+        "icon": "✨"
+      },
+      {
+        "path": "Describe things/game2/game2.html",
+        "title": "Body Parts",
+        "description": "Learn and practice common Vietnamese words for parts of the body.",
+        "icon": "🧍"
+      }
+    ]
+  },
+
+  "Food and Drinks": {
+    "icon": "🍜",
+    "subtitle": "Learn useful words for ordering and talking about food.",
+    "games": [
+      {
+        "path": "Food and Drinks/game1/game1.html",
+        "title": "Food & Taste Word Match",
+        "description": "Match common English food and taste words with their Vietnamese meanings.",
+        "icon": "🍜"
+      },
+      {
+        "path": "Food and Drinks/game2.html",
+        "title": "Food & Drinks Game 2",
+        "description": "Practice useful Vietnamese food and drink vocabulary.",
+        "icon": "🍜"
+      },
+      {
+        "path": "Food and Drinks/game3.html",
+        "title": "Food & Drinks Game 3",
+        "description": "Practice useful Vietnamese food and drink vocabulary.",
+        "icon": "🍜"
+      },
+      {
+        "path": "Food and Drinks/game4.html",
+        "title": "Food & Drinks Game 4",
+        "description": "Practice useful Vietnamese food and drink vocabulary.",
+        "icon": "🍜"
+      },
+      {
+        "path": "Food and Drinks/game5.html",
+        "title": "Food & Drinks Game 5",
+        "description": "Practice useful Vietnamese food and drink vocabulary.",
+        "icon": "🍜"
+      },
+      {
+        "path": "Food and Drinks/game6.html",
+        "title": "Food & Drinks Game 6",
+        "description": "Practice useful Vietnamese food and drink vocabulary.",
+        "icon": "🍜"
+      }
+    ]
+  },
+
+  "Grammar": {
+    "icon": "📝",
+    "subtitle": "Practice useful Vietnamese grammar through interactive games.",
+    "games": [
+      {
+        "path": "Grammar/game1/game1.html",
+        "title": "Vietnamese Comparison",
+        "description": "Practice Vietnamese comparisons by arranging people, things, and situations in the correct order.",
+        "icon": "↔️"
+      },
+      {
+        "path": "Grammar/game2/game2.html",
+        "title": "Grammar Practice",
+        "description": "Practice common Vietnamese grammar patterns through listening and interactive questions.",
+        "icon": "📝"
+      }
+    ]
+  },
+
+  "Health": {
+    "icon": "❤️",
+    "subtitle": "Learn useful Vietnamese words for talking about health.",
+    "games": [
+      {
+        "path": "Health/game1.html",
+        "title": "Health Vocabulary",
+        "description": "Practice useful Vietnamese words related to health.",
+        "icon": "❤️"
+      }
+    ]
+  },
+
+  "Mix Practice": {
+    "icon": "🔀",
+    "subtitle": "Practice a little bit of everything.",
+    "games": [
+      {
+        "path": "Mix Practice/game1.html",
+        "title": "Mixed Practice",
+        "description": "Practice a little bit of everything in Vietnamese.",
+        "icon": "🔀"
+      },
+      {
+        "path": "Mix Practice/game2.html",
+        "title": "Mix Practice Vocabulary",
+        "description": "Review useful Vietnamese vocabulary from different topics in one game.",
+        "icon": "🔀"
+      }
+    ]
+  },
+
+  "Numbers": {
+    "icon": "🔢",
+    "subtitle": "Practice Vietnamese numbers in everyday situations.",
+    "games": [
+      {
+        "path": "Numbers/game1.html",
+        "title": "Numbers Game 1",
+        "description": "Practice Vietnamese numbers in everyday situations.",
+        "icon": "🔢"
+      },
+      {
+        "path": "Numbers/game2.html",
+        "title": "Numbers Game 2",
+        "description": "Practice Vietnamese numbers in everyday situations.",
+        "icon": "🔢"
+      },
+      {
+        "path": "Numbers/game3.html",
+        "title": "Numbers Game 3",
+        "description": "Practice Vietnamese numbers in everyday situations.",
+        "icon": "🔢"
+      }
+    ]
+  },
+
+  "People & Pronouns": {
+    "icon": "👤",
+    "subtitle": "Learn how to address people naturally in Vietnamese.",
+    "games": [
+      {
+        "path": "People & Pronouns/game1.html",
+        "title": "Vietnamese People & Pronouns",
+        "description": "Learn how to address people naturally in Vietnamese.",
+        "icon": "👤"
+      }
+    ]
+  },
+
+  "Places & Locations": {
+    "icon": "📍",
+    "subtitle": "Talk about where things and people are.",
+    "games": [
+      {
+        "path": "Places & Locations/game1.html",
+        "title": "Places & Locations",
+        "description": "Practice Vietnamese words for places and locations.",
+        "icon": "📍"
+      }
+    ]
+  }
+}
