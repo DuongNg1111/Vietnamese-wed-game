@@ -6,14 +6,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fast Translation Flip</title>
+<title>Fast Choice - Vietnamese Vocabulary</title>
 
-<meta name="game-title" content="Fast Translation Flip">
-<meta name="game-description" content="Quickly recall Vietnamese food and everyday vocabulary by revealing hidden translations.">
+<meta name="game-title" content="Fast Choice">
+<meta name="game-description" content="Choose the correct Vietnamese description for each picture.">
 <meta name="game-icon" content="⚡">
-<meta name="game-explanation" content="true">
 
 <style>
+
+/* =========================================================
+   GENERAL
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -27,25 +30,29 @@ body{
     color:#333;
 }
 
-/* ============================= */
-/* BACK TO LOBBY */
-/* ============================= */
+
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
 
 .back-btn-container{
-    max-width:900px;
+    max-width:850px;
     margin:0 auto 20px;
-    text-align:left;
 }
 
 .back-btn{
     display:inline-block;
     padding:10px 18px;
+
     background:white;
     color:#555;
+
     border:2px solid #ddd;
     border-radius:10px;
+
     text-decoration:none;
     font-weight:bold;
+
     transition:.2s;
 }
 
@@ -54,250 +61,286 @@ body{
     transform:translateY(-2px);
 }
 
-/* ============================= */
-/* CONTAINER */
-/* ============================= */
 
-.container{
-    max-width:900px;
+/* =========================================================
+   GAME CONTAINER
+========================================================= */
+
+.game-box{
+    background:white;
+
+    width:100%;
+    max-width:850px;
+
     margin:auto;
-}
-
-/* ============================= */
-/* TITLE */
-/* ============================= */
-
-h1{
-    text-align:center;
-    margin:10px 0;
-    font-size:32px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#666;
-    font-size:18px;
-    margin-bottom:25px;
-}
-
-/* ============================= */
-/* INTRO */
-/* ============================= */
-
-.intro{
-    background:white;
     padding:35px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.1);
+
     text-align:center;
 }
 
-.intro h2{
-    font-size:28px;
-    margin-top:0;
-}
 
-.intro p{
-    font-size:18px;
-    line-height:1.6;
-    color:#555;
-}
+/* =========================================================
+   INTRO / HOW TO PLAY
+========================================================= */
 
-.start-btn,
-.next-btn,
-.play-again-btn{
-    margin-top:20px;
-    padding:13px 30px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
-    background:#2196f3;
-    color:white;
-    font-weight:bold;
-}
-
-.start-btn:hover,
-.next-btn:hover,
-.play-again-btn:hover{
-    opacity:.9;
-}
-
-/* ============================= */
-/* GAME */
-/* ============================= */
-
-.game-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-    font-weight:bold;
-    color:#555;
-}
-
-.round-title{
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
+#introScreen h1{
+    font-size:34px;
     margin-bottom:20px;
 }
 
-/* ============================= */
-/* TABLE */
-/* ============================= */
-
-.table-wrap{
-    overflow-x:auto;
+#introScreen h2{
+    font-size:24px;
+    margin-bottom:15px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-}
-
-th,
-td{
-    border:1px solid #ddd;
-    padding:15px;
-    text-align:center;
-    font-size:20px;
-}
-
-th{
-    background:#e8f5e9;
-    font-weight:bold;
-}
-
-.flip{
-    background:#fff9c4;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
-}
-
-.flip:hover{
-    background:#fff3a8;
-}
-
-.revealed{
-    background:#c8e6c9 !important;
-    cursor:default;
-}
-
-/* ============================= */
-/* CONTROLS */
-/* ============================= */
-
-.controls{
-    text-align:center;
-    margin-top:20px;
-}
-
-.show-btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:10px;
-    background:#ff9800;
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.show-btn:hover{
-    opacity:.9;
-}
-
-/* ============================= */
-/* EXPLANATION */
-/* ============================= */
-
-.explanation{
-    margin:20px auto 0;
-    padding:18px 20px;
-    max-width:750px;
-    background:#f0f7ff;
-    border-left:5px solid #4779b8;
-    border-radius:12px;
-    color:#3d5066;
-    font-size:16px;
+#introScreen p{
+    font-size:18px;
+    color:#555;
     line-height:1.6;
+}
+
+.instructions{
+    max-width:650px;
+    margin:25px auto;
+
+    padding:20px;
+
+    background:#f5f9ff;
+
+    border-radius:15px;
+
     text-align:left;
 }
 
-.explanation strong{
-    color:#4779b8;
+.instructions p{
+    margin:10px 0;
 }
 
-.hidden{
-    display:none;
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button{
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
 }
 
-/* ============================= */
-/* FINAL */
-/* ============================= */
+.start-btn{
+    margin-top:20px;
 
-.final{
-    display:none;
-    background:white;
-    padding:40px 30px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-    text-align:center;
-}
+    padding:14px 35px;
 
-.final h2{
-    font-size:32px;
-    color:#2e7d32;
-}
-
-.final-score{
-    font-size:28px;
-    margin:20px 0;
-}
-
-.final-message{
     font-size:20px;
+
+    background:#2196f3;
+    color:white;
+}
+
+.start-btn:hover{
+    background:#1976d2;
+    transform:scale(1.03);
+}
+
+.next-btn{
+    margin-top:25px;
+
+    padding:12px 30px;
+
+    font-size:18px;
+
+    background:#2196f3;
+    color:white;
+}
+
+.next-btn:hover{
+    background:#1976d2;
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
+    display:none;
+}
+
+.game-title{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.info{
+    font-size:19px;
+    font-weight:bold;
+
+    margin:20px 0;
+
     color:#555;
 }
 
-/* ============================= */
-/* MOBILE */
-/* ============================= */
 
-@media(max-width:700px){
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-container{
+    width:100%;
+    height:12px;
+
+    background:#e0e0e0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+
+    background:#2196f3;
+
+    transition:.3s;
+}
+
+
+/* =========================================================
+   PICTURE
+========================================================= */
+
+#emoji{
+    font-size:150px;
+
+    margin:25px 0;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.options{
+    max-width:650px;
+    margin:auto;
+}
+
+.option{
+    display:block;
+
+    width:100%;
+
+    margin:15px auto;
+
+    padding:18px;
+
+    font-size:22px;
+
+    background:#2196f3;
+    color:white;
+}
+
+.option:hover{
+    background:#1976d2;
+    transform:scale(1.02);
+}
+
+.option:disabled{
+    cursor:default;
+    opacity:.95;
+}
+
+.option.correct{
+    background:#4caf50 !important;
+}
+
+.option.wrong{
+    background:#f44336 !important;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+#message{
+    min-height:40px;
+
+    margin-top:20px;
+
+    font-size:23px;
+    font-weight:bold;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+#result{
+    display:none;
+
+    padding:25px;
+
+    font-size:24px;
+    line-height:1.6;
+}
+
+.final-score{
+    font-size:30px;
+    font-weight:bold;
+
+    margin:20px 0;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
 
     body{
         padding:15px;
     }
 
-    h1{
-        font-size:26px;
+    .game-box{
+        padding:25px 20px;
     }
 
-    .game-card,
-    .intro,
-    .final{
-        padding:20px;
+    #introScreen h1{
+        font-size:28px;
     }
 
-    th,
-    td{
-        padding:12px 8px;
+    .game-title{
+        font-size:25px;
+    }
+
+    #emoji{
+        font-size:110px;
+    }
+
+    .option{
+        font-size:18px;
+        padding:15px;
+    }
+
+    .info{
         font-size:17px;
-    }
-
-    .topbar{
-        font-size:15px;
     }
 
 }
@@ -306,192 +349,118 @@ th{
 
 </head>
 
+
 <body>
 
 
-<!-- ============================= */
-/* BACK TO LOBBY */
-/* ============================= -->
+<!-- =========================================================
+     BACK TO LOBBY
+========================================================= -->
 
 <div class="back-btn-container">
 
-    <a href="../../index.html" class="back-btn">
+    <a
+        href="../../index.html"
+        class="back-btn"
+    >
         ⬅ Back to Lobby
     </a>
 
 </div>
 
 
-<div class="container">
+<!-- =========================================================
+     GAME BOX
+========================================================= -->
+
+<div class="game-box">
 
 
-<!-- ============================= */
-/* INTRO SCREEN */
-/* ============================= -->
+<!-- =========================================================
+     HOW TO PLAY
+========================================================= -->
 
-<div class="intro" id="introScreen">
+<div id="introScreen">
 
-    <h1>⚡ Fast Translation Flip</h1>
-
-    <div class="subtitle">
-        Vietnamese Vocabulary Review
-    </div>
+    <h1>⚡ Fast Choice</h1>
 
     <h2>How to Play</h2>
 
-    <p>
-        Look at the English and Vietnamese words.
-        Some translations are hidden.
-    </p>
+    <div class="instructions">
 
-    <p>
-        👆 Click <strong>???</strong> to reveal the hidden word.
-    </p>
+        <p>🍌 Look at the picture → choose the correct Vietnamese description.</p>
 
-    <p>
-        🧠 Try to remember the translation before revealing it.
-    </p>
+        <p>✅ One correct answer per question. 15 questions total.</p>
 
-    <p>
-        📝 Total Rounds:
-        <strong>10</strong>
-    </p>
+    </div>
 
     <button
         class="start-btn"
-        onclick="startGame()">
-
+        id="startBtn"
+    >
         Start Game
-
     </button>
 
 </div>
 
 
-<!-- ============================= */
-/* GAME SCREEN */
-/* ============================= */
+<!-- =========================================================
+     GAME SCREEN
+========================================================= -->
 
-<div
-    class="game-card"
-    id="gameScreen"
-    style="display:none;"
->
+<div id="gameScreen">
 
-    <h1>⚡ Fast Translation Flip</h1>
+    <h1 class="game-title">
+        ⚡ Fast Choice
+    </h1>
 
-    <div class="topbar">
 
-        <div id="roundInfo">
-            Round 1 / 10
-        </div>
+    <div class="info">
 
-        <div id="revealedInfo">
-            Revealed: 0 / 5
-        </div>
+        Question
+        <span id="question">1</span>
+        / 15
+
+        &nbsp; | &nbsp;
+
+        Score
+        <span id="score">0</span>
 
     </div>
+
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
+    </div>
+
+
+    <div id="emoji"></div>
 
 
     <div
-        class="round-title"
-        id="roundTitle">
-    </div>
+        class="options"
+        id="options"
+    ></div>
 
 
-    <div class="table-wrap">
+    <div id="message"></div>
 
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        English
-                    </th>
-
-                    <th>
-                        Vietnamese
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tableBody">
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <div class="controls">
-
-        <button
-            class="show-btn"
-            id="showAllBtn"
-            onclick="showAll()">
-
-            Show All
-
-        </button>
-
-    </div>
-
-
-    <!-- ONE CONSOLIDATED EXPLANATION -->
-
-    <div
-        id="explanation"
-        class="explanation hidden">
-    </div>
-
-
-    <div style="text-align:center;">
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextRound()">
-
-            Next Round ➜
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ============================= */
-/* FINAL SCREEN */
-/* ============================= -->
-
-<div class="final" id="finalScreen">
-
-    <h2>
-        🎉 Finished!
-    </h2>
-
-    <div
-        class="final-score"
-        id="finalScore">
-    </div>
-
-    <div
-        class="final-message"
-        id="finalMessage">
-    </div>
 
     <button
-        class="play-again-btn"
-        onclick="restartGame()">
-
-        Play Again
-
+        class="next-btn"
+        id="nextBtn"
+        style="display:none;"
+    >
+        Next Question ➜
     </button>
+
+
+    <div id="result"></div>
 
 </div>
 
@@ -502,149 +471,166 @@ th{
 <script>
 
 
-/* =====================================
-   ROUND DATA
-===================================== */
+/* =========================================================
+   GAME DATA
+========================================================= */
 
-const rounds = [
+const items = [
 
     {
-        title:"Round 1",
-        hide:"vi",
-        rows:[
-            ["Coffee","Cà phê"],
-            ["Tea","Trà"],
-            ["Garlic","Tỏi"],
-            ["Fever","Sốt"],
-            ["Bowl","Tô"]
+        emoji:"🍌",
+        answer:"trái chuối màu vàng",
+        wrong:[
+            "trái táo màu đỏ",
+            "trái cam màu cam"
         ]
     },
 
     {
-        title:"Round 2",
-        hide:"en",
-        rows:[
-            ["Chicken","Gà"],
-            ["Salt","Muối"],
-            ["Fish","Cá"],
-            ["Water","Nước lọc"],
-            ["Bitter","Đắng"]
+        emoji:"🥑",
+        answer:"trái bơ màu xanh lá",
+        wrong:[
+            "trái dừa màu trắng",
+            "trái chanh màu vàng"
         ]
     },
 
     {
-        title:"Round 3",
-        pattern:["en","vi","en","vi","en"],
-        rows:[
-            ["Beef","Bò"],
-            ["Glass","Ly"],
-            ["Egg","Trứng"],
-            ["Spicy","Cay"],
-            ["Milk","Sữa"]
+        emoji:"🍎",
+        answer:"trái táo màu đỏ",
+        wrong:[
+            "trái chuối màu vàng",
+            "trái bơ màu xanh lá"
         ]
     },
 
     {
-        title:"Round 4",
-        pattern:["vi","en","vi","en","vi"],
-        rows:[
-            ["Orange Juice","Nước cam"],
-            ["Bowl","Tô"],
-            ["Cough","Ho"],
-            ["Plate","Dĩa"],
-            ["Sugar","Đường"]
+        emoji:"🥥",
+        answer:"trái dừa màu trắng",
+        wrong:[
+            "trái cam màu cam",
+            "trái táo màu đỏ"
         ]
     },
 
     {
-        title:"Round 5",
-        hide:"vi",
-        rows:[
-            ["Coffee","Cà phê"],
-            ["Tea","Trà"],
-            ["Lemonade","Nước chanh"],
-            ["Pepper","Tiêu"],
-            ["Egg","Trứng"]
+        emoji:"🍋",
+        answer:"trái chanh màu vàng",
+        wrong:[
+            "trái chuối màu vàng",
+            "trái dừa màu trắng"
         ]
     },
 
     {
-        title:"Round 6",
-        hide:"en",
-        rows:[
-            ["Beef","Bò"],
-            ["Chicken","Gà"],
-            ["Fish","Cá"],
-            ["Fever","Sốt"],
-            ["Salt","Muối"]
+        emoji:"🍊",
+        answer:"trái cam màu cam",
+        wrong:[
+            "trái chanh màu vàng",
+            "trái bơ màu xanh lá"
         ]
     },
 
     {
-        title:"Round 7",
-        pattern:["en","vi","en","vi","en"],
-        rows:[
-            ["Milk","Sữa"],
-            ["Garlic","Tỏi"],
-            ["Headache","Nhức đầu"],
-            ["Water","Nước lọc"],
-            ["Spicy","Cay"]
+        emoji:"🍉",
+        answer:"trái dưa hấu màu xanh",
+        wrong:[
+            "trái táo màu đỏ",
+            "trái cam màu cam"
         ]
     },
 
     {
-        title:"Round 8",
-        hide:"vi",
-        rows:[
-            ["Coffee","Cà phê"],
-            ["Bowl","Tô"],
-            ["Glass","Ly"],
-            ["Tea","Trà"],
-            ["Sugar","Đường"]
+        emoji:"🥕",
+        answer:"củ cà rốt màu cam",
+        wrong:[
+            "trái chanh màu vàng",
+            "trái bơ màu xanh lá"
         ]
     },
 
     {
-        title:"Round 9",
-        hide:"en",
-        rows:[
-            ["Chicken","Gà"],
-            ["Fish","Cá"],
-            ["Beef","Bò"],
-            ["Cough","Ho"],
-            ["Milk","Sữa"]
+        emoji:"🍅",
+        answer:"quả cà chua màu đỏ",
+        wrong:[
+            "trái chuối màu vàng",
+            "trái dừa màu trắng"
         ]
     },
 
     {
-        title:"Round 10",
-        pattern:["vi","en","vi","en","vi"],
-        rows:[
-            ["Egg","Trứng"],
-            ["Water","Nước lọc"],
-            ["Orange Juice","Nước cam"],
-            ["Salt","Muối"],
-            ["Fever","Sốt"]
+        emoji:"🥒",
+        answer:"quả dưa leo màu xanh",
+        wrong:[
+            "quả cà chua màu đỏ",
+            "trái cam màu cam"
+        ]
+    },
+
+    {
+        emoji:"🍓",
+        answer:"quả dâu màu đỏ",
+        wrong:[
+            "trái chanh màu vàng",
+            "trái bơ màu xanh lá"
+        ]
+    },
+
+    {
+        emoji:"🥭",
+        answer:"trái xoài màu vàng",
+        wrong:[
+            "trái táo màu đỏ",
+            "trái dưa hấu màu xanh"
+        ]
+    },
+
+    {
+        emoji:"🍍",
+        answer:"trái thơm màu vàng",
+        wrong:[
+            "trái dừa màu trắng",
+            "trái chuối màu vàng"
+        ]
+    },
+
+    {
+        emoji:"🍇",
+        answer:"chùm nho màu tím",
+        wrong:[
+            "trái cam màu cam",
+            "trái táo màu đỏ"
+        ]
+    },
+
+    {
+        emoji:"🥝",
+        answer:"trái kiwi màu xanh",
+        wrong:[
+            "trái dâu màu đỏ",
+            "trái xoài màu vàng"
         ]
     }
 
 ];
 
 
-/* =====================================
+/* =========================================================
    GAME STATE
-===================================== */
+========================================================= */
 
-let currentRound = 0;
+const TOTAL_QUESTIONS = 15;
 
-let revealedCount = 0;
+let question = 0;
 
-let totalHidden = 0;
+let score = 0;
+
+let currentItem = null;
 
 
-/* =====================================
+/* =========================================================
    DOM
-===================================== */
+========================================================= */
 
 const introScreen =
     document.getElementById("introScreen");
@@ -652,355 +638,77 @@ const introScreen =
 const gameScreen =
     document.getElementById("gameScreen");
 
-const finalScreen =
-    document.getElementById("finalScreen");
-
-const tableBody =
-    document.getElementById("tableBody");
-
-const roundInfo =
-    document.getElementById("roundInfo");
-
-const roundTitle =
-    document.getElementById("roundTitle");
-
-const revealedInfo =
-    document.getElementById("revealedInfo");
-
-const explanation =
-    document.getElementById("explanation");
+const startBtn =
+    document.getElementById("startBtn");
 
 const nextBtn =
     document.getElementById("nextBtn");
 
-const showAllBtn =
-    document.getElementById("showAllBtn");
+const questionEl =
+    document.getElementById("question");
+
+const scoreEl =
+    document.getElementById("score");
+
+const emojiEl =
+    document.getElementById("emoji");
+
+const optionsEl =
+    document.getElementById("options");
+
+const messageEl =
+    document.getElementById("message");
+
+const resultEl =
+    document.getElementById("result");
+
+const progressBar =
+    document.getElementById("progressBar");
 
 
-/* =====================================
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array){
+
+    return [...array].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+/* =========================================================
    START GAME
-===================================== */
+========================================================= */
 
-function startGame(){
+startBtn.onclick = function(){
 
-    currentRound = 0;
+    question = 0;
+
+    score = 0;
+
+    scoreEl.textContent = "0";
 
     introScreen.style.display = "none";
 
-    finalScreen.style.display = "none";
-
     gameScreen.style.display = "block";
 
-    loadRound();
+    resultEl.style.display = "none";
 
-}
+    nextQuestion();
 
+};
 
-/* =====================================
-   LOAD ROUND
-===================================== */
 
-function loadRound(){
+/* =========================================================
+   LOAD NEXT QUESTION
+========================================================= */
 
-    const r =
-        rounds[currentRound];
+function nextQuestion(){
 
-
-    revealedCount = 0;
-
-    totalHidden = 0;
-
-
-    tableBody.innerHTML = "";
-
-    explanation.innerHTML = "";
-
-    explanation.classList.add("hidden");
-
-    nextBtn.style.display = "none";
-
-    showAllBtn.style.display = "inline-block";
-
-
-    roundInfo.textContent =
-        `Round ${currentRound + 1} / ${rounds.length}`;
-
-
-    roundTitle.textContent =
-        r.title;
-
-
-    r.rows.forEach((row,index)=>{
-
-        const en = row[0];
-
-        const vi = row[1];
-
-
-        let enCell = "";
-
-        let viCell = "";
-
-
-        /* ==========================
-           HIDE VIETNAMESE
-        ========================== */
-
-        if(r.hide === "vi"){
-
-            enCell =
-                `<td>${en}</td>`;
-
-            viCell = `
-                <td
-                    class="flip"
-                    onclick="flip(this,'${escapeHTML(vi)}')"
-                >
-                    ???
-                </td>
-            `;
-
-            totalHidden++;
-
-        }
-
-
-        /* ==========================
-           HIDE ENGLISH
-        ========================== */
-
-        else if(r.hide === "en"){
-
-            enCell = `
-                <td
-                    class="flip"
-                    onclick="flip(this,'${escapeHTML(en)}')"
-                >
-                    ???
-                </td>
-            `;
-
-            viCell =
-                `<td>${vi}</td>`;
-
-            totalHidden++;
-
-        }
-
-
-        /* ==========================
-           PATTERN MODE
-        ========================== */
-
-        else if(r.pattern){
-
-            if(r.pattern[index] === "en"){
-
-                enCell = `
-                    <td
-                        class="flip"
-                        onclick="flip(this,'${escapeHTML(en)}')"
-                    >
-                        ???
-                    </td>
-                `;
-
-                viCell =
-                    `<td>${vi}</td>`;
-
-                totalHidden++;
-
-            }
-
-            else{
-
-                enCell =
-                    `<td>${en}</td>`;
-
-                viCell = `
-                    <td
-                        class="flip"
-                        onclick="flip(this,'${escapeHTML(vi)}')"
-                    >
-                        ???
-                    </td>
-                `;
-
-                totalHidden++;
-
-            }
-
-        }
-
-
-        tableBody.innerHTML += `
-            <tr>
-                ${enCell}
-                ${viCell}
-            </tr>
-        `;
-
-    });
-
-
-    updateRevealed();
-
-}
-
-
-/* =====================================
-   ESCAPE HTML
-===================================== */
-
-function escapeHTML(text){
-
-    return text
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================
-   FLIP
-===================================== */
-
-function flip(
-    element,
-    text
-){
-
-    if(
-        element.classList.contains(
-            "revealed"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    element.innerText = text;
-
-    element.classList.add(
-        "revealed"
-    );
-
-
-    revealedCount++;
-
-    updateRevealed();
-
-
-    if(
-        revealedCount >= totalHidden
-    ){
-
-        showExplanation();
-
-    }
-
-}
-
-
-/* =====================================
-   UPDATE REVEALED
-===================================== */
-
-function updateRevealed(){
-
-    revealedInfo.textContent =
-        `Revealed: ${revealedCount} / ${totalHidden}`;
-
-}
-
-
-/* =====================================
-   SHOW ALL
-===================================== */
-
-function showAll(){
-
-    const hiddenCells =
-        document.querySelectorAll(
-            ".flip:not(.revealed)"
-        );
-
-
-    hiddenCells.forEach(cell => {
-
-        cell.click();
-
-    });
-
-
-    showAllBtn.style.display =
-        "none";
-
-}
-
-
-/* =====================================
-   EXPLANATION
-===================================== */
-
-function showExplanation(){
-
-    const r =
-        rounds[currentRound];
-
-
-    explanation.innerHTML = `
-
-        <strong>💡 Learn:</strong>
-
-        <br>
-
-        Try to remember these translations
-        and use them in real conversations.
-
-        <br><br>
-
-        <strong>Vocabulary:</strong>
-
-        ${r.rows
-            .map(
-                row =>
-                `${row[0]} → ${row[1]}`
-            )
-            .join(" • ")
-        }
-
-    `;
-
-
-    explanation.classList.remove(
-        "hidden"
-    );
-
-
-    nextBtn.style.display =
-        "inline-block";
-
-}
-
-
-/* =====================================
-   NEXT ROUND
-===================================== */
-
-function nextRound(){
-
-    currentRound++;
-
-
-    if(
-        currentRound >= rounds.length
-    ){
+    if(question >= TOTAL_QUESTIONS){
 
         finishGame();
 
@@ -1009,50 +717,309 @@ function nextRound(){
     }
 
 
-    loadRound();
-
-}
+    question++;
 
 
-/* =====================================
-   FINISH GAME
-===================================== */
+    questionEl.textContent =
+        question;
 
-function finishGame(){
 
-    gameScreen.style.display =
+    messageEl.textContent =
+        "";
+
+
+    messageEl.style.color =
+        "";
+
+
+    nextBtn.style.display =
         "none";
 
-    finalScreen.style.display =
+
+    currentItem =
+        items[question - 1];
+
+
+    emojiEl.style.display =
         "block";
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        `🎉 You completed ${rounds.length} rounds!`;
+    emojiEl.textContent =
+        currentItem.emoji;
 
 
-    document.getElementById(
-        "finalMessage"
-    ).textContent =
-        "Great work! Keep reviewing your Vietnamese vocabulary.";
+    progressBar.style.width =
+        `${(question / TOTAL_QUESTIONS) * 100}%`;
+
+
+    /* =====================================
+       CREATE ANSWERS
+    ===================================== */
+
+    const choices = shuffle([
+
+        currentItem.answer,
+
+        ...currentItem.wrong
+
+    ]);
+
+
+    optionsEl.innerHTML = "";
+
+
+    choices.forEach((choice,index) => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "option";
+
+
+        button.textContent =
+            `${String.fromCharCode(65 + index)}. ${choice}`;
+
+
+        button.onclick = function(){
+
+            checkAnswer(
+                button,
+                choice
+            );
+
+        };
+
+
+        optionsEl.appendChild(button);
+
+    });
 
 }
 
 
-/* =====================================
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    selectedButton,
+    choice
+){
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+    });
+
+
+    if(choice === currentItem.answer){
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        scoreEl.textContent =
+            score;
+
+
+        messageEl.style.color =
+            "#2e7d32";
+
+
+        messageEl.textContent =
+            "✅ Correct!";
+
+
+    }
+
+    else{
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        buttons.forEach(button => {
+
+            if(
+                button.textContent
+                .includes(currentItem.answer)
+            ){
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
+
+
+        messageEl.style.color =
+            "#c62828";
+
+
+        messageEl.textContent =
+            `❌ Correct answer: ${currentItem.answer}`;
+
+    }
+
+
+    nextBtn.style.display =
+        "inline-block";
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+nextBtn.onclick = function(){
+
+    nextQuestion();
+
+};
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame(){
+
+    emojiEl.style.display =
+        "none";
+
+    optionsEl.innerHTML =
+        "";
+
+    messageEl.innerHTML =
+        "";
+
+    nextBtn.style.display =
+        "none";
+
+    progressBar.style.width =
+        "100%";
+
+
+    const percentage =
+        Math.round(
+            score / TOTAL_QUESTIONS * 100
+        );
+
+
+    let performance;
+
+
+    if(percentage >= 90){
+
+        performance =
+            "🏆 Excellent!";
+
+    }
+
+    else if(percentage >= 70){
+
+        performance =
+            "🎉 Great Job!";
+
+    }
+
+    else if(percentage >= 50){
+
+        performance =
+            "👍 Good Work!";
+
+    }
+
+    else{
+
+        performance =
+            "📚 Keep Practicing!";
+
+    }
+
+
+    resultEl.innerHTML = `
+
+        <div class="final-score">
+            🎉 Game Finished!
+        </div>
+
+        <div>
+            Final Score:
+            <strong>
+                ${score} / ${TOTAL_QUESTIONS}
+            </strong>
+        </div>
+
+        <div>
+            ${percentage}%
+        </div>
+
+        <div style="margin-top:15px;">
+            ${performance}
+        </div>
+
+        <button
+            class="start-btn"
+            onclick="restartGame()"
+        >
+            Play Again
+        </button>
+
+    `;
+
+
+    resultEl.style.display =
+        "block";
+
+}
+
+
+/* =========================================================
    RESTART
-===================================== */
+========================================================= */
 
 function restartGame(){
 
-    startGame();
+    question = 0;
+
+    score = 0;
+
+    scoreEl.textContent =
+        "0";
+
+    resultEl.innerHTML =
+        "";
+
+    resultEl.style.display =
+        "none";
+
+    emojiEl.style.display =
+        "block";
+
+    gameScreen.style.display =
+        "block";
+
+    nextQuestion();
 
 }
 
 </script>
 
 </body>
-
 </html>

@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Fast Translation Flip</title>
+
+<meta
+    name="game-title"
+    content="Fast Translation Flip"
+>
+
+<meta
+    name="game-description"
+    content="Quickly recall Vietnamese food and everyday vocabulary by revealing hidden translations."
+>
+
+<meta
+    name="game-icon"
+    content="⚡"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<style>
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    padding:24px 20px 50px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#f4f6f8;
+
+    color:#263238;
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+.back-btn-container{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto 18px;
+
+}
+
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:10px 16px;
+
+    background:#ffffff;
+
+    color:#455a64;
+
+    border:2px solid #e0e0e0;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+
+}
+
+.back-btn:hover{
+
+    background:#f0f2f4;
+
+    border-color:#cfd8dc;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.container{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+.intro{
+
+    background:#ffffff;
+
+    padding:34px 30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.08);
+
+    text-align:center;
+
+}
+
+.game-icon{
+
+    font-size:48px;
+
+    margin-bottom:8px;
+
+}
+
+.intro h1{
+
+    margin:0;
+
+    font-size:30px;
+
+    line-height:1.25;
+
+}
+
+.subtitle{
+
+    margin:8px 0 25px;
+
+    color:#78909c;
+
+    font-size:16px;
+
+}
+
+.intro h2{
+
+    margin:0 0 14px;
+
+    font-size:22px;
+
+}
+
+.instructions{
+
+    max-width:650px;
+
+    margin:0 auto;
+
+    color:#546e7a;
+
+    font-size:16px;
+
+    line-height:1.65;
+
+    text-align:left;
+
+}
+
+.instructions p{
+
+    margin:8px 0;
+
+}
+
+.start-btn{
+
+    margin-top:24px;
+
+    padding:12px 28px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:#2196f3;
+
+    color:#ffffff;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+.start-btn:hover{
+
+    background:#1976d2;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   GAME CARD
+========================================================== */
+
+.game-card{
+
+    background:#ffffff;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.08);
+
+}
+
+.game-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:18px;
+
+}
+
+.game-title{
+
+    margin:0;
+
+    font-size:25px;
+
+}
+
+.score-info{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+
+}
+
+.info-pill{
+
+    padding:8px 12px;
+
+    background:#f3f6f8;
+
+    border-radius:10px;
+
+    color:#546e7a;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================================
+   ROUND TITLE
+========================================================== */
+
+.round-title{
+
+    margin:8px 0 20px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#37474f;
+
+}
+
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    overflow:hidden;
+
+    border:1px solid #e0e0e0;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+}
+
+th,
+td{
+
+    padding:15px 14px;
+
+    border-bottom:1px solid #e0e0e0;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+th{
+
+    background:#e8f5e9;
+
+    color:#37474f;
+
+    font-weight:800;
+
+}
+
+tr:last-child td{
+
+    border-bottom:0;
+
+}
+
+td:first-child,
+th:first-child{
+
+    border-right:1px solid #e0e0e0;
+
+}
+
+
+/* ==========================================================
+   FLIP CELL
+========================================================== */
+
+.flip{
+
+    background:#fff9c4;
+
+    color:#5d5200;
+
+    cursor:pointer;
+
+    font-weight:800;
+
+    user-select:none;
+
+    transition:
+        background .2s ease,
+        transform .15s ease;
+
+}
+
+.flip:hover{
+
+    background:#fff3a8;
+
+}
+
+.flip:active{
+
+    transform:scale(.98);
+
+}
+
+.revealed{
+
+    background:#c8e6c9 !important;
+
+    color:#245b2a;
+
+    cursor:default;
+
+}
+
+
+/* ==========================================================
+   CONTROLS
+========================================================== */
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:22px;
+
+}
+
+.show-btn,
+.next-btn,
+.play-again-btn{
+
+    padding:11px 22px;
+
+    border:0;
+
+    border-radius:10px;
+
+    font:inherit;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+.show-btn{
+
+    background:#ff9800;
+
+    color:#ffffff;
+
+}
+
+.show-btn:hover{
+
+    background:#f57c00;
+
+    transform:translateY(-2px);
+
+}
+
+.next-btn{
+
+    background:#2196f3;
+
+    color:#ffffff;
+
+}
+
+.next-btn:hover{
+
+    background:#1976d2;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation{
+
+    max-width:760px;
+
+    margin:22px auto 0;
+
+    padding:17px 20px;
+
+    background:#f0f7ff;
+
+    border-left:5px solid #4779b8;
+
+    border-radius:12px;
+
+    color:#455a64;
+
+    font-size:15px;
+
+    line-height:1.65;
+
+    text-align:left;
+
+}
+
+.explanation strong{
+
+    color:#4779b8;
+
+}
+
+
+/* ==========================================================
+   FINAL SCREEN
+========================================================== */
+
+.final{
+
+    display:none;
+
+    background:#ffffff;
+
+    padding:40px 30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.08);
+
+    text-align:center;
+
+}
+
+.final-icon{
+
+    font-size:55px;
+
+    margin-bottom:10px;
+
+}
+
+.final h2{
+
+    margin:0;
+
+    font-size:30px;
+
+    color:#2e7d32;
+
+}
+
+.final-score{
+
+    margin:18px 0 8px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+.final-message{
+
+    margin-bottom:20px;
+
+    color:#607d8b;
+
+    font-size:16px;
+
+}
+
+.play-again-btn{
+
+    background:#2196f3;
+
+    color:#ffffff;
+
+}
+
+.play-again-btn:hover{
+
+    background:#1976d2;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:700px){
+
+    body{
+
+        padding:
+            18px 14px 40px;
+
+    }
+
+    .intro,
+    .game-card,
+    .final{
+
+        padding:22px 18px;
+
+        border-radius:17px;
+
+    }
+
+    .intro h1{
+
+        font-size:26px;
+
+    }
+
+    .game-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .game-title{
+
+        font-size:22px;
+
+    }
+
+    .score-info{
+
+        width:100%;
+
+        justify-content:flex-start;
+
+    }
+
+    th,
+    td{
+
+        padding:12px 9px;
+
+        font-size:16px;
+
+    }
+
+    .round-title{
+
+        font-size:20px;
+
+    }
+
+    .instructions{
+
+        font-size:15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================================
+     BACK TO LOBBY
+========================================================== -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../index.html"
+        class="back-btn"
+    >
+        ← Back to Lobby
+    </a>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- ==========================================================
+     INTRO SCREEN
+========================================================== -->
+
+<section
+    class="intro"
+    id="introScreen"
+>
+
+    <div class="game-icon">
+        ⚡
+    </div>
+
+    <h1>
+        Fast Translation Flip
+    </h1>
+
+    <div class="subtitle">
+        Vietnamese Vocabulary Review
+    </div>
+
+
+    <h2>
+        How to Play
+    </h2>
+
+
+    <div class="instructions">
+
+        <p>
+            👀 Look at the English and Vietnamese words.
+            Some translations are hidden.
+        </p>
+
+        <p>
+            👆 Click <strong>???</strong>
+            to reveal the hidden word.
+        </p>
+
+        <p>
+            🧠 Try to remember the translation
+            before revealing it.
+        </p>
+
+        <p>
+            📝 There are
+            <strong>10 rounds</strong>,
+            with 5 vocabulary pairs in each round.
+        </p>
+
+    </div>
+
+
+    <button
+        class="start-btn"
+        id="startBtn"
+    >
+        Start Game
+    </button>
+
+</section>
+
+
+<!-- ==========================================================
+     GAME SCREEN
+========================================================== -->
+
+<section
+    class="game-card hidden"
+    id="gameScreen"
+>
+
+
+    <div class="game-header">
+
+        <h1 class="game-title">
+            ⚡ Fast Translation Flip
+        </h1>
+
+
+        <div class="score-info">
+
+            <div
+                class="info-pill"
+                id="roundInfo"
+            >
+                Round 1 / 10
+            </div>
+
+            <div
+                class="info-pill"
+                id="revealedInfo"
+            >
+                Revealed: 0 / 5
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="round-title"
+        id="roundTitle"
+    >
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        English
+                    </th>
+
+                    <th>
+                        Vietnamese
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="show-btn"
+            id="showAllBtn"
+        >
+            Show All
+        </button>
+
+        <button
+            class="next-btn hidden"
+            id="nextBtn"
+        >
+            Next Round →
+        </button>
+
+    </div>
+
+
+    <div
+        class="explanation hidden"
+        id="explanation"
+    >
+    </div>
+
+
+</section>
+
+
+<!-- ==========================================================
+     FINAL SCREEN
+========================================================== -->
+
+<section
+    class="final"
+    id="finalScreen"
+>
+
+    <div class="final-icon">
+        🎉
+    </div>
+
+    <h2>
+        Great Job!
+    </h2>
+
+
+    <div
+        class="final-score"
+        id="finalScore"
+    >
+    </div>
+
+
+    <div
+        class="final-message"
+        id="finalMessage"
+    >
+        Keep reviewing your Vietnamese vocabulary!
+    </div>
+
+
+    <button
+        class="play-again-btn"
+        id="playAgainBtn"
+    >
+        Play Again
+    </button>
+
+</section>
+
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   ROUND DATA
+========================================================== */
+
+const rounds = [
+
+    {
+        title:"Round 1",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Tea","Trà"],
+            ["Garlic","Tỏi"],
+            ["Fever","Sốt"],
+            ["Bowl","Tô"]
+        ]
+    },
+
+    {
+        title:"Round 2",
+        hide:"en",
+        rows:[
+            ["Chicken","Gà"],
+            ["Salt","Muối"],
+            ["Fish","Cá"],
+            ["Water","Nước lọc"],
+            ["Bitter","Đắng"]
+        ]
+    },
+
+    {
+        title:"Round 3",
+        pattern:["en","vi","en","vi","en"],
+        rows:[
+            ["Beef","Bò"],
+            ["Glass","Ly"],
+            ["Egg","Trứng"],
+            ["Spicy","Cay"],
+            ["Milk","Sữa"]
+        ]
+    },
+
+    {
+        title:"Round 4",
+        pattern:["vi","en","vi","en","vi"],
+        rows:[
+            ["Orange Juice","Nước cam"],
+            ["Bowl","Tô"],
+            ["Cough","Ho"],
+            ["Plate","Dĩa"],
+            ["Sugar","Đường"]
+        ]
+    },
+
+    {
+        title:"Round 5",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Tea","Trà"],
+            ["Lemonade","Nước chanh"],
+            ["Pepper","Tiêu"],
+            ["Egg","Trứng"]
+        ]
+    },
+
+    {
+        title:"Round 6",
+        hide:"en",
+        rows:[
+            ["Beef","Bò"],
+            ["Chicken","Gà"],
+            ["Fish","Cá"],
+            ["Fever","Sốt"],
+            ["Salt","Muối"]
+        ]
+    },
+
+    {
+        title:"Round 7",
+        pattern:["en","vi","en","vi","en"],
+        rows:[
+            ["Milk","Sữa"],
+            ["Garlic","Tỏi"],
+            ["Headache","Nhức đầu"],
+            ["Water","Nước lọc"],
+            ["Spicy","Cay"]
+        ]
+    },
+
+    {
+        title:"Round 8",
+        hide:"vi",
+        rows:[
+            ["Coffee","Cà phê"],
+            ["Bowl","Tô"],
+            ["Glass","Ly"],
+            ["Tea","Trà"],
+            ["Sugar","Đường"]
+        ]
+    },
+
+    {
+        title:"Round 9",
+        hide:"en",
+        rows:[
+            ["Chicken","Gà"],
+            ["Fish","Cá"],
+            ["Beef","Bò"],
+            ["Cough","Ho"],
+            ["Milk","Sữa"]
+        ]
+    },
+
+    {
+        title:"Round 10",
+        pattern:["vi","en","vi","en","vi"],
+        rows:[
+            ["Egg","Trứng"],
+            ["Water","Nước lọc"],
+            ["Orange Juice","Nước cam"],
+            ["Salt","Muối"],
+            ["Fever","Sốt"]
+        ]
+    }
+
+];
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let currentRound = 0;
+
+let revealedCount = 0;
+
+let totalHidden = 0;
+
+
+/* ==========================================================
+   DOM
+========================================================== */
+
+const introScreen =
+    document.getElementById("introScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+const tableBody =
+    document.getElementById("tableBody");
+
+const roundInfo =
+    document.getElementById("roundInfo");
+
+const roundTitle =
+    document.getElementById("roundTitle");
+
+const revealedInfo =
+    document.getElementById("revealedInfo");
+
+const explanation =
+    document.getElementById("explanation");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const showAllBtn =
+    document.getElementById("showAllBtn");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const playAgainBtn =
+    document.getElementById("playAgainBtn");
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    currentRound = 0;
+
+    introScreen.classList.add("hidden");
+
+    finalScreen.style.display = "none";
+
+    gameScreen.classList.remove("hidden");
+
+    loadRound();
+
+}
+
+
+/* ==========================================================
+   LOAD ROUND
+========================================================== */
+
+function loadRound(){
+
+    const round =
+        rounds[currentRound];
+
+
+    revealedCount = 0;
+
+    totalHidden = 0;
+
+
+    tableBody.innerHTML = "";
+
+    explanation.innerHTML = "";
+
+    explanation.classList.add("hidden");
+
+    nextBtn.classList.add("hidden");
+
+    showAllBtn.classList.remove("hidden");
+
+
+    roundInfo.textContent =
+        `Round ${currentRound + 1} / ${rounds.length}`;
+
+
+    roundTitle.textContent =
+        round.title;
+
+
+    round.rows.forEach(
+        (row,index)=>{
+
+            const english =
+                row[0];
+
+            const vietnamese =
+                row[1];
+
+
+            const tr =
+                document.createElement("tr");
+
+
+            let englishCell;
+
+            let vietnameseCell;
+
+
+            /* ==================================================
+               HIDE VIETNAMESE
+            ================================================== */
+
+            if(round.hide === "vi"){
+
+                englishCell =
+                    createNormalCell(
+                        english
+                    );
+
+                vietnameseCell =
+                    createFlipCell(
+                        vietnamese
+                    );
+
+            }
+
+
+            /* ==================================================
+               HIDE ENGLISH
+            ================================================== */
+
+            else if(round.hide === "en"){
+
+                englishCell =
+                    createFlipCell(
+                        english
+                    );
+
+                vietnameseCell =
+                    createNormalCell(
+                        vietnamese
+                    );
+
+            }
+
+
+            /* ==================================================
+               PATTERN MODE
+            ================================================== */
+
+            else if(round.pattern){
+
+                if(
+                    round.pattern[index]
+                    === "en"
+                ){
+
+                    englishCell =
+                        createFlipCell(
+                            english
+                        );
+
+                    vietnameseCell =
+                        createNormalCell(
+                            vietnamese
+                        );
+
+                }
+
+                else{
+
+                    englishCell =
+                        createNormalCell(
+                            english
+                        );
+
+                    vietnameseCell =
+                        createFlipCell(
+                            vietnamese
+                        );
+
+                }
+
+            }
+
+
+            tr.appendChild(
+                englishCell
+            );
+
+            tr.appendChild(
+                vietnameseCell
+            );
+
+            tableBody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    updateRevealed();
+
+}
+
+
+/* ==========================================================
+   NORMAL CELL
+========================================================== */
+
+function createNormalCell(text){
+
+    const td =
+        document.createElement("td");
+
+    td.textContent =
+        text;
+
+    return td;
+
+}
+
+
+/* ==========================================================
+   FLIP CELL
+========================================================== */
+
+function createFlipCell(answer){
+
+    const td =
+        document.createElement("td");
+
+    td.className =
+        "flip";
+
+    td.textContent =
+        "???";
+
+
+    td.dataset.answer =
+        answer;
+
+
+    td.addEventListener(
+        "click",
+        function(){
+
+            revealCell(td);
+
+        }
+    );
+
+
+    totalHidden++;
+
+    return td;
+
+}
+
+
+/* ==========================================================
+   REVEAL CELL
+========================================================== */
+
+function revealCell(cell){
+
+    if(
+        cell.classList.contains(
+            "revealed"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    cell.textContent =
+        cell.dataset.answer;
+
+    cell.classList.add(
+        "revealed"
+    );
+
+
+    revealedCount++;
+
+    updateRevealed();
+
+
+    if(
+        revealedCount >= totalHidden
+    ){
+
+        completeRound();
+
+    }
+
+}
+
+
+/* ==========================================================
+   UPDATE REVEALED
+========================================================== */
+
+function updateRevealed(){
+
+    revealedInfo.textContent =
+        `Revealed: ${revealedCount} / ${totalHidden}`;
+
+}
+
+
+/* ==========================================================
+   SHOW ALL
+========================================================== */
+
+function showAll(){
+
+    const hiddenCells =
+        document.querySelectorAll(
+            ".flip:not(.revealed)"
+        );
+
+
+    hiddenCells.forEach(
+        cell => revealCell(cell)
+    );
+
+
+    showAllBtn.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* ==========================================================
+   COMPLETE ROUND
+========================================================== */
+
+function completeRound(){
+
+    showExplanation();
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+function showExplanation(){
+
+    const round =
+        rounds[currentRound];
+
+
+    explanation.innerHTML = "";
+
+
+    const strong =
+        document.createElement("strong");
+
+    strong.textContent =
+        "💡 Learn:";
+
+
+    const intro =
+        document.createTextNode(
+            " Try to remember these translations and use them in real conversations."
+        );
+
+
+    const br =
+        document.createElement("br");
+
+
+    const br2 =
+        document.createElement("br");
+
+
+    const vocabStrong =
+        document.createElement("strong");
+
+    vocabStrong.textContent =
+        "Vocabulary:";
+
+
+    explanation.appendChild(
+        strong
+    );
+
+    explanation.appendChild(
+        intro
+    );
+
+    explanation.appendChild(
+        br
+    );
+
+    explanation.appendChild(
+        br2
+    );
+
+    explanation.appendChild(
+        vocabStrong
+    );
+
+
+    round.rows.forEach(
+        (row,index)=>{
+
+            const text =
+                document.createTextNode(
+                    `${index === 0 ? " " : " • "}${row[0]} → ${row[1]}`
+                );
+
+            explanation.appendChild(
+                text
+            );
+
+        }
+    );
+
+
+    explanation.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* ==========================================================
+   NEXT ROUND
+========================================================== */
+
+function nextRound(){
+
+    currentRound++;
+
+
+    if(
+        currentRound >= rounds.length
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    loadRound();
+
+}
+
+
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+    finalScreen.style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        `🎉 You completed all ${rounds.length} rounds!`;
+
+
+    document.getElementById(
+        "finalMessage"
+    ).textContent =
+        "Great work! Keep reviewing your Vietnamese vocabulary.";
+
+}
+
+
+/* ==========================================================
+   RESTART GAME
+========================================================== */
+
+function restartGame(){
+
+    finalScreen.style.display =
+        "none";
+
+    introScreen.classList.remove(
+        "hidden"
+    );
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* ==========================================================
+   EVENT LISTENERS
+========================================================== */
+
+startBtn.addEventListener(
+    "click",
+    startGame
+);
+
+
+showAllBtn.addEventListener(
+    "click",
+    showAll
+);
+
+
+nextBtn.addEventListener(
+    "click",
+    nextRound
+);
+
+
+playAgainBtn.addEventListener(
+    "click",
+    restartGame
+);
+
+</script>
+
+</body>
+
+</html>
