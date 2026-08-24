@@ -3,1285 +3,1491 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="description"
-        content="Play free, interactive arcade mini-games to master survival Vietnamese vocabulary, pronunciation, and communication skills with Duong."
-    >
+<meta
+    name="description"
+    content="Play free, interactive arcade mini-games to master survival Vietnamese vocabulary, pronunciation, and communication skills with Duong."
+>
 
-    <meta
-        name="keywords"
-        content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese vocabulary, vietnamese practice"
-    >
+<meta
+    name="keywords"
+    content="learn vietnamese, vietnamese games, survival vietnamese, vietnamese vocabulary, vietnamese practice"
+>
 
-    <meta
-        name="author"
-        content="Duong"
-    >
+<meta
+    name="author"
+    content="Duong"
+>
 
-    <title>
-        Survival Vietnamese with Duong
-    </title>
+<title>
+    Survival Vietnamese with Duong
+</title>
 
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap"
+    rel="stylesheet"
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    >
 
+<style>
 
-    <style>
+/* ==========================================================
+   RESET
+========================================================== */
 
+*{
+    box-sizing:border-box;
+}
 
-        /* =====================================================
-           RESET
-        ===================================================== */
 
-        * {
-            box-sizing: border-box;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
 
-        html {
-            scroll-behavior: smooth;
-        }
+body{
 
+    margin:0;
 
-        body {
+    min-height:100vh;
 
-            margin: 0;
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-            min-height: 100vh;
+    color:#263238;
 
-            font-family:
-                'Segoe UI',
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
+    background:
+        linear-gradient(
+            180deg,
+            #eefaff 0%,
+            #f8fcff 48%,
+            #fffaf2 100%
+        );
 
-            color: #263238;
+}
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #eefaff 0%,
-                    #f8fcff 48%,
-                    #fffaf2 100%
-                );
 
-        }
+/* ==========================================================
+   HEADER
+========================================================== */
 
+header{
 
+    position:relative;
 
-        /* =====================================================
-           HEADER
-        ===================================================== */
+    width:100%;
 
-        header {
+    min-height:330px;
 
-            position: relative;
+    display:flex;
 
-            width: 100%;
+    flex-direction:column;
 
-            min-height: 330px;
+    align-items:center;
 
-            display: flex;
+    justify-content:center;
 
-            flex-direction: column;
+    text-align:center;
 
-            align-items: center;
+    padding:65px 20px;
 
-            justify-content: center;
+    overflow:hidden;
 
-            text-align: center;
+    border-bottom-left-radius:45px;
 
-            padding: 65px 20px;
+    border-bottom-right-radius:45px;
 
-            overflow: hidden;
+    box-shadow:
+        0 8px 30px
+        rgba(30,80,110,.12);
 
-            border-bottom-left-radius: 45px;
+}
 
-            border-bottom-right-radius: 45px;
 
-            box-shadow:
-                0 8px 30px
-                rgba(30, 80, 110, 0.12);
+header::before{
 
-        }
+    content:"";
 
+    position:absolute;
 
-        header::before {
+    inset:0;
 
-            content: "";
+    background-image:
+        url('banner.jpg');
 
-            position: absolute;
+    background-size:cover;
 
-            inset: 0;
+    background-position:center;
 
-            background-image:
-                url('banner.jpg');
+    filter:
+        brightness(1.08)
+        saturate(.9);
 
-            background-size: cover;
+    transform:scale(1.03);
 
-            background-position: center;
+    z-index:0;
 
-            filter:
-                brightness(1.08)
-                saturate(0.9);
+}
 
-            transform:
-                scale(1.03);
 
-            z-index: 0;
+header::after{
 
-        }
+    content:"";
 
+    position:absolute;
 
-        header::after {
+    inset:0;
 
-            content: "";
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.35),
+            rgba(255,255,255,.58)
+        );
 
-            position: absolute;
+    z-index:1;
 
-            inset: 0;
+}
 
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(255,255,255,0.35),
-                    rgba(255,255,255,0.58)
-                );
 
-            z-index: 1;
+header h1{
 
-        }
+    position:relative;
 
+    z-index:2;
 
-        header h1 {
+    margin:0;
 
-            position: relative;
+    font-family:
+        'Kalam',
+        cursive;
 
-            z-index: 2;
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            4.6rem
+        );
 
-            margin: 0;
+    line-height:1;
 
-            font-family:
-                'Kalam',
-                cursive;
+    font-weight:700;
 
-            font-size:
-                clamp(
-                    2.8rem,
-                    6vw,
-                    4.6rem
-                );
+    letter-spacing:1px;
 
-            line-height: 1;
+    color:#183b56;
 
-            font-weight: 700;
+    text-shadow:
+        0 2px 0
+        rgba(255,255,255,.8);
 
-            letter-spacing: 1px;
+}
 
-            color: #183b56;
 
-            text-shadow:
-                0 2px 0
-                rgba(255,255,255,0.8);
+header p{
 
-        }
+    position:relative;
 
+    z-index:2;
 
-        header p {
+    margin:18px auto 0;
 
-            position: relative;
+    max-width:650px;
 
-            z-index: 2;
+    font-size:1.15rem;
 
-            margin:
-                18px auto 0;
+    line-height:1.5;
 
-            max-width: 650px;
+    font-weight:600;
 
-            font-size: 1.15rem;
+    color:#405a6d;
 
-            line-height: 1.5;
+}
 
-            font-weight: 600;
 
-            color: #405a6d;
+.header-line{
 
-        }
+    position:relative;
 
+    z-index:2;
 
-        .header-line {
+    width:70px;
 
-            position: relative;
+    height:5px;
 
-            z-index: 2;
+    margin-top:20px;
 
-            width: 70px;
+    border-radius:10px;
 
-            height: 5px;
+    background:#1abc9c;
 
-            margin-top: 20px;
+}
 
-            border-radius: 10px;
 
-            background: #1abc9c;
+/* ==========================================================
+   MAIN
+========================================================== */
 
-        }
+.container{
 
+    width:
+        min(
+            1100px,
+            92%
+        );
 
+    margin:
+        45px auto 70px;
 
-        /* =====================================================
-           MAIN CONTAINER
-        ===================================================== */
+}
 
-        .container {
 
-            width:
-                min(
-                    1100px,
-                    92%
-                );
+.section-title{
 
-            margin:
-                45px auto 70px;
+    margin:
+        0 0 35px;
 
-        }
+    text-align:center;
 
+    font-size:2rem;
 
+    font-weight:800;
 
-        /* =====================================================
-           MAIN TITLE
-        ===================================================== */
+    color:#263238;
 
-        .section-title {
+}
 
-            margin:
-                0 0 35px;
 
-            text-align: center;
+.section-title::after{
 
-            font-size: 2rem;
+    content:"";
 
-            font-weight: 800;
+    display:block;
 
-            color: #263238;
+    width:65px;
 
-        }
+    height:5px;
 
+    margin:
+        10px auto 0;
 
-        .section-title::after {
+    border-radius:10px;
 
-            content: "";
+    background:#1abc9c;
 
-            display: block;
+}
 
-            width: 65px;
 
-            height: 5px;
+/* ==========================================================
+   CATEGORY
+========================================================== */
 
-            margin:
-                10px auto 0;
+.game-type-section{
 
-            border-radius: 10px;
+    margin-bottom:35px;
 
-            background: #1abc9c;
+    padding:25px;
 
-        }
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .9
+        );
 
+    border:
+        1px solid
+        rgba(
+            220,
+            235,
+            242,
+            .9
+        );
 
+    border-radius:24px;
 
-        /* =====================================================
-           CATEGORY SECTION
-        ===================================================== */
+    box-shadow:
+        0 8px 25px
+        rgba(
+            40,
+            80,
+            110,
+            .07
+        );
 
-        .game-type-section {
+}
 
-            margin-bottom: 35px;
 
-            padding: 25px;
+.category-title{
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.9
-                );
+    margin:0;
 
-            border:
-                1px solid
-                rgba(
-                    220,
-                    235,
-                    242,
-                    0.9
-                );
+    font-size:1.5rem;
 
-            border-radius: 24px;
+    line-height:1.3;
 
-            box-shadow:
-                0 8px 25px
-                rgba(
-                    40,
-                    80,
-                    110,
-                    0.07
-                );
+    font-weight:800;
 
-        }
+    color:#263238;
 
+}
 
 
-        /* =====================================================
-           CATEGORY HEADER
-        ===================================================== */
+.category-subtitle{
 
-        .category-title {
+    margin:
+        6px 0 20px;
 
-            display: flex;
+    color:#78909c;
 
-            align-items: center;
+    font-size:.95rem;
 
-            gap: 10px;
+    line-height:1.45;
 
-            margin: 0;
+}
 
-            padding: 0;
 
-            border: none;
+/* ==========================================================
+   GAME GRID
+========================================================== */
 
-            font-size: 1.5rem;
+.game-grid{
 
-            line-height: 1.3;
+    display:grid;
 
-            font-weight: 800;
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(
+                220px,
+                1fr
+            )
+        );
 
-            color: #263238;
+    gap:18px;
 
-        }
+}
 
 
-        .category-subtitle {
+/* ==========================================================
+   GAME CARD
+========================================================== */
 
-            margin:
-                6px 0 20px;
+.game-card{
 
-            color: #78909c;
+    position:relative;
 
-            font-size: 0.95rem;
+    min-height:235px;
 
-            line-height: 1.45;
+    display:flex;
 
-        }
+    flex-direction:column;
 
+    overflow:hidden;
 
+    background:#fff;
 
-        /* =====================================================
-           GAME GRID
-        ===================================================== */
+    border:
+        1px solid
+        #e5edf2;
 
-        .game-grid {
+    border-radius:18px;
 
-            display: grid;
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.055);
 
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(
-                        220px,
-                        1fr
-                    )
-                );
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 
-            gap: 18px;
+}
 
-        }
 
+.game-card:hover{
 
+    transform:
+        translateY(-6px);
 
-        /* =====================================================
-           GAME CARD
-        ===================================================== */
+    box-shadow:
+        0 14px 28px
+        rgba(0,0,0,.11);
 
-        .game-card {
+}
 
-            position: relative;
 
-            min-height: 235px;
+.game-thumb{
 
-            display: flex;
+    height:95px;
 
-            flex-direction: column;
+    display:flex;
 
-            overflow: hidden;
+    align-items:center;
 
-            background: #ffffff;
+    justify-content:center;
 
-            border:
-                1px solid
-                #e5edf2;
+    font-size:3rem;
 
-            border-radius: 18px;
+    background:
+        linear-gradient(
+            135deg,
+            #e4f8ff,
+            #effff9
+        );
 
-            box-shadow:
-                0 5px 15px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.055
-                );
+    border-bottom:
+        1px solid
+        #edf3f6;
 
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+}
 
-        }
 
+.game-info{
 
-        .game-card:hover {
+    flex:1;
 
-            transform:
-                translateY(-6px);
+    display:flex;
 
-            box-shadow:
-                0 14px 28px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.11
-                );
+    flex-direction:column;
 
-        }
+    padding:15px;
 
+}
 
 
-        /* =====================================================
-           GAME THUMBNAIL
-        ===================================================== */
+.game-title{
 
-        .game-thumb {
+    margin:
+        0 0 7px;
 
-            height: 95px;
+    color:#263238;
 
-            display: flex;
+    font-size:1.05rem;
 
-            align-items: center;
+    font-weight:800;
 
-            justify-content: center;
+    line-height:1.3;
 
-            font-size: 3rem;
+    text-align:center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #e4f8ff,
-                    #effff9
-                );
+}
 
-            border-bottom:
-                1px solid
-                #edf3f6;
 
-        }
+.game-desc{
 
+    flex:1;
 
+    display:flex;
 
-        /* =====================================================
-           GAME INFO
-        ===================================================== */
+    align-items:center;
 
-        .game-info {
+    justify-content:center;
 
-            flex: 1;
+    margin:
+        0 0 12px;
 
-            display: flex;
+    color:#78909c;
 
-            flex-direction: column;
+    font-size:.88rem;
 
-            padding: 15px;
+    line-height:1.4;
 
-        }
+    text-align:center;
 
+}
 
 
-        /* =====================================================
-           GAME TITLE
-        ===================================================== */
+.play-btn{
 
-        .game-title {
+    display:block;
 
-            margin:
-                0 0 7px;
+    width:100%;
 
-            color: #263238;
+    padding:10px 14px;
 
-            font-size: 1.05rem;
+    border-radius:10px;
 
-            font-weight: 800;
+    background:#1abc9c;
 
-            line-height: 1.3;
+    color:white;
 
-            text-align: center;
+    text-decoration:none;
 
-        }
+    text-align:center;
 
+    font-size:.9rem;
 
+    font-weight:800;
 
-        /* =====================================================
-           GAME DESCRIPTION
-        ===================================================== */
+    transition:
+        background .2s ease,
+        transform .2s ease;
 
-        .game-desc {
+}
 
-            flex: 1;
 
-            display: flex;
+.play-btn:hover{
 
-            align-items: center;
+    background:#159a80;
 
-            justify-content: center;
+    transform:scale(1.02);
 
-            margin:
-                0 0 12px;
+}
 
-            color: #78909c;
 
-            font-size: 0.88rem;
+/* ==========================================================
+   LOADING
+========================================================== */
 
-            line-height: 1.4;
+.loading{
 
-            text-align: center;
+    padding:50px;
 
-        }
+    text-align:center;
 
+    color:#78909c;
 
+}
 
-        /* =====================================================
-           PLAY BUTTON
-        ===================================================== */
 
-        .play-btn {
+/* ==========================================================
+   ERROR
+========================================================== */
 
-            display: block;
+.error-message{
 
-            width: 100%;
+    padding:25px;
 
-            padding:
-                10px 14px;
+    background:#fff5f5;
 
-            border-radius: 10px;
+    border:
+        1px solid
+        #f3cccc;
 
-            background:
-                #1abc9c;
+    border-radius:16px;
 
-            color: white;
+    color:#c0392b;
 
-            text-decoration: none;
+    text-align:center;
 
-            text-align: center;
+}
 
-            font-size: 0.9rem;
 
-            font-weight: 800;
+/* ==========================================================
+   FOOTER
+========================================================== */
 
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
+footer{
 
-        }
+    padding:
+        30px 20px 40px;
 
+    color:#90a4ae;
 
-        .play-btn:hover {
+    font-size:.85rem;
 
-            background:
-                #159a80;
+    text-align:center;
 
-            transform:
-                scale(1.02);
+}
 
-        }
 
+/* ==========================================================
+   MOBILE
+========================================================== */
 
+@media(max-width:640px){
 
-        /* =====================================================
-           LOADING
-        ===================================================== */
+    header{
 
-        .loading {
+        min-height:280px;
 
-            padding: 50px;
+        padding:
+            55px 18px 50px;
 
-            text-align: center;
+        border-bottom-left-radius:30px;
 
-            color: #78909c;
+        border-bottom-right-radius:30px;
 
-            font-size: 1rem;
+    }
 
-        }
 
+    header h1{
 
+        font-size:2.7rem;
 
-        /* =====================================================
-           ERROR
-        ===================================================== */
+    }
 
-        .error-message {
 
-            padding: 25px;
+    header p{
 
-            background:
-                #fff5f5;
+        font-size:1rem;
 
-            border:
-                1px solid
-                #f3cccc;
+    }
 
-            border-radius: 16px;
 
-            color:
-                #c0392b;
+    .container{
 
-            text-align: center;
+        width:94%;
 
-        }
+        margin-top:30px;
 
+    }
 
 
-        /* =====================================================
-           FOOTER
-        ===================================================== */
+    .section-title{
 
-        footer {
+        font-size:1.7rem;
 
-            padding:
-                30px 20px 40px;
+        margin-bottom:25px;
 
-            color:
-                #90a4ae;
+    }
 
-            font-size:
-                0.85rem;
 
-            text-align:
-                center;
+    .game-type-section{
 
-        }
+        padding:18px;
 
+        border-radius:20px;
 
+        margin-bottom:22px;
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+    }
 
-        @media (
-            max-width: 640px
-        ) {
 
-            header {
+    .category-title{
 
-                min-height:
-                    280px;
+        font-size:1.3rem;
 
-                padding:
-                    55px 18px 50px;
+    }
 
-                border-bottom-left-radius:
-                    30px;
 
-                border-bottom-right-radius:
-                    30px;
+    .category-subtitle{
 
-            }
+        font-size:.88rem;
 
+    }
 
-            header h1 {
 
-                font-size:
-                    2.7rem;
+    .game-grid{
 
-            }
+        grid-template-columns:1fr;
 
+        gap:14px;
 
-            header p {
+    }
 
-                font-size:
-                    1rem;
 
-            }
+    .game-card{
 
+        min-height:215px;
 
-            .container {
+    }
 
-                width:
-                    94%;
 
-                margin-top:
-                    30px;
+    .game-thumb{
 
-            }
+        height:80px;
 
+        font-size:2.5rem;
 
-            .section-title {
+    }
 
-                font-size:
-                    1.7rem;
+}
 
-                margin-bottom:
-                    25px;
-
-            }
-
-
-            .game-type-section {
-
-                padding:
-                    18px;
-
-                border-radius:
-                    20px;
-
-                margin-bottom:
-                    22px;
-
-            }
-
-
-            .category-title {
-
-                font-size:
-                    1.3rem;
-
-            }
-
-
-            .category-subtitle {
-
-                font-size:
-                    0.88rem;
-
-            }
-
-
-            .game-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    14px;
-
-            }
-
-
-            .game-card {
-
-                min-height:
-                    215px;
-
-            }
-
-
-            .game-thumb {
-
-                height:
-                    80px;
-
-                font-size:
-                    2.5rem;
-
-            }
-
-        }
-
-
-    </style>
+</style>
 
 </head>
-
 
 
 <body>
 
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+<!-- ==========================================================
+     HEADER
+========================================================== -->
 
-    <header>
+<header>
 
-        <h1>
-            🌴 Survival Vietnamese
-        </h1>
+    <h1>
+        🌴 Survival Vietnamese
+    </h1>
 
-        <p>
-            Learn Vietnamese. Play games.
-            Survive real life.
-        </p>
+    <p>
+        Learn Vietnamese. Play games.
+        Survive real life.
+    </p>
 
-        <div class="header-line"></div>
+    <div class="header-line"></div>
 
-    </header>
-
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
-    <main class="container">
+</header>
 
 
-        <div class="section-title">
-            🎮 Choose Your Game
+
+<!-- ==========================================================
+     MAIN
+========================================================== -->
+
+<main class="container">
+
+    <div class="section-title">
+        🎮 Choose Your Game
+    </div>
+
+
+    <div id="game-container">
+
+        <div class="loading">
+            Loading games...
         </div>
 
+    </div>
 
-        <div id="game-container">
-
-            <div class="loading">
-                Loading games...
-            </div>
-
-        </div>
-
-
-    </main>
+</main>
 
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+<!-- ==========================================================
+     FOOTER
+========================================================== -->
 
-    <footer>
+<footer>
 
-        © 2026 Created by
-        Survival Vietnamese with Duong
+    © 2026 Created by
+    Survival Vietnamese with Duong
 
-    </footer>
-
-
-
-    <!-- =====================================================
-         GAME LOADER
-         
-         IMPORTANT:
-         This version does NOT use GitHub API.
-         
-         It reads categories.json directly.
-    ====================================================== -->
-
-    <script>
-
-
-        /* =====================================================
-           CONFIGURATION
-        ===================================================== */
-
-        const GAMES_BASE = "GAMES";
+</footer>
 
 
 
-        /* =====================================================
-           LOAD CATEGORIES.JSON
-        ===================================================== */
+<script>
 
-        async function loadCategories() {
+/* ==========================================================
+   CONFIG
+========================================================== */
 
-            const response =
-                await fetch(
-                    "categories.json"
-                );
+const OWNER =
+    "DuongNg1111";
+
+const REPO =
+    "Vietnamese-wed-game";
+
+const BRANCH =
+    "main";
 
 
-            if (!response.ok) {
+const API_BASE =
+    `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
-                throw new Error(
-                    "Could not load categories.json"
-                );
 
+const RAW_BASE =
+    `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}`;
+
+
+
+/* ==========================================================
+   CATEGORY INFORMATION
+========================================================== */
+
+const CATEGORY_INFO = {
+
+    "Color":{
+        icon:"🎨",
+        subtitle:
+            "Learn useful Vietnamese color words."
+    },
+
+    "Describe things":{
+        icon:"🔎",
+        subtitle:
+            "Practice simple Vietnamese words for describing things."
+    },
+
+    "Food and Drinks":{
+        icon:"🍜",
+        subtitle:
+            "Learn practical Vietnamese food and drink vocabulary."
+    },
+
+    "Health":{
+        icon:"❤️",
+        subtitle:
+            "Practice useful Vietnamese words for health and everyday situations."
+    },
+
+    "Mix practice":{
+        icon:"🎯",
+        subtitle:
+            "Mix different Vietnamese topics for overall practice."
+    },
+
+    "Numbers":{
+        icon:"🔢",
+        subtitle:
+            "Practice Vietnamese numbers and number words."
+    }
+
+};
+
+
+
+/* ==========================================================
+   GITHUB API FETCH
+========================================================== */
+
+async function githubFetch(
+    path
+){
+
+    const url =
+        `${API_BASE}/${path}`;
+
+    const response =
+        await fetch(
+            url,
+            {
+                headers:{
+                    "Accept":
+                        "application/vnd.github+json"
+                }
             }
+        );
 
 
-            return await response.json();
+    if(
+        response.status === 403
+    ){
+
+        throw new Error(
+            "GitHub API rate limit reached."
+        );
+
+    }
+
+
+    if(
+        !response.ok
+    ){
+
+        throw new Error(
+            `GitHub API error ${response.status}`
+        );
+
+    }
+
+
+    return await response.json();
+
+}
+
+
+
+/* ==========================================================
+   GET HTML FILES
+========================================================== */
+
+async function findGames(
+    categoryName
+){
+
+    const categoryPath =
+        `GAMES/${categoryName}`;
+
+
+    const items =
+        await githubFetch(
+            categoryPath
+        );
+
+
+    const games = [];
+
+
+    for(
+        const item
+        of items
+    ){
+
+        /* ----------------------------------------------
+           DIRECT HTML FILE
+        ---------------------------------------------- */
+
+        if(
+            item.type === "file" &&
+            item.name
+                .toLowerCase()
+                .endsWith(".html")
+        ){
+
+            games.push({
+
+                path:
+                    item.path,
+
+                name:
+                    item.name
+                        .replace(
+                            /\.html$/i,
+                            ""
+                        )
+
+            });
+
+            continue;
 
         }
 
 
 
-        /* =====================================================
-           GET META TAG
-        ===================================================== */
+        /* ----------------------------------------------
+           FOLDER
+        ---------------------------------------------- */
 
-        function getMeta(
-            html,
-            name
-        ) {
+        if(
+            item.type !== "dir"
+        ){
 
-            /*
-             * Supports:
-             *
-             * <meta name="game-title" content="...">
-             *
-             * and also if attributes
-             * appear in another order.
-             */
+            continue;
 
-            const regex =
-                new RegExp(
-                    `<meta[^>]*name=["']${name}["'][^>]*content=["']([^"']*)["'][^>]*>`,
-                    "i"
-                );
+        }
 
 
-            const match =
-                html.match(
-                    regex
-                );
+        const folderName =
+            item.name.toLowerCase();
 
 
-            if (match) {
+        /* Ignore asset folders */
 
-                return match[1];
+        const ignored = [
 
-            }
+            "images",
+            "image",
+            "audio",
+            "audios",
+            "assets",
+            "css",
+            "js"
 
-
-            /*
-             * Backup pattern:
-             * content before name
-             */
-
-            const reverseRegex =
-                new RegExp(
-                    `<meta[^>]*content=["']([^"']*)["'][^>]*name=["']${name}["'][^>]*>`,
-                    "i"
-                );
+        ];
 
 
-            const reverseMatch =
-                html.match(
-                    reverseRegex
-                );
+        if(
+            ignored.includes(
+                folderName
+            )
+        ){
 
-
-            return reverseMatch
-                ? reverseMatch[1]
-                : "";
+            continue;
 
         }
 
 
 
-        /* =====================================================
-           LOAD GAME METADATA
-        ===================================================== */
+        /*
+         * Look for HTML files
+         * directly inside folder.
+         */
 
-        async function getGameMetadata(
-            gameUrl,
-            fallbackName
-        ) {
+        try{
 
-            try {
-
-                const response =
-                    await fetch(
-                        gameUrl
-                    );
+            const subItems =
+                await githubFetch(
+                    item.path
+                );
 
 
-                if (!response.ok) {
+            for(
+                const subItem
+                of subItems
+            ){
 
-                    throw new Error(
-                        "Could not load game HTML"
-                    );
+                if(
+                    subItem.type === "file" &&
+                    subItem.name
+                        .toLowerCase()
+                        .endsWith(".html")
+                ){
+
+                    games.push({
+
+                        path:
+                            subItem.path,
+
+                        name:
+                            subItem.name
+                                .replace(
+                                    /\.html$/i,
+                                    ""
+                                )
+
+                    });
 
                 }
 
-
-                const html =
-                    await response.text();
-
-
-                return {
-
-                    title:
-                        getMeta(
-                            html,
-                            "game-title"
-                        ) ||
-                        fallbackName,
-
-
-                    description:
-                        getMeta(
-                            html,
-                            "game-description"
-                        ) ||
-                        "Practice Vietnamese with this interactive game.",
-
-
-                    icon:
-                        getMeta(
-                            html,
-                            "game-icon"
-                        ) ||
-                        "🎮"
-
-                };
-
-            }
-
-
-            catch (error) {
-
-                console.warn(
-                    "Could not read metadata:",
-                    gameUrl
-                );
-
-
-                return {
-
-                    title:
-                        fallbackName,
-
-
-                    description:
-                        "Practice Vietnamese with this interactive game.",
-
-
-                    icon:
-                        "🎮"
-
-                };
-
             }
 
         }
 
+        catch(error){
+
+            console.warn(
+                "Could not read folder:",
+                item.path
+            );
+
+        }
+
+    }
 
 
-        /* =====================================================
-           CREATE SAFE HTML TEXT
-        ===================================================== */
+    return games;
 
-        function escapeHTML(text) {
+}
 
-            return String(text)
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /'/g,
-                    "&#039;"
+
+
+/* ==========================================================
+   READ META TAG
+========================================================== */
+
+function getMeta(
+    html,
+    name
+){
+
+    const regex =
+        new RegExp(
+            `<meta\\s+name=["']${name}["']\\s+content=["']([^"']*)["']`,
+            "i"
+        );
+
+
+    const match =
+        html.match(
+            regex
+        );
+
+
+    return match
+        ? match[1]
+        : "";
+
+}
+
+
+
+/* ==========================================================
+   GET GAME METADATA
+========================================================== */
+
+async function getGameMetadata(
+    game
+){
+
+    const encodedPath =
+        game.path
+            .split("/")
+            .map(
+                part =>
+                    encodeURIComponent(
+                        part
+                    )
+            )
+            .join("/");
+
+
+    const url =
+        `${RAW_BASE}/${encodedPath}`;
+
+
+    try{
+
+        const response =
+            await fetch(
+                url
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                "Could not load HTML"
+            );
+
+        }
+
+
+        const html =
+            await response.text();
+
+
+        return {
+
+            title:
+                getMeta(
+                    html,
+                    "game-title"
+                ) ||
+                formatGameName(
+                    game.name
+                ),
+
+
+            description:
+                getMeta(
+                    html,
+                    "game-description"
+                ) ||
+                "Practice Vietnamese with this interactive game.",
+
+
+            icon:
+                getMeta(
+                    html,
+                    "game-icon"
+                ) ||
+                "🎮"
+
+        };
+
+    }
+
+    catch(error){
+
+        console.warn(
+            "Could not read metadata:",
+            game.path
+        );
+
+
+        return {
+
+            title:
+                formatGameName(
+                    game.name
+                ),
+
+            description:
+                "Practice Vietnamese with this interactive game.",
+
+            icon:
+                "🎮"
+
+        };
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   FORMAT GAME NAME
+========================================================== */
+
+function formatGameName(
+    name
+){
+
+    return name
+
+        .replace(
+            /[-_]/g,
+            " "
+        )
+
+        .replace(
+            /\bgame\s*(\d+)\b/i,
+            "Game $1"
+        )
+
+        .replace(
+            /\b\w/g,
+            char =>
+                char.toUpperCase()
+        );
+
+}
+
+
+
+/* ==========================================================
+   CREATE GAME CARD
+========================================================== */
+
+async function createGameCard(
+    game
+){
+
+    const metadata =
+        await getGameMetadata(
+            game
+        );
+
+
+    const encodedPath =
+        game.path
+            .split("/")
+            .map(
+                part =>
+                    encodeURIComponent(
+                        part
+                    )
+            )
+            .join("/");
+
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "game-card";
+
+
+    card.innerHTML = `
+
+        <div class="game-thumb">
+
+            ${escapeHtml(
+                metadata.icon
+            )}
+
+        </div>
+
+
+        <div class="game-info">
+
+            <h3 class="game-title">
+
+                ${escapeHtml(
+                    metadata.title
+                )}
+
+            </h3>
+
+
+            <p class="game-desc">
+
+                ${escapeHtml(
+                    metadata.description
+                )}
+
+            </p>
+
+
+            <a
+                href="${encodedPath}"
+                class="play-btn"
+            >
+
+                Play Now →
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+
+/* ==========================================================
+   ESCAPE HTML
+========================================================== */
+
+function escapeHtml(
+text
+){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* ==========================================================
+   RENDER
+========================================================== */
+
+async function renderGames(){
+
+    const container =
+        document.getElementById(
+            "game-container"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+
+            Loading games...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        /*
+         * Get GAMES folders
+         */
+
+        const folders =
+            await githubFetch(
+                "GAMES"
+            );
+
+
+        const categories = [];
+
+
+        for(
+            const folder
+            of folders
+        ){
+
+            if(
+                folder.type !== "dir"
+            ){
+
+                continue;
+
+            }
+
+
+            const games =
+                await findGames(
+                    folder.name
                 );
+
+
+            if(
+                games.length === 0
+            ){
+
+                continue;
+
+            }
+
+
+            categories.push({
+
+                name:
+                    folder.name,
+
+                games:
+                    games
+
+            });
 
         }
 
 
 
-        /* =====================================================
-           CREATE GAME URL
-        ===================================================== */
+        /* No games */
 
-        function createGameUrl(
-            categoryName,
-            gamePath
-        ) {
+        if(
+            categories.length === 0
+        ){
 
-            const parts = [
+            container.innerHTML = `
 
-                GAMES_BASE,
+                <div class="error-message">
 
-                categoryName,
+                    <strong>
+                        No games found.
+                    </strong>
 
-                ...gamePath.split("/")
+                    <br><br>
 
-            ];
-
-
-            return parts
-                .map(
-                    part =>
-                        encodeURIComponent(
-                            part
-                        )
-                )
-                .join("/");
-
-        }
-
-
-
-        /* =====================================================
-           CREATE GAME CARD
-        ===================================================== */
-
-        async function createGameCard(
-            categoryName,
-            gamePath
-        ) {
-
-
-            /*
-             * Get filename for fallback title.
-             */
-
-            const fileName =
-                gamePath
-                    .split("/")
-                    .pop()
-                    .replace(
-                        /\.html$/i,
-                        ""
-                    );
-
-
-            /*
-             * Build URL.
-             */
-
-            const gameUrl =
-                createGameUrl(
-                    categoryName,
-                    gamePath
-                );
-
-
-            /*
-             * Read metadata.
-             */
-
-            const metadata =
-                await getGameMetadata(
-                    gameUrl,
-                    fileName
-                );
-
-
-            /*
-             * Create card.
-             */
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "game-card";
-
-
-            /*
-             * Build card HTML.
-             */
-
-            card.innerHTML = `
-
-                <div class="game-thumb">
-
-                    ${escapeHTML(
-                        metadata.icon
-                    )}
-
-                </div>
-
-
-                <div class="game-info">
-
-                    <h3 class="game-title">
-
-                        ${escapeHTML(
-                            metadata.title
-                        )}
-
-                    </h3>
-
-
-                    <p class="game-desc">
-
-                        ${escapeHTML(
-                            metadata.description
-                        )}
-
-                    </p>
-
-
-                    <a
-                        href="${gameUrl}"
-                        class="play-btn"
-                    >
-
-                        Play Now →
-
-                    </a>
+                    No playable HTML games
+                    were found inside the
+                    <strong>GAMES</strong>
+                    folder.
 
                 </div>
 
             `;
 
-
-            return card;
+            return;
 
         }
 
 
 
-        /* =====================================================
-           CREATE CATEGORY SECTION
-        ===================================================== */
+        /*
+         * Clear loading
+         */
 
-        async function createCategorySection(
-            categoryName,
-            categoryInfo
-        ) {
+        container.innerHTML = "";
 
 
-            /*
-             * Create section.
-             */
+
+        /*
+         * Render categories
+         */
+
+        for(
+            const category
+            of categories
+        ){
+
+            const info =
+                CATEGORY_INFO[
+                    category.name
+                ] || {
+
+                    icon:"🎮",
+
+                    subtitle:
+                        "Practice Vietnamese with interactive games."
+
+                };
+
+
 
             const section =
                 document.createElement(
@@ -1293,13 +1499,10 @@
                 "game-type-section";
 
 
-            /*
-             * Category title.
-             */
 
             const title =
                 document.createElement(
-                    "div"
+                    "h2"
                 );
 
 
@@ -1308,12 +1511,9 @@
 
 
             title.textContent =
-                `${categoryInfo.icon || "🎮"} ${categoryName}`;
+                `${info.icon} ${category.name}`;
 
 
-            /*
-             * Category subtitle.
-             */
 
             const subtitle =
                 document.createElement(
@@ -1326,13 +1526,9 @@
 
 
             subtitle.textContent =
-                categoryInfo.subtitle ||
-                "Practice Vietnamese with interactive games.";
+                info.subtitle;
 
 
-            /*
-             * Game grid.
-             */
 
             const grid =
                 document.createElement(
@@ -1344,66 +1540,15 @@
                 "game-grid";
 
 
-            /*
-             * Get games.
-             */
 
-            const games =
-                Array.isArray(
-                    categoryInfo.games
-                )
-                    ? categoryInfo.games
-                    : [];
-
-
-            /*
-             * If no games,
-             * don't show category.
-             */
-
-            if (
-                games.length === 0
-            ) {
-
-                return null;
-
-            }
-
-
-            /*
-             * Create cards.
-             */
-
-            for (
-                const gamePath
-                of games
-            ) {
-
-                if (
-                    typeof gamePath !==
-                    "string"
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    !gamePath
-                        .toLowerCase()
-                        .endsWith(".html")
-                ) {
-
-                    continue;
-
-                }
-
+            for(
+                const game
+                of category.games
+            ){
 
                 const card =
                     await createGameCard(
-                        categoryName,
-                        gamePath
+                        game
                     );
 
 
@@ -1414,23 +1559,6 @@
             }
 
 
-            /*
-             * If no valid games,
-             * don't show category.
-             */
-
-            if (
-                grid.children.length === 0
-            ) {
-
-                return null;
-
-            }
-
-
-            /*
-             * Add elements.
-             */
 
             section.appendChild(
                 title
@@ -1447,174 +1575,58 @@
             );
 
 
-            return section;
+            container.appendChild(
+                section
+            );
 
         }
 
+    }
 
 
-        /* =====================================================
-           RENDER ALL GAMES
-        ===================================================== */
+    catch(error){
 
-        async function renderGames() {
-
-            const container =
-                document.getElementById(
-                    "game-container"
-                );
+        console.error(
+            "Game loader error:",
+            error
+        );
 
 
-            try {
+        container.innerHTML = `
 
+            <div class="error-message">
 
-                /*
-                 * Load categories.json.
-                 */
+                <strong>
+                    Unable to load games.
+                </strong>
 
-                const categories =
-                    await loadCategories();
+                <br><br>
 
+                ${escapeHtml(
+                    error.message
+                )}
 
-                /*
-                 * Clear loading.
-                 */
+                <br><br>
 
-                container.innerHTML = "";
+                Please try again later.
 
+            </div>
 
-                /*
-                 * Track whether
-                 * anything was loaded.
-                 */
+        `;
 
-                let categoryCount = 0;
+    }
 
-
-                /*
-                 * Loop through categories.
-                 *
-                 * Object.keys preserves
-                 * the order in categories.json.
-                 */
-
-                for (
-                    const categoryName
-                    of Object.keys(
-                        categories
-                    )
-                ) {
-
-
-                    const categoryInfo =
-                        categories[
-                            categoryName
-                        ];
-
-
-                    const section =
-                        await createCategorySection(
-                            categoryName,
-                            categoryInfo
-                        );
-
-
-                    if (
-                        section
-                    ) {
-
-                        container.appendChild(
-                            section
-                        );
-
-
-                        categoryCount++;
-
-                    }
-
-                }
-
-
-                /*
-                 * No games found.
-                 */
-
-                if (
-                    categoryCount === 0
-                ) {
-
-                    container.innerHTML = `
-
-                        <div class="error-message">
-
-                            <strong>
-                                No games found.
-                            </strong>
-
-                            <br><br>
-
-                            Please check
-                            categories.json.
-
-                        </div>
-
-                    `;
-
-                }
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Game loader error:",
-                    error
-                );
-
-
-                container.innerHTML = `
-
-                    <div class="error-message">
-
-                        <strong>
-                            Unable to load games.
-                        </strong>
-
-                        <br><br>
-
-                        Please check that
-                        <strong>
-                            categories.json
-                        </strong>
-                        exists and is valid.
-
-                        <br><br>
-
-                        <small>
-                            ${escapeHTML(
-                                error.message
-                            )}
-                        </small>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
+}
 
 
 
-        /* =====================================================
-           START
-        ===================================================== */
+/* ==========================================================
+   START
+========================================================== */
 
-        renderGames();
+renderGames();
 
-
-    </script>
+</script>
 
 
 </body>
