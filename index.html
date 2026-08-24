@@ -132,9 +132,6 @@
         }
 
 
-
-        /* Banner */
-
         header::before {
 
             content: "";
@@ -162,9 +159,6 @@
         }
 
 
-
-        /* Soft overlay */
-
         header::after {
 
             content: "";
@@ -184,9 +178,6 @@
 
         }
 
-
-
-        /* Header title */
 
         header h1 {
 
@@ -222,9 +213,6 @@
         }
 
 
-
-        /* Header subtitle */
-
         header p {
 
             position: relative;
@@ -246,9 +234,6 @@
 
         }
 
-
-
-        /* Small decorative line */
 
         .header-line {
 
@@ -307,7 +292,6 @@
             color: #263238;
 
         }
-
 
 
         .section-title::after {
@@ -402,7 +386,6 @@
         }
 
 
-
         .category-subtitle {
 
             margin:
@@ -479,7 +462,6 @@
                 box-shadow 0.25s ease;
 
         }
-
 
 
         .game-card:hover {
@@ -634,7 +616,6 @@
                 transform 0.2s ease;
 
         }
-
 
 
         .play-btn:hover {
@@ -882,10 +863,6 @@
         </div>
 
 
-        <!--
-            Games automatically appear here.
-        -->
-
         <div id="game-container">
 
             <div class="loading">
@@ -913,32 +890,28 @@
 
 
     <!-- =====================================================
-         AUTO GAME LOADER
+         GAME LOADER
+         
+         IMPORTANT:
+         This version does NOT use GitHub API.
+         
+         It reads categories.json directly.
     ====================================================== -->
 
     <script>
 
 
-        /*
-         * =====================================================
-         * CONFIGURATION
-         * =====================================================
-         */
+        /* =====================================================
+           CONFIGURATION
+        ===================================================== */
 
-        const REPO_API =
-            "https://api.github.com/repos/DuongNg1111/Vietnamese-wed-game/contents/GAMES";
-
-
-        const GAMES_BASE =
-            "https://raw.githubusercontent.com/DuongNg1111/Vietnamese-wed-game/main/GAMES";
+        const GAMES_BASE = "GAMES";
 
 
 
-        /*
-         * =====================================================
-         * LOAD CATEGORY INFORMATION
-         * =====================================================
-         */
+        /* =====================================================
+           LOAD CATEGORIES.JSON
+        ===================================================== */
 
         async function loadCategories() {
 
@@ -963,51 +936,27 @@
 
 
 
-        /*
-         * =====================================================
-         * GET CONTENTS OF A GITHUB FOLDER
-         * =====================================================
-         */
-
-        async function getFolderContents(
-            url
-        ) {
-
-            const response =
-                await fetch(
-                    url
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load folder: ${url}`
-                );
-
-            }
-
-
-            return await response.json();
-
-        }
-
-
-
-        /*
-         * =====================================================
-         * GET META TAG FROM GAME HTML
-         * =====================================================
-         */
+        /* =====================================================
+           GET META TAG
+        ===================================================== */
 
         function getMeta(
             html,
             name
         ) {
 
+            /*
+             * Supports:
+             *
+             * <meta name="game-title" content="...">
+             *
+             * and also if attributes
+             * appear in another order.
+             */
+
             const regex =
                 new RegExp(
-                    `<meta\\s+name=["']${name}["']\\s+content=["']([^"']*)["']`,
+                    `<meta[^>]*name=["']${name}["'][^>]*content=["']([^"']*)["'][^>]*>`,
                     "i"
                 );
 
@@ -1018,19 +967,42 @@
                 );
 
 
-            return match
-                ? match[1]
+            if (match) {
+
+                return match[1];
+
+            }
+
+
+            /*
+             * Backup pattern:
+             * content before name
+             */
+
+            const reverseRegex =
+                new RegExp(
+                    `<meta[^>]*content=["']([^"']*)["'][^>]*name=["']${name}["'][^>]*>`,
+                    "i"
+                );
+
+
+            const reverseMatch =
+                html.match(
+                    reverseRegex
+                );
+
+
+            return reverseMatch
+                ? reverseMatch[1]
                 : "";
 
         }
 
 
 
-        /*
-         * =====================================================
-         * LOAD GAME METADATA
-         * =====================================================
-         */
+        /* =====================================================
+           LOAD GAME METADATA
+        ===================================================== */
 
         async function getGameMetadata(
             gameUrl,
@@ -1117,228 +1089,119 @@
 
 
 
-        /*
-         * =====================================================
-         * FIND GAMES INSIDE CATEGORY
-         * =====================================================
-         *
-         * Rules:
-         *
-         * 1. Direct .html file = game
-         *
-         * 2. Subfolder containing .html = game
-         *
-         * 3. images/audio/assets folders = ignored
-         *
-         */
+        /* =====================================================
+           CREATE SAFE HTML TEXT
+        ===================================================== */
 
-        async function findGames(
-            categoryUrl
-        ) {
+        function escapeHTML(text) {
 
-            const items =
-                await getFolderContents(
-                    categoryUrl
+            return String(text)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
                 );
-
-
-            const games = [];
-
-
-            const ignoredFolders = [
-
-                "images",
-                "image",
-
-                "audio",
-                "audios",
-
-                "assets",
-
-                "css",
-                "js"
-
-            ];
-
-
-
-            for (
-                const item
-                of items
-            ) {
-
-
-                /*
-                 * ==============================
-                 * DIRECT HTML FILE
-                 * ==============================
-                 */
-
-                if (
-
-                    item.type === "file" &&
-
-                    item.name
-                        .toLowerCase()
-                        .endsWith(".html")
-
-                ) {
-
-                    games.push({
-
-                        path:
-                            item.path,
-
-
-                        name:
-                            item.name
-                                .replace(
-                                    /\.html$/i,
-                                    ""
-                                )
-
-                    });
-
-
-                    continue;
-
-                }
-
-
-
-                /*
-                 * ==============================
-                 * GAME FOLDER
-                 * ==============================
-                 */
-
-                if (
-                    item.type === "dir"
-                ) {
-
-
-                    if (
-                        ignoredFolders.includes(
-                            item.name.toLowerCase()
-                        )
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    const subItems =
-                        await getFolderContents(
-                            item.url
-                        );
-
-
-                    /*
-                     * Find HTML files
-                     * directly inside
-                     * the game folder.
-                     */
-
-                    const htmlFiles =
-                        subItems.filter(
-
-                            subItem =>
-
-                                subItem.type === "file" &&
-
-                                subItem.name
-                                    .toLowerCase()
-                                    .endsWith(".html")
-
-                        );
-
-
-
-                    for (
-                        const htmlFile
-                        of htmlFiles
-                    ) {
-
-                        games.push({
-
-                            path:
-                                htmlFile.path,
-
-
-                            name:
-                                htmlFile.name
-                                    .replace(
-                                        /\.html$/i,
-                                        ""
-                                    )
-
-                        });
-
-                    }
-
-                }
-
-            }
-
-
-            return games;
 
         }
 
 
 
-        /*
-         * =====================================================
-         * CREATE GAME CARD
-         * =====================================================
-         */
+        /* =====================================================
+           CREATE GAME URL
+        ===================================================== */
+
+        function createGameUrl(
+            categoryName,
+            gamePath
+        ) {
+
+            const parts = [
+
+                GAMES_BASE,
+
+                categoryName,
+
+                ...gamePath.split("/")
+
+            ];
+
+
+            return parts
+                .map(
+                    part =>
+                        encodeURIComponent(
+                            part
+                        )
+                )
+                .join("/");
+
+        }
+
+
+
+        /* =====================================================
+           CREATE GAME CARD
+        ===================================================== */
 
         async function createGameCard(
-            game
+            categoryName,
+            gamePath
         ) {
 
 
             /*
-             * Convert GitHub path
-             * into raw GitHub URL.
+             * Get filename for fallback title.
              */
 
-            const relativePath =
-                game.path
-                    .replace(
-                        /^GAMES\//,
-                        ""
-                    )
+            const fileName =
+                gamePath
                     .split("/")
-                    .map(
-                        part =>
-                            encodeURIComponent(
-                                part
-                            )
-                    )
-                    .join("/");
-
-
-            const gameUrl =
-                `${GAMES_BASE}/${relativePath}`;
-
+                    .pop()
+                    .replace(
+                        /\.html$/i,
+                        ""
+                    );
 
 
             /*
-             * Read metadata
+             * Build URL.
+             */
+
+            const gameUrl =
+                createGameUrl(
+                    categoryName,
+                    gamePath
+                );
+
+
+            /*
+             * Read metadata.
              */
 
             const metadata =
                 await getGameMetadata(
                     gameUrl,
-                    game.name
+                    fileName
                 );
 
 
-
             /*
-             * Create card
+             * Create card.
              */
 
             const card =
@@ -1351,45 +1214,48 @@
                 "game-card";
 
 
-
             /*
-             * Create game URL
+             * Build card HTML.
              */
-
-            const playUrl =
-                game.path
-                    .split("/")
-                    .map(
-                        part =>
-                            encodeURIComponent(
-                                part
-                            )
-                    )
-                    .join("/");
-
-
 
             card.innerHTML = `
 
                 <div class="game-thumb">
-                    ${metadata.icon}
+
+                    ${escapeHTML(
+                        metadata.icon
+                    )}
+
                 </div>
+
 
                 <div class="game-info">
 
                     <h3 class="game-title">
-                        ${metadata.title}
+
+                        ${escapeHTML(
+                            metadata.title
+                        )}
+
                     </h3>
 
+
                     <p class="game-desc">
-                        ${metadata.description}
+
+                        ${escapeHTML(
+                            metadata.description
+                        )}
+
                     </p>
 
+
                     <a
-                        href="${playUrl}"
+                        href="${gameUrl}"
                         class="play-btn"
                     >
+
                         Play Now →
+
                     </a>
 
                 </div>
@@ -1403,11 +1269,193 @@
 
 
 
-        /*
-         * =====================================================
-         * RENDER ALL CATEGORIES AND GAMES
-         * =====================================================
-         */
+        /* =====================================================
+           CREATE CATEGORY SECTION
+        ===================================================== */
+
+        async function createCategorySection(
+            categoryName,
+            categoryInfo
+        ) {
+
+
+            /*
+             * Create section.
+             */
+
+            const section =
+                document.createElement(
+                    "section"
+                );
+
+
+            section.className =
+                "game-type-section";
+
+
+            /*
+             * Category title.
+             */
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+
+            title.className =
+                "category-title";
+
+
+            title.textContent =
+                `${categoryInfo.icon || "🎮"} ${categoryName}`;
+
+
+            /*
+             * Category subtitle.
+             */
+
+            const subtitle =
+                document.createElement(
+                    "p"
+                );
+
+
+            subtitle.className =
+                "category-subtitle";
+
+
+            subtitle.textContent =
+                categoryInfo.subtitle ||
+                "Practice Vietnamese with interactive games.";
+
+
+            /*
+             * Game grid.
+             */
+
+            const grid =
+                document.createElement(
+                    "div"
+                );
+
+
+            grid.className =
+                "game-grid";
+
+
+            /*
+             * Get games.
+             */
+
+            const games =
+                Array.isArray(
+                    categoryInfo.games
+                )
+                    ? categoryInfo.games
+                    : [];
+
+
+            /*
+             * If no games,
+             * don't show category.
+             */
+
+            if (
+                games.length === 0
+            ) {
+
+                return null;
+
+            }
+
+
+            /*
+             * Create cards.
+             */
+
+            for (
+                const gamePath
+                of games
+            ) {
+
+                if (
+                    typeof gamePath !==
+                    "string"
+                ) {
+
+                    continue;
+
+                }
+
+
+                if (
+                    !gamePath
+                        .toLowerCase()
+                        .endsWith(".html")
+                ) {
+
+                    continue;
+
+                }
+
+
+                const card =
+                    await createGameCard(
+                        categoryName,
+                        gamePath
+                    );
+
+
+                grid.appendChild(
+                    card
+                );
+
+            }
+
+
+            /*
+             * If no valid games,
+             * don't show category.
+             */
+
+            if (
+                grid.children.length === 0
+            ) {
+
+                return null;
+
+            }
+
+
+            /*
+             * Add elements.
+             */
+
+            section.appendChild(
+                title
+            );
+
+
+            section.appendChild(
+                subtitle
+            );
+
+
+            section.appendChild(
+                grid
+            );
+
+
+            return section;
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ALL GAMES
+        ===================================================== */
 
         async function renderGames() {
 
@@ -1421,244 +1469,96 @@
 
 
                 /*
-                 * Load category metadata
+                 * Load categories.json.
                  */
 
                 const categories =
                     await loadCategories();
 
 
-
                 /*
-                 * Load GAMES folder
-                 */
-
-                const response =
-                    await fetch(
-                        REPO_API
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Could not load GAMES folder."
-                    );
-
-                }
-
-
-                const categoryFolders =
-                    await response.json();
-
-
-
-                /*
-                 * Clear loading message
+                 * Clear loading.
                  */
 
                 container.innerHTML = "";
 
 
+                /*
+                 * Track whether
+                 * anything was loaded.
+                 */
+
+                let categoryCount = 0;
+
 
                 /*
-                 * Loop through categories
+                 * Loop through categories.
+                 *
+                 * Object.keys preserves
+                 * the order in categories.json.
                  */
 
                 for (
-                    const categoryFolder
-                    of categoryFolders
+                    const categoryName
+                    of Object.keys(
+                        categories
+                    )
                 ) {
 
-
-                    /*
-                     * Ignore files.
-                     * We only want folders.
-                     */
-
-                    if (
-                        categoryFolder.type !==
-                        "dir"
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    const categoryName =
-                        categoryFolder.name;
-
-
-
-                    /*
-                     * Get category metadata.
-                     */
 
                     const categoryInfo =
                         categories[
                             categoryName
-                        ] || {
+                        ];
 
-                            icon:
-                                "🎮",
-
-
-                            subtitle:
-                                "Practice Vietnamese with interactive games."
-
-                        };
-
-
-
-                    /*
-                     * Find games.
-                     */
-
-                    const games =
-                        await findGames(
-                            categoryFolder.url
-                        );
-
-
-
-                    /*
-                     * Empty category
-                     * should not appear.
-                     */
-
-                    if (
-                        games.length === 0
-                    ) {
-
-                        continue;
-
-                    }
-
-
-
-                    /*
-                     * ==============================
-                     * CATEGORY SECTION
-                     * ==============================
-                     */
 
                     const section =
-                        document.createElement(
-                            "section"
+                        await createCategorySection(
+                            categoryName,
+                            categoryInfo
                         );
 
 
-                    section.className =
-                        "game-type-section";
-
-
-
-                    /*
-                     * Category title
-                     */
-
-                    const title =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    title.className =
-                        "category-title";
-
-
-                    title.textContent =
-                        `${categoryInfo.icon} ${categoryName}`;
-
-
-
-                    /*
-                     * Category subtitle
-                     */
-
-                    const subtitle =
-                        document.createElement(
-                            "p"
-                        );
-
-
-                    subtitle.className =
-                        "category-subtitle";
-
-
-                    subtitle.textContent =
-                        categoryInfo.subtitle;
-
-
-
-                    /*
-                     * Game grid
-                     */
-
-                    const grid =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    grid.className =
-                        "game-grid";
-
-
-
-                    /*
-                     * Add games
-                     */
-
-                    for (
-                        const game
-                        of games
+                    if (
+                        section
                     ) {
 
-                        const card =
-                            await createGameCard(
-                                game
-                            );
-
-
-                        grid.appendChild(
-                            card
+                        container.appendChild(
+                            section
                         );
+
+
+                        categoryCount++;
 
                     }
 
+                }
 
 
-                    /*
-                     * Add everything
-                     * to category section
-                     */
+                /*
+                 * No games found.
+                 */
 
-                    section.appendChild(
-                        title
-                    );
+                if (
+                    categoryCount === 0
+                ) {
 
+                    container.innerHTML = `
 
-                    section.appendChild(
-                        subtitle
-                    );
+                        <div class="error-message">
 
+                            <strong>
+                                No games found.
+                            </strong>
 
-                    section.appendChild(
-                        grid
-                    );
+                            <br><br>
 
+                            Please check
+                            categories.json.
 
+                        </div>
 
-                    /*
-                     * Add category
-                     * to page
-                     */
-
-                    container.appendChild(
-                        section
-                    );
+                    `;
 
                 }
 
@@ -1667,8 +1567,8 @@
 
             catch (error) {
 
-
                 console.error(
+                    "Game loader error:",
                     error
                 );
 
@@ -1683,8 +1583,19 @@
 
                         <br><br>
 
-                        Please refresh the page
-                        and try again.
+                        Please check that
+                        <strong>
+                            categories.json
+                        </strong>
+                        exists and is valid.
+
+                        <br><br>
+
+                        <small>
+                            ${escapeHTML(
+                                error.message
+                            )}
+                        </small>
 
                     </div>
 
@@ -1696,11 +1607,9 @@
 
 
 
-        /*
-         * =====================================================
-         * START
-         * =====================================================
-         */
+        /* =====================================================
+           START
+        ===================================================== */
 
         renderGames();
 
