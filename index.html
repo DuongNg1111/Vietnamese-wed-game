@@ -12,12 +12,12 @@
 
     <meta
         name="description"
-        content="Survival Vietnamese with Duong — interactive Vietnamese games for students and anyone learning Vietnamese."
+        content="Practice survival Vietnamese through simple vocabulary games, quick lessons, and interactive activities."
     >
 
     <meta
         name="keywords"
-        content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary, Vietnamese tutor"
+        content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary"
     >
 
     <meta
@@ -41,7 +41,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.googleapis.com"
+        href="https://fonts.gstatic.com"
         crossorigin
     >
 
@@ -72,23 +72,26 @@
 
         :root {
 
-            --paper: #f5f9fd;
+            --paper:
+                #f5f9fd;
 
-            --white: #ffffff;
+            --white:
+                #ffffff;
 
-            --ink: #143a6b;
+            --ink:
+                #143a6b;
 
-            --ink-soft: #66809d;
+            --ink-soft:
+                #66809d;
 
-            --blue: #2f6fed;
+            --blue:
+                #2f6fed;
 
-            --blue-dark: #1e4fc7;
+            --blue-dark:
+                #1e4fc7;
 
-            --cyan: #17b6d0;
-
-            --yellow: #ffc93c;
-
-            --line: #d9e6f2;
+            --line:
+                #d9e6f2;
 
         }
 
@@ -98,20 +101,26 @@
         ====================================================== */
 
         * {
-            box-sizing: border-box;
+            box-sizing:
+                border-box;
         }
 
 
         html {
-            scroll-behavior: smooth;
+
+            scroll-behavior:
+                smooth;
+
         }
 
 
         body {
 
-            margin: 0;
+            margin:
+                0;
 
-            min-height: 100vh;
+            min-height:
+                100vh;
 
             font-family:
                 'Be Vietnam Pro',
@@ -121,7 +130,8 @@
                 Verdana,
                 sans-serif;
 
-            color: var(--ink);
+            color:
+                var(--ink);
 
             background:
                 linear-gradient(
@@ -140,15 +150,20 @@
 
         .top-nav {
 
-            position: absolute;
+            position:
+                absolute;
 
-            top: 20px;
+            top:
+                20px;
 
-            left: 0;
+            left:
+                0;
 
-            right: 0;
+            right:
+                0;
 
-            z-index: 30;
+            z-index:
+                20;
 
             width:
                 min(
@@ -156,22 +171,92 @@
                     94%
                 );
 
-            margin: auto;
+            margin:
+                auto;
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: flex-end;
+            justify-content:
+                flex-end;
 
         }
 
 
-        .login-btn {
+        .nav-actions {
 
-            display: inline-flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            gap:
+                10px;
+
+        }
+
+
+        .user-greeting {
+
+            padding:
+                9px 15px;
+
+            border:
+                1px solid
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.12
+                );
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                );
+
+            color:
+                var(--ink);
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                700;
+
+            box-shadow:
+                0 4px 14px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+            backdrop-filter:
+                blur(8px);
+
+        }
+
+
+        .login-btn,
+        .logout-btn {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
 
             padding:
                 9px 18px;
@@ -202,11 +287,17 @@
             text-decoration:
                 none;
 
+            font-family:
+                inherit;
+
             font-size:
                 0.85rem;
 
             font-weight:
                 700;
+
+            cursor:
+                pointer;
 
             box-shadow:
                 0 4px 14px
@@ -226,7 +317,8 @@
         }
 
 
-        .login-btn:hover {
+        .login-btn:hover,
+        .logout-btn:hover {
 
             transform:
                 translateY(-2px);
@@ -249,26 +341,35 @@
 
         header {
 
-            position: relative;
+            position:
+                relative;
 
-            width: 100%;
+            width:
+                100%;
 
-            min-height: 340px;
+            min-height:
+                350px;
 
-            display: flex;
+            display:
+                flex;
 
-            flex-direction: column;
+            flex-direction:
+                column;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            text-align: center;
+            text-align:
+                center;
 
             padding:
-                80px 20px 65px;
+                85px 20px 65px;
 
-            overflow: hidden;
+            overflow:
+                hidden;
 
             background:
                 linear-gradient(
@@ -292,11 +393,14 @@
 
         header::before {
 
-            content: "";
+            content:
+                "";
 
-            position: absolute;
+            position:
+                absolute;
 
-            inset: 0;
+            inset:
+                0;
 
             background-image:
                 url('banner.jpg');
@@ -314,18 +418,22 @@
             transform:
                 scale(1.03);
 
-            z-index: 0;
+            z-index:
+                0;
 
         }
 
 
         header::after {
 
-            content: "";
+            content:
+                "";
 
-            position: absolute;
+            position:
+                absolute;
 
-            inset: 0;
+            inset:
+                0;
 
             background:
                 linear-gradient(
@@ -344,16 +452,19 @@
                     )
                 );
 
-            z-index: 1;
+            z-index:
+                1;
 
         }
 
 
         .header-eyebrow {
 
-            position: relative;
+            position:
+                relative;
 
-            z-index: 2;
+            z-index:
+                2;
 
             margin-bottom:
                 15px;
@@ -401,11 +512,14 @@
 
         header h1 {
 
-            position: relative;
+            position:
+                relative;
 
-            z-index: 2;
+            z-index:
+                2;
 
-            margin: 0;
+            margin:
+                0;
 
             font-family:
                 'Kalam',
@@ -444,9 +558,11 @@
 
         header p {
 
-            position: relative;
+            position:
+                relative;
 
-            z-index: 2;
+            z-index:
+                2;
 
             margin:
                 18px auto 0;
@@ -471,9 +587,11 @@
 
         .header-line {
 
-            position: relative;
+            position:
+                relative;
 
-            z-index: 2;
+            z-index:
+                2;
 
             width:
                 70px;
@@ -499,9 +617,11 @@
 
         .header-divider {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 9px;
+            height:
+                9px;
 
             background:
                 linear-gradient(
@@ -516,14 +636,46 @@
 
 
         /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .container {
+
+            width:
+                min(
+                    1400px,
+                    94%
+                );
+
+            margin:
+                48px auto 65px;
+
+        }
+
+
+        /* =====================================================
            LANDING PAGE
         ====================================================== */
 
         #landing-page {
 
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            width:
+                100%;
+
+        }
+
+
+        .intro-card {
+
             width:
                 min(
-                    900px,
+                    1100px,
                     94%
                 );
 
@@ -531,15 +683,7 @@
                 0 auto;
 
             padding:
-                65px 0 75px;
-
-        }
-
-
-        .intro-card {
-
-            padding:
-                38px 42px;
+                42px 55px;
 
             background:
                 rgba(
@@ -550,25 +694,28 @@
                 );
 
             border:
-                1px solid
+                1.5px solid
                 var(--line);
 
             border-radius:
-                22px;
+                26px;
 
             box-shadow:
-                0 10px 30px
+                0 18px 50px
                 rgba(
                     20,
                     58,
                     107,
-                    0.07
+                    0.10
                 );
+
+            text-align:
+                left;
 
         }
 
 
-        .intro-label {
+        .about-eyebrow {
 
             margin:
                 0 0 10px;
@@ -577,13 +724,13 @@
                 var(--blue);
 
             font-size:
-                0.7rem;
+                0.78rem;
 
             font-weight:
                 800;
 
             letter-spacing:
-                0.14em;
+                0.08em;
 
             text-transform:
                 uppercase;
@@ -594,44 +741,52 @@
         .intro-card h2 {
 
             margin:
-                0 0 18px;
+                0 0 22px;
 
             color:
                 var(--ink);
 
             font-size:
-                1.9rem;
-
-            line-height:
-                1.25;
+                2rem;
 
             font-weight:
                 800;
 
+            line-height:
+                1.25;
+
         }
 
 
-        .intro-card p {
+        .intro-card > p {
 
             margin:
-                0 0 17px;
+                0 0 15px;
 
             color:
                 var(--ink-soft);
 
             font-size:
-                0.96rem;
+                0.92rem;
 
             line-height:
-                1.75;
+                1.7;
 
         }
 
 
-        .intro-card p:last-of-type {
+        .intro-card p strong {
 
-            margin-bottom:
-                25px;
+            color:
+                var(--ink);
+
+        }
+
+
+        .intro-card a {
+
+            color:
+                var(--blue);
 
         }
 
@@ -641,59 +796,249 @@
             display:
                 inline-flex;
 
-            align-items:
-                center;
-
-            gap:
-                7px;
-
-            padding:
-                10px 17px;
-
-            border:
-                1px solid
-                #c9def8;
-
-            border-radius:
-                999px;
-
-            background:
-                #edf5ff;
+            margin-top:
+                4px;
 
             color:
                 var(--blue);
 
-            text-decoration:
-                none;
-
             font-size:
-                0.83rem;
+                0.88rem;
 
             font-weight:
                 800;
 
-            transition:
-                0.2s ease;
+            text-decoration:
+                none;
 
         }
 
 
         .preply-link:hover {
 
-            background:
-                var(--blue);
-
-            border-color:
-                var(--blue);
-
             color:
-                white;
+                var(--blue-dark);
 
-            transform:
-                translateY(-2px);
+            text-decoration:
+                underline;
 
         }
 
+
+        /* =====================================================
+           INTRO FEATURE CARDS
+           Restyled to share the same visual language as the
+           category cards further down the page: a thin accent
+           bar on top and a bordered icon tile, each feature
+           carrying its own accent color instead of one flat
+           gray tone for all three.
+        ====================================================== */
+
+        .intro-features {
+
+            width:
+                100%;
+
+            margin:
+                30px 0;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap:
+                18px;
+
+        }
+
+
+        .intro-feature {
+
+            --accent:
+                #2f6fed;
+
+            --background:
+                #edf5ff;
+
+            --border:
+                #c9def8;
+
+            position:
+                relative;
+
+            padding:
+                24px 22px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                18px;
+
+            background:
+                var(--background);
+
+            text-align:
+                left;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .intro-feature::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                4px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        .intro-feature.feature-games {
+
+            --accent:
+                #2f6fed;
+
+            --background:
+                #edf5ff;
+
+            --border:
+                #c9def8;
+
+        }
+
+
+        .intro-feature.feature-practice {
+
+            --accent:
+                #0d9dbd;
+
+            --background:
+                #e6f8fb;
+
+            --border:
+                #bee8f0;
+
+        }
+
+
+        .intro-feature.feature-beginner {
+
+            --accent:
+                #1f9d6b;
+
+            --background:
+                #e9f8f0;
+
+            --border:
+                #c3ecda;
+
+        }
+
+
+        .intro-feature-icon {
+
+            width:
+                46px;
+
+            height:
+                46px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            margin-bottom:
+                14px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.75
+                );
+
+            font-size:
+                1.4rem;
+
+        }
+
+
+        .intro-feature h3 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                1rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .intro-feature p {
+
+            margin:
+                0;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.8rem;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        /* =====================================================
+           INTRO DIVIDER
+        ====================================================== */
 
         .intro-divider {
 
@@ -704,13 +1049,17 @@
                 1px;
 
             margin:
-                32px 0 27px;
+                28px 0;
 
             background:
                 var(--line);
 
         }
 
+
+        /* =====================================================
+           INTRO BOTTOM
+        ====================================================== */
 
         .intro-bottom {
 
@@ -724,30 +1073,26 @@
                 space-between;
 
             gap:
-                20px;
+                25px;
 
         }
 
 
         .intro-bottom-text {
 
-            margin: 0;
+            margin:
+                0 !important;
 
-            color:
-                var(--ink-soft);
-
-            font-size:
-                0.82rem;
-
-            line-height:
-                1.5;
+            max-width:
+                650px;
 
         }
 
 
         .start-btn {
 
-            flex-shrink: 0;
+            flex-shrink:
+                0;
 
             display:
                 inline-flex;
@@ -759,10 +1104,7 @@
                 center;
 
             padding:
-                11px 20px;
-
-            border:
-                none;
+                12px 22px;
 
             border-radius:
                 999px;
@@ -771,24 +1113,31 @@
                 var(--blue);
 
             color:
-                white;
+                white !important;
 
             text-decoration:
                 none;
 
             font-size:
-                0.84rem;
+                0.85rem;
 
             font-weight:
                 800;
 
             box-shadow:
-                0 5px 14px
+                inset 0 -3px 0
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.14
+                ),
+                0 5px 12px
                 rgba(
                     47,
                     111,
                     237,
-                    0.22
+                    0.20
                 );
 
             transition:
@@ -814,35 +1163,11 @@
 
         #lobby-page {
 
-            display: none;
+            display:
+                none;
 
         }
 
-
-        #lobby-page.visible {
-
-            display: block;
-
-        }
-
-
-        .container {
-
-            width:
-                min(
-                    1500px,
-                    94%
-                );
-
-            margin:
-                48px auto 65px;
-
-        }
-
-
-        /* =====================================================
-           PAGE INTRO
-        ====================================================== */
 
         .page-intro {
 
@@ -850,14 +1175,15 @@
                 center;
 
             margin-bottom:
-                38px;
+                35px;
 
         }
 
 
         .section-title {
 
-            margin: 0;
+            margin:
+                0;
 
             font-size:
                 2rem;
@@ -877,7 +1203,7 @@
                 9px auto 0;
 
             max-width:
-                680px;
+                650px;
 
             color:
                 var(--ink-soft);
@@ -893,9 +1219,11 @@
 
         .section-title::after {
 
-            content: "";
+            content:
+                "";
 
-            display: block;
+            display:
+                block;
 
             width:
                 60px;
@@ -916,24 +1244,61 @@
 
 
         /* =====================================================
-           CATEGORY SECTION
+           CATEGORY GRID
         ====================================================== */
 
-        .game-type-section {
+        .category-grid {
 
-            --accent: #2f6fed;
+            display:
+                grid;
 
-            --background: #edf5ff;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(
+                        270px,
+                        1fr
+                    )
+                );
 
-            --border: #c9def8;
+            gap:
+                20px;
 
-            position: relative;
+        }
 
-            margin-bottom:
-                30px;
+
+        /* =====================================================
+           CATEGORY CARD
+        ====================================================== */
+
+        .category-card {
+
+            --accent:
+                #2f6fed;
+
+            --background:
+                #edf5ff;
+
+            --border:
+                #c9def8;
+
+            position:
+                relative;
+
+            min-height:
+                225px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
 
             padding:
-                24px 24px 25px;
+                25px;
+
+            overflow:
+                hidden;
 
             border:
                 1px solid
@@ -945,8 +1310,11 @@
             background:
                 var(--background);
 
+            text-decoration:
+                none;
+
             box-shadow:
-                0 8px 24px
+                0 7px 20px
                 rgba(
                     20,
                     58,
@@ -954,156 +1322,33 @@
                     0.065
                 );
 
-            overflow:
-                visible;
-
             transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+                transform 0.22s ease,
+                box-shadow 0.22s ease,
+                border-color 0.22s ease;
 
         }
 
 
-        .game-type-section:hover {
+        .category-card::before {
 
-            transform:
-                translateY(-2px);
+            content:
+                "";
 
-            box-shadow:
-                0 13px 30px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.1
-                );
+            position:
+                absolute;
 
-        }
+            top:
+                0;
 
+            left:
+                0;
 
-        /* =====================================================
-           CATEGORY COLOR VARIANTS
-        ====================================================== */
+            width:
+                100%;
 
-        .category-color {
-
-            --accent: #2878df;
-
-            --background: #eaf3ff;
-
-            --border: #c4daf6;
-
-        }
-
-
-        .category-describe {
-
-            --accent: #7657d9;
-
-            --background: #f0edff;
-
-            --border: #d9d0fa;
-
-        }
-
-
-        .category-food {
-
-            --accent: #0d9dbd;
-
-            --background: #e6f8fb;
-
-            --border: #bee8f0;
-
-        }
-
-
-        .category-grammar {
-
-            --accent: #079b91;
-
-            --background: #e5f8f5;
-
-            --border: #bce9e3;
-
-        }
-
-
-        .category-health {
-
-            --accent: #3977d1;
-
-            --background: #eaf2fc;
-
-            --border: #c8dcf5;
-
-        }
-
-
-        .category-mix {
-
-            --accent: #6659d9;
-
-            --background: #efedff;
-
-            --border: #d7d1f7;
-
-        }
-
-
-        .category-numbers {
-
-            --accent: #2468bb;
-
-            --background: #e7f0fa;
-
-            --border: #c7d9ed;
-
-        }
-
-
-        .category-pronouns {
-
-            --accent: #209bb9;
-
-            --background: #e7f7fa;
-
-            --border: #c0e4eb;
-
-        }
-
-
-        .category-places {
-
-            --accent: #347dcc;
-
-            --background: #e8f2fc;
-
-            --border: #c7def6;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY TOP ACCENT
-        ====================================================== */
-
-        .game-type-section::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-
-            left: 24px;
-
-            right: 24px;
-
-            height: 5px;
-
-            border-radius:
-                0 0 8px 8px;
+            height:
+                5px;
 
             background:
                 var(--accent);
@@ -1111,11 +1356,167 @@
         }
 
 
+        .category-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                var(--accent);
+
+            box-shadow:
+                0 15px 30px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.13
+                );
+
+        }
+
+
         /* =====================================================
-           CATEGORY HEADER
+           CATEGORY COLORS
         ====================================================== */
 
-        .category-header {
+        .category-color {
+
+            --accent:
+                #2878df;
+
+            --background:
+                #eaf3ff;
+
+            --border:
+                #c4daf6;
+
+        }
+
+
+        .category-describe {
+
+            --accent:
+                #7657d9;
+
+            --background:
+                #f0edff;
+
+            --border:
+                #d9d0fa;
+
+        }
+
+
+        .category-food {
+
+            --accent:
+                #0d9dbd;
+
+            --background:
+                #e6f8fb;
+
+            --border:
+                #bee8f0;
+
+        }
+
+
+        .category-grammar {
+
+            --accent:
+                #079b91;
+
+            --background:
+                #e5f8f5;
+
+            --border:
+                #bce9e3;
+
+        }
+
+
+        .category-health {
+
+            --accent:
+                #3977d1;
+
+            --background:
+                #eaf2fc;
+
+            --border:
+                #c8dcf5;
+
+        }
+
+
+        .category-mix {
+
+            --accent:
+                #6659d9;
+
+            --background:
+                #efedff;
+
+            --border:
+                #d7d1f7;
+
+        }
+
+
+        .category-numbers {
+
+            --accent:
+                #2468bb;
+
+            --background:
+                #e7f0fa;
+
+            --border:
+                #c7d9ed;
+
+        }
+
+
+        .category-pronouns {
+
+            --accent:
+                #209bb9;
+
+            --background:
+                #e7f7fa;
+
+            --border:
+                #c0e4eb;
+
+        }
+
+
+        .category-places {
+
+            --accent:
+                #347dcc;
+
+            --background:
+                #e8f2fc;
+
+            --border:
+                #c7def6;
+
+        }
+
+
+        /* =====================================================
+           CATEGORY ICON
+        ====================================================== */
+
+        .category-icon {
+
+            width:
+                52px;
+
+            height:
+                52px;
 
             display:
                 flex;
@@ -1123,88 +1524,53 @@
             align-items:
                 center;
 
-            gap:
-                15px;
+            justify-content:
+                center;
 
             margin-bottom:
-                20px;
+                17px;
 
-            padding:
-                8px 0 16px;
-
-            border-bottom:
+            border:
                 1px solid
                 var(--border);
 
-        }
-
-
-        .category-marker {
-
-            flex-shrink: 0;
-
-            width:
-                10px;
-
-            height:
-                48px;
-
             border-radius:
-                999px;
+                15px;
 
             background:
-                var(--accent);
-
-        }
-
-
-        .category-text {
-
-            flex: 1;
-
-            min-width: 0;
-
-        }
-
-
-        .category-label {
-
-            margin:
-                0 0 3px;
-
-            color:
-                var(--accent);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.72
+                );
 
             font-size:
-                0.67rem;
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                0.13em;
-
-            text-transform:
-                uppercase;
+                1.65rem;
 
         }
 
+
+        /* =====================================================
+           CATEGORY TEXT
+        ====================================================== */
 
         .category-title {
 
-            margin: 0;
+            margin:
+                0 0 7px;
 
             color:
                 var(--ink);
 
             font-size:
-                1.42rem;
-
-            line-height:
-                1.25;
+                1.25rem;
 
             font-weight:
                 800;
+
+            line-height:
+                1.3;
 
         }
 
@@ -1212,138 +1578,31 @@
         .category-subtitle {
 
             margin:
-                4px 0 0;
+                0;
 
             color:
                 var(--ink-soft);
 
             font-size:
-                0.86rem;
+                0.84rem;
 
             line-height:
-                1.45;
+                1.5;
 
         }
 
 
         /* =====================================================
-           GAME GRID
+           CATEGORY FOOTER
         ====================================================== */
 
-        .game-grid {
+        .category-footer {
 
-            display:
-                grid;
+            margin-top:
+                auto;
 
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(
-                        220px,
-                        1fr
-                    )
-                );
-
-            gap:
-                17px;
-
-        }
-
-
-        /* =====================================================
-           GAME CARD
-        ====================================================== */
-
-        .game-card {
-
-            position:
-                relative;
-
-            min-height:
-                175px;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            overflow:
-                hidden;
-
-            background:
-                var(--white);
-
-            border:
-                1px solid
-                #dbe7f1;
-
-            border-radius:
-                15px;
-
-            box-shadow:
-                0 4px 13px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.06
-                );
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
-
-        }
-
-
-        .game-card::before {
-
-            content: "";
-
-            position:
-                absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 4px;
-
-            background:
-                var(--accent);
-
-        }
-
-
-        .game-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            border-color:
-                var(--accent);
-
-            box-shadow:
-                0 12px 25px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.12
-                );
-
-        }
-
-
-        /* =====================================================
-           GAME THUMB
-        ====================================================== */
-
-        .game-thumb {
+            padding-top:
+                18px;
 
             display:
                 flex;
@@ -1352,132 +1611,44 @@
                 center;
 
             justify-content:
+                space-between;
+
+        }
+
+
+        .category-count {
+
+            color:
+                var(--accent);
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .category-arrow {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
                 center;
 
             width:
-                34px;
+                32px;
 
             height:
-                34px;
-
-            margin:
-                18px auto 0;
+                32px;
 
             border-radius:
                 50%;
-
-            background:
-                var(--background);
-
-            color:
-                var(--accent);
-
-            border:
-                1px solid
-                var(--border);
-
-            font-size:
-                0.78rem;
-
-            font-weight:
-                800;
-
-        }
-
-
-        /* =====================================================
-           GAME INFO
-        ====================================================== */
-
-        .game-info {
-
-            flex:
-                1;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            padding:
-                11px 15px 15px;
-
-        }
-
-
-        .game-title {
-
-            margin:
-                0 0 6px;
-
-            color:
-                var(--ink);
-
-            font-size:
-                0.98rem;
-
-            font-weight:
-                800;
-
-            line-height:
-                1.35;
-
-            text-align:
-                center;
-
-        }
-
-
-        .game-desc {
-
-            flex:
-                1;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            margin:
-                0 0 12px;
-
-            color:
-                var(--ink-soft);
-
-            font-size:
-                0.81rem;
-
-            line-height:
-                1.45;
-
-            text-align:
-                center;
-
-        }
-
-
-        /* =====================================================
-           PLAY BUTTON
-        ====================================================== */
-
-        .play-btn {
-
-            display:
-                block;
-
-            width:
-                100%;
-
-            padding:
-                9px 12px;
-
-            border-radius:
-                9px;
 
             background:
                 var(--accent);
@@ -1485,40 +1656,11 @@
             color:
                 white;
 
-            text-decoration:
-                none;
-
-            text-align:
-                center;
-
             font-size:
-                0.82rem;
+                0.9rem;
 
             font-weight:
                 800;
-
-            transition:
-                filter 0.2s ease,
-                transform 0.2s ease;
-
-        }
-
-
-        .play-btn:hover {
-
-            filter:
-                brightness(0.94);
-
-            transform:
-                translateY(-1px);
-
-        }
-
-
-        .play-btn:active {
-
-            transform:
-                translateY(1px);
 
         }
 
@@ -1537,9 +1679,6 @@
 
             color:
                 var(--ink-soft);
-
-            font-size:
-                0.95rem;
 
         }
 
@@ -1597,7 +1736,7 @@
 
             width:
                 min(
-                    1500px,
+                    1400px,
                     94%
                 );
 
@@ -1629,7 +1768,9 @@
            MOBILE
         ====================================================== */
 
-        @media (max-width: 700px) {
+        @media (
+            max-width: 700px
+        ) {
 
             .top-nav {
 
@@ -1642,7 +1783,27 @@
             }
 
 
-            .login-btn {
+            .nav-actions {
+
+                gap:
+                    6px;
+
+            }
+
+
+            .user-greeting {
+
+                padding:
+                    8px 11px;
+
+                font-size:
+                    0.75rem;
+
+            }
+
+
+            .login-btn,
+            .logout-btn {
 
                 padding:
                     8px 14px;
@@ -1680,63 +1841,6 @@
             }
 
 
-            #landing-page {
-
-                padding:
-                    40px 0 50px;
-
-            }
-
-
-            .intro-card {
-
-                padding:
-                    28px 22px;
-
-                border-radius:
-                    18px;
-
-            }
-
-
-            .intro-card h2 {
-
-                font-size:
-                    1.55rem;
-
-            }
-
-
-            .intro-card p {
-
-                font-size:
-                    0.88rem;
-
-                line-height:
-                    1.65;
-
-            }
-
-
-            .intro-bottom {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    stretch;
-
-            }
-
-
-            .start-btn {
-
-                width:
-                    100%;
-
-            }
-
-
             .container {
 
                 width:
@@ -1748,10 +1852,65 @@
             }
 
 
-            .page-intro {
+            .intro-card {
 
-                margin-bottom:
-                    28px;
+                width:
+                    100%;
+
+                padding:
+                    30px 22px;
+
+                border-radius:
+                    20px;
+
+            }
+
+
+            .intro-card h2 {
+
+                font-size:
+                    1.65rem;
+
+            }
+
+
+            .intro-card > p {
+
+                font-size:
+                    0.88rem;
+
+            }
+
+
+            .intro-features {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    14px;
+
+            }
+
+
+            .intro-bottom {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .start-btn {
+
+                width:
+                    100%;
+
+                text-align:
+                    center;
 
             }
 
@@ -1772,87 +1931,27 @@
             }
 
 
-            .game-type-section {
-
-                padding:
-                    21px 16px 18px;
-
-                margin-bottom:
-                    20px;
-
-                border-radius:
-                    16px;
-
-            }
-
-
-            .game-type-section::before {
-
-                left:
-                    16px;
-
-                right:
-                    16px;
-
-            }
-
-
-            .category-header {
-
-                gap:
-                    11px;
-
-                margin-bottom:
-                    16px;
-
-                padding-bottom:
-                    13px;
-
-            }
-
-
-            .category-marker {
-
-                width:
-                    7px;
-
-                height:
-                    42px;
-
-            }
-
-
-            .category-title {
-
-                font-size:
-                    1.22rem;
-
-            }
-
-
-            .category-subtitle {
-
-                font-size:
-                    0.81rem;
-
-            }
-
-
-            .game-grid {
+            .category-grid {
 
                 grid-template-columns:
                     1fr;
 
                 gap:
-                    13px;
+                    14px;
 
             }
 
 
-            .game-card {
+            .category-card {
 
                 min-height:
-                    160px;
+                    200px;
+
+                padding:
+                    21px;
+
+                border-radius:
+                    17px;
 
             }
 
@@ -1870,18 +1969,52 @@
          TOP NAVIGATION
     ====================================================== -->
 
-    <nav
-        class="top-nav"
-        id="top-nav"
-    >
+    <nav class="top-nav">
 
-        <a
-            href="login.html"
-            class="login-btn"
-            id="login-btn"
+        <!--
+            Logged-out navigation
+        -->
+
+        <div
+            id="logged-out-nav"
+            class="nav-actions"
         >
-            Log in
-        </a>
+
+            <a
+                href="login.html"
+                class="login-btn"
+            >
+                Log in
+            </a>
+
+        </div>
+
+
+        <!--
+            Logged-in navigation
+        -->
+
+        <div
+            id="logged-in-nav"
+            class="nav-actions hidden"
+        >
+
+            <span
+                id="user-greeting"
+                class="user-greeting"
+            >
+                Xin chào!
+            </span>
+
+            <button
+                type="button"
+                id="logout-btn"
+                class="logout-btn"
+            >
+                Log out
+            </button>
+
+        </div>
 
     </nav>
 
@@ -1924,6 +2057,7 @@
 
     <main
         id="landing-page"
+        class="container"
     >
 
         <section
@@ -1942,45 +2076,23 @@
 
 
             <p>
-                Hi, I'm Dương, a Vietnamese tutor on
-                <a
-                    href="https://preply.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <strong>Preply</strong>
-                </a>.
+                Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
             </p>
-
 
             <p>
-                I first created these games to help my students practice between
-                lessons and remember what they learned.
+                This website is built for any beginner (A0-A1) who wants
+                to practice and remember practical Vietnamese vocabulary
+                through quick, simple games.
             </p>
-
-
-            <p>
-                Now, I'm making them available to anyone learning Vietnamese —
-                whether you're my student, just getting started, planning a trip,
-                or simply looking for a few minutes of practice each day.
-            </p>
-
-
-            <p class="about-text">
-                This site focuses on short, practical vocabulary games for
-                absolute beginners (A0–A1). No lectures, no long lessons — just
-                simple activities to help you learn and review useful Vietnamese words.
-            </p>
-
 
             <p>
                 <strong>
                     Vietnamese is more approachable than it looks.
                 </strong>
-                Start with a few useful words, practice them often, and build your
-                vocabulary step by step. A little practice goes a long way.
+                Start with a few useful words, practice them often,
+                and build your vocabulary step by step.
+                A little practice goes a long way.
             </p>
-
 
             <a
                 href="https://preply.in/DUONG6EN32308690102?ts=17876464"
@@ -1988,18 +2100,96 @@
                 rel="noopener noreferrer"
                 class="preply-link"
             >
-                Find me on Preply →
+                Vietnamese lessons with me on Preply →
             </a>
+
+
+            <!-- =================================================
+                 THREE FEATURES
+            ================================================== -->
+
+            <div class="intro-features">
+
+
+                <div class="intro-feature feature-games">
+
+                    <div
+                        class="intro-feature-icon"
+                        aria-hidden="true"
+                    >
+                        🎮
+                    </div>
+
+                    <h3>
+                        Vocabulary Games
+                    </h3>
+
+                    <p>
+                        Learn useful Vietnamese words through
+                        short, interactive games.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-feature feature-practice">
+
+                    <div
+                        class="intro-feature-icon"
+                        aria-hidden="true"
+                    >
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Short Practice
+                    </h3>
+
+                    <p>
+                        Practice for a few minutes whenever
+                        you have time.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-feature feature-beginner">
+
+                    <div
+                        class="intro-feature-icon"
+                        aria-hidden="true"
+                    >
+                        🌱
+                    </div>
+
+                    <h3>
+                        Beginner Friendly
+                    </h3>
+
+                    <p>
+                        Made for absolute beginners who want
+                        practical Vietnamese.
+                    </p>
+
+                </div>
+
+
+            </div>
 
 
             <div class="intro-divider"></div>
 
 
+            <!-- =================================================
+                 INTRO BOTTOM
+            ================================================== -->
+
             <div class="intro-bottom">
 
                 <p class="intro-bottom-text">
-                    Ready to practice? Create an account
-                    or log in to access the games.
+                    Ready to practice?
+                    Create an account or log in to access
+                    the vocabulary games.
                 </p>
 
 
@@ -2018,8 +2208,8 @@
 
 
     <!-- =====================================================
-         GAME LOBBY
-         SHOWN ONLY WHEN USER IS LOGGED IN
+         LOBBY
+         SHOWN WHEN USER IS LOGGED IN
     ====================================================== -->
 
     <main
@@ -2027,33 +2217,27 @@
         class="container"
     >
 
-
-        <!-- =================================================
-             PAGE INTRO
-        ================================================== -->
-
         <div class="page-intro">
 
             <h2 class="section-title">
-                Choose Your Game
+                Choose a Topic
             </h2>
 
             <p class="section-subtitle">
-                Practice useful Vietnamese through
-                short, interactive games.
+                Pick a topic and practice Vietnamese through
+                vocabulary games and interactive activities.
             </p>
 
         </div>
 
 
-        <!-- =================================================
-             GAME CONTAINER
-        ================================================== -->
-
-        <div id="game-container">
+        <div
+            id="category-container"
+            class="category-grid"
+        >
 
             <div class="loading">
-                Loading games...
+                Loading topics...
             </div>
 
         </div>
@@ -2075,10 +2259,18 @@
 
 
     <!-- =====================================================
-         AUTH + GAME LOADER
+         CATEGORY + AUTH SCRIPT
     ====================================================== -->
 
     <script>
+
+
+        /* =====================================================
+           CONFIGURATION
+        ====================================================== */
+
+        const CATEGORY_FILE =
+            "categories.json";
 
 
         /* =====================================================
@@ -2097,24 +2289,34 @@
             );
 
 
-        const loginButton =
+        const loggedOutNav =
             document.getElementById(
-                "login-btn"
+                "logged-out-nav"
             );
 
 
-        const gameContainer =
+        const loggedInNav =
             document.getElementById(
-                "game-container"
+                "logged-in-nav"
             );
 
 
-        /* =====================================================
-           GAME CONFIGURATION
-        ====================================================== */
+        const userGreeting =
+            document.getElementById(
+                "user-greeting"
+            );
 
-        const GAMES_BASE =
-            "GAMES";
+
+        const logoutBtn =
+            document.getElementById(
+                "logout-btn"
+            );
+
+
+        const categoryContainer =
+            document.getElementById(
+                "category-container"
+            );
 
 
         /* =====================================================
@@ -2154,6 +2356,247 @@
 
 
         /* =====================================================
+           SHOW LANDING PAGE
+        ====================================================== */
+
+        function showLandingPage() {
+
+            landingPage.classList.remove(
+                "hidden"
+            );
+
+            landingPage.style.display =
+                "flex";
+
+
+            lobbyPage.style.display =
+                "none";
+
+
+            loggedOutNav.classList.remove(
+                "hidden"
+            );
+
+
+            loggedInNav.classList.add(
+                "hidden"
+            );
+
+        }
+
+
+        /* =====================================================
+           SHOW LOBBY
+        ====================================================== */
+
+        function showLobby(user) {
+
+            landingPage.style.display =
+                "none";
+
+
+            lobbyPage.style.display =
+                "block";
+
+
+            loggedOutNav.classList.add(
+                "hidden"
+            );
+
+
+            loggedInNav.classList.remove(
+                "hidden"
+            );
+
+
+            const name =
+                getUserName(user);
+
+
+            userGreeting.textContent =
+                `Xin chào, ${name}!`;
+
+        }
+
+
+        /* =====================================================
+           GET USER NAME
+        ====================================================== */
+
+        function getUserName(user) {
+
+            if (
+                user &&
+                user.user_metadata &&
+                user.user_metadata.name
+            ) {
+
+                return user.user_metadata.name;
+
+            }
+
+
+            if (
+                user &&
+                user.user_metadata &&
+                user.user_metadata.full_name
+            ) {
+
+                return user.user_metadata.full_name;
+
+            }
+
+
+            if (
+                user &&
+                user.email
+            ) {
+
+                return user.email.split("@")[0];
+
+            }
+
+
+            return "bạn";
+
+        }
+
+
+        /* =====================================================
+           LOAD CATEGORIES
+        ====================================================== */
+
+        async function loadCategories() {
+
+            const response =
+                await fetch(
+                    CATEGORY_FILE,
+                    {
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Could not load categories.json (${response.status})`
+                );
+
+            }
+
+
+            return await response.json();
+
+        }
+
+
+        /* =====================================================
+           CREATE CATEGORY CARD
+        ====================================================== */
+
+        function createCategoryCard(
+            categoryName,
+            category
+        ) {
+
+            const card =
+                document.createElement(
+                    "a"
+                );
+
+
+            card.className =
+                "category-card";
+
+
+            const categoryClass =
+                categoryClasses[
+                    categoryName
+                ];
+
+
+            if (categoryClass) {
+
+                card.classList.add(
+                    categoryClass
+                );
+
+            }
+
+
+            const categoryUrl =
+                `category.html?category=${encodeURIComponent(
+                    categoryName
+                )}`;
+
+
+            card.href =
+                categoryUrl;
+
+
+            const games =
+                Array.isArray(
+                    category.games
+                )
+                    ? category.games.length
+                    : 0;
+
+
+            const icon =
+                category.icon ||
+                "📚";
+
+
+            card.innerHTML = `
+
+                <div
+                    class="category-icon"
+                    aria-hidden="true"
+                >
+                    ${escapeHtml(icon)}
+                </div>
+
+
+                <h2 class="category-title">
+                    ${escapeHtml(categoryName)}
+                </h2>
+
+
+                <p class="category-subtitle">
+                    ${escapeHtml(
+                        category.subtitle ||
+                        "Practice Vietnamese with this topic."
+                    )}
+                </p>
+
+
+                <div class="category-footer">
+
+                    <span class="category-count">
+                        ${games} games
+                    </span>
+
+
+                    <span
+                        class="category-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
+
+                </div>
+
+            `;
+
+
+            return card;
+
+        }
+
+
+        /* =====================================================
            ESCAPE HTML
         ====================================================== */
 
@@ -2177,140 +2620,10 @@
 
 
         /* =====================================================
-           ENCODE PATH
+           RENDER CATEGORIES
         ====================================================== */
 
-        function encodePath(path) {
-
-            return path
-                .split("/")
-                .map(
-                    part =>
-                        encodeURIComponent(part)
-                )
-                .join("/");
-
-        }
-
-
-        /* =====================================================
-           LOAD CATEGORIES
-        ====================================================== */
-
-        async function loadCategories() {
-
-            const response =
-                await fetch(
-                    "categories.json",
-                    {
-                        cache:
-                            "no-store"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
-
-            }
-
-
-            return await response.json();
-
-        }
-
-
-        /* =====================================================
-           CREATE GAME CARD
-        ====================================================== */
-
-        function createGameCard(
-            game,
-            gameNumber
-        ) {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "game-card";
-
-
-            const gamePath =
-                game.path;
-
-
-            const playUrl =
-                `${GAMES_BASE}/${encodePath(gamePath)}`;
-
-
-            card.innerHTML = `
-
-                <div
-                    class="game-thumb"
-                    aria-hidden="true"
-                >
-                    ${gameNumber}
-                </div>
-
-
-                <div class="game-info">
-
-                    <h3 class="game-title">
-
-                        ${escapeHtml(
-                            game.title ||
-                            "Untitled Game"
-                        )}
-
-                    </h3>
-
-
-                    <p class="game-desc">
-
-                        ${escapeHtml(
-                            game.description ||
-                            "Practice Vietnamese with this interactive game."
-                        )}
-
-                    </p>
-
-
-                    <a
-                        href="${playUrl}"
-                        class="play-btn"
-                    >
-                        Play Now →
-                    </a>
-
-                </div>
-
-            `;
-
-
-            return card;
-
-        }
-
-
-        /* =====================================================
-           RENDER GAMES
-        ====================================================== */
-
-        async function renderGames() {
-
-            if (!gameContainer) {
-
-                return;
-
-            }
-
+        async function renderCategories() {
 
             try {
 
@@ -2318,21 +2631,19 @@
                     await loadCategories();
 
 
-                gameContainer.innerHTML =
+                categoryContainer.innerHTML =
                     "";
 
 
-                let totalGames =
+                let totalCategories =
                     0;
 
 
-                /* =============================================
-                   LOOP THROUGH CATEGORIES
-                ============================================== */
-
                 for (
                     const categoryName
-                    of Object.keys(categories)
+                    of Object.keys(
+                        categories
+                    )
                 ) {
 
                     const category =
@@ -2341,13 +2652,10 @@
                         ];
 
 
-                    /* =========================================
-                       SAFETY CHECK
-                    ========================================== */
-
                     if (
                         !category ||
-                        typeof category !== "object"
+                        typeof category !==
+                        "object"
                     ) {
 
                         continue;
@@ -2355,291 +2663,33 @@
                     }
 
 
-                    const games =
-                        Array.isArray(
-                            category.games
-                        )
-                            ? category.games
-                            : [];
-
-
-                    if (
-                        games.length === 0
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    /* =========================================
-                       CREATE CATEGORY SECTION
-                    ========================================== */
-
-                    const section =
-                        document.createElement(
-                            "section"
+                    const card =
+                        createCategoryCard(
+                            categoryName,
+                            category
                         );
 
 
-                    section.className =
-                        "game-type-section";
-
-
-                    const categoryClass =
-                        categoryClasses[
-                            categoryName
-                        ];
-
-
-                    if (categoryClass) {
-
-                        section.classList.add(
-                            categoryClass
-                        );
-
-                    }
-
-
-                    /* =========================================
-                       CATEGORY HEADER
-                    ========================================== */
-
-                    const categoryHeader =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    categoryHeader.className =
-                        "category-header";
-
-
-                    /* =========================================
-                       CATEGORY MARKER
-                    ========================================== */
-
-                    const marker =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    marker.className =
-                        "category-marker";
-
-
-                    marker.setAttribute(
-                        "aria-hidden",
-                        "true"
+                    categoryContainer.appendChild(
+                        card
                     );
 
 
-                    /* =========================================
-                       CATEGORY TEXT
-                    ========================================== */
-
-                    const categoryText =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    categoryText.className =
-                        "category-text";
-
-
-                    /* =========================================
-                       CATEGORY LABEL
-                    ========================================== */
-
-                    const label =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    label.className =
-                        "category-label";
-
-
-                    label.textContent =
-                        "Category";
-
-
-                    /* =========================================
-                       CATEGORY TITLE
-                    ========================================== */
-
-                    const title =
-                        document.createElement(
-                            "h2"
-                        );
-
-
-                    title.className =
-                        "category-title";
-
-
-                    title.textContent =
-                        categoryName;
-
-
-                    /* =========================================
-                       CATEGORY SUBTITLE
-                    ========================================== */
-
-                    const subtitle =
-                        document.createElement(
-                            "p"
-                        );
-
-
-                    subtitle.className =
-                        "category-subtitle";
-
-
-                    subtitle.textContent =
-                        category.subtitle ||
-                        "Practice Vietnamese with interactive games.";
-
-
-                    /* =========================================
-                       BUILD CATEGORY TEXT
-                    ========================================== */
-
-                    categoryText.appendChild(
-                        label
-                    );
-
-
-                    categoryText.appendChild(
-                        title
-                    );
-
-
-                    categoryText.appendChild(
-                        subtitle
-                    );
-
-
-                    /* =========================================
-                       BUILD CATEGORY HEADER
-                    ========================================== */
-
-                    categoryHeader.appendChild(
-                        marker
-                    );
-
-
-                    categoryHeader.appendChild(
-                        categoryText
-                    );
-
-
-                    /* =========================================
-                       GAME GRID
-                    ========================================== */
-
-                    const grid =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    grid.className =
-                        "game-grid";
-
-
-                    /* =========================================
-                       ADD GAMES
-                    ========================================== */
-
-                    let gameNumber =
-                        1;
-
-
-                    for (
-                        const game
-                        of games
-                    ) {
-
-                        if (
-                            !game ||
-                            typeof game !== "object" ||
-                            typeof game.path !== "string"
-                        ) {
-
-                            console.warn(
-                                "Invalid game:",
-                                game
-                            );
-
-                            continue;
-
-                        }
-
-
-                        const card =
-                            createGameCard(
-                                game,
-                                gameNumber
-                            );
-
-
-                        grid.appendChild(
-                            card
-                        );
-
-
-                        gameNumber++;
-
-                        totalGames++;
-
-                    }
-
-
-                    /* =========================================
-                       ADD CATEGORY TO PAGE
-                    ========================================== */
-
-                    if (
-                        grid.children.length > 0
-                    ) {
-
-                        section.appendChild(
-                            categoryHeader
-                        );
-
-
-                        section.appendChild(
-                            grid
-                        );
-
-
-                        gameContainer.appendChild(
-                            section
-                        );
-
-                    }
+                    totalCategories++;
 
                 }
 
 
-                /* =============================================
-                   NO GAMES
-                ============================================== */
-
                 if (
-                    totalGames === 0
+                    totalCategories === 0
                 ) {
 
-                    gameContainer.innerHTML = `
+                    categoryContainer.innerHTML = `
 
                         <div class="error-message">
 
                             <strong>
-                                No games found.
+                                No categories found.
                             </strong>
 
                             <br><br>
@@ -2657,21 +2707,20 @@
 
             }
 
-
             catch (error) {
 
                 console.error(
-                    "Game loader error:",
+                    "Category loader error:",
                     error
                 );
 
 
-                gameContainer.innerHTML = `
+                categoryContainer.innerHTML = `
 
                     <div class="error-message">
 
                         <strong>
-                            Unable to load games.
+                            Unable to load categories.
                         </strong>
 
                         <br><br>
@@ -2700,145 +2749,10 @@
 
 
         /* =====================================================
-           SHOW LANDING PAGE
+           CHECK CURRENT SESSION
         ====================================================== */
 
-        function showLandingPage() {
-
-            landingPage.classList.remove(
-                "hidden"
-            );
-
-
-            landingPage.style.display =
-                "block";
-
-
-            lobbyPage.classList.remove(
-                "visible"
-            );
-
-
-            lobbyPage.style.display =
-                "none";
-
-
-            loginButton.textContent =
-                "Log in";
-
-
-            loginButton.href =
-                "login.html";
-
-        }
-
-
-        /* =====================================================
-           SHOW LOBBY
-        ====================================================== */
-
-        function showLobby() {
-
-            landingPage.style.display =
-                "none";
-
-
-            lobbyPage.style.display =
-                "block";
-
-
-            lobbyPage.classList.add(
-                "visible"
-            );
-
-
-            loginButton.textContent =
-                "Log out";
-
-
-            loginButton.href =
-                "#";
-
-
-            loginButton.onclick =
-                async event => {
-
-                    event.preventDefault();
-
-                    await logout();
-
-                };
-
-
-            renderGames();
-
-        }
-
-
-        /* =====================================================
-           LOGOUT
-        ====================================================== */
-
-        async function logout() {
-
-            if (
-                !window.supabaseClient
-            ) {
-
-                showLandingPage();
-
-                return;
-
-            }
-
-
-            try {
-
-                const {
-                    error
-                } =
-                    await window.supabaseClient
-                        .auth
-                        .signOut();
-
-
-                if (error) {
-
-                    throw error;
-
-                }
-
-
-                window.location.reload();
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-                alert(
-                    "Unable to log out. Please try again."
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           CHECK SESSION
-        ====================================================== */
-
-        async function checkSession() {
-
-            /* ================================================
-               SUPABASE NOT CONNECTED
-            ================================================= */
+        async function checkAuthState() {
 
             if (
                 !window.supabaseClient
@@ -2848,6 +2762,11 @@
                     "Supabase client is not available."
                 );
 
+
+                /*
+                 * If Supabase is unavailable,
+                 * keep the landing page visible.
+                 */
 
                 showLandingPage();
 
@@ -2882,15 +2801,27 @@
                 }
 
 
-                if (
+                const session =
                     data &&
-                    data.session &&
-                    data.session.user
-                ) {
+                    data.session;
 
-                    showLobby();
+
+                const user =
+                    session &&
+                    session.user;
+
+
+                if (user) {
+
+                    showLobby(
+                        user
+                    );
+
+
+                    await renderCategories();
 
                 }
+
                 else {
 
                     showLandingPage();
@@ -2899,11 +2830,10 @@
 
             }
 
-
             catch (error) {
 
                 console.error(
-                    "Session check failed:",
+                    "Auth check failed:",
                     error
                 );
 
@@ -2931,15 +2861,33 @@
                         session
                     ) => {
 
+                        console.log(
+                            "Auth state changed:",
+                            event
+                        );
+
+
                         if (
                             session &&
                             session.user
                         ) {
 
-                            showLobby();
+                            showLobby(
+                                session.user
+                            );
+
+
+                            renderCategories();
 
                         }
+
                         else {
+
+                            /*
+                             * IMPORTANT:
+                             * Logging out returns the user
+                             * to the About This Website landing page.
+                             */
 
                             showLandingPage();
 
@@ -2952,10 +2900,98 @@
 
 
         /* =====================================================
+           LOG OUT
+        ====================================================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
+
+                logoutBtn.disabled =
+                    true;
+
+                logoutBtn.textContent =
+                    "Logging out...";
+
+
+                try {
+
+                    if (
+                        window.supabaseClient
+                    ) {
+
+                        const {
+                            error
+                        } =
+                            await window.supabaseClient
+                                .auth
+                                .signOut();
+
+
+                        if (error) {
+
+                            throw error;
+
+                        }
+
+                    }
+
+
+                    /*
+                     * Supabase's auth listener will
+                     * call showLandingPage().
+                     */
+
+                    showLandingPage();
+
+                    window.scrollTo(
+                        {
+                            top:
+                                0,
+
+                            behavior:
+                                "smooth"
+                        }
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+
+                    /*
+                     * Even if the listener is delayed,
+                     * explicitly return to landing.
+                     */
+
+                    showLandingPage();
+
+                }
+
+                finally {
+
+                    logoutBtn.disabled =
+                        false;
+
+                    logoutBtn.textContent =
+                        "Log out";
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
            START
         ====================================================== */
 
-        checkSession();
+        checkAuthState();
 
     </script>
 
