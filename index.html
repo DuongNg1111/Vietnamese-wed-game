@@ -56,22 +56,23 @@
 
         /* =====================================================
            DESIGN TOKENS
-           Inspired by Vietnamese shopfront culture: cement-tile
-           (gạch bông) floors, hand-painted awning signs, and
-           lacquerware color — rather than a generic tech palette.
+           Inspired by Vietnamese blue-and-white porcelain (gốm hoa
+           lam / Bát Tràng ceramics) — cobalt blue glaze over a
+           white-porcelain ground, with a thin gold trim. Blue is
+           the dominant color throughout the page.
         ====================================================== */
 
         :root {
 
-            --paper:        #F5EEDD;   /* rice-paper cream, warm undertone   */
-            --paper-2:      #FBF7EC;   /* lighter card surface               */
-            --ink:          #1E3A34;   /* deep pine-lacquer ink, body text   */
-            --ink-soft:     #5B7A72;   /* muted secondary text               */
-            --lacquer:      #B3311F;   /* đỏ son — vermillion lacquer red    */
-            --lacquer-dark: #8A2517;
-            --jade:         #2E7D6B;   /* jade green accent                  */
-            --brass:        #C08A28;   /* brass / tile accent                */
-            --line:         #E1D6B4;   /* warm hairline border               */
+            --paper:        #EEF3F9;   /* porcelain white, cool undertone    */
+            --paper-2:      #FFFFFF;   /* glazed white card surface          */
+            --ink:          #123258;   /* deep cobalt, body text / headings  */
+            --ink-soft:     #5A7392;   /* muted slate-blue secondary text    */
+            --lacquer:      #2C5F9E;   /* cobalt blue — primary accent       */
+            --lacquer-dark: #1D416F;
+            --jade:         #1E5FA8;   /* cobalt blue, underline accents     */
+            --brass:        #C9A227;   /* thin gold trim, used sparingly     */
+            --line:         #D3E1EF;   /* cool hairline border               */
         }
 
 
@@ -108,9 +109,9 @@
             background:
                 linear-gradient(
                     180deg,
-                    #FBF7EC 0%,
-                    #F5EEDD 45%,
-                    #FBF1DC 100%
+                    #FBFDFF 0%,
+                    #EEF3F9 45%,
+                    #E7EFF8 100%
                 );
 
         }
@@ -126,22 +127,22 @@
 
             width: 100%;
 
-            background-color: var(--brass);
+            background-color: var(--paper-2);
 
             background-image:
                 linear-gradient(
                     45deg,
-                    rgba(30,58,52,0.85) 25%,
+                    rgba(18,50,88,0.88) 25%,
                     transparent 25%,
                     transparent 75%,
-                    rgba(30,58,52,0.85) 75%
+                    rgba(18,50,88,0.88) 75%
                 ),
                 linear-gradient(
                     45deg,
-                    rgba(30,58,52,0.85) 25%,
+                    rgba(18,50,88,0.88) 25%,
                     transparent 25%,
                     transparent 75%,
-                    rgba(30,58,52,0.85) 75%
+                    rgba(18,50,88,0.88) 75%
                 );
 
             background-size: 22px 22px;
@@ -223,9 +224,9 @@
             box-shadow:
                 0 4px 12px
                 rgba(
-                    30,
-                    58,
-                    52,
+                    18,
+                    50,
+                    88,
                     0.12
                 );
 
@@ -255,9 +256,9 @@
             box-shadow:
                 0 7px 18px
                 rgba(
-                    179,
-                    49,
-                    31,
+                    44,
+                    95,
+                    158,
                     0.25
                 );
 
@@ -336,8 +337,7 @@
 
             filter:
                 brightness(1.05)
-                saturate(0.85)
-                sepia(0.08);
+                saturate(0.85);
 
             transform:
                 scale(1.03);
@@ -358,8 +358,8 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(245,238,221,0.42),
-                    rgba(245,238,221,0.74)
+                    rgba(238,243,249,0.45),
+                    rgba(238,243,249,0.76)
                 );
 
             z-index: 1;
@@ -393,9 +393,9 @@
             border:
                 1px solid
                 rgba(
-                    179,
-                    49,
-                    31,
+                    44,
+                    95,
+                    158,
                     0.35
                 );
 
@@ -709,61 +709,64 @@
 
         /* =====================================================
            CATEGORY COLORS
-           Warm/cool hues drawn from lacquer, jade, brass, tile-dye
+           One blue-and-white porcelain family throughout — each
+           category is a different depth/hue of cobalt so the
+           page reads as unmistakably blue, while staying easy
+           to tell categories apart at a glance.
         ====================================================== */
 
         .category-color {
-            --accent: #3E7C93;
-            --background: #EEF5F8;
-            --border: #CFE1E8;
+            --accent: #2C5F9E;
+            --background: #EDF3FA;
+            --border: #CFDFEF;
         }
 
         .category-describe {
-            --accent: #7B4B94;
-            --background: #F6F0F8;
-            --border: #E3D3EA;
+            --accent: #4A5B9E;
+            --background: #EFF0F9;
+            --border: #D6D9EF;
         }
 
         .category-food {
-            --accent: #C0651F;
-            --background: #FCF1E4;
-            --border: #F0DAB9;
+            --accent: #1F6F91;
+            --background: #EAF4F8;
+            --border: #C9E2EC;
         }
 
         .category-grammar {
-            --accent: #2E7D6B;
-            --background: #EEF7F3;
-            --border: #CFE6DC;
+            --accent: #1B5E63;
+            --background: #EAF5F5;
+            --border: #C9E4E4;
         }
 
         .category-health {
-            --accent: #B3311F;
-            --background: #FBEDEA;
-            --border: #EFCFC6;
+            --accent: #34527A;
+            --background: #EDF1F6;
+            --border: #D0DBE8;
         }
 
         .category-mix {
-            --accent: #6B4A9A;
-            --background: #F3F0F9;
-            --border: #DED4EE;
+            --accent: #3D5A9E;
+            --background: #EEF1FA;
+            --border: #D3D9F0;
         }
 
         .category-numbers {
-            --accent: #2C5F8A;
-            --background: #EEF3F8;
-            --border: #CFDCE8;
+            --accent: #1E3A6B;
+            --background: #EBEFF6;
+            --border: #CDD6E8;
         }
 
         .category-pronouns {
-            --accent: #C08A28;
-            --background: #FBF4E3;
-            --border: #EEDDB2;
+            --accent: #3A7CA5;
+            --background: #ECF5F9;
+            --border: #CBE2EC;
         }
 
         .category-places {
-            --accent: #3F8F52;
-            --background: #EEF8EF;
-            --border: #CDE6D1;
+            --accent: #2E6DA4;
+            --background: #EBF3FA;
+            --border: #CADEEF;
         }
 
 
@@ -859,7 +862,7 @@
 
         .category-title::before {
 
-            content: "Chuyên mục";
+            content: "Category";
 
             display: block;
 
@@ -1132,7 +1135,7 @@
 
             border-radius: 16px;
 
-            color: var(--lacquer-dark);
+            color: #9A3324;
 
             text-align: center;
 
@@ -1280,7 +1283,7 @@
 
         <div class="tile-strip" aria-hidden="true"></div>
 
-        <span class="header-eyebrow">Tiếng Việt · Học mà chơi</span>
+        <span class="header-eyebrow">Vietnamese · Learn by Playing</span>
 
         <h1>
             Survival Vietnamese
@@ -1299,7 +1302,7 @@
     <div class="awning-fringe" aria-hidden="true">
         <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                fill="#B3311F"
+                fill="#1D416F"
                 d="M0,0
                    a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
                    a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
