@@ -12,12 +12,12 @@
 
     <meta
         name="description"
-        content="Play free interactive games to practice survival Vietnamese vocabulary, pronunciation, grammar, and communication skills."
+        content="Survival Vietnamese with Duong — interactive Vietnamese games for students and anyone learning Vietnamese."
     >
 
     <meta
         name="keywords"
-        content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary, Vietnamese grammar"
+        content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary, Vietnamese tutor"
     >
 
     <meta
@@ -25,7 +25,9 @@
         content="Duong"
     >
 
-    <title>Survival Vietnamese with Duong</title>
+    <title>
+        Survival Vietnamese with Duong
+    </title>
 
 
     <!-- =====================================================
@@ -39,7 +41,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.gstatic.com"
+        href="https://fonts.googleapis.com"
         crossorigin
     >
 
@@ -47,6 +49,19 @@
         href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
+
+
+    <!-- =====================================================
+         SUPABASE
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script
+        src="BACKEND/supabase.js"
+    ></script>
 
 
     <style>
@@ -68,6 +83,10 @@
             --blue: #2f6fed;
 
             --blue-dark: #1e4fc7;
+
+            --cyan: #17b6d0;
+
+            --yellow: #ffc93c;
 
             --line: #d9e6f2;
 
@@ -129,12 +148,13 @@
 
             right: 0;
 
-            z-index: 20;
+            z-index: 30;
 
-            width: min(
-                1500px,
-                94%
-            );
+            width:
+                min(
+                    1500px,
+                    94%
+                );
 
             margin: auto;
 
@@ -165,7 +185,8 @@
                     0.15
                 );
 
-            border-radius: 999px;
+            border-radius:
+                999px;
 
             background:
                 rgba(
@@ -178,7 +199,8 @@
             color:
                 var(--ink);
 
-            text-decoration: none;
+            text-decoration:
+                none;
 
             font-size:
                 0.85rem;
@@ -333,7 +355,8 @@
 
             z-index: 2;
 
-            margin-bottom: 15px;
+            margin-bottom:
+                15px;
 
             padding:
                 6px 15px;
@@ -493,8 +516,315 @@
 
 
         /* =====================================================
-           MAIN CONTAINER
+           LANDING PAGE
         ====================================================== */
+
+        #landing-page {
+
+            width:
+                min(
+                    900px,
+                    94%
+                );
+
+            margin:
+                0 auto;
+
+            padding:
+                65px 0 75px;
+
+        }
+
+
+        .intro-card {
+
+            padding:
+                38px 42px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius:
+                22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.07
+                );
+
+        }
+
+
+        .intro-label {
+
+            margin:
+                0 0 10px;
+
+            color:
+                var(--blue);
+
+            font-size:
+                0.7rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.14em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .intro-card h2 {
+
+            margin:
+                0 0 18px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                1.9rem;
+
+            line-height:
+                1.25;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .intro-card p {
+
+            margin:
+                0 0 17px;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.96rem;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        .intro-card p:last-of-type {
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .preply-link {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            padding:
+                10px 17px;
+
+            border:
+                1px solid
+                #c9def8;
+
+            border-radius:
+                999px;
+
+            background:
+                #edf5ff;
+
+            color:
+                var(--blue);
+
+            text-decoration:
+                none;
+
+            font-size:
+                0.83rem;
+
+            font-weight:
+                800;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .preply-link:hover {
+
+            background:
+                var(--blue);
+
+            border-color:
+                var(--blue);
+
+            color:
+                white;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .intro-divider {
+
+            width:
+                100%;
+
+            height:
+                1px;
+
+            margin:
+                32px 0 27px;
+
+            background:
+                var(--line);
+
+        }
+
+
+        .intro-bottom {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+        }
+
+
+        .intro-bottom-text {
+
+            margin: 0;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.82rem;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .start-btn {
+
+            flex-shrink: 0;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                11px 20px;
+
+            border:
+                none;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--blue);
+
+            color:
+                white;
+
+            text-decoration:
+                none;
+
+            font-size:
+                0.84rem;
+
+            font-weight:
+                800;
+
+            box-shadow:
+                0 5px 14px
+                rgba(
+                    47,
+                    111,
+                    237,
+                    0.22
+                );
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .start-btn:hover {
+
+            background:
+                var(--blue-dark);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           LOBBY
+        ====================================================== */
+
+        #lobby-page {
+
+            display: none;
+
+        }
+
+
+        #lobby-page.visible {
+
+            display: block;
+
+        }
+
 
         .container {
 
@@ -809,11 +1139,6 @@
         }
 
 
-        /* =====================================================
-           CATEGORY MARKER
-           Replaces emoji with a clean professional shape.
-        ====================================================== */
-
         .category-marker {
 
             flex-shrink: 0;
@@ -844,7 +1169,8 @@
 
         .category-label {
 
-            margin: 0 0 3px;
+            margin:
+                0 0 3px;
 
             color:
                 var(--accent);
@@ -1015,7 +1341,6 @@
 
         /* =====================================================
            GAME THUMB
-           Clean number marker instead of emoji.
         ====================================================== */
 
         .game-thumb {
@@ -1289,6 +1614,18 @@
 
 
         /* =====================================================
+           HIDDEN
+        ====================================================== */
+
+        .hidden {
+
+            display:
+                none !important;
+
+        }
+
+
+        /* =====================================================
            MOBILE
         ====================================================== */
 
@@ -1339,6 +1676,63 @@
 
                 font-size:
                     0.98rem;
+
+            }
+
+
+            #landing-page {
+
+                padding:
+                    40px 0 50px;
+
+            }
+
+
+            .intro-card {
+
+                padding:
+                    28px 22px;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .intro-card h2 {
+
+                font-size:
+                    1.55rem;
+
+            }
+
+
+            .intro-card p {
+
+                font-size:
+                    0.88rem;
+
+                line-height:
+                    1.65;
+
+            }
+
+
+            .intro-bottom {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .start-btn {
+
+                width:
+                    100%;
 
             }
 
@@ -1476,12 +1870,15 @@
          TOP NAVIGATION
     ====================================================== -->
 
-    <nav class="top-nav">
+    <nav
+        class="top-nav"
+        id="top-nav"
+    >
 
         <a
-            href="#"
+            href="login.html"
             class="login-btn"
-            onclick="return false;"
+            id="login-btn"
         >
             Log in
         </a>
@@ -1521,10 +1918,114 @@
 
 
     <!-- =====================================================
-         MAIN
+         LANDING PAGE
+         SHOWN WHEN USER IS NOT LOGGED IN
     ====================================================== -->
 
-    <main class="container">
+    <main
+        id="landing-page"
+    >
+
+        <section
+            class="intro-card"
+            aria-label="About Survival Vietnamese"
+        >
+
+            <p class="about-eyebrow">
+                About this website
+            </p>
+
+
+            <h2>
+                Vietnamese practice, made simple.
+            </h2>
+
+
+            <p>
+                Hi, I'm Dương, a Vietnamese tutor on
+                <a
+                    href="https://preply.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <strong>Preply</strong>
+                </a>.
+            </p>
+
+
+            <p>
+                I first created these games to help my students practice between
+                lessons and remember what they learned.
+            </p>
+
+
+            <p>
+                Now, I'm making them available to anyone learning Vietnamese —
+                whether you're my student, just getting started, planning a trip,
+                or simply looking for a few minutes of practice each day.
+            </p>
+
+
+            <p class="about-text">
+                This site focuses on short, practical vocabulary games for
+                absolute beginners (A0–A1). No lectures, no long lessons — just
+                simple activities to help you learn and review useful Vietnamese words.
+            </p>
+
+
+            <p>
+                <strong>
+                    Vietnamese is more approachable than it looks.
+                </strong>
+                Start with a few useful words, practice them often, and build your
+                vocabulary step by step. A little practice goes a long way.
+            </p>
+
+
+            <a
+                href="https://preply.in/DUONG6EN32308690102?ts=17876464"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="preply-link"
+            >
+                Find me on Preply →
+            </a>
+
+
+            <div class="intro-divider"></div>
+
+
+            <div class="intro-bottom">
+
+                <p class="intro-bottom-text">
+                    Ready to practice? Create an account
+                    or log in to access the games.
+                </p>
+
+
+                <a
+                    href="login.html"
+                    class="start-btn"
+                >
+                    Start Playing →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         GAME LOBBY
+         SHOWN ONLY WHEN USER IS LOGGED IN
+    ====================================================== -->
+
+    <main
+        id="lobby-page"
+        class="container"
+    >
 
 
         <!-- =================================================
@@ -1574,17 +2075,46 @@
 
 
     <!-- =====================================================
-         GAME LOADER
+         AUTH + GAME LOADER
     ====================================================== -->
 
     <script>
 
 
         /* =====================================================
-           CONFIGURATION
+           ELEMENTS
         ====================================================== */
 
-        const GAMES_BASE = "GAMES";
+        const landingPage =
+            document.getElementById(
+                "landing-page"
+            );
+
+
+        const lobbyPage =
+            document.getElementById(
+                "lobby-page"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "login-btn"
+            );
+
+
+        const gameContainer =
+            document.getElementById(
+                "game-container"
+            );
+
+
+        /* =====================================================
+           GAME CONFIGURATION
+        ====================================================== */
+
+        const GAMES_BASE =
+            "GAMES";
 
 
         /* =====================================================
@@ -1624,35 +2154,6 @@
 
 
         /* =====================================================
-           LOAD CATEGORIES.JSON
-        ====================================================== */
-
-        async function loadCategories() {
-
-            const response =
-                await fetch(
-                    "categories.json",
-                    {
-                        cache: "no-store"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
-
-            }
-
-
-            return await response.json();
-
-        }
-
-
-        /* =====================================================
            ESCAPE HTML
         ====================================================== */
 
@@ -1688,6 +2189,36 @@
                         encodeURIComponent(part)
                 )
                 .join("/");
+
+        }
+
+
+        /* =====================================================
+           LOAD CATEGORIES
+        ====================================================== */
+
+        async function loadCategories() {
+
+            const response =
+                await fetch(
+                    "categories.json",
+                    {
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Could not load categories.json (${response.status})`
+                );
+
+            }
+
+
+            return await response.json();
 
         }
 
@@ -1774,10 +2305,11 @@
 
         async function renderGames() {
 
-            const container =
-                document.getElementById(
-                    "game-container"
-                );
+            if (!gameContainer) {
+
+                return;
+
+            }
 
 
             try {
@@ -1786,7 +2318,7 @@
                     await loadCategories();
 
 
-                container.innerHTML =
+                gameContainer.innerHTML =
                     "";
 
 
@@ -1802,7 +2334,6 @@
                     const categoryName
                     of Object.keys(categories)
                 ) {
-
 
                     const category =
                         categories[
@@ -2033,7 +2564,6 @@
                         of games
                     ) {
 
-
                         if (
                             !game ||
                             typeof game !== "object" ||
@@ -2087,7 +2617,7 @@
                         );
 
 
-                        container.appendChild(
+                        gameContainer.appendChild(
                             section
                         );
 
@@ -2104,7 +2634,7 @@
                     totalGames === 0
                 ) {
 
-                    container.innerHTML = `
+                    gameContainer.innerHTML = `
 
                         <div class="error-message">
 
@@ -2136,7 +2666,7 @@
                 );
 
 
-                container.innerHTML = `
+                gameContainer.innerHTML = `
 
                     <div class="error-message">
 
@@ -2170,10 +2700,262 @@
 
 
         /* =====================================================
+           SHOW LANDING PAGE
+        ====================================================== */
+
+        function showLandingPage() {
+
+            landingPage.classList.remove(
+                "hidden"
+            );
+
+
+            landingPage.style.display =
+                "block";
+
+
+            lobbyPage.classList.remove(
+                "visible"
+            );
+
+
+            lobbyPage.style.display =
+                "none";
+
+
+            loginButton.textContent =
+                "Log in";
+
+
+            loginButton.href =
+                "login.html";
+
+        }
+
+
+        /* =====================================================
+           SHOW LOBBY
+        ====================================================== */
+
+        function showLobby() {
+
+            landingPage.style.display =
+                "none";
+
+
+            lobbyPage.style.display =
+                "block";
+
+
+            lobbyPage.classList.add(
+                "visible"
+            );
+
+
+            loginButton.textContent =
+                "Log out";
+
+
+            loginButton.href =
+                "#";
+
+
+            loginButton.onclick =
+                async event => {
+
+                    event.preventDefault();
+
+                    await logout();
+
+                };
+
+
+            renderGames();
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        async function logout() {
+
+            if (
+                !window.supabaseClient
+            ) {
+
+                showLandingPage();
+
+                return;
+
+            }
+
+
+            try {
+
+                const {
+                    error
+                } =
+                    await window.supabaseClient
+                        .auth
+                        .signOut();
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                window.location.reload();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+                alert(
+                    "Unable to log out. Please try again."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CHECK SESSION
+        ====================================================== */
+
+        async function checkSession() {
+
+            /* ================================================
+               SUPABASE NOT CONNECTED
+            ================================================= */
+
+            if (
+                !window.supabaseClient
+            ) {
+
+                console.error(
+                    "Supabase client is not available."
+                );
+
+
+                showLandingPage();
+
+                return;
+
+            }
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await window.supabaseClient
+                        .auth
+                        .getSession();
+
+
+                if (error) {
+
+                    console.error(
+                        "Session check error:",
+                        error
+                    );
+
+
+                    showLandingPage();
+
+                    return;
+
+                }
+
+
+                if (
+                    data &&
+                    data.session &&
+                    data.session.user
+                ) {
+
+                    showLobby();
+
+                }
+                else {
+
+                    showLandingPage();
+
+                }
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Session check failed:",
+                    error
+                );
+
+
+                showLandingPage();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           AUTH STATE LISTENER
+        ====================================================== */
+
+        if (
+            window.supabaseClient
+        ) {
+
+            window.supabaseClient
+                .auth
+                .onAuthStateChange(
+                    (
+                        event,
+                        session
+                    ) => {
+
+                        if (
+                            session &&
+                            session.user
+                        ) {
+
+                            showLobby();
+
+                        }
+                        else {
+
+                            showLandingPage();
+
+                        }
+
+                    }
+                );
+
+        }
+
+
+        /* =====================================================
            START
         ====================================================== */
 
-        renderGames();
+        checkSession();
 
     </script>
 
