@@ -56,23 +56,23 @@
 
         /* =====================================================
            DESIGN TOKENS
-           Inspired by Vietnamese blue-and-white porcelain (gốm hoa
-           lam / Bát Tràng ceramics) — cobalt blue glaze over a
-           white-porcelain ground, with a thin gold trim. Blue is
-           the dominant color throughout the page.
+           Same blue-and-white porcelain inspiration, tuned
+           brighter and more playful — this is a game site, so
+           the blues get more pop and a sunny yellow joins in
+           for stars, badges, and highlights.
         ====================================================== */
 
         :root {
 
-            --paper:        #EEF3F9;   /* porcelain white, cool undertone    */
+            --paper:        #F1F8FF;   /* bright porcelain white-blue        */
             --paper-2:      #FFFFFF;   /* glazed white card surface          */
-            --ink:          #123258;   /* deep cobalt, body text / headings  */
-            --ink-soft:     #5A7392;   /* muted slate-blue secondary text    */
-            --lacquer:      #2C5F9E;   /* cobalt blue — primary accent       */
-            --lacquer-dark: #1D416F;
-            --jade:         #1E5FA8;   /* cobalt blue, underline accents     */
-            --brass:        #C9A227;   /* thin gold trim, used sparingly     */
-            --line:         #D3E1EF;   /* cool hairline border               */
+            --ink:          #143A6B;   /* cobalt, body text / headings       */
+            --ink-soft:     #5E7FA8;   /* muted slate-blue secondary text    */
+            --lacquer:      #2F6FED;   /* vivid cobalt blue — primary accent */
+            --lacquer-dark: #1E4FC7;
+            --jade:         #17B6D0;   /* bright turquoise, fun accent       */
+            --brass:        #FFC93C;   /* sunny yellow — stars & badges      */
+            --line:         #CFE3FA;   /* bright light-blue border           */
         }
 
 
@@ -109,10 +109,49 @@
             background:
                 linear-gradient(
                     180deg,
-                    #FBFDFF 0%,
-                    #EEF3F9 45%,
-                    #E7EFF8 100%
+                    #FFFFFF 0%,
+                    #F1F8FF 45%,
+                    #EAF4FF 100%
                 );
+
+        }
+
+
+        /* =====================================================
+           FUN MOTION — used sparingly: a gentle float for header
+           decorations, a wiggle on icon hover, and a soft pop-in
+           for cards as they appear.
+        ====================================================== */
+
+        @keyframes float-bob {
+
+            0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+            50%      { transform: translateY(-10px) rotate(var(--tilt, 0deg)); }
+
+        }
+
+        @keyframes wiggle {
+
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25%      { transform: rotate(-8deg) scale(1.08); }
+            75%      { transform: rotate(8deg) scale(1.08); }
+
+        }
+
+        @keyframes pop-in {
+
+            from { opacity: 0; transform: translateY(10px) scale(0.96); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
 
         }
 
@@ -292,13 +331,21 @@
 
             overflow: hidden;
 
+            background:
+                linear-gradient(
+                    135deg,
+                    #DCEBFF 0%,
+                    #E7F4FF 45%,
+                    #FFF6DC 100%
+                );
+
             box-shadow:
                 0 8px 30px
                 rgba(
-                    30,
+                    20,
                     58,
-                    52,
-                    0.14
+                    107,
+                    0.16
                 );
 
         }
@@ -336,8 +383,8 @@
                 center;
 
             filter:
-                brightness(1.05)
-                saturate(0.85);
+                brightness(1.12)
+                saturate(1.05);
 
             transform:
                 scale(1.03);
@@ -358,11 +405,47 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(238,243,249,0.45),
-                    rgba(238,243,249,0.76)
+                    rgba(238,243,249,0.28),
+                    rgba(238,243,249,0.58)
                 );
 
             z-index: 1;
+
+        }
+
+
+        /* =====================================================
+           FLOATING HEADER ICONS — small, playful, and purely
+           decorative; kept clear of the headline text.
+        ====================================================== */
+
+        .float-deco {
+
+            position: absolute;
+
+            z-index: 2;
+
+            font-size: 2rem;
+
+            opacity: 0.9;
+
+            pointer-events: none;
+
+            animation: float-bob 4s ease-in-out infinite;
+
+            filter:
+                drop-shadow(0 4px 8px rgba(20,58,107,0.18));
+
+        }
+
+        .float-deco.d1 { top: 16%; left: 7%;  --tilt: -10deg; animation-delay: 0s;    }
+        .float-deco.d2 { top: 20%; right: 8%; --tilt: 8deg;   animation-delay: 1.3s; font-size: 1.7rem; }
+        .float-deco.d3 { bottom: 16%; left: 11%; --tilt: 6deg; animation-delay: 2.1s; font-size: 1.6rem; }
+        .float-deco.d4 { bottom: 20%; right: 10%; --tilt: -6deg; animation-delay: 0.7s; font-size: 1.8rem; }
+
+        @media (max-width: 700px) {
+
+            .float-deco { font-size: 1.3rem !important; opacity: 0.75; }
 
         }
 
@@ -643,7 +726,7 @@
                 26px 24px 24px;
 
             border:
-                1px solid
+                1.5px solid
                 var(--border);
 
             border-radius:
@@ -655,11 +738,13 @@
             box-shadow:
                 0 8px 24px
                 rgba(
-                    30,
+                    20,
                     58,
-                    52,
-                    0.07
+                    107,
+                    0.08
                 );
+
+            animation: pop-in 0.5s ease backwards;
 
             transition:
                 transform 0.2s ease,
@@ -693,15 +778,15 @@
 
         .game-type-section:hover {
 
-            transform: translateY(-2px);
+            transform: translateY(-3px);
 
             box-shadow:
-                0 12px 28px
+                0 14px 30px
                 rgba(
-                    30,
+                    20,
                     58,
-                    52,
-                    0.11
+                    107,
+                    0.13
                 );
 
         }
@@ -709,64 +794,63 @@
 
         /* =====================================================
            CATEGORY COLORS
-           One blue-and-white porcelain family throughout — each
-           category is a different depth/hue of cobalt so the
-           page reads as unmistakably blue, while staying easy
-           to tell categories apart at a glance.
+           Same blue-and-white family, turned up in brightness and
+           saturation so each category pops — still unmistakably
+           blue overall, just more arcade than porcelain shop.
         ====================================================== */
 
         .category-color {
-            --accent: #2C5F9E;
-            --background: #EDF3FA;
-            --border: #CFDFEF;
+            --accent: #2F80ED;
+            --background: #E8F2FF;
+            --border: #C3DEFC;
         }
 
         .category-describe {
-            --accent: #4A5B9E;
-            --background: #EFF0F9;
-            --border: #D6D9EF;
+            --accent: #7B61FF;
+            --background: #EFEBFF;
+            --border: #D8D0FC;
         }
 
         .category-food {
-            --accent: #1F6F91;
-            --background: #EAF4F8;
-            --border: #C9E2EC;
+            --accent: #17A2C4;
+            --background: #E3F7FB;
+            --border: #BFEAF3;
         }
 
         .category-grammar {
-            --accent: #1B5E63;
-            --background: #EAF5F5;
-            --border: #C9E4E4;
+            --accent: #0EA5A5;
+            --background: #E1F7F5;
+            --border: #BEEAE4;
         }
 
         .category-health {
-            --accent: #34527A;
-            --background: #EDF1F6;
-            --border: #D0DBE8;
+            --accent: #3D7EDB;
+            --background: #E8F1FC;
+            --border: #C7DFF7;
         }
 
         .category-mix {
-            --accent: #3D5A9E;
-            --background: #EEF1FA;
-            --border: #D3D9F0;
+            --accent: #6C63FF;
+            --background: #EEEBFF;
+            --border: #D6D1FA;
         }
 
         .category-numbers {
-            --accent: #1E3A6B;
-            --background: #EBEFF6;
-            --border: #CDD6E8;
+            --accent: #1565C0;
+            --background: #E4EEFA;
+            --border: #C2D9F2;
         }
 
         .category-pronouns {
-            --accent: #3A7CA5;
-            --background: #ECF5F9;
-            --border: #CBE2EC;
+            --accent: #29B6D8;
+            --background: #E1F6FA;
+            --border: #BEE9F1;
         }
 
         .category-places {
-            --accent: #2E6DA4;
-            --background: #EBF3FA;
-            --border: #CADEEF;
+            --accent: #2E86DE;
+            --background: #E5F1FE;
+            --border: #C4DEFB;
         }
 
 
@@ -794,7 +878,8 @@
 
 
         /* =====================================================
-           CATEGORY ICON — a lacquer-button medallion
+           CATEGORY ICON — a bright emoji badge that wiggles
+           when you hover the section, for a bit of arcade fun.
         ====================================================== */
 
         .category-icon {
@@ -803,8 +888,8 @@
 
             flex-shrink: 0;
 
-            width: 46px;
-            height: 46px;
+            width: 52px;
+            height: 52px;
 
             display: flex;
 
@@ -814,24 +899,27 @@
 
             border-radius: 50%;
 
-            background:
-                radial-gradient(
-                    circle at 35% 30%,
-                    rgba(255,255,255,0.85),
-                    var(--accent) 60%
-                );
+            background: var(--background);
 
-            color: #ffffff;
+            border: 2.5px solid var(--paper-2);
 
-            font-size: 1.2rem;
+            font-size: 1.7rem;
 
-            font-weight: 800;
+            line-height: 1;
 
             box-shadow:
-                0 0 0 3px var(--paper),
-                0 0 0 4.5px var(--border),
+                0 0 0 3px var(--border),
                 0 4px 10px
-                rgba(0,0,0,0.12);
+                rgba(20,58,107,0.12);
+
+            transition: transform 0.25s ease;
+
+        }
+
+
+        .game-type-section:hover .category-icon {
+
+            animation: wiggle 0.55s ease;
 
         }
 
@@ -933,30 +1021,44 @@
 
             background: var(--paper-2);
 
-            border: 1px solid var(--line);
+            border: 1.5px solid var(--line);
 
-            border-radius: 14px;
+            border-radius: 18px;
 
             padding-top: 12px;
 
             box-shadow:
                 0 4px 14px
-                rgba(60, 40, 10, 0.055);
+                rgba(20, 58, 107, 0.07);
+
+            animation: pop-in 0.45s ease backwards;
 
             transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease;
+                transform 0.22s cubic-bezier(.34,1.56,.64,1),
+                box-shadow 0.22s ease,
+                border-color 0.22s ease;
 
         }
 
 
+        .game-grid .game-card:nth-child(1) { animation-delay: 0.02s; }
+        .game-grid .game-card:nth-child(2) { animation-delay: 0.06s; }
+        .game-grid .game-card:nth-child(3) { animation-delay: 0.10s; }
+        .game-grid .game-card:nth-child(4) { animation-delay: 0.14s; }
+        .game-grid .game-card:nth-child(5) { animation-delay: 0.18s; }
+        .game-grid .game-card:nth-child(6) { animation-delay: 0.22s; }
+        .game-grid .game-card:nth-child(n+7) { animation-delay: 0.24s; }
+
+
         .game-card:hover {
 
-            transform: translateY(-4px);
+            transform: translateY(-6px) scale(1.02);
+
+            border-color: var(--accent);
 
             box-shadow:
-                0 12px 26px
-                rgba(60, 40, 10, 0.12);
+                0 14px 28px
+                rgba(20, 58, 107, 0.16);
 
         }
 
@@ -969,11 +1071,11 @@
 
             position: absolute;
 
-            top: -14px;
+            top: -16px;
             left: 16px;
 
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
 
             display: flex;
 
@@ -981,19 +1083,28 @@
 
             justify-content: center;
 
-            color: #ffffff;
-
-            background: var(--accent);
+            background: var(--background);
 
             border-radius: 50%;
 
             border: 3px solid var(--paper-2);
 
-            box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+            box-shadow:
+                0 0 0 2px var(--border),
+                0 3px 8px rgba(20,58,107,0.18);
 
-            font-size: 1.05rem;
+            font-size: 1.3rem;
 
-            font-weight: 800;
+            line-height: 1;
+
+            transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+
+        }
+
+
+        .game-card:hover .game-thumb {
+
+            transform: scale(1.15) rotate(-8deg);
 
         }
 
@@ -1065,9 +1176,9 @@
 
             width: 100%;
 
-            padding: 10px 12px;
+            padding: 11px 12px;
 
-            border-radius: 9px;
+            border-radius: 999px;
 
             background: var(--accent);
 
@@ -1083,21 +1194,34 @@
 
             letter-spacing: 0.02em;
 
-            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.14);
+            box-shadow:
+                inset 0 -3px 0 rgba(0,0,0,0.15),
+                0 4px 10px rgba(20,58,107,0.18);
 
             transition:
                 filter 0.2s ease,
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
+                transform 0.18s cubic-bezier(.34,1.56,.64,1),
+                box-shadow 0.18s ease;
 
         }
 
 
         .play-btn:hover {
 
-            filter: brightness(0.94);
+            filter: brightness(1.05);
 
-            transform: translateY(1px);
+            transform: translateY(-2px) scale(1.03);
+
+            box-shadow:
+                inset 0 -3px 0 rgba(0,0,0,0.15),
+                0 8px 16px rgba(20,58,107,0.28);
+
+        }
+
+
+        .play-btn:active {
+
+            transform: translateY(1px) scale(0.98);
 
             box-shadow: inset 0 -1px 0 rgba(0,0,0,0.14);
 
@@ -1283,7 +1407,12 @@
 
         <div class="tile-strip" aria-hidden="true"></div>
 
-        <span class="header-eyebrow">Vietnamese · Learn by Playing</span>
+        <span class="float-deco d1" aria-hidden="true">🎮</span>
+        <span class="float-deco d2" aria-hidden="true">🎲</span>
+        <span class="float-deco d3" aria-hidden="true">✨</span>
+        <span class="float-deco d4" aria-hidden="true">🎯</span>
+
+        <span class="header-eyebrow">✨ Vietnamese · Learn by Playing ✨</span>
 
         <h1>
             Survival Vietnamese
@@ -1328,7 +1457,7 @@
         <div class="page-intro">
 
             <h2 class="section-title">
-                Choose Your Game
+                🎮 Choose Your Game 🎉
             </h2>
 
             <p class="section-subtitle">
@@ -1346,7 +1475,7 @@
         <div id="game-container">
 
             <div class="loading">
-                Loading games...
+                🎮 Loading games...
             </div>
 
         </div>
@@ -1427,31 +1556,31 @@
         const categorySymbols = {
 
             "Color":
-                "●",
+                "🎨",
 
             "Describe things":
-                "✦",
+                "✨",
 
             "Food and Drinks":
-                "◆",
+                "🍜",
 
             "Grammar":
-                "≡",
+                "📝",
 
             "Health":
-                "+",
+                "🩺",
 
             "Mix Practice":
-                "◇",
+                "🎲",
 
             "Numbers":
-                "#",
+                "🔢",
 
             "People & Pronouns":
-                "◎",
+                "👋",
 
             "Places & Locations":
-                "⌖"
+                "📍"
 
         };
 
