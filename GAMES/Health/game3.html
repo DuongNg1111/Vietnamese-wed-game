@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Health Situation Challenge</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Health Situation Challenge"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Choose the correct Vietnamese health word for each simple situation."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="❤️"
 >
 
 
@@ -89,7 +89,7 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(850px,96vw);
 
     margin:0 auto;
 
@@ -100,7 +100,8 @@ body{
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -114,6 +115,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -154,7 +156,10 @@ body{
 
     text-align:center;
 
-    padding:20px 20px 30px;
+    padding:
+        20px
+        20px
+        30px;
 
 }
 
@@ -170,7 +175,8 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:
+        0 0 10px;
 
     font-size:34px;
 
@@ -181,11 +187,9 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
-
-    margin:8px 0;
 
 }
 
@@ -194,7 +198,9 @@ body{
 
     margin-top:20px;
 
-    padding:14px 35px;
+    padding:
+        14px
+        35px;
 
     border:none;
 
@@ -232,7 +238,8 @@ body{
 
     text-align:center;
 
-    margin:0 0 5px;
+    margin:
+        0 0 5px;
 
 }
 
@@ -333,20 +340,25 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   SITUATION CARD
 ========================================================== */
 
 .card{
 
     background:#fffde7;
 
-    border:2px dashed #f1c40f;
+    border:
+        2px dashed
+        #f1c40f;
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:
+        30px
+        20px;
 
-    margin:20px 0;
+    margin:
+        20px 0;
 
     min-height:150px;
 
@@ -427,28 +439,21 @@ body{
 }
 
 
-.option-btn.disabled{
-
-    pointer-events:none;
-
-    opacity:.7;
-
-}
-
-
 /* ==========================================================
    RESULT
 ========================================================== */
 
 .result-message{
 
-    min-height:40px;
+    min-height:45px;
 
     margin-top:20px;
 
-    font-size:18px;
+    font-size:17px;
 
     font-weight:bold;
+
+    line-height:1.5;
 
 }
 
@@ -467,13 +472,30 @@ body{
 }
 
 
+.explanation{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#7f8c8d;
+
+    font-size:14px;
+
+    font-weight:normal;
+
+}
+
+
 /* ==========================================================
    NEXT BUTTON
 ========================================================== */
 
 .next-btn{
 
-    padding:12px 28px;
+    padding:
+        12px
+        28px;
 
     border:none;
 
@@ -513,7 +535,10 @@ body{
 
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:
+        30px
+        20px
+        40px;
 
 }
 
@@ -549,13 +574,6 @@ body{
 }
 
 
-#final .start-btn{
-
-    margin-top:10px;
-
-}
-
-
 /* ==========================================================
    MOBILE
 ========================================================== */
@@ -571,39 +589,10 @@ body{
 
     .container{
 
-        width:100%;
-
         padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:28px;
-
-    }
-
-
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
-    .game-box{
-
-        padding:18px;
+            60px
+            15px
+            20px;
 
     }
 
@@ -619,9 +608,25 @@ body{
 
         font-size:18px;
 
-        min-height:130px;
+        min-height:140px;
 
-        padding:25px 15px;
+        padding:
+            25px
+            15px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -634,14 +639,9 @@ body{
 
         font-size:13px;
 
-        padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
+        padding:
+            7px
+            12px;
 
     }
 
@@ -684,29 +684,29 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        ❤️
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Health Situation Challenge
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Read the situation and choose
+        the correct Vietnamese word.
 
     </p>
 
 
     <p>
 
-        🎯 10 questions
+        🎯 15 questions
 
     </p>
 
@@ -736,14 +736,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        ❤️ Health Situation Challenge
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        What Vietnamese word fits the situation?
 
     </p>
 
@@ -756,6 +756,7 @@ body{
 
         <div class="topbar">
 
+
             <div class="question-count">
 
                 Question
@@ -767,7 +768,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    10
+                    15
                 </span>
 
             </div>
@@ -782,6 +783,7 @@ body{
                 </span>
 
             </div>
+
 
         </div>
 
@@ -867,7 +869,8 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the Vietnamese Health
+        Situation Challenge.
 
     </p>
 
@@ -906,7 +909,6 @@ body{
 
 <script>
 
-
 /* ==========================================================
    QUESTION DATABASE
 ========================================================== */
@@ -915,155 +917,274 @@ const database = [
 
     {
         q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
+        "You have a pain in your head. You have a ______.",
 
         a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
+            "đau đầu",
+            "đau bụng",
+            "đau lưng",
+            "đau răng"
         ],
 
-        c:"Ông"
+        c:"đau đầu",
+
+        e:
+        "Đau đầu means headache."
     },
 
 
     {
         q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
+        "You have a pain in your stomach. You have a ______.",
 
         a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
+            "đau bụng",
+            "đau đầu",
+            "đau họng",
+            "đau răng"
         ],
 
-        c:"Bà"
+        c:"đau bụng",
+
+        e:
+        "Đau bụng means stomachache."
     },
 
 
     {
         q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
+        "Your back hurts. You have ______.",
 
         a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
+            "đau lưng",
+            "đau bụng",
+            "đau đầu",
+            "đau răng"
         ],
 
-        c:"Chú"
+        c:"đau lưng",
+
+        e:
+        "Đau lưng means backache."
     },
 
 
     {
         q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
+        "Your tooth hurts. You have ______.",
 
         a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
+            "đau răng",
+            "đau đầu",
+            "đau lưng",
+            "đau bụng"
         ],
 
-        c:"Dì"
+        c:"đau răng",
+
+        e:
+        "Đau răng means toothache."
     },
 
 
     {
         q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
+        "You have a high temperature. You have a ______.",
 
         a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
+            "sốt",
+            "ho",
+            "mệt",
+            "lạnh"
         ],
 
-        c:"Bác"
+        c:"sốt",
+
+        e:
+        "Sốt means fever."
     },
 
 
     {
         q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
+        "You keep coughing. You have a ______.",
 
         a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
+            "ho",
+            "sốt",
+            "đau răng",
+            "chóng mặt"
         ],
 
-        c:"Anh"
+        c:"ho",
+
+        e:
+        "Ho means cough."
     },
 
 
     {
         q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
+        "You feel very tired. You are ______.",
 
         a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
+            "mệt",
+            "nóng",
+            "ho",
+            "đau bụng"
         ],
 
-        c:"Chị"
+        c:"mệt",
+
+        e:
+        "Mệt means tired."
     },
 
 
     {
         q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
+        "You feel like the room is moving around you. You are ______.",
 
         a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
+            "chóng mặt",
+            "mệt",
+            "đau răng",
+            "sốt"
         ],
 
-        c:"Em"
+        c:"chóng mặt",
+
+        e:
+        "Chóng mặt means dizzy."
     },
 
 
     {
         q:
-        "You talk to a child from the younger generation. What do you call them?",
+        "Your throat hurts when you speak or swallow. You have ______.",
 
         a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
+            "đau họng",
+            "đau đầu",
+            "đau lưng",
+            "đau bụng"
         ],
 
-        c:"Cháu"
+        c:"đau họng",
+
+        e:
+        "Đau họng means sore throat."
     },
 
 
     {
         q:
-        "A young boy or girl is much younger than you. What do you call them?",
+        "You feel sick and want to vomit. You have ______.",
 
         a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
+            "buồn nôn",
+            "đau răng",
+            "ho",
+            "đau lưng"
         ],
 
-        c:"Cháu"
+        c:"buồn nôn",
+
+        e:
+        "Buồn nôn means nausea or feeling like you will vomit."
+    },
+
+
+    {
+        q:
+        "You feel cold and your body temperature is low. You are ______.",
+
+        a:[
+            "lạnh",
+            "nóng",
+            "mệt",
+            "sốt"
+        ],
+
+        c:"lạnh",
+
+        e:
+        "Lạnh means cold."
+    },
+
+
+    {
+        q:
+        "You feel very hot. You are ______.",
+
+        a:[
+            "nóng",
+            "lạnh",
+            "mệt",
+            "chóng mặt"
+        ],
+
+        c:"nóng",
+
+        e:
+        "Nóng means hot."
+    },
+
+
+    {
+        q:
+        "You are not feeling well and need help from a doctor. You should go to the ______.",
+
+        a:[
+            "bệnh viện",
+            "nhà",
+            "trường",
+            "nhà hàng"
+        ],
+
+        c:"bệnh viện",
+
+        e:
+        "Bệnh viện means hospital."
+    },
+
+
+    {
+        q:
+        "You are sick and need something to help you get better. You need ______.",
+
+        a:[
+            "thuốc",
+            "nước",
+            "cơm",
+            "quần áo"
+        ],
+
+        c:"thuốc",
+
+        e:
+        "Thuốc means medicine."
+    },
+
+
+    {
+        q:
+        "You are sick and want to see a medical professional. You need a ______.",
+
+        a:[
+            "bác sĩ",
+            "giáo viên",
+            "nhân viên",
+            "bạn"
+        ],
+
+        c:"bác sĩ",
+
+        e:
+        "Bác sĩ means doctor."
     }
 
 ];
-
 
 
 /* ==========================================================
@@ -1077,7 +1198,6 @@ let currentQuestion = 0;
 let score = 0;
 
 let answered = false;
-
 
 
 /* ==========================================================
@@ -1117,7 +1237,6 @@ function shuffle(array){
 }
 
 
-
 /* ==========================================================
    START GAME
 ========================================================== */
@@ -1150,7 +1269,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1162,7 +1282,6 @@ function startGame(){
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
@@ -1200,15 +1319,17 @@ function loadQuestion(){
         question.q;
 
 
-    document
-        .getElementById("resultText")
-        .textContent =
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    resultText.textContent =
         "";
 
 
-    document
-        .getElementById("resultText")
-        .className =
+    resultText.className =
         "result-message";
 
 
@@ -1224,7 +1345,8 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
@@ -1232,6 +1354,7 @@ function loadQuestion(){
 
 
     options.forEach(option => {
+
 
         const btn =
             document.createElement(
@@ -1261,7 +1384,6 @@ function loadQuestion(){
 }
 
 
-
 /* ==========================================================
    HANDLE ANSWER
 ========================================================== */
@@ -1280,6 +1402,12 @@ function handleAnswer(
 
     const question =
         questions[currentQuestion];
+
+
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
 
 
     if(selected === question.c){
@@ -1301,15 +1429,14 @@ function handleAnswer(
             score;
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "🎉 Correct!";
+        resultText.innerHTML =
+            `🎉 Correct!
+            <span class="explanation">
+                ${question.e}
+            </span>`;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
 
@@ -1319,9 +1446,7 @@ function handleAnswer(
             )
             .forEach(btn => {
 
-                btn.classList.add(
-                    "disabled"
-                );
+                btn.disabled = true;
 
             });
 
@@ -1359,15 +1484,11 @@ function handleAnswer(
         );
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "❌ Try again!";
+        resultText.innerHTML =
+            `❌ Try again!`;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message wrong-text";
 
 
@@ -1382,7 +1503,6 @@ function handleAnswer(
     }
 
 }
-
 
 
 /* ==========================================================
@@ -1408,7 +1528,6 @@ function nextQuestion(){
     }
 
 }
-
 
 
 /* ==========================================================
@@ -1453,7 +1572,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! You know your basic health vocabulary.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1582,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing these useful health words.";
 
     }
 
@@ -1476,7 +1595,6 @@ function finishGame(){
 }
 
 
-
 /* ==========================================================
    RESTART
 ========================================================== */
@@ -1486,7 +1604,6 @@ function restartGame(){
     startGame();
 
 }
-
 
 
 /* ==========================================================

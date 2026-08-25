@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Weather Sentence Scramble</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Weather Sentence Scramble"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Arrange Vietnamese weather words to make a correct sentence."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="☀️"
 >
 
 
@@ -72,12 +72,16 @@ body{
 ========================================================== */
 
 .screen{
+
     display:none;
+
 }
 
 
 .screen.active{
+
     display:block;
+
 }
 
 
@@ -89,7 +93,7 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
@@ -100,7 +104,8 @@ body{
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -114,6 +119,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -170,7 +176,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:0 0 10px;
 
     font-size:34px;
 
@@ -181,11 +187,9 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
-
-    margin:8px 0;
 
 }
 
@@ -314,7 +318,7 @@ body{
 
     overflow:hidden;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
 
 }
 
@@ -333,69 +337,56 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   INSTRUCTION
 ========================================================== */
 
-.card{
+.instruction{
 
-    background:#fffde7;
+    color:#7f8c8d;
 
-    border:2px dashed #f1c40f;
+    font-size:16px;
 
-    border-radius:12px;
-
-    padding:35px 20px;
-
-    margin:20px 0;
-
-    min-height:150px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:21px;
-
-    font-weight:600;
-
-    line-height:1.5;
+    margin-bottom:18px;
 
 }
 
 
 /* ==========================================================
-   OPTIONS
+   SCRAMBLED WORDS
 ========================================================== */
 
-.options{
+.words-container{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-        1fr 1fr;
+    flex-wrap:wrap;
+
+    justify-content:center;
 
     gap:12px;
+
+    min-height:80px;
+
+    margin:20px 0;
 
 }
 
 
-.option-btn{
+.word-btn{
 
-    padding:17px;
+    padding:13px 18px;
+
+    border:2px solid #34495e;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#34495e;
 
     font-size:18px;
 
     font-weight:bold;
-
-    background:#34495e;
-
-    color:white;
-
-    border:none;
-
-    border-radius:9px;
 
     cursor:pointer;
 
@@ -404,34 +395,137 @@ body{
 }
 
 
-.option-btn:hover{
+.word-btn:hover{
 
-    background:#2c3e50;
+    background:#eef5fc;
 
     transform:translateY(-2px);
 
 }
 
 
-.option-btn.correct{
+.word-btn.used{
 
-    background:#27ae60;
-
-}
-
-
-.option-btn.wrong{
-
-    background:#e74c3c;
-
-}
-
-
-.option-btn.disabled{
+    opacity:.35;
 
     pointer-events:none;
 
-    opacity:.7;
+}
+
+
+/* ==========================================================
+   ANSWER AREA
+========================================================== */
+
+.answer-label{
+
+    margin-top:20px;
+
+    color:#7f8c8d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+
+.answer-container{
+
+    min-height:65px;
+
+    margin:10px 0 20px;
+
+    padding:12px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#f8f9fa;
+
+    border:2px dashed #d5dfe5;
+
+    border-radius:12px;
+
+}
+
+
+.answer-word{
+
+    padding:10px 15px;
+
+    border-radius:9px;
+
+    background:#34495e;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.answer-word:hover{
+
+    background:#2c3e50;
+
+}
+
+
+/* ==========================================================
+   CHECK BUTTON
+========================================================== */
+
+.check-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#27ae60;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.check-btn:hover{
+
+    background:#219150;
+
+    transform:translateY(-2px);
+
+}
+
+
+.check-btn:disabled{
+
+    background:#bdc3c7;
+
+    cursor:not-allowed;
+
+    transform:none;
 
 }
 
@@ -444,7 +538,7 @@ body{
 
     min-height:40px;
 
-    margin-top:20px;
+    margin-top:18px;
 
     font-size:18px;
 
@@ -549,13 +643,6 @@ body{
 }
 
 
-#final .start-btn{
-
-    margin-top:10px;
-
-}
-
-
 /* ==========================================================
    MOBILE
 ========================================================== */
@@ -571,18 +658,7 @@ body{
 
     .container{
 
-        width:100%;
-
-        padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
+        padding:60px 15px 20px;
 
     }
 
@@ -594,13 +670,6 @@ body{
     }
 
 
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
     .game-box{
 
         padding:18px;
@@ -608,20 +677,20 @@ body{
     }
 
 
-    .options{
+    .word-btn{
 
-        grid-template-columns:1fr;
+        font-size:16px;
+
+        padding:11px 14px;
 
     }
 
 
-    .card{
+    .answer-word{
 
-        font-size:18px;
+        font-size:15px;
 
-        min-height:130px;
-
-        padding:25px 15px;
+        padding:9px 12px;
 
     }
 
@@ -635,13 +704,6 @@ body{
         font-size:13px;
 
         padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
 
     }
 
@@ -684,29 +746,29 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        ☀️
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Weather Scramble
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Arrange the Vietnamese words<br>
+        to make a correct sentence.
 
     </p>
 
 
     <p>
 
-        🎯 10 questions
+        🎯 15 questions
 
     </p>
 
@@ -736,14 +798,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        ☀️ Vietnamese Weather Scramble
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        Put the words in the correct order.
 
     </p>
 
@@ -767,7 +829,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    10
+                    15
                 </span>
 
             </div>
@@ -800,21 +862,54 @@ body{
 
 
 
-        <!-- QUESTION -->
+        <div class="instruction">
+
+            Click the words in the correct order.
+
+        </div>
+
+
+
+        <!-- SCRAMBLED WORDS -->
 
         <div
-            class="card"
-            id="questionText"
+            class="words-container"
+            id="wordsContainer"
         ></div>
 
 
 
-        <!-- OPTIONS -->
+        <!-- ANSWER -->
+
+        <div class="answer-label">
+
+            YOUR SENTENCE
+
+        </div>
+
 
         <div
-            class="options"
-            id="optionsContainer"
-        ></div>
+            class="answer-container"
+            id="answerContainer"
+        >
+
+            Click words above.
+
+        </div>
+
+
+
+        <!-- CHECK -->
+
+        <button
+            class="check-btn"
+            id="checkBtn"
+            onclick="checkAnswer()"
+        >
+
+            Check ✓
+
+        </button>
 
 
 
@@ -867,7 +962,7 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the Vietnamese Weather Scramble.
 
     </p>
 
@@ -896,7 +991,6 @@ body{
 
     </button>
 
-
 </div>
 
 
@@ -914,152 +1008,197 @@ body{
 const database = [
 
     {
-        q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
-
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
+        words:[
+            "nắng",
+            "trời"
         ],
 
-        c:"Ông"
+        answer:[
+            "trời",
+            "nắng"
+        ]
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
-
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
+        words:[
+            "mưa",
+            "trời"
         ],
 
-        c:"Bà"
+        answer:[
+            "trời",
+            "mưa"
+        ]
     },
 
 
     {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
-
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
+        words:[
+            "gió",
+            "trời"
         ],
 
-        c:"Chú"
+        answer:[
+            "trời",
+            "gió"
+        ]
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
-
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
+        words:[
+            "nóng",
+            "trời"
         ],
 
-        c:"Dì"
+        answer:[
+            "trời",
+            "nóng"
+        ]
     },
 
 
     {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
-
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
+        words:[
+            "lạnh",
+            "trời"
         ],
 
-        c:"Bác"
+        answer:[
+            "trời",
+            "lạnh"
+        ]
     },
 
 
     {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
-
-        a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
+        words:[
+            "ấm",
+            "trời"
         ],
 
-        c:"Anh"
+        answer:[
+            "trời",
+            "ấm"
+        ]
     },
 
 
     {
-        q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
-
-        a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
+        words:[
+            "mát",
+            "trời"
         ],
 
-        c:"Chị"
+        answer:[
+            "trời",
+            "mát"
+        ]
     },
 
 
     {
-        q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
-
-        a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
+        words:[
+            "nhiều mây",
+            "trời"
         ],
 
-        c:"Em"
+        answer:[
+            "trời",
+            "nhiều mây"
+        ]
     },
 
 
     {
-        q:
-        "You talk to a child from the younger generation. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
+        words:[
+            "nóng",
+            "thời tiết"
         ],
 
-        c:"Cháu"
+        answer:[
+            "thời tiết",
+            "nóng"
+        ]
     },
 
 
     {
-        q:
-        "A young boy or girl is much younger than you. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
+        words:[
+            "lạnh",
+            "thời tiết"
         ],
 
-        c:"Cháu"
+        answer:[
+            "thời tiết",
+            "lạnh"
+        ]
+    },
+
+
+    {
+        words:[
+            "ấm",
+            "thời tiết"
+        ],
+
+        answer:[
+            "thời tiết",
+            "ấm"
+        ]
+    },
+
+
+    {
+        words:[
+            "mát",
+            "thời tiết"
+        ],
+
+        answer:[
+            "thời tiết",
+            "mát"
+        ]
+    },
+
+
+    {
+        words:[
+            "nhiều mây",
+            "thời tiết"
+        ],
+
+        answer:[
+            "thời tiết",
+            "nhiều mây"
+        ]
+    },
+
+
+    {
+        words:[
+            "nắng",
+            "thời tiết"
+        ],
+
+        answer:[
+            "thời tiết",
+            "nắng"
+        ]
+    },
+
+
+    {
+        words:[
+            "gió",
+            "thời tiết"
+        ],
+
+        answer:[
+            "thời tiết",
+            "gió"
+        ]
     }
 
 ];
@@ -1075,6 +1214,8 @@ let questions = [];
 let currentQuestion = 0;
 
 let score = 0;
+
+let selectedWords = [];
 
 let answered = false;
 
@@ -1150,7 +1291,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1172,6 +1314,8 @@ function startGame(){
 function loadQuestion(){
 
     answered = false;
+
+    selectedWords = [];
 
 
     const question =
@@ -1195,12 +1339,6 @@ function loadQuestion(){
 
 
     document
-        .getElementById("questionText")
-        .textContent =
-        question.q;
-
-
-    document
         .getElementById("resultText")
         .textContent =
         "";
@@ -1212,64 +1350,273 @@ function loadQuestion(){
         "result-message";
 
 
+    /*
+     * IMPORTANT:
+     * Reset both display and disabled state
+     * for every new question.
+     */
+
+    document
+        .getElementById("checkBtn")
+        .style.display =
+        "inline-block";
+
+
+    document
+        .getElementById("checkBtn")
+        .disabled =
+        true;
+
+
     document
         .getElementById("nextBtn")
         .style.display =
         "none";
 
 
-    const container =
+    document
+        .getElementById("nextBtn")
+        .textContent =
+        "Next →";
+
+
+
+    /* ======================================================
+       WORD BUTTONS
+    ====================================================== */
+
+    const wordsContainer =
         document.getElementById(
-            "optionsContainer"
+            "wordsContainer"
         );
 
 
-    container.innerHTML = "";
+    wordsContainer.innerHTML =
+        "";
 
 
-    const options =
-        shuffle(question.a);
+    const shuffledWords =
+        shuffle(question.words);
 
 
-    options.forEach(option => {
+    shuffledWords.forEach(
+        (word,index) => {
 
-        const btn =
-            document.createElement(
-                "button"
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "word-btn";
+
+
+            button.textContent =
+                word;
+
+
+            button.dataset.index =
+                index;
+
+
+            button.onclick = () =>
+                selectWord(
+                    button,
+                    word
+                );
+
+
+            wordsContainer.appendChild(
+                button
             );
 
-
-        btn.className =
-            "option-btn";
-
-
-        btn.textContent =
-            option;
+        }
+    );
 
 
-        btn.onclick = () =>
-            handleAnswer(
-                btn,
-                option
-            );
+
+    /* ======================================================
+       CLEAR ANSWER AREA
+    ====================================================== */
+
+    const answerContainer =
+        document.getElementById(
+            "answerContainer"
+        );
 
 
-        container.appendChild(btn);
-
-    });
+    answerContainer.innerHTML =
+        "Click words above.";
 
 }
 
 
 
 /* ==========================================================
-   HANDLE ANSWER
+   SELECT WORD
 ========================================================== */
 
-function handleAnswer(
+function selectWord(
     button,
-    selected
+    word
 ){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    button.classList.add(
+        "used"
+    );
+
+
+    selectedWords.push(word);
+
+
+    renderAnswer();
+
+
+    document
+        .getElementById("checkBtn")
+        .disabled =
+        false;
+
+}
+
+
+
+/* ==========================================================
+   RENDER ANSWER
+========================================================== */
+
+function renderAnswer(){
+
+    const container =
+        document.getElementById(
+            "answerContainer"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    selectedWords.forEach(
+        (word,index) => {
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer-word";
+
+
+            button.textContent =
+                word;
+
+
+            button.onclick = () => {
+
+                if(answered){
+
+                    return;
+
+                }
+
+
+                selectedWords.splice(
+                    index,
+                    1
+                );
+
+
+                restoreWord(
+                    word
+                );
+
+
+                renderAnswer();
+
+
+                document
+                    .getElementById(
+                        "checkBtn"
+                    )
+                    .disabled =
+                    selectedWords.length === 0;
+
+            };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    if(selectedWords.length === 0){
+
+        container.textContent =
+            "Click words above.";
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   RESTORE WORD
+========================================================== */
+
+function restoreWord(word){
+
+    const buttons =
+        document.querySelectorAll(
+            ".word-btn"
+        );
+
+
+    for(
+        const button
+        of buttons
+    ){
+
+        if(
+            button.textContent === word &&
+            button.classList.contains("used")
+        ){
+
+            button.classList.remove(
+                "used"
+            );
+
+            break;
+
+        }
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   CHECK ANSWER
+========================================================== */
+
+function checkAnswer(){
 
     if(answered){
 
@@ -1282,15 +1629,20 @@ function handleAnswer(
         questions[currentQuestion];
 
 
-    if(selected === question.c){
+    const isCorrect =
+        selectedWords.length ===
+        question.answer.length &&
 
-        answered = true;
-
-
-        button.classList.add(
-            "correct"
+        selectedWords.every(
+            (word,index) =>
+                word ===
+                question.answer[index]
         );
 
+
+    if(isCorrect){
+
+        answered = true;
 
         score++;
 
@@ -1314,16 +1666,9 @@ function handleAnswer(
 
 
         document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
-
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
+            .getElementById("checkBtn")
+            .style.display =
+            "none";
 
 
         document
@@ -1342,22 +1687,10 @@ function handleAnswer(
                 .textContent =
                 "Finish 🎉";
 
-        }else{
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Next →";
-
         }
 
 
     }else{
-
-        button.classList.add(
-            "wrong"
-        );
-
 
         document
             .getElementById("resultText")
@@ -1369,15 +1702,6 @@ function handleAnswer(
             .getElementById("resultText")
             .className =
             "result-message wrong-text";
-
-
-        setTimeout(() => {
-
-            button.classList.remove(
-                "wrong"
-            );
-
-        },600);
 
     }
 
@@ -1418,6 +1742,12 @@ function nextQuestion(){
 function finishGame(){
 
     document
+        .getElementById("progress")
+        .style.width =
+        "100%";
+
+
+    document
         .getElementById("game")
         .classList.remove(
             "active"
@@ -1453,7 +1783,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! Great job with Vietnamese weather vocabulary.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1793,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing Vietnamese weather words.";
 
     }
 
@@ -1483,6 +1813,12 @@ function finishGame(){
 
 function restartGame(){
 
+    document
+        .getElementById("checkBtn")
+        .style.display =
+        "inline-block";
+
+
     startGame();
 
 }
@@ -1501,7 +1837,6 @@ function backToLobby(){
 }
 
 </script>
-
 
 </body>
 

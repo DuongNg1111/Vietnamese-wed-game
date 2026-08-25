@@ -4,40 +4,19 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<title>Vietnamese Health Phrase Match</title>
 
-<title>Vietnamese Pronouns Challenge</title>
-
-<meta
-    name="game-title"
-    content="Vietnamese Pronouns Challenge"
->
-
-<meta
-    name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
->
-
-<meta
-    name="game-icon"
-    content="🇻🇳"
->
-
+<meta name="game-title" content="Vietnamese Health Phrase Match">
+<meta name="game-description" content="Choose the correct Vietnamese meaning for common health phrases.">
+<meta name="game-icon" content="❤️">
 
 <style>
-
-/* ==========================================================
-   RESET
-========================================================== */
 
 *{
     box-sizing:border-box;
 }
-
 
 body{
 
@@ -55,9 +34,7 @@ body{
     min-height:100vh;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     padding:20px;
@@ -75,7 +52,6 @@ body{
     display:none;
 }
 
-
 .screen.active{
     display:block;
 }
@@ -89,13 +65,13 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
     background:white;
 
-    padding:65px 30px 30px;
+    padding:65px 30px 35px;
 
     border-radius:20px;
 
@@ -136,7 +112,6 @@ body{
 
 }
 
-
 .lobby-btn:hover{
 
     background:#dcecff;
@@ -170,7 +145,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:0 0 10px;
 
     font-size:34px;
 
@@ -181,11 +156,9 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
-
-    margin:8px 0;
 
 }
 
@@ -352,15 +325,35 @@ body{
 
     display:flex;
 
+    flex-direction:column;
+
     justify-content:center;
 
     align-items:center;
 
-    font-size:21px;
+    gap:8px;
+
+}
+
+
+.question-label{
+
+    font-size:14px;
+
+    color:#7f8c8d;
 
     font-weight:600;
 
-    line-height:1.5;
+}
+
+
+.question-word{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#34495e;
 
 }
 
@@ -442,13 +435,15 @@ body{
 
 .result-message{
 
-    min-height:40px;
+    min-height:42px;
 
     margin-top:20px;
 
-    font-size:18px;
+    font-size:17px;
 
     font-weight:bold;
+
+    line-height:1.5;
 
 }
 
@@ -463,6 +458,21 @@ body{
 .wrong-text{
 
     color:#e74c3c;
+
+}
+
+
+.explanation{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#607d8b;
+
+    font-size:14px;
+
+    font-weight:500;
 
 }
 
@@ -546,6 +556,8 @@ body{
 
     font-size:18px;
 
+    line-height:1.5;
+
 }
 
 
@@ -571,39 +583,7 @@ body{
 
     .container{
 
-        width:100%;
-
-        padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:28px;
-
-    }
-
-
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
-    .game-box{
-
-        padding:18px;
+        padding:60px 15px 20px;
 
     }
 
@@ -617,11 +597,30 @@ body{
 
     .card{
 
-        font-size:18px;
-
         min-height:130px;
 
         padding:25px 15px;
+
+    }
+
+
+    .question-word{
+
+        font-size:25px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -635,13 +634,6 @@ body{
         font-size:13px;
 
         padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
 
     }
 
@@ -664,8 +656,7 @@ body{
 
 <button
     class="lobby-btn"
-    onclick="backToLobby()"
->
+    onclick="backToLobby()">
 
     ← Back to Lobby
 
@@ -679,42 +670,32 @@ body{
 
 <div
     id="intro"
-    class="screen active"
->
+    class="screen active">
 
     <div class="emoji">
-
-        🇻🇳
-
+        ❤️
     </div>
 
 
     <h1>
-
-        Vietnamese Pronouns Challenge
-
+        Vietnamese Health Phrase Match
     </h1>
 
 
     <p>
-
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
-
+        Look at the English health phrase<br>
+        and choose the correct Vietnamese meaning.
     </p>
 
 
     <p>
-
-        🎯 10 questions
-
+        🎯 15 questions
     </p>
 
 
     <button
         class="start-btn"
-        onclick="startGame()"
-    >
+        onclick="startGame()">
 
         Start Game
 
@@ -730,21 +711,16 @@ body{
 
 <div
     id="game"
-    class="screen"
->
+    class="screen">
 
 
     <h1 class="title">
-
-        🇻🇳 Vietnamese Pronouns Challenge
-
+        ❤️ Vietnamese Health Phrase Match
     </h1>
 
 
     <p class="subtitle">
-
-        Choose the correct pronoun.
-
+        Choose the correct Vietnamese meaning.
     </p>
 
 
@@ -767,7 +743,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    10
+                    15
                 </span>
 
             </div>
@@ -793,8 +769,8 @@ body{
 
             <div
                 class="progress"
-                id="progress"
-            ></div>
+                id="progress">
+            </div>
 
         </div>
 
@@ -804,8 +780,18 @@ body{
 
         <div
             class="card"
-            id="questionText"
-        ></div>
+            id="questionCard">
+
+            <div class="question-label">
+                What does this mean?
+            </div>
+
+            <div
+                class="question-word"
+                id="questionText">
+            </div>
+
+        </div>
 
 
 
@@ -813,8 +799,8 @@ body{
 
         <div
             class="options"
-            id="optionsContainer"
-        ></div>
+            id="optionsContainer">
+        </div>
 
 
 
@@ -822,8 +808,8 @@ body{
 
         <div
             class="result-message"
-            id="resultText"
-        ></div>
+            id="resultText">
+        </div>
 
 
 
@@ -833,8 +819,7 @@ body{
             class="next-btn"
             id="nextBtn"
             onclick="nextQuestion()"
-            style="display:none;"
-        >
+            style="display:none;">
 
             Next →
 
@@ -854,20 +839,17 @@ body{
 
 <div
     id="final"
-    class="screen"
->
+    class="screen">
 
 
     <h2>
-
         🎉 Game Complete!
-
     </h2>
 
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the Vietnamese Health Phrase Match.
 
     </p>
 
@@ -876,26 +858,25 @@ body{
 
         Score:
 
-        <span id="finalScore"></span>
+        <span id="finalScore">
+        </span>
 
     </div>
 
 
     <p
         class="final-message"
-        id="finalMessage"
-    ></p>
+        id="finalMessage">
+    </p>
 
 
     <button
         class="start-btn"
-        onclick="restartGame()"
-    >
+        onclick="restartGame()">
 
         Play Again
 
     </button>
-
 
 </div>
 
@@ -909,157 +890,264 @@ body{
 
 /* ==========================================================
    QUESTION DATABASE
+
+   English phrase → Vietnamese meaning
 ========================================================== */
 
 const database = [
 
     {
-        q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
+        q: "Headache",
 
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
+        a: [
+            "Đau đầu",
+            "Đau bụng",
+            "Đau lưng",
+            "Đau mắt"
         ],
 
-        c:"Ông"
+        c: "Đau đầu",
+
+        explanation:
+            "Đau đầu means “headache” — pain in your head."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
+        q: "Stomachache",
 
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
+        a: [
+            "Đau bụng",
+            "Đau đầu",
+            "Đau chân",
+            "Đau họng"
         ],
 
-        c:"Bà"
+        c: "Đau bụng",
+
+        explanation:
+            "Đau bụng means “stomachache” — pain in your stomach."
     },
 
 
     {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
+        q: "Backache",
 
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
+        a: [
+            "Đau lưng",
+            "Đau đầu",
+            "Đau tay",
+            "Đau bụng"
         ],
 
-        c:"Chú"
+        c: "Đau lưng",
+
+        explanation:
+            "Đau lưng means “backache” — pain in your back."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
+        q: "Sore throat",
 
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
+        a: [
+            "Đau họng",
+            "Đau mắt",
+            "Đau chân",
+            "Đau bụng"
         ],
 
-        c:"Dì"
+        c: "Đau họng",
+
+        explanation:
+            "Đau họng means “sore throat” — your throat hurts."
     },
 
 
     {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
+        q: "Toothache",
 
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
+        a: [
+            "Đau răng",
+            "Đau tai",
+            "Đau đầu",
+            "Đau lưng"
         ],
 
-        c:"Bác"
+        c: "Đau răng",
+
+        explanation:
+            "Đau răng means “toothache” — pain in your tooth or teeth."
     },
 
 
     {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
+        q: "Earache",
 
-        a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
+        a: [
+            "Đau tai",
+            "Đau răng",
+            "Đau mắt",
+            "Đau chân"
         ],
 
-        c:"Anh"
+        c: "Đau tai",
+
+        explanation:
+            "Đau tai means “earache” — pain in your ear."
     },
 
 
     {
-        q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
+        q: "Eye pain",
 
-        a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
+        a: [
+            "Đau mắt",
+            "Đau tai",
+            "Đau đầu",
+            "Đau tay"
         ],
 
-        c:"Chị"
+        c: "Đau mắt",
+
+        explanation:
+            "Đau mắt means “eye pain” — your eye hurts."
     },
 
 
     {
-        q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
+        q: "Leg pain",
 
-        a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
+        a: [
+            "Đau chân",
+            "Đau tay",
+            "Đau lưng",
+            "Đau bụng"
         ],
 
-        c:"Em"
+        c: "Đau chân",
+
+        explanation:
+            "Đau chân means “leg pain” — your leg hurts."
     },
 
 
     {
-        q:
-        "You talk to a child from the younger generation. What do you call them?",
+        q: "Arm pain",
 
-        a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
+        a: [
+            "Đau tay",
+            "Đau chân",
+            "Đau đầu",
+            "Đau họng"
         ],
 
-        c:"Cháu"
+        c: "Đau tay",
+
+        explanation:
+            "Đau tay means “arm pain” — your arm hurts."
     },
 
 
     {
-        q:
-        "A young boy or girl is much younger than you. What do you call them?",
+        q: "Fever",
 
-        a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
+        a: [
+            "Sốt",
+            "Ho",
+            "Cảm",
+            "Mệt"
         ],
 
-        c:"Cháu"
+        c: "Sốt",
+
+        explanation:
+            "Sốt means “fever” — your body temperature is high."
+    },
+
+
+    {
+        q: "Cough",
+
+        a: [
+            "Ho",
+            "Sốt",
+            "Đau",
+            "Mệt"
+        ],
+
+        c: "Ho",
+
+        explanation:
+            "Ho means “cough” — you cough when your throat or lungs are irritated."
+    },
+
+
+    {
+        q: "Cold",
+
+        a: [
+            "Cảm",
+            "Sốt",
+            "Ho",
+            "Đau"
+        ],
+
+        c: "Cảm",
+
+        explanation:
+            "Cảm means “a cold” — a common illness with symptoms like a runny nose or cough."
+    },
+
+
+    {
+        q: "Tired",
+
+        a: [
+            "Mệt",
+            "Đau",
+            "Sốt",
+            "Ho"
+        ],
+
+        c: "Mệt",
+
+        explanation:
+            "Mệt means “tired” — you have little energy."
+    },
+
+
+    {
+        q: "Sick",
+
+        a: [
+            "Mệt",
+            "Bệnh",
+            "Đau",
+            "Sốt"
+        ],
+
+        c: "Bệnh",
+
+        explanation:
+            "Bệnh means “Sick.”"
+    },
+
+
+    {
+        q: "Feel better",
+
+        a: [
+            "Khỏe hơn",
+            "Đau hơn",
+            "Mệt hơn",
+            "Sốt hơn"
+        ],
+
+        c: "Khỏe hơn",
+
+        explanation:
+            "Khỏe hơn means “feel better” — your condition is improving."
     }
 
 ];
@@ -1150,7 +1238,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1224,7 +1313,8 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
@@ -1232,6 +1322,7 @@ function loadQuestion(){
 
 
     options.forEach(option => {
+
 
         const btn =
             document.createElement(
@@ -1303,8 +1394,11 @@ function handleAnswer(
 
         document
             .getElementById("resultText")
-            .textContent =
-            "🎉 Correct!";
+            .innerHTML =
+            `🎉 Correct!
+            <span class="explanation">
+                ${question.explanation}
+            </span>`;
 
 
         document
@@ -1453,7 +1547,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! You know these health phrases very well.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1557,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing these useful health phrases.";
 
     }
 
@@ -1501,7 +1595,6 @@ function backToLobby(){
 }
 
 </script>
-
 
 </body>
 

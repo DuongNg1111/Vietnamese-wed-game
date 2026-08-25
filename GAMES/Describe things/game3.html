@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Weather Challenge</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Weather Challenge"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Practice common Vietnamese weather words through pictures."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="🌤️"
 >
 
 
@@ -72,12 +72,16 @@ body{
 ========================================================== */
 
 .screen{
+
     display:none;
+
 }
 
 
 .screen.active{
+
     display:block;
+
 }
 
 
@@ -89,7 +93,7 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(850px,96vw);
 
     margin:0 auto;
 
@@ -114,6 +118,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -161,7 +166,7 @@ body{
 
 #intro .emoji{
 
-    font-size:60px;
+    font-size:65px;
 
     margin-bottom:10px;
 
@@ -170,7 +175,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:0 0 12px;
 
     font-size:34px;
 
@@ -185,14 +190,12 @@ body{
 
     line-height:1.6;
 
-    margin:8px 0;
-
 }
 
 
 .start-btn{
 
-    margin-top:20px;
+    margin-top:18px;
 
     padding:14px 35px;
 
@@ -333,34 +336,52 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   WEATHER CARD
 ========================================================== */
 
-.card{
+.weather-card{
 
-    background:#fffde7;
+    background:#eef8ff;
 
-    border:2px dashed #f1c40f;
+    border:2px dashed #74b9ff;
 
-    border-radius:12px;
+    border-radius:15px;
 
-    padding:35px 20px;
+    padding:30px 20px;
 
     margin:20px 0;
 
-    min-height:150px;
+    min-height:210px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
-    font-size:21px;
+}
+
+
+.weather-icon{
+
+    font-size:85px;
+
+    line-height:1;
+
+    margin-bottom:15px;
+
+}
+
+
+.weather-prompt{
+
+    color:#7f8c8d;
+
+    font-size:16px;
 
     font-weight:600;
-
-    line-height:1.5;
 
 }
 
@@ -437,7 +458,7 @@ body{
 
 
 /* ==========================================================
-   RESULT
+   RESULT MESSAGE
 ========================================================== */
 
 .result-message{
@@ -571,39 +592,7 @@ body{
 
     .container{
 
-        width:100%;
-
-        padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:28px;
-
-    }
-
-
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
-    .game-box{
-
-        padding:18px;
+        padding:60px 15px 20px;
 
     }
 
@@ -615,13 +604,41 @@ body{
     }
 
 
-    .card{
+    .weather-card{
 
-        font-size:18px;
-
-        min-height:130px;
+        min-height:180px;
 
         padding:25px 15px;
+
+    }
+
+
+    .weather-icon{
+
+        font-size:70px;
+
+    }
+
+
+    .option-btn{
+
+        font-size:17px;
+
+        padding:15px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -635,13 +652,6 @@ body{
         font-size:13px;
 
         padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
 
     }
 
@@ -684,29 +694,30 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        🌤️
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Weather Challenge
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Look at the picture<br>
+
+        and choose the correct Vietnamese word.
 
     </p>
 
 
     <p>
 
-        🎯 10 questions
+        🎯 15 questions
 
     </p>
 
@@ -736,14 +747,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        🌤️ Vietnamese Weather Challenge
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        Choose the correct Vietnamese weather word.
 
     </p>
 
@@ -756,6 +767,7 @@ body{
 
         <div class="topbar">
 
+
             <div class="question-count">
 
                 Question
@@ -767,7 +779,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    10
+                    15
                 </span>
 
             </div>
@@ -783,6 +795,7 @@ body{
 
             </div>
 
+
         </div>
 
 
@@ -794,18 +807,37 @@ body{
             <div
                 class="progress"
                 id="progress"
-            ></div>
+            >
+
+            </div>
 
         </div>
 
 
 
-        <!-- QUESTION -->
+        <!-- WEATHER -->
 
-        <div
-            class="card"
-            id="questionText"
-        ></div>
+        <div class="weather-card">
+
+
+            <div
+                class="weather-icon"
+                id="weatherIcon"
+            >
+
+                ☀️
+
+            </div>
+
+
+            <div class="weather-prompt">
+
+                What is the weather?
+
+            </div>
+
+
+        </div>
 
 
 
@@ -814,7 +846,9 @@ body{
         <div
             class="options"
             id="optionsContainer"
-        ></div>
+        >
+
+        </div>
 
 
 
@@ -823,7 +857,9 @@ body{
         <div
             class="result-message"
             id="resultText"
-        ></div>
+        >
+
+        </div>
 
 
 
@@ -867,7 +903,7 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the Vietnamese Weather Challenge.
 
     </p>
 
@@ -876,7 +912,9 @@ body{
 
         Score:
 
-        <span id="finalScore"></span>
+        <span id="finalScore">
+
+        </span>
 
     </div>
 
@@ -884,7 +922,9 @@ body{
     <p
         class="final-message"
         id="finalMessage"
-    ></p>
+    >
+
+    </p>
 
 
     <button
@@ -906,7 +946,6 @@ body{
 
 <script>
 
-
 /* ==========================================================
    QUESTION DATABASE
 ========================================================== */
@@ -914,156 +953,81 @@ body{
 const database = [
 
     {
-        q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
-
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
-        ],
-
-        c:"Ông"
+        icon:"☀️",
+        word:"nắng"
     },
 
-
     {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
-
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
-        ],
-
-        c:"Bà"
+        icon:"🌧️",
+        word:"mưa"
     },
 
-
     {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
-
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
-        ],
-
-        c:"Chú"
+        icon:"💨",
+        word:"gió"
     },
 
-
     {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
-
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
-        ],
-
-        c:"Dì"
+        icon:"☁️",
+        word:"nhiều mây"
     },
 
-
     {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
-
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
-        ],
-
-        c:"Bác"
+        icon:"🥵",
+        word:"nóng"
     },
 
-
     {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
-
-        a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
-        ],
-
-        c:"Anh"
+        icon:"🥶",
+        word:"lạnh"
     },
 
-
     {
-        q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
-
-        a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
-        ],
-
-        c:"Chị"
+        icon:"🌤️",
+        word:"ấm"
     },
 
-
     {
-        q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
-
-        a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
-        ],
-
-        c:"Em"
+        icon:"🍃",
+        word:"mát"
     },
 
-
     {
-        q:
-        "You talk to a child from the younger generation. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
-        ],
-
-        c:"Cháu"
+        icon:"☀️",
+        word:"nắng"
     },
 
+    {
+        icon:"🌧️",
+        word:"mưa"
+    },
 
     {
-        q:
-        "A young boy or girl is much younger than you. What do you call them?",
+        icon:"💨",
+        word:"gió"
+    },
 
-        a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
-        ],
+    {
+        icon:"☁️",
+        word:"nhiều mây"
+    },
 
-        c:"Cháu"
+    {
+        icon:"🥵",
+        word:"nóng"
+    },
+
+    {
+        icon:"🥶",
+        word:"lạnh"
+    },
+
+    {
+        icon:"🍃",
+        word:"mát"
     }
 
 ];
-
 
 
 /* ==========================================================
@@ -1077,7 +1041,6 @@ let currentQuestion = 0;
 let score = 0;
 
 let answered = false;
-
 
 
 /* ==========================================================
@@ -1117,6 +1080,45 @@ function shuffle(array){
 }
 
 
+/* ==========================================================
+   CREATE OPTIONS
+========================================================== */
+
+function createOptions(correctWord){
+
+    const allWords = [
+
+        "nắng",
+        "mưa",
+        "gió",
+        "nhiều mây",
+        "nóng",
+        "lạnh",
+        "ấm",
+        "mát"
+
+    ];
+
+
+    const wrongWords =
+        shuffle(
+            allWords.filter(
+                word =>
+                    word !== correctWord
+            )
+        ).slice(0,3);
+
+
+    return shuffle([
+
+        correctWord,
+
+        ...wrongWords
+
+    ]);
+
+}
+
 
 /* ==========================================================
    START GAME
@@ -1150,7 +1152,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1162,7 +1165,6 @@ function startGame(){
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
@@ -1195,9 +1197,9 @@ function loadQuestion(){
 
 
     document
-        .getElementById("questionText")
+        .getElementById("weatherIcon")
         .textContent =
-        question.q;
+        question.icon;
 
 
     document
@@ -1224,42 +1226,47 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
-        shuffle(question.a);
+        createOptions(
+            question.word
+        );
 
 
     options.forEach(option => {
 
-        const btn =
+
+        const button =
             document.createElement(
                 "button"
             );
 
 
-        btn.className =
+        button.className =
             "option-btn";
 
 
-        btn.textContent =
+        button.textContent =
             option;
 
 
-        btn.onclick = () =>
+        button.onclick = () =>
             handleAnswer(
-                btn,
+                button,
                 option
             );
 
 
-        container.appendChild(btn);
+        container.appendChild(
+            button
+        );
 
     });
 
 }
-
 
 
 /* ==========================================================
@@ -1282,7 +1289,10 @@ function handleAnswer(
         questions[currentQuestion];
 
 
-    if(selected === question.c){
+    if(
+        selected ===
+        question.word
+    ){
 
         answered = true;
 
@@ -1354,6 +1364,7 @@ function handleAnswer(
 
     }else{
 
+
         button.classList.add(
             "wrong"
         );
@@ -1384,7 +1395,6 @@ function handleAnswer(
 }
 
 
-
 /* ==========================================================
    NEXT QUESTION
 ========================================================== */
@@ -1408,7 +1418,6 @@ function nextQuestion(){
     }
 
 }
-
 
 
 /* ==========================================================
@@ -1453,7 +1462,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! You know your Vietnamese weather vocabulary.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1472,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing these Vietnamese weather words.";
 
     }
 
@@ -1476,7 +1485,6 @@ function finishGame(){
 }
 
 
-
 /* ==========================================================
    RESTART
 ========================================================== */
@@ -1486,7 +1494,6 @@ function restartGame(){
     startGame();
 
 }
-
 
 
 /* ==========================================================
@@ -1501,7 +1508,6 @@ function backToLobby(){
 }
 
 </script>
-
 
 </body>
 

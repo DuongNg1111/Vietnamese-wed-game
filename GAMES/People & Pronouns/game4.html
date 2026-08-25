@@ -4,29 +4,24 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Family Vocabulary</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Family Vocabulary"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Practice common Vietnamese family vocabulary."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="👨‍👩‍👧‍👦"
 >
-
 
 <style>
 
@@ -89,7 +84,7 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
@@ -100,7 +95,8 @@ body{
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -114,6 +110,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -170,7 +167,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:0 0 10px;
 
     font-size:34px;
 
@@ -181,11 +178,9 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
-
-    margin:8px 0;
 
 }
 
@@ -348,19 +343,37 @@ body{
 
     margin:20px 0;
 
-    min-height:150px;
+    min-height:160px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
-    font-size:21px;
+    gap:10px;
 
-    font-weight:600;
+}
 
-    line-height:1.5;
+
+.question-label{
+
+    color:#7f8c8d;
+
+    font-size:15px;
+
+}
+
+
+.word{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#2c3e50;
 
 }
 
@@ -467,8 +480,21 @@ body{
 }
 
 
+.explanation{
+
+    min-height:25px;
+
+    margin-top:0;
+
+    color:#7f8c8d;
+
+    font-size:15px;
+
+}
+
+
 /* ==========================================================
-   NEXT BUTTON
+   NEXT
 ========================================================== */
 
 .next-btn{
@@ -549,13 +575,6 @@ body{
 }
 
 
-#final .start-btn{
-
-    margin-top:10px;
-
-}
-
-
 /* ==========================================================
    MOBILE
 ========================================================== */
@@ -571,39 +590,7 @@ body{
 
     .container{
 
-        width:100%;
-
-        padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:28px;
-
-    }
-
-
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
-    .game-box{
-
-        padding:18px;
+        padding:60px 15px 20px;
 
     }
 
@@ -617,11 +604,30 @@ body{
 
     .card{
 
-        font-size:18px;
-
-        min-height:130px;
+        min-height:140px;
 
         padding:25px 15px;
+
+    }
+
+
+    .word{
+
+        font-size:27px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -635,13 +641,6 @@ body{
         font-size:13px;
 
         padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
 
     }
 
@@ -684,22 +683,23 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        👨‍👩‍👧‍👦
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Family Vocabulary
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Look at the English word
+        <br>
+        and choose the correct Vietnamese word.
 
     </p>
 
@@ -736,14 +736,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        👨‍👩‍👧‍👦 Family Vocabulary
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        Choose the correct Vietnamese meaning.
 
     </p>
 
@@ -802,10 +802,23 @@ body{
 
         <!-- QUESTION -->
 
-        <div
-            class="card"
-            id="questionText"
-        ></div>
+        <div class="card">
+
+
+            <div class="question-label">
+
+                What is this in Vietnamese?
+
+            </div>
+
+
+            <div
+                class="word"
+                id="questionText"
+            ></div>
+
+
+        </div>
 
 
 
@@ -823,6 +836,12 @@ body{
         <div
             class="result-message"
             id="resultText"
+        ></div>
+
+
+        <div
+            class="explanation"
+            id="explanation"
         ></div>
 
 
@@ -867,7 +886,7 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the Vietnamese Family Vocabulary challenge.
 
     </p>
 
@@ -914,152 +933,142 @@ body{
 const database = [
 
     {
-        q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
-
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
+        q: "family",
+        a: [
+            "gia đình",
+            "người",
+            "vợ",
+            "chồng"
         ],
-
-        c:"Ông"
+        c: "gia đình",
+        explanation:
+            "Gia đình means family."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
-
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
+        q: "person",
+        a: [
+            "người",
+            "con trai",
+            "con gái",
+            "em trai"
         ],
-
-        c:"Bà"
+        c: "người",
+        explanation:
+            "Người means person."
     },
 
 
     {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
-
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
+        q: "wife",
+        a: [
+            "vợ",
+            "chồng",
+            "con gái",
+            "em gái"
         ],
-
-        c:"Chú"
+        c: "vợ",
+        explanation:
+            "Vợ means wife."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
-
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
+        q: "husband",
+        a: [
+            "chồng",
+            "vợ",
+            "con trai",
+            "cháu trai"
         ],
-
-        c:"Dì"
+        c: "chồng",
+        explanation:
+            "Chồng means husband."
     },
 
 
     {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
-
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
+        q: "son",
+        a: [
+            "con trai",
+            "con gái",
+            "em trai",
+            "cháu trai"
         ],
-
-        c:"Bác"
+        c: "con trai",
+        explanation:
+            "Con trai means son."
     },
 
 
     {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
-
-        a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
+        q: "daughter",
+        a: [
+            "con gái",
+            "con trai",
+            "em gái",
+            "cháu gái"
         ],
-
-        c:"Anh"
+        c: "con gái",
+        explanation:
+            "Con gái means daughter."
     },
 
 
     {
-        q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
-
-        a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
+        q: "grandson / nephew",
+        a: [
+            "cháu trai",
+            "cháu gái",
+            "con trai",
+            "em trai"
         ],
-
-        c:"Chị"
+        c: "cháu trai",
+        explanation:
+            "Cháu trai can mean grandson or nephew, depending on the family relationship."
     },
 
 
     {
-        q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
-
-        a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
+        q: "granddaughter / niece",
+        a: [
+            "cháu gái",
+            "cháu trai",
+            "con gái",
+            "em gái"
         ],
-
-        c:"Em"
+        c: "cháu gái",
+        explanation:
+            "Cháu gái can mean granddaughter or niece, depending on the family relationship."
     },
 
 
     {
-        q:
-        "You talk to a child from the younger generation. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
+        q: "younger brother",
+        a: [
+            "em trai",
+            "em gái",
+            "con trai",
+            "cháu trai"
         ],
-
-        c:"Cháu"
+        c: "em trai",
+        explanation:
+            "Em trai means younger brother."
     },
 
 
     {
-        q:
-        "A young boy or girl is much younger than you. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
+        q: "younger sister",
+        a: [
+            "em gái",
+            "em trai",
+            "con gái",
+            "cháu gái"
         ],
-
-        c:"Cháu"
+        c: "em gái",
+        explanation:
+            "Em gái means younger sister."
     }
 
 ];
@@ -1150,7 +1159,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1213,6 +1223,12 @@ function loadQuestion(){
 
 
     document
+        .getElementById("explanation")
+        .textContent =
+        "";
+
+
+    document
         .getElementById("nextBtn")
         .style.display =
         "none";
@@ -1224,7 +1240,8 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
@@ -1314,6 +1331,12 @@ function handleAnswer(
 
 
         document
+            .getElementById("explanation")
+            .textContent =
+            question.explanation;
+
+
+        document
             .querySelectorAll(
                 ".option-btn"
             )
@@ -1326,9 +1349,13 @@ function handleAnswer(
             });
 
 
-        document
-            .getElementById("nextBtn")
-            .style.display =
+        const nextBtn =
+            document.getElementById(
+                "nextBtn"
+            );
+
+
+        nextBtn.style.display =
             "inline-block";
 
 
@@ -1337,16 +1364,12 @@ function handleAnswer(
             questions.length - 1
         ){
 
-            document
-                .getElementById("nextBtn")
-                .textContent =
+            nextBtn.textContent =
                 "Finish 🎉";
 
         }else{
 
-            document
-                .getElementById("nextBtn")
-                .textContent =
+            nextBtn.textContent =
                 "Next →";
 
         }
@@ -1453,7 +1476,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! You know your Vietnamese family vocabulary.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1486,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing your family vocabulary.";
 
     }
 
@@ -1501,7 +1524,6 @@ function backToLobby(){
 }
 
 </script>
-
 
 </body>
 

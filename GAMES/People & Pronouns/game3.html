@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Pronouns True or False</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Pronouns True or False"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Practice Vietnamese pronouns by deciding whether each pronoun is correct."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="👤"
 >
 
 
@@ -89,7 +89,7 @@ body{
 
     position:relative;
 
-    width:min(750px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
@@ -100,7 +100,8 @@ body{
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -114,6 +115,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -170,7 +172,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 15px;
+    margin:0 0 10px;
 
     font-size:34px;
 
@@ -181,11 +183,9 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
-
-    margin:8px 0;
 
 }
 
@@ -344,29 +344,49 @@ body{
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:35px 25px;
 
     margin:20px 0;
 
-    min-height:150px;
+    min-height:180px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
-    font-size:21px;
+    gap:12px;
 
-    font-weight:600;
+}
+
+
+.scenario{
+
+    color:#7f8c8d;
+
+    font-size:16px;
 
     line-height:1.5;
 
 }
 
 
+.statement{
+
+    font-size:27px;
+
+    font-weight:700;
+
+    color:#2c3e50;
+
+}
+
+
 /* ==========================================================
-   OPTIONS
+   TRUE / FALSE OPTIONS
 ========================================================== */
 
 .options{
@@ -376,26 +396,24 @@ body{
     grid-template-columns:
         1fr 1fr;
 
-    gap:12px;
+    gap:15px;
 
 }
 
 
 .option-btn{
 
-    padding:17px;
+    padding:18px;
 
-    font-size:18px;
+    font-size:20px;
 
     font-weight:bold;
-
-    background:#34495e;
 
     color:white;
 
     border:none;
 
-    border-radius:9px;
+    border-radius:10px;
 
     cursor:pointer;
 
@@ -404,9 +422,32 @@ body{
 }
 
 
-.option-btn:hover{
+.true-btn{
 
-    background:#2c3e50;
+    background:#27ae60;
+
+}
+
+
+.true-btn:hover{
+
+    background:#219653;
+
+    transform:translateY(-2px);
+
+}
+
+
+.false-btn{
+
+    background:#e74c3c;
+
+}
+
+
+.false-btn:hover{
+
+    background:#c0392b;
 
     transform:translateY(-2px);
 
@@ -467,6 +508,21 @@ body{
 }
 
 
+.explanation{
+
+    min-height:30px;
+
+    margin-top:5px;
+
+    color:#7f8c8d;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+
 /* ==========================================================
    NEXT BUTTON
 ========================================================== */
@@ -489,7 +545,7 @@ body{
 
     cursor:pointer;
 
-    margin-top:5px;
+    margin-top:10px;
 
     transition:.2s;
 
@@ -549,13 +605,6 @@ body{
 }
 
 
-#final .start-btn{
-
-    margin-top:10px;
-
-}
-
-
 /* ==========================================================
    MOBILE
 ========================================================== */
@@ -571,39 +620,7 @@ body{
 
     .container{
 
-        width:100%;
-
-        padding:
-            60px 15px 20px;
-
-    }
-
-
-    #intro{
-
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:28px;
-
-    }
-
-
-    #intro p{
-
-        font-size:16px;
-
-    }
-
-
-    .game-box{
-
-        padding:18px;
+        padding:60px 15px 20px;
 
     }
 
@@ -617,11 +634,30 @@ body{
 
     .card{
 
-        font-size:18px;
-
-        min-height:130px;
+        min-height:150px;
 
         padding:25px 15px;
+
+    }
+
+
+    .statement{
+
+        font-size:23px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -635,13 +671,6 @@ body{
         font-size:13px;
 
         padding:7px 12px;
-
-    }
-
-
-    #final h2{
-
-        font-size:30px;
 
     }
 
@@ -684,22 +713,25 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        👤
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Pronouns
+        <br>
+        True or False
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Read each situation and pronoun.
+        <br>
+        Decide if the pronoun is correct.
 
     </p>
 
@@ -736,14 +768,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        👤 Pronouns: True or False
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        Is the Vietnamese pronoun correct?
 
     </p>
 
@@ -755,6 +787,7 @@ body{
         <!-- TOP BAR -->
 
         <div class="topbar">
+
 
             <div class="question-count">
 
@@ -783,6 +816,7 @@ body{
 
             </div>
 
+
         </div>
 
 
@@ -804,17 +838,52 @@ body{
 
         <div
             class="card"
-            id="questionText"
-        ></div>
+            id="questionCard"
+        >
+
+            <div
+                class="scenario"
+                id="scenario"
+            ></div>
+
+
+            <div
+                class="statement"
+                id="statement"
+            ></div>
+
+        </div>
 
 
 
         <!-- OPTIONS -->
 
-        <div
-            class="options"
-            id="optionsContainer"
-        ></div>
+        <div class="options">
+
+
+            <button
+                class="option-btn true-btn"
+                id="trueBtn"
+                onclick="handleAnswer(true)"
+            >
+
+                ✅ TRUE
+
+            </button>
+
+
+            <button
+                class="option-btn false-btn"
+                id="falseBtn"
+                onclick="handleAnswer(false)"
+            >
+
+                ❌ FALSE
+
+            </button>
+
+
+        </div>
 
 
 
@@ -823,6 +892,12 @@ body{
         <div
             class="result-message"
             id="resultText"
+        ></div>
+
+
+        <div
+            class="explanation"
+            id="explanation"
         ></div>
 
 
@@ -867,7 +942,8 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed the
+        Vietnamese Pronouns True or False challenge.
 
     </p>
 
@@ -914,152 +990,142 @@ body{
 const database = [
 
     {
-        q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
+        scenario:
+        "You meet a man from your grandparents' generation.",
 
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
-        ],
+        statement:
+        "You call him “Ông.”",
 
-        c:"Ông"
+        answer:true,
+
+        explanation:
+        "Ông is commonly used for a man in the grandparents' generation."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
+        scenario:
+        "You meet a woman from your grandparents' generation.",
 
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
-        ],
+        statement:
+        "You call her “Chị.”",
 
-        c:"Bà"
+        answer:false,
+
+        explanation:
+        "A woman in the grandparents' generation is usually called Bà."
     },
 
 
     {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
+        scenario:
+        "You meet your mother's younger brother.",
 
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
-        ],
+        statement:
+        "You call him “Chú.”",
 
-        c:"Chú"
+        answer:true,
+
+        explanation:
+        "Chú is commonly used for a younger male relative in the parents' generation."
     },
 
 
     {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
+        scenario:
+        "You meet your mother's younger sister.",
 
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
-        ],
+        statement:
+        "You call her “Dì.”",
 
-        c:"Dì"
+        answer:true,
+
+        explanation:
+        "Dì is commonly used for a younger female relative in the parents' generation."
     },
 
 
     {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
+        scenario:
+        "You meet someone from your parents' generation who is older than your parents.",
 
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
-        ],
+        statement:
+        "You call them “Bác.”",
 
-        c:"Bác"
+        answer:true,
+
+        explanation:
+        "Bác is used for an older person in the parents' generation."
     },
 
 
     {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
+        scenario:
+        "You meet a man of your generation who is older than you.",
 
-        a:[
-            "Anh",
-            "Em",
-            "Chú",
-            "Bác"
-        ],
+        statement:
+        "You call him “Anh.”",
 
-        c:"Anh"
+        answer:true,
+
+        explanation:
+        "Anh is used for an older male in your generation."
     },
 
 
     {
-        q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
+        scenario:
+        "You meet a woman of your generation who is older than you.",
 
-        a:[
-            "Chị",
-            "Em",
-            "Anh",
-            "Bà"
-        ],
+        statement:
+        "You call her “Em.”",
 
-        c:"Chị"
+        answer:false,
+
+        explanation:
+        "A woman of your generation who is older than you is called Chị."
     },
 
 
     {
-        q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
+        scenario:
+        "You talk to someone of your generation who is younger than you.",
 
-        a:[
-            "Em",
-            "Anh",
-            "Chị",
-            "Bác"
-        ],
+        statement:
+        "You call them “Em.”",
 
-        c:"Em"
+        answer:true,
+
+        explanation:
+        "Em is commonly used for someone younger than you in your generation."
     },
 
 
     {
-        q:
-        "You talk to a child from the younger generation. What do you call them?",
+        scenario:
+        "You talk to a young child from a younger generation.",
 
-        a:[
-            "Cháu",
-            "Em",
-            "Bác",
-            "Chú"
-        ],
+        statement:
+        "You call them “Cháu.”",
 
-        c:"Cháu"
+        answer:true,
+
+        explanation:
+        "Cháu is commonly used for someone from a younger generation."
     },
 
 
     {
-        q:
-        "A young boy or girl is much younger than you. What do you call them?",
+        scenario:
+        "You meet your older sister.",
 
-        a:[
-            "Cháu",
-            "Anh",
-            "Chị",
-            "Bà"
-        ],
+        statement:
+        "You call her “Chị.”",
 
-        c:"Cháu"
+        answer:true,
+
+        explanation:
+        "Chị is used for an older female in your generation."
     }
 
 ];
@@ -1150,7 +1216,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1195,9 +1262,15 @@ function loadQuestion(){
 
 
     document
-        .getElementById("questionText")
+        .getElementById("scenario")
         .textContent =
-        question.q;
+        question.scenario;
+
+
+    document
+        .getElementById("statement")
+        .textContent =
+        question.statement;
 
 
     document
@@ -1213,50 +1286,27 @@ function loadQuestion(){
 
 
     document
+        .getElementById("explanation")
+        .textContent =
+        "";
+
+
+    document
         .getElementById("nextBtn")
         .style.display =
         "none";
 
 
-    const container =
-        document.getElementById(
-            "optionsContainer"
-        );
+    document
+        .getElementById("trueBtn")
+        .className =
+        "option-btn true-btn";
 
 
-    container.innerHTML = "";
-
-
-    const options =
-        shuffle(question.a);
-
-
-    options.forEach(option => {
-
-        const btn =
-            document.createElement(
-                "button"
-            );
-
-
-        btn.className =
-            "option-btn";
-
-
-        btn.textContent =
-            option;
-
-
-        btn.onclick = () =>
-            handleAnswer(
-                btn,
-                option
-            );
-
-
-        container.appendChild(btn);
-
-    });
+    document
+        .getElementById("falseBtn")
+        .className =
+        "option-btn false-btn";
 
 }
 
@@ -1266,10 +1316,7 @@ function loadQuestion(){
    HANDLE ANSWER
 ========================================================== */
 
-function handleAnswer(
-    button,
-    selected
-){
+function handleAnswer(selected){
 
     if(answered){
 
@@ -1282,17 +1329,34 @@ function handleAnswer(
         questions[currentQuestion];
 
 
-    if(selected === question.c){
-
-        answered = true;
-
-
-        button.classList.add(
-            "correct"
+    const trueBtn =
+        document.getElementById(
+            "trueBtn"
         );
 
 
+    const falseBtn =
+        document.getElementById(
+            "falseBtn"
+        );
+
+
+    const selectedButton =
+        selected
+            ? trueBtn
+            : falseBtn;
+
+
+    if(selected === question.answer){
+
+        answered = true;
+
         score++;
+
+
+        selectedButton.classList.add(
+            "correct"
+        );
 
 
         document
@@ -1314,21 +1378,28 @@ function handleAnswer(
 
 
         document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
-
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
+            .getElementById("explanation")
+            .textContent =
+            question.explanation;
 
 
-        document
-            .getElementById("nextBtn")
-            .style.display =
+        trueBtn.classList.add(
+            "disabled"
+        );
+
+
+        falseBtn.classList.add(
+            "disabled"
+        );
+
+
+        const nextBtn =
+            document.getElementById(
+                "nextBtn"
+            );
+
+
+        nextBtn.style.display =
             "inline-block";
 
 
@@ -1337,16 +1408,12 @@ function handleAnswer(
             questions.length - 1
         ){
 
-            document
-                .getElementById("nextBtn")
-                .textContent =
+            nextBtn.textContent =
                 "Finish 🎉";
 
         }else{
 
-            document
-                .getElementById("nextBtn")
-                .textContent =
+            nextBtn.textContent =
                 "Next →";
 
         }
@@ -1354,7 +1421,7 @@ function handleAnswer(
 
     }else{
 
-        button.classList.add(
+        selectedButton.classList.add(
             "wrong"
         );
 
@@ -1373,7 +1440,7 @@ function handleAnswer(
 
         setTimeout(() => {
 
-            button.classList.remove(
+            selectedButton.classList.remove(
                 "wrong"
             );
 
@@ -1501,7 +1568,6 @@ function backToLobby(){
 }
 
 </script>
-
 
 </body>
 

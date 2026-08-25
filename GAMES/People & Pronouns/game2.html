@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns Challenge</title>
+<title>Vietnamese Pronouns in Context</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns Challenge"
+    content="Vietnamese Pronouns in Context"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese pronouns based on age and gender."
+    content="Practice choosing Vietnamese pronouns in everyday situations."
 >
 
 <meta
     name="game-icon"
-    content="🇻🇳"
+    content="👥"
 >
 
 
@@ -114,6 +114,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -333,22 +334,22 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   SITUATION CARD
 ========================================================== */
 
 .card{
 
-    background:#fffde7;
+    background:#f8fbff;
 
-    border:2px dashed #f1c40f;
+    border:2px dashed #3498db;
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:35px 22px;
 
     margin:20px 0;
 
-    min-height:150px;
+    min-height:170px;
 
     display:flex;
 
@@ -356,11 +357,11 @@ body{
 
     align-items:center;
 
-    font-size:21px;
+    font-size:20px;
 
     font-weight:600;
 
-    line-height:1.5;
+    line-height:1.6;
 
 }
 
@@ -619,7 +620,7 @@ body{
 
         font-size:18px;
 
-        min-height:130px;
+        min-height:140px;
 
         padding:25px 15px;
 
@@ -684,22 +685,22 @@ body{
 
     <div class="emoji">
 
-        🇻🇳
+        👥
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns Challenge
+        Vietnamese Pronouns in Context
 
     </h1>
 
 
     <p>
 
-        Choose the correct Vietnamese pronoun
-        based on age and gender.
+        Read the situation and choose
+        the Vietnamese pronoun you would use.
 
     </p>
 
@@ -736,14 +737,14 @@ body{
 
     <h1 class="title">
 
-        🇻🇳 Vietnamese Pronouns Challenge
+        👥 Vietnamese Pronouns in Context
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct pronoun.
+        Choose the pronoun that fits the situation.
 
     </p>
 
@@ -867,7 +868,7 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Pronouns Challenge.
+        You completed Vietnamese Pronouns in Context.
 
     </p>
 
@@ -915,82 +916,7 @@ const database = [
 
     {
         q:
-        "You meet a MAN from the Grandparents' generation. What do you call him?",
-
-        a:[
-            "Ông",
-            "Bà",
-            "Chú",
-            "Bác"
-        ],
-
-        c:"Ông"
-    },
-
-
-    {
-        q:
-        "You meet a WOMAN from the Grandparents' generation. What do you call her?",
-
-        a:[
-            "Bà",
-            "Ông",
-            "Dì",
-            "Chị"
-        ],
-
-        c:"Bà"
-    },
-
-
-    {
-        q:
-        "You meet a MAN from the Parents' generation who is YOUNGER than your parents. What do you call him?",
-
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Em"
-        ],
-
-        c:"Chú"
-    },
-
-
-    {
-        q:
-        "You meet a WOMAN from the Parents' generation who is YOUNGER than your parents. What do you call her?",
-
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
-        ],
-
-        c:"Dì"
-    },
-
-
-    {
-        q:
-        "You meet someone from the Parents' generation who is OLDER than your parents. What do you call them?",
-
-        a:[
-            "Bác",
-            "Chú",
-            "Dì",
-            "Ông"
-        ],
-
-        c:"Bác"
-    },
-
-
-    {
-        q:
-        "You talk to a MAN of your generation who is OLDER than you. What do you call him?",
+        "You meet your friend's older brother. He is a man around your age but a little older than you. What do you call him?",
 
         a:[
             "Anh",
@@ -1005,12 +931,12 @@ const database = [
 
     {
         q:
-        "You talk to a WOMAN of your generation who is OLDER than you. What do you call her?",
+        "Your new neighbor is a woman around your age and a little older than you. What do you call her?",
 
         a:[
             "Chị",
             "Em",
-            "Anh",
+            "Dì",
             "Bà"
         ],
 
@@ -1020,13 +946,13 @@ const database = [
 
     {
         q:
-        "You talk to a person of your generation who is YOUNGER than you. What do you call them?",
+        "You are talking to your younger brother. What do you call him?",
 
         a:[
             "Em",
             "Anh",
-            "Chị",
-            "Bác"
+            "Cháu",
+            "Chú"
         ],
 
         c:"Em"
@@ -1035,13 +961,58 @@ const database = [
 
     {
         q:
-        "You talk to a child from the younger generation. What do you call them?",
+        "You meet your mother's younger brother. What do you call him?",
+
+        a:[
+            "Chú",
+            "Bác",
+            "Anh",
+            "Ông"
+        ],
+
+        c:"Chú"
+    },
+
+
+    {
+        q:
+        "You meet your mother's younger sister. What do you call her?",
+
+        a:[
+            "Dì",
+            "Bác",
+            "Chị",
+            "Bà"
+        ],
+
+        c:"Dì"
+    },
+
+
+    {
+        q:
+        "Your father's older brother comes to visit. What do you call him?",
+
+        a:[
+            "Bác",
+            "Chú",
+            "Anh",
+            "Ông"
+        ],
+
+        c:"Bác"
+    },
+
+
+    {
+        q:
+        "You are talking to a little child who is much younger than you. What do you call them?",
 
         a:[
             "Cháu",
             "Em",
-            "Bác",
-            "Chú"
+            "Anh",
+            "Bác"
         ],
 
         c:"Cháu"
@@ -1050,16 +1021,46 @@ const database = [
 
     {
         q:
-        "A young boy or girl is much younger than you. What do you call them?",
+        "You meet your grandmother. What do you call her?",
 
         a:[
-            "Cháu",
-            "Anh",
+            "Bà",
+            "Dì",
             "Chị",
-            "Bà"
+            "Cháu"
         ],
 
-        c:"Cháu"
+        c:"Bà"
+    },
+
+
+    {
+        q:
+        "You meet your grandfather. What do you call him?",
+
+        a:[
+            "Ông",
+            "Bác",
+            "Chú",
+            "Anh"
+        ],
+
+        c:"Ông"
+    },
+
+
+    {
+        q:
+        "A woman is older than you but belongs to your generation. You are speaking directly to her. What do you call her?",
+
+        a:[
+            "Chị",
+            "Bà",
+            "Dì",
+            "Em"
+        ],
+
+        c:"Chị"
     }
 
 ];
@@ -1150,7 +1151,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1224,7 +1226,8 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
@@ -1453,7 +1456,7 @@ function finishGame(){
     if(percent >= 90){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese pronouns.";
+            "🏆 Excellent! You know how to use Vietnamese pronouns.";
 
     }else if(percent >= 70){
 
@@ -1463,7 +1466,7 @@ function finishGame(){
     }else{
 
         message =
-            "📚 Keep practicing Vietnamese pronouns.";
+            "📚 Keep practicing Vietnamese pronouns in everyday situations.";
 
     }
 
