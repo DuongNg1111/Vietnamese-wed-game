@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,9 +31,6 @@
 
     <!-- =====================================================
          GOOGLE FONTS
-         Kalam   -> hand-painted shopfront sign lettering (headline only)
-         Be Vietnam Pro -> a Vietnamese-designed typeface for all body text,
-                            chosen because this is a Vietnamese-learning product
     ====================================================== -->
 
     <link
@@ -56,23 +54,24 @@
 
         /* =====================================================
            DESIGN TOKENS
-           Same blue-and-white porcelain inspiration, tuned
-           brighter and more playful — this is a game site, so
-           the blues get more pop and a sunny yellow joins in
-           for stars, badges, and highlights.
         ====================================================== */
 
         :root {
 
-            --paper:        #F1F8FF;   /* bright porcelain white-blue        */
-            --paper-2:      #FFFFFF;   /* glazed white card surface          */
-            --ink:          #143A6B;   /* cobalt, body text / headings       */
-            --ink-soft:     #5E7FA8;   /* muted slate-blue secondary text    */
-            --lacquer:      #2F6FED;   /* vivid cobalt blue — primary accent */
-            --lacquer-dark: #1E4FC7;
-            --jade:         #17B6D0;   /* bright turquoise, fun accent       */
-            --brass:        #FFC93C;   /* sunny yellow — stars & badges      */
-            --line:         #CFE3FA;   /* bright light-blue border           */
+            --paper: #f5f9fd;
+
+            --white: #ffffff;
+
+            --ink: #143a6b;
+
+            --ink-soft: #66809d;
+
+            --blue: #2f6fed;
+
+            --blue-dark: #1e4fc7;
+
+            --line: #d9e6f2;
+
         }
 
 
@@ -109,86 +108,10 @@
             background:
                 linear-gradient(
                     180deg,
-                    #FFFFFF 0%,
-                    #F1F8FF 45%,
-                    #EAF4FF 100%
+                    #ffffff 0%,
+                    #f5f9fd 48%,
+                    #edf5fc 100%
                 );
-
-        }
-
-
-        /* =====================================================
-           FUN MOTION — used sparingly: a gentle float for header
-           decorations, a wiggle on icon hover, and a soft pop-in
-           for cards as they appear.
-        ====================================================== */
-
-        @keyframes float-bob {
-
-            0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
-            50%      { transform: translateY(-10px) rotate(var(--tilt, 0deg)); }
-
-        }
-
-        @keyframes wiggle {
-
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25%      { transform: rotate(-8deg) scale(1.08); }
-            75%      { transform: rotate(8deg) scale(1.08); }
-
-        }
-
-        @keyframes pop-in {
-
-            from { opacity: 0; transform: translateY(10px) scale(0.96); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *, *::before, *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-
-        }
-
-
-        /* =====================================================
-           SIGNATURE MOTIF: gạch bông diamond tile strip
-           Reused sparingly — only bookending the page, top and
-           bottom — so it reads as a deliberate frame, not noise.
-        ====================================================== */
-
-        .tile-strip {
-
-            width: 100%;
-
-            background-color: var(--paper-2);
-
-            background-image:
-                linear-gradient(
-                    45deg,
-                    rgba(18,50,88,0.88) 25%,
-                    transparent 25%,
-                    transparent 75%,
-                    rgba(18,50,88,0.88) 75%
-                ),
-                linear-gradient(
-                    45deg,
-                    rgba(18,50,88,0.88) 25%,
-                    transparent 25%,
-                    transparent 75%,
-                    rgba(18,50,88,0.88) 75%
-                );
-
-            background-size: 22px 22px;
-
-            background-position:
-                0 0,
-                11px 11px;
 
         }
 
@@ -204,12 +127,13 @@
             top: 20px;
 
             left: 0;
+
             right: 0;
 
-            z-index: 10;
+            z-index: 20;
 
             width: min(
-                1250px,
+                1500px,
                 94%
             );
 
@@ -230,23 +154,26 @@
 
             justify-content: center;
 
-            gap: 6px;
-
             padding:
                 9px 18px;
 
             border:
-                1.5px solid
-                var(--brass);
+                1px solid
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.15
+                );
 
             border-radius: 999px;
 
             background:
                 rgba(
-                    251,
-                    247,
-                    236,
-                    0.92
+                    255,
+                    255,
+                    255,
+                    0.9
                 );
 
             color:
@@ -255,18 +182,18 @@
             text-decoration: none;
 
             font-size:
-                0.88rem;
+                0.85rem;
 
             font-weight:
                 700;
 
             box-shadow:
-                0 4px 12px
+                0 4px 14px
                 rgba(
-                    18,
-                    50,
-                    88,
-                    0.12
+                    20,
+                    58,
+                    107,
+                    0.1
                 );
 
             backdrop-filter:
@@ -284,28 +211,19 @@
                 translateY(-2px);
 
             background:
-                var(--lacquer);
+                var(--blue);
 
             border-color:
-                var(--lacquer);
+                var(--blue);
 
             color:
-                var(--paper-2);
-
-            box-shadow:
-                0 7px 18px
-                rgba(
-                    44,
-                    95,
-                    158,
-                    0.25
-                );
+                white;
 
         }
 
 
         /* =====================================================
-           HEADER — the "shopfront awning"
+           HEADER
         ====================================================== */
 
         header {
@@ -314,7 +232,7 @@
 
             width: 100%;
 
-            min-height: 330px;
+            min-height: 340px;
 
             display: flex;
 
@@ -327,16 +245,16 @@
             text-align: center;
 
             padding:
-                85px 20px 70px;
+                80px 20px 65px;
 
             overflow: hidden;
 
             background:
                 linear-gradient(
                     135deg,
-                    #DCEBFF 0%,
-                    #E7F4FF 45%,
-                    #FFF6DC 100%
+                    #dcecff 0%,
+                    #eaf6ff 48%,
+                    #fff5d8 100%
                 );
 
             box-shadow:
@@ -345,22 +263,8 @@
                     20,
                     58,
                     107,
-                    0.16
+                    0.12
                 );
-
-        }
-
-
-        header .tile-strip {
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            height: 10px;
-
-            z-index: 3;
 
         }
 
@@ -383,8 +287,8 @@
                 center;
 
             filter:
-                brightness(1.12)
-                saturate(1.05);
+                brightness(1.08)
+                saturate(0.92);
 
             transform:
                 scale(1.03);
@@ -405,47 +309,21 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(238,243,249,0.28),
-                    rgba(238,243,249,0.58)
+                    rgba(
+                        245,
+                        249,
+                        253,
+                        0.34
+                    ),
+                    rgba(
+                        245,
+                        249,
+                        253,
+                        0.68
+                    )
                 );
 
             z-index: 1;
-
-        }
-
-
-        /* =====================================================
-           FLOATING HEADER ICONS — small, playful, and purely
-           decorative; kept clear of the headline text.
-        ====================================================== */
-
-        .float-deco {
-
-            position: absolute;
-
-            z-index: 2;
-
-            font-size: 2rem;
-
-            opacity: 0.9;
-
-            pointer-events: none;
-
-            animation: float-bob 4s ease-in-out infinite;
-
-            filter:
-                drop-shadow(0 4px 8px rgba(20,58,107,0.18));
-
-        }
-
-        .float-deco.d1 { top: 16%; left: 7%;  --tilt: -10deg; animation-delay: 0s;    }
-        .float-deco.d2 { top: 20%; right: 8%; --tilt: 8deg;   animation-delay: 1.3s; font-size: 1.7rem; }
-        .float-deco.d3 { bottom: 16%; left: 11%; --tilt: 6deg; animation-delay: 2.1s; font-size: 1.6rem; }
-        .float-deco.d4 { bottom: 20%; right: 10%; --tilt: -6deg; animation-delay: 0.7s; font-size: 1.8rem; }
-
-        @media (max-width: 700px) {
-
-            .float-deco { font-size: 1.3rem !important; opacity: 0.75; }
 
         }
 
@@ -456,37 +334,36 @@
 
             z-index: 2;
 
-            display: inline-block;
-
-            margin-bottom: 16px;
+            margin-bottom: 15px;
 
             padding:
-                6px 16px;
+                6px 15px;
 
-            border-radius: 999px;
+            border:
+                1px solid
+                rgba(
+                    47,
+                    111,
+                    237,
+                    0.25
+                );
+
+            border-radius:
+                999px;
 
             background:
                 rgba(
                     255,
                     255,
                     255,
-                    0.55
-                );
-
-            border:
-                1px solid
-                rgba(
-                    44,
-                    95,
-                    158,
-                    0.35
+                    0.62
                 );
 
             color:
-                var(--lacquer-dark);
+                var(--blue-dark);
 
             font-size:
-                0.78rem;
+                0.75rem;
 
             font-weight:
                 700;
@@ -514,16 +391,19 @@
 
             font-size:
                 clamp(
-                    2.8rem,
+                    3rem,
                     6vw,
-                    4.6rem
+                    5rem
                 );
 
-            line-height: 1;
+            line-height:
+                1;
 
-            font-weight: 700;
+            font-weight:
+                700;
 
-            letter-spacing: 1px;
+            letter-spacing:
+                1px;
 
             color:
                 var(--ink);
@@ -534,7 +414,7 @@
                     255,
                     255,
                     255,
-                    0.85
+                    0.9
                 );
 
         }
@@ -553,16 +433,16 @@
                 650px;
 
             font-size:
-                1.1rem;
+                1.08rem;
 
             line-height:
-                1.5;
+                1.55;
 
             font-weight:
                 500;
 
             color:
-                var(--ink-soft);
+                #55718e;
 
         }
 
@@ -583,57 +463,50 @@
                 22px;
 
             border-radius:
-                10px;
+                999px;
 
             background:
-                var(--jade);
+                var(--blue);
 
         }
 
 
         /* =====================================================
-           AWNING FRINGE — scalloped divider hanging from the
-           header, like a striped fabric shopfront awning.
+           HEADER DIVIDER
         ====================================================== */
 
-        .awning-fringe {
-
-            display: block;
+        .header-divider {
 
             width: 100%;
 
-            line-height: 0;
+            height: 9px;
 
-            margin-top: -1px;
-
-        }
-
-
-        .awning-fringe svg {
-
-            display: block;
-
-            width: 100%;
-
-            height: 26px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #2f6fed,
+                    #17b6d0,
+                    #ffc93c,
+                    #2f6fed
+                );
 
         }
 
 
         /* =====================================================
-           MAIN
+           MAIN CONTAINER
         ====================================================== */
 
         .container {
 
             width:
                 min(
-                    1400px,
-                    96%
+                    1500px,
+                    94%
                 );
 
             margin:
-                42px auto 55px;
+                48px auto 65px;
 
         }
 
@@ -644,9 +517,11 @@
 
         .page-intro {
 
-            text-align: center;
+            text-align:
+                center;
 
-            margin-bottom: 35px;
+            margin-bottom:
+                38px;
 
         }
 
@@ -670,19 +545,19 @@
         .section-subtitle {
 
             margin:
-                8px auto 0;
+                9px auto 0;
 
             max-width:
-                650px;
+                680px;
 
             color:
                 var(--ink-soft);
 
             font-size:
-                0.95rem;
+                0.94rem;
 
             line-height:
-                1.5;
+                1.55;
 
         }
 
@@ -694,28 +569,34 @@
             display: block;
 
             width:
-                65px;
+                60px;
 
             height:
-                5px;
+                4px;
 
             margin:
-                10px auto 0;
+                11px auto 0;
 
             border-radius:
-                10px;
+                999px;
 
             background:
-                var(--lacquer);
+                var(--blue);
 
         }
 
 
         /* =====================================================
-           CATEGORY SECTION — the "hanging signboard"
+           CATEGORY SECTION
         ====================================================== */
 
         .game-type-section {
+
+            --accent: #2f6fed;
+
+            --background: #edf5ff;
+
+            --border: #c9def8;
 
             position: relative;
 
@@ -723,14 +604,14 @@
                 30px;
 
             padding:
-                26px 24px 24px;
+                24px 24px 25px;
 
             border:
-                1.5px solid
+                1px solid
                 var(--border);
 
             border-radius:
-                18px;
+                20px;
 
             background:
                 var(--background);
@@ -741,10 +622,11 @@
                     20,
                     58,
                     107,
-                    0.08
+                    0.065
                 );
 
-            animation: pop-in 0.5s ease backwards;
+            overflow:
+                visible;
 
             transition:
                 transform 0.2s ease,
@@ -753,104 +635,150 @@
         }
 
 
-        .game-type-section::before {
-
-            /* the little "chain" the signboard hangs from */
-
-            content: "";
-
-            position: absolute;
-
-            top: -9px;
-
-            left: 40px;
-
-            width: 3px;
-
-            height: 9px;
-
-            background: var(--accent);
-
-            border-radius: 2px;
-
-        }
-
-
         .game-type-section:hover {
 
-            transform: translateY(-3px);
+            transform:
+                translateY(-2px);
 
             box-shadow:
-                0 14px 30px
+                0 13px 30px
                 rgba(
                     20,
                     58,
                     107,
-                    0.13
+                    0.1
                 );
 
         }
 
 
         /* =====================================================
-           CATEGORY COLORS
-           Same blue-and-white family, turned up in brightness and
-           saturation so each category pops — still unmistakably
-           blue overall, just more arcade than porcelain shop.
+           CATEGORY COLOR VARIANTS
         ====================================================== */
 
         .category-color {
-            --accent: #2F80ED;
-            --background: #E8F2FF;
-            --border: #C3DEFC;
+
+            --accent: #2878df;
+
+            --background: #eaf3ff;
+
+            --border: #c4daf6;
+
         }
+
 
         .category-describe {
-            --accent: #7B61FF;
-            --background: #EFEBFF;
-            --border: #D8D0FC;
+
+            --accent: #7657d9;
+
+            --background: #f0edff;
+
+            --border: #d9d0fa;
+
         }
+
 
         .category-food {
-            --accent: #17A2C4;
-            --background: #E3F7FB;
-            --border: #BFEAF3;
+
+            --accent: #0d9dbd;
+
+            --background: #e6f8fb;
+
+            --border: #bee8f0;
+
         }
+
 
         .category-grammar {
-            --accent: #0EA5A5;
-            --background: #E1F7F5;
-            --border: #BEEAE4;
+
+            --accent: #079b91;
+
+            --background: #e5f8f5;
+
+            --border: #bce9e3;
+
         }
+
 
         .category-health {
-            --accent: #3D7EDB;
-            --background: #E8F1FC;
-            --border: #C7DFF7;
+
+            --accent: #3977d1;
+
+            --background: #eaf2fc;
+
+            --border: #c8dcf5;
+
         }
+
 
         .category-mix {
-            --accent: #6C63FF;
-            --background: #EEEBFF;
-            --border: #D6D1FA;
+
+            --accent: #6659d9;
+
+            --background: #efedff;
+
+            --border: #d7d1f7;
+
         }
+
 
         .category-numbers {
-            --accent: #1565C0;
-            --background: #E4EEFA;
-            --border: #C2D9F2;
+
+            --accent: #2468bb;
+
+            --background: #e7f0fa;
+
+            --border: #c7d9ed;
+
         }
+
 
         .category-pronouns {
-            --accent: #29B6D8;
-            --background: #E1F6FA;
-            --border: #BEE9F1;
+
+            --accent: #209bb9;
+
+            --background: #e7f7fa;
+
+            --border: #c0e4eb;
+
         }
 
+
         .category-places {
-            --accent: #2E86DE;
-            --background: #E5F1FE;
-            --border: #C4DEFB;
+
+            --accent: #347dcc;
+
+            --background: #e8f2fc;
+
+            --border: #c7def6;
+
+        }
+
+
+        /* =====================================================
+           CATEGORY TOP ACCENT
+        ====================================================== */
+
+        .game-type-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 24px;
+
+            right: 24px;
+
+            height: 5px;
+
+            border-radius:
+                0 0 8px 8px;
+
+            background:
+                var(--accent);
+
         }
 
 
@@ -860,66 +788,48 @@
 
         .category-header {
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 14px;
+            gap:
+                15px;
 
-            margin-bottom: 20px;
+            margin-bottom:
+                20px;
 
-            padding-bottom: 16px;
+            padding:
+                8px 0 16px;
 
             border-bottom:
-                1px dashed
+                1px solid
                 var(--border);
 
         }
 
 
         /* =====================================================
-           CATEGORY ICON — a bright emoji badge that wiggles
-           when you hover the section, for a bit of arcade fun.
+           CATEGORY MARKER
+           Replaces emoji with a clean professional shape.
         ====================================================== */
 
-        .category-icon {
-
-            position: relative;
+        .category-marker {
 
             flex-shrink: 0;
 
-            width: 52px;
-            height: 52px;
+            width:
+                10px;
 
-            display: flex;
+            height:
+                48px;
 
-            align-items: center;
+            border-radius:
+                999px;
 
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: var(--background);
-
-            border: 2.5px solid var(--paper-2);
-
-            font-size: 1.7rem;
-
-            line-height: 1;
-
-            box-shadow:
-                0 0 0 3px var(--border),
-                0 4px 10px
-                rgba(20,58,107,0.12);
-
-            transition: transform 0.25s ease;
-
-        }
-
-
-        .game-type-section:hover .category-icon {
-
-            animation: wiggle 0.55s ease;
+            background:
+                var(--accent);
 
         }
 
@@ -928,6 +838,30 @@
 
             flex: 1;
 
+            min-width: 0;
+
+        }
+
+
+        .category-label {
+
+            margin: 0 0 3px;
+
+            color:
+                var(--accent);
+
+            font-size:
+                0.67rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.13em;
+
+            text-transform:
+                uppercase;
+
         }
 
 
@@ -935,51 +869,34 @@
 
             margin: 0;
 
-            font-family: 'Kalam', cursive;
+            color:
+                var(--ink);
 
-            font-size: 1.5rem;
+            font-size:
+                1.42rem;
 
-            line-height: 1.2;
+            line-height:
+                1.25;
 
-            font-weight: 700;
-
-            color: var(--ink);
-
-        }
-
-
-        .category-title::before {
-
-            content: "Category";
-
-            display: block;
-
-            font-family: 'Be Vietnam Pro', sans-serif;
-
-            font-size: 0.68rem;
-
-            font-weight: 700;
-
-            letter-spacing: 0.12em;
-
-            text-transform: uppercase;
-
-            color: var(--accent);
-
-            margin-bottom: 3px;
+            font-weight:
+                800;
 
         }
 
 
         .category-subtitle {
 
-            margin: 4px 0 0;
+            margin:
+                4px 0 0;
 
-            color: var(--ink-soft);
+            color:
+                var(--ink-soft);
 
-            font-size: 0.88rem;
+            font-size:
+                0.86rem;
 
-            line-height: 1.4;
+            line-height:
+                1.45;
 
         }
 
@@ -990,121 +907,156 @@
 
         .game-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
                 repeat(
                     auto-fill,
-                    minmax(230px, 1fr)
+                    minmax(
+                        220px,
+                        1fr
+                    )
                 );
 
-            gap: 18px;
+            gap:
+                17px;
 
         }
 
 
         /* =====================================================
-           GAME CARD — a hanging "menu tag"
+           GAME CARD
         ====================================================== */
 
         .game-card {
 
-            position: relative;
+            position:
+                relative;
 
-            min-height: 178px;
+            min-height:
+                175px;
 
-            display: flex;
+            display:
+                flex;
 
-            flex-direction: column;
+            flex-direction:
+                column;
 
-            overflow: visible;
+            overflow:
+                hidden;
 
-            background: var(--paper-2);
+            background:
+                var(--white);
 
-            border: 1.5px solid var(--line);
+            border:
+                1px solid
+                #dbe7f1;
 
-            border-radius: 18px;
-
-            padding-top: 12px;
+            border-radius:
+                15px;
 
             box-shadow:
-                0 4px 14px
-                rgba(20, 58, 107, 0.07);
-
-            animation: pop-in 0.45s ease backwards;
+                0 4px 13px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.06
+                );
 
             transition:
-                transform 0.22s cubic-bezier(.34,1.56,.64,1),
-                box-shadow 0.22s ease,
-                border-color 0.22s ease;
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
 
         }
 
 
-        .game-grid .game-card:nth-child(1) { animation-delay: 0.02s; }
-        .game-grid .game-card:nth-child(2) { animation-delay: 0.06s; }
-        .game-grid .game-card:nth-child(3) { animation-delay: 0.10s; }
-        .game-grid .game-card:nth-child(4) { animation-delay: 0.14s; }
-        .game-grid .game-card:nth-child(5) { animation-delay: 0.18s; }
-        .game-grid .game-card:nth-child(6) { animation-delay: 0.22s; }
-        .game-grid .game-card:nth-child(n+7) { animation-delay: 0.24s; }
+        .game-card::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 4px;
+
+            background:
+                var(--accent);
+
+        }
 
 
         .game-card:hover {
 
-            transform: translateY(-6px) scale(1.02);
+            transform:
+                translateY(-5px);
 
-            border-color: var(--accent);
+            border-color:
+                var(--accent);
 
             box-shadow:
-                0 14px 28px
-                rgba(20, 58, 107, 0.16);
+                0 12px 25px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.12
+                );
 
         }
 
 
         /* =====================================================
-           GAME THUMB — small corner seal, not a full band
+           GAME THUMB
+           Clean number marker instead of emoji.
         ====================================================== */
 
         .game-thumb {
 
-            position: absolute;
+            display:
+                flex;
 
-            top: -16px;
-            left: 16px;
+            align-items:
+                center;
 
-            width: 42px;
-            height: 42px;
+            justify-content:
+                center;
 
-            display: flex;
+            width:
+                34px;
 
-            align-items: center;
+            height:
+                34px;
 
-            justify-content: center;
+            margin:
+                18px auto 0;
 
-            background: var(--background);
+            border-radius:
+                50%;
 
-            border-radius: 50%;
+            background:
+                var(--background);
 
-            border: 3px solid var(--paper-2);
+            color:
+                var(--accent);
 
-            box-shadow:
-                0 0 0 2px var(--border),
-                0 3px 8px rgba(20,58,107,0.18);
+            border:
+                1px solid
+                var(--border);
 
-            font-size: 1.3rem;
+            font-size:
+                0.78rem;
 
-            line-height: 1;
-
-            transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
-
-        }
-
-
-        .game-card:hover .game-thumb {
-
-            transform: scale(1.15) rotate(-8deg);
+            font-weight:
+                800;
 
         }
 
@@ -1115,115 +1067,134 @@
 
         .game-info {
 
-            flex: 1;
+            flex:
+                1;
 
-            display: flex;
+            display:
+                flex;
 
-            flex-direction: column;
+            flex-direction:
+                column;
 
-            padding: 22px 16px 16px;
+            padding:
+                11px 15px 15px;
 
         }
 
 
         .game-title {
 
-            margin: 0 0 6px;
+            margin:
+                0 0 6px;
 
-            color: var(--ink);
+            color:
+                var(--ink);
 
-            font-size: 1rem;
+            font-size:
+                0.98rem;
 
-            font-weight: 800;
+            font-weight:
+                800;
 
-            line-height: 1.3;
+            line-height:
+                1.35;
 
-            text-align: center;
+            text-align:
+                center;
 
         }
 
 
         .game-desc {
 
-            flex: 1;
+            flex:
+                1;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            margin: 0 0 14px;
+            margin:
+                0 0 12px;
 
-            color: var(--ink-soft);
+            color:
+                var(--ink-soft);
 
-            font-size: 0.84rem;
+            font-size:
+                0.81rem;
 
-            line-height: 1.4;
+            line-height:
+                1.45;
 
-            text-align: center;
+            text-align:
+                center;
 
         }
 
 
         /* =====================================================
-           PLAY BUTTON — stamped like a lacquer seal
+           PLAY BUTTON
         ====================================================== */
 
         .play-btn {
 
-            display: block;
+            display:
+                block;
 
-            width: 100%;
+            width:
+                100%;
 
-            padding: 11px 12px;
+            padding:
+                9px 12px;
 
-            border-radius: 999px;
+            border-radius:
+                9px;
 
-            background: var(--accent);
+            background:
+                var(--accent);
 
-            color: white;
+            color:
+                white;
 
-            text-decoration: none;
+            text-decoration:
+                none;
 
-            text-align: center;
+            text-align:
+                center;
 
-            font-size: 0.86rem;
+            font-size:
+                0.82rem;
 
-            font-weight: 800;
-
-            letter-spacing: 0.02em;
-
-            box-shadow:
-                inset 0 -3px 0 rgba(0,0,0,0.15),
-                0 4px 10px rgba(20,58,107,0.18);
+            font-weight:
+                800;
 
             transition:
                 filter 0.2s ease,
-                transform 0.18s cubic-bezier(.34,1.56,.64,1),
-                box-shadow 0.18s ease;
+                transform 0.2s ease;
 
         }
 
 
         .play-btn:hover {
 
-            filter: brightness(1.05);
+            filter:
+                brightness(0.94);
 
-            transform: translateY(-2px) scale(1.03);
-
-            box-shadow:
-                inset 0 -3px 0 rgba(0,0,0,0.15),
-                0 8px 16px rgba(20,58,107,0.28);
+            transform:
+                translateY(-1px);
 
         }
 
 
         .play-btn:active {
 
-            transform: translateY(1px) scale(0.98);
-
-            box-shadow: inset 0 -1px 0 rgba(0,0,0,0.14);
+            transform:
+                translateY(1px);
 
         }
 
@@ -1234,13 +1205,17 @@
 
         .loading {
 
-            padding: 45px;
+            padding:
+                50px;
 
-            text-align: center;
+            text-align:
+                center;
 
-            color: var(--ink-soft);
+            color:
+                var(--ink-soft);
 
-            font-size: 1rem;
+            font-size:
+                0.95rem;
 
         }
 
@@ -1251,17 +1226,24 @@
 
         .error-message {
 
-            padding: 25px;
+            padding:
+                25px;
 
-            background: #FBEDEA;
+            background:
+                #fff3f1;
 
-            border: 1px solid #EFCFC6;
+            border:
+                1px solid
+                #edcec8;
 
-            border-radius: 16px;
+            border-radius:
+                16px;
 
-            color: #9A3324;
+            color:
+                #9a3324;
 
-            text-align: center;
+            text-align:
+                center;
 
         }
 
@@ -1272,22 +1254,37 @@
 
         footer {
 
-            padding: 0 0 40px;
+            padding:
+                15px 20px 38px;
 
-            color: var(--ink-soft);
+            color:
+                #7c93aa;
 
-            font-size: 0.82rem;
+            font-size:
+                0.8rem;
 
-            text-align: center;
+            text-align:
+                center;
 
         }
 
 
-        footer .tile-strip {
+        .footer-line {
 
-            height: 8px;
+            width:
+                min(
+                    1500px,
+                    94%
+                );
 
-            margin-bottom: 22px;
+            height:
+                1px;
+
+            margin:
+                0 auto 20px;
+
+            background:
+                #d8e5f0;
 
         }
 
@@ -1299,77 +1296,171 @@
         @media (max-width: 700px) {
 
             .top-nav {
-                top: 14px;
-                width: 94%;
+
+                top:
+                    14px;
+
+                width:
+                    94%;
+
             }
+
 
             .login-btn {
-                padding: 8px 14px;
-                font-size: 0.82rem;
+
+                padding:
+                    8px 14px;
+
+                font-size:
+                    0.8rem;
+
             }
+
 
             header {
-                min-height: 285px;
-                padding: 70px 18px 50px;
+
+                min-height:
+                    285px;
+
+                padding:
+                    70px 18px 50px;
+
             }
+
 
             header h1 {
-                font-size: 2.7rem;
+
+                font-size:
+                    2.75rem;
+
             }
+
 
             header p {
-                font-size: 1rem;
+
+                font-size:
+                    0.98rem;
+
             }
 
-            .awning-fringe svg {
-                height: 18px;
-            }
 
             .container {
-                width: 94%;
-                margin-top: 26px;
+
+                width:
+                    94%;
+
+                margin:
+                    30px auto 50px;
+
             }
+
+
+            .page-intro {
+
+                margin-bottom:
+                    28px;
+
+            }
+
 
             .section-title {
-                font-size: 1.7rem;
+
+                font-size:
+                    1.65rem;
+
             }
+
 
             .section-subtitle {
-                font-size: 0.88rem;
+
+                font-size:
+                    0.86rem;
+
             }
+
 
             .game-type-section {
-                padding: 20px 16px 18px;
-                border-radius: 16px;
-                margin-bottom: 22px;
+
+                padding:
+                    21px 16px 18px;
+
+                margin-bottom:
+                    20px;
+
+                border-radius:
+                    16px;
+
             }
+
+
+            .game-type-section::before {
+
+                left:
+                    16px;
+
+                right:
+                    16px;
+
+            }
+
 
             .category-header {
-                margin-bottom: 15px;
-                padding-bottom: 13px;
+
+                gap:
+                    11px;
+
+                margin-bottom:
+                    16px;
+
+                padding-bottom:
+                    13px;
+
             }
 
-            .category-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.05rem;
+
+            .category-marker {
+
+                width:
+                    7px;
+
+                height:
+                    42px;
+
             }
+
 
             .category-title {
-                font-size: 1.3rem;
+
+                font-size:
+                    1.22rem;
+
             }
+
 
             .category-subtitle {
-                font-size: 0.84rem;
+
+                font-size:
+                    0.81rem;
+
             }
+
 
             .game-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    13px;
+
             }
 
+
             .game-card {
-                min-height: 160px;
+
+                min-height:
+                    160px;
+
             }
 
         }
@@ -1383,7 +1474,7 @@
 
 
     <!-- =====================================================
-         TOP NAV
+         TOP NAVIGATION
     ====================================================== -->
 
     <nav class="top-nav">
@@ -1405,14 +1496,9 @@
 
     <header>
 
-        <div class="tile-strip" aria-hidden="true"></div>
-
-        <span class="float-deco d1" aria-hidden="true">🎮</span>
-        <span class="float-deco d2" aria-hidden="true">🎲</span>
-        <span class="float-deco d3" aria-hidden="true">✨</span>
-        <span class="float-deco d4" aria-hidden="true">🎯</span>
-
-        <span class="header-eyebrow">✨ Vietnamese · Learn by Playing ✨</span>
+        <span class="header-eyebrow">
+            Vietnamese · Learn by Playing
+        </span>
 
         <h1>
             Survival Vietnamese
@@ -1428,19 +1514,11 @@
 
     </header>
 
-    <div class="awning-fringe" aria-hidden="true">
-        <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill="#1D416F"
-                d="M0,0
-                   a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
-                   a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
-                   a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
-                   a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0 a30,30 0 0 1 60,0
-                   L1200,40 L0,40 Z"
-            />
-        </svg>
-    </div>
+
+    <div
+        class="header-divider"
+        aria-hidden="true"
+    ></div>
 
 
     <!-- =====================================================
@@ -1457,7 +1535,7 @@
         <div class="page-intro">
 
             <h2 class="section-title">
-                🎮 Choose Your Game 🎉
+                Choose Your Game
             </h2>
 
             <p class="section-subtitle">
@@ -1475,7 +1553,7 @@
         <div id="game-container">
 
             <div class="loading">
-                🎮 Loading games...
+                Loading games...
             </div>
 
         </div>
@@ -1489,7 +1567,7 @@
 
     <footer>
 
-        <div class="tile-strip" aria-hidden="true"></div>
+        <div class="footer-line"></div>
 
         © 2026 Survival Vietnamese with Duong
 
@@ -1497,10 +1575,7 @@
 
 
     <!-- =====================================================
-         GAME LOADER  (unchanged logic — only presentation above
-         has been redesigned; class names and DOM contract below
-         are identical to the original, so categories.json and
-         the GAMES/ folder keep working exactly as before)
+         GAME LOADER
     ====================================================== -->
 
     <script>
@@ -1514,7 +1589,7 @@
 
 
         /* =====================================================
-           CATEGORY STYLE
+           CATEGORY STYLE MAP
         ====================================================== */
 
         const categoryClasses = {
@@ -1545,42 +1620,6 @@
 
             "Places & Locations":
                 "category-places"
-
-        };
-
-
-        /* =====================================================
-           CATEGORY SYMBOL
-        ====================================================== */
-
-        const categorySymbols = {
-
-            "Color":
-                "🎨",
-
-            "Describe things":
-                "✨",
-
-            "Food and Drinks":
-                "🍜",
-
-            "Grammar":
-                "📝",
-
-            "Health":
-                "🩺",
-
-            "Mix Practice":
-                "🎲",
-
-            "Numbers":
-                "🔢",
-
-            "People & Pronouns":
-                "👋",
-
-            "Places & Locations":
-                "📍"
 
         };
 
@@ -1660,7 +1699,7 @@
 
         function createGameCard(
             game,
-            categoryName
+            gameNumber
         ) {
 
             const card =
@@ -1681,31 +1720,13 @@
                 `${GAMES_BASE}/${encodePath(gamePath)}`;
 
 
-            const symbol =
-                categorySymbols[
-                    categoryName
-                ] || "•";
-
-
-            card.style.setProperty(
-                "--accent",
-                getComputedStyle(
-                    document.documentElement
-                ).getPropertyValue(
-                    "--accent"
-                )
-            );
-
-
             card.innerHTML = `
 
                 <div
                     class="game-thumb"
                     aria-hidden="true"
                 >
-
-                    ${escapeHtml(symbol)}
-
+                    ${gameNumber}
                 </div>
 
 
@@ -1735,9 +1756,7 @@
                         href="${playUrl}"
                         class="play-btn"
                     >
-
                         Play Now →
-
                     </a>
 
                 </div>
@@ -1824,7 +1843,7 @@
 
 
                     /* =========================================
-                       CATEGORY SECTION
+                       CREATE CATEGORY SECTION
                     ========================================== */
 
                     const section =
@@ -1837,16 +1856,16 @@
                         "game-type-section";
 
 
-                    const className =
+                    const categoryClass =
                         categoryClasses[
                             categoryName
-                        ] || "";
+                        ];
 
 
-                    if (className) {
+                    if (categoryClass) {
 
                         section.classList.add(
-                            className
+                            categoryClass
                         );
 
                     }
@@ -1867,26 +1886,20 @@
 
 
                     /* =========================================
-                       CATEGORY ICON
+                       CATEGORY MARKER
                     ========================================== */
 
-                    const categoryIcon =
+                    const marker =
                         document.createElement(
                             "div"
                         );
 
 
-                    categoryIcon.className =
-                        "category-icon";
+                    marker.className =
+                        "category-marker";
 
 
-                    categoryIcon.textContent =
-                        categorySymbols[
-                            categoryName
-                        ] || "•";
-
-
-                    categoryIcon.setAttribute(
+                    marker.setAttribute(
                         "aria-hidden",
                         "true"
                     );
@@ -1904,6 +1917,24 @@
 
                     categoryText.className =
                         "category-text";
+
+
+                    /* =========================================
+                       CATEGORY LABEL
+                    ========================================== */
+
+                    const label =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    label.className =
+                        "category-label";
+
+
+                    label.textContent =
+                        "Category";
 
 
                     /* =========================================
@@ -1943,6 +1974,15 @@
                         "Practice Vietnamese with interactive games.";
 
 
+                    /* =========================================
+                       BUILD CATEGORY TEXT
+                    ========================================== */
+
+                    categoryText.appendChild(
+                        label
+                    );
+
+
                     categoryText.appendChild(
                         title
                     );
@@ -1953,8 +1993,12 @@
                     );
 
 
+                    /* =========================================
+                       BUILD CATEGORY HEADER
+                    ========================================== */
+
                     categoryHeader.appendChild(
-                        categoryIcon
+                        marker
                     );
 
 
@@ -1981,6 +2025,10 @@
                        ADD GAMES
                     ========================================== */
 
+                    let gameNumber =
+                        1;
+
+
                     for (
                         const game
                         of games
@@ -2006,7 +2054,7 @@
                         const card =
                             createGameCard(
                                 game,
-                                categoryName
+                                gameNumber
                             );
 
 
@@ -2015,13 +2063,15 @@
                         );
 
 
+                        gameNumber++;
+
                         totalGames++;
 
                     }
 
 
                     /* =========================================
-                       ADD CATEGORY
+                       ADD CATEGORY TO PAGE
                     ========================================== */
 
                     if (
@@ -2126,10 +2176,10 @@
 
         renderGames();
 
-
     </script>
 
 
 </body>
 
 </html>
+```
