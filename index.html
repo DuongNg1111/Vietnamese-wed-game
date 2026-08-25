@@ -1359,25 +1359,60 @@
         .category-card:hover {
 
             transform:
-                translateY(-6px);
+                translateY(-7px)
+                scale(1.015);
 
             border-color:
                 var(--accent);
 
             box-shadow:
-                0 15px 30px
+                0 18px 34px
                 rgba(
                     20,
                     58,
                     107,
-                    0.13
+                    0.15
                 );
 
         }
 
 
+        .category-card:hover .category-icon {
+
+            transform:
+                rotate(-5deg)
+                scale(1.08);
+
+            background:
+                white;
+
+            border-color:
+                var(--accent);
+
+        }
+
+
+        .category-card:hover .category-arrow {
+
+            transform:
+                translateX(4px);
+
+        }
+
+
+        .category-icon,
+        .category-arrow {
+
+            transition:
+                transform 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease;
+
+        }
+
+
         /* =====================================================
-           CATEGORY COLORS
+        CATEGORY COLORS
         ====================================================== */
 
         .category-color {
@@ -1397,13 +1432,13 @@
         .category-describe {
 
             --accent:
-                #7657d9;
+                #8b5cf6;
 
             --background:
-                #f0edff;
+                #f3edff;
 
             --border:
-                #d9d0fa;
+                #ddd0fa;
 
         }
 
@@ -1411,13 +1446,13 @@
         .category-food {
 
             --accent:
-                #0d9dbd;
+                #f06b3c;
 
             --background:
-                #e6f8fb;
+                #fff0e9;
 
             --border:
-                #bee8f0;
+                #f6cdbd;
 
         }
 
@@ -1425,13 +1460,13 @@
         .category-grammar {
 
             --accent:
-                #079b91;
+                #0f9f8f;
 
             --background:
-                #e5f8f5;
+                #e7f8f5;
 
             --border:
-                #bce9e3;
+                #bde9e2;
 
         }
 
@@ -1439,13 +1474,13 @@
         .category-health {
 
             --accent:
-                #3977d1;
+                #e0527a;
 
             --background:
-                #eaf2fc;
+                #fff0f4;
 
             --border:
-                #c8dcf5;
+                #f3c5d3;
 
         }
 
@@ -1453,13 +1488,13 @@
         .category-mix {
 
             --accent:
-                #6659d9;
+                #e0a51a;
 
             --background:
-                #efedff;
+                #fff8df;
 
             --border:
-                #d7d1f7;
+                #f1df9f;
 
         }
 
@@ -1467,13 +1502,13 @@
         .category-numbers {
 
             --accent:
-                #2468bb;
+                #3b82c4;
 
             --background:
-                #e7f0fa;
+                #eaf5fc;
 
             --border:
-                #c7d9ed;
+                #c4dff1;
 
         }
 
@@ -1481,13 +1516,13 @@
         .category-pronouns {
 
             --accent:
-                #209bb9;
+                #d14f9b;
 
             --background:
-                #e7f7fa;
+                #fff0f8;
 
             --border:
-                #c0e4eb;
+                #efc7df;
 
         }
 
@@ -1495,17 +1530,15 @@
         .category-places {
 
             --accent:
-                #347dcc;
+                #4f8a4b;
 
             --background:
-                #e8f2fc;
+                #edf7ec;
 
             --border:
-                #c7def6;
+                #c9e2c6;
 
         }
-
-
         /* =====================================================
            CATEGORY ICON
         ====================================================== */
