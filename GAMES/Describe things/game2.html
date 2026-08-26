@@ -148,6 +148,8 @@ body{
 
     font-weight:bold;
 
+    text-decoration:none;
+
     cursor:pointer;
 
     transition:.2s;
@@ -794,14 +796,12 @@ body{
      BACK TO LOBBY
 ========================================================= -->
 
-<button
+<a
+    href="../../category.html?category=Describe%20things"
     class="lobby-btn"
-    onclick="backToLobby()"
 >
-
-    ← Back to Lobby
-
-</button>
+    ← Back to Describe Things
+</a>
 
 
 
@@ -1086,7 +1086,6 @@ body{
 
 /* ==========================================================
    WEATHER VOCABULARY
-   ONLY WORDS FROM THE WEATHER TOPIC
 ========================================================== */
 
 const weatherVocab = [
@@ -1431,7 +1430,6 @@ function loadQuestion(){
 
     options.forEach(option => {
 
-
         const button =
             document.createElement(
                 "button"
@@ -1470,11 +1468,6 @@ function loadQuestion(){
 
 /* ==========================================================
    HANDLE ANSWER
-
-   IMPORTANT:
-   Once the user chooses an answer,
-   the answer is checked immediately.
-   The user cannot try another answer.
 ========================================================== */
 
 function handleAnswer(
@@ -1501,8 +1494,6 @@ function handleAnswer(
             ".option-btn"
         );
 
-
-    /* Disable every answer */
 
     allButtons.forEach(btn => {
 
@@ -1549,7 +1540,6 @@ function handleAnswer(
         resultText.textContent =
             "🎉 Correct!";
 
-
     }
 
 
@@ -1581,7 +1571,9 @@ function handleAnswer(
     }
 
 
-    /* Show next */
+    /* ======================================================
+       SHOW NEXT
+    ====================================================== */
 
     document
         .getElementById("nextBtn")
@@ -1726,18 +1718,6 @@ function restartGame(){
     score = 0;
 
     answered = false;
-
-}
-
-
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
-
-function backToLobby(){
-
-    window.location.href =
-        "href=../../category.html?category=Describe things";
 
 }
 
