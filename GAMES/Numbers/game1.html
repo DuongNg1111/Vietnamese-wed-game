@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -46,6 +47,7 @@ body{
     display:block;
 }
 
+
 /* =========================
    BACK TO LOBBY
 ========================= */
@@ -75,6 +77,7 @@ body{
     transform:translateX(-2px);
 }
 
+
 /* =========================
    HEADINGS
 ========================= */
@@ -91,6 +94,7 @@ h1{
     margin-bottom:20px;
     line-height:1.5;
 }
+
 
 /* =========================
    BUTTONS
@@ -117,6 +121,7 @@ h1{
     background:#388e3c;
     transform:translateY(-2px);
 }
+
 
 /* =========================
    TOP
@@ -146,6 +151,7 @@ h1{
     transition:.3s;
 }
 
+
 /* =========================
    QUESTION
 ========================= */
@@ -168,6 +174,7 @@ h1{
     font-weight:bold;
     color:#1976d2;
 }
+
 
 /* =========================
    ANSWERS
@@ -210,12 +217,15 @@ h1{
     background:#ffcdd2;
     border-color:#ef5350;
     color:#b71c1c;
+    cursor:default;
 }
 
 .answer.disabled{
     cursor:default;
     pointer-events:none;
+    opacity:.7;
 }
+
 
 /* =========================
    RESULT
@@ -223,14 +233,15 @@ h1{
 
 .result{
     font-size:40px;
-    height:50px;
+    min-height:50px;
     margin:10px 0;
 }
 
 .feedback{
-    min-height:28px;
+    min-height:55px;
     font-size:18px;
     font-weight:bold;
+    line-height:1.5;
 }
 
 .correct-text{
@@ -240,6 +251,15 @@ h1{
 .wrong-text{
     color:#c62828;
 }
+
+.explanation{
+    display:block;
+    margin-top:6px;
+    color:#666;
+    font-size:15px;
+    font-weight:normal;
+}
+
 
 /* =========================
    END
@@ -257,6 +277,7 @@ h1{
     color:#555;
     margin-bottom:25px;
 }
+
 
 /* =========================
    MOBILE
@@ -295,6 +316,7 @@ h1{
 }
 
 </style>
+
 </head>
 
 
@@ -309,15 +331,21 @@ h1{
 <button
     class="lobby-btn"
     onclick="backToLobby()">
+
     ← Back to Lobby
+
 </button>
 
 
 <!-- ================= INTRO ================= -->
 
-<div id="intro" class="screen active">
+<div
+    id="intro"
+    class="screen active">
 
-    <h1>🔢 Vietnamese Number Challenge</h1>
+    <h1>
+        🔢 Vietnamese Number Challenge
+    </h1>
 
     <p class="instruction">
         Read the Vietnamese number and choose the correct number.
@@ -330,7 +358,9 @@ h1{
     <button
         class="start-btn"
         onclick="startGame()">
+
         Start Game
+
     </button>
 
 </div>
@@ -338,20 +368,34 @@ h1{
 
 <!-- ================= GAME ================= -->
 
-<div id="game" class="screen">
+<div
+    id="game"
+    class="screen">
 
 
     <div class="topbar">
 
         <div>
+
             Question
-            <span id="qnum">1</span>
+
+            <span id="qnum">
+                1
+            </span>
+
             /20
+
         </div>
 
+
         <div>
+
             Score:
-            <span id="score">0</span>
+
+            <span id="score">
+                0
+            </span>
+
         </div>
 
     </div>
@@ -368,14 +412,18 @@ h1{
 
 
     <div class="question-label">
+
         What number is this?
+
     </div>
 
 
     <div
         class="vietnamese-number"
         id="vietnameseNumber">
+
         một
+
     </div>
 
 
@@ -402,7 +450,9 @@ h1{
         id="nextBtn"
         onclick="nextQuestion()"
         style="display:none;">
+
         Next →
+
     </button>
 
 
@@ -411,30 +461,44 @@ h1{
 
 <!-- ================= END ================= -->
 
-<div id="end" class="screen">
+<div
+    id="end"
+    class="screen">
 
-    <h1>🎉 Game Complete!</h1>
+
+    <h1>
+        🎉 Game Complete!
+    </h1>
+
 
     <p>
         You completed all 20 questions.
     </p>
 
+
     <div
         class="final-score"
         id="finalScore">
+
         0 / 20
+
     </div>
+
 
     <div
         class="performance"
         id="performance">
     </div>
 
+
     <button
         class="play-again"
         onclick="restart()">
+
         Play Again
+
     </button>
+
 
 </div>
 
@@ -444,6 +508,7 @@ h1{
 
 
 <script>
+
 
 /* ==========================================================
    NUMBER DATA
@@ -508,6 +573,7 @@ const viNumbers = [
 ========================================================== */
 
 const TOTAL_QUESTIONS = 20;
+
 const TOTAL_OPTIONS = 5;
 
 
@@ -532,17 +598,29 @@ function shuffle(array){
 
     const arr = [...array];
 
-    for(let i = arr.length - 1; i > 0; i--){
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
 
         const j =
             Math.floor(
                 Math.random() * (i + 1)
             );
 
-        [arr[i], arr[j]] =
-        [arr[j], arr[i]];
+
+        [
+            arr[i],
+            arr[j]
+        ] = [
+            arr[j],
+            arr[i]
+        ];
 
     }
+
 
     return arr;
 
@@ -561,21 +639,25 @@ function createQuestions(){
         Each number appears exactly once.
     */
 
-    questions = shuffle(
+    questions =
+        shuffle(
 
-        numbers.map((number,index) => {
+            numbers.map(
+                (number,index) => {
 
-            return {
+                    return {
 
-                number:number,
+                        number:number,
 
-                viText:viNumbers[index]
+                        viText:
+                            viNumbers[index]
 
-            };
+                    };
 
-        })
+                }
+            )
 
-    );
+        );
 
 }
 
@@ -590,29 +672,37 @@ function createOptions(correct){
         Pick 4 wrong numbers.
     */
 
-    let wrongOptions =
+    const wrongOptions =
 
         shuffle(
 
             numbers.filter(
-                number => number !== correct
+                number =>
+                    number !== correct
             )
 
-        ).slice(0,4);
+        ).slice(
+            0,
+            TOTAL_OPTIONS - 1
+        );
 
 
     /*
         Add correct answer.
     */
 
-    wrongOptions.push(correct);
+    wrongOptions.push(
+        correct
+    );
 
 
     /*
         Shuffle all 5 choices.
     */
 
-    return shuffle(wrongOptions);
+    return shuffle(
+        wrongOptions
+    );
 
 }
 
@@ -627,9 +717,11 @@ function startGame(){
         .getElementById("intro")
         .classList.remove("active");
 
+
     document
         .getElementById("end")
         .classList.remove("active");
+
 
     document
         .getElementById("game")
@@ -645,7 +737,8 @@ function startGame(){
 
     document
         .getElementById("score")
-        .innerText = "0";
+        .innerText =
+        "0";
 
 
     createQuestions();
@@ -665,29 +758,45 @@ function loadQuestion(){
 
 
     const nextBtn =
-        document.getElementById("nextBtn");
+        document.getElementById(
+            "nextBtn"
+        );
 
 
     const resultIcon =
-        document.getElementById("resultIcon");
+        document.getElementById(
+            "resultIcon"
+        );
 
 
     const feedback =
-        document.getElementById("feedback");
+        document.getElementById(
+            "feedback"
+        );
 
 
-    nextBtn.style.display = "none";
-
-    resultIcon.innerText = "";
-
-    resultIcon.className = "result";
-
-    feedback.innerText = "";
-
-    feedback.className = "feedback";
+    nextBtn.style.display =
+        "none";
 
 
-    if(current >= questions.length){
+    resultIcon.innerText =
+        "";
+
+    resultIcon.className =
+        "result";
+
+
+    feedback.innerHTML =
+        "";
+
+    feedback.className =
+        "feedback";
+
+
+    if(
+        current >=
+        questions.length
+    ){
 
         endGame();
 
@@ -709,8 +818,11 @@ function loadQuestion(){
     document
         .getElementById("progress")
         .style.width =
-        ((current + 1) / TOTAL_QUESTIONS * 100)
-        + "%";
+        (
+            (current + 1) /
+            TOTAL_QUESTIONS *
+            100
+        ) + "%";
 
 
     const question =
@@ -722,7 +834,9 @@ function loadQuestion(){
     */
 
     document
-        .getElementById("vietnameseNumber")
+        .getElementById(
+            "vietnameseNumber"
+        )
         .innerText =
         question.viText;
 
@@ -732,52 +846,59 @@ function loadQuestion(){
     */
 
     const options =
-        createOptions(question.number);
+        createOptions(
+            question.number
+        );
 
 
     const container =
-        document.getElementById("answers");
+        document.getElementById(
+            "answers"
+        );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
-    options.forEach(number => {
+    options.forEach(
+        number => {
 
-        const div =
-            document.createElement("div");
-
-
-        div.className = "answer";
-
-
-        /*
-            Answer is a NUMBER,
-            not Vietnamese text.
-        */
-
-        div.innerText = number;
+            const div =
+                document.createElement(
+                    "div"
+                );
 
 
-        div.dataset.number = number;
+            div.className =
+                "answer";
 
 
-        div.onclick = () => {
+            div.innerText =
+                number;
 
-            chooseAnswer(
 
-                div,
+            div.dataset.number =
+                number;
 
-                number === question.number
 
+            div.onclick = () => {
+
+                chooseAnswer(
+                    div,
+                    number ===
+                    question.number
+                );
+
+            };
+
+
+            container.appendChild(
+                div
             );
 
-        };
-
-
-        container.appendChild(div);
-
-    });
+        }
+    );
 
 }
 
@@ -786,24 +907,62 @@ function loadQuestion(){
    CHOOSE ANSWER
 ========================================================== */
 
-function chooseAnswer(element,isCorrect){
+function chooseAnswer(
+    element,
+    isCorrect
+){
 
     /*
-        If already answered correctly,
-        don't allow another click.
+        Once an answer has been selected,
+        the question is permanently locked.
     */
 
     if(answered){
+
         return;
+
     }
 
 
+    answered = true;
+
+
+    const question =
+        questions[current];
+
+
+    const correctAnswer =
+        question.number;
+
+
+    /*
+        Disable all answer buttons.
+    */
+
+    document
+        .querySelectorAll(
+            ".answer"
+        )
+        .forEach(
+            card => {
+
+                card.classList.add(
+                    "disabled"
+                );
+
+            }
+        );
+
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
     if(isCorrect){
 
-        answered = true;
-
-
-        element.classList.add("correct");
+        element.classList.add(
+            "correct"
+        );
 
 
         score++;
@@ -815,50 +974,60 @@ function chooseAnswer(element,isCorrect){
             score;
 
 
-        showResult(true);
+        showResult(
+            true,
+            correctAnswer
+        );
+
+    }
+
+
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
+
+        element.classList.add(
+            "wrong"
+        );
 
 
         /*
-            Disable all answers.
+            Highlight the correct answer.
         */
 
         document
-            .querySelectorAll(".answer")
-            .forEach(card => {
+            .querySelectorAll(
+                ".answer"
+            )
+            .forEach(
+                card => {
 
-                card.classList.add("disabled");
+                    if(
+                        card.dataset.number ===
+                        correctAnswer
+                    ){
 
-            });
+                        card.classList.add(
+                            "correct"
+                        );
 
+                    }
 
-    }else{
+                }
+            );
+
 
         /*
-            Wrong answer does NOT end
-            the question.
-
-            User can try again.
+            Wrong answer = 0 points.
+            No retry.
         */
 
-        element.classList.add("wrong");
-
-
-        document
-            .getElementById("feedback")
-            .innerText =
-            "❌ Try again!";
-
-
-        document
-            .getElementById("feedback")
-            .classList.add("wrong-text");
-
-
-        setTimeout(() => {
-
-            element.classList.remove("wrong");
-
-        },600);
+        showResult(
+            false,
+            correctAnswer
+        );
 
     }
 
@@ -869,34 +1038,68 @@ function chooseAnswer(element,isCorrect){
    RESULT
 ========================================================== */
 
-function showResult(ok){
+function showResult(
+    isCorrect,
+    correctAnswer
+){
 
     const resultIcon =
-        document.getElementById("resultIcon");
+        document.getElementById(
+            "resultIcon"
+        );
 
 
     const feedback =
-        document.getElementById("feedback");
+        document.getElementById(
+            "feedback"
+        );
 
 
-    resultIcon.innerText =
-        ok ? "✔" : "❌";
+    if(isCorrect){
+
+        resultIcon.innerText =
+            "✔";
 
 
-    feedback.innerText =
-        ok
-        ? "Correct! 🎉"
-        : "Try again!";
+        feedback.innerHTML =
+            `
+            Correct! 🎉
+            <span class="explanation">
+                The correct answer is ${correctAnswer}.
+            </span>
+            `;
 
 
-    feedback.className =
-        ok
-        ? "feedback correct-text"
-        : "feedback wrong-text";
+        feedback.className =
+            "feedback correct-text";
+
+    }
+
+    else{
+
+        resultIcon.innerText =
+            "❌";
+
+
+        feedback.innerHTML =
+            `
+            Wrong!
+            <span class="explanation">
+                The correct answer is ${correctAnswer}.
+            </span>
+            `;
+
+
+        feedback.className =
+            "feedback wrong-text";
+
+    }
 
 
     const nextBtn =
-        document.getElementById("nextBtn");
+        document.getElementById(
+            "nextBtn"
+        );
 
 
     nextBtn.style.display =
@@ -907,12 +1110,17 @@ function showResult(ok){
         Change button on final question.
     */
 
-    if(current === TOTAL_QUESTIONS - 1){
+    if(
+        current ===
+        TOTAL_QUESTIONS - 1
+    ){
 
         nextBtn.innerText =
             "Finish 🎉";
 
-    }else{
+    }
+
+    else{
 
         nextBtn.innerText =
             "Next →";
@@ -927,6 +1135,12 @@ function showResult(ok){
 ========================================================== */
 
 function nextQuestion(){
+
+    /*
+        Only move forward.
+
+        The current question is already locked.
+    */
 
     current++;
 
@@ -943,12 +1157,16 @@ function endGame(){
 
     document
         .getElementById("game")
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 
     document
         .getElementById("end")
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
 
     document
@@ -960,12 +1178,16 @@ function endGame(){
     document
         .getElementById("finalScore")
         .innerText =
-        score + " / " + TOTAL_QUESTIONS;
+        score +
+        " / " +
+        TOTAL_QUESTIONS;
 
 
     const percentage =
         Math.round(
-            score / TOTAL_QUESTIONS * 100
+            score /
+            TOTAL_QUESTIONS *
+            100
         );
 
 
@@ -977,17 +1199,23 @@ function endGame(){
         message =
             "🏆 Perfect! Excellent!";
 
-    }else if(percentage >= 80){
+    }
+
+    else if(percentage >= 80){
 
         message =
             "🎉 Excellent job!";
 
-    }else if(percentage >= 60){
+    }
+
+    else if(percentage >= 60){
 
         message =
             "👍 Good job! Keep practicing!";
 
-    }else{
+    }
+
+    else{
 
         message =
             "📚 Keep practicing your Vietnamese numbers!";
@@ -1020,7 +1248,8 @@ function restart(){
 
 function backToLobby(){
 
-    window.location.href = "../../index.html";
+    window.location.href =
+        "../../category.html?category=Numbers";
 
 }
 

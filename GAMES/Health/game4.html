@@ -10,21 +10,21 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Describe Things Challenge</title>
+<title>Vietnamese Health Odd One Out</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Describe Things Challenge"
+    content="Vietnamese Health Odd One Out"
 >
 
 <meta
     name="game-description"
-    content="Practice Vietnamese words for describing size, texture, condition, shape, appearance, and quantity."
+    content="Find the health word that does not belong with the other three words."
 >
 
 <meta
     name="game-icon"
-    content="🔎"
+    content="🧠"
 >
 
 
@@ -38,10 +38,6 @@
     box-sizing:border-box;
 }
 
-
-/* ==========================================================
-   BODY
-========================================================== */
 
 body{
 
@@ -76,16 +72,12 @@ body{
 ========================================================== */
 
 .screen{
-
     display:none;
-
 }
 
 
 .screen.active{
-
     display:block;
-
 }
 
 
@@ -97,13 +89,13 @@ body{
 
     position:relative;
 
-    width:min(850px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
     background:white;
 
-    padding:65px 30px 30px;
+    padding:65px 30px 35px;
 
     border-radius:20px;
 
@@ -164,7 +156,10 @@ body{
 
     text-align:center;
 
-    padding:20px 20px 30px;
+    padding:
+        20px
+        20px
+        30px;
 
 }
 
@@ -180,7 +175,8 @@ body{
 
 #intro h1{
 
-    margin:0 0 12px;
+    margin:
+        0 0 12px;
 
     font-size:34px;
 
@@ -191,7 +187,7 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
 
@@ -200,9 +196,11 @@ body{
 
 .start-btn{
 
-    margin-top:18px;
+    margin-top:20px;
 
-    padding:14px 35px;
+    padding:
+        14px
+        35px;
 
     border:none;
 
@@ -240,7 +238,8 @@ body{
 
     text-align:center;
 
-    margin:0 0 5px;
+    margin:
+        0 0 5px;
 
 }
 
@@ -344,65 +343,72 @@ body{
    QUESTION
 ========================================================== */
 
-.question-label{
+.question-card{
 
-    color:#7f8c8d;
+    background:#fffde7;
 
-    font-size:14px;
+    border:
+        2px dashed
+        #f1c40f;
 
-    font-weight:bold;
+    border-radius:12px;
 
-    margin-bottom:10px;
+    padding:
+        25px
+        20px;
 
-    text-transform:uppercase;
+    margin-bottom:22px;
 
 }
 
 
-.question{
+.question-label{
 
-    background:#f8f9fa;
+    color:#7f8c8d;
 
-    border:2px solid #e8edf0;
+    font-size:15px;
 
-    border-radius:15px;
+    font-weight:600;
 
-    padding:30px 20px;
+    margin-bottom:8px;
 
-    margin-bottom:25px;
+}
 
-    font-size:25px;
 
-    font-weight:bold;
+.question-text{
 
-    line-height:1.5;
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#34495e;
+
+    line-height:1.4;
 
 }
 
 
 /* ==========================================================
-   OPTIONS
+   WORD GRID
 ========================================================== */
 
-.options{
+.word-grid{
 
     display:grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:12px;
+    gap:15px;
 
 }
 
 
-.option-btn{
+.word-btn{
 
-    padding:17px;
+    min-height:90px;
 
-    font-size:18px;
-
-    font-weight:bold;
+    padding:20px;
 
     background:#34495e;
 
@@ -410,7 +416,11 @@ body{
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
+
+    font-size:22px;
+
+    font-weight:bold;
 
     cursor:pointer;
 
@@ -419,34 +429,39 @@ body{
 }
 
 
-.option-btn:hover{
+.word-btn:hover:not(:disabled){
 
     background:#2c3e50;
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 
 }
 
 
-.option-btn.correct{
+.word-btn:disabled{
+
+    cursor:default;
+
+}
+
+
+.word-btn.correct{
 
     background:#27ae60;
 
 }
 
 
-.option-btn.wrong{
+.word-btn.wrong{
 
     background:#e74c3c;
 
 }
 
 
-.option-btn.disabled{
+.word-btn.answer-highlight{
 
-    pointer-events:none;
-
-    opacity:.75;
+    background:#27ae60;
 
 }
 
@@ -457,11 +472,11 @@ body{
 
 .result-message{
 
-    min-height:90px;
+    min-height:80px;
 
     margin-top:20px;
 
-    font-size:18px;
+    font-size:17px;
 
     font-weight:bold;
 
@@ -484,17 +499,32 @@ body{
 }
 
 
+.correct-answer{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#34495e;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+
 .explanation{
 
     display:block;
 
-    margin-top:8px;
+    margin-top:6px;
 
-    color:#7f8c8d;
+    color:#607d8b;
 
-    font-size:16px;
+    font-size:14px;
 
-    font-weight:normal;
+    font-weight:500;
 
 }
 
@@ -505,7 +535,9 @@ body{
 
 .next-btn{
 
-    padding:12px 28px;
+    padding:
+        12px
+        28px;
 
     border:none;
 
@@ -545,7 +577,17 @@ body{
 
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:
+        30px
+        20px
+        40px;
+
+}
+
+
+#final .emoji{
+
+    font-size:65px;
 
 }
 
@@ -563,11 +605,22 @@ body{
 
     font-size:30px;
 
-    margin:25px 0;
+    margin:25px 0 10px;
 
     font-weight:bold;
 
     color:#1976d2;
+
+}
+
+
+.final-percentage{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
 
 }
 
@@ -577,6 +630,8 @@ body{
     color:#7f8c8d;
 
     font-size:18px;
+
+    line-height:1.5;
 
 }
 
@@ -596,46 +651,33 @@ body{
 
     .container{
 
-        padding:60px 15px 20px;
+        padding:
+            60px
+            15px
+            20px;
 
     }
 
 
-    .game-box{
-
-        padding:18px;
-
-    }
-
-
-    .options{
+    .word-grid{
 
         grid-template-columns:1fr;
 
     }
 
 
-    .question{
+    .word-btn{
+
+        min-height:75px;
+
+        font-size:20px;
+
+    }
+
+
+    .question-text{
 
         font-size:21px;
-
-        padding:25px 15px;
-
-    }
-
-
-    .option-btn{
-
-        font-size:17px;
-
-        padding:15px;
-
-    }
-
-
-    .result-message{
-
-        min-height:100px;
 
     }
 
@@ -662,7 +704,9 @@ body{
 
         font-size:13px;
 
-        padding:7px 12px;
+        padding:
+            7px
+            12px;
 
     }
 
@@ -688,7 +732,7 @@ body{
     onclick="backToLobby()"
 >
 
-    ← Back to Describe Things
+    ← Back to Lobby
 
 </button>
 
@@ -705,23 +749,22 @@ body{
 
     <div class="emoji">
 
-        🔎
+        🧠
 
     </div>
 
 
     <h1>
 
-        Vietnamese Describe Things Challenge
+        Vietnamese Health Odd One Out
 
     </h1>
 
 
     <p>
 
-        Read the English sentence<br>
-
-        and choose the correct Vietnamese word.
+        Look at the four Vietnamese words
+        and choose the one that does not belong.
 
     </p>
 
@@ -758,14 +801,14 @@ body{
 
     <h1 class="title">
 
-        🔎 Describe Things Challenge
+        🧠 Health Odd One Out
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct Vietnamese word.
+        Which word does not belong?
 
     </p>
 
@@ -777,6 +820,7 @@ body{
         <!-- TOP BAR -->
 
         <div class="topbar">
+
 
             <div class="question-count">
 
@@ -805,6 +849,7 @@ body{
 
             </div>
 
+
         </div>
 
 
@@ -824,29 +869,32 @@ body{
 
         <!-- QUESTION -->
 
-        <div class="question-label">
+        <div class="question-card">
 
-            What does this mean?
+
+            <div class="question-label">
+
+                Find the word that does not belong.
+
+            </div>
+
+
+            <div class="question-text">
+
+                Which word is different?
+
+            </div>
+
 
         </div>
 
 
-        <div
-            class="question"
-            id="questionText"
-        >
 
-            The box is big.
-
-        </div>
-
-
-
-        <!-- OPTIONS -->
+        <!-- WORDS -->
 
         <div
-            class="options"
-            id="optionsContainer"
+            class="word-grid"
+            id="wordGrid"
         ></div>
 
 
@@ -891,16 +939,24 @@ body{
 >
 
 
+    <div class="emoji">
+
+        🎉
+
+    </div>
+
+
     <h2>
 
-        🎉 Game Complete!
+        Game Complete!
 
     </h2>
 
 
     <p class="final-message">
 
-        You completed the Vietnamese Describe Things Challenge.
+        You completed the Vietnamese Health
+        Odd One Out challenge.
 
     </p>
 
@@ -912,6 +968,12 @@ body{
         <span id="finalScore"></span>
 
     </div>
+
+
+    <div
+        class="final-percentage"
+        id="finalPercentage"
+    ></div>
 
 
     <p
@@ -929,6 +991,7 @@ body{
 
     </button>
 
+
 </div>
 
 
@@ -940,278 +1003,345 @@ body{
 
 
 /* ==========================================================
+   APPROVED VOCABULARY
+   ONLY THE ESTABLISHED HEALTH VOCABULARY
+========================================================== */
+
+const vocabulary = [
+
+    "bệnh",
+    "sốt",
+    "mệt",
+    "cảm",
+    "ho",
+    "đau đầu",
+    "đau",
+    "đau người",
+    "đau tay",
+    "đau chân",
+    "đau bụng",
+    "đầu",
+    "tay",
+    "chân",
+    "bụng",
+    "người"
+
+];
+
+
+/* ==========================================================
    QUESTION DATABASE
-   ONLY DESCRIBE THINGS VOCABULARY
-   WEATHER EXCLUDED
 ========================================================== */
 
 const database = [
 
-    /* =========================
-       SIZE
-    ========================= */
-
     {
-        question:"The box is big.",
-        answer:"lớn",
-        meaning:"big, large"
-    },
+        words:[
+            "đầu",
+            "tay",
+            "chân",
+            "sốt"
+        ],
 
-    {
-        question:"The cup is small.",
-        answer:"nhỏ",
-        meaning:"small"
-    },
+        correct:"sốt",
 
-    {
-        question:"The table is very big.",
-        answer:"bự",
-        meaning:"big, huge"
-    },
-
-    {
-        question:"The road is long.",
-        answer:"dài",
-        meaning:"long"
-    },
-
-    {
-        question:"The pencil is short.",
-        answer:"ngắn",
-        meaning:"short"
-    },
-
-    {
-        question:"The building is tall.",
-        answer:"cao",
-        meaning:"tall, high"
-    },
-
-    {
-        question:"The table is low.",
-        answer:"thấp",
-        meaning:"low, short"
-    },
-
-    {
-        question:"The room is spacious.",
-        answer:"rộng",
-        meaning:"wide, spacious"
-    },
-
-    {
-        question:"The room is cramped.",
-        answer:"chật",
-        meaning:"tight, cramped"
-    },
-
-    {
-        question:"The bag is heavy.",
-        answer:"nặng",
-        meaning:"heavy"
-    },
-
-    {
-        question:"The box is light.",
-        answer:"nhẹ",
-        meaning:"light"
+        explanation:
+            "Sốt is a health symptom. Đầu, tay, and chân are body parts."
     },
 
 
-    /* =========================
-       FEEL & TEXTURE
-    ========================= */
-
     {
-        question:"The table is hard.",
-        answer:"cứng",
-        meaning:"hard"
-    },
+        words:[
+            "đầu",
+            "bụng",
+            "người",
+            "ho"
+        ],
 
-    {
-        question:"The pillow is soft.",
-        answer:"mềm",
-        meaning:"soft"
-    },
+        correct:"ho",
 
-    {
-        question:"The coffee is hot.",
-        answer:"nóng",
-        meaning:"hot"
-    },
-
-    {
-        question:"The water is cold.",
-        answer:"lạnh",
-        meaning:"cold"
-    },
-
-    {
-        question:"The towel is dry.",
-        answer:"khô",
-        meaning:"dry"
-    },
-
-    {
-        question:"The floor is wet.",
-        answer:"ướt",
-        meaning:"wet"
+        explanation:
+            "Ho is a health symptom. Đầu, bụng, and người are body-related words."
     },
 
 
-    /* =========================
-       CONDITION
-    ========================= */
-
     {
-        question:"This shirt is new.",
-        answer:"mới",
-        meaning:"new"
-    },
+        words:[
+            "tay",
+            "chân",
+            "bụng",
+            "mệt"
+        ],
 
-    {
-        question:"This phone is old.",
-        answer:"cũ",
-        meaning:"old"
-    },
+        correct:"mệt",
 
-    {
-        question:"The room is clean.",
-        answer:"sạch",
-        meaning:"clean"
-    },
-
-    {
-        question:"The shoes are dirty.",
-        answer:"dơ",
-        meaning:"dirty"
+        explanation:
+            "Mệt describes how you feel. Tay, chân, and bụng are body parts."
     },
 
 
-    /* =========================
-       SHAPE
-    ========================= */
-
     {
-        question:"The ball is round.",
-        answer:"tròn",
-        meaning:"round"
-    },
+        words:[
+            "đầu",
+            "tay",
+            "bụng",
+            "cảm"
+        ],
 
-    {
-        question:"The window is square.",
-        answer:"vuông",
-        meaning:"square"
-    },
+        correct:"cảm",
 
-    {
-        question:"The road is straight.",
-        answer:"thẳng",
-        meaning:"straight"
-    },
-
-    {
-        question:"The line is curved.",
-        answer:"cong",
-        meaning:"curved, bent"
-    },
-
-    {
-        question:"The knife is sharp.",
-        answer:"nhọn",
-        meaning:"pointed, sharp"
-    },
-
-    {
-        question:"Her hair is curly.",
-        answer:"xoăn",
-        meaning:"curly"
+        explanation:
+            "Cảm is a health condition. Đầu, tay, and bụng are body parts."
     },
 
 
-    /* =========================
-       APPEARANCE
-    ========================= */
-
     {
-        question:"The dress is beautiful.",
-        answer:"đẹp",
-        meaning:"beautiful, pretty"
-    },
+        words:[
+            "đầu",
+            "chân",
+            "người",
+            "bệnh"
+        ],
 
-    {
-        question:"The picture is ugly.",
-        answer:"xấu",
-        meaning:"ugly"
-    },
+        correct:"bệnh",
 
-    {
-        question:"The baby is cute.",
-        answer:"dễ thương",
-        meaning:"cute"
-    },
-
-    {
-        question:"She is pretty.",
-        answer:"xinh",
-        meaning:"pretty, lovely"
-    },
-
-    {
-        question:"The dog looks fierce.",
-        answer:"dữ",
-        meaning:"fierce, mean"
-    },
-
-    {
-        question:"He looks serious.",
-        answer:"nghiêm túc",
-        meaning:"serious"
-    },
-
-    {
-        question:"The boy is young.",
-        answer:"trẻ",
-        meaning:"young"
-    },
-
-    {
-        question:"The man is old.",
-        answer:"già",
-        meaning:"old"
-    },
-
-    {
-        question:"He is skinny.",
-        answer:"ốm",
-        meaning:"thin, skinny"
-    },
-
-    {
-        question:"The child is chubby.",
-        answer:"mập",
-        meaning:"fat, chubby"
+        explanation:
+            "Bệnh means sick or illness. Đầu, chân, and người are body-related words."
     },
 
 
-    /* =========================
-       QUANTITY
-    ========================= */
-
     {
-        question:"There are many books.",
-        answer:"nhiều",
-        meaning:"many, much"
+        words:[
+            "đầu",
+            "tay",
+            "chân",
+            "đau"
+        ],
+
+        correct:"đau",
+
+        explanation:
+            "Đau means pain or hurt. Đầu, tay, and chân are body parts."
     },
 
+
     {
-        question:"There are only a few apples.",
-        answer:"ít",
-        meaning:"few, little"
+        words:[
+            "bụng",
+            "tay",
+            "đầu",
+            "đau người"
+        ],
+
+        correct:"đau người",
+
+        explanation:
+            "Đau người describes body ache. Bụng, tay, and đầu are body parts."
+    },
+
+
+    {
+        words:[
+            "đầu",
+            "tay",
+            "chân",
+            "đau đầu"
+        ],
+
+        correct:"đau đầu",
+
+        explanation:
+            "Đau đầu means headache. Đầu, tay, and chân are body parts."
+    },
+
+
+    {
+        words:[
+            "đầu",
+            "tay",
+            "bụng",
+            "đau tay"
+        ],
+
+        correct:"đau tay",
+
+        explanation:
+            "Đau tay means arm or hand pain. Đầu, tay, and bụng are body parts."
+    },
+
+
+    {
+        words:[
+            "đầu",
+            "chân",
+            "bụng",
+            "đau chân"
+        ],
+
+        correct:"đau chân",
+
+        explanation:
+            "Đau chân means leg or foot pain. Đầu, chân, and bụng are body parts."
+    },
+
+
+    {
+        words:[
+            "đầu",
+            "tay",
+            "chân",
+            "đau bụng"
+        ],
+
+        correct:"đau bụng",
+
+        explanation:
+            "Đau bụng means stomachache. Đầu, tay, and chân are body parts."
+    },
+
+
+    {
+        words:[
+            "bệnh",
+            "sốt",
+            "mệt",
+            "đầu"
+        ],
+
+        correct:"đầu",
+
+        explanation:
+            "Đầu is a body part. Bệnh, sốt, and mệt are health-related conditions or symptoms."
+    },
+
+
+    {
+        words:[
+            "cảm",
+            "ho",
+            "mệt",
+            "tay"
+        ],
+
+        correct:"tay",
+
+        explanation:
+            "Tay is a body part. Cảm, ho, and mệt are health-related words."
+    },
+
+
+    {
+        words:[
+            "bệnh",
+            "sốt",
+            "cảm",
+            "chân"
+        ],
+
+        correct:"chân",
+
+        explanation:
+            "Chân is a body part. Bệnh, sốt, and cảm are health-related conditions."
+    },
+
+
+    {
+        words:[
+            "ho",
+            "mệt",
+            "cảm",
+            "bụng"
+        ],
+
+        correct:"bụng",
+
+        explanation:
+            "Bụng is a body part. Ho, mệt, and cảm are health-related words."
+    },
+
+
+    {
+        words:[
+            "bệnh",
+            "sốt",
+            "ho",
+            "người"
+        ],
+
+        correct:"người",
+
+        explanation:
+            "Người can refer to the body or a person. Bệnh, sốt, and ho are health-related words."
+    },
+
+
+    {
+        words:[
+            "đau đầu",
+            "đau tay",
+            "đau chân",
+            "tay"
+        ],
+
+        correct:"tay",
+
+        explanation:
+            "Tay is a body part by itself. Đau đầu, đau tay, and đau chân are pain expressions."
+    },
+
+
+    {
+        words:[
+            "đau bụng",
+            "đau người",
+            "đau đầu",
+            "bụng"
+        ],
+
+        correct:"bụng",
+
+        explanation:
+            "Bụng is a body part by itself. Đau bụng, đau người, and đau đầu are pain expressions."
+    },
+
+
+    {
+        words:[
+            "đau",
+            "đau đầu",
+            "đau bụng",
+            "đầu"
+        ],
+
+        correct:"đầu",
+
+        explanation:
+            "Đầu is a body part. Đau, đau đầu, and đau bụng are pain-related words."
+    },
+
+
+    {
+        words:[
+            "đau tay",
+            "đau chân",
+            "đau bụng",
+            "chân"
+        ],
+
+        correct:"chân",
+
+        explanation:
+            "Chân is a body part by itself. Đau tay, đau chân, and đau bụng are pain expressions."
     }
 
 ];
 
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS = 20;
 
 
 /* ==========================================================
@@ -1225,7 +1355,6 @@ let currentQuestion = 0;
 let score = 0;
 
 let answered = false;
-
 
 
 /* ==========================================================
@@ -1265,84 +1394,6 @@ function shuffle(array){
 }
 
 
-
-/* ==========================================================
-   CREATE OPTIONS
-========================================================== */
-
-function createOptions(correctWord){
-
-    const allWords = [
-
-        "lớn",
-        "nhỏ",
-        "bự",
-        "dài",
-        "ngắn",
-        "cao",
-        "thấp",
-        "rộng",
-        "chật",
-        "nặng",
-        "nhẹ",
-
-        "cứng",
-        "mềm",
-        "nóng",
-        "lạnh",
-        "khô",
-        "ướt",
-
-        "mới",
-        "cũ",
-        "sạch",
-        "dơ",
-
-        "tròn",
-        "vuông",
-        "thẳng",
-        "cong",
-        "nhọn",
-        "xoăn",
-
-        "đẹp",
-        "xấu",
-        "dễ thương",
-        "xinh",
-        "dữ",
-        "nghiêm túc",
-        "trẻ",
-        "già",
-        "ốm",
-        "mập",
-
-        "nhiều",
-        "ít"
-
-    ];
-
-
-    const wrongWords =
-        shuffle(
-            allWords.filter(
-                word =>
-                    word !== correctWord
-            )
-        ).slice(0,3);
-
-
-    return shuffle([
-
-        correctWord,
-
-        ...wrongWords
-
-    ]);
-
-}
-
-
-
 /* ==========================================================
    START GAME
 ========================================================== */
@@ -1350,8 +1401,7 @@ function createOptions(correctWord){
 function startGame(){
 
     questions =
-        shuffle(database)
-        .slice(0,20);
+        shuffle(database);
 
 
     currentQuestion = 0;
@@ -1383,13 +1433,12 @@ function startGame(){
     document
         .getElementById("totalQuestions")
         .textContent =
-        questions.length;
+        TOTAL_QUESTIONS;
 
 
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
@@ -1416,15 +1465,9 @@ function loadQuestion(){
         .style.width =
         (
             currentQuestion /
-            questions.length *
+            TOTAL_QUESTIONS *
             100
         ) + "%";
-
-
-    document
-        .getElementById("questionText")
-        .textContent =
-        question.question;
 
 
     document
@@ -1448,26 +1491,27 @@ function loadQuestion(){
     document
         .getElementById("nextBtn")
         .textContent =
-        "Next →";
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+            ? "Finish 🎉"
+            : "Next →";
 
 
-    const container =
+    const grid =
         document.getElementById(
-            "optionsContainer"
+            "wordGrid"
         );
 
 
-    container.innerHTML =
+    grid.innerHTML =
         "";
 
 
-    const options =
-        createOptions(
-            question.answer
-        );
+    const words =
+        shuffle(question.words);
 
 
-    options.forEach(option => {
+    words.forEach(word => {
 
 
         const button =
@@ -1477,28 +1521,25 @@ function loadQuestion(){
 
 
         button.className =
-            "option-btn";
+            "word-btn";
 
 
         button.textContent =
-            option;
+            word;
 
 
         button.onclick = () =>
             handleAnswer(
                 button,
-                option
+                word
             );
 
 
-        container.appendChild(
-            button
-        );
+        grid.appendChild(button);
 
     });
 
 }
-
 
 
 /* ==========================================================
@@ -1509,6 +1550,12 @@ function handleAnswer(
     button,
     selected
 ){
+
+    /*
+       One attempt only.
+       After the first selection,
+       the entire question is locked.
+    */
 
     if(answered){
 
@@ -1524,30 +1571,34 @@ function handleAnswer(
         questions[currentQuestion];
 
 
-    const buttons =
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    const allButtons =
         document.querySelectorAll(
-            ".option-btn"
+            ".word-btn"
         );
 
 
-    buttons.forEach(btn => {
+    /*
+       Lock every answer.
+    */
 
-        btn.classList.add(
-            "disabled"
-        );
+    allButtons.forEach(btn => {
+
+        btn.disabled = true;
 
     });
-
 
 
     /* ======================================================
        CORRECT
     ====================================================== */
 
-    if(
-        selected ===
-        question.answer
-    ){
+    if(selected === question.correct){
 
         button.classList.add(
             "correct"
@@ -1563,49 +1614,20 @@ function handleAnswer(
             score;
 
 
-        document
-            .getElementById("resultText")
-            .innerHTML =
+        resultText.innerHTML =
+            `
+            🎉 Correct!
 
-            "🎉 Correct!" +
-
-            '<span class="explanation">' +
-
-            "<strong>" +
-            question.answer +
-            "</strong> = " +
-            question.meaning +
-
-            "</span>";
+            <span class="explanation">
+                ${question.explanation}
+            </span>
+            `;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
-
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
-
-
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Finish 🎉";
-
-        }
-
-
     }
-
 
 
     /* ======================================================
@@ -1619,15 +1641,19 @@ function handleAnswer(
         );
 
 
-        buttons.forEach(btn => {
+        /*
+           Highlight the correct answer.
+        */
+
+        allButtons.forEach(btn => {
 
             if(
                 btn.textContent ===
-                question.answer
+                question.correct
             ){
 
                 btn.classList.add(
-                    "correct"
+                    "answer-highlight"
                 );
 
             }
@@ -1635,50 +1661,37 @@ function handleAnswer(
         });
 
 
-        document
-            .getElementById("resultText")
-            .innerHTML =
+        resultText.innerHTML =
+            `
+            ❌ Incorrect.
 
-            "❌ Incorrect!" +
+            <span class="correct-answer">
+                Correct answer: ${question.correct}
+            </span>
 
-            '<span class="explanation">' +
-
-            "Correct answer: " +
-
-            "<strong>" +
-            question.answer +
-            "</strong>" +
-
-            "<br>" +
-
-            question.answer +
-            " = " +
-            question.meaning +
-
-            "</span>";
+            <span class="explanation">
+                ${question.explanation}
+            </span>
+            `;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message wrong-text";
-
-
-        /*
-         * Wrong answers do not get a point.
-         * Automatically move to the next question.
-         */
-
-        setTimeout(() => {
-
-            nextQuestion();
-
-        },1200);
 
     }
 
-}
 
+    /*
+       Next button appears after
+       either correct or wrong answer.
+    */
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "inline-block";
+
+}
 
 
 /* ==========================================================
@@ -1687,17 +1700,26 @@ function handleAnswer(
 
 function nextQuestion(){
 
+    if(!answered){
+
+        return;
+
+    }
+
+
     currentQuestion++;
 
 
     if(
         currentQuestion <
-        questions.length
+        TOTAL_QUESTIONS
     ){
 
         loadQuestion();
 
-    }else{
+    }
+
+    else{
 
         finishGame();
 
@@ -1706,18 +1728,11 @@ function nextQuestion(){
 }
 
 
-
 /* ==========================================================
    FINISH GAME
 ========================================================== */
 
 function finishGame(){
-
-    document
-        .getElementById("progress")
-        .style.width =
-        "100%";
-
 
     document
         .getElementById("game")
@@ -1738,34 +1753,45 @@ function finishGame(){
         .textContent =
         score +
         " / " +
-        questions.length;
+        TOTAL_QUESTIONS;
 
 
-    const percent =
+    const percentage =
         Math.round(
             score /
-            questions.length *
+            TOTAL_QUESTIONS *
             100
         );
+
+
+    document
+        .getElementById("finalPercentage")
+        .textContent =
+        percentage +
+        "%";
 
 
     let message;
 
 
-    if(percent >= 90){
+    if(percentage >= 90){
 
         message =
-            "🏆 Excellent! You know how to describe things in Vietnamese.";
+            "🏆 Excellent! You can identify different health words very well.";
 
-    }else if(percent >= 70){
+    }
 
-        message =
-            "🎉 Good job! Keep practicing these Vietnamese words.";
-
-    }else{
+    else if(percentage >= 70){
 
         message =
-            "📚 Keep practicing your Vietnamese describing words.";
+            "🎉 Good job! Keep practicing.";
+
+    }
+
+    else{
+
+        message =
+            "📚 Keep practicing these health words.";
 
     }
 
@@ -1776,7 +1802,6 @@ function finishGame(){
         message;
 
 }
-
 
 
 /* ==========================================================
@@ -1790,7 +1815,6 @@ function restartGame(){
 }
 
 
-
 /* ==========================================================
    BACK TO LOBBY
 ========================================================== */
@@ -1798,11 +1822,12 @@ function restartGame(){
 function backToLobby(){
 
     window.location.href =
-        href="../../category.html?category=Describe%20things";
+        "../../category.html?category=Health";
 
 }
 
 </script>
+
 
 </body>
 

@@ -31,7 +31,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.gstatic.com"
+        href="https://fonts.googleapis.com"
         crossorigin
     >
 
@@ -69,6 +69,18 @@
 
             --line:
                 #d9e6f2;
+
+            --category-accent:
+                #2f6fed;
+
+            --category-accent-light:
+                #6fa4ff;
+
+            --category-background:
+                #eaf3ff;
+
+            --category-border:
+                #c4daf6;
 
         }
 
@@ -1084,7 +1096,7 @@
 
 
         /* =====================================================
-           QUICK LESSON CARDS
+           QUICK LESSONS
         ====================================================== */
 
         .lesson-grid {
@@ -1108,9 +1120,6 @@
 
 
         .lesson-card {
-
-            position:
-                relative;
 
             display:
                 flex;
@@ -1285,10 +1294,6 @@
 
         }
 
-
-        /* =====================================================
-           VOCABULARY CARD
-        ====================================================== */
 
         .vocab-card {
 
@@ -1647,6 +1652,9 @@
         ====================================================== */
 
         .empty-message {
+
+            grid-column:
+                1 / -1;
 
             padding:
                 45px 25px;
@@ -2149,7 +2157,19 @@
             >
 
                 <div class="empty-message">
-                    Loading games...
+
+                    <div class="empty-icon">
+                        🎮
+                    </div>
+
+                    <h3 class="empty-title">
+                        Loading games...
+                    </h3>
+
+                    <p class="empty-text">
+                        Finding games for this category.
+                    </p>
+
                 </div>
 
             </div>
@@ -2294,14 +2314,52 @@
             "categories.json";
 
 
-        /*
-         * Stores the currently loaded vocabulary.
-         *
-         * Needed when the user clicks
-         * "Back to Topics".
-         */
+        const GITHUB_OWNER =
+            "DuongNg1111";
 
-        let currentVocabulary = [];
+
+        const GITHUB_REPOSITORY =
+            "Vietnamese-wed-game";
+
+
+        const GITHUB_BRANCH =
+            "main";
+
+
+        const GAMES_FOLDER =
+            "GAMES";
+
+
+        const GITHUB_TREE_API =
+            `https://api.github.com/repos/${
+                GITHUB_OWNER
+            }/${
+                GITHUB_REPOSITORY
+            }/git/trees/${
+                GITHUB_BRANCH
+            }?recursive=1`;
+
+
+        const RAW_BASE =
+            `https://raw.githubusercontent.com/${
+                GITHUB_OWNER
+            }/${
+                GITHUB_REPOSITORY
+            }/${
+                GITHUB_BRANCH
+            }`;
+
+
+        /* =====================================================
+           STATE
+        ====================================================== */
+
+        let currentVocabulary =
+            [];
+
+
+        let currentCategory =
+            null;
 
 
         /* =====================================================
@@ -2324,18 +2382,6 @@
            ELEMENTS
         ====================================================== */
 
-        const categoryHeader =
-            document.getElementById(
-                "category-header"
-            );
-
-
-        const categoryIcon =
-            document.getElementById(
-                "category-icon"
-            );
-
-
         const categoryTitle =
             document.getElementById(
                 "category-title"
@@ -2345,6 +2391,12 @@
         const categoryDescription =
             document.getElementById(
                 "category-description"
+            );
+
+
+        const categoryIcon =
+            document.getElementById(
+                "category-icon"
             );
 
 
@@ -2385,130 +2437,199 @@
 
 
         /* =====================================================
-           CATEGORY THEMES
+           FALLBACK THEMES
+           
+           These are only fallbacks.
+           
+           If a category later gets a "theme" object
+           inside categories.json, that theme is used first.
         ====================================================== */
 
-        const categoryThemes = {
+        const fallbackThemes = {
 
             "Color": {
-                accent: "#2878df",
-                light: "#6fa4ff",
-                background: "#eaf3ff",
-                border: "#c4daf6"
+
+                accent:
+                    "#2878df",
+
+                light:
+                    "#6fa4ff",
+
+                background:
+                    "#eaf3ff",
+
+                border:
+                    "#c4daf6"
+
             },
+
 
             "Describe things": {
-                accent: "#7657d9",
-                light: "#a38be8",
-                background: "#f1edff",
-                border: "#d9d0fa"
+
+                accent:
+                    "#7657d9",
+
+                light:
+                    "#a38be8",
+
+                background:
+                    "#f1edff",
+
+                border:
+                    "#d9d0fa"
+
             },
+
 
             "Food and Drinks": {
-                accent: "#e05a42",
-                light: "#f08b78",
-                background: "#fff0ec",
-                border: "#f3cdc5"
+
+                accent:
+                    "#e05a42",
+
+                light:
+                    "#f08b78",
+
+                background:
+                    "#fff0ec",
+
+                border:
+                    "#f3cdc5"
+
             },
+
 
             "Grammar": {
-                accent: "#079b91",
-                light: "#55c4bb",
-                background: "#e7f8f5",
-                border: "#bee8e3"
+
+                accent:
+                    "#079b91",
+
+                light:
+                    "#55c4bb",
+
+                background:
+                    "#e7f8f5",
+
+                border:
+                    "#bee8e3"
+
             },
+
 
             "Health": {
-                accent: "#d14f76",
-                light: "#e68ba5",
-                background: "#fff0f4",
-                border: "#f0cbd7"
+
+                accent:
+                    "#d14f76",
+
+                light:
+                    "#e68ba5",
+
+                background:
+                    "#fff0f4",
+
+                border:
+                    "#f0cbd7"
+
             },
+
 
             "Mix Practice": {
-                accent: "#e0a51a",
-                light: "#f0c85a",
-                background: "#fff8df",
-                border: "#f1df9f"
+
+                accent:
+                    "#e0a51a",
+
+                light:
+                    "#f0c85a",
+
+                background:
+                    "#fff8df",
+
+                border:
+                    "#f1df9f"
+
             },
+
 
             "Numbers": {
-                accent: "#3b82c4",
-                light: "#72a9d8",
-                background: "#eaf5fc",
-                border: "#c4dff1"
+
+                accent:
+                    "#3b82c4",
+
+                light:
+                    "#72a9d8",
+
+                background:
+                    "#eaf5fc",
+
+                border:
+                    "#c4dff1"
+
             },
+
 
             "People & Pronouns": {
-                accent: "#d14f9b",
-                light: "#df82b8",
-                background: "#fff0f8",
-                border: "#efc7df"
+
+                accent:
+                    "#d14f9b",
+
+                light:
+                    "#df82b8",
+
+                background:
+                    "#fff0f8",
+
+                border:
+                    "#efc7df"
+
             },
 
+
             "Places & Locations": {
-                accent: "#2f9a67",
-                light: "#68c493",
-                background: "#eaf8f0",
-                border: "#c5e9d5"
+
+                accent:
+                    "#2f9a67",
+
+                light:
+                    "#68c493",
+
+                background:
+                    "#eaf8f0",
+
+                border:
+                    "#c5e9d5"
+
             }
 
         };
 
 
         /* =====================================================
-           GAME ICONS
+           DEFAULT THEME
         ====================================================== */
 
-        const gameIcons = [
+        const defaultTheme = {
 
-            "🎮",
-            "🧩",
-            "⚡",
-            "🎯",
-            "🧠",
-            "🚀",
-            "✨",
-            "🏆"
+            accent:
+                "#2f6fed",
 
-        ];
+            light:
+                "#6fa4ff",
 
+            background:
+                "#eaf3ff",
 
-        /* =====================================================
-           LOAD CATEGORIES
-        ====================================================== */
+            border:
+                "#c4daf6"
 
-        async function loadCategories() {
-
-            const response =
-                await fetch(
-                    CATEGORY_FILE,
-                    {
-                        cache:
-                            "no-store"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
-
-            }
-
-
-            return await response.json();
-
-        }
+        };
 
 
         /* =====================================================
            ESCAPE HTML
         ====================================================== */
 
-        function escapeHtml(value) {
+        function escapeHtml(
+            value
+        ) {
 
             const div =
                 document.createElement(
@@ -2528,66 +2649,616 @@
 
 
         /* =====================================================
+           NORMALIZE PATH
+        ====================================================== */
+
+        function normalizePath(
+            path
+        ) {
+
+            return String(
+                path || ""
+            )
+            .replace(
+                /\\/g,
+                "/"
+            )
+            .replace(
+                /^\/+/,
+                ""
+            );
+
+        }
+
+
+        /* =====================================================
+           NORMALIZE CATEGORY NAME
+        ====================================================== */
+
+        function normalizeCategoryName(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
+
+        /* =====================================================
+           FIND CATEGORY NAME
+        ====================================================== */
+
+        function findCategoryKey(
+            categories,
+            requestedName
+        ) {
+
+            if (
+                categories[
+                    requestedName
+                ]
+            ) {
+
+                return requestedName;
+
+            }
+
+
+            const requested =
+                normalizeCategoryName(
+                    requestedName
+                );
+
+
+            return Object.keys(
+                categories
+            ).find(
+                key =>
+                    normalizeCategoryName(
+                        key
+                    ) === requested
+            ) || null;
+
+        }
+
+
+        /* =====================================================
            APPLY CATEGORY THEME
         ====================================================== */
 
-        function applyCategoryTheme() {
+        function applyCategoryTheme(
+            category
+        ) {
 
             const theme =
-                categoryThemes[
-                    categoryName
+                category &&
+                category.theme
+                    ? {
+                        ...defaultTheme,
+                        ...category.theme
+                    }
+                    : (
+                        fallbackThemes[
+                            categoryName
+                        ] ||
+                        defaultTheme
+                    );
+
+
+            document.documentElement.style.setProperty(
+                "--category-accent",
+                theme.accent
+            );
+
+
+            document.documentElement.style.setProperty(
+                "--category-accent-light",
+                theme.light
+            );
+
+
+            document.documentElement.style.setProperty(
+                "--category-background",
+                theme.background
+            );
+
+
+            document.documentElement.style.setProperty(
+                "--category-border",
+                theme.border
+            );
+
+        }
+
+
+        /* =====================================================
+           LOAD CATEGORY JSON
+        ====================================================== */
+
+        async function loadCategories() {
+
+            const response =
+                await fetch(
+                    CATEGORY_FILE,
+                    {
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    `Could not load categories.json (${response.status})`
+                );
+
+            }
+
+
+            return await response.json();
+
+        }
+
+
+        /* =====================================================
+           LOAD GITHUB TREE
+           
+           This scans the repository recursively.
+           
+           Example:
+           
+           GAMES/
+             Color/
+               game1.html
+               game2.html
+             
+             Food and Drinks/
+               game1/
+                 game1.html
+        ====================================================== */
+
+        async function loadGameTree() {
+
+            const response =
+                await fetch(
+                    GITHUB_TREE_API,
+                    {
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    `Could not scan the games folder (${response.status})`
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                data.truncated
+            ) {
+
+                console.warn(
+                    "GitHub repository tree was truncated."
+                );
+
+            }
+
+
+            return Array.isArray(
+                data.tree
+            )
+                ? data.tree
+                : [];
+
+        }
+
+
+        /* =====================================================
+           GET CATEGORY FROM GAME PATH
+           
+           Example:
+           
+           GAMES/Color/game1.html
+           → Color
+           
+           GAMES/Food and Drinks/game1/game1.html
+           → Food and Drinks
+        ====================================================== */
+
+        function getCategoryFromPath(
+            path
+        ) {
+
+            const normalized =
+                normalizePath(
+                    path
+                );
+
+
+            const parts =
+                normalized.split(
+                    "/"
+                );
+
+
+            const gamesIndex =
+                parts.findIndex(
+                    part =>
+                        part.toLowerCase() ===
+                        GAMES_FOLDER.toLowerCase()
+                );
+
+
+            if (
+                gamesIndex === -1
+            ) {
+
+                return "";
+
+            }
+
+
+            return (
+                parts[
+                    gamesIndex + 1
                 ] ||
-                categoryThemes[
-                    "Color"
-                ];
-
-
-            document.documentElement.style.setProperty(
-                "--category-accent",
-                theme.accent
+                ""
             );
 
-
-            document.documentElement.style.setProperty(
-                "--category-accent-light",
-                theme.light
-            );
+        }
 
 
-            document.documentElement.style.setProperty(
-                "--category-background",
-                theme.background
-            );
+        /* =====================================================
+           GET RAW GAME URL
+        ====================================================== */
+
+        function getRawGameUrl(
+            path
+        ) {
+
+            const normalized =
+                normalizePath(
+                    path
+                );
 
 
-            document.documentElement.style.setProperty(
-                "--category-border",
-                theme.border
-            );
+            const encodedPath =
+                normalized
+                    .split("/")
+                    .map(
+                        part =>
+                            encodeURIComponent(
+                                part
+                            )
+                    )
+                    .join("/");
 
 
-            categoryHeader.style.setProperty(
-                "--category-accent",
-                theme.accent
-            );
+            return `${
+                RAW_BASE
+            }/${
+                encodedPath
+            }`;
+
+        }
 
 
-            categoryHeader.style.setProperty(
-                "--category-accent-light",
-                theme.light
-            );
+        /* =====================================================
+           PARSE META TAG
+           
+           Supports:
+           
+           <meta name="game-title" content="...">
+           
+           and
+           
+           <meta
+               name="game-title"
+               content="..."
+           >
+        ====================================================== */
+
+        function parseMeta(
+            html,
+            name
+        ) {
+
+            const pattern =
+                new RegExp(
+                    `<meta\\s+[^>]*name=["']${name}["'][^>]*content=["']([^"']*)["'][^>]*>`,
+                    "i"
+                );
 
 
-            categoryHeader.style.setProperty(
-                "--category-background",
-                theme.background
-            );
+            const reversePattern =
+                new RegExp(
+                    `<meta\\s+[^>]*content=["']([^"']*)["'][^>]*name=["']${name}["'][^>]*>`,
+                    "i"
+                );
 
 
-            categoryHeader.style.setProperty(
-                "--category-border",
-                theme.border
-            );
+            const match =
+                html.match(
+                    pattern
+                ) ||
+                html.match(
+                    reversePattern
+                );
+
+
+            return match
+                ? match[1].trim()
+                : "";
+
+        }
+
+
+        /* =====================================================
+           PARSE GAME FILE
+        ====================================================== */
+
+        async function parseGameFile(
+            path
+        ) {
+
+            const url =
+                getRawGameUrl(
+                    path
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        url,
+                        {
+                            cache:
+                                "no-store"
+                        }
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    console.warn(
+                        "Could not load game:",
+                        path,
+                        response.status
+                    );
+
+
+                    return null;
+
+                }
+
+
+                const html =
+                    await response.text();
+
+
+                const title =
+                    parseMeta(
+                        html,
+                        "game-title"
+                    );
+
+
+                const description =
+                    parseMeta(
+                        html,
+                        "game-description"
+                    );
+
+
+                const icon =
+                    parseMeta(
+                        html,
+                        "game-icon"
+                    );
+
+
+                const metaCategory =
+                    parseMeta(
+                        html,
+                        "game-category"
+                    );
+
+
+                const pathCategory =
+                    getCategoryFromPath(
+                        path
+                    );
+
+
+                const category =
+                    metaCategory ||
+                    pathCategory;
+
+
+                const fileName =
+                    normalizePath(
+                        path
+                    )
+                        .split("/")
+                        .pop()
+                        .replace(
+                            /\.html?$/i,
+                            ""
+                        );
+
+
+                return {
+
+                    path:
+                        path,
+
+                    title:
+                        title ||
+                        fileName,
+
+                    description:
+                        description ||
+                        "Practice Vietnamese with a quick interactive game.",
+
+                    icon:
+                        icon ||
+                        "🎮",
+
+                    category:
+                        category
+
+                };
+
+            }
+
+            catch (
+                error
+            ) {
+
+                console.warn(
+                    "Game parsing error:",
+                    path,
+                    error
+                );
+
+
+                return null;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOAD ALL GAMES
+        ====================================================== */
+
+        async function loadAllGames() {
+
+            const tree =
+                await loadGameTree();
+
+
+            const gameFiles =
+                tree
+                    .filter(
+                        item =>
+                            item &&
+                            item.type === "blob"
+                    )
+                    .map(
+                        item =>
+                            normalizePath(
+                                item.path
+                            )
+                    )
+                    .filter(
+                        path =>
+                            path
+                                .toLowerCase()
+                                .startsWith(
+                                    `${
+                                        GAMES_FOLDER
+                                    }/`.toLowerCase()
+                                )
+                    )
+                    .filter(
+                        path =>
+                            /\.html?$/i.test(
+                                path
+                            )
+                    )
+                    .filter(
+                        path =>
+                            !path
+                                .toLowerCase()
+                                .endsWith(
+                                    "/index.html"
+                                )
+                    );
+
+
+            /*
+             * Parse game files.
+             *
+             * A small delay between requests prevents
+             * sending too many requests at exactly
+             * the same time.
+             */
+
+            const results =
+                [];
+
+
+            const batchSize =
+                8;
+
+
+            for (
+                let i = 0;
+                i < gameFiles.length;
+                i += batchSize
+            ) {
+
+                const batch =
+                    gameFiles.slice(
+                        i,
+                        i + batchSize
+                    );
+
+
+                const batchResults =
+                    await Promise.all(
+                        batch.map(
+                            path =>
+                                parseGameFile(
+                                    path
+                                )
+                        )
+                    );
+
+
+                batchResults.forEach(
+                    game => {
+
+                        if (
+                            game
+                        ) {
+
+                            results.push(
+                                game
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            return results;
 
         }
 
@@ -2617,10 +3288,7 @@
 
             const icon =
                 game.icon ||
-                gameIcons[
-                    index %
-                    gameIcons.length
-                ];
+                "🎮";
 
 
             const title =
@@ -2649,17 +3317,23 @@
                     class="game-icon"
                     aria-hidden="true"
                 >
-                    ${escapeHtml(icon)}
+                    ${escapeHtml(
+                        icon
+                    )}
                 </div>
 
 
                 <h3 class="game-title">
-                    ${escapeHtml(title)}
+                    ${escapeHtml(
+                        title
+                    )}
                 </h3>
 
 
                 <p class="game-description">
-                    ${escapeHtml(description)}
+                    ${escapeHtml(
+                        description
+                    )}
                 </p>
 
 
@@ -2740,7 +3414,9 @@
 
             const title =
                 lesson.title ||
-                `Quick Lesson ${index + 1}`;
+                `Quick Lesson ${
+                    index + 1
+                }`;
 
 
             const description =
@@ -2754,17 +3430,23 @@
                     class="lesson-icon"
                     aria-hidden="true"
                 >
-                    ${escapeHtml(icon)}
+                    ${escapeHtml(
+                        icon
+                    )}
                 </div>
 
 
                 <h3 class="lesson-title">
-                    ${escapeHtml(title)}
+                    ${escapeHtml(
+                        title
+                    )}
                 </h3>
 
 
                 <p class="lesson-description">
-                    ${escapeHtml(description)}
+                    ${escapeHtml(
+                        description
+                    )}
                 </p>
 
 
@@ -2813,16 +3495,6 @@
                 "";
 
 
-            /*
-             * Support both:
-             *
-             * "phonetic"
-             *
-             * and
-             *
-             * "phonetics"
-             */
-
             const phonetic =
                 word.phonetics ||
                 word.phonetic ||
@@ -2830,19 +3502,14 @@
                 "";
 
 
-            /*
-             * Remove "/" if the JSON already
-             * contains them.
-             */
-
             const cleanPhonetic =
                 String(
                     phonetic
                 )
-                .replace(
-                    /^\/|\/$/g,
-                    ""
-                );
+                    .replace(
+                        /^\/|\/$/g,
+                        ""
+                    );
 
 
             card.innerHTML = `
@@ -2850,7 +3517,9 @@
                 <h3 class="vocab-vietnamese">
                     ${escapeHtml(
                         vietnamese ||
-                        `Word ${index + 1}`
+                        `Word ${
+                            index + 1
+                        }`
                     )}
                 </h3>
 
@@ -2884,7 +3553,7 @@
 
 
         /* =====================================================
-           EMPTY STATE
+           CREATE EMPTY STATE
         ====================================================== */
 
         function createEmptyState(
@@ -2909,17 +3578,23 @@
                     class="empty-icon"
                     aria-hidden="true"
                 >
-                    ${escapeHtml(icon)}
+                    ${escapeHtml(
+                        icon
+                    )}
                 </div>
 
 
                 <h3 class="empty-title">
-                    ${escapeHtml(title)}
+                    ${escapeHtml(
+                        title
+                    )}
                 </h3>
 
 
                 <p class="empty-text">
-                    ${escapeHtml(text)}
+                    ${escapeHtml(
+                        text
+                    )}
                 </p>
 
             `;
@@ -2958,9 +3633,10 @@
                     createEmptyState(
                         "🎮",
                         "Games coming soon",
-                        "Games for this category will be added here."
+                        "Games for this category will appear here automatically."
                     )
                 );
+
 
                 return;
 
@@ -2972,16 +3648,6 @@
                     game,
                     index
                 ) => {
-
-                    if (
-                        !game ||
-                        !game.path
-                    ) {
-
-                        return;
-
-                    }
-
 
                     gameGrid.appendChild(
                         createGameCard(
@@ -3027,6 +3693,7 @@
                         "Short explanations and useful notes will be added here."
                     )
                 );
+
 
                 return;
 
@@ -3074,14 +3741,6 @@
                 "";
 
 
-            /*
-             * Always store the current vocabulary.
-             *
-             * This is needed for:
-             *
-             * Back to Topics
-             */
-
             currentVocabulary =
                 Array.isArray(
                     vocabulary
@@ -3089,12 +3748,6 @@
                     ? vocabulary
                     : [];
 
-
-            /*
-             * =================================================
-             * NO VOCABULARY
-             * =================================================
-             */
 
             if (
                 currentVocabulary.length === 0
@@ -3119,28 +3772,7 @@
 
 
             /*
-             * =================================================
-             * DETECT TOPIC STRUCTURE
-             *
-             * Topic-based example:
-             *
-             * [
-             *   {
-             *     "topic": "Size",
-             *     "vocabulary": [...]
-             *   }
-             * ]
-             *
-             *
-             * Simple example:
-             *
-             * [
-             *   {
-             *     "vietnamese": "đỏ",
-             *     "english": "red"
-             *   }
-             * ]
-             * =================================================
+             * Detect topic-based vocabulary.
              */
 
             const isTopicBased =
@@ -3155,12 +3787,7 @@
 
 
             /*
-             * =================================================
-             * SIMPLE VOCABULARY
-             *
-             * Example:
-             * Color
-             * =================================================
+             * Simple vocabulary.
              */
 
             if (
@@ -3208,12 +3835,7 @@
 
 
             /*
-             * =================================================
-             * TOPIC-BASED VOCABULARY
-             *
-             * Example:
-             * Describe Things
-             * =================================================
+             * Topic-based vocabulary.
              */
 
             let totalWords =
@@ -3247,10 +3869,6 @@
                 }`;
 
 
-            /*
-             * Create topic cards.
-             */
-
             currentVocabulary.forEach(
                 (
                     topic,
@@ -3282,7 +3900,9 @@
 
                     const topicName =
                         topic.topic ||
-                        `Topic ${index + 1}`;
+                        `Topic ${
+                            index + 1
+                        }`;
 
 
                     const wordCount =
@@ -3323,11 +3943,6 @@
                     `;
 
 
-                    /*
-                     * Click topic
-                     * → show words inside topic.
-                     */
-
                     card.addEventListener(
                         "click",
                         () => {
@@ -3361,12 +3976,6 @@
             vocabGrid.innerHTML =
                 "";
 
-
-            /*
-             * =================================================
-             * BACK TO TOPICS
-             * =================================================
-             */
 
             const backButton =
                 document.createElement(
@@ -3402,12 +4011,6 @@
                 backButton
             );
 
-
-            /*
-             * =================================================
-             * TOPIC HEADER
-             * =================================================
-             */
 
             const heading =
                 document.createElement(
@@ -3458,12 +4061,6 @@
             );
 
 
-            /*
-             * =================================================
-             * WORD CARDS
-             * =================================================
-             */
-
             words.forEach(
                 (
                     word,
@@ -3494,6 +4091,49 @@
 
 
         /* =====================================================
+           FILTER GAMES BY CATEGORY
+        ====================================================== */
+
+        function filterGamesByCategory(
+            games,
+            selectedCategory
+        ) {
+
+            const normalizedSelected =
+                normalizeCategoryName(
+                    selectedCategory
+                );
+
+
+            return games
+                .filter(
+                    game =>
+                        normalizeCategoryName(
+                            game.category
+                        ) ===
+                        normalizedSelected
+                )
+                .sort(
+                    (
+                        a,
+                        b
+                    ) =>
+                        a.path.localeCompare(
+                            b.path,
+                            undefined,
+                            {
+                                numeric:
+                                    true,
+                                sensitivity:
+                                    "base"
+                            }
+                        )
+                );
+
+        }
+
+
+        /* =====================================================
            RENDER CATEGORY
         ====================================================== */
 
@@ -3502,7 +4142,7 @@
             try {
 
                 /*
-                 * Check category parameter.
+                 * No category selected.
                  */
 
                 if (
@@ -3517,42 +4157,68 @@
 
 
                 /*
-                 * Load JSON.
+                 * Load categories.json
+                 * and GitHub games at the same time.
                  */
 
-                const categories =
-                    await loadCategories();
+                const [
+                    categories,
+                    allGames
+                ] =
+                    await Promise.all(
+                        [
+                            loadCategories(),
+                            loadAllGames()
+                        ]
+                    );
 
 
                 /*
-                 * Find selected category.
+                 * Find category.
                  */
 
-                const category =
-                    categories[
+                const categoryKey =
+                    findCategoryKey(
+                        categories,
                         categoryName
-                    ];
+                    );
 
 
                 if (
-                    !category
+                    !categoryKey
                 ) {
 
                     throw new Error(
-                        `Category "${categoryName}" was not found.`
+                        `Category "${categoryName}" was not found in categories.json.`
                     );
 
                 }
 
 
+                const category =
+                    categories[
+                        categoryKey
+                    ];
+
+
+                currentCategory =
+                    category;
+
+
                 /*
-                 * =================================================
-                 * CATEGORY HEADER
-                 * =================================================
+                 * Update page title.
+                 */
+
+                document.title =
+                    `${categoryKey} | Survival Vietnamese with Duong`;
+
+
+                /*
+                 * Header.
                  */
 
                 categoryTitle.textContent =
-                    categoryName;
+                    categoryKey;
 
 
                 categoryDescription.textContent =
@@ -3565,22 +4231,31 @@
                     "📚";
 
 
-                applyCategoryTheme();
+                /*
+                 * Theme.
+                 */
+
+                applyCategoryTheme(
+                    category
+                );
 
 
                 /*
-                 * =================================================
-                 * DATA
-                 * =================================================
+                 * Automatically find games
+                 * for this category.
                  */
 
                 const games =
-                    Array.isArray(
-                        category.games
-                    )
-                        ? category.games
-                        : [];
+                    filterGamesByCategory(
+                        allGames,
+                        categoryKey
+                    );
 
+
+                /*
+                 * Lessons and vocabulary
+                 * still come from categories.json.
+                 */
 
                 const lessons =
                     Array.isArray(
@@ -3598,20 +4273,12 @@
                         : [];
 
 
-                /*
-                 * =================================================
-                 * STORE VOCABULARY
-                 * =================================================
-                 */
-
                 currentVocabulary =
                     vocabulary;
 
 
                 /*
-                 * =================================================
-                 * RENDER ALL TABS
-                 * =================================================
+                 * Render everything.
                  */
 
                 renderGames(
@@ -3626,6 +4293,23 @@
 
                 renderVocabulary(
                     vocabulary
+                );
+
+
+                /*
+                 * Helpful debugging information.
+                 */
+
+                console.log(
+                    `Category "${categoryKey}" loaded.`,
+                    {
+                        games:
+                            games.length,
+                        lessons:
+                            lessons.length,
+                        vocabulary:
+                            vocabulary.length
+                    }
                 );
 
             }
@@ -3648,6 +4332,10 @@
                     "";
 
 
+                gameCount.textContent =
+                    "Error";
+
+
                 gameGrid.innerHTML =
                     "";
 
@@ -3659,6 +4347,23 @@
                         error.message
                     )
                 );
+
+
+                lessonGrid.innerHTML =
+                    "";
+
+
+                lessonGrid.appendChild(
+                    createEmptyState(
+                        "⚠️",
+                        "Unable to load content",
+                        "Please check the category data and try again."
+                    )
+                );
+
+
+                vocabGrid.innerHTML =
+                    "";
 
             }
 
@@ -3707,7 +4412,7 @@
 
 
                         /*
-                         * Remove active state
+                         * Remove active
                          * from all buttons.
                          */
 

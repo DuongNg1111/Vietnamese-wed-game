@@ -4,19 +4,40 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vietnamese Health Phrase Match</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="game-title" content="Vietnamese Health Phrase Match">
-<meta name="game-description" content="Choose the correct Vietnamese meaning for common health phrases.">
-<meta name="game-icon" content="❤️">
+<title>Vietnamese Health Situation Challenge</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese Health Situation Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Choose the correct Vietnamese health word for each simple situation."
+>
+
+<meta
+    name="game-icon"
+    content="❤️"
+>
+
 
 <style>
+
+/* ==========================================================
+   RESET
+========================================================== */
 
 *{
     box-sizing:border-box;
 }
+
 
 body{
 
@@ -34,7 +55,9 @@ body{
     min-height:100vh;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     padding:20px;
@@ -52,6 +75,7 @@ body{
     display:none;
 }
 
+
 .screen.active{
     display:block;
 }
@@ -65,18 +89,19 @@ body{
 
     position:relative;
 
-    width:min(900px,96vw);
+    width:min(850px,96vw);
 
     margin:0 auto;
 
     background:white;
 
-    padding:65px 30px 35px;
+    padding:65px 30px 30px;
 
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -90,6 +115,7 @@ body{
     position:absolute;
 
     top:20px;
+
     left:22px;
 
     padding:8px 14px;
@@ -112,6 +138,7 @@ body{
 
 }
 
+
 .lobby-btn:hover{
 
     background:#dcecff;
@@ -129,7 +156,10 @@ body{
 
     text-align:center;
 
-    padding:20px 20px 30px;
+    padding:
+        20px
+        20px
+        30px;
 
 }
 
@@ -145,7 +175,8 @@ body{
 
 #intro h1{
 
-    margin:0 0 10px;
+    margin:
+        0 0 10px;
 
     font-size:34px;
 
@@ -167,7 +198,9 @@ body{
 
     margin-top:20px;
 
-    padding:14px 35px;
+    padding:
+        14px
+        35px;
 
     border:none;
 
@@ -205,7 +238,8 @@ body{
 
     text-align:center;
 
-    margin:0 0 5px;
+    margin:
+        0 0 5px;
 
 }
 
@@ -306,54 +340,39 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   SITUATION CARD
 ========================================================== */
 
 .card{
 
     background:#fffde7;
 
-    border:2px dashed #f1c40f;
+    border:
+        2px dashed
+        #f1c40f;
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:
+        30px
+        20px;
 
-    margin:20px 0;
+    margin:
+        20px 0;
 
     min-height:150px;
 
     display:flex;
 
-    flex-direction:column;
-
     justify-content:center;
 
     align-items:center;
 
-    gap:8px;
-
-}
-
-
-.question-label{
-
-    font-size:14px;
-
-    color:#7f8c8d;
+    font-size:21px;
 
     font-weight:600;
 
-}
-
-
-.question-word{
-
-    font-size:30px;
-
-    font-weight:800;
-
-    color:#34495e;
+    line-height:1.5;
 
 }
 
@@ -397,11 +416,18 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(:disabled){
 
     background:#2c3e50;
 
     transform:translateY(-2px);
+
+}
+
+
+.option-btn:disabled{
+
+    cursor:default;
 
 }
 
@@ -420,11 +446,15 @@ body{
 }
 
 
-.option-btn.disabled{
+/* ==========================================================
+   SHOW CORRECT ANSWER AFTER WRONG
+========================================================== */
 
-    pointer-events:none;
+.option-btn.answer-highlight{
 
-    opacity:.7;
+    background:#27ae60;
+
+    color:white;
 
 }
 
@@ -435,7 +465,7 @@ body{
 
 .result-message{
 
-    min-height:42px;
+    min-height:70px;
 
     margin-top:20px;
 
@@ -477,13 +507,30 @@ body{
 }
 
 
+.correct-answer{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#34495e;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+
 /* ==========================================================
    NEXT BUTTON
 ========================================================== */
 
 .next-btn{
 
-    padding:12px 28px;
+    padding:
+        12px
+        28px;
 
     border:none;
 
@@ -523,7 +570,10 @@ body{
 
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:
+        30px
+        20px
+        40px;
 
 }
 
@@ -550,6 +600,17 @@ body{
 }
 
 
+.final-percentage{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+
 .final-message{
 
     color:#7f8c8d;
@@ -557,13 +618,6 @@ body{
     font-size:18px;
 
     line-height:1.5;
-
-}
-
-
-#final .start-btn{
-
-    margin-top:10px;
 
 }
 
@@ -583,7 +637,10 @@ body{
 
     .container{
 
-        padding:60px 15px 20px;
+        padding:
+            60px
+            15px
+            20px;
 
     }
 
@@ -597,16 +654,13 @@ body{
 
     .card{
 
-        min-height:130px;
+        font-size:18px;
 
-        padding:25px 15px;
+        min-height:140px;
 
-    }
-
-
-    .question-word{
-
-        font-size:25px;
+        padding:
+            25px
+            15px;
 
     }
 
@@ -633,7 +687,9 @@ body{
 
         font-size:13px;
 
-        padding:7px 12px;
+        padding:
+            7px
+            12px;
 
     }
 
@@ -656,7 +712,8 @@ body{
 
 <button
     class="lobby-btn"
-    onclick="backToLobby()">
+    onclick="backToLobby()"
+>
 
     ← Back to Lobby
 
@@ -670,32 +727,42 @@ body{
 
 <div
     id="intro"
-    class="screen active">
+    class="screen active"
+>
 
     <div class="emoji">
+
         ❤️
+
     </div>
 
 
     <h1>
-        Vietnamese Health Phrase Match
+
+        Vietnamese Health Situation Challenge
+
     </h1>
 
 
     <p>
-        Look at the English health phrase<br>
-        and choose the correct Vietnamese meaning.
+
+        Read the situation and choose
+        the correct Vietnamese word.
+
     </p>
 
 
     <p>
-        🎯 15 questions
+
+        🎯 20 questions
+
     </p>
 
 
     <button
         class="start-btn"
-        onclick="startGame()">
+        onclick="startGame()"
+    >
 
         Start Game
 
@@ -711,16 +778,21 @@ body{
 
 <div
     id="game"
-    class="screen">
+    class="screen"
+>
 
 
     <h1 class="title">
-        ❤️ Vietnamese Health Phrase Match
+
+        ❤️ Health Situation Challenge
+
     </h1>
 
 
     <p class="subtitle">
-        Choose the correct Vietnamese meaning.
+
+        What Vietnamese word fits the situation?
+
     </p>
 
 
@@ -731,6 +803,7 @@ body{
         <!-- TOP BAR -->
 
         <div class="topbar">
+
 
             <div class="question-count">
 
@@ -743,7 +816,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    15
+                    20
                 </span>
 
             </div>
@@ -759,6 +832,7 @@ body{
 
             </div>
 
+
         </div>
 
 
@@ -769,8 +843,8 @@ body{
 
             <div
                 class="progress"
-                id="progress">
-            </div>
+                id="progress"
+            ></div>
 
         </div>
 
@@ -780,18 +854,8 @@ body{
 
         <div
             class="card"
-            id="questionCard">
-
-            <div class="question-label">
-                What does this mean?
-            </div>
-
-            <div
-                class="question-word"
-                id="questionText">
-            </div>
-
-        </div>
+            id="questionText"
+        ></div>
 
 
 
@@ -799,8 +863,8 @@ body{
 
         <div
             class="options"
-            id="optionsContainer">
-        </div>
+            id="optionsContainer"
+        ></div>
 
 
 
@@ -808,8 +872,8 @@ body{
 
         <div
             class="result-message"
-            id="resultText">
-        </div>
+            id="resultText"
+        ></div>
 
 
 
@@ -819,7 +883,8 @@ body{
             class="next-btn"
             id="nextBtn"
             onclick="nextQuestion()"
-            style="display:none;">
+            style="display:none;"
+        >
 
             Next →
 
@@ -839,17 +904,21 @@ body{
 
 <div
     id="final"
-    class="screen">
+    class="screen"
+>
 
 
     <h2>
+
         🎉 Game Complete!
+
     </h2>
 
 
     <p class="final-message">
 
-        You completed the Vietnamese Health Phrase Match.
+        You completed the Vietnamese Health
+        Situation Challenge.
 
     </p>
 
@@ -858,25 +927,32 @@ body{
 
         Score:
 
-        <span id="finalScore">
-        </span>
+        <span id="finalScore"></span>
 
     </div>
 
 
+    <div
+        class="final-percentage"
+        id="finalPercentage"
+    ></div>
+
+
     <p
         class="final-message"
-        id="finalMessage">
-    </p>
+        id="finalMessage"
+    ></p>
 
 
     <button
         class="start-btn"
-        onclick="restartGame()">
+        onclick="restartGame()"
+    >
 
         Play Again
 
     </button>
+
 
 </div>
 
@@ -889,269 +965,334 @@ body{
 
 
 /* ==========================================================
-   QUESTION DATABASE
+   APPROVED HEALTH VOCABULARY
+   ONLY WORDS FROM THE ESTABLISHED VOCAB LIST
+========================================================== */
 
-   English phrase → Vietnamese meaning
+const vocabulary = [
+
+    {
+        en:"sick / illness",
+        vi:"bệnh"
+    },
+
+    {
+        en:"fever",
+        vi:"sốt"
+    },
+
+    {
+        en:"tired",
+        vi:"mệt"
+    },
+
+    {
+        en:"flu / cold",
+        vi:"cảm"
+    },
+
+    {
+        en:"cough",
+        vi:"ho"
+    },
+
+    {
+        en:"headache",
+        vi:"đau đầu"
+    },
+
+    {
+        en:"pain / hurt",
+        vi:"đau"
+    },
+
+    {
+        en:"body ache",
+        vi:"đau người"
+    },
+
+    {
+        en:"headache",
+        vi:"đau đầu"
+    },
+
+    {
+        en:"arm / hand pain",
+        vi:"đau tay"
+    },
+
+    {
+        en:"leg / foot pain",
+        vi:"đau chân"
+    },
+
+    {
+        en:"stomachache",
+        vi:"đau bụng"
+    },
+
+    {
+        en:"head",
+        vi:"đầu"
+    },
+
+    {
+        en:"hand / arm",
+        vi:"tay"
+    },
+
+    {
+        en:"leg / foot",
+        vi:"chân"
+    },
+
+    {
+        en:"stomach / belly",
+        vi:"bụng"
+    },
+
+    {
+        en:"body / person",
+        vi:"người"
+    }
+
+];
+
+
+/* ==========================================================
+   QUESTION DATABASE
+   TARGET ANSWERS ONLY USE APPROVED VOCABULARY
 ========================================================== */
 
 const database = [
 
     {
-        q: "Headache",
+        q:
+        "You are not feeling well. You are ______.",
 
-        a: [
-            "Đau đầu",
-            "Đau bụng",
-            "Đau lưng",
-            "Đau mắt"
-        ],
+        c:"bệnh",
 
-        c: "Đau đầu",
-
-        explanation:
-            "Đau đầu means “headache” — pain in your head."
+        e:
+        "Bệnh means sick or illness."
     },
 
 
     {
-        q: "Stomachache",
+        q:
+        "Your body temperature is high. You have ______.",
 
-        a: [
-            "Đau bụng",
-            "Đau đầu",
-            "Đau chân",
-            "Đau họng"
-        ],
+        c:"sốt",
 
-        c: "Đau bụng",
-
-        explanation:
-            "Đau bụng means “stomachache” — pain in your stomach."
+        e:
+        "Sốt means fever."
     },
 
 
     {
-        q: "Backache",
+        q:
+        "You have very little energy. You feel ______.",
 
-        a: [
-            "Đau lưng",
-            "Đau đầu",
-            "Đau tay",
-            "Đau bụng"
-        ],
+        c:"mệt",
 
-        c: "Đau lưng",
-
-        explanation:
-            "Đau lưng means “backache” — pain in your back."
+        e:
+        "Mệt means tired."
     },
 
 
     {
-        q: "Sore throat",
+        q:
+        "You have a flu or cold. You have ______.",
 
-        a: [
-            "Đau họng",
-            "Đau mắt",
-            "Đau chân",
-            "Đau bụng"
-        ],
+        c:"cảm",
 
-        c: "Đau họng",
-
-        explanation:
-            "Đau họng means “sore throat” — your throat hurts."
+        e:
+        "Cảm means flu or cold."
     },
 
 
     {
-        q: "Toothache",
+        q:
+        "You make a sound from your throat because you are sick. You have a ______.",
 
-        a: [
-            "Đau răng",
-            "Đau tai",
-            "Đau đầu",
-            "Đau lưng"
-        ],
+        c:"ho",
 
-        c: "Đau răng",
-
-        explanation:
-            "Đau răng means “toothache” — pain in your tooth or teeth."
+        e:
+        "Ho means cough."
     },
 
 
     {
-        q: "Earache",
+        q:
+        "Your head hurts. You have a ______.",
 
-        a: [
-            "Đau tai",
-            "Đau răng",
-            "Đau mắt",
-            "Đau chân"
-        ],
+        c:"đau đầu",
 
-        c: "Đau tai",
-
-        explanation:
-            "Đau tai means “earache” — pain in your ear."
+        e:
+        "Đau đầu means headache."
     },
 
 
     {
-        q: "Eye pain",
+        q:
+        "Something hurts. You have ______.",
 
-        a: [
-            "Đau mắt",
-            "Đau tai",
-            "Đau đầu",
-            "Đau tay"
-        ],
+        c:"đau",
 
-        c: "Đau mắt",
-
-        explanation:
-            "Đau mắt means “eye pain” — your eye hurts."
+        e:
+        "Đau means pain or hurt."
     },
 
 
     {
-        q: "Leg pain",
+        q:
+        "Your whole body hurts. You have ______.",
 
-        a: [
-            "Đau chân",
-            "Đau tay",
-            "Đau lưng",
-            "Đau bụng"
-        ],
+        c:"đau người",
 
-        c: "Đau chân",
-
-        explanation:
-            "Đau chân means “leg pain” — your leg hurts."
+        e:
+        "Đau người means body ache."
     },
 
 
     {
-        q: "Arm pain",
+        q:
+        "You have pain in your head. You have ______.",
 
-        a: [
-            "Đau tay",
-            "Đau chân",
-            "Đau đầu",
-            "Đau họng"
-        ],
+        c:"đau đầu",
 
-        c: "Đau tay",
-
-        explanation:
-            "Đau tay means “arm pain” — your arm hurts."
+        e:
+        "Đau đầu means headache."
     },
 
 
     {
-        q: "Fever",
+        q:
+        "Your arm or hand hurts. You have ______.",
 
-        a: [
-            "Sốt",
-            "Ho",
-            "Cảm",
-            "Mệt"
-        ],
+        c:"đau tay",
 
-        c: "Sốt",
-
-        explanation:
-            "Sốt means “fever” — your body temperature is high."
+        e:
+        "Đau tay means arm or hand pain."
     },
 
 
     {
-        q: "Cough",
+        q:
+        "Your leg or foot hurts. You have ______.",
 
-        a: [
-            "Ho",
-            "Sốt",
-            "Đau",
-            "Mệt"
-        ],
+        c:"đau chân",
 
-        c: "Ho",
-
-        explanation:
-            "Ho means “cough” — you cough when your throat or lungs are irritated."
+        e:
+        "Đau chân means leg or foot pain."
     },
 
 
     {
-        q: "Cold",
+        q:
+        "Your stomach hurts. You have ______.",
 
-        a: [
-            "Cảm",
-            "Sốt",
-            "Ho",
-            "Đau"
-        ],
+        c:"đau bụng",
 
-        c: "Cảm",
-
-        explanation:
-            "Cảm means “a cold” — a common illness with symptoms like a runny nose or cough."
+        e:
+        "Đau bụng means stomachache."
     },
 
 
     {
-        q: "Tired",
+        q:
+        "The part of your body above your neck is your ______.",
 
-        a: [
-            "Mệt",
-            "Đau",
-            "Sốt",
-            "Ho"
-        ],
+        c:"đầu",
 
-        c: "Mệt",
-
-        explanation:
-            "Mệt means “tired” — you have little energy."
+        e:
+        "Đầu means head."
     },
 
 
     {
-        q: "Sick",
+        q:
+        "You use your ______ to hold things.",
 
-        a: [
-            "Mệt",
-            "Bệnh",
-            "Đau",
-            "Sốt"
-        ],
+        c:"tay",
 
-        c: "Bệnh",
-
-        explanation:
-            "Bệnh means “Sick.”"
+        e:
+        "Tay means hand or arm."
     },
 
 
     {
-        q: "Feel better",
+        q:
+        "You use your ______ to walk.",
 
-        a: [
-            "Khỏe hơn",
-            "Đau hơn",
-            "Mệt hơn",
-            "Sốt hơn"
-        ],
+        c:"chân",
 
-        c: "Khỏe hơn",
+        e:
+        "Chân means leg or foot."
+    },
 
-        explanation:
-            "Khỏe hơn means “feel better” — your condition is improving."
+
+    {
+        q:
+        "The part of your body where your stomach is is your ______.",
+
+        c:"bụng",
+
+        e:
+        "Bụng means stomach or belly."
+    },
+
+
+    {
+        q:
+        "Your head, arms, legs, and stomach are parts of your ______.",
+
+        c:"người",
+
+        e:
+        "Người can mean body or person."
+    },
+
+
+    {
+        q:
+        "You are sick and your whole body hurts. You have ______.",
+
+        c:"đau người",
+
+        e:
+        "Đau người means body ache."
+    },
+
+
+    {
+        q:
+        "You are sick and the pain is in your stomach. You have ______.",
+
+        c:"đau bụng",
+
+        e:
+        "Đau bụng means stomachache."
+    },
+
+
+    {
+        q:
+        "You are sick and the pain is in your arm or hand. You have ______.",
+
+        c:"đau tay",
+
+        e:
+        "Đau tay means arm or hand pain."
     }
 
 ];
 
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS = 20;
 
 
 /* ==========================================================
@@ -1165,7 +1306,6 @@ let currentQuestion = 0;
 let score = 0;
 
 let answered = false;
-
 
 
 /* ==========================================================
@@ -1204,6 +1344,34 @@ function shuffle(array){
 
 }
 
+
+/* ==========================================================
+   GET DISTRACTORS
+   ONLY FROM APPROVED VOCABULARY
+========================================================== */
+
+function getOptions(correctAnswer){
+
+    const otherWords =
+        vocabulary
+            .map(item => item.vi)
+            .filter(
+                word =>
+                    word !== correctAnswer
+            );
+
+
+    const distractors =
+        shuffle(otherWords)
+            .slice(0,3);
+
+
+    return shuffle([
+        correctAnswer,
+        ...distractors
+    ]);
+
+}
 
 
 /* ==========================================================
@@ -1245,13 +1413,12 @@ function startGame(){
     document
         .getElementById("totalQuestions")
         .textContent =
-        questions.length;
+        TOTAL_QUESTIONS;
 
 
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
@@ -1278,7 +1445,7 @@ function loadQuestion(){
         .style.width =
         (
             currentQuestion /
-            questions.length *
+            TOTAL_QUESTIONS *
             100
         ) + "%";
 
@@ -1289,15 +1456,17 @@ function loadQuestion(){
         question.q;
 
 
-    document
-        .getElementById("resultText")
-        .textContent =
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    resultText.innerHTML =
         "";
 
 
-    document
-        .getElementById("resultText")
-        .className =
+    resultText.className =
         "result-message";
 
 
@@ -1305,6 +1474,15 @@ function loadQuestion(){
         .getElementById("nextBtn")
         .style.display =
         "none";
+
+
+    document
+        .getElementById("nextBtn")
+        .textContent =
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+            ? "Finish 🎉"
+            : "Next →";
 
 
     const container =
@@ -1318,7 +1496,9 @@ function loadQuestion(){
 
 
     const options =
-        shuffle(question.a);
+        getOptions(
+            question.c
+        );
 
 
     options.forEach(option => {
@@ -1352,7 +1532,6 @@ function loadQuestion(){
 }
 
 
-
 /* ==========================================================
    HANDLE ANSWER
 ========================================================== */
@@ -1362,6 +1541,12 @@ function handleAnswer(
     selected
 ){
 
+    /*
+       One attempt only.
+       Once an answer is selected,
+       the whole question is locked.
+    */
+
     if(answered){
 
         return;
@@ -1369,14 +1554,41 @@ function handleAnswer(
     }
 
 
+    answered = true;
+
+
     const question =
         questions[currentQuestion];
 
 
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    const allButtons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
+
+
+    /*
+       Lock every option immediately.
+    */
+
+    allButtons.forEach(btn => {
+
+        btn.disabled = true;
+
+    });
+
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
     if(selected === question.c){
-
-        answered = true;
-
 
         button.classList.add(
             "correct"
@@ -1392,91 +1604,83 @@ function handleAnswer(
             score;
 
 
-        document
-            .getElementById("resultText")
-            .innerHTML =
-            `🎉 Correct!
+        resultText.innerHTML =
+            `
+            🎉 Correct!
             <span class="explanation">
-                ${question.explanation}
-            </span>`;
+                ${question.e}
+            </span>
+            `;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
-
-        document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
-
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
+    }
 
 
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
+    /* ======================================================
+       WRONG
+    ====================================================== */
 
-
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Finish 🎉";
-
-        }else{
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Next →";
-
-        }
-
-
-    }else{
+    else{
 
         button.classList.add(
             "wrong"
         );
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "❌ Try again!";
+        /*
+           Highlight the correct answer
+           so the player immediately sees it.
+        */
+
+        allButtons.forEach(btn => {
+
+            if(
+                btn.textContent ===
+                question.c
+            ){
+
+                btn.classList.add(
+                    "answer-highlight"
+                );
+
+            }
+
+        });
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.innerHTML =
+            `
+            ❌ Incorrect.
+            <span class="correct-answer">
+                Correct answer: ${question.c}
+            </span>
+
+            <span class="explanation">
+                ${question.e}
+            </span>
+            `;
+
+
+        resultText.className =
             "result-message wrong-text";
-
-
-        setTimeout(() => {
-
-            button.classList.remove(
-                "wrong"
-            );
-
-        },600);
 
     }
 
-}
 
+    /*
+       Show Next button after either
+       correct or incorrect answer.
+    */
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "inline-block";
+
+}
 
 
 /* ==========================================================
@@ -1485,24 +1689,32 @@ function handleAnswer(
 
 function nextQuestion(){
 
+    if(!answered){
+
+        return;
+
+    }
+
+
     currentQuestion++;
 
 
     if(
         currentQuestion <
-        questions.length
+        TOTAL_QUESTIONS
     ){
 
         loadQuestion();
 
-    }else{
+    }
+
+    else{
 
         finishGame();
 
     }
 
 }
-
 
 
 /* ==========================================================
@@ -1530,34 +1742,45 @@ function finishGame(){
         .textContent =
         score +
         " / " +
-        questions.length;
+        TOTAL_QUESTIONS;
 
 
-    const percent =
+    const percentage =
         Math.round(
             score /
-            questions.length *
+            TOTAL_QUESTIONS *
             100
         );
+
+
+    document
+        .getElementById("finalPercentage")
+        .textContent =
+        percentage +
+        "%";
 
 
     let message;
 
 
-    if(percent >= 90){
+    if(percentage >= 90){
 
         message =
-            "🏆 Excellent! You know these health phrases very well.";
+            "🏆 Excellent! You know these health words very well.";
 
-    }else if(percent >= 70){
+    }
+
+    else if(percentage >= 70){
 
         message =
             "🎉 Good job! Keep practicing.";
 
-    }else{
+    }
+
+    else{
 
         message =
-            "📚 Keep practicing these useful health phrases.";
+            "📚 Keep practicing these useful health words.";
 
     }
 
@@ -1568,7 +1791,6 @@ function finishGame(){
         message;
 
 }
-
 
 
 /* ==========================================================
@@ -1582,7 +1804,6 @@ function restartGame(){
 }
 
 
-
 /* ==========================================================
    BACK TO LOBBY
 ========================================================== */
@@ -1590,11 +1811,12 @@ function restartGame(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=Health";
 
 }
 
 </script>
+
 
 </body>
 

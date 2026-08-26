@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vietnamese Number Challenge</title>
 
-<meta name="game-title" content="Vietnamese Number Challenge">
-<meta name="game-description" content="Read Vietnamese number words and choose the correct number sequence.">
-<meta name="game-icon" content="🔢">
+<meta
+    name="game-title"
+    content="Vietnamese Number Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Read Vietnamese number words and choose the correct number sequence."
+>
+
+<meta
+    name="game-icon"
+    content="🔢"
+>
 
 <style>
 
@@ -17,180 +30,341 @@
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     text-align:center;
+
     background:#eef6ff;
+
     margin:0;
+
     padding:20px;
+
     color:#222;
+
 }
+
 
 .screen{
     display:none;
 }
 
+
 .active{
     display:block;
 }
 
+
 .container{
+
     position:relative;
+
     width:100%;
+
     max-width:850px;
+
     margin:40px auto;
+
     background:white;
-    padding:65px 35px 35px;
+
+    padding:
+        65px
+        35px
+        35px;
+
     border-radius:24px;
-    box-shadow:0 12px 35px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.12);
+
 }
+
 
 /* =========================
    BACK TO LOBBY
 ========================= */
 
 .lobby-btn{
+
     position:absolute;
+
     top:20px;
+
     left:22px;
 
-    padding:8px 14px;
+    padding:
+        8px
+        14px;
 
     border:none;
+
     border-radius:8px;
 
     background:#eef5fc;
+
     color:#1976d2;
 
     font-size:14px;
+
     font-weight:bold;
 
     cursor:pointer;
+
     transition:.2s;
+
 }
 
+
 .lobby-btn:hover{
+
     background:#dcecff;
+
     transform:translateX(-2px);
+
 }
+
 
 /* =========================
    HEADINGS
 ========================= */
 
 h1{
+
     margin-top:0;
+
     margin-bottom:12px;
+
     color:#1976d2;
+
 }
 
+
 .subtitle{
+
     color:#666;
+
     font-size:18px;
+
     margin-bottom:25px;
+
     line-height:1.5;
+
 }
+
 
 /* =========================
    QUESTION
 ========================= */
 
 .question-info{
+
     font-size:20px;
+
     font-weight:bold;
+
     color:#555;
+
     margin-bottom:20px;
+
 }
+
 
 .number-words{
+
     background:#f5f9ff;
-    border:2px solid #d9e8ff;
+
+    border:
+        2px solid
+        #d9e8ff;
+
     border-radius:16px;
-    padding:25px 20px;
-    margin:25px auto;
+
+    padding:
+        25px
+        20px;
+
+    margin:
+        25px auto;
+
     max-width:650px;
+
     font-size:28px;
+
     font-weight:bold;
+
     color:#1976d2;
+
 }
 
+
 .instruction{
+
     color:#666;
+
     font-size:16px;
+
     margin-bottom:20px;
+
 }
+
 
 /* =========================
    ANSWERS
 ========================= */
 
 .answers{
+
     display:grid;
-    grid-template-columns:repeat(2,280px);
+
+    grid-template-columns:
+        repeat(2,280px);
+
     gap:15px;
+
     justify-content:center;
-    margin:30px 0 20px;
+
+    margin:
+        30px 0
+        20px;
+
 }
+
 
 .answer{
+
     padding:18px;
+
     font-size:24px;
+
     font-weight:bold;
+
     background:white;
-    border:3px solid #d9e8ff;
+
+    border:
+        3px solid
+        #d9e8ff;
+
     border-radius:14px;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
+
 
 .answer:hover{
+
     transform:translateY(-3px);
+
     background:#f1f8ff;
+
 }
+
 
 .answer.correct{
+
     background:#c8e6c9;
+
     border-color:#4caf50;
+
     color:#256b2b;
+
     cursor:default;
+
 }
+
 
 .answer.wrong{
+
     background:#ffcdd2;
+
     border-color:#f44336;
+
     color:#b71c1c;
+
     cursor:default;
+
 }
 
+
 .answer.disabled{
+
     cursor:default;
+
     pointer-events:none;
+
 }
+
 
 /* =========================
    RESULT
 ========================= */
 
 .result{
+
     min-height:45px;
+
     font-size:24px;
+
     font-weight:bold;
-    margin:15px 0;
+
+    margin:
+        15px 0;
+
 }
+
 
 .correct-text{
+
     color:#2e7d32;
+
 }
+
 
 .wrong-text{
+
     color:#c62828;
+
 }
 
+
 .correct-answer{
+
     font-size:18px;
+
     color:#555;
+
     min-height:28px;
+
     margin-bottom:15px;
+
 }
+
+
+/* =========================
+   EXPLANATION
+========================= */
+
+.explanation{
+
+    font-size:16px;
+
+    color:#666;
+
+    line-height:1.5;
+
+    min-height:25px;
+
+    margin-bottom:15px;
+
+}
+
 
 /* =========================
    BUTTONS
@@ -199,71 +373,123 @@ h1{
 .next-btn,
 .restart-btn,
 .start-btn{
-    padding:12px 25px;
+
+    padding:
+        12px
+        25px;
+
     border-radius:12px;
+
     border:none;
+
     background:#4caf50;
+
     color:white;
+
     cursor:pointer;
+
     font-size:17px;
+
     font-weight:bold;
+
     transition:.2s;
+
 }
+
 
 .next-btn:hover,
 .restart-btn:hover,
 .start-btn:hover{
+
     background:#388e3c;
+
     transform:translateY(-2px);
+
 }
+
 
 /* =========================
    SCORE
 ========================= */
 
 .score{
+
     margin-top:20px;
+
     font-size:18px;
+
     font-weight:bold;
+
     color:#555;
+
 }
+
 
 /* =========================
    PROGRESS
 ========================= */
 
 .progress-wrap{
+
     width:100%;
+
     height:10px;
+
     background:#e0e0e0;
+
     border-radius:20px;
+
     overflow:hidden;
-    margin:20px 0 25px;
+
+    margin:
+        20px 0
+        25px;
+
 }
 
+
 .progress{
+
     height:100%;
+
     width:0%;
+
     background:#2196f3;
+
     transition:.3s;
+
 }
+
 
 /* =========================
    END
 ========================= */
 
 .final-score{
+
     font-size:34px;
+
     font-weight:bold;
+
     color:#1976d2;
-    margin:25px 0 10px;
+
+    margin:
+        25px 0
+        10px;
+
 }
 
+
 .performance{
+
     font-size:22px;
+
     color:#555;
+
     margin-bottom:25px;
+
 }
+
 
 /* =========================
    MOBILE
@@ -272,36 +498,64 @@ h1{
 @media(max-width:650px){
 
     .container{
-        padding:60px 15px 25px;
-        margin:20px auto;
+
+        padding:
+            60px
+            15px
+            25px;
+
+        margin:
+            20px auto;
+
     }
+
 
     .answers{
+
         grid-template-columns:1fr;
+
         width:100%;
+
     }
+
 
     .answer{
+
         width:100%;
+
     }
+
 
     .number-words{
+
         font-size:23px;
+
     }
 
+
     .lobby-btn{
+
         top:16px;
+
         left:16px;
+
         font-size:13px;
-        padding:7px 12px;
+
+        padding:
+            7px
+            12px;
+
     }
 
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <div class="container">
 
@@ -310,130 +564,236 @@ h1{
 
 <button
     class="lobby-btn"
-    onclick="backToLobby()">
+    onclick="backToLobby()"
+>
+
     ← Back to Lobby
+
 </button>
+
 
 
 <!-- ================= INTRO ================= -->
 
-<div id="intro" class="screen active">
+<div
+    id="intro"
+    class="screen active"
+>
 
-    <h1>🔢 Vietnamese Number Challenge</h1>
+    <h1>
+
+        🔢 Vietnamese Number Challenge
+
+    </h1>
+
 
     <p class="subtitle">
-        Read the Vietnamese number words and choose the correct number sequence.
+
+        Read the Vietnamese number words
+        and choose the correct number sequence.
+
     </p>
 
+
     <p>
+
         15 questions • 3 numbers each
+
     </p>
+
 
     <button
         class="start-btn"
-        onclick="startGame()">
+        onclick="startGame()"
+    >
+
         Start Game
+
     </button>
 
 </div>
 
 
+
 <!-- ================= GAME ================= -->
 
-<div id="game" class="screen">
+<div
+    id="game"
+    class="screen"
+>
 
-    <h1>🔢 Number Challenge</h1>
+
+    <h1>
+
+        🔢 Number Challenge
+
+    </h1>
+
 
     <div class="question-info">
-        Question <span id="qnum">1</span> / 15
+
+        Question
+
+        <span id="qnum">
+            1
+        </span>
+
+        / 15
+
     </div>
+
+
 
     <div class="progress-wrap">
 
         <div
             class="progress"
-            id="progress">
-        </div>
+            id="progress"
+        ></div>
 
     </div>
+
+
 
     <div class="instruction">
-        What numbers do these Vietnamese words represent?
+
+        What numbers do these Vietnamese
+        words represent?
+
     </div>
+
+
 
     <div
         class="number-words"
-        id="numberWords">
+        id="numberWords"
+    >
+
         một - năm - tám
+
     </div>
+
+
 
     <div
         class="answers"
-        id="answers">
-    </div>
+        id="answers"
+    ></div>
+
+
 
     <div
         class="result"
-        id="resultIcon">
-    </div>
+        id="resultIcon"
+    ></div>
+
+
 
     <div
         class="correct-answer"
-        id="correctAnswer">
-    </div>
+        id="correctAnswer"
+    ></div>
+
+
+
+    <div
+        class="explanation"
+        id="explanation"
+    ></div>
+
+
 
     <button
         class="next-btn"
         id="nextBtn"
         onclick="nextQuestion()"
-        style="display:none;">
+        style="display:none;"
+    >
+
         Next Question →
+
     </button>
 
+
+
     <div class="score">
-        Score: <span id="score">0</span> / 15
+
+        Score:
+
+        <span id="score">
+            0
+        </span>
+
+        / 15
+
     </div>
 
+
 </div>
+
 
 
 <!-- ================= END ================= -->
 
-<div id="end" class="screen">
+<div
+    id="end"
+    class="screen"
+>
 
-    <h1>🎉 Game Complete!</h1>
+
+    <h1>
+
+        🎉 Game Complete!
+
+    </h1>
+
 
     <p>
+
         You completed all 15 questions.
+
     </p>
+
 
     <div
         class="final-score"
-        id="finalScore">
+        id="finalScore"
+    >
+
         0 / 15
+
     </div>
+
 
     <div
         class="performance"
-        id="performance">
-    </div>
+        id="performance"
+    ></div>
+
 
     <button
         class="restart-btn"
-        onclick="restart()">
+        onclick="restart()"
+    >
+
         Play Again
+
     </button>
 
+
 </div>
 
 
 </div>
+
 
 
 <script>
 
 /* ==========================================================
    NUMBER DATA
+
+   ONLY USE APPROVED VOCABULARY
 ========================================================== */
 
 const numbers = [
@@ -458,7 +818,9 @@ const numbers = [
 ========================================================== */
 
 const TOTAL_QUESTIONS = 15;
+
 const NUMBERS_PER_QUESTION = 3;
+
 const TOTAL_OPTIONS = 4;
 
 
@@ -467,8 +829,11 @@ const TOTAL_OPTIONS = 4;
 ========================================================== */
 
 let questions = [];
+
 let current = 0;
+
 let score = 0;
+
 let answered = false;
 
 
@@ -480,17 +845,30 @@ function shuffle(array){
 
     const arr = [...array];
 
-    for(let i = arr.length - 1; i > 0; i--){
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
 
         const j =
             Math.floor(
                 Math.random() * (i + 1)
             );
 
-        [arr[i], arr[j]] =
-        [arr[j], arr[i]];
+
+        [
+            arr[i],
+            arr[j]
+        ] =
+        [
+            arr[j],
+            arr[i]
+        ];
 
     }
+
 
     return arr;
 
@@ -540,15 +918,22 @@ function sequenceKey(sequence){
 function generateQuestions(){
 
     const result = [];
+
     const used = new Set();
 
-    while(result.length < TOTAL_QUESTIONS){
+
+    while(
+        result.length <
+        TOTAL_QUESTIONS
+    ){
 
         const sequence =
             createSequence();
 
+
         const key =
             sequenceKey(sequence);
+
 
         if(!used.has(key)){
 
@@ -560,35 +945,44 @@ function generateQuestions(){
 
     }
 
-    return result;
+
+    return shuffle(result);
 
 }
 
 
 /* ==========================================================
-   CREATE UNIQUE WRONG OPTIONS
+   CREATE ANSWER OPTIONS
 ========================================================== */
 
 function generateOptions(correct){
 
     const options = [];
+
     const used = new Set();
+
 
     const correctKey =
         sequenceKey(correct);
+
 
     options.push(correct);
 
     used.add(correctKey);
 
 
-    while(options.length < TOTAL_OPTIONS){
+    while(
+        options.length <
+        TOTAL_OPTIONS
+    ){
 
         const sequence =
             createSequence();
 
+
         const key =
             sequenceKey(sequence);
+
 
         if(!used.has(key)){
 
@@ -599,6 +993,7 @@ function generateOptions(correct){
         }
 
     }
+
 
     return shuffle(options);
 
@@ -615,9 +1010,11 @@ function startGame(){
         .getElementById("intro")
         .classList.remove("active");
 
+
     document
         .getElementById("end")
         .classList.remove("active");
+
 
     document
         .getElementById("game")
@@ -626,6 +1023,7 @@ function startGame(){
 
     questions =
         generateQuestions();
+
 
     current = 0;
 
@@ -655,25 +1053,51 @@ function loadQuestion(){
 
 
     const resultIcon =
-        document.getElementById("resultIcon");
+        document.getElementById(
+            "resultIcon"
+        );
+
 
     const correctAnswer =
-        document.getElementById("correctAnswer");
+        document.getElementById(
+            "correctAnswer"
+        );
+
+
+    const explanation =
+        document.getElementById(
+            "explanation"
+        );
+
 
     const nextBtn =
-        document.getElementById("nextBtn");
+        document.getElementById(
+            "nextBtn"
+        );
 
 
     resultIcon.innerText = "";
 
-    resultIcon.className = "result";
-
-    correctAnswer.innerText = "";
-
-    nextBtn.style.display = "none";
+    resultIcon.className =
+        "result";
 
 
-    if(current >= questions.length){
+    correctAnswer.innerText =
+        "";
+
+
+    explanation.innerText =
+        "";
+
+
+    nextBtn.style.display =
+        "none";
+
+
+    if(
+        current >=
+        questions.length
+    ){
 
         endGame();
 
@@ -691,8 +1115,11 @@ function loadQuestion(){
     document
         .getElementById("progress")
         .style.width =
-        ((current + 1) /
-        TOTAL_QUESTIONS * 100) + "%";
+        (
+            (current + 1) /
+            TOTAL_QUESTIONS *
+            100
+        ) + "%";
 
 
     const correct =
@@ -700,7 +1127,7 @@ function loadQuestion(){
 
 
     /*
-        Display Vietnamese number words.
+        Show Vietnamese number words.
     */
 
     document
@@ -720,25 +1147,26 @@ function loadQuestion(){
 
 
     const container =
-        document.getElementById("answers");
+        document.getElementById(
+            "answers"
+        );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     options.forEach(sequence => {
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         div.className =
             "answer";
 
-
-        /*
-            Display actual numbers.
-        */
 
         div.innerText =
             sequence.join(" - ");
@@ -751,12 +1179,10 @@ function loadQuestion(){
         div.onclick = () => {
 
             chooseAnswer(
-
                 div,
-
-                sequenceKey(sequence) ===
+                sequenceKey(sequence)
+                ===
                 sequenceKey(correct)
-
             );
 
         };
@@ -771,12 +1197,26 @@ function loadQuestion(){
 
 /* ==========================================================
    CHOOSE ANSWER
+
+   NEW RULE:
+   - Correct = +1 point
+   - Wrong = 0 point
+   - Wrong answer is shown immediately
+   - Correct answer is shown immediately
+   - Explanation is shown immediately
+   - No Try Again
+   - Question is locked after one answer
 ========================================================== */
 
-function chooseAnswer(element,isCorrect){
+function chooseAnswer(
+    element,
+    isCorrect
+){
 
     if(answered){
+
         return;
+
     }
 
 
@@ -792,16 +1232,20 @@ function chooseAnswer(element,isCorrect){
 
 
     const allAnswers =
-        document.querySelectorAll(".answer");
+        document.querySelectorAll(
+            ".answer"
+        );
 
 
     /*
-        Disable all choices.
+        Lock all choices.
     */
 
     allAnswers.forEach(answer => {
 
-        answer.classList.add("disabled");
+        answer.classList.add(
+            "disabled"
+        );
 
     });
 
@@ -820,52 +1264,83 @@ function chooseAnswer(element,isCorrect){
             correctKey
         ){
 
-            correctElement = answer;
+            correctElement =
+                answer;
 
         }
 
     });
 
 
+    const resultIcon =
+        document.getElementById(
+            "resultIcon"
+        );
+
+
+    const correctAnswer =
+        document.getElementById(
+            "correctAnswer"
+        );
+
+
+    const explanation =
+        document.getElementById(
+            "explanation"
+        );
+
+
+    /*
+        CORRECT
+    */
+
     if(isCorrect){
 
-        element.classList.add("correct");
+        element.classList.add(
+            "correct"
+        );
+
 
         score++;
 
 
-        document
-            .getElementById("resultIcon")
-            .innerText =
+        resultIcon.innerText =
             "✔ Correct!";
 
 
-        document
-            .getElementById("resultIcon")
-            .className =
+        resultIcon.className =
             "result correct-text";
+
+
+        explanation.innerText =
+            "The number sequence is correct.";
+
+
+    /*
+        WRONG
+    */
 
     }else{
 
-        element.classList.add("wrong");
+        element.classList.add(
+            "wrong"
+        );
 
 
         if(correctElement){
 
-            correctElement.classList.add("correct");
+            correctElement.classList.add(
+                "correct"
+            );
 
         }
 
 
-        document
-            .getElementById("resultIcon")
-            .innerText =
+        resultIcon.innerText =
             "❌ Wrong!";
 
 
-        document
-            .getElementById("resultIcon")
-            .className =
+        resultIcon.className =
             "result wrong-text";
 
 
@@ -873,17 +1348,27 @@ function chooseAnswer(element,isCorrect){
             Show correct sequence.
         */
 
-        document
-            .getElementById("correctAnswer")
-            .innerText =
+        correctAnswer.innerText =
             "Correct answer: " +
             correctKey.replaceAll(
                 "-",
                 " - "
             );
 
+
+        /*
+            Explanation.
+        */
+
+        explanation.innerText =
+            "The correct answer is the sequence shown in green.";
+
     }
 
+
+    /*
+        Update score.
+    */
 
     document
         .getElementById("score")
@@ -891,24 +1376,31 @@ function chooseAnswer(element,isCorrect){
         score;
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    /*
+        Show next button.
+    */
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
         "inline-block";
 
 
-    if(current === TOTAL_QUESTIONS - 1){
+    if(
+        current ===
+        TOTAL_QUESTIONS - 1
+    ){
 
-        document
-            .getElementById("nextBtn")
-            .innerText =
+        nextBtn.innerText =
             "Finish 🎉";
 
     }else{
 
-        document
-            .getElementById("nextBtn")
-            .innerText =
+        nextBtn.innerText =
             "Next Question →";
 
     }
@@ -937,12 +1429,16 @@ function endGame(){
 
     document
         .getElementById("game")
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 
     document
         .getElementById("end")
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
 
     document
@@ -954,7 +1450,9 @@ function endGame(){
     document
         .getElementById("finalScore")
         .innerText =
-        score + " / " + TOTAL_QUESTIONS;
+        score +
+        " / " +
+        TOTAL_QUESTIONS;
 
 
     const percentage =
@@ -968,17 +1466,23 @@ function endGame(){
     let text = "";
 
 
-    if(percentage === 100){
+    if(
+        percentage === 100
+    ){
 
         text =
             "🏆 Perfect! Excellent number recognition!";
 
-    }else if(percentage >= 80){
+    }else if(
+        percentage >= 80
+    ){
 
         text =
             "🎉 Excellent job!";
 
-    }else if(percentage >= 60){
+    }else if(
+        percentage >= 60
+    ){
 
         text =
             "👍 Good job! Keep practicing!";
@@ -1017,11 +1521,12 @@ function restart(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=Numbers";
 
 }
 
 </script>
 
 </body>
+
 </html>

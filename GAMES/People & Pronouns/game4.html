@@ -4,24 +4,28 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>Vietnamese Family Vocabulary</title>
+<title>Who Is This Person?</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Family Vocabulary"
+    content="Who Is This Person?"
 >
 
 <meta
     name="game-description"
-    content="Practice common Vietnamese family vocabulary."
+    content="Practice Vietnamese family vocabulary by identifying people in everyday situations."
 >
 
 <meta
     name="game-icon"
     content="👨‍👩‍👧‍👦"
 >
+
 
 <style>
 
@@ -328,22 +332,22 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   QUESTION CARD
 ========================================================== */
 
 .card{
 
-    background:#fffde7;
+    background:#f8fbff;
 
-    border:2px dashed #f1c40f;
+    border:2px dashed #3498db;
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:35px 25px;
 
     margin:20px 0;
 
-    min-height:160px;
+    min-height:190px;
 
     display:flex;
 
@@ -353,7 +357,7 @@ body{
 
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 
 }
 
@@ -367,11 +371,13 @@ body{
 }
 
 
-.word{
+.scenario{
 
-    font-size:32px;
+    font-size:21px;
 
-    font-weight:700;
+    font-weight:600;
+
+    line-height:1.6;
 
     color:#2c3e50;
 
@@ -426,25 +432,50 @@ body{
 }
 
 
+/* Correct answer */
+
 .option-btn.correct{
 
     background:#27ae60;
 
+    color:white;
+
 }
 
+
+/* Wrong selected answer */
 
 .option-btn.wrong{
 
     background:#e74c3c;
 
+    color:white;
+
 }
 
+
+/* Correct answer revealed after wrong choice */
+
+.option-btn.reveal{
+
+    background:#27ae60;
+
+    color:white;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(39,174,96,.2);
+
+}
+
+
+/* Locked buttons */
 
 .option-btn.disabled{
 
     pointer-events:none;
 
-    opacity:.7;
+    cursor:default;
 
 }
 
@@ -480,6 +511,10 @@ body{
 }
 
 
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
 .explanation{
 
     min-height:25px;
@@ -490,11 +525,13 @@ body{
 
     font-size:15px;
 
+    line-height:1.5;
+
 }
 
 
 /* ==========================================================
-   NEXT
+   NEXT BUTTON
 ========================================================== */
 
 .next-btn{
@@ -515,7 +552,7 @@ body{
 
     cursor:pointer;
 
-    margin-top:5px;
+    margin-top:10px;
 
     transition:.2s;
 
@@ -590,7 +627,17 @@ body{
 
     .container{
 
-        padding:60px 15px 20px;
+        width:100%;
+
+        padding:
+            60px 15px 20px;
+
+    }
+
+
+    .game-box{
+
+        padding:18px;
 
     }
 
@@ -604,16 +651,16 @@ body{
 
     .card{
 
-        min-height:140px;
+        min-height:160px;
 
         padding:25px 15px;
 
     }
 
 
-    .word{
+    .scenario{
 
-        font-size:27px;
+        font-size:18px;
 
     }
 
@@ -690,26 +737,17 @@ body{
 
     <h1>
 
-        Vietnamese Family Vocabulary
+        Who Is This Person?
 
     </h1>
 
 
     <p>
 
-        Look at the English word
-        <br>
-        and choose the correct Vietnamese word.
+        Read the situation and choose
+        the correct Vietnamese word.
 
     </p>
-
-
-    <p>
-
-        🎯 10 questions
-
-    </p>
-
 
     <button
         class="start-btn"
@@ -736,14 +774,14 @@ body{
 
     <h1 class="title">
 
-        👨‍👩‍👧‍👦 Family Vocabulary
+        👨‍👩‍👧‍👦 Who Is This Person?
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct Vietnamese meaning.
+        Choose the correct Vietnamese word.
 
     </p>
 
@@ -807,13 +845,13 @@ body{
 
             <div class="question-label">
 
-                What is this in Vietnamese?
+                Who is this person?
 
             </div>
 
 
             <div
-                class="word"
+                class="scenario"
                 id="questionText"
             ></div>
 
@@ -886,7 +924,8 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Family Vocabulary challenge.
+        You completed the
+        Who Is This Person? challenge.
 
     </p>
 
@@ -928,147 +967,188 @@ body{
 
 /* ==========================================================
    QUESTION DATABASE
+   ONLY VOCABULARY FROM THE FAMILY VOCAB LIST
 ========================================================== */
 
 const database = [
 
     {
-        q: "family",
-        a: [
-            "gia đình",
-            "người",
-            "vợ",
-            "chồng"
+        q:
+        "This person is your father's or mother's father.",
+
+        a:[
+            "ông",
+            "bà",
+            "ba",
+            "chú"
         ],
-        c: "gia đình",
+
+        c:"ông",
+
         explanation:
-            "Gia đình means family."
+        "Ông means grandfather / older man."
     },
 
 
     {
-        q: "person",
-        a: [
-            "người",
-            "con trai",
-            "con gái",
-            "em trai"
+        q:
+        "This person is your father's or mother's mother.",
+
+        a:[
+            "bà",
+            "ông",
+            "mẹ",
+            "dì"
         ],
-        c: "người",
+
+        c:"bà",
+
         explanation:
-            "Người means person."
+        "Bà means grandmother / older woman."
     },
 
 
     {
-        q: "wife",
-        a: [
-            "vợ",
+        q:
+        "This person is your male parent.",
+
+        a:[
+            "ba",
+            "mẹ",
             "chồng",
-            "con gái",
-            "em gái"
+            "con"
         ],
-        c: "vợ",
+
+        c:"ba",
+
         explanation:
-            "Vợ means wife."
+        "Ba means father / dad."
     },
 
 
     {
-        q: "husband",
-        a: [
-            "chồng",
+        q:
+        "This person is your female parent.",
+
+        a:[
+            "mẹ",
+            "ba",
             "vợ",
-            "con trai",
-            "cháu trai"
+            "bà"
         ],
-        c: "chồng",
+
+        c:"mẹ",
+
         explanation:
-            "Chồng means husband."
+        "Mẹ means mother / mom."
     },
 
 
     {
-        q: "son",
-        a: [
+        q:
+        "This person is your child, but the person is male.",
+
+        a:[
             "con trai",
             "con gái",
             "em trai",
             "cháu trai"
         ],
-        c: "con trai",
+
+        c:"con trai",
+
         explanation:
-            "Con trai means son."
+        "Con trai means son / boy."
     },
 
 
     {
-        q: "daughter",
-        a: [
+        q:
+        "This person is your child, but the person is female.",
+
+        a:[
             "con gái",
             "con trai",
             "em gái",
             "cháu gái"
         ],
-        c: "con gái",
+
+        c:"con gái",
+
         explanation:
-            "Con gái means daughter."
+        "Con gái means daughter / girl."
     },
 
 
     {
-        q: "grandson / nephew",
-        a: [
-            "cháu trai",
-            "cháu gái",
-            "con trai",
-            "em trai"
-        ],
-        c: "cháu trai",
-        explanation:
-            "Cháu trai can mean grandson or nephew, depending on the family relationship."
-    },
+        q:
+        "This person is your younger male sibling.",
 
-
-    {
-        q: "granddaughter / niece",
-        a: [
-            "cháu gái",
-            "cháu trai",
-            "con gái",
-            "em gái"
-        ],
-        c: "cháu gái",
-        explanation:
-            "Cháu gái can mean granddaughter or niece, depending on the family relationship."
-    },
-
-
-    {
-        q: "younger brother",
-        a: [
+        a:[
             "em trai",
             "em gái",
             "con trai",
-            "cháu trai"
+            "anh"
         ],
-        c: "em trai",
+
+        c:"em trai",
+
         explanation:
-            "Em trai means younger brother."
+        "Em trai means younger brother."
     },
 
 
     {
-        q: "younger sister",
-        a: [
+        q:
+        "This person is your younger female sibling.",
+
+        a:[
             "em gái",
             "em trai",
             "con gái",
-            "cháu gái"
+            "chị"
         ],
-        c: "em gái",
+
+        c:"em gái",
+
         explanation:
-            "Em gái means younger sister."
+        "Em gái means younger sister."
+    },
+
+
+    {
+        q:
+        "This person is your mother's younger sister.",
+
+        a:[
+            "dì",
+            "chú",
+            "bác",
+            "chị"
+        ],
+
+        c:"dì",
+
+        explanation:
+        "Dì means maternal aunt."
+    },
+
+
+    {
+        q:
+        "This person is your father's younger brother.",
+
+        a:[
+            "chú",
+            "dì",
+            "bác",
+            "anh"
+        ],
+
+        c:"chú",
+
+        explanation:
+        "Chú means paternal younger uncle."
     }
 
 ];
@@ -1264,6 +1344,10 @@ function loadQuestion(){
             option;
 
 
+        btn.dataset.answer =
+            option;
+
+
         btn.onclick = () =>
             handleAnswer(
                 btn,
@@ -1299,17 +1383,26 @@ function handleAnswer(
         questions[currentQuestion];
 
 
+    const buttons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
+
+
+    /*
+       CORRECT ANSWER
+    */
+
     if(selected === question.c){
 
         answered = true;
+
+        score++;
 
 
         button.classList.add(
             "correct"
         );
-
-
-        score++;
 
 
         document
@@ -1336,71 +1429,115 @@ function handleAnswer(
             question.explanation;
 
 
-        document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
+        buttons.forEach(btn => {
 
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
-
-
-        const nextBtn =
-            document.getElementById(
-                "nextBtn"
+            btn.classList.add(
+                "disabled"
             );
 
-
-        nextBtn.style.display =
-            "inline-block";
+        });
 
 
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
+        showNextButton();
 
-            nextBtn.textContent =
-                "Finish 🎉";
+        return;
 
-        }else{
-
-            nextBtn.textContent =
-                "Next →";
-
-        }
+    }
 
 
-    }else{
 
-        button.classList.add(
-            "wrong"
+    /*
+       WRONG ANSWER
+       Lock the question immediately
+       and reveal the correct answer.
+    */
+
+    answered = true;
+
+
+    button.classList.add(
+        "wrong"
+    );
+
+
+    buttons.forEach(btn => {
+
+        btn.classList.add(
+            "disabled"
         );
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "❌ Try again!";
+        if(
+            btn.dataset.answer ===
+            question.c
+        ){
 
-
-        document
-            .getElementById("resultText")
-            .className =
-            "result-message wrong-text";
-
-
-        setTimeout(() => {
-
-            button.classList.remove(
-                "wrong"
+            btn.classList.add(
+                "reveal"
             );
 
-        },600);
+        }
+
+    });
+
+
+    document
+        .getElementById("resultText")
+        .textContent =
+        "❌ Incorrect!";
+
+
+    document
+        .getElementById("resultText")
+        .className =
+        "result-message wrong-text";
+
+
+    document
+        .getElementById("explanation")
+        .textContent =
+        question.explanation;
+
+
+    /*
+       No point is awarded.
+       The player cannot retry this question.
+    */
+
+    showNextButton();
+
+}
+
+
+
+/* ==========================================================
+   SHOW NEXT BUTTON
+========================================================== */
+
+function showNextButton(){
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
+        "inline-block";
+
+
+    if(
+        currentQuestion ===
+        questions.length - 1
+    ){
+
+        nextBtn.textContent =
+            "Finish 🎉";
+
+    }else{
+
+        nextBtn.textContent =
+            "Next →";
 
     }
 
@@ -1519,11 +1656,12 @@ function restartGame(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=People%20%26%20Pronouns";
 
 }
 
 </script>
+
 
 </body>
 

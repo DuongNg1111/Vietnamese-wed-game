@@ -251,6 +251,25 @@ button:disabled{
 
 
 /* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.secondary-btn{
+
+    background:#eeeeee;
+
+    color:#555;
+
+    margin-top:10px;
+}
+
+.secondary-btn:hover{
+
+    background:#e2e2e2;
+}
+
+
+/* =========================================================
    GAME SCREEN
 ========================================================= */
 
@@ -372,11 +391,6 @@ button:disabled{
     transition:.2s;
 }
 
-.image-box:hover{
-
-    border-color:#90caf9;
-}
-
 .image-box img{
 
     width:100px;
@@ -429,6 +443,15 @@ button:disabled{
     border:2px solid #90caf9;
 }
 
+.drop-zone.filled{
+
+    background:#fff3d6;
+
+    color:#555;
+
+    border:2px solid #d8ad50;
+}
+
 .drop-zone.correct{
 
     background:#4caf70;
@@ -444,24 +467,7 @@ button:disabled{
 
     color:white;
 
-    animation:shake .3s;
-}
-
-
-@keyframes shake{
-
-    25%{
-
-        transform:translateX(-6px);
-
-    }
-
-    75%{
-
-        transform:translateX(6px);
-
-    }
-
+    border:2px solid #ef5350;
 }
 
 
@@ -520,6 +526,30 @@ button:disabled{
 .word.dragging{
 
     opacity:.5;
+}
+
+.word.used{
+
+    opacity:.35;
+
+    cursor:default;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   CHECK AREA
+========================================================= */
+
+.check-area{
+
+    margin-top:20px;
+}
+
+.check-btn{
+
+    min-width:180px;
 }
 
 
@@ -693,10 +723,10 @@ button:disabled{
 <div class="back-btn-container">
 
     <a
-        href="../../../index.html"
+        href="../../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
-        ⬅ Back to Lobby
+        ⬅ Back 
     </a>
 
 </div>
@@ -789,13 +819,12 @@ button:disabled{
         <p class="instruction">
 
             Drag each Vietnamese word to
-            the correct picture.
+            the correct picture, then check your answers.
 
         </p>
 
 
         <div class="game-status">
-
 
             <div id="questionText">
 
@@ -813,7 +842,6 @@ button:disabled{
 
             </div>
 
-
         </div>
 
 
@@ -824,6 +852,21 @@ button:disabled{
             class="message"
             id="message"
         >
+        </div>
+
+
+        <div class="check-area">
+
+            <button
+                id="checkButton"
+                class="primary-btn check-btn"
+                onclick="checkAnswers()"
+            >
+
+                Check Answers
+
+            </button>
+
         </div>
 
 
@@ -879,7 +922,8 @@ button:disabled{
 <script>
 
 /* =========================================================
-   VOCABULARY
+   IMAGE / VOCABULARY LIST
+   Only words that have matching image files are used.
 ========================================================= */
 
 const items = [
@@ -905,11 +949,6 @@ const items = [
     },
 
     {
-        name:"chai",
-        vi:"Chai"
-    },
-
-    {
         name:"chanh",
         vi:"Chanh"
     },
@@ -922,11 +961,6 @@ const items = [
     {
         name:"com",
         vi:"Cơm"
-    },
-
-    {
-        name:"dia",
-        vi:"Dĩa"
     },
 
     {
@@ -945,11 +979,6 @@ const items = [
     },
 
     {
-        name:"ly",
-        vi:"Ly"
-    },
-
-    {
         name:"mi",
         vi:"Mì"
     },
@@ -965,16 +994,6 @@ const items = [
     },
 
     {
-        name:"nuocmia",
-        vi:"Nước mía"
-    },
-
-    {
-        name:"nuocngot",
-        vi:"Nước ngọt"
-    },
-
-    {
         name:"rau",
         vi:"Rau"
     },
@@ -982,11 +1001,6 @@ const items = [
     {
         name:"tao",
         vi:"Táo"
-    },
-
-    {
-        name:"to",
-        vi:"Tô"
     },
 
     {
@@ -1004,20 +1018,6 @@ const items = [
 const TOTAL_QUESTIONS = 20;
 
 
-/*
-   Questions 1–15:
-   2 pictures = 2 points
-
-   Questions 16–20:
-   4 pictures = 4 points
-
-   Maximum:
-   15 × 2 + 5 × 4 = 50
-*/
-
-const TOTAL_POINTS = 50;
-
-
 /* =========================================================
    GAME STATE
 ========================================================= */
@@ -1026,7 +1026,9 @@ let currentQuestion = 0;
 
 let score = 0;
 
-let questionCompleted = false;
+let questionLocked = false;
+
+let currentSelected = [];
 
 
 /* =========================================================
@@ -1053,6 +1055,9 @@ const scoreText =
 
 const message =
     document.getElementById("message");
+
+const checkButton =
+    document.getElementById("checkButton");
 
 const finalScore =
     document.getElementById("finalScore");
@@ -1107,7 +1112,9 @@ function startGame(){
 
     score = 0;
 
-    questionCompleted = false;
+    questionLocked = false;
+
+    currentSelected = [];
 
 
     introScreen.style.display =
@@ -1149,66 +1156,44 @@ function updateStatus(){
 
 function loadQuestion(){
 
-    questionCompleted = false;
+    questionLocked = false;
+
+    currentSelected = [];
 
     message.textContent = "";
 
     message.style.color = "";
+
+    checkButton.disabled = false;
+
+    checkButton.textContent =
+        "Check Answers";
 
 
     game.innerHTML = "";
 
 
     /*
-       Questions 1–15:
-       2 pictures + 2 words
-
-       Questions 16–20:
-       4 pictures + 5 words
+       Use 2 pictures for the first 15 questions.
+       Use 4 pictures for the last 5 questions.
     */
 
-    let selected;
-
-    let words;
-
-
-    if(currentQuestion < 15){
-
-        selected =
-            shuffle(items).slice(0,2);
-
-        words =
-            [...selected];
-
-    }
-
-    else{
-
-        selected =
-            shuffle(items).slice(0,4);
+    const numberOfItems =
+        currentQuestion < 15
+            ? 2
+            : 4;
 
 
-        const extra =
-            items.find(
-                item =>
-                    !selected.includes(item)
-            );
-
-
-        words = [
-
-            ...selected,
-
-            extra
-
-        ];
-
-    }
+    currentSelected =
+        shuffle(items).slice(
+            0,
+            numberOfItems
+        );
 
 
     /* =====================================================
        QUESTION CARD
-    ===================================================== */
+    ====================================================== */
 
     const question =
         document.createElement("div");
@@ -1232,7 +1217,7 @@ function loadQuestion(){
 
     /* =====================================================
        IMAGE AREA
-    ===================================================== */
+    ====================================================== */
 
     const images =
         document.createElement("div");
@@ -1241,7 +1226,7 @@ function loadQuestion(){
         "images";
 
 
-    selected.forEach(item => {
+    currentSelected.forEach(item => {
 
         const imageBox =
             document.createElement("div");
@@ -1253,20 +1238,8 @@ function loadQuestion(){
         const img =
             document.createElement("img");
 
-
-        /*
-           Images should be inside:
-
-           images/
-           ├── bo.png
-           ├── ca.png
-           ├── cam.png
-           └── ...
-        */
-
         img.src =
             `images/${item.name}.png`;
-
 
         img.alt =
             item.vi;
@@ -1291,13 +1264,14 @@ function loadQuestion(){
         dropZone.className =
             "drop-zone";
 
-
         dropZone.textContent =
             "Drop word here";
 
-
         dropZone.dataset.answer =
             item.name;
+
+        dropZone.dataset.selected =
+            "";
 
 
         /* =================================================
@@ -1308,20 +1282,15 @@ function loadQuestion(){
             "dragover",
             event => {
 
+                if(questionLocked){
+                    return;
+                }
+
                 event.preventDefault();
 
-
-                if(
-                    !dropZone.classList.contains(
-                        "correct"
-                    )
-                ){
-
-                    dropZone.classList.add(
-                        "over"
-                    );
-
-                }
+                dropZone.classList.add(
+                    "over"
+                );
 
             }
         );
@@ -1353,20 +1322,13 @@ function loadQuestion(){
 
                 event.preventDefault();
 
-
                 dropZone.classList.remove(
                     "over"
                 );
 
 
-                if(
-                    dropZone.classList.contains(
-                        "correct"
-                    )
-                ){
-
+                if(questionLocked){
                     return;
-
                 }
 
 
@@ -1388,100 +1350,58 @@ function loadQuestion(){
                     );
 
 
-                /* =========================================
-                   CORRECT
-                ========================================== */
-
-                if(
-                    draggedName ===
-                    item.name
-                ){
-
-                    dropZone.textContent =
-                        draggedWord;
-
-
-                    dropZone.classList.add(
-                        "correct"
+                const draggedElement =
+                    document.getElementById(
+                        draggedId
                     );
 
 
-                    const wordElement =
-                        document.getElementById(
-                            draggedId
-                        );
+                /*
+                   If this word is already placed
+                   somewhere else, do nothing.
+                */
 
+                if(
+                    draggedElement &&
+                    draggedElement.classList.contains(
+                        "used"
+                    )
+                ){
 
-                    if(wordElement){
-
-                        wordElement.remove();
-
-                    }
-
-
-                    score++;
-
-
-                    updateStatus();
-
-
-                    message.style.color =
-                        "#3b8b58";
-
-
-                    message.textContent =
-                        "✅ Correct!";
-
-
-                    checkQuestionComplete();
+                    return;
 
                 }
 
 
-                /* =========================================
-                   WRONG
-                ========================================== */
+                /*
+                   If this drop zone already has
+                   a word, do nothing.
+                */
 
-                else{
+                if(
+                    dropZone.dataset.selected !== ""
+                ){
 
-                    dropZone.classList.add(
-                        "wrong"
-                    );
+                    return;
 
-
-                    dropZone.textContent =
-                        "Try again!";
-
-
-                    message.style.color =
-                        "#c54d4d";
+                }
 
 
-                    message.textContent =
-                        "❌ Try again!";
+                dropZone.dataset.selected =
+                    draggedName;
+
+                dropZone.textContent =
+                    draggedWord;
+
+                dropZone.classList.add(
+                    "filled"
+                );
 
 
-                    setTimeout(
-                        () => {
+                if(draggedElement){
 
-                            if(
-                                !dropZone.classList.contains(
-                                    "correct"
-                                )
-                            ){
-
-                                dropZone.classList.remove(
-                                    "wrong"
-                                );
-
-
-                                dropZone.textContent =
-                                    "Drop word here";
-
-                            }
-
-                        },
-                        700
+                    draggedElement.classList.add(
+                        "used"
                     );
 
                 }
@@ -1501,7 +1421,7 @@ function loadQuestion(){
 
     /* =====================================================
        WORD AREA
-    ===================================================== */
+    ====================================================== */
 
     const wordsContainer =
         document.createElement("div");
@@ -1510,28 +1430,22 @@ function loadQuestion(){
         "words";
 
 
-    shuffle(words).forEach(item => {
+    shuffle(currentSelected).forEach(item => {
 
         const word =
             document.createElement("div");
 
-
         word.className =
             "word";
-
 
         word.textContent =
             item.vi;
 
-
         word.draggable =
             true;
 
-
         word.id =
-            `word-${currentQuestion}-${item.name}-${Math.random()
-                .toString(36)
-                .substring(2,9)}`;
+            `word-${currentQuestion}-${item.name}`;
 
 
         /* =================================================
@@ -1541,6 +1455,18 @@ function loadQuestion(){
         word.addEventListener(
             "dragstart",
             event => {
+
+                if(
+                    questionLocked ||
+                    word.classList.contains("used")
+                ){
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
 
                 event.dataTransfer.setData(
                     "name",
@@ -1610,10 +1536,15 @@ function loadQuestion(){
 
 
 /* =========================================================
-   CHECK QUESTION COMPLETE
+   CHECK ANSWERS
 ========================================================= */
 
-function checkQuestionComplete(){
+function checkAnswers(){
+
+    if(questionLocked){
+        return;
+    }
+
 
     const zones =
         document.querySelectorAll(
@@ -1621,37 +1552,144 @@ function checkQuestionComplete(){
         );
 
 
-    const completed =
-        [...zones].every(
+    /*
+       Require every picture to have
+       a word before checking.
+    */
+
+    const unanswered =
+        [...zones].some(
             zone =>
-                zone.classList.contains(
-                    "correct"
-                )
+                zone.dataset.selected === ""
         );
 
 
+    if(unanswered){
+
+        message.style.color =
+            "#c58a2c";
+
+        message.textContent =
+            "⚠️ Match all pictures before checking.";
+
+        return;
+
+    }
+
+
+    questionLocked = true;
+
+    checkButton.disabled = true;
+
+
+    let correctCount = 0;
+
+
+    zones.forEach(zone => {
+
+        const correctAnswer =
+            zone.dataset.answer;
+
+        const selectedAnswer =
+            zone.dataset.selected;
+
+
+        if(
+            selectedAnswer ===
+            correctAnswer
+        ){
+
+            zone.classList.remove(
+                "filled"
+            );
+
+            zone.classList.add(
+                "correct"
+            );
+
+            correctCount++;
+
+        }
+
+        else{
+
+            zone.classList.remove(
+                "filled"
+            );
+
+            zone.classList.add(
+                "wrong"
+            );
+
+
+            /*
+               Show the correct answer
+               after checking.
+            */
+
+            const correctItem =
+                currentSelected.find(
+                    item =>
+                        item.name ===
+                        correctAnswer
+                );
+
+
+            if(correctItem){
+
+                zone.textContent =
+                    `✗ ${correctItem.vi}`;
+
+            }
+
+        }
+
+    });
+
+
+    /*
+       One point per correctly matched picture.
+       No points are removed for wrong matches.
+    */
+
+    score += correctCount;
+
+    updateStatus();
+
+
     if(
-        completed &&
-        !questionCompleted
+        correctCount ===
+        zones.length
     ){
-
-        questionCompleted = true;
-
 
         message.style.color =
             "#3b8b58";
 
-
         message.textContent =
             "🎉 Perfect!";
 
+    }
 
-        setTimeout(
-            nextQuestion,
-            900
-        );
+    else{
+
+        message.style.color =
+            "#c54d4d";
+
+        message.textContent =
+            `${correctCount} / ${zones.length} correct.`;
 
     }
+
+
+    /*
+       Give the learner time to see
+       the results before moving on.
+    */
+
+    setTimeout(
+        nextQuestion,
+        1200
+    );
 
 }
 
@@ -1691,20 +1729,22 @@ function finishGame(){
     gameScreen.style.display =
         "none";
 
-
     finalScreen.style.display =
         "block";
 
 
+    /*
+       Maximum score is 20 because
+       each question is worth 1 point.
+    */
+
     finalScore.textContent =
-        `Final Score: ${score} / ${TOTAL_POINTS}`;
+        `Final Score: ${score} / 20`;
 
 
     const percentage =
         Math.round(
-            score /
-            TOTAL_POINTS *
-            100
+            score / 20 * 100
         );
 
 

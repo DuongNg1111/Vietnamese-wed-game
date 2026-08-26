@@ -9,11 +9,14 @@
 <title>Odd One Out - Vietnamese Vocabulary Review</title>
 
 <meta name="game-title" content="Odd One Out">
+
 <meta
     name="game-description"
     content="Find the Vietnamese word that does not belong in each group."
 >
+
 <meta name="game-icon" content="🎲">
+
 <meta name="game-explanation" content="true">
 
 
@@ -440,25 +443,18 @@ button{
     border-color:#e74c3c !important;
 
     color:#c0392b;
-
-    animation:shake .3s;
 }
 
-@keyframes shake{
+.word.disabled{
 
-    25%{
-        transform:translateX(-7px);
-    }
+    cursor:default;
 
-    75%{
-        transform:translateX(7px);
-    }
-
+    pointer-events:none;
 }
 
 
 /* =========================================================
-   MESSAGE
+   RESULT
 ========================================================= */
 
 #result{
@@ -692,6 +688,43 @@ button{
 
 }
 
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:400px){
+
+    .game-box{
+
+        padding:25px 15px;
+    }
+
+    .back-btn{
+
+        font-size:14px;
+
+        padding:9px 14px;
+    }
+
+    #introScreen h1,
+    #gameScreen h1{
+
+        font-size:25px;
+    }
+
+    .question-title{
+
+        font-size:20px;
+    }
+
+    .word{
+
+        font-size:19px;
+    }
+
+}
+
 </style>
 
 </head>
@@ -707,7 +740,7 @@ button{
 <div class="back-btn-container">
 
     <a
-        href="../../index.html"
+        href="../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
         ⬅ Back to Lobby
@@ -752,9 +785,10 @@ button{
 
         <h2>🎮 How to Play</h2>
 
-        <p>👀 Look at the four Vietnamese words → choose the one that does <strong>NOT</strong> belong.</p>
-
-        <p>✅ Correct = 1 point. ❌ Wrong? Check the explanation.</p>
+        <p>
+            👀 Look at the four Vietnamese words →
+            choose the one that <strong>does NOT</strong> belong.
+        </p>
 
     </div>
 
@@ -762,22 +796,6 @@ button{
     <!-- =====================================================
          GAME INFO
     ===================================================== -->
-
-    <div class="game-info">
-
-        <div>
-            📝
-            <strong>13 Questions</strong>
-        </div>
-
-        <div>
-            🎯
-            <strong>Choose the odd word</strong>
-        </div>
-
-    </div>
-
-
     <button
         id="startBtn"
         onclick="startGame()"
@@ -816,7 +834,7 @@ button{
             class="round"
             id="questionNumber"
         >
-            Question 1 of 13
+            Question 1 of 20
         </div>
 
 
@@ -824,7 +842,7 @@ button{
             class="score"
             id="score"
         >
-            Score: 0 / 13
+            Score: 0 / 20
         </div>
 
     </div>
@@ -938,6 +956,7 @@ button{
 
 /* =========================================================
    QUESTION DATA
+   ONLY WORDS FROM THE 37-WORD VOCABULARY LIST
 ========================================================= */
 
 const questions = [
@@ -946,14 +965,29 @@ const questions = [
         words:[
             "Cà phê",
             "Trà",
-            "Nước chanh",
-            "Tỏi"
+            "Sữa",
+            "Cà rốt"
         ],
 
-        answer:"Tỏi",
+        answer:"Cà rốt",
 
         explanation:
-            "Cà phê, trà, and nước chanh are drinks. Tỏi is food."
+            "Cà phê, trà, and sữa are drinks. Cà rốt is a vegetable."
+    },
+
+
+    {
+        words:[
+            "Chuối",
+            "Xoài",
+            "Táo",
+            "Bún"
+        ],
+
+        answer:"Bún",
+
+        explanation:
+            "Chuối, xoài, and táo are fruits. Bún is a food."
     },
 
 
@@ -961,179 +995,269 @@ const questions = [
         words:[
             "Bò",
             "Gà",
-            "Cá",
-            "Muối"
+            "Heo",
+            "Cam"
         ],
 
-        answer:"Muối",
+        answer:"Cam",
 
         explanation:
-            "Bò, gà, and cá are meat or animal-based foods. Muối is a seasoning."
+            "Bò, gà, and heo are animal-based foods. Cam is a fruit."
     },
 
 
     {
         words:[
-            "Tô",
-            "Ly",
-            "Dĩa",
+            "Cơm",
+            "Bún",
+            "Mì",
+            "Nước cam"
+        ],
+
+        answer:"Nước cam",
+
+        explanation:
+            "Cơm, bún, and mì are foods. Nước cam is a drink."
+    },
+
+
+    {
+        words:[
+            "Cam",
+            "Chanh",
+            "Xoài",
             "Trứng"
         ],
 
         answer:"Trứng",
 
         explanation:
-            "Tô, ly, and dĩa are used for serving food or drinks. Trứng is food."
+            "Cam, chanh, and xoài are fruits. Trứng is food from an animal."
     },
 
 
     {
         words:[
-            "Cay",
-            "Ngọt",
-            "Đắng",
-            "Bò"
-        ],
-
-        answer:"Bò",
-
-        explanation:
-            "Cay, ngọt, and đắng describe tastes. Bò is a type of food."
-    },
-
-
-    {
-        words:[
-            "Sốt",
-            "Ho",
-            "Nhức đầu",
-            "Cà phê"
-        ],
-
-        answer:"Cà phê",
-
-        explanation:
-            "Sốt, ho, and nhức đầu are health-related words. Cà phê is a drink."
-    },
-
-
-    {
-        words:[
-            "Muối",
-            "Tỏi",
-            "Tiêu",
+            "Cà chua",
+            "Cà rốt",
+            "Dưa leo",
             "Trà"
         ],
 
         answer:"Trà",
 
         explanation:
-            "Muối, tỏi, and tiêu are ingredients or seasonings. Trà is a drink."
+            "Cà chua, cà rốt, and dưa leo are vegetables. Trà is a drink."
     },
 
 
     {
         words:[
-            "Ăn sáng",
-            "Ăn trưa",
-            "Ăn tối",
-            "Nước chanh"
-        ],
-
-        answer:"Nước chanh",
-
-        explanation:
-            "Ăn sáng, ăn trưa, and ăn tối are meals or eating times. Nước chanh is a drink."
-    },
-
-
-    {
-        words:[
-            "Hôm qua",
-            "Hôm nay",
-            "Ngày mai",
-            "Gà"
-        ],
-
-        answer:"Gà",
-
-        explanation:
-            "Hôm qua, hôm nay, and ngày mai are words related to time. Gà is food."
-    },
-
-
-    {
-        words:[
-            "Cay",
-            "Ngọt",
-            "Sốt",
-            "Đắng"
-        ],
-
-        answer:"Sốt",
-
-        explanation:
-            "Cay, ngọt, and đắng describe tastes. Sốt means fever or high temperature."
-    },
-
-
-    {
-        words:[
-            "Tô",
-            "Dĩa",
-            "Ly",
-            "Tỏi"
-        ],
-
-        answer:"Tỏi",
-
-        explanation:
-            "Tô, dĩa, and ly are containers or tableware. Tỏi is an ingredient."
-    },
-
-
-    {
-        words:[
-            "Gà",
-            "Cá",
-            "Bò",
+            "Bắp",
+            "Xà lách",
+            "Khoai tây",
             "Cà phê"
         ],
 
         answer:"Cà phê",
 
         explanation:
-            "Gà, cá, and bò are foods. Cà phê is a drink."
+            "Bắp, xà lách, and khoai tây are vegetables. Cà phê is a drink."
     },
 
 
     {
         words:[
-            "Buổi sáng",
-            "Buổi chiều",
-            "Buổi tối",
-            "Muối"
+            "Mặn",
+            "Cay",
+            "Ngọt",
+            "Nóng"
         ],
 
-        answer:"Muối",
+        answer:"Nóng",
 
         explanation:
-            "Buổi sáng, buổi chiều, and buổi tối describe parts of the day. Muối is a seasoning."
+            "Mặn, cay, and ngọt describe taste. Nóng describes temperature."
+    },
+
+
+    {
+        words:[
+            "Đắng",
+            "Ngọt",
+            "Chua",
+            "Lạnh"
+        ],
+
+        answer:"Lạnh",
+
+        explanation:
+            "Đắng, ngọt, and chua describe taste. Lạnh describes temperature."
+    },
+
+
+    {
+        words:[
+            "Bánh mì",
+            "Cơm",
+            "Bún",
+            "Nước lọc"
+        ],
+
+        answer:"Nước lọc",
+
+        explanation:
+            "Bánh mì, cơm, and bún are foods. Nước lọc is a drink."
+    },
+
+
+    {
+        words:[
+            "Mì",
+            "Bánh mì",
+            "Cơm",
+            "Sữa"
+        ],
+
+        answer:"Sữa",
+
+        explanation:
+            "Mì, bánh mì, and cơm are foods. Sữa is a drink."
     },
 
 
     {
         words:[
             "Nước lọc",
-            "Sữa",
             "Nước cam",
-            "Nhức đầu"
+            "Nước chanh",
+            "Cá"
         ],
 
-        answer:"Nhức đầu",
+        answer:"Cá",
 
         explanation:
-            "Nước lọc, sữa, and nước cam are drinks. Nhức đầu is a health-related expression meaning headache."
+            "Nước lọc, nước cam, and nước chanh are drinks. Cá is food."
+    },
+
+
+    {
+        words:[
+            "Trà",
+            "Cà phê",
+            "Nước cam",
+            "Bánh mì"
+        ],
+
+        answer:"Bánh mì",
+
+        explanation:
+            "Trà, cà phê, and nước cam are drinks. Bánh mì is food."
+    },
+
+
+    {
+        words:[
+            "Chuối",
+            "Dừa",
+            "Bơ",
+            "Cà rốt"
+        ],
+
+        answer:"Cà rốt",
+
+        explanation:
+            "Chuối, dừa, and bơ are fruits. Cà rốt is a vegetable."
+    },
+
+
+    {
+        words:[
+            "Cam",
+            "Chanh",
+            "Chuối",
+            "Cà rốt"
+        ],
+
+        answer:"Cà rốt",
+
+        explanation:
+            "Cam, chanh, and chuối are fruits. Cà rốt is a vegetable."
+    },
+
+
+    {
+        words:[
+            "Cam",
+            "Chanh",
+            "Chuối",
+            "Cà phê"
+        ],
+
+        answer:"Cà phê",
+
+        explanation:
+            "Cam, chanh, and chuối are fruits. Cà phê is a drink."
+    },
+
+
+    {
+        words:[
+            "Bò",
+            "Gà",
+            "Cá",
+            "Nước chanh"
+        ],
+
+        answer:"Nước chanh",
+
+        explanation:
+            "Bò, gà, and cá are animal-based foods. Nước chanh is a drink."
+    },
+
+
+    {
+        words:[
+            "Heo",
+            "Cá",
+            "Gà",
+            "Dừa"
+        ],
+
+        answer:"Dừa",
+
+        explanation:
+            "Heo, cá, and gà are animal-based foods. Dừa is a fruit."
+    },
+
+
+    {
+        words:[
+            "Ngon",
+            "Mặn",
+            "Cay",
+            "Lạnh"
+        ],
+
+        answer:"Lạnh",
+
+        explanation:
+            "Ngon, mặn, and cay describe taste. Lạnh describes temperature."
+    },
+
+
+    {
+        words:[
+            "Cơm",
+            "Bún",
+            "Mì",
+            "Nước chanh"
+        ],
+
+        answer:"Nước chanh",
+
+        explanation:
+            "Cơm, bún, and mì are foods. Nước chanh is a drink."
     }
 
 ];
@@ -1297,11 +1421,14 @@ function loadQuestion(){
         `Question ${currentQuestion + 1} of ${questions.length}`;
 
 
-    wordsEl.innerHTML = "";
+    wordsEl.innerHTML =
+        "";
 
-    resultEl.innerHTML = "";
+    resultEl.innerHTML =
+        "";
 
-    explanationEl.innerHTML = "";
+    explanationEl.innerHTML =
+        "";
 
     explanationEl.classList.add(
         "hidden"
@@ -1309,6 +1436,9 @@ function loadQuestion(){
 
     nextBtn.style.display =
         "none";
+
+    nextBtn.textContent =
+        "Next Question →";
 
 
     const shuffledWords =
@@ -1373,6 +1503,11 @@ function checkAnswer(
     }
 
 
+    /*
+       Lock immediately after the first answer.
+       The player cannot change the answer.
+    */
+
     locked = true;
 
 
@@ -1401,6 +1536,7 @@ function checkAnswer(
 
 
         score++;
+
 
         updateScore();
 
@@ -1466,6 +1602,21 @@ function checkAnswer(
     }
 
 
+    /*
+       Lock every word after the answer.
+    */
+
+    allWords.forEach(
+        wordElement => {
+
+            wordElement.classList.add(
+                "disabled"
+            );
+
+        }
+    );
+
+
     /* =====================================================
        EXPLANATION
     ===================================================== */
@@ -1486,8 +1637,23 @@ function checkAnswer(
     );
 
 
+    /* =====================================================
+       NEXT BUTTON
+    ===================================================== */
+
     nextBtn.style.display =
         "inline-block";
+
+
+    if(
+        currentQuestion ===
+        questions.length - 1
+    ){
+
+        nextBtn.textContent =
+            "See Results →";
+
+    }
 
 }
 
@@ -1532,18 +1698,18 @@ function finishGame(){
         "block";
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        `Final Score: ${score} / ${questions.length}`;
-
-
     const percentage =
         Math.round(
             score /
             questions.length *
             100
         );
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        `Final Score: ${score} / ${questions.length}`;
 
 
     document.getElementById(

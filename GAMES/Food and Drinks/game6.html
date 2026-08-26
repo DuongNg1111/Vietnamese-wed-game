@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complete the Group - Vietnamese Vocabulary</title>
+<title>Word Scramble - Vietnamese Vocabulary</title>
 
-<meta name="game-title" content="Complete the Group">
+<meta name="game-title" content="Word Scramble">
 <meta
     name="game-description"
-    content="Complete each Vietnamese vocabulary group by choosing the missing word."
+    content="Unscramble the letters to make the correct Vietnamese word."
 >
-<meta name="game-icon" content="🧩">
+<meta name="game-icon" content="🔤">
 <meta name="game-explanation" content="true">
 
 
@@ -46,40 +46,51 @@ body{
 ========================================================= */
 
 .back-btn-container{
+
     max-width:750px;
+
     margin:0 auto 15px;
+
     text-align:left;
 }
 
 .back-btn{
+
     display:inline-block;
 
     padding:10px 18px;
 
     background:white;
+
     color:#555;
 
     border:2px solid #ddd;
+
     border-radius:10px;
 
     text-decoration:none;
+
     font-weight:bold;
 
     transition:.2s;
 }
 
 .back-btn:hover{
+
     background:#f0f0f0;
+
     transform:translateY(-2px);
 }
 
 
 /* =========================================================
-   GAME CONTAINER
+   GAME BOX
 ========================================================= */
 
 .game-box{
+
     width:100%;
+
     max-width:750px;
 
     margin:0 auto;
@@ -98,19 +109,23 @@ body{
 
 
 /* =========================================================
-   INTRO SCREEN
+   INTRO
 ========================================================= */
 
 #introScreen{
+
     padding:10px 5px;
 }
 
 .game-icon{
+
     font-size:70px;
+
     margin-bottom:10px;
 }
 
 #introScreen h1{
+
     margin:10px 0 15px;
 
     font-size:34px;
@@ -119,6 +134,7 @@ body{
 }
 
 .intro-description{
+
     max-width:580px;
 
     margin:0 auto 25px;
@@ -136,6 +152,7 @@ body{
 ========================================================= */
 
 .how-to-play{
+
     max-width:600px;
 
     margin:0 auto 25px;
@@ -152,6 +169,7 @@ body{
 }
 
 .how-to-play h2{
+
     margin:0 0 12px;
 
     color:#4779b8;
@@ -160,6 +178,7 @@ body{
 }
 
 .how-to-play p{
+
     margin:8px 0;
 
     font-size:16px;
@@ -175,6 +194,7 @@ body{
 ========================================================= */
 
 .game-info{
+
     display:flex;
 
     justify-content:center;
@@ -187,6 +207,7 @@ body{
 }
 
 .game-info div{
+
     background:#f4f8fb;
 
     border:1px solid #e1e8ee;
@@ -206,6 +227,7 @@ body{
 ========================================================= */
 
 button{
+
     border:none;
 
     border-radius:12px;
@@ -218,6 +240,7 @@ button{
 }
 
 #startBtn{
+
     padding:14px 35px;
 
     background:#4779b8;
@@ -228,12 +251,32 @@ button{
 }
 
 #startBtn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
+}
+
+.check-btn{
+
+    padding:13px 30px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.check-btn:hover{
+
     background:#38689f;
 
     transform:translateY(-2px);
 }
 
 .next-btn{
+
     padding:13px 30px;
 
     background:#4779b8;
@@ -244,12 +287,14 @@ button{
 }
 
 .next-btn:hover{
+
     background:#38689f;
 
     transform:translateY(-2px);
 }
 
 .play-again-btn{
+
     padding:14px 30px;
 
     background:#4779b8;
@@ -260,6 +305,7 @@ button{
 }
 
 .play-again-btn:hover{
+
     background:#38689f;
 
     transform:translateY(-2px);
@@ -271,10 +317,12 @@ button{
 ========================================================= */
 
 #gameScreen{
+
     display:none;
 }
 
 #gameScreen h1{
+
     margin:0 0 10px;
 
     color:#2c3e50;
@@ -283,6 +331,7 @@ button{
 }
 
 .instruction{
+
     color:#555;
 
     font-size:17px;
@@ -296,6 +345,7 @@ button{
 ========================================================= */
 
 .topbar{
+
     display:flex;
 
     justify-content:space-between;
@@ -310,10 +360,12 @@ button{
 }
 
 .round{
+
     color:#666;
 }
 
 .score{
+
     color:#333;
 }
 
@@ -323,130 +375,114 @@ button{
 ========================================================= */
 
 .question-title{
-    font-size:25px;
+
+    font-size:24px;
 
     font-weight:bold;
 
     color:#333;
 
-    margin:25px 0 25px;
+    margin:25px 0 20px;
 }
 
 
 /* =========================================================
-   GROUP
+   SCRAMBLED WORD
 ========================================================= */
 
-.group{
-    display:flex;
+.scramble-box{
 
-    justify-content:center;
+    margin:20px auto 25px;
 
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    margin:0 auto 30px;
+    padding:25px 20px;
 
     max-width:650px;
+
+    background:#f5f8fc;
+
+    border:2px solid #e1e8ee;
+
+    border-radius:16px;
 }
 
-.group-word{
-    min-width:135px;
+.scramble-label{
 
-    padding:18px 20px;
+    font-size:15px;
 
-    background:#f4f8fb;
+    color:#777;
 
-    border:2px solid #dce5ec;
+    margin-bottom:12px;
+}
 
-    border-radius:14px;
+.scrambled-word{
 
-    font-size:22px;
+    font-size:30px;
 
     font-weight:bold;
 
-    color:#34495e;
-}
+    letter-spacing:4px;
 
-.group-missing{
-    background:#eef5fc;
+    color:#2c3e50;
 
-    border:2px dashed #4779b8;
-
-    color:#4779b8;
+    word-break:break-word;
 }
 
 
 /* =========================================================
-   OPTIONS
+   INPUT
 ========================================================= */
 
-.options{
-    display:grid;
+.answer-area{
 
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    max-width:650px;
+    max-width:550px;
 
     margin:0 auto;
 }
 
-.option{
-    min-height:70px;
+.answer-input{
 
-    padding:15px;
+    width:100%;
 
-    background:white;
+    padding:16px 18px;
 
-    color:#333;
+    font-size:21px;
 
-    border:2px solid #ddd;
+    text-align:center;
 
-    border-radius:14px;
+    border:2px solid #d5dce3;
 
-    font-size:20px;
+    border-radius:12px;
+
+    outline:none;
 
     transition:.2s;
 }
 
-.option:hover{
-    background:#f8fbff;
+.answer-input:focus{
 
-    border-color:#b8cbe0;
+    border-color:#4779b8;
 
-    transform:translateY(-2px);
+    box-shadow:
+        0 0 0 3px rgba(71,121,184,.12);
 }
 
-.option.correct{
-    background:#dff5e5 !important;
+.answer-input:disabled{
 
-    border-color:#4caf70 !important;
+    background:#f3f3f3;
 
-    color:#2e7d32;
+    color:#555;
 
     cursor:default;
 }
 
-.option.wrong{
-    background:#ffe0e0 !important;
 
-    border-color:#e74c3c !important;
+/* =========================================================
+   CHECK BUTTON AREA
+========================================================= */
 
-    color:#c0392b;
+.check-area{
 
-    cursor:default;
-}
-
-.option.disabled{
-    pointer-events:none;
-
-    cursor:default;
+    margin-top:18px;
 }
 
 
@@ -455,9 +491,10 @@ button{
 ========================================================= */
 
 #result{
+
     min-height:55px;
 
-    margin-top:25px;
+    margin-top:22px;
 
     font-size:20px;
 
@@ -467,6 +504,7 @@ button{
 }
 
 .answer{
+
     margin-top:6px;
 
     font-size:17px;
@@ -480,6 +518,7 @@ button{
 ========================================================= */
 
 .explanation{
+
     margin:20px auto 0;
 
     padding:16px 20px;
@@ -502,23 +541,27 @@ button{
 }
 
 .explanation strong{
+
     color:#4779b8;
 }
 
 .hidden{
+
     display:none;
 }
 
 
 /* =========================================================
-   NEXT BUTTON
+   NEXT AREA
 ========================================================= */
 
 .next-area{
+
     margin-top:20px;
 }
 
 #nextBtn{
+
     display:none;
 }
 
@@ -528,18 +571,21 @@ button{
 ========================================================= */
 
 #finalScreen{
+
     display:none;
 
     padding:20px 10px;
 }
 
 .final-icon{
+
     font-size:65px;
 
     margin-bottom:10px;
 }
 
 #finalScreen h1{
+
     color:#2c3e50;
 
     font-size:34px;
@@ -548,6 +594,7 @@ button{
 }
 
 .final-score{
+
     font-size:26px;
 
     font-weight:bold;
@@ -556,6 +603,7 @@ button{
 }
 
 .final-percent{
+
     font-size:20px;
 
     color:#555;
@@ -564,6 +612,7 @@ button{
 }
 
 .final-message{
+
     font-size:20px;
 
     font-weight:bold;
@@ -583,10 +632,12 @@ button{
 @media(max-width:600px){
 
     body{
+
         padding:15px;
     }
 
     .game-box{
+
         padding:30px 20px;
 
         border-radius:20px;
@@ -594,72 +645,75 @@ button{
 
     #introScreen h1,
     #gameScreen h1{
+
         font-size:28px;
     }
 
     .game-icon{
+
         font-size:58px;
     }
 
     .intro-description{
+
         font-size:16px;
     }
 
     .how-to-play{
+
         padding:18px;
     }
 
     .how-to-play p{
+
         font-size:15px;
     }
 
     .game-info{
+
         flex-direction:column;
 
         align-items:center;
     }
 
     .game-info div{
+
         width:100%;
     }
 
     .topbar{
+
         font-size:15px;
     }
 
     .question-title{
-        font-size:22px;
+
+        font-size:21px;
 
         line-height:1.5;
     }
 
-    .group{
-        gap:8px;
+    .scrambled-word{
+
+        font-size:24px;
+
+        letter-spacing:3px;
     }
 
-    .group-word{
-        min-width:105px;
-
-        padding:15px 12px;
+    .answer-input{
 
         font-size:19px;
-    }
 
-    .options{
-        grid-template-columns:1fr;
-    }
-
-    .option{
-        font-size:19px;
-
-        min-height:60px;
+        padding:14px;
     }
 
     #result{
+
         font-size:18px;
     }
 
     .explanation{
+
         font-size:15px;
 
         padding:15px;
@@ -675,10 +729,12 @@ button{
 @media(max-width:400px){
 
     .game-box{
+
         padding:25px 15px;
     }
 
     .back-btn{
+
         font-size:14px;
 
         padding:9px 14px;
@@ -686,19 +742,20 @@ button{
 
     #introScreen h1,
     #gameScreen h1{
+
         font-size:25px;
     }
 
     .question-title{
+
         font-size:20px;
     }
 
-    .group-word{
-        font-size:18px;
-    }
+    .scrambled-word{
 
-    .option{
-        font-size:18px;
+        font-size:21px;
+
+        letter-spacing:2px;
     }
 
 }
@@ -737,19 +794,17 @@ button{
 <div id="introScreen">
 
     <div class="game-icon">
-        🧩
+        🔤
     </div>
 
-
     <h1>
-        Complete the Group
+        Word Scramble
     </h1>
-
 
     <p class="intro-description">
 
-        Complete each Vietnamese vocabulary group
-        by choosing the missing word.
+        Unscramble the letters to make the
+        correct Vietnamese word.
 
     </p>
 
@@ -759,8 +814,7 @@ button{
         <h2>🎮 How to Play</h2>
 
         <p>
-            🧩 Look at the Vietnamese words →
-            choose the word that completes the group.
+            Rearrange the Vietnamese letters to make the correct word
         </p>
 
     </div>
@@ -782,14 +836,11 @@ button{
 <div id="gameScreen">
 
     <h1>
-        🧩 Complete the Group
+        🔤 Word Scramble
     </h1>
 
-
     <p class="instruction">
-
-        Which Vietnamese word completes the group?
-
+        Unscramble the letters and type the Vietnamese word.
     </p>
 
 
@@ -802,7 +853,6 @@ button{
             Question 1 of 20
         </div>
 
-
         <div
             class="score"
             id="score"
@@ -814,23 +864,48 @@ button{
 
 
     <div class="question-title">
+        What is the correct word?
+    </div>
 
-        Complete the group:
+
+    <div class="scramble-box">
+
+        <div class="scramble-label">
+            Scrambled word
+        </div>
+
+        <div
+            class="scrambled-word"
+            id="scrambledWord"
+        >
+        </div>
 
     </div>
 
 
-    <div
-        class="group"
-        id="group"
-    >
-    </div>
+    <div class="answer-area">
 
+        <input
+            type="text"
+            id="answerInput"
+            class="answer-input"
+            placeholder="Type your answer..."
+            autocomplete="off"
+            spellcheck="false"
+        >
 
-    <div
-        class="options"
-        id="options"
-    >
+        <div class="check-area">
+
+            <button
+                id="checkBtn"
+                class="check-btn"
+                onclick="checkAnswer()"
+            >
+                Check Answer ✓
+            </button>
+
+        </div>
+
     </div>
 
 
@@ -870,11 +945,9 @@ button{
         🎉
     </div>
 
-
     <h1>
         Game Finished!
     </h1>
-
 
     <div
         class="final-score"
@@ -882,20 +955,17 @@ button{
     >
     </div>
 
-
     <div
         class="final-percent"
         id="finalPercent"
     >
     </div>
 
-
     <div
         class="final-message"
         id="finalMessage"
     >
     </div>
-
 
     <button
         class="play-again-btn"
@@ -912,334 +982,289 @@ button{
 
 <script>
 
-
 /* =========================================================
-   QUESTION DATA
-   FOOD & DRINKS VOCABULARY ONLY
+   GAME DATA
+   37 WORD VOCABULARY
+   SCRAMBLE USES NO TONE MARKS
 ========================================================= */
 
 const questions = [
 
     {
-        group:[
-            "Cơm",
-            "Bún",
-            "Mì"
-        ],
-        answer:"Bánh mì",
-        wrong:[
-            "Trà",
-            "Nước cam"
-        ],
+        word:"cơm",
+        scramble:"omc",
         explanation:
-            "Cơm, bún, mì, and bánh mì are all foods."
+            "Cơm means rice."
     },
 
-
     {
-        group:[
-            "Cà phê",
-            "Trà",
-            "Sữa"
-        ],
-        answer:"Nước cam",
-        wrong:[
-            "Cà rốt",
-            "Trứng"
-        ],
+        word:"bún",
+        scramble:"nub",
         explanation:
-            "Cà phê, trà, sữa, and nước cam are all drinks."
+            "Bún means rice noodles."
     },
 
-
     {
-        group:[
-            "Cam",
-            "Xoài",
-            "Chuối"
-        ],
-        answer:"Táo",
-        wrong:[
-            "Cà rốt",
-            "Cá"
-        ],
+        word:"mì",
+        scramble:"im",
         explanation:
-            "Cam, xoài, chuối, and táo are all fruits."
+            "Mì means noodles."
     },
 
-
     {
-        group:[
-            "Cà rốt",
-            "Cà chua",
-            "Dưa leo"
-        ],
-        answer:"Khoai tây",
-        wrong:[
-            "Sữa",
-            "Gà"
-        ],
+        word:"bánh mì",
+        scramble:"mhin ba",
         explanation:
-            "Cà rốt, cà chua, dưa leo, and khoai tây are vegetables."
+            "Bánh mì means bread or Vietnamese sandwich."
     },
 
-
     {
-        group:[
-            "Bò",
-            "Gà",
-            "Heo"
-        ],
-        answer:"Cá",
-        wrong:[
-            "Cam",
-            "Trà"
-        ],
+        word:"bò",
+        scramble:"ob",
         explanation:
-            "Bò, gà, heo, and cá are animal-based foods."
+            "Bò means beef or cow."
     },
 
-
     {
-        group:[
-            "Cam",
-            "Chanh",
-            "Chuối"
-        ],
-        answer:"Xoài",
-        wrong:[
-            "Cà rốt",
-            "Cà phê"
-        ],
+        word:"gà",
+        scramble:"ag",
         explanation:
-            "Cam, chanh, chuối, and xoài are all fruits."
+            "Gà means chicken."
     },
 
-
     {
-        group:[
-            "Nước lọc",
-            "Nước cam",
-            "Nước chanh"
-        ],
-        answer:"Trà",
-        wrong:[
-            "Trứng",
-            "Bánh mì"
-        ],
+        word:"heo",
+        scramble:"oeh",
         explanation:
-            "Nước lọc, nước cam, nước chanh, and trà are all drinks."
+            "Heo means pork or pig."
     },
 
-
     {
-        group:[
-            "Bánh mì",
-            "Cơm",
-            "Bún"
-        ],
-        answer:"Mì",
-        wrong:[
-            "Trà",
-            "Cam"
-        ],
+        word:"cá",
+        scramble:"ac",
         explanation:
-            "Bánh mì, cơm, bún, and mì are all foods."
+            "Cá means fish."
     },
 
-
     {
-        group:[
-            "Dừa",
-            "Chuối",
-            "Bơ"
-        ],
-        answer:"Xoài",
-        wrong:[
-            "Cà rốt",
-            "Cá"
-        ],
+        word:"trứng",
+        scramble:"ngtru",
         explanation:
-            "Dừa, chuối, bơ, and xoài are all fruits."
+            "Trứng means egg."
     },
 
-
     {
-        group:[
-            "Bắp",
-            "Xà lách",
-            "Khoai tây"
-        ],
-        answer:"Cà rốt",
-        wrong:[
-            "Nước cam",
-            "Heo"
-        ],
+        word:"rau",
+        scramble:"uar",
         explanation:
-            "Bắp, xà lách, khoai tây, and cà rốt are vegetables."
+            "Rau means vegetables."
     },
 
-
     {
-        group:[
-            "Đắng",
-            "Ngọt",
-            "Chua"
-        ],
-        answer:"Mặn",
-        wrong:[
-            "Cà rốt",
-            "Nước cam"
-        ],
+        word:"nước lọc",
+        scramble:"c onuc loc",
         explanation:
-            "Đắng, ngọt, chua, and mặn are taste words."
+            "Nước lọc means drinking water."
     },
 
-
     {
-        group:[
-            "Trứng",
-            "Bò",
-            "Gà"
-        ],
-        answer:"Cá",
-        wrong:[
-            "Táo",
-            "Trà"
-        ],
+        word:"sữa",
+        scramble:"uas",
         explanation:
-            "Trứng, bò, gà, and cá are animal-based foods."
+            "Sữa means milk."
     },
 
-
     {
-        group:[
-            "Nước cam",
-            "Nước chanh",
-            "Trà"
-        ],
-        answer:"Cà phê",
-        wrong:[
-            "Bún",
-            "Cà rốt"
-        ],
+        word:"trà",
+        scramble:"atr",
         explanation:
-            "Nước cam, nước chanh, trà, and cà phê are all drinks."
+            "Trà means tea."
     },
 
-
     {
-        group:[
-            "Táo",
-            "Chuối",
-            "Dừa"
-        ],
-        answer:"Cam",
-        wrong:[
-            "Khoai tây",
-            "Heo"
-        ],
+        word:"cà phê",
+        scramble:"he ca p",
         explanation:
-            "Táo, chuối, dừa, and cam are all fruits."
+            "Cà phê means coffee."
     },
 
-
     {
-        group:[
-            "Cà chua",
-            "Cà rốt",
-            "Bắp"
-        ],
-        answer:"Xà lách",
-        wrong:[
-            "Sữa",
-            "Cá"
-        ],
+        word:"nước cam",
+        scramble:"cam nuoc",
         explanation:
-            "Cà chua, cà rốt, bắp, and xà lách are vegetables."
+            "Nước cam means orange juice."
     },
 
-
     {
-        group:[
-            "Cơm",
-            "Mì",
-            "Bánh mì"
-        ],
-        answer:"Bún",
-        wrong:[
-            "Nước lọc",
-            "Cà phê"
-        ],
+        word:"nước chanh",
+        scramble:"chanh nuoc",
         explanation:
-            "Cơm, mì, bánh mì, and bún are all foods."
+            "Nước chanh means lemonade or lemon juice."
     },
 
-
     {
-        group:[
-            "Sữa",
-            "Trà",
-            "Cà phê"
-        ],
-        answer:"Nước chanh",
-        wrong:[
-            "Cá",
-            "Cà rốt"
-        ],
+        word:"chuối",
+        scramble:"oichu",
         explanation:
-            "Sữa, trà, cà phê, and nước chanh are all drinks."
+            "Chuối means banana."
     },
 
-
     {
-        group:[
-            "Mặn",
-            "Cay",
-            "Ngọt"
-        ],
-        answer:"Chua",
-        wrong:[
-            "Cà rốt",
-            "Nước lọc"
-        ],
+        word:"dừa",
+        scramble:"ưad",
         explanation:
-            "Mặn, cay, ngọt, and chua are taste words."
+            "Dừa means coconut."
     },
 
-
     {
-        group:[
-            "Khoai tây",
-            "Cà rốt",
-            "Dưa leo"
-        ],
-        answer:"Cà chua",
-        wrong:[
-            "Nước cam",
-            "Gà"
-        ],
+        word:"bơ",
+        scramble:"ơb",
         explanation:
-            "Khoai tây, cà rốt, dưa leo, and cà chua are vegetables."
+            "Bơ means avocado."
     },
 
+    {
+        word:"cam",
+        scramble:"mca",
+        explanation:
+            "Cam means orange."
+    },
 
     {
-        group:[
-            "Cá",
-            "Gà",
-            "Trứng"
-        ],
-        answer:"Bò",
-        wrong:[
-            "Xoài",
-            "Trà"
-        ],
+        word:"chanh",
+        scramble:"hnach",
         explanation:
-            "Cá, gà, trứng, and bò are animal-based foods."
+            "Chanh means lemon or lime."
+    },
+
+    {
+        word:"táo",
+        scramble:"oat",
+        explanation:
+            "Táo means apple."
+    },
+
+    {
+        word:"xoài",
+        scramble:"aixo",
+        explanation:
+            "Xoài means mango."
+    },
+
+    {
+        word:"cà chua",
+        scramble:"cahu ca",
+        explanation:
+            "Cà chua means tomato."
+    },
+
+    {
+        word:"khoai tây",
+        scramble:"tay khoai",
+        explanation:
+            "Khoai tây means potato."
+    },
+
+    {
+        word:"cà rốt",
+        scramble:"rot ca",
+        explanation:
+            "Cà rốt means carrot."
+    },
+
+    {
+        word:"dưa leo",
+        scramble:"leo dua",
+        explanation:
+            "Dưa leo means cucumber."
+    },
+
+    {
+        word:"bắp",
+        scramble:"pab",
+        explanation:
+            "Bắp means corn."
+    },
+
+    {
+        word:"xà lách",
+        scramble:"lach xa",
+        explanation:
+            "Xà lách means lettuce."
+    },
+
+    {
+        word:"ngon",
+        scramble:"ongn",
+        explanation:
+            "Ngon means delicious or tasty."
+    },
+
+    {
+        word:"mặn",
+        scramble:"nam",
+        explanation:
+            "Mặn means salty."
+    },
+
+    {
+        word:"cay",
+        scramble:"yac",
+        explanation:
+            "Cay means spicy."
+    },
+
+    {
+        word:"ngọt",
+        scramble:"otng",
+        explanation:
+            "Ngọt means sweet."
+    },
+
+    {
+        word:"chua",
+        scramble:"uach",
+        explanation:
+            "Chua means sour."
+    },
+
+    {
+        word:"đắng",
+        scramble:"angd",
+        explanation:
+            "Đắng means bitter."
+    },
+
+    {
+        word:"nóng",
+        scramble:"ognn",
+        explanation:
+            "Nóng means hot."
+    },
+
+    {
+        word:"lạnh",
+        scramble:"hanl",
+        explanation:
+            "Lạnh means cold."
     }
 
 ];
+
+
+/* =========================================================
+   SELECT 20 QUESTIONS
+========================================================= */
+
+const TOTAL_QUESTIONS = 20;
+
+
+/*
+   Pick 20 words from the 37-word vocabulary list.
+   This keeps the game at exactly 20 questions.
+*/
+
+let gameQuestions = [];
 
 
 /* =========================================================
@@ -1272,14 +1297,24 @@ const finalScreen =
         "finalScreen"
     );
 
-const groupEl =
+const scrambledWordEl =
     document.getElementById(
-        "group"
+        "scrambledWord"
     );
 
-const optionsEl =
+const answerInput =
     document.getElementById(
-        "options"
+        "answerInput"
+    );
+
+const checkBtn =
+    document.getElementById(
+        "checkBtn"
+    );
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
     );
 
 const resultEl =
@@ -1302,10 +1337,36 @@ const questionNumberEl =
         "questionNumber"
     );
 
-const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
+
+/* =========================================================
+   NORMALIZE ANSWER
+   REMOVE TONE MARKS FOR COMPARISON
+========================================================= */
+
+function normalizeAnswer(text){
+
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+        .replace(
+            /đ/g,
+            "d"
+        )
+        .replace(
+            /Đ/g,
+            "d"
+        )
+        .replace(
+            /\s+/g,
+            " "
+        )
+        .trim();
+
+}
 
 
 /* =========================================================
@@ -1314,9 +1375,7 @@ const nextBtn =
 
 function shuffle(array){
 
-    const shuffled =
-        [...array];
-
+    const shuffled = [...array];
 
     for(
         let i = shuffled.length - 1;
@@ -1326,10 +1385,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() *
-                (i + 1)
+                Math.random() * (i + 1)
             );
-
 
         [
             shuffled[i],
@@ -1341,7 +1398,6 @@ function shuffle(array){
         ];
 
     }
-
 
     return shuffled;
 
@@ -1359,6 +1415,19 @@ function startGame(){
     score = 0;
 
     locked = false;
+
+
+    /*
+       Shuffle the 37 vocabulary words
+       and use the first 20.
+    */
+
+    gameQuestions =
+        shuffle(questions)
+        .slice(
+            0,
+            TOTAL_QUESTIONS
+        );
 
 
     introScreen.style.display =
@@ -1385,7 +1454,7 @@ function startGame(){
 function updateScore(){
 
     scoreEl.textContent =
-        `Score: ${score} / ${questions.length}`;
+        `Score: ${score} / ${TOTAL_QUESTIONS}`;
 
 }
 
@@ -1400,21 +1469,38 @@ function loadQuestion(){
 
 
     const question =
-        questions[currentQuestion];
+        gameQuestions[
+            currentQuestion
+        ];
 
 
     questionNumberEl.textContent =
-        `Question ${currentQuestion + 1} of ${questions.length}`;
+        `Question ${
+            currentQuestion + 1
+        } of ${TOTAL_QUESTIONS}`;
 
 
-    groupEl.innerHTML =
+    scrambledWordEl.textContent =
+        question.scramble;
+
+
+    answerInput.value =
         "";
 
-    optionsEl.innerHTML =
-        "";
+    answerInput.disabled =
+        false;
+
+
+    checkBtn.disabled =
+        false;
+
+    checkBtn.style.display =
+        "inline-block";
+
 
     resultEl.innerHTML =
         "";
+
 
     explanationEl.innerHTML =
         "";
@@ -1432,107 +1518,14 @@ function loadQuestion(){
         "Next Question →";
 
 
-    /* =====================================================
-       DISPLAY GROUP WORDS
-    ===================================================== */
+    /*
+       Automatically focus the input
+       so the student can type immediately.
+    */
 
-    question.group.forEach(
-        word => {
-
-            const wordElement =
-                document.createElement(
-                    "div"
-                );
-
-
-            wordElement.className =
-                "group-word";
-
-
-            wordElement.textContent =
-                word;
-
-
-            groupEl.appendChild(
-                wordElement
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       DISPLAY MISSING WORD
-    ===================================================== */
-
-    const missingElement =
-        document.createElement(
-            "div"
-        );
-
-
-    missingElement.className =
-        "group-word group-missing";
-
-
-    missingElement.textContent =
-        "?";
-
-
-    groupEl.appendChild(
-        missingElement
-    );
-
-
-    /* =====================================================
-       CREATE ANSWERS
-    ===================================================== */
-
-    const choices =
-        shuffle([
-
-            question.answer,
-
-            ...question.wrong
-
-        ]);
-
-
-    choices.forEach(
-        (choice,index) => {
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "option";
-
-
-            button.textContent =
-                `${String.fromCharCode(65 + index)}. ${choice}`;
-
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    checkAnswer(
-                        button,
-                        choice
-                    );
-
-                }
-            );
-
-
-            optionsEl.appendChild(
-                button
-            );
-
-        }
+    setTimeout(
+        () => answerInput.focus(),
+        50
     );
 
 }
@@ -1542,12 +1535,30 @@ function loadQuestion(){
    CHECK ANSWER
 ========================================================= */
 
-function checkAnswer(
-    selectedButton,
-    selectedChoice
-){
+function checkAnswer(){
 
     if(locked){
+
+        return;
+
+    }
+
+
+    const userAnswer =
+        normalizeAnswer(
+            answerInput.value
+        );
+
+
+    /*
+       Do not allow an empty answer.
+    */
+
+    if(userAnswer === ""){
+
+        resultEl.innerHTML = `
+            ⚠️ Please type an answer.
+        `;
 
         return;
 
@@ -1558,44 +1569,51 @@ function checkAnswer(
 
 
     const question =
-        questions[currentQuestion];
+        gameQuestions[
+            currentQuestion
+        ];
 
 
-    const allButtons =
-        document.querySelectorAll(
-            ".option"
+    const correctAnswer =
+        normalizeAnswer(
+            question.word
         );
+
+
+    /*
+       Lock the answer immediately.
+    */
+
+    answerInput.disabled =
+        true;
+
+    checkBtn.disabled =
+        true;
 
 
     /* =====================================================
-       CORRECT ANSWER
+       CORRECT
     ===================================================== */
 
     if(
-        selectedChoice ===
-        question.answer
+        userAnswer ===
+        correctAnswer
     ){
 
-        selectedButton.classList.add(
-            "correct"
-        );
-
-
         score++;
-
 
         updateScore();
 
 
         resultEl.innerHTML = `
 
-            ✅ Correct!
+            <div>
+                ✅ Correct!
+            </div>
 
             <div class="answer">
-
-                "${question.answer}"
-                completes the group.
-
+                The word is
+                <b>${question.word}</b>.
             </div>
 
         `;
@@ -1604,65 +1622,25 @@ function checkAnswer(
 
 
     /* =====================================================
-       WRONG ANSWER
+       WRONG
     ===================================================== */
 
     else{
 
-        selectedButton.classList.add(
-            "wrong"
-        );
-
-
-        allButtons.forEach(
-            button => {
-
-                if(
-                    button.textContent
-                    .includes(
-                        question.answer
-                    )
-                ){
-
-                    button.classList.add(
-                        "correct"
-                    );
-
-                }
-
-            }
-        );
-
-
         resultEl.innerHTML = `
 
-            ❌ Wrong!
+            <div>
+                ❌ Wrong!
+            </div>
 
             <div class="answer">
-
                 Correct answer:
-                <b>${question.answer}</b>
-
+                <b>${question.word}</b>
             </div>
 
         `;
 
     }
-
-
-    /* =====================================================
-       LOCK ALL OPTIONS
-    ===================================================== */
-
-    allButtons.forEach(
-        button => {
-
-            button.classList.add(
-                "disabled"
-            );
-
-        }
-    );
 
 
     /* =====================================================
@@ -1695,7 +1673,7 @@ function checkAnswer(
 
     if(
         currentQuestion ===
-        questions.length - 1
+        TOTAL_QUESTIONS - 1
     ){
 
         nextBtn.textContent =
@@ -1704,6 +1682,27 @@ function checkAnswer(
     }
 
 }
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+answerInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key ===
+            "Enter"
+        ){
+
+            checkAnswer();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1717,7 +1716,7 @@ function nextQuestion(){
 
     if(
         currentQuestion >=
-        questions.length
+        TOTAL_QUESTIONS
     ){
 
         finishGame();
@@ -1741,7 +1740,6 @@ function finishGame(){
     gameScreen.style.display =
         "none";
 
-
     finalScreen.style.display =
         "block";
 
@@ -1749,7 +1747,7 @@ function finishGame(){
     const percentage =
         Math.round(
             score /
-            questions.length *
+            TOTAL_QUESTIONS *
             100
         );
 
@@ -1757,7 +1755,7 @@ function finishGame(){
     document.getElementById(
         "finalScore"
     ).textContent =
-        `Final Score: ${score} / ${questions.length}`;
+        `Final Score: ${score} / ${TOTAL_QUESTIONS}`;
 
 
     document.getElementById(
@@ -1820,13 +1818,12 @@ function restartGame(){
         "none";
 
     gameScreen.style.display =
-        "none";
-
-    introScreen.style.display =
         "block";
 
 
     updateScore();
+
+    startGame();
 
 }
 

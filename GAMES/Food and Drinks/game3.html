@@ -61,6 +61,8 @@ body{
 
 .back-btn-container{
 
+    width:100%;
+
     max-width:750px;
 
     margin:0 auto 15px;
@@ -380,6 +382,16 @@ button{
     transform:translateY(-2px);
 }
 
+.option-btn.selected{
+
+    background:#315f91 !important;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 0 3px rgba(71,121,184,.2);
+}
+
 .option-btn.correct{
 
     background:#4caf70 !important;
@@ -390,6 +402,51 @@ button{
 .option-btn.wrong{
 
     background:#e74c3c !important;
+
+    cursor:default;
+}
+
+.option-btn:disabled{
+
+    cursor:default;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   CHECK BUTTON
+========================================================= */
+
+#checkBtn{
+
+    margin-top:20px;
+
+    padding:13px 30px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:17px;
+
+    display:inline-block;
+}
+
+#checkBtn:hover{
+
+    background:#38689f;
+
+    transform:translateY(-2px);
+}
+
+#checkBtn:disabled{
+
+    opacity:.45;
+
+    cursor:default;
+
+    transform:none;
 }
 
 
@@ -417,7 +474,7 @@ button{
 
     margin:15px auto 20px;
 
-    padding:16px 20px;
+    padding:14px 18px;
 
     max-width:700px;
 
@@ -429,7 +486,7 @@ button{
 
     color:#3d5066;
 
-    font-size:16px;
+    font-size:15px;
 
     line-height:1.5;
 
@@ -455,7 +512,7 @@ button{
 
     display:none;
 
-    margin-top:15px;
+    margin-top:5px;
 
     padding:12px 30px;
 
@@ -469,6 +526,8 @@ button{
 #nextBtn:hover{
 
     background:#38689f;
+
+    transform:translateY(-2px);
 }
 
 
@@ -678,7 +737,7 @@ button{
 <div class="back-btn-container">
 
     <a
-        href="../../index.html"
+        href="../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
         ⬅ Back to Lobby
@@ -726,31 +785,14 @@ button{
 
         <h2>🎮 How to Play</h2>
 
-        <p>👀 Read → 🎯 Choose the English meaning.</p>
-
-        <p>✅ Correct = 1 point. ❌ Wrong = try again.</p>
+        <p>👀 Read the Vietnamese word and choose the correct English meaning.</p>
 
     </div>
 
 
-        <!-- =====================================================
-            GAME INFO
-        ===================================================== -->
-
-        <div class="game-info">
-
-            <div>
-                📝
-                <strong>20 Questions</strong>
-            </div>
-
-            <div>
-                🎯
-                <strong>Choose the correct answer</strong>
-            </div>
-
-        </div>
-
+    <!-- =====================================================
+         GAME INFO
+    ===================================================== -->
 
     <button
         id="startBtn"
@@ -778,7 +820,7 @@ button{
 
     <p class="instruction">
 
-        Choose the English meaning of the Vietnamese word.
+        Choose the English meaning, then check your answer.
 
     </p>
 
@@ -821,6 +863,17 @@ button{
         class="options"
         id="options"
     ></div>
+
+
+    <button
+        id="checkBtn"
+        onclick="checkAnswer()"
+        disabled
+    >
+
+        Check Answer
+
+    </button>
 
 
     <div
@@ -1015,173 +1068,71 @@ const originalQuestions = [
 const explanations = {
 
     "chai":{
-
-        meaning:
-            "Chai means a bottle or container for liquids.",
-
-        note:
-            "Example: một chai nước = a bottle of water."
-
+        meaning:"Chai means bottle."
     },
 
     "ly":{
-
-        meaning:
-            "Ly means a glass or cup used for drinking.",
-
-        note:
-            "Example: một ly cà phê = a cup of coffee."
-
+        meaning:"Ly means glass or cup."
     },
 
     "tô":{
-
-        meaning:
-            "Tô means a bowl, especially a larger bowl used for foods like noodles or soup.",
-
-        note:
-            "Example: một tô phở = a bowl of phở."
-
+        meaning:"Tô means bowl."
     },
 
     "dĩa":{
-
-        meaning:
-            "Dĩa means a plate used for serving food.",
-
-        note:
-            "Example: một dĩa cơm = a plate of rice."
-
+        meaning:"Dĩa means plate."
     },
 
     "nước lọc":{
-
-        meaning:
-            "Nước lọc means drinking water or plain water.",
-
-        note:
-            "Example: Cho tôi một chai nước lọc. = Give me a bottle of water."
-
+        meaning:"Nước lọc means drinking water or plain water."
     },
 
     "nước ngọt":{
-
-        meaning:
-            "Nước ngọt means a soft drink or soda.",
-
-        note:
-            "Example: Tôi muốn một lon nước ngọt. = I want a can of soda."
-
+        meaning:"Nước ngọt means soda or soft drink."
     },
 
     "trà":{
-
-        meaning:
-            "Trà means tea.",
-
-        note:
-            "Example: trà đá = iced tea."
-
+        meaning:"Trà means tea."
     },
 
     "cà phê":{
-
-        meaning:
-            "Cà phê means coffee.",
-
-        note:
-            "Example: cà phê sữa = Vietnamese coffee with condensed milk."
-
+        meaning:"Cà phê means coffee."
     },
 
     "nước cam":{
-
-        meaning:
-            "Nước cam means orange juice.",
-
-        note:
-            "Example: một ly nước cam = a glass of orange juice."
-
+        meaning:"Nước cam means orange juice."
     },
 
     "nước chanh":{
-
-        meaning:
-            "Nước chanh means lemonade or lemon drink.",
-
-        note:
-            "Example: một ly nước chanh = a glass of lemonade."
-
+        meaning:"Nước chanh means lemonade or lemon drink."
     },
 
     "mì":{
-
-        meaning:
-            "Mì means noodles.",
-
-        note:
-            "Example: mì gói = instant noodles."
-
+        meaning:"Mì means noodles."
     },
 
     "gà":{
-
-        meaning:
-            "Gà means chicken.",
-
-        note:
-            "Example: cơm gà = chicken rice."
-
+        meaning:"Gà means chicken."
     },
 
     "bò":{
-
-        meaning:
-            "Bò means beef or cow, depending on context.",
-
-        note:
-            "Example: phở bò = beef phở."
-
+        meaning:"Bò means beef."
     },
 
     "heo":{
-
-        meaning:
-            "Heo means pig or pork.",
-
-        note:
-            "Example: thịt heo = pork."
-
+        meaning:"Heo means pork."
     },
 
     "rau":{
-
-        meaning:
-            "Rau means vegetables or leafy greens.",
-
-        note:
-            "Example: rau muống = water spinach."
-
+        meaning:"Rau means vegetables or leafy greens."
     },
 
     "trứng":{
-
-        meaning:
-            "Trứng means egg.",
-
-        note:
-            "Example: trứng chiên = fried egg."
-
+        meaning:"Trứng means egg."
     },
 
     "cá":{
-
-        meaning:
-            "Cá means fish.",
-
-        note:
-            "Example: cá chiên = fried fish."
-
+        meaning:"Cá means fish."
     }
 
 };
@@ -1203,6 +1154,8 @@ let questions = [];
 let currentQuestion = 0;
 
 let score = 0;
+
+let selectedAnswer = null;
 
 let answered = false;
 
@@ -1229,6 +1182,11 @@ const questionEl =
 const optionsEl =
     document.getElementById(
         "options"
+    );
+
+const checkBtn =
+    document.getElementById(
+        "checkBtn"
     );
 
 const messageEl =
@@ -1289,17 +1247,10 @@ function shuffle(array){
 
 function createQuestionSet(){
 
-    const shuffled =
-        shuffle(originalQuestions);
-
-
     questions = [];
 
+    let previous = null;
 
-    /*
-       Use every vocabulary item
-       before repeating any item.
-    */
 
     while(
         questions.length <
@@ -1324,17 +1275,6 @@ function createQuestionSet(){
             }
 
 
-            /*
-               Avoid the same word
-               immediately repeating.
-            */
-
-            const previous =
-                questions[
-                    questions.length - 1
-                ];
-
-
             if(
                 previous &&
                 previous.vn ===
@@ -1349,6 +1289,10 @@ function createQuestionSet(){
             questions.push(
                 question
             );
+
+
+            previous =
+                question;
 
         }
 
@@ -1366,6 +1310,8 @@ function startGame(){
     currentQuestion = 0;
 
     score = 0;
+
+    selectedAnswer = null;
 
     answered = false;
 
@@ -1406,6 +1352,8 @@ function loadQuestion(){
 
     answered = false;
 
+    selectedAnswer = null;
+
 
     const q =
         questions[
@@ -1445,6 +1393,14 @@ function loadQuestion(){
     explanationEl.classList.add(
         "hidden"
     );
+
+
+    checkBtn.disabled =
+        true;
+
+
+    checkBtn.style.display =
+        "inline-block";
 
 
     nextBtn.style.display =
@@ -1528,10 +1484,9 @@ function createOptions(q){
                 "click",
                 () => {
 
-                    checkAnswer(
+                    selectAnswer(
                         btn,
-                        option,
-                        q
+                        option
                     );
 
                 }
@@ -1549,13 +1504,12 @@ function createOptions(q){
 
 
 /* =========================================================
-   CHECK ANSWER
+   SELECT ANSWER
 ========================================================= */
 
-function checkAnswer(
+function selectAnswer(
     btn,
-    selected,
-    question
+    answer
 ){
 
     if(answered){
@@ -1565,102 +1519,58 @@ function checkAnswer(
     }
 
 
-    /* =====================================================
-       CORRECT
-    ===================================================== */
+    document
+        .querySelectorAll(".option-btn")
+        .forEach(
+            option => {
 
-    if(
-        selected ===
-        question.en
-    ){
-
-        answered = true;
-
-
-        btn.classList.add(
-            "correct"
-        );
-
-
-        score++;
-
-
-        updateScore();
-
-
-        messageEl.innerHTML =
-            "✅ Correct! Well done!";
-
-
-        messageEl.style.color =
-            "#3b8b58";
-
-
-        showExplanation(
-            question
-        );
-
-
-        disableButtons();
-
-
-        nextBtn.style.display =
-            "inline-block";
-
-
-        if(
-            currentQuestion ===
-            TOTAL_QUESTIONS - 1
-        ){
-
-            nextBtn.textContent =
-                "See Results →";
-
-        }
-
-    }
-
-
-    /* =====================================================
-       WRONG
-    ===================================================== */
-
-    else{
-
-        btn.classList.add(
-            "wrong"
-        );
-
-
-        messageEl.innerHTML =
-            "❌ Incorrect! Try again!";
-
-
-        messageEl.style.color =
-            "#c54d4d";
-
-
-        setTimeout(
-            () => {
-
-                btn.classList.remove(
-                    "wrong"
+                option.classList.remove(
+                    "selected"
                 );
 
-            },
-            500
+            }
         );
 
-    }
+
+    btn.classList.add(
+        "selected"
+    );
+
+
+    selectedAnswer =
+        answer;
+
+
+    checkBtn.disabled =
+        false;
 
 }
 
 
 /* =========================================================
-   DISABLE BUTTONS
+   CHECK ANSWER
 ========================================================= */
 
-function disableButtons(){
+function checkAnswer(){
+
+    if(
+        answered ||
+        selectedAnswer === null
+    ){
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
 
     const buttons =
         document.querySelectorAll(
@@ -1676,6 +1586,135 @@ function disableButtons(){
 
         }
     );
+
+
+    checkBtn.disabled =
+        true;
+
+
+    /* =====================================================
+       CORRECT
+    ===================================================== */
+
+    if(
+        selectedAnswer ===
+        question.en
+    ){
+
+        score++;
+
+
+        scoreEl.textContent =
+            score;
+
+
+        messageEl.textContent =
+            "✅ Correct!";
+
+
+        messageEl.style.color =
+            "#3b8b58";
+
+
+        buttons.forEach(
+            btn => {
+
+                if(
+                    btn.textContent ===
+                    question.en
+                ){
+
+                    btn.classList.remove(
+                        "selected"
+                    );
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       WRONG
+    ===================================================== */
+
+    else{
+
+        messageEl.innerHTML =
+            `❌ Incorrect. The answer is <strong>${question.en}</strong>.`;
+
+
+        messageEl.style.color =
+            "#c54d4d";
+
+
+        buttons.forEach(
+            btn => {
+
+                if(
+                    btn.textContent ===
+                    selectedAnswer
+                ){
+
+                    btn.classList.remove(
+                        "selected"
+                    );
+
+                    btn.classList.add(
+                        "wrong"
+                    );
+
+                }
+
+
+                if(
+                    btn.textContent ===
+                    question.en
+                ){
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    showExplanation(
+        question
+    );
+
+
+    if(
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ){
+
+        nextBtn.textContent =
+            "See Results →";
+
+    }
+
+    else{
+
+        nextBtn.textContent =
+            "Next →";
+
+    }
+
+
+    nextBtn.style.display =
+        "inline-block";
 
 }
 
@@ -1706,23 +1745,12 @@ function showExplanation(
         <strong>💡 Learn:</strong>
 
         <strong>${question.vn}</strong>
-        →
+        → 
         <strong>${question.en}</strong>
 
-        <br><br>
+        <br>
 
         ${data.meaning}
-
-        <br><br>
-
-        <span style="
-            font-size:14px;
-            color:#68788a;
-        ">
-
-            ${data.note}
-
-        </span>
 
     `;
 
@@ -1865,6 +1893,8 @@ function restartGame(){
     currentQuestion = 0;
 
     score = 0;
+
+    selectedAnswer = null;
 
     answered = false;
 

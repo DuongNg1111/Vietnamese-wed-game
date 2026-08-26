@@ -10,21 +10,26 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Pronouns in Context</title>
+<title>Vietnamese Pronouns Challenge</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Pronouns in Context"
+    content="Vietnamese Pronouns Challenge"
 >
 
 <meta
     name="game-description"
-    content="Practice choosing Vietnamese pronouns in everyday situations."
+    content="Practice Vietnamese pronouns and family terms based on age, gender, and relationship."
 >
 
 <meta
     name="game-icon"
-    content="👥"
+    content="👤"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
 >
 
 
@@ -100,7 +105,8 @@ body{
     border-radius:20px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -114,7 +120,6 @@ body{
     position:absolute;
 
     top:20px;
-
     left:22px;
 
     padding:8px 14px;
@@ -334,22 +339,22 @@ body{
 
 
 /* ==========================================================
-   SITUATION CARD
+   QUESTION
 ========================================================== */
 
 .card{
 
-    background:#f8fbff;
+    background:#fffde7;
 
-    border:2px dashed #3498db;
+    border:2px dashed #f1c40f;
 
     border-radius:12px;
 
-    padding:35px 22px;
+    padding:35px 20px;
 
     margin:20px 0;
 
-    min-height:170px;
+    min-height:150px;
 
     display:flex;
 
@@ -357,11 +362,11 @@ body{
 
     align-items:center;
 
-    font-size:20px;
+    font-size:21px;
 
     font-weight:600;
 
-    line-height:1.6;
+    line-height:1.5;
 
 }
 
@@ -386,6 +391,8 @@ body{
 
     padding:17px;
 
+    min-height:62px;
+
     font-size:18px;
 
     font-weight:bold;
@@ -405,7 +412,7 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(:disabled){
 
     background:#2c3e50;
 
@@ -428,17 +435,15 @@ body{
 }
 
 
-.option-btn.disabled{
+.option-btn:disabled{
 
-    pointer-events:none;
-
-    opacity:.7;
+    cursor:default;
 
 }
 
 
 /* ==========================================================
-   RESULT
+   FEEDBACK
 ========================================================== */
 
 .result-message{
@@ -450,6 +455,8 @@ body{
     font-size:18px;
 
     font-weight:bold;
+
+    line-height:1.5;
 
 }
 
@@ -464,6 +471,40 @@ body{
 .wrong-text{
 
     color:#e74c3c;
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation{
+
+    margin-top:18px;
+
+    padding:16px 18px;
+
+    background:#f0f7ff;
+
+    border-left:5px solid #4779b8;
+
+    border-radius:10px;
+
+    color:#3d5066;
+
+    text-align:left;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+}
+
+
+.explanation strong{
+
+    color:#2c3e50;
 
 }
 
@@ -490,7 +531,7 @@ body{
 
     cursor:pointer;
 
-    margin-top:5px;
+    margin-top:18px;
 
     transition:.2s;
 
@@ -546,6 +587,8 @@ body{
     color:#7f8c8d;
 
     font-size:18px;
+
+    line-height:1.6;
 
 }
 
@@ -620,9 +663,18 @@ body{
 
         font-size:18px;
 
-        min-height:140px;
+        min-height:130px;
 
         padding:25px 15px;
+
+    }
+
+
+    .option-btn{
+
+        font-size:17px;
+
+        min-height:58px;
 
     }
 
@@ -685,32 +737,24 @@ body{
 
     <div class="emoji">
 
-        👥
+        👤
 
     </div>
 
 
     <h1>
 
-        Vietnamese Pronouns in Context
+        Vietnamese Pronouns Challenge
 
     </h1>
 
 
     <p>
 
-        Read the situation and choose
-        the Vietnamese pronoun you would use.
+        Choose the correct Vietnamese pronoun
+        based on age, gender, and relationship.
 
     </p>
-
-
-    <p>
-
-        🎯 10 questions
-
-    </p>
-
 
     <button
         class="start-btn"
@@ -737,14 +781,14 @@ body{
 
     <h1 class="title">
 
-        👥 Vietnamese Pronouns in Context
+        👤 Vietnamese Pronouns Challenge
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the pronoun that fits the situation.
+        Choose the correct Vietnamese pronoun.
 
     </p>
 
@@ -768,7 +812,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    10
+                    20
                 </span>
 
             </div>
@@ -828,6 +872,16 @@ body{
 
 
 
+        <!-- EXPLANATION -->
+
+        <div
+            class="explanation"
+            id="explanation"
+            style="display:none;"
+        ></div>
+
+
+
         <!-- NEXT -->
 
         <button
@@ -868,7 +922,7 @@ body{
 
     <p class="final-message">
 
-        You completed Vietnamese Pronouns in Context.
+        You completed the Vietnamese Pronouns Challenge.
 
     </p>
 
@@ -916,155 +970,364 @@ const database = [
 
     {
         q:
-        "You meet your friend's older brother. He is a man around your age but a little older than you. What do you call him?",
+        "You are talking to your father. What do you call him?",
 
         a:[
-            "Anh",
-            "Em",
+            "Ba",
+            "Ông",
             "Chú",
             "Bác"
         ],
 
-        c:"Anh"
+        c:"Ba",
+
+        e:
+        "\"Ba\" means father or dad. It is commonly used to address your father."
     },
 
 
     {
         q:
-        "Your new neighbor is a woman around your age and a little older than you. What do you call her?",
+        "You are talking to your mother. What do you call her?",
 
         a:[
-            "Chị",
-            "Em",
-            "Dì",
-            "Bà"
-        ],
-
-        c:"Chị"
-    },
-
-
-    {
-        q:
-        "You are talking to your younger brother. What do you call him?",
-
-        a:[
-            "Em",
-            "Anh",
-            "Cháu",
-            "Chú"
-        ],
-
-        c:"Em"
-    },
-
-
-    {
-        q:
-        "You meet your mother's younger brother. What do you call him?",
-
-        a:[
-            "Chú",
-            "Bác",
-            "Anh",
-            "Ông"
-        ],
-
-        c:"Chú"
-    },
-
-
-    {
-        q:
-        "You meet your mother's younger sister. What do you call her?",
-
-        a:[
-            "Dì",
-            "Bác",
-            "Chị",
-            "Bà"
-        ],
-
-        c:"Dì"
-    },
-
-
-    {
-        q:
-        "Your father's older brother comes to visit. What do you call him?",
-
-        a:[
-            "Bác",
-            "Chú",
-            "Anh",
-            "Ông"
-        ],
-
-        c:"Bác"
-    },
-
-
-    {
-        q:
-        "You are talking to a little child who is much younger than you. What do you call them?",
-
-        a:[
-            "Cháu",
-            "Em",
-            "Anh",
-            "Bác"
-        ],
-
-        c:"Cháu"
-    },
-
-
-    {
-        q:
-        "You meet your grandmother. What do you call her?",
-
-        a:[
+            "Mẹ",
             "Bà",
             "Dì",
-            "Chị",
-            "Cháu"
+            "Chị"
         ],
 
-        c:"Bà"
+        c:"Mẹ",
+
+        e:
+        "\"Mẹ\" means mother or mom."
     },
 
 
     {
         q:
-        "You meet your grandfather. What do you call him?",
+        "You meet a man from the grandparents' generation. What do you call him?",
 
         a:[
             "Ông",
-            "Bác",
+            "Bà",
             "Chú",
-            "Anh"
+            "Bác"
         ],
 
-        c:"Ông"
+        c:"Ông",
+
+        e:
+        "\"Ông\" is used for a grandfather or an older man from the grandparents' generation."
     },
 
 
     {
         q:
-        "A woman is older than you but belongs to your generation. You are speaking directly to her. What do you call her?",
+        "You meet a woman from the grandparents' generation. What do you call her?",
+
+        a:[
+            "Bà",
+            "Ông",
+            "Dì",
+            "Chị"
+        ],
+
+        c:"Bà",
+
+        e:
+        "\"Bà\" is used for a grandmother or an older woman from the grandparents' generation."
+    },
+
+
+    {
+        q:
+        "You meet a man from the parents' generation who is younger than your parents. What do you call him?",
+
+        a:[
+            "Chú",
+            "Bác",
+            "Anh",
+            "Ông"
+        ],
+
+        c:"Chú",
+
+        e:
+        "\"Chú\" is commonly used for a younger male relative of your parents' generation, especially your father's younger brother."
+    },
+
+
+    {
+        q:
+        "You meet a woman from the parents' generation who is younger than your parents. What do you call her?",
+
+        a:[
+            "Dì",
+            "Bác",
+            "Chị",
+            "Bà"
+        ],
+
+        c:"Dì",
+
+        e:
+        "\"Dì\" is commonly used for a maternal aunt or a woman from the parents' generation who is younger than your parents."
+    },
+
+
+    {
+        q:
+        "You meet someone from the parents' generation who is older than your parents. What do you call them?",
+
+        a:[
+            "Bác",
+            "Chú",
+            "Dì",
+            "Ông"
+        ],
+
+        c:"Bác",
+
+        e:
+        "\"Bác\" is commonly used for an older person from the parents' generation."
+    },
+
+
+    {
+        q:
+        "You talk to a man of your generation who is older than you. What do you call him?",
+
+        a:[
+            "Anh",
+            "Em",
+            "Chú",
+            "Bác"
+        ],
+
+        c:"Anh",
+
+        e:
+        "\"Anh\" is used for an older male sibling or an older man around your generation."
+    },
+
+
+    {
+        q:
+        "You talk to a woman of your generation who is older than you. What do you call her?",
 
         a:[
             "Chị",
-            "Bà",
-            "Dì",
-            "Em"
+            "Em",
+            "Anh",
+            "Bà"
         ],
 
-        c:"Chị"
+        c:"Chị",
+
+        e:
+        "\"Chị\" is used for an older female sibling or an older woman around your generation."
+    },
+
+
+    {
+        q:
+        "You talk to someone of your generation who is younger than you. What do you call them?",
+
+        a:[
+            "Em",
+            "Anh",
+            "Chị",
+            "Bác"
+        ],
+
+        c:"Em",
+
+        e:
+        "\"Em\" is used for a younger sibling or a younger person around your generation."
+    },
+
+
+    {
+        q:
+        "You talk to a young child from the younger generation. What do you call them?",
+
+        a:[
+            "Cháu",
+            "Em",
+            "Bác",
+            "Chú"
+        ],
+
+        c:"Cháu",
+
+        e:
+        "\"Cháu\" can be used for a grandchild, niece, nephew, or a much younger person."
+    },
+
+
+    {
+        q:
+        "Your father's younger brother is talking to you. What do you call him?",
+
+        a:[
+            "Chú",
+            "Bác",
+            "Anh",
+            "Ông"
+        ],
+
+        c:"Chú",
+
+        e:
+        "\"Chú\" is the common term for your father's younger brother."
+    },
+
+
+    {
+        q:
+        "Your father's older brother is talking to you. What do you call him?",
+
+        a:[
+            "Bác",
+            "Chú",
+            "Anh",
+            "Ông"
+        ],
+
+        c:"Bác",
+
+        e:
+        "\"Bác\" is used for an older sibling of your parent, such as your father's older brother."
+    },
+
+
+    {
+        q:
+        "Your mother's sister is talking to you. What do you call her?",
+
+        a:[
+            "Dì",
+            "Bác",
+            "Chị",
+            "Bà"
+        ],
+
+        c:"Dì",
+
+        e:
+        "\"Dì\" is commonly used for your mother's sister."
+    },
+
+
+    {
+        q:
+        "Your older brother is talking to you. What do you call him?",
+
+        a:[
+            "Anh",
+            "Em",
+            "Chú",
+            "Cháu"
+        ],
+
+        c:"Anh",
+
+        e:
+        "\"Anh\" means older brother and can also be used for an older male around your generation."
+    },
+
+
+    {
+        q:
+        "Your older sister is talking to you. What do you call her?",
+
+        a:[
+            "Chị",
+            "Em",
+            "Dì",
+            "Bà"
+        ],
+
+        c:"Chị",
+
+        e:
+        "\"Chị\" means older sister and can also be used for an older female around your generation."
+    },
+
+
+    {
+        q:
+        "Your younger brother is talking to you. What do you call him?",
+
+        a:[
+            "Em trai",
+            "Anh",
+            "Chú",
+            "Cháu trai"
+        ],
+
+        c:"Em trai",
+
+        e:
+        "\"Em trai\" means younger brother. When addressing him directly, you can simply use \"Em\"."
+    },
+
+
+    {
+        q:
+        "Your younger sister is talking to you. What do you call her?",
+
+        a:[
+            "Em gái",
+            "Chị",
+            "Dì",
+            "Cháu gái"
+        ],
+
+        c:"Em gái",
+
+        e:
+        "\"Em gái\" means younger sister. When addressing her directly, you can simply use \"Em\"."
+    },
+
+
+    {
+        q:
+        "A boy who is your son is being introduced. What is he called?",
+
+        a:[
+            "Con trai",
+            "Con gái",
+            "Cháu trai",
+            "Em trai"
+        ],
+
+        c:"Con trai",
+
+        e:
+        "\"Con trai\" means son or boy. \"Con\" can also be used when addressing your own child."
+    },
+
+
+    {
+        q:
+        "A girl who is your daughter is being introduced. What is she called?",
+
+        a:[
+            "Con gái",
+            "Con trai",
+            "Cháu gái",
+            "Em gái"
+        ],
+
+        c:"Con gái",
+
+        e:
+        "\"Con gái\" means daughter or girl. \"Con\" can also be used when addressing your own child."
     }
 
 ];
-
 
 
 /* ==========================================================
@@ -1079,6 +1342,65 @@ let score = 0;
 
 let answered = false;
 
+
+/* ==========================================================
+   DOM
+========================================================== */
+
+const intro =
+    document.getElementById("intro");
+
+
+const game =
+    document.getElementById("game");
+
+
+const final =
+    document.getElementById("final");
+
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+
+const totalQuestions =
+    document.getElementById("totalQuestions");
+
+
+const scoreElement =
+    document.getElementById("score");
+
+
+const progress =
+    document.getElementById("progress");
+
+
+const questionText =
+    document.getElementById("questionText");
+
+
+const optionsContainer =
+    document.getElementById("optionsContainer");
+
+
+const resultText =
+    document.getElementById("resultText");
+
+
+const explanation =
+    document.getElementById("explanation");
+
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+
+const finalScore =
+    document.getElementById("finalScore");
+
+
+const finalMessage =
+    document.getElementById("finalMessage");
 
 
 /* ==========================================================
@@ -1098,7 +1420,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
@@ -1118,7 +1441,6 @@ function shuffle(array){
 }
 
 
-
 /* ==========================================================
    START GAME
 ========================================================== */
@@ -1134,37 +1456,24 @@ function startGame(){
     score = 0;
 
 
-    document
-        .getElementById("intro")
-        .classList.remove("active");
+    intro.classList.remove("active");
+
+    final.classList.remove("active");
+
+    game.classList.add("active");
 
 
-    document
-        .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
-
-
-    document
-        .getElementById("score")
-        .textContent =
+    scoreElement.textContent =
         "0";
 
 
-    document
-        .getElementById("totalQuestions")
-        .textContent =
+    totalQuestions.textContent =
         questions.length;
 
 
     loadQuestion();
 
 }
-
 
 
 /* ==========================================================
@@ -1180,15 +1489,11 @@ function loadQuestion(){
         questions[currentQuestion];
 
 
-    document
-        .getElementById("questionNumber")
-        .textContent =
+    questionNumber.textContent =
         currentQuestion + 1;
 
 
-    document
-        .getElementById("progress")
-        .style.width =
+    progress.style.width =
         (
             currentQuestion /
             questions.length *
@@ -1196,73 +1501,68 @@ function loadQuestion(){
         ) + "%";
 
 
-    document
-        .getElementById("questionText")
-        .textContent =
+    questionText.textContent =
         question.q;
 
 
-    document
-        .getElementById("resultText")
-        .textContent =
+    resultText.textContent =
         "";
 
 
-    document
-        .getElementById("resultText")
-        .className =
+    resultText.className =
         "result-message";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    explanation.innerHTML =
+        "";
+
+
+    explanation.style.display =
         "none";
 
 
-    const container =
-        document.getElementById(
-            "optionsContainer"
-        );
-
-
-    container.innerHTML =
-        "";
+    nextBtn.style.display =
+        "none";
 
 
     const options =
         shuffle(question.a);
 
 
+    optionsContainer.innerHTML =
+        "";
+
+
     options.forEach(option => {
 
-        const btn =
+        const button =
             document.createElement(
                 "button"
             );
 
 
-        btn.className =
+        button.className =
             "option-btn";
 
 
-        btn.textContent =
+        button.textContent =
             option;
 
 
-        btn.onclick = () =>
+        button.onclick = () =>
             handleAnswer(
-                btn,
+                button,
                 option
             );
 
 
-        container.appendChild(btn);
+        optionsContainer.appendChild(
+            button
+        );
 
     });
 
 }
-
 
 
 /* ==========================================================
@@ -1281,14 +1581,37 @@ function handleAnswer(
     }
 
 
+    answered = true;
+
+
     const question =
         questions[currentQuestion];
 
 
-    if(selected === question.c){
+    const buttons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
 
-        answered = true;
 
+    /*
+     * Lock the entire question immediately.
+     */
+
+    buttons.forEach(btn => {
+
+        btn.disabled = true;
+
+    });
+
+
+    /*
+     * Correct answer.
+     */
+
+    if(
+        selected === question.c
+    ){
 
         button.classList.add(
             "correct"
@@ -1298,94 +1621,112 @@ function handleAnswer(
         score++;
 
 
-        document
-            .getElementById("score")
-            .textContent =
+        scoreElement.textContent =
             score;
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
+        resultText.textContent =
             "🎉 Correct!";
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
-
-        document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
-
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
+    }
 
 
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
+    /*
+     * Wrong answer.
+     */
 
-
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Finish 🎉";
-
-        }else{
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Next →";
-
-        }
-
-
-    }else{
+    else{
 
         button.classList.add(
             "wrong"
         );
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "❌ Try again!";
+        buttons.forEach(btn => {
+
+            if(
+                btn.textContent ===
+                question.c
+            ){
+
+                btn.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.textContent =
+            `❌ Incorrect. The correct answer is "${question.c}".`;
+
+
+        resultText.className =
             "result-message wrong-text";
 
+    }
 
-        setTimeout(() => {
 
-            button.classList.remove(
-                "wrong"
-            );
+    /*
+     * Show explanation after grading.
+     */
 
-        },600);
+    showExplanation(question);
+
+
+    /*
+     * Show next button.
+     */
+
+    nextBtn.style.display =
+        "inline-block";
+
+
+    if(
+        currentQuestion ===
+        questions.length - 1
+    ){
+
+        nextBtn.textContent =
+            "Finish 🎉";
+
+    }
+    else{
+
+        nextBtn.textContent =
+            "Next →";
 
     }
 
 }
 
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+function showExplanation(question){
+
+    explanation.innerHTML = `
+
+        <strong>💡 Learn:</strong>
+
+        <br><br>
+
+        ${question.e}
+
+    `;
+
+
+    explanation.style.display =
+        "block";
+
+}
 
 
 /* ==========================================================
@@ -1404,7 +1745,8 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+    else{
 
         finishGame();
 
@@ -1413,30 +1755,27 @@ function nextQuestion(){
 }
 
 
-
 /* ==========================================================
    FINISH GAME
 ========================================================== */
 
 function finishGame(){
 
-    document
-        .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+    game.classList.remove(
+        "active"
+    );
 
 
-    document
-        .getElementById("final")
-        .classList.add(
-            "active"
-        );
+    final.classList.add(
+        "active"
+    );
 
 
-    document
-        .getElementById("finalScore")
-        .textContent =
+    progress.style.width =
+        "100%";
+
+
+    finalScore.textContent =
         score +
         " / " +
         questions.length;
@@ -1453,31 +1792,54 @@ function finishGame(){
     let message;
 
 
-    if(percent >= 90){
+    if(
+        percent === 100
+    ){
 
         message =
-            "🏆 Excellent! You know how to use Vietnamese pronouns.";
+            "🏆 Perfect! You really understand Vietnamese pronouns and family terms.";
 
-    }else if(percent >= 70){
+    }
+
+    else if(
+        percent >= 90
+    ){
 
         message =
-            "🎉 Good job! Keep practicing.";
+            "🌟 Excellent! You have a strong understanding of Vietnamese pronouns.";
 
-    }else{
+    }
+
+    else if(
+        percent >= 70
+    ){
 
         message =
-            "📚 Keep practicing Vietnamese pronouns in everyday situations.";
+            "👏 Good job! Keep practicing how Vietnamese pronouns change with age and relationship.";
+
+    }
+
+    else if(
+        percent >= 50
+    ){
+
+        message =
+            "📚 Nice effort! Review the family and pronoun vocabulary and try again.";
+
+    }
+
+    else{
+
+        message =
+            "💪 Keep practicing! Vietnamese pronouns take time to become natural.";
 
     }
 
 
-    document
-        .getElementById("finalMessage")
-        .textContent =
+    finalMessage.textContent =
         message;
 
 }
-
 
 
 /* ==========================================================
@@ -1491,7 +1853,6 @@ function restartGame(){
 }
 
 
-
 /* ==========================================================
    BACK TO LOBBY
 ========================================================== */
@@ -1499,7 +1860,7 @@ function restartGame(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=People%20%26%20Pronouns";
 
 }
 

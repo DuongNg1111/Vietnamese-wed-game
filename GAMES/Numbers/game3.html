@@ -89,6 +89,7 @@ h1{
     color:#666;
     font-size:18px;
     margin-bottom:25px;
+    line-height:1.5;
 }
 
 /* =========================
@@ -177,6 +178,7 @@ h1{
     background:#ffcdd2;
     border-color:#ef5350;
     color:#b71c1c;
+    cursor:default;
 }
 
 .answer.disabled{
@@ -192,14 +194,31 @@ h1{
     min-height:45px;
     font-size:28px;
     font-weight:bold;
-    margin:10px 0;
+    margin:10px 0 5px;
 }
 
 .feedback{
-    min-height:28px;
-    font-size:18px;
+    min-height:55px;
+    font-size:17px;
+    line-height:1.5;
     font-weight:bold;
     color:#555;
+}
+
+.correct-text{
+    color:#2e7d32;
+}
+
+.wrong-text{
+    color:#c62828;
+}
+
+.explanation{
+    display:block;
+    margin-top:5px;
+    color:#666;
+    font-size:15px;
+    font-weight:normal;
 }
 
 /* =========================
@@ -607,9 +626,21 @@ function loadQuestion(){
 
 
     document
+        .getElementById("resultIcon")
+        .className =
+        "result";
+
+
+    document
         .getElementById("feedback")
-        .innerText =
+        .innerHTML =
         "";
+
+
+    document
+        .getElementById("feedback")
+        .className =
+        "feedback";
 
 
     document
@@ -621,9 +652,11 @@ function loadQuestion(){
     document
         .getElementById("progress")
         .style.width =
-        (current /
-        TOTAL_QUESTIONS *
-        100) + "%";
+        (
+            current /
+            TOTAL_QUESTIONS *
+            100
+        ) + "%";
 
 
     const correct =
@@ -639,7 +672,7 @@ function loadQuestion(){
 
 
     /*
-       Show number
+       Show number.
     */
 
     document
@@ -650,8 +683,7 @@ function loadQuestion(){
 
     /*
        Create 3 wrong answers
-       + 1 correct answer
-       = 4 options
+       + 1 correct answer.
     */
 
     const wrongWords =
@@ -682,7 +714,8 @@ function loadQuestion(){
         document.getElementById("answers");
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     options.forEach(word => {
@@ -703,7 +736,8 @@ function loadQuestion(){
 
             chooseAnswer(
                 div,
-                word === correctWord
+                word === correctWord,
+                correctWord
             );
 
         };
@@ -722,18 +756,54 @@ function loadQuestion(){
 
 function chooseAnswer(
     element,
-    isCorrect
+    isCorrect,
+    correctWord
 ){
 
+    /*
+       Once the player chooses an answer,
+       the question is locked.
+
+       There is NO Try Again.
+    */
+
     if(answered){
+
         return;
+
     }
+
+
+    answered = true;
+
+
+    /*
+       Disable all choices.
+    */
+
+    document
+        .querySelectorAll(".answer")
+        .forEach(card => {
+
+            card.classList.add("disabled");
+
+        });
+
+
+    const resultIcon =
+        document.getElementById("resultIcon");
+
+
+    const feedback =
+        document.getElementById("feedback");
 
 
     if(isCorrect){
 
-        answered = true;
-
+        /*
+           Correct answer:
+           +1 point.
+        */
 
         element.classList.add(
             "correct"
@@ -749,71 +819,40 @@ function chooseAnswer(
             score;
 
 
-        document
-            .getElementById("resultIcon")
-            .innerText =
+        resultIcon.innerText =
             "✔";
 
 
-        document
-            .getElementById("feedback")
-            .innerText =
-            "Correct! 🎉";
+        resultIcon.className =
+            "result correct-text";
+
+
+        feedback.innerHTML =
+            `Correct! 🎉
+            <span class="explanation">
+                ${correctWord} is the Vietnamese word for ${numbers[questions[current].indexOf ? 0 : numbers.indexOf(questions[current])]}.
+            </span>`;
 
 
         /*
-           Disable all choices
+           Simpler explanation using
+           the actual number.
         */
 
-        document
-            .querySelectorAll(".answer")
-            .forEach(card => {
-
-                card.classList.add(
-                    "disabled"
-                );
-
-                card.style.pointerEvents =
-                    "none";
-
-            });
-
-
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
-
-
-        /*
-           Change button on final question
-        */
-
-        if(
-            current ===
-            TOTAL_QUESTIONS - 1
-        ){
-
-            document
-                .getElementById("nextBtn")
-                .innerText =
-                "Finish 🎉";
-
-        }else{
-
-            document
-                .getElementById("nextBtn")
-                .innerText =
-                "Next →";
-
-        }
-
+        feedback.innerHTML =
+            `Correct! 🎉
+            <span class="explanation">
+                ${correctWord} means ${questions[current]}.
+            </span>`;
 
     }else{
 
         /*
            Wrong answer:
-           let learner try again.
+           0 points.
+
+           Show the selected answer as wrong
+           and the correct answer as correct.
         */
 
         element.classList.add(
@@ -821,19 +860,71 @@ function chooseAnswer(
         );
 
 
-        document
-            .getElementById("feedback")
-            .innerText =
-            "❌ Try again!";
-
-
-        setTimeout(() => {
-
-            element.classList.remove(
-                "wrong"
+        const correctElement =
+            [...document.querySelectorAll(".answer")]
+            .find(
+                card =>
+                card.innerText === correctWord
             );
 
-        },600);
+
+        if(correctElement){
+
+            correctElement.classList.add(
+                "correct"
+            );
+
+        }
+
+
+        resultIcon.innerText =
+            "❌";
+
+
+        resultIcon.className =
+            "result wrong-text";
+
+
+        feedback.innerHTML =
+            `Wrong!
+            <span class="explanation">
+                The correct answer is <strong>${correctWord}</strong>.
+                ${correctWord} means ${questions[current]}.
+            </span>`;
+
+    }
+
+
+    /*
+       Show Next button.
+    */
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "inline-block";
+
+
+    /*
+       Change button on final question.
+    */
+
+    if(
+        current ===
+        TOTAL_QUESTIONS - 1
+    ){
+
+        document
+            .getElementById("nextBtn")
+            .innerText =
+            "Finish 🎉";
+
+    }else{
+
+        document
+            .getElementById("nextBtn")
+            .innerText =
+            "Next →";
 
     }
 
@@ -873,12 +964,16 @@ function endGame(){
 
     document
         .getElementById("game")
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 
     document
         .getElementById("end")
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
 
     document
@@ -963,12 +1058,11 @@ function restart(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=Numbers";
 
 }
 
 </script>
 
 </body>
-
 </html>

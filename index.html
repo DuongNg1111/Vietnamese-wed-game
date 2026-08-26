@@ -25,9 +25,7 @@
         content="Duong"
     >
 
-    <title>
-        Survival Vietnamese with Duong
-    </title>
+    <title>Survival Vietnamese with Duong</title>
 
 
     <!-- =====================================================
@@ -72,26 +70,16 @@
 
         :root {
 
-            --paper:
-                #f5f9fd;
+            --paper: #f5f9fd;
+            --white: #ffffff;
 
-            --white:
-                #ffffff;
+            --ink: #143a6b;
+            --ink-soft: #66809d;
 
-            --ink:
-                #143a6b;
+            --blue: #2f6fed;
+            --blue-dark: #1e4fc7;
 
-            --ink-soft:
-                #66809d;
-
-            --blue:
-                #2f6fed;
-
-            --blue-dark:
-                #1e4fc7;
-
-            --line:
-                #d9e6f2;
+            --line: #d9e6f2;
 
         }
 
@@ -101,26 +89,20 @@
         ====================================================== */
 
         * {
-            box-sizing:
-                border-box;
+            box-sizing: border-box;
         }
 
 
         html {
-
-            scroll-behavior:
-                smooth;
-
+            scroll-behavior: smooth;
         }
 
 
         body {
 
-            margin:
-                0;
+            margin: 0;
 
-            min-height:
-                100vh;
+            min-height: 100vh;
 
             font-family:
                 'Be Vietnam Pro',
@@ -130,8 +112,7 @@
                 Verdana,
                 sans-serif;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
             background:
                 linear-gradient(
@@ -150,98 +131,61 @@
 
         .top-nav {
 
-            position:
-                absolute;
+            position: absolute;
 
-            top:
-                20px;
+            top: 20px;
 
-            left:
-                0;
+            left: 0;
+            right: 0;
 
-            right:
-                0;
+            z-index: 20;
 
-            z-index:
-                20;
+            width: min(1500px, 94%);
 
-            width:
-                min(
-                    1500px,
-                    94%
-                );
+            margin: auto;
 
-            margin:
-                auto;
+            display: flex;
 
-            display:
-                flex;
-
-            justify-content:
-                flex-end;
+            justify-content: flex-end;
 
         }
 
 
         .nav-actions {
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            gap:
-                10px;
+            gap: 10px;
 
         }
 
 
         .user-greeting {
 
-            padding:
-                9px 15px;
+            padding: 9px 15px;
 
             border:
                 1px solid
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.12
-                );
+                rgba(20, 58, 107, 0.12);
 
-            border-radius:
-                999px;
+            border-radius: 999px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.88
-                );
+                rgba(255, 255, 255, 0.88);
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            font-size:
-                0.82rem;
+            font-size: 0.82rem;
 
-            font-weight:
-                700;
+            font-weight: 700;
 
             box-shadow:
                 0 4px 14px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.08
-                );
+                rgba(20, 58, 107, 0.08);
 
-            backdrop-filter:
-                blur(8px);
+            backdrop-filter: blur(8px);
 
         }
 
@@ -249,70 +193,42 @@
         .login-btn,
         .logout-btn {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            padding:
-                9px 18px;
+            padding: 9px 18px;
 
             border:
                 1px solid
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.15
-                );
+                rgba(20, 58, 107, 0.15);
 
-            border-radius:
-                999px;
+            border-radius: 999px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.9
-                );
+                rgba(255, 255, 255, 0.9);
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            font-family:
-                inherit;
+            font-family: inherit;
 
-            font-size:
-                0.85rem;
+            font-size: 0.85rem;
 
-            font-weight:
-                700;
+            font-weight: 700;
 
-            cursor:
-                pointer;
+            cursor: pointer;
 
             box-shadow:
                 0 4px 14px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.1
-                );
+                rgba(20, 58, 107, 0.1);
 
-            backdrop-filter:
-                blur(8px);
+            backdrop-filter: blur(8px);
 
-            transition:
-                0.2s ease;
+            transition: 0.2s ease;
 
         }
 
@@ -320,17 +236,13 @@
         .login-btn:hover,
         .logout-btn:hover {
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
-            background:
-                var(--blue);
+            background: var(--blue);
 
-            border-color:
-                var(--blue);
+            border-color: var(--blue);
 
-            color:
-                white;
+            color: white;
 
         }
 
@@ -341,35 +253,25 @@
 
         header {
 
-            position:
-                relative;
+            position: relative;
 
-            width:
-                100%;
+            width: 100%;
 
-            min-height:
-                350px;
+            min-height: 350px;
 
-            display:
-                flex;
+            display: flex;
 
-            flex-direction:
-                column;
+            flex-direction: column;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            text-align:
-                center;
+            text-align: center;
 
-            padding:
-                85px 20px 65px;
+            padding: 85px 20px 65px;
 
-            overflow:
-                hidden;
+            overflow: hidden;
 
             background:
                 linear-gradient(
@@ -381,149 +283,98 @@
 
             box-shadow:
                 0 8px 30px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.12
-                );
+                rgba(20, 58, 107, 0.12);
 
         }
 
 
         header::before {
 
-            content:
-                "";
+            content: "";
 
-            position:
-                absolute;
+            position: absolute;
 
-            inset:
-                0;
+            inset: 0;
 
             background-image:
                 url('banner.jpg');
 
-            background-size:
-                cover;
+            background-size: cover;
 
-            background-position:
-                center;
+            background-position: center;
 
             filter:
                 brightness(1.08)
                 saturate(0.92);
 
-            transform:
-                scale(1.03);
+            transform: scale(1.03);
 
-            z-index:
-                0;
+            z-index: 0;
 
         }
 
 
         header::after {
 
-            content:
-                "";
+            content: "";
 
-            position:
-                absolute;
+            position: absolute;
 
-            inset:
-                0;
+            inset: 0;
 
             background:
                 linear-gradient(
                     180deg,
-                    rgba(
-                        245,
-                        249,
-                        253,
-                        0.34
-                    ),
-                    rgba(
-                        245,
-                        249,
-                        253,
-                        0.68
-                    )
+                    rgba(245, 249, 253, 0.34),
+                    rgba(245, 249, 253, 0.68)
                 );
 
-            z-index:
-                1;
+            z-index: 1;
 
         }
 
 
         .header-eyebrow {
 
-            position:
-                relative;
+            position: relative;
 
-            z-index:
-                2;
+            z-index: 2;
 
-            margin-bottom:
-                15px;
+            margin-bottom: 15px;
 
-            padding:
-                6px 15px;
+            padding: 6px 15px;
 
             border:
                 1px solid
-                rgba(
-                    47,
-                    111,
-                    237,
-                    0.25
-                );
+                rgba(47, 111, 237, 0.25);
 
-            border-radius:
-                999px;
+            border-radius: 999px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.62
-                );
+                rgba(255, 255, 255, 0.62);
 
-            color:
-                var(--blue-dark);
+            color: var(--blue-dark);
 
-            font-size:
-                0.75rem;
+            font-size: 0.75rem;
 
-            font-weight:
-                700;
+            font-weight: 700;
 
-            letter-spacing:
-                0.08em;
+            letter-spacing: 0.08em;
 
-            text-transform:
-                uppercase;
+            text-transform: uppercase;
 
         }
 
 
         header h1 {
 
-            position:
-                relative;
+            position: relative;
 
-            z-index:
-                2;
+            z-index: 2;
 
-            margin:
-                0;
+            margin: 0;
 
-            font-family:
-                'Kalam',
-                cursive;
+            font-family: 'Kalam', cursive;
 
             font-size:
                 clamp(
@@ -532,81 +383,57 @@
                     5rem
                 );
 
-            line-height:
-                1;
+            line-height: 1;
 
-            font-weight:
-                700;
+            font-weight: 700;
 
-            letter-spacing:
-                1px;
+            letter-spacing: 1px;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
             text-shadow:
                 0 2px 0
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.9
-                );
+                rgba(255, 255, 255, 0.9);
 
         }
 
 
         header p {
 
-            position:
-                relative;
+            position: relative;
 
-            z-index:
-                2;
+            z-index: 2;
 
-            margin:
-                18px auto 0;
+            margin: 18px auto 0;
 
-            max-width:
-                650px;
+            max-width: 650px;
 
-            font-size:
-                1.08rem;
+            font-size: 1.08rem;
 
-            line-height:
-                1.55;
+            line-height: 1.55;
 
-            font-weight:
-                500;
+            font-weight: 500;
 
-            color:
-                #55718e;
+            color: #55718e;
 
         }
 
 
         .header-line {
 
-            position:
-                relative;
+            position: relative;
 
-            z-index:
-                2;
+            z-index: 2;
 
-            width:
-                70px;
+            width: 70px;
 
-            height:
-                5px;
+            height: 5px;
 
-            margin-top:
-                22px;
+            margin-top: 22px;
 
-            border-radius:
-                999px;
+            border-radius: 999px;
 
-            background:
-                var(--blue);
+            background: var(--blue);
 
         }
 
@@ -617,11 +444,9 @@
 
         .header-divider {
 
-            width:
-                100%;
+            width: 100%;
 
-            height:
-                9px;
+            height: 9px;
 
             background:
                 linear-gradient(
@@ -636,19 +461,14 @@
 
 
         /* =====================================================
-           MAIN
+           MAIN CONTAINER
         ====================================================== */
 
         .container {
 
-            width:
-                min(
-                    1400px,
-                    94%
-                );
+            width: min(1400px, 94%);
 
-            margin:
-                48px auto 65px;
+            margin: 48px auto 65px;
 
         }
 
@@ -659,379 +479,259 @@
 
         #landing-page {
 
-            display:
-                flex;
+            display: flex;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            width:
-                100%;
+            width: 100%;
 
         }
 
 
         .intro-card {
 
-            width:
-                min(
-                    1100px,
-                    94%
-                );
+            width: min(1100px, 94%);
 
-            margin:
-                0 auto;
+            margin: 0 auto;
 
-            padding:
-                42px 55px;
+            padding: 42px 55px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.96
-                );
+                rgba(255, 255, 255, 0.96);
 
             border:
                 1.5px solid
                 var(--line);
 
-            border-radius:
-                26px;
+            border-radius: 26px;
 
             box-shadow:
                 0 18px 50px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.10
-                );
+                rgba(20, 58, 107, 0.10);
 
-            text-align:
-                left;
+            text-align: left;
 
         }
 
 
         .about-eyebrow {
 
-            margin:
-                0 0 10px;
+            margin: 0 0 10px;
 
-            color:
-                var(--blue);
+            color: var(--blue);
 
-            font-size:
-                0.78rem;
+            font-size: 0.78rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            letter-spacing:
-                0.08em;
+            letter-spacing: 0.08em;
 
-            text-transform:
-                uppercase;
+            text-transform: uppercase;
 
         }
 
 
         .intro-card h2 {
 
-            margin:
-                0 0 22px;
+            margin: 0 0 22px;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            font-size:
-                2rem;
+            font-size: 2rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            line-height:
-                1.25;
+            line-height: 1.25;
 
         }
 
 
         .intro-card > p {
 
-            margin:
-                0 0 15px;
+            margin: 0 0 15px;
 
-            color:
-                var(--ink-soft);
+            color: var(--ink-soft);
 
-            font-size:
-                0.92rem;
+            font-size: 0.92rem;
 
-            line-height:
-                1.7;
+            line-height: 1.7;
 
         }
 
 
         .intro-card p strong {
 
-            color:
-                var(--ink);
-
-        }
-
-
-        .intro-card a {
-
-            color:
-                var(--blue);
+            color: var(--ink);
 
         }
 
 
         .preply-link {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            margin-top:
-                4px;
+            margin-top: 4px;
 
-            color:
-                var(--blue);
+            color: var(--blue);
 
-            font-size:
-                0.88rem;
+            font-size: 0.88rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
         }
 
 
         .preply-link:hover {
 
-            color:
-                var(--blue-dark);
+            color: var(--blue-dark);
 
-            text-decoration:
-                underline;
+            text-decoration: underline;
 
         }
 
 
         /* =====================================================
-           INTRO FEATURE CARDS
-           Restyled to share the same visual language as the
-           category cards further down the page: a thin accent
-           bar on top and a bordered icon tile, each feature
-           carrying its own accent color instead of one flat
-           gray tone for all three.
+           INTRO FEATURES
         ====================================================== */
 
         .intro-features {
 
-            width:
-                100%;
+            width: 100%;
 
-            margin:
-                30px 0;
+            margin: 30px 0;
 
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
-                repeat(
-                    3,
-                    1fr
-                );
+                repeat(3, 1fr);
 
-            gap:
-                18px;
+            gap: 18px;
 
         }
 
 
         .intro-feature {
 
-            --accent:
-                #2f6fed;
+            --accent: #2f6fed;
 
-            --background:
-                #edf5ff;
+            --background: #edf5ff;
 
-            --border:
-                #c9def8;
+            --border: #c9def8;
 
-            position:
-                relative;
+            position: relative;
 
-            padding:
-                24px 22px;
+            padding: 24px 22px;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius:
-                18px;
+            border-radius: 18px;
 
-            background:
-                var(--background);
+            background: var(--background);
 
-            text-align:
-                left;
+            text-align: left;
 
-            overflow:
-                hidden;
+            overflow: hidden;
 
         }
 
 
         .intro-feature::before {
 
-            content:
-                "";
+            content: "";
 
-            position:
-                absolute;
+            position: absolute;
 
-            top:
-                0;
+            top: 0;
+            left: 0;
 
-            left:
-                0;
+            width: 100%;
 
-            width:
-                100%;
+            height: 4px;
 
-            height:
-                4px;
-
-            background:
-                var(--accent);
+            background: var(--accent);
 
         }
 
 
-        .intro-feature.feature-games {
+        .feature-games {
 
-            --accent:
-                #2f6fed;
-
-            --background:
-                #edf5ff;
-
-            --border:
-                #c9def8;
+            --accent: #2f6fed;
+            --background: #edf5ff;
+            --border: #c9def8;
 
         }
 
 
-        .intro-feature.feature-practice {
+        .feature-practice {
 
-            --accent:
-                #0d9dbd;
-
-            --background:
-                #e6f8fb;
-
-            --border:
-                #bee8f0;
+            --accent: #0d9dbd;
+            --background: #e6f8fb;
+            --border: #bee8f0;
 
         }
 
 
-        .intro-feature.feature-beginner {
+        .feature-beginner {
 
-            --accent:
-                #1f9d6b;
-
-            --background:
-                #e9f8f0;
-
-            --border:
-                #c3ecda;
+            --accent: #1f9d6b;
+            --background: #e9f8f0;
+            --border: #c3ecda;
 
         }
 
 
         .intro-feature-icon {
 
-            width:
-                46px;
+            width: 46px;
+            height: 46px;
 
-            height:
-                46px;
+            display: flex;
 
-            display:
-                flex;
+            align-items: center;
+            justify-content: center;
 
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            margin-bottom:
-                14px;
+            margin-bottom: 14px;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius:
-                13px;
+            border-radius: 13px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.75
-                );
+                rgba(255, 255, 255, 0.75);
 
-            font-size:
-                1.4rem;
+            font-size: 1.4rem;
 
         }
 
 
         .intro-feature h3 {
 
-            margin:
-                0 0 7px;
+            margin: 0 0 7px;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            font-size:
-                1rem;
+            font-size: 1rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
         }
 
 
         .intro-feature p {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                var(--ink-soft);
+            color: var(--ink-soft);
 
-            font-size:
-                0.8rem;
+            font-size: 0.8rem;
 
-            line-height:
-                1.5;
+            line-height: 1.5;
 
         }
 
@@ -1042,17 +742,13 @@
 
         .intro-divider {
 
-            width:
-                100%;
+            width: 100%;
 
-            height:
-                1px;
+            height: 1px;
 
-            margin:
-                28px 0;
+            margin: 28px 0;
 
-            background:
-                var(--line);
+            background: var(--line);
 
         }
 
@@ -1063,96 +759,66 @@
 
         .intro-bottom {
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
-            gap:
-                25px;
+            gap: 25px;
 
         }
 
 
         .intro-bottom-text {
 
-            margin:
-                0 !important;
+            margin: 0 !important;
 
-            max-width:
-                650px;
+            max-width: 650px;
 
         }
 
 
         .start-btn {
 
-            flex-shrink:
-                0;
+            flex-shrink: 0;
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            padding:
-                12px 22px;
+            padding: 12px 22px;
 
-            border-radius:
-                999px;
+            border-radius: 999px;
 
-            background:
-                var(--blue);
+            background: var(--blue);
 
-            color:
-                white !important;
+            color: white !important;
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            font-size:
-                0.85rem;
+            font-size: 0.85rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
             box-shadow:
                 inset 0 -3px 0
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.14
-                ),
+                rgba(0, 0, 0, 0.14),
                 0 5px 12px
-                rgba(
-                    47,
-                    111,
-                    237,
-                    0.20
-                );
+                rgba(47, 111, 237, 0.20);
 
-            transition:
-                0.2s ease;
+            transition: 0.2s ease;
 
         }
 
 
         .start-btn:hover {
 
-            background:
-                var(--blue-dark);
+            background: var(--blue-dark);
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
         }
 
@@ -1163,82 +829,135 @@
 
         #lobby-page {
 
-            display:
-                none;
+            display: none;
 
         }
 
 
         .page-intro {
 
-            text-align:
-                center;
+            text-align: center;
 
-            margin-bottom:
-                35px;
+            margin-bottom: 35px;
 
         }
 
 
         .section-title {
 
-            margin:
-                0;
+            margin: 0;
 
-            font-size:
-                2rem;
+            font-size: 2rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
         }
 
 
         .section-subtitle {
 
-            margin:
-                9px auto 0;
+            margin: 9px auto 0;
 
-            max-width:
-                650px;
+            max-width: 650px;
 
-            color:
-                var(--ink-soft);
+            color: var(--ink-soft);
 
-            font-size:
-                0.94rem;
+            font-size: 0.94rem;
 
-            line-height:
-                1.55;
+            line-height: 1.55;
 
         }
 
 
         .section-title::after {
 
-            content:
-                "";
+            content: "";
 
-            display:
-                block;
+            display: block;
 
-            width:
-                60px;
+            width: 60px;
 
-            height:
-                4px;
+            height: 4px;
 
-            margin:
-                11px auto 0;
+            margin: 11px auto 0;
 
-            border-radius:
-                999px;
+            border-radius: 999px;
+
+            background: var(--blue);
+
+        }
+
+
+        /* =====================================================
+           LOBBY STATS
+        ====================================================== */
+
+        .lobby-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(180px, 240px));
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-bottom: 32px;
+
+        }
+
+
+        .stat-card {
+
+            padding: 17px 20px;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: 16px;
 
             background:
-                var(--blue);
+                rgba(255, 255, 255, 0.82);
+
+            text-align: center;
+
+            box-shadow:
+                0 6px 18px
+                rgba(20, 58, 107, 0.055);
+
+        }
+
+
+        .stat-number {
+
+            display: block;
+
+            color: var(--blue);
+
+            font-size: 1.45rem;
+
+            font-weight: 800;
+
+            line-height: 1.2;
+
+        }
+
+
+        .stat-label {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--ink-soft);
+
+            font-size: 0.75rem;
+
+            font-weight: 700;
 
         }
 
@@ -1249,8 +968,7 @@
 
         .category-grid {
 
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
                 repeat(
@@ -1261,8 +979,7 @@
                     )
                 );
 
-            gap:
-                20px;
+            gap: 20px;
 
         }
 
@@ -1273,54 +990,37 @@
 
         .category-card {
 
-            --accent:
-                #2f6fed;
+            --accent: #2f6fed;
 
-            --background:
-                #edf5ff;
+            --background: #edf5ff;
 
-            --border:
-                #c9def8;
+            --border: #c9def8;
 
-            position:
-                relative;
+            position: relative;
 
-            min-height:
-                225px;
+            min-height: 225px;
 
-            display:
-                flex;
+            display: flex;
 
-            flex-direction:
-                column;
+            flex-direction: column;
 
-            padding:
-                25px;
+            padding: 25px;
 
-            overflow:
-                hidden;
+            overflow: hidden;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius:
-                20px;
+            border-radius: 20px;
 
-            background:
-                var(--background);
+            background: var(--background);
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
             box-shadow:
                 0 7px 20px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.065
-                );
+                rgba(20, 58, 107, 0.065);
 
             transition:
                 transform 0.22s ease,
@@ -1332,26 +1032,18 @@
 
         .category-card::before {
 
-            content:
-                "";
+            content: "";
 
-            position:
-                absolute;
+            position: absolute;
 
-            top:
-                0;
+            top: 0;
+            left: 0;
 
-            left:
-                0;
+            width: 100%;
 
-            width:
-                100%;
+            height: 5px;
 
-            height:
-                5px;
-
-            background:
-                var(--accent);
+            background: var(--accent);
 
         }
 
@@ -1362,17 +1054,11 @@
                 translateY(-7px)
                 scale(1.015);
 
-            border-color:
-                var(--accent);
+            border-color: var(--accent);
 
             box-shadow:
                 0 18px 34px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.15
-                );
+                rgba(20, 58, 107, 0.15);
 
         }
 
@@ -1383,19 +1069,16 @@
                 rotate(-5deg)
                 scale(1.08);
 
-            background:
-                white;
+            background: white;
 
-            border-color:
-                var(--accent);
+            border-color: var(--accent);
 
         }
 
 
         .category-card:hover .category-arrow {
 
-            transform:
-                translateX(4px);
+            transform: translateX(4px);
 
         }
 
@@ -1412,201 +1095,134 @@
 
 
         /* =====================================================
-        CATEGORY COLORS
+           CATEGORY COLORS
         ====================================================== */
 
         .category-color {
 
-            --accent:
-                #2878df;
-
-            --background:
-                #eaf3ff;
-
-            --border:
-                #c4daf6;
+            --accent: #2878df;
+            --background: #eaf3ff;
+            --border: #c4daf6;
 
         }
 
 
         .category-describe {
 
-            --accent:
-                #8b5cf6;
-
-            --background:
-                #f3edff;
-
-            --border:
-                #ddd0fa;
+            --accent: #8b5cf6;
+            --background: #f3edff;
+            --border: #ddd0fa;
 
         }
 
 
         .category-food {
 
-            --accent:
-                #f06b3c;
-
-            --background:
-                #fff0e9;
-
-            --border:
-                #f6cdbd;
+            --accent: #f06b3c;
+            --background: #fff0e9;
+            --border: #f6cdbd;
 
         }
 
 
         .category-grammar {
 
-            --accent:
-                #0f9f8f;
-
-            --background:
-                #e7f8f5;
-
-            --border:
-                #bde9e2;
+            --accent: #0f9f8f;
+            --background: #e7f8f5;
+            --border: #bde9e2;
 
         }
 
 
         .category-health {
 
-            --accent:
-                #e0527a;
-
-            --background:
-                #fff0f4;
-
-            --border:
-                #f3c5d3;
+            --accent: #e0527a;
+            --background: #fff0f4;
+            --border: #f3c5d3;
 
         }
 
 
         .category-mix {
 
-            --accent:
-                #e0a51a;
-
-            --background:
-                #fff8df;
-
-            --border:
-                #f1df9f;
+            --accent: #e0a51a;
+            --background: #fff8df;
+            --border: #f1df9f;
 
         }
 
 
         .category-numbers {
 
-            --accent:
-                #3b82c4;
-
-            --background:
-                #eaf5fc;
-
-            --border:
-                #c4dff1;
+            --accent: #3b82c4;
+            --background: #eaf5fc;
+            --border: #c4dff1;
 
         }
 
 
         .category-pronouns {
 
-            --accent:
-                #d14f9b;
-
-            --background:
-                #fff0f8;
-
-            --border:
-                #efc7df;
+            --accent: #d14f9b;
+            --background: #fff0f8;
+            --border: #efc7df;
 
         }
 
 
         .category-places-transport {
 
-            --accent:
-                #4f8a4b;
-
-            --background:
-                #edf7ec;
-
-            --border:
-                #c9e2c6;
+            --accent: #4f8a4b;
+            --background: #edf7ec;
+            --border: #c9e2c6;
 
         }
 
+
         .category-useful-phrases {
 
-            --accent:
-                #7c5cc4;
-
-            --background:
-                #f3efff;
-
-            --border:
-                #d9cff5;
+            --accent: #7c5cc4;
+            --background: #f3efff;
+            --border: #d9cff5;
 
         }
 
 
         .category-shopping {
 
-            --accent:
-                #c46a2b;
-
-            --background:
-                #fff2e8;
-
-            --border:
-                #f0d0b8;
+            --accent: #c46a2b;
+            --background: #fff2e8;
+            --border: #f0d0b8;
 
         }
+
+
         /* =====================================================
            CATEGORY ICON
         ====================================================== */
 
         .category-icon {
 
-            width:
-                52px;
+            width: 52px;
+            height: 52px;
 
-            height:
-                52px;
+            display: flex;
 
-            display:
-                flex;
+            align-items: center;
+            justify-content: center;
 
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            margin-bottom:
-                17px;
+            margin-bottom: 17px;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius:
-                15px;
+            border-radius: 15px;
 
             background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.72
-                );
+                rgba(255, 255, 255, 0.72);
 
-            font-size:
-                1.65rem;
+            font-size: 1.65rem;
 
         }
 
@@ -1617,37 +1233,28 @@
 
         .category-title {
 
-            margin:
-                0 0 7px;
+            margin: 0 0 7px;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            font-size:
-                1.25rem;
+            font-size: 1.25rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            line-height:
-                1.3;
+            line-height: 1.3;
 
         }
 
 
         .category-subtitle {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                var(--ink-soft);
+            color: var(--ink-soft);
 
-            font-size:
-                0.84rem;
+            font-size: 0.84rem;
 
-            line-height:
-                1.5;
+            line-height: 1.5;
 
         }
 
@@ -1658,69 +1265,50 @@
 
         .category-footer {
 
-            margin-top:
-                auto;
+            margin-top: auto;
 
-            padding-top:
-                18px;
+            padding-top: 18px;
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
         }
 
 
         .category-count {
 
-            color:
-                var(--accent);
+            color: var(--accent);
 
-            font-size:
-                0.75rem;
+            font-size: 0.75rem;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
         }
 
 
         .category-arrow {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            width:
-                32px;
+            width: 32px;
+            height: 32px;
 
-            height:
-                32px;
+            border-radius: 50%;
 
-            border-radius:
-                50%;
+            background: var(--accent);
 
-            background:
-                var(--accent);
+            color: white;
 
-            color:
-                white;
+            font-size: 0.9rem;
 
-            font-size:
-                0.9rem;
-
-            font-weight:
-                800;
+            font-weight: 800;
 
         }
 
@@ -1731,14 +1319,11 @@
 
         .loading {
 
-            padding:
-                50px;
+            padding: 50px;
 
-            text-align:
-                center;
+            text-align: center;
 
-            color:
-                var(--ink-soft);
+            color: var(--ink-soft);
 
         }
 
@@ -1749,24 +1334,19 @@
 
         .error-message {
 
-            padding:
-                25px;
+            padding: 25px;
 
-            background:
-                #fff3f1;
+            background: #fff3f1;
 
             border:
                 1px solid
                 #edcec8;
 
-            border-radius:
-                16px;
+            border-radius: 16px;
 
-            color:
-                #9a3324;
+            color: #9a3324;
 
-            text-align:
-                center;
+            text-align: center;
 
         }
 
@@ -1777,37 +1357,26 @@
 
         footer {
 
-            padding:
-                15px 20px 38px;
+            padding: 15px 20px 38px;
 
-            color:
-                #7c93aa;
+            color: #7c93aa;
 
-            font-size:
-                0.8rem;
+            font-size: 0.8rem;
 
-            text-align:
-                center;
+            text-align: center;
 
         }
 
 
         .footer-line {
 
-            width:
-                min(
-                    1400px,
-                    94%
-                );
+            width: min(1400px, 94%);
 
-            height:
-                1px;
+            height: 1px;
 
-            margin:
-                0 auto 20px;
+            margin: 0 auto 20px;
 
-            background:
-                #d8e5f0;
+            background: #d8e5f0;
 
         }
 
@@ -1818,8 +1387,7 @@
 
         .hidden {
 
-            display:
-                none !important;
+            display: none !important;
 
         }
 
@@ -1828,36 +1396,29 @@
            MOBILE
         ====================================================== */
 
-        @media (
-            max-width: 700px
-        ) {
+        @media (max-width: 700px) {
 
             .top-nav {
 
-                top:
-                    14px;
+                top: 14px;
 
-                width:
-                    94%;
+                width: 94%;
 
             }
 
 
             .nav-actions {
 
-                gap:
-                    6px;
+                gap: 6px;
 
             }
 
 
             .user-greeting {
 
-                padding:
-                    8px 11px;
+                padding: 8px 11px;
 
-                font-size:
-                    0.75rem;
+                font-size: 0.75rem;
 
             }
 
@@ -1865,153 +1426,151 @@
             .login-btn,
             .logout-btn {
 
-                padding:
-                    8px 14px;
+                padding: 8px 14px;
 
-                font-size:
-                    0.8rem;
+                font-size: 0.8rem;
 
             }
 
 
             header {
 
-                min-height:
-                    285px;
+                min-height: 285px;
 
-                padding:
-                    70px 18px 50px;
+                padding: 70px 18px 50px;
 
             }
 
 
             header h1 {
 
-                font-size:
-                    2.75rem;
+                font-size: 2.75rem;
 
             }
 
 
             header p {
 
-                font-size:
-                    0.98rem;
+                font-size: 0.98rem;
 
             }
 
 
             .container {
 
-                width:
-                    94%;
+                width: 94%;
 
-                margin:
-                    30px auto 50px;
+                margin: 30px auto 50px;
 
             }
 
 
             .intro-card {
 
-                width:
-                    100%;
+                width: 100%;
 
-                padding:
-                    30px 22px;
+                padding: 30px 22px;
 
-                border-radius:
-                    20px;
+                border-radius: 20px;
 
             }
 
 
             .intro-card h2 {
 
-                font-size:
-                    1.65rem;
+                font-size: 1.65rem;
 
             }
 
 
             .intro-card > p {
 
-                font-size:
-                    0.88rem;
+                font-size: 0.88rem;
 
             }
 
 
             .intro-features {
 
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
 
-                gap:
-                    14px;
+                gap: 14px;
 
             }
 
 
             .intro-bottom {
 
-                flex-direction:
-                    column;
+                flex-direction: column;
 
-                align-items:
-                    flex-start;
+                align-items: flex-start;
 
             }
 
 
             .start-btn {
 
-                width:
-                    100%;
+                width: 100%;
 
-                text-align:
-                    center;
+                text-align: center;
 
             }
 
 
             .section-title {
 
-                font-size:
-                    1.65rem;
+                font-size: 1.65rem;
 
             }
 
 
             .section-subtitle {
 
-                font-size:
-                    0.86rem;
+                font-size: 0.86rem;
+
+            }
+
+
+            .lobby-stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 10px;
+
+            }
+
+
+            .stat-card {
+
+                padding: 14px 10px;
+
+            }
+
+
+            .stat-number {
+
+                font-size: 1.25rem;
 
             }
 
 
             .category-grid {
 
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
 
-                gap:
-                    14px;
+                gap: 14px;
 
             }
 
 
             .category-card {
 
-                min-height:
-                    200px;
+                min-height: 200px;
 
-                padding:
-                    21px;
+                padding: 21px;
 
-                border-radius:
-                    17px;
+                border-radius: 17px;
 
             }
 
@@ -2031,10 +1590,6 @@
 
     <nav class="top-nav">
 
-        <!--
-            Logged-out navigation
-        -->
-
         <div
             id="logged-out-nav"
             class="nav-actions"
@@ -2049,10 +1604,6 @@
 
         </div>
 
-
-        <!--
-            Logged-in navigation
-        -->
 
         <div
             id="logged-in-nav"
@@ -2112,7 +1663,6 @@
 
     <!-- =====================================================
          LANDING PAGE
-         SHOWN WHEN USER IS NOT LOGGED IN
     ====================================================== -->
 
     <main
@@ -2139,20 +1689,24 @@
                 Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
             </p>
 
+
             <p>
                 This website is built for any beginner (A0-A1) who wants
                 to practice and remember practical Vietnamese vocabulary
                 through quick, simple games.
             </p>
 
+
             <p>
                 <strong>
                     Vietnamese is more approachable than it looks.
                 </strong>
+
                 Start with a few useful words, practice them often,
                 and build your vocabulary step by step.
                 A little practice goes a long way.
             </p>
+
 
             <a
                 href="https://preply.in/DUONG6EN32308690102?ts=17876464"
@@ -2163,10 +1717,6 @@
                 Vietnamese lessons with me on Preply →
             </a>
 
-
-            <!-- =================================================
-                 THREE FEATURES
-            ================================================== -->
 
             <div class="intro-features">
 
@@ -2240,10 +1790,6 @@
             <div class="intro-divider"></div>
 
 
-            <!-- =================================================
-                 INTRO BOTTOM
-            ================================================== -->
-
             <div class="intro-bottom">
 
                 <p class="intro-bottom-text">
@@ -2268,8 +1814,7 @@
 
 
     <!-- =====================================================
-         LOBBY
-         SHOWN WHEN USER IS LOGGED IN
+         LOBBY PAGE
     ====================================================== -->
 
     <main
@@ -2290,6 +1835,54 @@
 
         </div>
 
+
+        <!-- =================================================
+             DYNAMIC STATISTICS
+        ================================================== -->
+
+        <div
+            id="lobby-stats"
+            class="lobby-stats"
+            aria-label="Game statistics"
+        >
+
+            <div class="stat-card">
+
+                <span
+                    id="total-games"
+                    class="stat-number"
+                >
+                    —
+                </span>
+
+                <span class="stat-label">
+                    Games
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span
+                    id="total-categories"
+                    class="stat-number"
+                >
+                    —
+                </span>
+
+                <span class="stat-label">
+                    Topics
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CATEGORY CONTAINER
+        ================================================== -->
 
         <div
             id="category-container"
@@ -2319,7 +1912,7 @@
 
 
     <!-- =====================================================
-         CATEGORY + AUTH SCRIPT
+         APPLICATION SCRIPT
     ====================================================== -->
 
     <script>
@@ -2329,8 +1922,7 @@
            CONFIGURATION
         ====================================================== */
 
-        const CATEGORY_FILE =
-            "categories.json";
+        const CATEGORY_FILE = "categories.json";
 
 
         /* =====================================================
@@ -2379,8 +1971,27 @@
             );
 
 
+        const totalGamesElement =
+            document.getElementById(
+                "total-games"
+            );
+
+
+        const totalCategoriesElement =
+            document.getElementById(
+                "total-categories"
+            );
+
+
         /* =====================================================
            CATEGORY STYLE MAP
+           
+           The category name comes from categories.json.
+           The class only controls visual styling.
+           
+           Adding a new category does NOT break the system.
+           It simply receives the default blue style unless
+           a specific class is added here later.
         ====================================================== */
 
         const categoryClasses = {
@@ -2400,7 +2011,7 @@
             "Health":
                 "category-health",
 
-            "Mix Practice":
+            "Mix Practice Vocabulary":
                 "category-mix",
 
             "Numbers":
@@ -2538,8 +2149,7 @@
                 await fetch(
                     CATEGORY_FILE,
                     {
-                        cache:
-                            "no-store"
+                        cache: "no-store"
                     }
                 );
 
@@ -2553,7 +2163,61 @@
             }
 
 
-            return await response.json();
+            const categories =
+                await response.json();
+
+
+            if (
+                !categories ||
+                typeof categories !== "object" ||
+                Array.isArray(categories)
+            ) {
+
+                throw new Error(
+                    "categories.json must contain a category object."
+                );
+
+            }
+
+
+            return categories;
+
+        }
+
+
+        /* =====================================================
+           GET GAME COUNT
+           
+           categories.json is the single source of truth.
+           
+           Example:
+           
+           "Food and Drinks": {
+               "games": [
+                   ...
+               ]
+           }
+           
+           The count is calculated dynamically.
+        ====================================================== */
+
+        function getGameCount(category) {
+
+            if (
+                !category ||
+                typeof category !== "object"
+            ) {
+
+                return 0;
+
+            }
+
+
+            return Array.isArray(
+                category.games
+            )
+                ? category.games.length
+                : 0;
 
         }
 
@@ -2577,6 +2241,14 @@
                 "category-card";
 
 
+            /*
+             * Apply the visual class if this category
+             * already has a defined color.
+             *
+             * New categories automatically keep the
+             * default blue style.
+             */
+
             const categoryClass =
                 categoryClasses[
                     categoryName
@@ -2592,27 +2264,32 @@
             }
 
 
-            const categoryUrl =
+            /*
+             * Category page is handled by category.html.
+             *
+             * We only pass the category name here.
+             */
+
+            card.href =
                 `category.html?category=${encodeURIComponent(
                     categoryName
                 )}`;
 
 
-            card.href =
-                categoryUrl;
-
-
             const games =
-                Array.isArray(
-                    category.games
-                )
-                    ? category.games.length
-                    : 0;
+                getGameCount(
+                    category
+                );
 
 
             const icon =
                 category.icon ||
                 "📚";
+
+
+            const subtitle =
+                category.subtitle ||
+                "Practice Vietnamese with this topic.";
 
 
             card.innerHTML = `
@@ -2631,17 +2308,15 @@
 
 
                 <p class="category-subtitle">
-                    ${escapeHtml(
-                        category.subtitle ||
-                        "Practice Vietnamese with this topic."
-                    )}
+                    ${escapeHtml(subtitle)}
                 </p>
 
 
                 <div class="category-footer">
 
                     <span class="category-count">
-                        ${games} games
+                        ${games}
+                        ${games === 1 ? "game" : "games"}
                     </span>
 
 
@@ -2701,53 +2376,104 @@
                     "";
 
 
-                let totalCategories =
-                    0;
-
-
-                for (
-                    const categoryName
-                    of Object.keys(
+                const categoryNames =
+                    Object.keys(
                         categories
-                    )
-                ) {
-
-                    const category =
-                        categories[
-                            categoryName
-                        ];
-
-
-                    if (
-                        !category ||
-                        typeof category !==
-                        "object"
-                    ) {
-
-                        continue;
-
-                    }
-
-
-                    const card =
-                        createCategoryCard(
-                            categoryName,
-                            category
-                        );
-
-
-                    categoryContainer.appendChild(
-                        card
                     );
 
 
-                    totalCategories++;
+                /*
+                 * Only valid category objects are rendered.
+                 */
 
-                }
+                const validCategories =
+                    categoryNames.filter(
+                        categoryName => {
 
+                            const category =
+                                categories[
+                                    categoryName
+                                ];
+
+
+                            return (
+                                category &&
+                                typeof category === "object" &&
+                                !Array.isArray(category)
+                            );
+
+                        }
+                    );
+
+
+                /*
+                 * Calculate total games directly
+                 * from categories.json.
+                 */
+
+                const totalGames =
+                    validCategories.reduce(
+                        (
+                            total,
+                            categoryName
+                        ) => {
+
+                            return (
+                                total +
+                                getGameCount(
+                                    categories[
+                                        categoryName
+                                    ]
+                                )
+                            );
+
+                        },
+                        0
+                    );
+
+
+                /*
+                 * Update lobby statistics.
+                 */
+
+                totalCategoriesElement.textContent =
+                    validCategories.length;
+
+
+                totalGamesElement.textContent =
+                    totalGames;
+
+
+                /*
+                 * Render category cards.
+                 */
+
+                validCategories.forEach(
+                    categoryName => {
+
+                        const card =
+                            createCategoryCard(
+                                categoryName,
+                                categories[
+                                    categoryName
+                                ]
+                            );
+
+
+                        categoryContainer.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+
+                /*
+                 * Empty-state handling.
+                 */
 
                 if (
-                    totalCategories === 0
+                    validCategories.length === 0
                 ) {
 
                     categoryContainer.innerHTML = `
@@ -2779,6 +2505,14 @@
                     "Category loader error:",
                     error
                 );
+
+
+                totalCategoriesElement.textContent =
+                    "—";
+
+
+                totalGamesElement.textContent =
+                    "—";
 
 
                 categoryContainer.innerHTML = `
@@ -2828,11 +2562,6 @@
                     "Supabase client is not available."
                 );
 
-
-                /*
-                 * If Supabase is unavailable,
-                 * keep the landing page visible.
-                 */
 
                 showLandingPage();
 
@@ -2949,12 +2678,6 @@
 
                         else {
 
-                            /*
-                             * IMPORTANT:
-                             * Logging out returns the user
-                             * to the About This Website landing page.
-                             */
-
                             showLandingPage();
 
                         }
@@ -3003,20 +2726,13 @@
                     }
 
 
-                    /*
-                     * Supabase's auth listener will
-                     * call showLandingPage().
-                     */
-
                     showLandingPage();
+
 
                     window.scrollTo(
                         {
-                            top:
-                                0,
-
-                            behavior:
-                                "smooth"
+                            top: 0,
+                            behavior: "smooth"
                         }
                     );
 
@@ -3029,11 +2745,6 @@
                         error
                     );
 
-
-                    /*
-                     * Even if the listener is delayed,
-                     * explicitly return to landing.
-                     */
 
                     showLandingPage();
 
@@ -3054,7 +2765,7 @@
 
 
         /* =====================================================
-           START
+           START APPLICATION
         ====================================================== */
 
         checkAuthState();

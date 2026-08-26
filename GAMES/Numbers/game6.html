@@ -10,16 +10,16 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Number Match</title>
+<title>Vietnamese Number Multiple Choice</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Number Match"
+    content="Vietnamese Number Multiple Choice"
 >
 
 <meta
     name="game-description"
-    content="Match English numbers from 100 to 999 with their Vietnamese forms."
+    content="Choose the correct English number for Vietnamese numbers from 100 to 999."
 >
 
 <meta
@@ -31,6 +31,7 @@
     name="game-explanation"
     content="true"
 >
+
 
 <style>
 
@@ -108,7 +109,7 @@ body{
 
 
 /* ==========================================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================================== */
 
 .container{
@@ -269,13 +270,15 @@ body{
 }
 
 
-.english-number{
+.vietnamese-number{
 
     font-size:34px;
 
     font-weight:bold;
 
     color:#1565c0;
+
+    line-height:1.4;
 
 }
 
@@ -302,7 +305,7 @@ body{
 
 .answer-btn{
 
-    min-height:80px;
+    min-height:75px;
 
     padding:15px;
 
@@ -312,7 +315,7 @@ body{
 
     border-radius:12px;
 
-    font-size:22px;
+    font-size:21px;
 
     font-weight:bold;
 
@@ -323,13 +326,20 @@ body{
 }
 
 
-.answer-btn:hover{
+.answer-btn:hover:not(:disabled){
 
     background:#eef6ff;
 
     border-color:#2196f3;
 
     transform:translateY(-2px);
+
+}
+
+
+.answer-btn:disabled{
+
+    cursor:default;
 
 }
 
@@ -412,7 +422,7 @@ body{
 
 
 /* ==========================================================
-   NEXT
+   NEXT BUTTON
 ========================================================== */
 
 .next-btn{
@@ -494,6 +504,8 @@ body{
 
     color:#555;
 
+    line-height:1.5;
+
 }
 
 
@@ -516,6 +528,13 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
+}
+
+
+.play-again-btn:hover{
+
+    opacity:.9;
 
 }
 
@@ -556,9 +575,16 @@ body{
     }
 
 
-    .english-number{
+    .topbar{
 
-        font-size:28px;
+        font-size:15px;
+
+    }
+
+
+    .vietnamese-number{
+
+        font-size:27px;
 
     }
 
@@ -572,9 +598,9 @@ body{
 
     .answer-btn{
 
-        font-size:20px;
+        font-size:19px;
 
-        min-height:70px;
+        min-height:68px;
 
     }
 
@@ -595,7 +621,7 @@ body{
 <div class="back-btn-container">
 
     <a
-        href="../../index.html"
+        href="../../category.html?category=Numbers"
         class="back-btn"
     >
         ⬅ Back to Lobby
@@ -617,7 +643,7 @@ body{
 >
 
     <h1>
-        🔢 Vietnamese Number Match
+        🔢 Vietnamese Number Multiple Choice
     </h1>
 
 
@@ -625,26 +651,9 @@ body{
         How to Play
     </h2>
 
-
     <p>
-        👀 Read the English number.
+        🎯 Choose the correct English number.
     </p>
-
-
-    <p>
-        🎯 Choose the correct Vietnamese number.
-    </p>
-
-
-    <p>
-        ✅ Correct answer = 1 point.
-    </p>
-
-
-    <p>
-        📝 15 questions from 100–999.
-    </p>
-
 
     <button
         class="start-btn"
@@ -667,14 +676,14 @@ body{
 >
 
     <h1 class="game-title">
-        🔢 Vietnamese Number Match
+        🔢 Vietnamese Number Multiple Choice
     </h1>
 
 
     <div class="topbar">
 
         <div id="questionInfo">
-            Question 1 / 15
+            Question 1 / 20
         </div>
 
 
@@ -688,13 +697,13 @@ body{
     <div class="question">
 
         <div class="question-label">
-            Choose the Vietnamese number
+            What number is this in English?
         </div>
 
 
         <div
-            class="english-number"
-            id="englishNumber"
+            class="vietnamese-number"
+            id="vietnameseNumber"
         >
         </div>
 
@@ -780,7 +789,7 @@ body{
    GAME SETTINGS
 ========================================================== */
 
-const totalQuestions = 15;
+const totalQuestions = 20;
 
 let currentQuestion = 0;
 
@@ -813,9 +822,9 @@ const finalScreen =
     );
 
 
-const englishNumber =
+const vietnameseNumber =
     document.getElementById(
-        "englishNumber"
+        "vietnameseNumber"
     );
 
 
@@ -856,7 +865,7 @@ const scoreInfo =
 
 
 /* ==========================================================
-   VIETNAMESE NUMBERS
+   VIETNAMESE NUMBER WORDS
 ========================================================== */
 
 const ones = [
@@ -874,6 +883,10 @@ const ones = [
 
 ];
 
+
+/* ==========================================================
+   READ TWO DIGITS
+========================================================== */
 
 function readTwoDigits(number){
 
@@ -925,16 +938,20 @@ function readTwoDigits(number){
 
     if(unit === 1){
 
-        return result +
-            " mốt";
+        return (
+            result +
+            " mốt"
+        );
 
     }
 
 
     if(unit === 5){
 
-        return result +
-            " lăm";
+        return (
+            result +
+            " lăm"
+        );
 
     }
 
@@ -947,6 +964,10 @@ function readTwoDigits(number){
 
 }
 
+
+/* ==========================================================
+   NUMBER TO VIETNAMESE
+========================================================== */
 
 function numberToVietnamese(number){
 
@@ -995,63 +1016,67 @@ function numberToVietnamese(number){
 
 
 /* ==========================================================
-   ENGLISH NUMBERS
+   ENGLISH NUMBER WORDS
+========================================================== */
+
+const englishOnes = [
+
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen"
+
+];
+
+
+const englishTens = [
+
+    "",
+    "",
+    "twenty",
+    "thirty",
+    "forty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety"
+
+];
+
+
+/* ==========================================================
+   NUMBER TO ENGLISH
 ========================================================== */
 
 function numberToEnglish(number){
 
-    const smallNumbers = [
-
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen"
-
-    ];
-
-
-    const tens = [
-
-        "",
-        "",
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety"
-
-    ];
-
-
     if(number < 20){
 
-        return smallNumbers[number];
+        return englishOnes[number];
 
     }
 
 
     if(number < 100){
 
-        const ten =
+        const tens =
             Math.floor(
                 number / 10
             );
@@ -1063,21 +1088,21 @@ function numberToEnglish(number){
 
         if(unit === 0){
 
-            return tens[ten];
+            return englishTens[tens];
 
         }
 
 
         return (
-            tens[ten] +
+            englishTens[tens] +
             "-" +
-            smallNumbers[unit]
+            englishOnes[unit]
         );
 
     }
 
 
-    const hundred =
+    const hundreds =
         Math.floor(
             number / 100
         );
@@ -1088,7 +1113,7 @@ function numberToEnglish(number){
 
 
     let result =
-        smallNumbers[hundred] +
+        englishOnes[hundreds] +
         " hundred";
 
 
@@ -1116,15 +1141,17 @@ function numberToEnglish(number){
 
 function randomNumber(){
 
-    return Math.floor(
-        Math.random() * 900
-    ) + 100;
+    return (
+        Math.floor(
+            Math.random() * 900
+        ) + 100
+    );
 
 }
 
 
 /* ==========================================================
-   START
+   START GAME
 ========================================================== */
 
 function startGame(){
@@ -1133,14 +1160,18 @@ function startGame(){
 
     score = 0;
 
+
     introScreen.style.display =
         "none";
+
 
     finalScreen.style.display =
         "none";
 
+
     gameScreen.style.display =
         "block";
+
 
     loadQuestion();
 
@@ -1155,13 +1186,23 @@ function loadQuestion(){
 
     answered = false;
 
-    feedback.textContent = "";
 
-    explanation.innerHTML = "";
+    feedback.textContent =
+        "";
+
+
+    feedback.style.color =
+        "";
+
+
+    explanation.innerHTML =
+        "";
+
 
     explanation.classList.add(
         "hidden"
     );
+
 
     nextBtn.style.display =
         "none";
@@ -1177,15 +1218,23 @@ function loadQuestion(){
         `Score: ${score}`;
 
 
+    /* ------------------------------------------------------
+       Generate new number
+    ------------------------------------------------------ */
+
     currentNumber =
         randomNumber();
 
 
-    englishNumber.textContent =
-        numberToEnglish(
+    vietnameseNumber.textContent =
+        numberToVietnamese(
             currentNumber
         );
 
+
+    /* ------------------------------------------------------
+       Generate answer choices
+    ------------------------------------------------------ */
 
     const choices =
         generateChoices(
@@ -1193,7 +1242,8 @@ function loadQuestion(){
         );
 
 
-    answers.innerHTML = "";
+    answers.innerHTML =
+        "";
 
 
     choices.forEach(
@@ -1210,7 +1260,7 @@ function loadQuestion(){
 
 
             button.textContent =
-                numberToVietnamese(
+                numberToEnglish(
                     number
                 );
 
@@ -1237,7 +1287,7 @@ function loadQuestion(){
 
 
 /* ==========================================================
-   CHOICES
+   GENERATE CHOICES
 ========================================================== */
 
 function generateChoices(correct){
@@ -1249,45 +1299,175 @@ function generateChoices(correct){
     choices.add(correct);
 
 
+    /*
+     * Create distractors with different
+     * hundreds / tens / units.
+     *
+     * This makes the choices clear
+     * instead of using extremely similar
+     * numbers that may confuse beginners.
+     */
+
+    const candidates = [];
+
+
+    const correctHundred =
+        Math.floor(
+            correct / 100
+        );
+
+
+    const correctRemainder =
+        correct % 100;
+
+
+    /* Different hundreds */
+
+    for(
+        let hundred = 1;
+        hundred <= 9;
+        hundred++
+    ){
+
+        if(
+            hundred !==
+            correctHundred
+        ){
+
+            candidates.push(
+                hundred * 100 +
+                correctRemainder
+            );
+
+        }
+
+    }
+
+
+    /* Different tens */
+
+    const correctTens =
+        Math.floor(
+            correctRemainder / 10
+        );
+
+
+    const unit =
+        correct % 10;
+
+
+    for(
+        let tens = 0;
+        tens <= 9;
+        tens++
+    ){
+
+        if(
+            tens !==
+            correctTens
+        ){
+
+            const candidate =
+                correctHundred * 100 +
+                tens * 10 +
+                unit;
+
+
+            if(
+                candidate >= 100 &&
+                candidate <= 999
+            ){
+
+                candidates.push(
+                    candidate
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* Different units */
+
+    const tensPart =
+        Math.floor(
+            correctRemainder / 10
+        ) * 10;
+
+
+    for(
+        let newUnit = 0;
+        newUnit <= 9;
+        newUnit++
+    ){
+
+        if(
+            newUnit !== unit
+        ){
+
+            const candidate =
+                correctHundred * 100 +
+                tensPart +
+                newUnit;
+
+
+            if(
+                candidate >= 100 &&
+                candidate <= 999
+            ){
+
+                candidates.push(
+                    candidate
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* Shuffle candidates */
+
+    shuffle(
+        candidates
+    );
+
+
+    /* Add unique distractors */
+
+    for(
+        const candidate of candidates
+    ){
+
+        if(
+            choices.size >= 4
+        ){
+
+            break;
+
+        }
+
+
+        choices.add(
+            candidate
+        );
+
+    }
+
+
+    /*
+     * Safety fallback.
+     */
+
     while(
         choices.size < 4
     ){
 
-        const difference =
-            Math.floor(
-                Math.random() * 100
-            ) + 10;
-
-
-        let candidate;
-
-
-        if(
-            Math.random() < 0.5
-        ){
-
-            candidate =
-                correct +
-                difference;
-
-        }
-        else{
-
-            candidate =
-                correct -
-                difference;
-
-        }
-
-
-        if(
-            candidate < 100 ||
-            candidate > 999
-        ){
-
-            continue;
-
-        }
+        const candidate =
+            randomNumber();
 
 
         choices.add(
@@ -1349,6 +1529,11 @@ function checkAnswer(
     selected
 ){
 
+    /*
+     * Prevent changing the answer
+     * after the question has been checked.
+     */
+
     if(answered){
 
         return;
@@ -1375,8 +1560,13 @@ function checkAnswer(
     );
 
 
+    /* ------------------------------------------------------
+       Correct
+    ------------------------------------------------------ */
+
     if(
-        selected === currentNumber
+        selected ===
+        currentNumber
     ){
 
         button.classList.add(
@@ -1395,6 +1585,12 @@ function checkAnswer(
             "#2e7d32";
 
     }
+
+
+    /* ------------------------------------------------------
+       Wrong
+    ------------------------------------------------------ */
+
     else{
 
         button.classList.add(
@@ -1408,7 +1604,8 @@ function checkAnswer(
                 if(
                     Number(
                         btn.dataset.number
-                    ) === currentNumber
+                    ) ===
+                    currentNumber
                 ){
 
                     btn.classList.add(
@@ -1422,7 +1619,7 @@ function checkAnswer(
 
 
         feedback.textContent =
-            `❌ The correct answer is ${numberToVietnamese(currentNumber)}.`;
+            "❌ Incorrect.";
 
 
         feedback.style.color =
@@ -1450,6 +1647,18 @@ function checkAnswer(
 
 function showExplanation(){
 
+    const english =
+        numberToEnglish(
+            currentNumber
+        );
+
+
+    const vietnamese =
+        numberToVietnamese(
+            currentNumber
+        );
+
+
     explanation.innerHTML = `
 
         <strong>💡 Learn:</strong>
@@ -1457,23 +1666,19 @@ function showExplanation(){
         <br><br>
 
         <strong>
-            ${numberToEnglish(
-                currentNumber
-            )}
+            ${vietnamese}
         </strong>
 
         =
 
         <strong>
-            ${numberToVietnamese(
-                currentNumber
-            )}
+            ${english}
         </strong>
 
         <br><br>
 
-        Practice saying the Vietnamese
-        number aloud.
+        Read the Vietnamese number
+        from hundreds to tens and units.
 
     `;
 
@@ -1512,13 +1717,14 @@ function nextQuestion(){
 
 
 /* ==========================================================
-   FINISH
+   FINISH GAME
 ========================================================== */
 
 function finishGame(){
 
     gameScreen.style.display =
         "none";
+
 
     finalScreen.style.display =
         "block";
@@ -1534,7 +1740,8 @@ function finishGame(){
 
 
     if(
-        score === totalQuestions
+        score ===
+        totalQuestions
     ){
 
         message =
@@ -1543,16 +1750,16 @@ function finishGame(){
     }
 
     else if(
-        score >= 12
+        score >= 16
     ){
 
         message =
-            "Excellent! Your Vietnamese numbers are getting strong! 👏";
+            "Excellent! Your Vietnamese number skills are strong! 👏";
 
     }
 
     else if(
-        score >= 8
+        score >= 10
     ){
 
         message =
@@ -1563,7 +1770,7 @@ function finishGame(){
     else{
 
         message =
-            "Keep practicing! You will get faster with more review.";
+            "Keep practicing! Review the numbers and try again.";
 
     }
 
@@ -1577,7 +1784,7 @@ function finishGame(){
 
 
 /* ==========================================================
-   RESTART
+   RESTART GAME
 ========================================================== */
 
 function restartGame(){
