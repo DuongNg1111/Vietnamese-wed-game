@@ -1,1843 +1,1478 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<title>Describe Things</title>
 
-<title>Vietnamese Weather Sentence Scramble</title>
-
-<meta
-    name="game-title"
-    content="Vietnamese Weather Sentence Scramble"
->
-
-<meta
-    name="game-description"
-    content="Arrange Vietnamese weather words to make a correct sentence."
->
-
-<meta
-    name="game-icon"
-    content="☀️"
->
-
+<meta name="game-title" content="Describe Things">
+<meta name="game-description" content="Choose the Vietnamese word that best describes a person or thing.">
+<meta name="game-icon" content="✨">
 
 <style>
 
-/* ==========================================================
-   RESET
-========================================================== */
-
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
+:root {
+    --blue: #7657d9;
+    --blue-dark: #6042c0;
+    --light: #f1edff;
+    --border: #d9d0fa;
 
-body{
+    --ink: #143a6b;
+    --soft: #66809d;
+    --white: #ffffff;
+    --correct: #23966f;
+    --correct-bg: #eaf8f2;
+    --wrong: #d9534f;
+    --wrong-bg: #fff0ef;
+}
 
-    margin:0;
+body {
+    margin: 0;
+    min-height: 100vh;
 
     font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
+        "Be Vietnam Pro",
+        "Segoe UI",
+        Arial,
         sans-serif;
 
-    background:#f4f7f6;
+    color: var(--ink);
 
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    color:#2c3e50;
-
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9fd 55%,
+            #edf5fc 100%
+        );
 }
 
+/* =========================================================
+   TOP NAV
+========================================================= */
 
-/* ==========================================================
-   SCREEN
-========================================================== */
-
-.screen{
-
-    display:none;
-
+.top-nav {
+    width: min(1100px, 92%);
+    margin: 20px auto 0;
 }
 
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
-.screen.active{
+    padding: 10px 17px;
 
-    display:block;
+    border: 1px solid rgba(20, 58, 107, 0.14);
+    border-radius: 999px;
 
+    background: rgba(255,255,255,0.92);
+
+    color: var(--ink);
+    text-decoration: none;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    transition: 0.2s ease;
 }
 
+.back-btn:hover {
+    transform: translateX(-3px);
+    color: var(--blue);
+    border-color: var(--blue);
+}
 
-/* ==========================================================
-   CONTAINER
-========================================================== */
+/* =========================================================
+   MAIN
+========================================================= */
 
-.container{
+.game-wrapper {
+    width: min(900px, 92%);
+    margin: 45px auto 70px;
+}
 
-    position:relative;
+/* =========================================================
+   GAME CARD
+========================================================= */
 
-    width:min(900px,96vw);
+.game-card {
+    position: relative;
 
-    margin:0 auto;
+    overflow: hidden;
 
-    background:white;
+    padding: 42px 45px;
 
-    padding:65px 30px 30px;
+    border: 1px solid var(--border);
+    border-radius: 28px;
 
-    border-radius:20px;
+    background: rgba(255,255,255,0.98);
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
+        0 18px 45px
+        rgba(20,58,107,0.10);
 
+    text-align: center;
 }
 
+.game-card::before {
+    content: "";
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
+    position: absolute;
 
-.lobby-btn{
+    top: 0;
+    left: 0;
 
-    position:absolute;
+    width: 100%;
+    height: 7px;
 
-    top:20px;
-
-    left:22px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            #a38be8
+        );
 }
 
+/* =========================================================
+   SCREENS
+========================================================= */
 
-.lobby-btn:hover{
-
-    background:#dcecff;
-
-    transform:translateX(-2px);
-
+.screen {
+    display: none;
 }
 
+.screen.active {
+    display: block;
+}
 
-/* ==========================================================
+/* =========================================================
    INTRO
-========================================================== */
+========================================================= */
 
-#intro{
+.game-icon {
+    width: 88px;
+    height: 88px;
 
-    text-align:center;
+    margin: 5px auto 22px;
 
-    padding:20px 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 24px;
+
+    background: var(--light);
+    border: 1px solid var(--border);
+
+    font-size: 3rem;
 }
 
+.eyebrow {
+    margin: 0 0 8px;
 
-#intro .emoji{
+    color: var(--blue);
 
-    font-size:60px;
+    font-size: 0.72rem;
+    font-weight: 800;
 
-    margin-bottom:10px;
-
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
+h1 {
+    margin: 0;
 
-#intro h1{
-
-    margin:0 0 10px;
-
-    font-size:34px;
-
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
 }
 
+.intro-description {
+    max-width: 600px;
 
-#intro p{
+    margin: 18px auto 0;
 
-    color:#7f8c8d;
+    color: var(--soft);
 
-    font-size:18px;
-
-    line-height:1.6;
-
+    font-size: 0.95rem;
+    line-height: 1.65;
 }
 
+.topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
 
-.start-btn{
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+    margin: 25px auto 30px;
 }
 
+.topic {
+    padding: 8px 13px;
 
-.start-btn:hover{
+    border-radius: 999px;
 
-    background:#2c3e50;
+    background: var(--light);
+    border: 1px solid var(--border);
 
-    transform:translateY(-2px);
+    color: var(--blue);
 
+    font-size: 0.75rem;
+    font-weight: 700;
 }
 
+.primary-btn,
+.secondary-btn {
+    border: 0;
+    border-radius: 13px;
 
-/* ==========================================================
-   TITLE
-========================================================== */
+    padding: 13px 25px;
 
-.title{
+    font-family: inherit;
 
-    text-align:center;
+    font-size: 0.86rem;
+    font-weight: 800;
 
-    margin:0 0 5px;
+    cursor: pointer;
 
+    transition: 0.2s ease;
 }
 
+.primary-btn {
+    background: var(--blue);
+    color: white;
 
-.subtitle{
-
-    text-align:center;
-
-    color:#7f8c8d;
-
-    margin-bottom:25px;
-
+    box-shadow:
+        0 7px 18px
+        rgba(118,87,217,0.22);
 }
 
-
-/* ==========================================================
-   GAME BOX
-========================================================== */
-
-.game-box{
-
-    background:#fff;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    border:1px solid #eee;
-
-    text-align:center;
-
+.primary-btn:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
 }
 
+.secondary-btn {
+    background: var(--light);
+    color: var(--blue);
 
-.topbar{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:15px;
-
-    font-weight:bold;
-
+    border: 1px solid var(--border);
 }
 
-
-.question-count{
-
-    color:#7f8c8d;
-
+.secondary-btn:hover {
+    transform: translateY(-2px);
 }
 
+/* =========================================================
+   QUIZ HEADER
+========================================================= */
 
-.score{
+.quiz-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    color:#27ae60;
-
-    font-size:18px;
-
+    margin-bottom: 25px;
 }
 
+.progress-text {
+    color: var(--soft);
 
-/* ==========================================================
-   PROGRESS
-========================================================== */
-
-.progress-wrap{
-
-    width:100%;
-
-    height:9px;
-
-    background:#eee;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:25px;
-
+    font-size: 0.78rem;
+    font-weight: 700;
 }
 
+.score {
+    padding: 6px 11px;
 
-.progress{
+    border-radius: 999px;
 
-    width:0%;
+    background: var(--light);
 
-    height:100%;
+    color: var(--blue);
 
-    background:#34495e;
-
-    transition:.3s;
-
+    font-size: 0.75rem;
+    font-weight: 800;
 }
 
+.progress-bar {
+    width: 100%;
+    height: 7px;
 
-/* ==========================================================
-   INSTRUCTION
-========================================================== */
+    margin-top: 10px;
 
-.instruction{
+    overflow: hidden;
 
-    color:#7f8c8d;
+    border-radius: 999px;
 
-    font-size:16px;
-
-    margin-bottom:18px;
-
+    background: #edf0f5;
 }
 
+.progress-fill {
+    width: 0%;
+    height: 100%;
 
-/* ==========================================================
-   SCRAMBLED WORDS
-========================================================== */
+    border-radius: inherit;
 
-.words-container{
+    background: var(--blue);
 
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    gap:12px;
-
-    min-height:80px;
-
-    margin:20px 0;
-
+    transition: width 0.3s ease;
 }
 
+/* =========================================================
+   QUESTION
+========================================================= */
 
-.word-btn{
+.question-label {
+    margin: 20px 0 10px;
 
-    padding:13px 18px;
+    color: var(--blue);
 
-    border:2px solid #34495e;
+    font-size: 0.72rem;
+    font-weight: 800;
 
-    border-radius:10px;
-
-    background:#fff;
-
-    color:#34495e;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
+.question {
+    margin: 0 auto;
 
-.word-btn:hover{
+    max-width: 700px;
 
-    background:#eef5fc;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
 
-    transform:translateY(-2px);
-
+    line-height: 1.5;
 }
 
-
-.word-btn.used{
-
-    opacity:.35;
-
-    pointer-events:none;
-
+.question strong {
+    color: var(--blue);
 }
 
+/* =========================================================
+   ANSWERS
+========================================================= */
 
-/* ==========================================================
-   ANSWER AREA
-========================================================== */
+.answers {
+    display: grid;
 
-.answer-label{
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    margin-top:20px;
+    gap: 13px;
 
-    color:#7f8c8d;
-
-    font-size:14px;
-
-    font-weight:bold;
-
+    margin-top: 30px;
 }
 
+.answer-btn {
+    min-height: 66px;
 
-.answer-container{
+    padding: 13px 16px;
 
-    min-height:65px;
+    border: 2px solid #e1e7ee;
+    border-radius: 15px;
 
-    margin:10px 0 20px;
+    background: white;
 
-    padding:12px;
+    color: var(--ink);
 
-    display:flex;
+    font-family: inherit;
 
-    flex-wrap:wrap;
+    font-size: 0.95rem;
+    font-weight: 700;
 
-    justify-content:center;
+    cursor: pointer;
 
-    align-items:center;
-
-    gap:10px;
-
-    background:#f8f9fa;
-
-    border:2px dashed #d5dfe5;
-
-    border-radius:12px;
-
+    transition: 0.18s ease;
 }
 
+.answer-btn:hover:not(:disabled) {
+    border-color: var(--blue);
+    background: var(--light);
 
-.answer-word{
-
-    padding:10px 15px;
-
-    border-radius:9px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
+    transform: translateY(-2px);
 }
 
-
-.answer-word:hover{
-
-    background:#2c3e50;
-
+.answer-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
 }
 
-
-/* ==========================================================
-   CHECK BUTTON
-========================================================== */
-
-.check-btn{
-
-    padding:12px 28px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#27ae60;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+.answer-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
 }
 
-
-.check-btn:hover{
-
-    background:#219150;
-
-    transform:translateY(-2px);
-
+.answer-btn:disabled {
+    cursor: default;
 }
 
+/* =========================================================
+   FEEDBACK
+========================================================= */
 
-.check-btn:disabled{
+.feedback {
+    min-height: 27px;
 
-    background:#bdc3c7;
+    margin-top: 20px;
 
-    cursor:not-allowed;
-
-    transform:none;
-
+    font-size: 0.84rem;
+    font-weight: 700;
 }
 
-
-/* ==========================================================
-   RESULT
-========================================================== */
-
-.result-message{
-
-    min-height:40px;
-
-    margin-top:18px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
+.feedback.correct {
+    color: var(--correct);
 }
 
-
-.correct-text{
-
-    color:#27ae60;
-
+.feedback.wrong {
+    color: var(--wrong);
 }
 
+.next-btn {
+    display: none;
 
-.wrong-text{
-
-    color:#e74c3c;
-
+    margin: 16px auto 0;
 }
 
-
-/* ==========================================================
-   NEXT BUTTON
-========================================================== */
-
-.next-btn{
-
-    padding:12px 28px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-top:5px;
-
-    transition:.2s;
-
+.next-btn.show {
+    display: inline-flex;
 }
 
+/* =========================================================
+   FINISH
+========================================================= */
 
-.next-btn:hover{
+.finish-icon {
+    width: 88px;
+    height: 88px;
 
-    background:#2c3e50;
+    margin: 5px auto 22px;
 
-    transform:translateY(-2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 50%;
+
+    background: var(--light);
+
+    font-size: 2.8rem;
 }
 
+.final-score {
+    margin: 18px 0 8px;
 
-/* ==========================================================
-   FINAL
-========================================================== */
+    color: var(--blue);
 
-#final{
-
-    text-align:center;
-
-    padding:30px 20px 40px;
-
+    font-size: 3rem;
+    font-weight: 800;
 }
 
+.final-message {
+    margin: 0 auto 28px;
 
-#final h2{
+    max-width: 550px;
 
-    font-size:35px;
+    color: var(--soft);
 
-    color:#27ae60;
-
+    line-height: 1.6;
 }
 
-
-.final-score{
-
-    font-size:30px;
-
-    margin:25px 0;
-
-    font-weight:bold;
-
-    color:#1976d2;
-
+.finish-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-
-.final-message{
-
-    color:#7f8c8d;
-
-    font-size:18px;
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
-@media(max-width:600px){
+@media (max-width: 650px) {
 
-    body{
-
-        padding:10px;
-
+    .game-wrapper {
+        margin-top: 30px;
     }
 
-
-    .container{
-
-        padding:60px 15px 20px;
-
+    .game-card {
+        padding: 35px 22px;
+        border-radius: 23px;
     }
 
-
-    #intro h1{
-
-        font-size:28px;
-
+    .answers {
+        grid-template-columns: 1fr;
     }
 
-
-    .game-box{
-
-        padding:18px;
-
+    .answer-btn {
+        min-height: 58px;
     }
 
-
-    .word-btn{
-
-        font-size:16px;
-
-        padding:11px 14px;
-
+    .finish-actions {
+        flex-direction: column;
     }
 
-
-    .answer-word{
-
-        font-size:15px;
-
-        padding:9px 12px;
-
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
     }
-
-
-    .lobby-btn{
-
-        top:16px;
-
-        left:16px;
-
-        font-size:13px;
-
-        padding:7px 12px;
-
-    }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<div class="container">
-
-
-<!-- ========================================================
-     BACK TO LOBBY
+<!-- =========================================================
+     TOP NAV
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
->
+<nav class="top-nav">
 
+```
+<a
+    href=../../category.html?category=Describe things"
+    class="back-btn"
+>
     ← Back to Lobby
+</a>
+```
 
-</button>
+</nav>
 
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        ☀️
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Weather Scramble
-
-    </h1>
-
-
-    <p>
-
-        Arrange the Vietnamese words<br>
-        to make a correct sentence.
-
-    </p>
-
-
-    <p>
-
-        🎯 15 questions
-
-    </p>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
-
-        Start Game
-
-    </button>
-
-</div>
-
-
-
-<!-- ========================================================
+<!-- =========================================================
      GAME
 ========================================================= -->
 
-<div
-    id="game"
-    class="screen"
->
+<main class="game-wrapper">
+
+```
+<div class="game-card">
 
 
-    <h1 class="title">
+    <!-- =================================================
+         INTRO SCREEN
+    ================================================== -->
 
-        ☀️ Vietnamese Weather Scramble
+    <section
+        id="intro-screen"
+        class="screen active"
+    >
 
-    </h1>
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            ✨
+        </div>
 
+        <p class="eyebrow">
+            Describe Things
+        </p>
 
-    <p class="subtitle">
+        <h1>
+            Describe Things
+        </h1>
 
-        Put the words in the correct order.
-
-    </p>
-
-
-
-    <div class="game-box">
-
-
-        <!-- TOP BAR -->
-
-        <div class="topbar">
-
-            <div class="question-count">
-
-                Question
-
-                <span id="questionNumber">
-                    1
-                </span>
-
-                /
-
-                <span id="totalQuestions">
-                    15
-                </span>
-
-            </div>
+        <p class="intro-description">
+            Read the situation and choose the
+            Vietnamese word that best describes
+            the person or thing.
+        </p>
 
 
-            <div class="score">
+        <div class="topic-list">
 
-                Score:
+            <span class="topic">
+                Size
+            </span>
 
-                <span id="score">
-                    0
-                </span>
+            <span class="topic">
+                Feel & Texture
+            </span>
 
-            </div>
+            <span class="topic">
+                Condition
+            </span>
+
+            <span class="topic">
+                Shape
+            </span>
 
         </div>
 
 
+        <button
+            id="start-btn"
+            class="primary-btn"
+            type="button"
+        >
+            Start Game
+        </button>
 
-        <!-- PROGRESS -->
+    </section>
 
-        <div class="progress-wrap">
+
+    <!-- =================================================
+         QUIZ SCREEN
+    ================================================== -->
+
+    <section
+        id="quiz-screen"
+        class="screen"
+    >
+
+        <div class="quiz-top">
+
+            <span
+                id="progress-text"
+                class="progress-text"
+            >
+                Question 1 of 12
+            </span>
+
+            <span
+                id="score"
+                class="score"
+            >
+                Score: 0
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
 
             <div
-                class="progress"
-                id="progress"
+                id="progress-fill"
+                class="progress-fill"
             ></div>
 
         </div>
 
 
-
-        <div class="instruction">
-
-            Click the words in the correct order.
-
-        </div>
+        <p class="question-label">
+            Choose the best word
+        </p>
 
 
-
-        <!-- SCRAMBLED WORDS -->
-
-        <div
-            class="words-container"
-            id="wordsContainer"
-        ></div>
-
-
-
-        <!-- ANSWER -->
-
-        <div class="answer-label">
-
-            YOUR SENTENCE
-
-        </div>
-
-
-        <div
-            class="answer-container"
-            id="answerContainer"
+        <h2
+            id="question"
+            class="question"
         >
+            Loading...
+        </h2>
 
-            Click words above.
 
+        <div
+            id="answers"
+            class="answers"
+        >
         </div>
 
 
+        <div
+            id="feedback"
+            class="feedback"
+        >
+        </div>
 
-        <!-- CHECK -->
 
         <button
-            class="check-btn"
-            id="checkBtn"
-            onclick="checkAnswer()"
+            id="next-btn"
+            class="primary-btn next-btn"
+            type="button"
         >
-
-            Check ✓
-
-        </button>
-
-
-
-        <!-- RESULT -->
-
-        <div
-            class="result-message"
-            id="resultText"
-        ></div>
-
-
-
-        <!-- NEXT -->
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-            style="display:none;"
-        >
-
             Next →
-
         </button>
 
-
-    </div>
-
-
-</div>
+    </section>
 
 
+    <!-- =================================================
+         FINISH SCREEN
+    ================================================== -->
 
-<!-- ========================================================
-     FINAL
-========================================================= -->
-
-<div
-    id="final"
-    class="screen"
->
-
-
-    <h2>
-
-        🎉 Game Complete!
-
-    </h2>
-
-
-    <p class="final-message">
-
-        You completed the Vietnamese Weather Scramble.
-
-    </p>
-
-
-    <div class="final-score">
-
-        Score:
-
-        <span id="finalScore"></span>
-
-    </div>
-
-
-    <p
-        class="final-message"
-        id="finalMessage"
-    ></p>
-
-
-    <button
-        class="start-btn"
-        onclick="restartGame()"
+    <section
+        id="finish-screen"
+        class="screen"
     >
 
-        Play Again
+        <div
+            class="finish-icon"
+            aria-hidden="true"
+        >
+            🏆
+        </div>
 
-    </button>
+        <p class="eyebrow">
+            Game Complete
+        </p>
+
+        <h1>
+            Great job!
+        </h1>
+
+
+        <div
+            id="final-score"
+            class="final-score"
+        >
+            0 / 12
+        </div>
+
+
+        <p
+            id="final-message"
+            class="final-message"
+        >
+            Nice work! Keep practicing your
+            Vietnamese descriptive words.
+        </p>
+
+
+        <div class="finish-actions">
+
+            <button
+                id="restart-btn"
+                class="primary-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+            <a
+                href="../../index.html"
+                class="secondary-btn"
+            >
+                Back to Lobby
+            </a>
+
+        </div>
+
+    </section>
 
 </div>
+```
 
-
-</div>
-
-
+</main>
 
 <script>
 
+/* =========================================================
+   GAME DATA
+   ---------------------------------------------------------
+   Topics:
+   - Size
+   - Feel & Texture
+   - Condition
+   - Shape
+========================================================= */
 
-/* ==========================================================
-   QUESTION DATABASE
-========================================================== */
+const questionBank = [
 
-const database = [
+    /* ---------------- SIZE ---------------- */
 
     {
-        words:[
-            "nắng",
-            "trời"
+        question:
+            "The elephant is very big. Which Vietnamese word describes it?",
+
+        answers: [
+            "nhỏ",
+            "lớn",
+            "ngắn",
+            "nhẹ"
         ],
 
-        answer:[
-            "trời",
-            "nắng"
-        ]
+        correct:
+            "lớn",
+
+        phonetic:
+            "lon"
+    },
+
+    {
+        question:
+            "The phone is small. Which word describes the phone?",
+
+        answers: [
+            "rộng",
+            "cao",
+            "nhỏ",
+            "nặng"
+        ],
+
+        correct:
+            "nhỏ",
+
+        phonetic:
+            "nyo"
+    },
+
+    {
+        question:
+            "The table is long. Which Vietnamese word describes it?",
+
+        answers: [
+            "dài",
+            "thấp",
+            "chật",
+            "mềm"
+        ],
+
+        correct:
+            "dài",
+
+        phonetic:
+            "zai"
     },
 
 
+    /* ---------------- FEEL & TEXTURE ---------------- */
+
     {
-        words:[
-            "mưa",
-            "trời"
+        question:
+            "The rock is hard. Which Vietnamese word describes it?",
+
+        answers: [
+            "mềm",
+            "ướt",
+            "cứng",
+            "khô"
         ],
 
-        answer:[
-            "trời",
-            "mưa"
-        ]
+        correct:
+            "cứng",
+
+        phonetic:
+            "koong"
+    },
+
+    {
+        question:
+            "The pillow is soft. Which word describes the pillow?",
+
+        answers: [
+            "cứng",
+            "mềm",
+            "nặng",
+            "thẳng"
+        ],
+
+        correct:
+            "mềm",
+
+        phonetic:
+            "mem"
+    },
+
+    {
+        question:
+            "The towel is wet. Which Vietnamese word describes it?",
+
+        answers: [
+            "khô",
+            "ướt",
+            "cứng",
+            "nhọn"
+        ],
+
+        correct:
+            "ướt",
+
+        phonetic:
+            "oot"
     },
 
 
+    /* ---------------- CONDITION ---------------- */
+
     {
-        words:[
-            "gió",
-            "trời"
+        question:
+            "This shirt was just bought. It is new. Which word describes it?",
+
+        answers: [
+            "cũ",
+            "sạch",
+            "mới",
+            "dơ"
         ],
 
-        answer:[
-            "trời",
-            "gió"
-        ]
+        correct:
+            "mới",
+
+        phonetic:
+            "moi"
+    },
+
+    {
+        question:
+            "These shoes are dirty. Which Vietnamese word describes them?",
+
+        answers: [
+            "mới",
+            "sạch",
+            "dơ",
+            "nhẹ"
+        ],
+
+        correct:
+            "dơ",
+
+        phonetic:
+            "zơ"
+    },
+
+    {
+        question:
+            "The room is clean. Which word describes the room?",
+
+        answers: [
+            "dơ",
+            "cũ",
+            "sạch",
+            "chật"
+        ],
+
+        correct:
+            "sạch",
+
+        phonetic:
+            "sach"
     },
 
 
+    /* ---------------- SHAPE ---------------- */
+
     {
-        words:[
-            "nóng",
-            "trời"
+        question:
+            "A ball is round. Which Vietnamese word describes its shape?",
+
+        answers: [
+            "vuông",
+            "cong",
+            "tròn",
+            "thẳng"
         ],
 
-        answer:[
-            "trời",
-            "nóng"
-        ]
+        correct:
+            "tròn",
+
+        phonetic:
+            "chon"
     },
 
-
     {
-        words:[
-            "lạnh",
-            "trời"
+        question:
+            "A window has four equal sides. It is square. Which word describes it?",
+
+        answers: [
+            "tròn",
+            "vuông",
+            "xoăn",
+            "nhọn"
         ],
 
-        answer:[
-            "trời",
-            "lạnh"
-        ]
+        correct:
+            "vuông",
+
+        phonetic:
+            "voong"
     },
 
-
     {
-        words:[
-            "ấm",
-            "trời"
+        question:
+            "A pencil is straight. Which Vietnamese word describes it?",
+
+        answers: [
+            "cong",
+            "thẳng",
+            "tròn",
+            "chật"
         ],
 
-        answer:[
-            "trời",
-            "ấm"
-        ]
-    },
+        correct:
+            "thẳng",
 
-
-    {
-        words:[
-            "mát",
-            "trời"
-        ],
-
-        answer:[
-            "trời",
-            "mát"
-        ]
-    },
-
-
-    {
-        words:[
-            "nhiều mây",
-            "trời"
-        ],
-
-        answer:[
-            "trời",
-            "nhiều mây"
-        ]
-    },
-
-
-    {
-        words:[
-            "nóng",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "nóng"
-        ]
-    },
-
-
-    {
-        words:[
-            "lạnh",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "lạnh"
-        ]
-    },
-
-
-    {
-        words:[
-            "ấm",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "ấm"
-        ]
-    },
-
-
-    {
-        words:[
-            "mát",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "mát"
-        ]
-    },
-
-
-    {
-        words:[
-            "nhiều mây",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "nhiều mây"
-        ]
-    },
-
-
-    {
-        words:[
-            "nắng",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "nắng"
-        ]
-    },
-
-
-    {
-        words:[
-            "gió",
-            "thời tiết"
-        ],
-
-        answer:[
-            "thời tiết",
-            "gió"
-        ]
+        phonetic:
+            "tang"
     }
 
 ];
 
 
+/* =========================================================
+   GAME STATE
+========================================================= */
 
-/* ==========================================================
-   STATE
-========================================================== */
+const TOTAL_QUESTIONS =
+    questionBank.length;
 
 let questions = [];
 
-let currentQuestion = 0;
+let currentQuestion =
+    0;
 
-let score = 0;
+let score =
+    0;
 
-let selectedWords = [];
-
-let answered = false;
-
+let answered =
+    false;
 
 
-/* ==========================================================
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const introScreen =
+    document.getElementById(
+        "intro-screen"
+    );
+
+const quizScreen =
+    document.getElementById(
+        "quiz-screen"
+    );
+
+const finishScreen =
+    document.getElementById(
+        "finish-screen"
+    );
+
+const startBtn =
+    document.getElementById(
+        "start-btn"
+    );
+
+const nextBtn =
+    document.getElementById(
+        "next-btn"
+    );
+
+const restartBtn =
+    document.getElementById(
+        "restart-btn"
+    );
+
+const questionElement =
+    document.getElementById(
+        "question"
+    );
+
+const answersElement =
+    document.getElementById(
+        "answers"
+    );
+
+const feedbackElement =
+    document.getElementById(
+        "feedback"
+    );
+
+const progressText =
+    document.getElementById(
+        "progress-text"
+    );
+
+const progressFill =
+    document.getElementById(
+        "progress-fill"
+    );
+
+const scoreElement =
+    document.getElementById(
+        "score"
+    );
+
+const finalScoreElement =
+    document.getElementById(
+        "final-score"
+    );
+
+const finalMessageElement =
+    document.getElementById(
+        "final-message"
+    );
+
+
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
-function shuffle(array){
+function shuffle(array) {
 
-    const arr = [...array];
+    const copy =
+        [...array];
 
-
-    for(
-        let i = arr.length - 1;
+    for (
+        let i = copy.length - 1;
         i > 0;
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
-
         [
-            arr[i],
-            arr[j]
+            copy[i],
+            copy[j]
         ] = [
-            arr[j],
-            arr[i]
+            copy[j],
+            copy[i]
         ];
 
     }
 
-
-    return arr;
+    return copy;
 
 }
 
 
-
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
-function startGame(){
+function startGame() {
 
     questions =
-        shuffle(database);
+        shuffle(
+            questionBank
+        );
 
+    currentQuestion =
+        0;
 
-    currentQuestion = 0;
+    score =
+        0;
 
-    score = 0;
+    introScreen.classList.remove(
+        "active"
+    );
 
+    finishScreen.classList.remove(
+        "active"
+    );
 
-    document
-        .getElementById("intro")
-        .classList.remove("active");
+    quizScreen.classList.add(
+        "active"
+    );
 
+    scoreElement.textContent =
+        "Score: 0";
 
-    document
-        .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
-
-
-    document
-        .getElementById("score")
-        .textContent =
-        "0";
-
-
-    document
-        .getElementById("totalQuestions")
-        .textContent =
-        questions.length;
-
-
-    loadQuestion();
+    showQuestion();
 
 }
 
 
+/* =========================================================
+   SHOW QUESTION
+========================================================= */
 
-/* ==========================================================
-   LOAD QUESTION
-========================================================== */
+function showQuestion() {
 
-function loadQuestion(){
+    answered =
+        false;
 
-    answered = false;
+    const item =
+        questions[
+            currentQuestion
+        ];
 
-    selectedWords = [];
+    progressText.textContent =
+        `Question ${
+            currentQuestion + 1
+        } of ${
+            TOTAL_QUESTIONS
+        }`;
 
+    progressFill.style.width =
+        `${
+            (
+                currentQuestion /
+                TOTAL_QUESTIONS
+            ) * 100
+        }%`;
 
-    const question =
-        questions[currentQuestion];
+    questionElement.textContent =
+        item.question;
 
-
-    document
-        .getElementById("questionNumber")
-        .textContent =
-        currentQuestion + 1;
-
-
-    document
-        .getElementById("progress")
-        .style.width =
-        (
-            currentQuestion /
-            questions.length *
-            100
-        ) + "%";
-
-
-    document
-        .getElementById("resultText")
-        .textContent =
+    answersElement.innerHTML =
         "";
 
+    feedbackElement.textContent =
+        "";
 
-    document
-        .getElementById("resultText")
-        .className =
-        "result-message";
+    feedbackElement.className =
+        "feedback";
 
-
-    /*
-     * IMPORTANT:
-     * Reset both display and disabled state
-     * for every new question.
-     */
-
-    document
-        .getElementById("checkBtn")
-        .style.display =
-        "inline-block";
+    nextBtn.classList.remove(
+        "show"
+    );
 
 
-    document
-        .getElementById("checkBtn")
-        .disabled =
+    const shuffledAnswers =
+        shuffle(
+            item.answers
+        );
+
+
+    shuffledAnswers.forEach(
+        answer => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.type =
+                "button";
+
+            button.className =
+                "answer-btn";
+
+            button.textContent =
+                answer;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    checkAnswer(
+                        button,
+                        answer,
+                        item
+                    );
+
+                }
+            );
+
+            answersElement.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    selectedButton,
+    selectedAnswer,
+    item
+) {
+
+    if (answered) {
+        return;
+    }
+
+    answered =
         true;
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
-        "none";
-
-
-    document
-        .getElementById("nextBtn")
-        .textContent =
-        "Next →";
-
-
-
-    /* ======================================================
-       WORD BUTTONS
-    ====================================================== */
-
-    const wordsContainer =
-        document.getElementById(
-            "wordsContainer"
+    const allButtons =
+        answersElement.querySelectorAll(
+            ".answer-btn"
         );
 
 
-    wordsContainer.innerHTML =
-        "";
+    allButtons.forEach(
+        button => {
 
+            button.disabled =
+                true;
 
-    const shuffledWords =
-        shuffle(question.words);
+            if (
+                button.textContent ===
+                item.correct
+            ) {
 
-
-    shuffledWords.forEach(
-        (word,index) => {
-
-
-            const button =
-                document.createElement(
-                    "button"
+                button.classList.add(
+                    "correct"
                 );
 
-
-            button.className =
-                "word-btn";
-
-
-            button.textContent =
-                word;
-
-
-            button.dataset.index =
-                index;
-
-
-            button.onclick = () =>
-                selectWord(
-                    button,
-                    word
-                );
-
-
-            wordsContainer.appendChild(
-                button
-            );
+            }
 
         }
     );
 
 
-
-    /* ======================================================
-       CLEAR ANSWER AREA
-    ====================================================== */
-
-    const answerContainer =
-        document.getElementById(
-            "answerContainer"
-        );
-
-
-    answerContainer.innerHTML =
-        "Click words above.";
-
-}
-
-
-
-/* ==========================================================
-   SELECT WORD
-========================================================== */
-
-function selectWord(
-    button,
-    word
-){
-
-    if(answered){
-
-        return;
-
-    }
-
-
-    button.classList.add(
-        "used"
-    );
-
-
-    selectedWords.push(word);
-
-
-    renderAnswer();
-
-
-    document
-        .getElementById("checkBtn")
-        .disabled =
-        false;
-
-}
-
-
-
-/* ==========================================================
-   RENDER ANSWER
-========================================================== */
-
-function renderAnswer(){
-
-    const container =
-        document.getElementById(
-            "answerContainer"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    selectedWords.forEach(
-        (word,index) => {
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "answer-word";
-
-
-            button.textContent =
-                word;
-
-
-            button.onclick = () => {
-
-                if(answered){
-
-                    return;
-
-                }
-
-
-                selectedWords.splice(
-                    index,
-                    1
-                );
-
-
-                restoreWord(
-                    word
-                );
-
-
-                renderAnswer();
-
-
-                document
-                    .getElementById(
-                        "checkBtn"
-                    )
-                    .disabled =
-                    selectedWords.length === 0;
-
-            };
-
-
-            container.appendChild(
-                button
-            );
-
-        }
-    );
-
-
-    if(selectedWords.length === 0){
-
-        container.textContent =
-            "Click words above.";
-
-    }
-
-}
-
-
-
-/* ==========================================================
-   RESTORE WORD
-========================================================== */
-
-function restoreWord(word){
-
-    const buttons =
-        document.querySelectorAll(
-            ".word-btn"
-        );
-
-
-    for(
-        const button
-        of buttons
-    ){
-
-        if(
-            button.textContent === word &&
-            button.classList.contains("used")
-        ){
-
-            button.classList.remove(
-                "used"
-            );
-
-            break;
-
-        }
-
-    }
-
-}
-
-
-
-/* ==========================================================
-   CHECK ANSWER
-========================================================== */
-
-function checkAnswer(){
-
-    if(answered){
-
-        return;
-
-    }
-
-
-    const question =
-        questions[currentQuestion];
-
-
-    const isCorrect =
-        selectedWords.length ===
-        question.answer.length &&
-
-        selectedWords.every(
-            (word,index) =>
-                word ===
-                question.answer[index]
-        );
-
-
-    if(isCorrect){
-
-        answered = true;
+    if (
+        selectedAnswer ===
+        item.correct
+    ) {
 
         score++;
 
+        scoreElement.textContent =
+            `Score: ${score}`;
 
-        document
-            .getElementById("score")
-            .textContent =
-            score;
+        selectedButton.classList.add(
+            "correct"
+        );
 
+        feedbackElement.textContent =
+            `✓ Correct! ${item.correct} / ${item.phonetic}`;
 
-        document
-            .getElementById("resultText")
-            .textContent =
-            "🎉 Correct!";
-
-
-        document
-            .getElementById("resultText")
-            .className =
-            "result-message correct-text";
-
-
-        document
-            .getElementById("checkBtn")
-            .style.display =
-            "none";
-
-
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
-
-
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Finish 🎉";
-
-        }
-
-
-    }else{
-
-        document
-            .getElementById("resultText")
-            .textContent =
-            "❌ Try again!";
-
-
-        document
-            .getElementById("resultText")
-            .className =
-            "result-message wrong-text";
+        feedbackElement.classList.add(
+            "correct"
+        );
 
     }
+
+    else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+        feedbackElement.textContent =
+            `✗ Not quite. The answer is ${item.correct} / ${item.phonetic}`;
+
+        feedbackElement.classList.add(
+            "wrong"
+        );
+
+    }
+
+
+    nextBtn.classList.add(
+        "show"
+    );
 
 }
 
 
-
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
-function nextQuestion(){
+function nextQuestion() {
 
     currentQuestion++;
 
 
-    if(
-        currentQuestion <
-        questions.length
-    ){
-
-        loadQuestion();
-
-    }else{
+    if (
+        currentQuestion >=
+        TOTAL_QUESTIONS
+    ) {
 
         finishGame();
 
+        return;
+
     }
+
+
+    showQuestion();
 
 }
 
 
-
-/* ==========================================================
+/* =========================================================
    FINISH GAME
-========================================================== */
+========================================================= */
 
-function finishGame(){
+function finishGame() {
 
-    document
-        .getElementById("progress")
-        .style.width =
+    quizScreen.classList.remove(
+        "active"
+    );
+
+    finishScreen.classList.add(
+        "active"
+    );
+
+    progressFill.style.width =
         "100%";
 
 
-    document
-        .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+    finalScoreElement.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
 
 
-    document
-        .getElementById("final")
-        .classList.add(
-            "active"
-        );
-
-
-    document
-        .getElementById("finalScore")
-        .textContent =
-        score +
-        " / " +
-        questions.length;
-
-
-    const percent =
-        Math.round(
+    const percentage =
+        (
             score /
-            questions.length *
-            100
-        );
+            TOTAL_QUESTIONS
+        ) * 100;
 
 
-    let message;
+    if (
+        percentage === 100
+    ) {
 
-
-    if(percent >= 90){
-
-        message =
-            "🏆 Excellent! Great job with Vietnamese weather vocabulary.";
-
-    }else if(percent >= 70){
-
-        message =
-            "🎉 Good job! Keep practicing.";
-
-    }else{
-
-        message =
-            "📚 Keep practicing Vietnamese weather words.";
+        finalMessageElement.textContent =
+            "Perfect! You can describe things in Vietnamese really well.";
 
     }
 
+    else if (
+        percentage >= 75
+    ) {
 
-    document
-        .getElementById("finalMessage")
-        .textContent =
-        message;
+        finalMessageElement.textContent =
+            "Great job! You have a good understanding of Vietnamese descriptive words.";
 
-}
+    }
 
+    else if (
+        percentage >= 50
+    ) {
 
+        finalMessageElement.textContent =
+            "Nice work! Keep practicing these descriptive words and their meanings.";
 
-/* ==========================================================
-   RESTART
-========================================================== */
+    }
 
-function restartGame(){
+    else {
 
-    document
-        .getElementById("checkBtn")
-        .style.display =
-        "inline-block";
+        finalMessageElement.textContent =
+            "Good start! Review the vocabulary and try again.";
 
-
-    startGame();
-
-}
-
-
-
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
-
-function backToLobby(){
-
-    window.location.href =
-        "../../index.html";
+    }
 
 }
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+startBtn.addEventListener(
+    "click",
+    startGame
+);
+
+nextBtn.addEventListener(
+    "click",
+    nextQuestion
+);
+
+restartBtn.addEventListener(
+    "click",
+    startGame
+);
 
 </script>
 
 </body>
-
 </html>

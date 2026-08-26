@@ -563,13 +563,6 @@
         }
 
 
-        /*
-         * ACTIVE TAB
-         * --------------------------------------------------
-         * The selected tab uses the same category color
-         * as the category card on the lobby.
-         */
-
         .tab-btn.active {
 
             background:
@@ -734,12 +727,6 @@
             overflow:
                 hidden;
 
-            /*
-             * IMPORTANT:
-             * Game cards no longer have individual colors.
-             * Their colors come from the current category.
-             */
-
             border:
                 2px solid
                 var(--category-border);
@@ -898,11 +885,6 @@
 
             border-radius:
                 16px;
-
-            /*
-             * Very light category tint,
-             * not a full colored card.
-             */
 
             background:
                 var(--category-background);
@@ -1281,7 +1263,7 @@
 
 
         /* =====================================================
-           VOCABULARY CARDS
+           VOCABULARY
         ====================================================== */
 
         .vocab-grid {
@@ -1303,6 +1285,10 @@
 
         }
 
+
+        /* =====================================================
+           VOCABULARY CARD
+        ====================================================== */
 
         .vocab-card {
 
@@ -1406,6 +1392,257 @@
 
 
         /* =====================================================
+           VOCABULARY TOPIC CARD
+        ====================================================== */
+
+        .vocab-topic-card {
+
+            position:
+                relative;
+
+            padding:
+                24px;
+
+            border:
+                2px solid
+                var(--category-border);
+
+            border-radius:
+                20px;
+
+            background:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 7px 20px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.06
+                );
+
+            transition:
+                transform 0.22s ease,
+                box-shadow 0.22s ease,
+                border-color 0.22s ease;
+
+        }
+
+
+        .vocab-topic-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                var(--category-accent);
+
+            box-shadow:
+                0 15px 28px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.12
+                );
+
+        }
+
+
+        .vocab-topic-icon {
+
+            width:
+                50px;
+
+            height:
+                50px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            margin-bottom:
+                17px;
+
+            border:
+                1px solid
+                var(--category-border);
+
+            border-radius:
+                14px;
+
+            background:
+                var(--category-background);
+
+            font-size:
+                1.45rem;
+
+        }
+
+
+        .vocab-topic-title {
+
+            margin:
+                0 0 6px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                1.12rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .vocab-topic-count {
+
+            margin:
+                0;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.8rem;
+
+        }
+
+
+        .vocab-topic-arrow {
+
+            margin-top:
+                20px;
+
+            color:
+                var(--category-accent);
+
+            font-size:
+                0.72rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.03em;
+
+        }
+
+
+        /* =====================================================
+           VOCABULARY TOPIC VIEW
+        ====================================================== */
+
+        .vocab-back-btn {
+
+            grid-column:
+                1 / -1;
+
+            width:
+                fit-content;
+
+            padding:
+                9px 15px;
+
+            border:
+                1px solid
+                var(--category-border);
+
+            border-radius:
+                999px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--category-accent);
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .vocab-back-btn:hover {
+
+            background:
+                var(--category-background);
+
+            transform:
+                translateX(-3px);
+
+        }
+
+
+        .vocab-topic-heading {
+
+            grid-column:
+                1 / -1;
+
+            margin:
+                2px 0 5px;
+
+            padding:
+                4px 0 10px;
+
+        }
+
+
+        .vocab-topic-heading h3 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                1.35rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .vocab-topic-heading span {
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                600;
+
+        }
+
+
+        /* =====================================================
            EMPTY STATE
         ====================================================== */
 
@@ -1473,34 +1710,6 @@
 
             font-size:
                 0.82rem;
-
-        }
-
-
-        /* =====================================================
-           ERROR
-        ====================================================== */
-
-        .error-message {
-
-            padding:
-                25px;
-
-            border:
-                1px solid
-                #edcec8;
-
-            border-radius:
-                16px;
-
-            background:
-                #fff3f1;
-
-            color:
-                #9a3324;
-
-            line-height:
-                1.6;
 
         }
 
@@ -1940,9 +2149,7 @@
             >
 
                 <div class="empty-message">
-
                     Loading games...
-
                 </div>
 
             </div>
@@ -2087,6 +2294,16 @@
             "categories.json";
 
 
+        /*
+         * Stores the currently loaded vocabulary.
+         *
+         * Needed when the user clicks
+         * "Back to Topics".
+         */
+
+        let currentVocabulary = [];
+
+
         /* =====================================================
            GET CATEGORY FROM URL
         ====================================================== */
@@ -2169,9 +2386,6 @@
 
         /* =====================================================
            CATEGORY THEMES
-           -----------------------------------------------------
-           These colors should match the colors used on the
-           category cards in index.html.
         ====================================================== */
 
         const categoryThemes = {
@@ -2328,14 +2542,6 @@
                 ];
 
 
-            /*
-             * Apply the theme to the whole page.
-             *
-             * This means tabs, game cards, lesson cards,
-             * vocabulary cards, etc. all use the same
-             * category color.
-             */
-
             document.documentElement.style.setProperty(
                 "--category-accent",
                 theme.accent
@@ -2359,10 +2565,6 @@
                 theme.border
             );
 
-
-            /*
-             * Also keep the category header variables.
-             */
 
             categoryHeader.style.setProperty(
                 "--category-accent",
@@ -2408,11 +2610,6 @@
             card.className =
                 "game-card";
 
-
-            /*
-             * IMPORTANT:
-             * The game path comes directly from categories.json.
-             */
 
             card.href =
                 game.path;
@@ -2523,11 +2720,10 @@
                 card.href =
                     "#";
 
+
                 card.addEventListener(
                     "click",
-                    (
-                        event
-                    ) => {
+                    event => {
 
                         event.preventDefault();
 
@@ -2617,10 +2813,36 @@
                 "";
 
 
+            /*
+             * Support both:
+             *
+             * "phonetic"
+             *
+             * and
+             *
+             * "phonetics"
+             */
+
             const phonetic =
+                word.phonetics ||
                 word.phonetic ||
                 word.pronunciation ||
                 "";
+
+
+            /*
+             * Remove "/" if the JSON already
+             * contains them.
+             */
+
+            const cleanPhonetic =
+                String(
+                    phonetic
+                )
+                .replace(
+                    /^\/|\/$/g,
+                    ""
+                );
 
 
             card.innerHTML = `
@@ -2642,12 +2864,12 @@
 
 
                 ${
-                    phonetic
+                    cleanPhonetic
                         ? `
                             <div class="vocab-phonetic">
-                                ${escapeHtml(
-                                    phonetic
-                                )}
+                                /${escapeHtml(
+                                    cleanPhonetic
+                                )}/
                             </div>
                           `
                         : ""
@@ -2761,15 +2983,11 @@
                     }
 
 
-                    const card =
+                    gameGrid.appendChild(
                         createGameCard(
                             game,
                             index
-                        );
-
-
-                    gameGrid.appendChild(
-                        card
+                        )
                     );
 
                 }
@@ -2823,8 +3041,7 @@
 
                     if (
                         !lesson ||
-                        typeof lesson !==
-                        "object"
+                        typeof lesson !== "object"
                     ) {
 
                         return;
@@ -2832,15 +3049,11 @@
                     }
 
 
-                    const card =
+                    lessonGrid.appendChild(
                         createLessonCard(
                             lesson,
                             index
-                        );
-
-
-                    lessonGrid.appendChild(
-                        card
+                        )
                     );
 
                 }
@@ -2861,17 +3074,35 @@
                 "";
 
 
-            vocabCount.textContent =
-                `${vocabulary.length} ${
-                    vocabulary.length === 1
-                        ? "word"
-                        : "words"
-                }`;
+            /*
+             * Always store the current vocabulary.
+             *
+             * This is needed for:
+             *
+             * Back to Topics
+             */
 
+            currentVocabulary =
+                Array.isArray(
+                    vocabulary
+                )
+                    ? vocabulary
+                    : [];
+
+
+            /*
+             * =================================================
+             * NO VOCABULARY
+             * =================================================
+             */
 
             if (
-                vocabulary.length === 0
+                currentVocabulary.length === 0
             ) {
+
+                vocabCount.textContent =
+                    "0 words";
+
 
                 vocabGrid.appendChild(
                     createEmptyState(
@@ -2881,21 +3112,157 @@
                     )
                 );
 
+
                 return;
 
             }
 
 
-            vocabulary.forEach(
+            /*
+             * =================================================
+             * DETECT TOPIC STRUCTURE
+             *
+             * Topic-based example:
+             *
+             * [
+             *   {
+             *     "topic": "Size",
+             *     "vocabulary": [...]
+             *   }
+             * ]
+             *
+             *
+             * Simple example:
+             *
+             * [
+             *   {
+             *     "vietnamese": "đỏ",
+             *     "english": "red"
+             *   }
+             * ]
+             * =================================================
+             */
+
+            const isTopicBased =
+                currentVocabulary.some(
+                    item =>
+                        item &&
+                        typeof item === "object" &&
+                        Array.isArray(
+                            item.vocabulary
+                        )
+                );
+
+
+            /*
+             * =================================================
+             * SIMPLE VOCABULARY
+             *
+             * Example:
+             * Color
+             * =================================================
+             */
+
+            if (
+                !isTopicBased
+            ) {
+
+                vocabCount.textContent =
+                    `${currentVocabulary.length} ${
+                        currentVocabulary.length === 1
+                            ? "word"
+                            : "words"
+                    }`;
+
+
+                currentVocabulary.forEach(
+                    (
+                        word,
+                        index
+                    ) => {
+
+                        if (
+                            !word ||
+                            typeof word !== "object"
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        vocabGrid.appendChild(
+                            createVocabCard(
+                                word,
+                                index
+                            )
+                        );
+
+                    }
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+             * =================================================
+             * TOPIC-BASED VOCABULARY
+             *
+             * Example:
+             * Describe Things
+             * =================================================
+             */
+
+            let totalWords =
+                0;
+
+
+            currentVocabulary.forEach(
+                topic => {
+
+                    if (
+                        topic &&
+                        Array.isArray(
+                            topic.vocabulary
+                        )
+                    ) {
+
+                        totalWords +=
+                            topic.vocabulary.length;
+
+                    }
+
+                }
+            );
+
+
+            vocabCount.textContent =
+                `${totalWords} ${
+                    totalWords === 1
+                        ? "word"
+                        : "words"
+                }`;
+
+
+            /*
+             * Create topic cards.
+             */
+
+            currentVocabulary.forEach(
                 (
-                    word,
+                    topic,
                     index
                 ) => {
 
                     if (
-                        !word ||
-                        typeof word !==
-                        "object"
+                        !topic ||
+                        typeof topic !== "object" ||
+                        !Array.isArray(
+                            topic.vocabulary
+                        )
                     ) {
 
                         return;
@@ -2904,14 +3271,220 @@
 
 
                     const card =
-                        createVocabCard(
-                            word,
-                            index
+                        document.createElement(
+                            "article"
                         );
+
+
+                    card.className =
+                        "vocab-topic-card";
+
+
+                    const topicName =
+                        topic.topic ||
+                        `Topic ${index + 1}`;
+
+
+                    const wordCount =
+                        topic.vocabulary.length;
+
+
+                    card.innerHTML = `
+
+                        <div
+                            class="vocab-topic-icon"
+                            aria-hidden="true"
+                        >
+                            🧠
+                        </div>
+
+
+                        <h3 class="vocab-topic-title">
+                            ${escapeHtml(
+                                topicName
+                            )}
+                        </h3>
+
+
+                        <p class="vocab-topic-count">
+                            ${wordCount}
+                            ${
+                                wordCount === 1
+                                    ? "word"
+                                    : "words"
+                            }
+                        </p>
+
+
+                        <div class="vocab-topic-arrow">
+                            VIEW VOCABULARY →
+                        </div>
+
+                    `;
+
+
+                    /*
+                     * Click topic
+                     * → show words inside topic.
+                     */
+
+                    card.addEventListener(
+                        "click",
+                        () => {
+
+                            showTopicVocabulary(
+                                topic
+                            );
+
+                        }
+                    );
 
 
                     vocabGrid.appendChild(
                         card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           SHOW TOPIC VOCABULARY
+        ====================================================== */
+
+        function showTopicVocabulary(
+            topic
+        ) {
+
+            vocabGrid.innerHTML =
+                "";
+
+
+            /*
+             * =================================================
+             * BACK TO TOPICS
+             * =================================================
+             */
+
+            const backButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            backButton.type =
+                "button";
+
+
+            backButton.className =
+                "vocab-back-btn";
+
+
+            backButton.textContent =
+                "← Back to Topics";
+
+
+            backButton.addEventListener(
+                "click",
+                () => {
+
+                    renderVocabulary(
+                        currentVocabulary
+                    );
+
+                }
+            );
+
+
+            vocabGrid.appendChild(
+                backButton
+            );
+
+
+            /*
+             * =================================================
+             * TOPIC HEADER
+             * =================================================
+             */
+
+            const heading =
+                document.createElement(
+                    "div"
+                );
+
+
+            heading.className =
+                "vocab-topic-heading";
+
+
+            const topicName =
+                topic.topic ||
+                "Vocabulary";
+
+
+            const words =
+                Array.isArray(
+                    topic.vocabulary
+                )
+                    ? topic.vocabulary
+                    : [];
+
+
+            heading.innerHTML = `
+
+                <h3>
+                    ${escapeHtml(
+                        topicName
+                    )}
+                </h3>
+
+
+                <span>
+                    ${words.length}
+                    ${
+                        words.length === 1
+                            ? "word"
+                            : "words"
+                    }
+                </span>
+
+            `;
+
+
+            vocabGrid.appendChild(
+                heading
+            );
+
+
+            /*
+             * =================================================
+             * WORD CARDS
+             * =================================================
+             */
+
+            words.forEach(
+                (
+                    word,
+                    index
+                ) => {
+
+                    if (
+                        !word ||
+                        typeof word !== "object"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    vocabGrid.appendChild(
+                        createVocabCard(
+                            word,
+                            index
+                        )
                     );
 
                 }
@@ -2928,6 +3501,10 @@
 
             try {
 
+                /*
+                 * Check category parameter.
+                 */
+
                 if (
                     !categoryName
                 ) {
@@ -2939,9 +3516,17 @@
                 }
 
 
+                /*
+                 * Load JSON.
+                 */
+
                 const categories =
                     await loadCategories();
 
+
+                /*
+                 * Find selected category.
+                 */
 
                 const category =
                     categories[
@@ -2960,9 +3545,11 @@
                 }
 
 
-                /* ---------------------------------------------
-                   CATEGORY HEADER
-                --------------------------------------------- */
+                /*
+                 * =================================================
+                 * CATEGORY HEADER
+                 * =================================================
+                 */
 
                 categoryTitle.textContent =
                     categoryName;
@@ -2981,9 +3568,11 @@
                 applyCategoryTheme();
 
 
-                /* ---------------------------------------------
-                   DATA
-                --------------------------------------------- */
+                /*
+                 * =================================================
+                 * DATA
+                 * =================================================
+                 */
 
                 const games =
                     Array.isArray(
@@ -3009,9 +3598,21 @@
                         : [];
 
 
-                /* ---------------------------------------------
-                   RENDER ALL TABS
-                --------------------------------------------- */
+                /*
+                 * =================================================
+                 * STORE VOCABULARY
+                 * =================================================
+                 */
+
+                currentVocabulary =
+                    vocabulary;
+
+
+                /*
+                 * =================================================
+                 * RENDER ALL TABS
+                 * =================================================
+                 */
 
                 renderGames(
                     games
@@ -3029,7 +3630,9 @@
 
             }
 
-            catch (error) {
+            catch (
+                error
+            ) {
 
                 console.error(
                     "Category loading error:",
@@ -3093,9 +3696,7 @@
 
 
         tabButtons.forEach(
-            (
-                button
-            ) => {
+            button => {
 
                 button.addEventListener(
                     "click",
@@ -3107,13 +3708,11 @@
 
                         /*
                          * Remove active state
-                         * from every tab.
+                         * from all buttons.
                          */
 
                         tabButtons.forEach(
-                            (
-                                tab
-                            ) => {
+                            tab => {
 
                                 tab.classList.remove(
                                     "active"
@@ -3124,8 +3723,7 @@
 
 
                         /*
-                         * Add active state
-                         * to the selected tab.
+                         * Activate clicked button.
                          */
 
                         button.classList.add(
@@ -3134,15 +3732,13 @@
 
 
                         /*
-                         * Hide every panel.
+                         * Hide all panels.
                          */
 
                         Object.values(
                             tabPanels
                         ).forEach(
-                            (
-                                panel
-                            ) => {
+                            panel => {
 
                                 panel.classList.remove(
                                     "active"

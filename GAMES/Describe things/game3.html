@@ -10,16 +10,16 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Vietnamese Weather Challenge</title>
+<title>Vietnamese Weather Sentence Scramble</title>
 
 <meta
     name="game-title"
-    content="Vietnamese Weather Challenge"
+    content="Vietnamese Weather Sentence Scramble"
 >
 
 <meta
     name="game-description"
-    content="Practice common Vietnamese weather words through pictures."
+    content="Translate English weather sentences by arranging Vietnamese weather words in the correct order."
 >
 
 <meta
@@ -38,6 +38,10 @@
     box-sizing:border-box;
 }
 
+
+/* ==========================================================
+   BODY
+========================================================== */
 
 body{
 
@@ -93,7 +97,7 @@ body{
 
     position:relative;
 
-    width:min(850px,96vw);
+    width:min(900px,96vw);
 
     margin:0 auto;
 
@@ -166,7 +170,7 @@ body{
 
 #intro .emoji{
 
-    font-size:65px;
+    font-size:60px;
 
     margin-bottom:10px;
 
@@ -175,7 +179,7 @@ body{
 
 #intro h1{
 
-    margin:0 0 12px;
+    margin:0 0 10px;
 
     font-size:34px;
 
@@ -186,7 +190,7 @@ body{
 
     color:#7f8c8d;
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.6;
 
@@ -195,7 +199,7 @@ body{
 
 .start-btn{
 
-    margin-top:18px;
+    margin-top:20px;
 
     padding:14px 35px;
 
@@ -317,7 +321,7 @@ body{
 
     overflow:hidden;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
 
 }
 
@@ -336,87 +340,96 @@ body{
 
 
 /* ==========================================================
-   WEATHER CARD
+   ENGLISH SENTENCE
 ========================================================== */
 
-.weather-card{
-
-    background:#eef8ff;
-
-    border:2px dashed #74b9ff;
-
-    border-radius:15px;
-
-    padding:30px 20px;
-
-    margin:20px 0;
-
-    min-height:210px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-
-.weather-icon{
-
-    font-size:85px;
-
-    line-height:1;
-
-    margin-bottom:15px;
-
-}
-
-
-.weather-prompt{
+.english-label{
 
     color:#7f8c8d;
 
-    font-size:16px;
+    font-size:13px;
 
-    font-weight:600;
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
+    margin-bottom:10px;
+
+}
+
+
+.english-sentence{
+
+    background:#eef8ff;
+
+    border:2px solid #d6eaf8;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    line-height:1.5;
 
 }
 
 
 /* ==========================================================
-   OPTIONS
+   INSTRUCTION
 ========================================================== */
 
-.options{
+.instruction{
 
-    display:grid;
+    color:#7f8c8d;
 
-    grid-template-columns:
-        1fr 1fr;
+    font-size:16px;
 
-    gap:12px;
+    margin-bottom:18px;
 
 }
 
 
-.option-btn{
+/* ==========================================================
+   SCRAMBLED WORDS
+========================================================== */
 
-    padding:17px;
+.words-container{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+    min-height:80px;
+
+    margin:20px 0;
+
+}
+
+
+.word-btn{
+
+    padding:13px 18px;
+
+    border:2px solid #34495e;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#34495e;
 
     font-size:18px;
 
     font-weight:bold;
-
-    background:#34495e;
-
-    color:white;
-
-    border:none;
-
-    border-radius:9px;
 
     cursor:pointer;
 
@@ -425,47 +438,150 @@ body{
 }
 
 
-.option-btn:hover{
+.word-btn:hover{
 
-    background:#2c3e50;
+    background:#eef5fc;
 
     transform:translateY(-2px);
 
 }
 
 
-.option-btn.correct{
+.word-btn.used{
 
-    background:#27ae60;
-
-}
-
-
-.option-btn.wrong{
-
-    background:#e74c3c;
-
-}
-
-
-.option-btn.disabled{
+    opacity:.35;
 
     pointer-events:none;
-
-    opacity:.7;
 
 }
 
 
 /* ==========================================================
-   RESULT MESSAGE
+   ANSWER AREA
+========================================================== */
+
+.answer-label{
+
+    margin-top:20px;
+
+    color:#7f8c8d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+
+.answer-container{
+
+    min-height:65px;
+
+    margin:10px 0 20px;
+
+    padding:12px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#f8f9fa;
+
+    border:2px dashed #d5dfe5;
+
+    border-radius:12px;
+
+}
+
+
+.answer-word{
+
+    padding:10px 15px;
+
+    border-radius:9px;
+
+    background:#34495e;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.answer-word:hover{
+
+    background:#2c3e50;
+
+}
+
+
+/* ==========================================================
+   CHECK BUTTON
+========================================================== */
+
+.check-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#27ae60;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.check-btn:hover{
+
+    background:#219150;
+
+    transform:translateY(-2px);
+
+}
+
+
+.check-btn:disabled{
+
+    background:#bdc3c7;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* ==========================================================
+   RESULT
 ========================================================== */
 
 .result-message{
 
     min-height:40px;
 
-    margin-top:20px;
+    margin-top:18px;
 
     font-size:18px;
 
@@ -484,44 +600,6 @@ body{
 .wrong-text{
 
     color:#e74c3c;
-
-}
-
-
-/* ==========================================================
-   NEXT BUTTON
-========================================================== */
-
-.next-btn{
-
-    padding:12px 28px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-top:5px;
-
-    transition:.2s;
-
-}
-
-
-.next-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
 
 }
 
@@ -570,13 +648,6 @@ body{
 }
 
 
-#final .start-btn{
-
-    margin-top:10px;
-
-}
-
-
 /* ==========================================================
    MOBILE
 ========================================================== */
@@ -597,38 +668,6 @@ body{
     }
 
 
-    .options{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .weather-card{
-
-        min-height:180px;
-
-        padding:25px 15px;
-
-    }
-
-
-    .weather-icon{
-
-        font-size:70px;
-
-    }
-
-
-    .option-btn{
-
-        font-size:17px;
-
-        padding:15px;
-
-    }
-
-
     #intro h1{
 
         font-size:28px;
@@ -636,9 +675,36 @@ body{
     }
 
 
-    #final h2{
+    .game-box{
 
-        font-size:30px;
+        padding:18px;
+
+    }
+
+
+    .english-sentence{
+
+        font-size:19px;
+
+        padding:17px 12px;
+
+    }
+
+
+    .word-btn{
+
+        font-size:16px;
+
+        padding:11px 14px;
+
+    }
+
+
+    .answer-word{
+
+        font-size:15px;
+
+        padding:9px 12px;
 
     }
 
@@ -652,6 +718,13 @@ body{
         font-size:13px;
 
         padding:7px 12px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
 
     }
 
@@ -701,23 +774,23 @@ body{
 
     <h1>
 
-        Vietnamese Weather Challenge
+        Vietnamese Weather Scramble
 
     </h1>
 
 
     <p>
 
-        Look at the picture<br>
+        Read the English sentence<br>
 
-        and choose the correct Vietnamese word.
+        and arrange the Vietnamese words in the correct order.
 
     </p>
 
 
     <p>
 
-        🎯 15 questions
+        🎯 20 questions
 
     </p>
 
@@ -747,14 +820,14 @@ body{
 
     <h1 class="title">
 
-        🌤️ Vietnamese Weather Challenge
+        🌤️ Vietnamese Weather Scramble
 
     </h1>
 
 
     <p class="subtitle">
 
-        Choose the correct Vietnamese weather word.
+        Translate the sentence by arranging the Vietnamese words.
 
     </p>
 
@@ -767,7 +840,6 @@ body{
 
         <div class="topbar">
 
-
             <div class="question-count">
 
                 Question
@@ -779,7 +851,7 @@ body{
                 /
 
                 <span id="totalQuestions">
-                    15
+                    20
                 </span>
 
             </div>
@@ -795,7 +867,6 @@ body{
 
             </div>
 
-
         </div>
 
 
@@ -807,48 +878,79 @@ body{
             <div
                 class="progress"
                 id="progress"
-            >
-
-            </div>
+            ></div>
 
         </div>
 
 
 
-        <!-- WEATHER -->
+        <!-- ENGLISH SENTENCE -->
 
-        <div class="weather-card">
+        <div class="english-label">
 
-
-            <div
-                class="weather-icon"
-                id="weatherIcon"
-            >
-
-                ☀️
-
-            </div>
-
-
-            <div class="weather-prompt">
-
-                What is the weather?
-
-            </div>
-
+            ENGLISH
 
         </div>
 
-
-
-        <!-- OPTIONS -->
 
         <div
-            class="options"
-            id="optionsContainer"
+            class="english-sentence"
+            id="englishSentence"
         >
 
         </div>
+
+
+
+        <div class="instruction">
+
+            Arrange the Vietnamese words in the correct order.
+
+        </div>
+
+
+
+        <!-- SCRAMBLED WORDS -->
+
+        <div
+            class="words-container"
+            id="wordsContainer"
+        ></div>
+
+
+
+        <!-- ANSWER -->
+
+        <div class="answer-label">
+
+            YOUR VIETNAMESE SENTENCE
+
+        </div>
+
+
+        <div
+            class="answer-container"
+            id="answerContainer"
+        >
+
+            Click words above.
+
+        </div>
+
+
+
+        <!-- CHECK -->
+
+        <button
+            class="check-btn"
+            id="checkBtn"
+            onclick="checkAnswer()"
+            disabled
+        >
+
+            Check ✓
+
+        </button>
 
 
 
@@ -857,24 +959,7 @@ body{
         <div
             class="result-message"
             id="resultText"
-        >
-
-        </div>
-
-
-
-        <!-- NEXT -->
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-            style="display:none;"
-        >
-
-            Next →
-
-        </button>
+        ></div>
 
 
     </div>
@@ -903,7 +988,7 @@ body{
 
     <p class="final-message">
 
-        You completed the Vietnamese Weather Challenge.
+        You completed the Vietnamese Weather Scramble.
 
     </p>
 
@@ -912,9 +997,7 @@ body{
 
         Score:
 
-        <span id="finalScore">
-
-        </span>
+        <span id="finalScore"></span>
 
     </div>
 
@@ -922,9 +1005,7 @@ body{
     <p
         class="final-message"
         id="finalMessage"
-    >
-
-    </p>
+    ></p>
 
 
     <button
@@ -935,7 +1016,6 @@ body{
         Play Again
 
     </button>
-
 
 </div>
 
@@ -948,83 +1028,466 @@ body{
 
 /* ==========================================================
    QUESTION DATABASE
+   20 QUESTIONS
+   1 → 5 WEATHER PHENOMENA
 ========================================================== */
 
 const database = [
 
-    {
-        icon:"☀️",
-        word:"nắng"
-    },
+    /* ======================================================
+       1 WEATHER PHENOMENON
+    ====================================================== */
 
     {
-        icon:"🌧️",
-        word:"mưa"
+        english:"It's sunny.",
+
+        words:[
+            "Trời",
+            "nắng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng"
+        ]
     },
 
-    {
-        icon:"💨",
-        word:"gió"
-    },
 
     {
-        icon:"☁️",
-        word:"nhiều mây"
+        english:"It's rainy.",
+
+        words:[
+            "Trời",
+            "mưa"
+        ],
+
+        answer:[
+            "Trời",
+            "mưa"
+        ]
     },
 
-    {
-        icon:"🥵",
-        word:"nóng"
-    },
 
     {
-        icon:"🥶",
-        word:"lạnh"
+        english:"It's windy.",
+
+        words:[
+            "Trời",
+            "gió"
+        ],
+
+        answer:[
+            "Trời",
+            "gió"
+        ]
     },
 
-    {
-        icon:"🌤️",
-        word:"ấm"
-    },
 
     {
-        icon:"🍃",
-        word:"mát"
+        english:"It's cloudy.",
+
+        words:[
+            "Trời",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "nhiều mây"
+        ]
     },
 
-    {
-        icon:"☀️",
-        word:"nắng"
-    },
+
+    /* ======================================================
+       2 WEATHER PHENOMENA
+    ====================================================== */
 
     {
-        icon:"🌧️",
-        word:"mưa"
+        english:"It's sunny and hot.",
+
+        words:[
+            "nóng",
+            "và",
+            "nắng",
+            "Trời"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "và",
+            "nóng"
+        ]
     },
 
-    {
-        icon:"💨",
-        word:"gió"
-    },
 
     {
-        icon:"☁️",
-        word:"nhiều mây"
+        english:"It's rainy and windy.",
+
+        words:[
+            "mưa",
+            "Trời",
+            "gió",
+            "và"
+        ],
+
+        answer:[
+            "Trời",
+            "mưa",
+            "và",
+            "gió"
+        ]
     },
 
-    {
-        icon:"🥵",
-        word:"nóng"
-    },
 
     {
-        icon:"🥶",
-        word:"lạnh"
+        english:"It's cloudy and cold.",
+
+        words:[
+            "lạnh",
+            "Trời",
+            "nhiều mây",
+            "và"
+        ],
+
+        answer:[
+            "Trời",
+            "nhiều mây",
+            "và",
+            "lạnh"
+        ]
     },
 
+
     {
-        icon:"🍃",
-        word:"mát"
+        english:"It's warm and sunny.",
+
+        words:[
+            "ấm",
+            "nắng",
+            "và",
+            "Trời"
+        ],
+
+        answer:[
+            "Trời",
+            "ấm",
+            "và",
+            "nắng"
+        ]
+    },
+
+
+    /* ======================================================
+       3 WEATHER PHENOMENA
+    ====================================================== */
+
+    {
+        english:"It's sunny, hot, and windy.",
+
+        words:[
+            "gió",
+            "nắng",
+            "và",
+            "Trời",
+            "nóng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "nóng",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's rainy, windy, and cool.",
+
+        words:[
+            "mát",
+            "gió",
+            "Trời",
+            "mưa",
+            "và"
+        ],
+
+        answer:[
+            "Trời",
+            "mưa",
+            "mát",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's cloudy, cold, and windy.",
+
+        words:[
+            "lạnh",
+            "gió",
+            "và",
+            "Trời",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "nhiều mây",
+            "lạnh",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's sunny, warm, and cool.",
+
+        words:[
+            "ấm",
+            "mát",
+            "Trời",
+            "và",
+            "nắng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "ấm",
+            "và",
+            "mát"
+        ]
+    },
+
+
+    /* ======================================================
+       4 WEATHER PHENOMENA
+    ====================================================== */
+
+    {
+        english:"It's sunny, hot, windy, and rainy.",
+
+        words:[
+            "mưa",
+            "nóng",
+            "và",
+            "gió",
+            "Trời",
+            "nắng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "nóng",
+            "gió",
+            "và",
+            "mưa"
+        ]
+    },
+
+
+    {
+        english:"It's cloudy, cold, rainy, and windy.",
+
+        words:[
+            "gió",
+            "mưa",
+            "lạnh",
+            "Trời",
+            "và",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "nhiều mây",
+            "lạnh",
+            "mưa",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's sunny, warm, cool, and windy.",
+
+        words:[
+            "gió",
+            "ấm",
+            "Trời",
+            "mát",
+            "và",
+            "nắng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "ấm",
+            "mát",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's rainy, cool, cloudy, and cold.",
+
+        words:[
+            "mát",
+            "lạnh",
+            "và",
+            "Trời",
+            "mưa",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "mưa",
+            "mát",
+            "nhiều mây",
+            "và",
+            "lạnh"
+        ]
+    },
+
+
+    /* ======================================================
+       5 WEATHER PHENOMENA
+    ====================================================== */
+
+    {
+        english:"It's sunny, hot, windy, rainy, and cloudy.",
+
+        words:[
+            "mưa",
+            "nắng",
+            "và",
+            "nhiều mây",
+            "Trời",
+            "gió",
+            "nóng"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "nóng",
+            "gió",
+            "mưa",
+            "và",
+            "nhiều mây"
+        ]
+    },
+
+
+    {
+        english:"It's rainy, cold, cloudy, windy, and cool.",
+
+        words:[
+            "mát",
+            "gió",
+            "lạnh",
+            "Trời",
+            "mưa",
+            "và",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "mưa",
+            "lạnh",
+            "nhiều mây",
+            "gió",
+            "và",
+            "mát"
+        ]
+    },
+
+
+    {
+        english:"It's sunny, warm, windy, cloudy, and cool.",
+
+        words:[
+            "mát",
+            "gió",
+            "nắng",
+            "Trời",
+            "ấm",
+            "và",
+            "nhiều mây"
+        ],
+
+        answer:[
+            "Trời",
+            "nắng",
+            "ấm",
+            "gió",
+            "nhiều mây",
+            "và",
+            "mát"
+        ]
+    },
+
+
+    {
+        english:"It's hot, sunny, rainy, cool, and windy.",
+
+        words:[
+            "mưa",
+            "gió",
+            "nóng",
+            "Trời",
+            "mát",
+            "và",
+            "nắng"
+        ],
+
+        answer:[
+            "Trời",
+            "nóng",
+            "nắng",
+            "mưa",
+            "mát",
+            "và",
+            "gió"
+        ]
+    },
+
+
+    {
+        english:"It's cloudy, rainy, cold, windy, and sunny.",
+
+        words:[
+            "nắng",
+            "lạnh",
+            "Trời",
+            "mưa",
+            "gió",
+            "nhiều mây",
+            "và"
+        ],
+
+        answer:[
+            "Trời",
+            "nhiều mây",
+            "mưa",
+            "lạnh",
+            "gió",
+            "và",
+            "nắng"
+        ]
     }
 
 ];
@@ -1039,6 +1502,8 @@ let questions = [];
 let currentQuestion = 0;
 
 let score = 0;
+
+let selectedWords = [];
 
 let answered = false;
 
@@ -1076,46 +1541,6 @@ function shuffle(array){
 
 
     return arr;
-
-}
-
-
-/* ==========================================================
-   CREATE OPTIONS
-========================================================== */
-
-function createOptions(correctWord){
-
-    const allWords = [
-
-        "nắng",
-        "mưa",
-        "gió",
-        "nhiều mây",
-        "nóng",
-        "lạnh",
-        "ấm",
-        "mát"
-
-    ];
-
-
-    const wrongWords =
-        shuffle(
-            allWords.filter(
-                word =>
-                    word !== correctWord
-            )
-        ).slice(0,3);
-
-
-    return shuffle([
-
-        correctWord,
-
-        ...wrongWords
-
-    ]);
 
 }
 
@@ -1175,6 +1600,8 @@ function loadQuestion(){
 
     answered = false;
 
+    selectedWords = [];
+
 
     const question =
         questions[currentQuestion];
@@ -1197,9 +1624,9 @@ function loadQuestion(){
 
 
     document
-        .getElementById("weatherIcon")
+        .getElementById("englishSentence")
         .textContent =
-        question.icon;
+        question.english;
 
 
     document
@@ -1215,14 +1642,127 @@ function loadQuestion(){
 
 
     document
-        .getElementById("nextBtn")
-        .style.display =
-        "none";
+        .getElementById("checkBtn")
+        .disabled =
+        true;
 
+
+    /* ======================================================
+       WORD BUTTONS
+    ====================================================== */
+
+    const wordsContainer =
+        document.getElementById(
+            "wordsContainer"
+        );
+
+
+    wordsContainer.innerHTML =
+        "";
+
+
+    const shuffledWords =
+        shuffle(question.words);
+
+
+    shuffledWords.forEach(
+        (word,index) => {
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "word-btn";
+
+
+            button.textContent =
+                word;
+
+
+            button.dataset.index =
+                index;
+
+
+            button.onclick = () =>
+                selectWord(
+                    button,
+                    word
+                );
+
+
+            wordsContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /* ======================================================
+       CLEAR ANSWER
+    ====================================================== */
+
+    const answerContainer =
+        document.getElementById(
+            "answerContainer"
+        );
+
+
+    answerContainer.innerHTML =
+        "Click words above.";
+
+}
+
+
+/* ==========================================================
+   SELECT WORD
+========================================================== */
+
+function selectWord(
+    button,
+    word
+){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    button.classList.add(
+        "used"
+    );
+
+
+    selectedWords.push(word);
+
+
+    renderAnswer();
+
+
+    document
+        .getElementById("checkBtn")
+        .disabled =
+        selectedWords.length !==
+        questions[currentQuestion].answer.length;
+
+}
+
+
+/* ==========================================================
+   RENDER ANSWER
+========================================================== */
+
+function renderAnswer(){
 
     const container =
         document.getElementById(
-            "optionsContainer"
+            "answerContainer"
         );
 
 
@@ -1230,53 +1770,118 @@ function loadQuestion(){
         "";
 
 
-    const options =
-        createOptions(
-            question.word
-        );
+    selectedWords.forEach(
+        (word,index) => {
 
 
-    options.forEach(option => {
+            const button =
+                document.createElement(
+                    "button"
+                );
 
 
-        const button =
-            document.createElement(
-                "button"
+            button.className =
+                "answer-word";
+
+
+            button.textContent =
+                word;
+
+
+            button.onclick = () => {
+
+                if(answered){
+
+                    return;
+
+                }
+
+
+                selectedWords.splice(
+                    index,
+                    1
+                );
+
+
+                restoreWord(
+                    word
+                );
+
+
+                renderAnswer();
+
+
+                document
+                    .getElementById(
+                        "checkBtn"
+                    )
+                    .disabled =
+                    selectedWords.length !==
+                    questions[currentQuestion].answer.length;
+
+            };
+
+
+            container.appendChild(
+                button
             );
 
-
-        button.className =
-            "option-btn";
-
-
-        button.textContent =
-            option;
+        }
+    );
 
 
-        button.onclick = () =>
-            handleAnswer(
-                button,
-                option
-            );
+    if(
+        selectedWords.length === 0
+    ){
 
+        container.textContent =
+            "Click words above.";
 
-        container.appendChild(
-            button
-        );
-
-    });
+    }
 
 }
 
 
 /* ==========================================================
-   HANDLE ANSWER
+   RESTORE WORD
 ========================================================== */
 
-function handleAnswer(
-    button,
-    selected
-){
+function restoreWord(word){
+
+    const buttons =
+        document.querySelectorAll(
+            ".word-btn"
+        );
+
+
+    for(
+        const button
+        of buttons
+    ){
+
+        if(
+            button.textContent === word &&
+            button.classList.contains("used")
+        ){
+
+            button.classList.remove(
+                "used"
+            );
+
+            break;
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================================
+   CHECK ANSWER
+========================================================== */
+
+function checkAnswer(){
 
     if(answered){
 
@@ -1289,18 +1894,36 @@ function handleAnswer(
         questions[currentQuestion];
 
 
+    /*
+     * CHECK IS ONLY AVAILABLE
+     * AFTER ALL WORDS ARE SELECTED.
+     */
+
     if(
-        selected ===
-        question.word
+        selectedWords.length !==
+        question.answer.length
     ){
 
-        answered = true;
+        return;
+
+    }
 
 
-        button.classList.add(
-            "correct"
+    const isCorrect =
+        selectedWords.every(
+            (word,index) =>
+                word ===
+                question.answer[index]
         );
 
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
+    if(isCorrect){
+
+        answered = true;
 
         score++;
 
@@ -1324,51 +1947,33 @@ function handleAnswer(
 
 
         document
-            .querySelectorAll(
-                ".option-btn"
-            )
-            .forEach(btn => {
-
-                btn.classList.add(
-                    "disabled"
-                );
-
-            });
+            .getElementById("checkBtn")
+            .disabled =
+            true;
 
 
-        document
-            .getElementById("nextBtn")
-            .style.display =
-            "inline-block";
+        /*
+         * AUTOMATICALLY MOVE
+         * TO THE NEXT QUESTION.
+         */
 
+        setTimeout(
+            () => {
 
-        if(
-            currentQuestion ===
-            questions.length - 1
-        ){
+                nextQuestion();
 
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Finish 🎉";
-
-        }else{
-
-            document
-                .getElementById("nextBtn")
-                .textContent =
-                "Next →";
-
-        }
-
-
-    }else{
-
-
-        button.classList.add(
-            "wrong"
+            },
+            700
         );
 
+    }
+
+
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
 
         document
             .getElementById("resultText")
@@ -1380,15 +1985,6 @@ function handleAnswer(
             .getElementById("resultText")
             .className =
             "result-message wrong-text";
-
-
-        setTimeout(() => {
-
-            button.classList.remove(
-                "wrong"
-            );
-
-        },600);
 
     }
 
@@ -1427,6 +2023,12 @@ function nextQuestion(){
 function finishGame(){
 
     document
+        .getElementById("progress")
+        .style.width =
+        "100%";
+
+
+    document
         .getElementById("game")
         .classList.remove(
             "active"
@@ -1459,15 +2061,20 @@ function finishGame(){
     let message;
 
 
-    if(percent >= 90){
+    if(percent === 100){
 
         message =
-            "🏆 Excellent! You know your Vietnamese weather vocabulary.";
+            "🏆 Perfect! You mastered the weather sentences.";
 
-    }else if(percent >= 70){
+    }else if(percent >= 80){
 
         message =
-            "🎉 Good job! Keep practicing.";
+            "🎉 Excellent! Keep practicing your Vietnamese.";
+
+    }else if(percent >= 60){
+
+        message =
+            "👍 Good job! You're getting better.";
 
     }else{
 
@@ -1503,7 +2110,7 @@ function restartGame(){
 function backToLobby(){
 
     window.location.href =
-        "../../index.html";
+        "href=../../category.html?category=Describe things";
 
 }
 

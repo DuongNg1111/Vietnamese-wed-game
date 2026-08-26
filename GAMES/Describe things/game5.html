@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese Opposite Match</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese Opposite Match"
+>
+
+<meta
+    name="game-description"
+    content="Match Vietnamese describing words with their opposites and learn what each pair means."
+>
+
+<meta
+    name="game-icon"
+    content="↔️"
+>
+
+
+<style>
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body{
+
+    margin:0;
+
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background:#f4f7f6;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    color:#2c3e50;
+
+}
+
+
+/* ==========================================================
+   SCREEN
+========================================================== */
+
+.screen{
+
+    display:none;
+
+}
+
+
+.screen.active{
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.container{
+
+    position:relative;
+
+    width:min(850px,96vw);
+
+    margin:0 auto;
+
+    background:white;
+
+    padding:65px 30px 30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+.lobby-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:22px;
+
+    padding:8px 14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef5fc;
+
+    color:#34495e;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.lobby-btn:hover{
+
+    background:#dcecff;
+
+    transform:translateX(-2px);
+
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+#intro{
+
+    text-align:center;
+
+    padding:20px 20px 30px;
+
+}
+
+
+#intro .emoji{
+
+    font-size:65px;
+
+    margin-bottom:10px;
+
+}
+
+
+#intro h1{
+
+    margin:0 0 12px;
+
+    font-size:34px;
+
+}
+
+
+#intro p{
+
+    color:#7f8c8d;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+}
+
+
+.start-btn{
+
+    margin-top:18px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#34495e;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#2c3e50;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.title{
+
+    text-align:center;
+
+    margin:0 0 5px;
+
+}
+
+
+.subtitle{
+
+    text-align:center;
+
+    color:#7f8c8d;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================================
+   GAME BOX
+========================================================== */
+
+.game-box{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    border:1px solid #eee;
+
+    text-align:center;
+
+}
+
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+
+}
+
+
+.question-count{
+
+    color:#7f8c8d;
+
+}
+
+
+.score{
+
+    color:#27ae60;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.progress-wrap{
+
+    width:100%;
+
+    height:9px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#34495e;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-label{
+
+    color:#7f8c8d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+    text-transform:uppercase;
+
+}
+
+
+.question{
+
+    background:#f8f9fa;
+
+    border:2px solid #e8edf0;
+
+    border-radius:15px;
+
+    padding:30px 20px;
+
+    margin-bottom:25px;
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+}
+
+
+/* ==========================================================
+   OPTIONS
+========================================================== */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+
+}
+
+
+.option-btn{
+
+    padding:17px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    background:#34495e;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.option-btn:hover{
+
+    background:#2c3e50;
+
+    transform:translateY(-2px);
+
+}
+
+
+.option-btn.correct{
+
+    background:#27ae60;
+
+}
+
+
+.option-btn.wrong{
+
+    background:#e74c3c;
+
+}
+
+
+.option-btn.disabled{
+
+    pointer-events:none;
+
+    opacity:.75;
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.result-message{
+
+    min-height:30px;
+
+    margin-top:18px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+.correct-text{
+
+    color:#27ae60;
+
+}
+
+
+.wrong-text{
+
+    color:#e74c3c;
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:16px 18px;
+
+    background:#f8f9fa;
+
+    border:1px solid #e4e8eb;
+
+    border-radius:12px;
+
+    text-align:left;
+
+}
+
+
+.explanation.show{
+
+    display:block;
+
+}
+
+
+.explanation-title{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#7f8c8d;
+
+    text-transform:uppercase;
+
+    margin-bottom:7px;
+
+}
+
+
+.explanation-text{
+
+    margin:0;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+    color:#34495e;
+
+}
+
+
+.correct-answer{
+
+    font-weight:bold;
+
+    color:#27ae60;
+
+}
+
+
+/* ==========================================================
+   FINAL
+========================================================== */
+
+#final{
+
+    text-align:center;
+
+    padding:30px 20px 40px;
+
+}
+
+
+#final h2{
+
+    font-size:35px;
+
+    color:#27ae60;
+
+}
+
+
+.final-score{
+
+    font-size:30px;
+
+    margin:25px 0;
+
+    font-weight:bold;
+
+    color:#1976d2;
+
+}
+
+
+.final-message{
+
+    color:#7f8c8d;
+
+    font-size:18px;
+
+}
+
+
+#final .start-btn{
+
+    margin-top:10px;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+
+    .container{
+
+        padding:60px 15px 20px;
+
+    }
+
+
+    .game-box{
+
+        padding:18px;
+
+    }
+
+
+    .options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .question{
+
+        font-size:26px;
+
+        padding:25px 15px;
+
+    }
+
+
+    .option-btn{
+
+        font-size:17px;
+
+        padding:15px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
+
+    }
+
+
+    .lobby-btn{
+
+        top:16px;
+
+        left:16px;
+
+        font-size:13px;
+
+        padding:7px 12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ========================================================
+     BACK TO LOBBY
+========================================================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()"
+>
+
+    ← Back to Lobby
+
+</button>
+
+
+
+<!-- ========================================================
+     INTRO
+========================================================= -->
+
+<div
+    id="intro"
+    class="screen active"
+>
+
+    <div class="emoji">
+
+        ↔️
+
+    </div>
+
+
+    <h1>
+
+        Vietnamese Opposite Match
+
+    </h1>
+
+
+    <p>
+
+        Choose the Vietnamese word<br>
+
+        with the opposite meaning.
+
+    </p>
+
+
+    <p>
+
+        🎯 20 questions
+
+    </p>
+
+
+    <button
+        class="start-btn"
+        onclick="startGame()"
+    >
+
+        Start Game
+
+    </button>
+
+</div>
+
+
+
+<!-- ========================================================
+     GAME
+========================================================= -->
+
+<div
+    id="game"
+    class="screen"
+>
+
+
+    <h1 class="title">
+
+        ↔️ Vietnamese Opposite Match
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Choose the opposite Vietnamese word.
+
+    </p>
+
+
+
+    <div class="game-box">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div class="question-count">
+
+                Question
+
+                <span id="questionNumber">
+                    1
+                </span>
+
+                /
+
+                <span id="totalQuestions">
+                    20
+                </span>
+
+            </div>
+
+
+            <div class="score">
+
+                Score:
+
+                <span id="score">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-wrap">
+
+            <div
+                class="progress"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+
+        <!-- QUESTION -->
+
+        <div class="question-label">
+
+            What is the opposite?
+
+        </div>
+
+
+        <div
+            class="question"
+            id="questionText"
+        >
+
+            lớn
+
+        </div>
+
+
+
+        <!-- OPTIONS -->
+
+        <div
+            class="options"
+            id="optionsContainer"
+        ></div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            class="result-message"
+            id="resultText"
+        ></div>
+
+
+
+        <!-- EXPLANATION -->
+
+        <div
+            class="explanation"
+            id="explanationBox"
+        >
+
+            <div class="explanation-title">
+
+                💡 Explanation
+
+            </div>
+
+
+            <p
+                class="explanation-text"
+                id="explanationText"
+            ></p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ========================================================
+     FINAL
+========================================================= -->
+
+<div
+    id="final"
+    class="screen"
+>
+
+
+    <h2>
+
+        🎉 Game Complete!
+
+    </h2>
+
+
+    <p class="final-message">
+
+        You completed the Vietnamese Opposite Match.
+
+    </p>
+
+
+    <div class="final-score">
+
+        Score:
+
+        <span id="finalScore"></span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==========================================================
+   OPPOSITE PAIRS
+   ONLY VOCABULARY FROM DESCRIBE THINGS
+========================================================== */
+
+const oppositePairs = [
+
+    {
+        words:["lớn","nhỏ"],
+        explanation:"lớn means big or large. nhỏ means small."
+    },
+
+    {
+        words:["dài","ngắn"],
+        explanation:"dài means long. ngắn means short."
+    },
+
+    {
+        words:["cao","thấp"],
+        explanation:"cao means tall or high. thấp means low or short."
+    },
+
+    {
+        words:["rộng","chật"],
+        explanation:"rộng means wide or spacious. chật means tight or cramped."
+    },
+
+    {
+        words:["nặng","nhẹ"],
+        explanation:"nặng means heavy. nhẹ means light."
+    },
+
+    {
+        words:["cứng","mềm"],
+        explanation:"cứng means hard. mềm means soft."
+    },
+
+    {
+        words:["nóng","lạnh"],
+        explanation:"nóng means hot. lạnh means cold."
+    },
+
+    {
+        words:["khô","ướt"],
+        explanation:"khô means dry. ướt means wet."
+    },
+
+    {
+        words:["mới","cũ"],
+        explanation:"mới means new. cũ means old."
+    },
+
+    {
+        words:["sạch","dơ"],
+        explanation:"sạch means clean. dơ means dirty."
+    },
+
+    {
+        words:["đẹp","xấu"],
+        explanation:"đẹp means beautiful or pretty. xấu means ugly."
+    },
+
+    {
+        words:["trẻ","già"],
+        explanation:"trẻ means young. già means old."
+    },
+
+    {
+        words:["ốm","mập"],
+        explanation:"ốm means thin or skinny. mập means fat or chubby."
+    },
+
+    {
+        words:["nhiều","ít"],
+        explanation:"nhiều means many or much. ít means few or little."
+    }
+
+];
+
+
+
+/* ==========================================================
+   CREATE QUESTION DATABASE
+========================================================== */
+
+const database = [];
+
+
+oppositePairs.forEach(pair => {
+
+    database.push({
+
+        question:pair.words[0],
+
+        answer:pair.words[1],
+
+        explanation:pair.explanation
+
+    });
+
+
+    database.push({
+
+        question:pair.words[1],
+
+        answer:pair.words[0],
+
+        explanation:pair.explanation
+
+    });
+
+});
+
+
+
+/* ==========================================================
+   ALL VOCABULARY
+========================================================== */
+
+const allWords = [
+
+    "lớn",
+    "nhỏ",
+    "bự",
+    "dài",
+    "ngắn",
+    "cao",
+    "thấp",
+    "rộng",
+    "chật",
+    "nặng",
+    "nhẹ",
+
+    "cứng",
+    "mềm",
+    "nóng",
+    "lạnh",
+    "khô",
+    "ướt",
+
+    "mới",
+    "cũ",
+    "sạch",
+    "dơ",
+
+    "tròn",
+    "vuông",
+    "thẳng",
+    "cong",
+    "nhọn",
+    "xoăn",
+
+    "đẹp",
+    "xấu",
+    "dễ thương",
+    "xinh",
+    "dữ",
+    "nghiêm túc",
+    "trẻ",
+    "già",
+    "ốm",
+    "mập",
+
+    "nhiều",
+    "ít"
+
+];
+
+
+
+/* ==========================================================
+   STATE
+========================================================== */
+
+let questions = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array){
+
+    const arr = [...array];
+
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            arr[i],
+            arr[j]
+        ] = [
+            arr[j],
+            arr[i]
+        ];
+
+    }
+
+
+    return arr;
+
+}
+
+
+
+/* ==========================================================
+   CREATE OPTIONS
+========================================================== */
+
+function createOptions(correctWord){
+
+    const wrongWords =
+        shuffle(
+            allWords.filter(
+                word =>
+                    word !== correctWord
+            )
+        )
+        .slice(0,3);
+
+
+    return shuffle([
+
+        correctWord,
+
+        ...wrongWords
+
+    ]);
+
+}
+
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    /*
+     * 20 random questions
+     * selected from the 28 available
+     * opposite-direction questions.
+     */
+
+    questions =
+        shuffle(database)
+        .slice(0,20);
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+
+    document
+        .getElementById("intro")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("final")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("game")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("score")
+        .textContent =
+        "0";
+
+
+    document
+        .getElementById("totalQuestions")
+        .textContent =
+        questions.length;
+
+
+    loadQuestion();
+
+}
+
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion(){
+
+    answered = false;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        currentQuestion + 1;
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        (
+            currentQuestion /
+            questions.length *
+            100
+        ) + "%";
+
+
+    document
+        .getElementById("questionText")
+        .textContent =
+        question.question;
+
+
+    document
+        .getElementById("resultText")
+        .textContent =
+        "";
+
+
+    document
+        .getElementById("resultText")
+        .className =
+        "result-message";
+
+
+    document
+        .getElementById("explanationBox")
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById("explanationText")
+        .textContent =
+        "";
+
+
+    const container =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    const options =
+        createOptions(
+            question.answer
+        );
+
+
+    options.forEach(option => {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.className =
+            "option-btn";
+
+
+        button.textContent =
+            option;
+
+
+        button.onclick = () =>
+            handleAnswer(
+                button,
+                option
+            );
+
+
+        container.appendChild(
+            button
+        );
+
+    });
+
+}
+
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    button,
+    selected
+){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
+
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
+    if(
+        selected ===
+        question.answer
+    ){
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        document
+            .getElementById("score")
+            .textContent =
+            score;
+
+
+        document
+            .getElementById("resultText")
+            .textContent =
+            "🎉 Correct!";
+
+
+        document
+            .getElementById("resultText")
+            .className =
+            "result-message correct-text";
+
+    }
+
+
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        document
+            .getElementById("resultText")
+            .textContent =
+            "❌ Wrong!";
+
+
+        document
+            .getElementById("resultText")
+            .className =
+            "result-message wrong-text";
+
+
+        /*
+         * Show the correct answer
+         * because there is no retry.
+         */
+
+        optionButtons.forEach(btn => {
+
+            if(
+                btn.textContent ===
+                question.answer
+            ){
+
+                btn.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    /* ======================================================
+       DISABLE ALL OPTIONS
+    ====================================================== */
+
+    optionButtons.forEach(btn => {
+
+        btn.classList.add(
+            "disabled"
+        );
+
+    });
+
+
+    /* ======================================================
+       EXPLANATION
+    ====================================================== */
+
+    document
+        .getElementById("explanationText")
+        .innerHTML =
+        `
+        <span class="correct-answer">
+            ${question.question}
+        </span>
+        → opposite:
+        <span class="correct-answer">
+            ${question.answer}
+        </span>
+        <br>
+        ${question.explanation}
+        `;
+
+
+    document
+        .getElementById("explanationBox")
+        .classList.add(
+            "show"
+        );
+
+
+    /*
+     * Automatically move to the next question.
+     * No retry button.
+     */
+
+    setTimeout(() => {
+
+        nextQuestion();
+
+    },1500);
+
+}
+
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+
+    if(
+        currentQuestion <
+        questions.length
+    ){
+
+        loadQuestion();
+
+    }else{
+
+        finishGame();
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
+
+
+    document
+        .getElementById("game")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("final")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("finalScore")
+        .textContent =
+        score +
+        " / " +
+        questions.length;
+
+
+    const percent =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    let message;
+
+
+    if(percent >= 90){
+
+        message =
+            "🏆 Excellent! You know your Vietnamese opposites.";
+
+    }
+
+    else if(percent >= 70){
+
+        message =
+            "🎉 Good job! Keep practicing.";
+
+    }
+
+    else{
+
+        message =
+            "📚 Keep practicing these Vietnamese opposite words.";
+
+    }
+
+
+    document
+        .getElementById("finalMessage")
+        .textContent =
+        message;
+
+}
+
+
+
+/* ==========================================================
+   RESTART
+========================================================== */
+
+function restartGame(){
+
+    startGame();
+
+}
+
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        ".href=../../category.html?category=Describe things";
+
+}
+
+</script>
+
+</body>
+
+</html>

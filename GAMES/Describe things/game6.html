@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese Describe Things Challenge</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese Describe Things Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Practice Vietnamese words for describing size, texture, condition, shape, appearance, and quantity."
+>
+
+<meta
+    name="game-icon"
+    content="🔎"
+>
+
+
+<style>
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body{
+
+    margin:0;
+
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background:#f4f7f6;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    color:#2c3e50;
+
+}
+
+
+/* ==========================================================
+   SCREEN
+========================================================== */
+
+.screen{
+
+    display:none;
+
+}
+
+
+.screen.active{
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.container{
+
+    position:relative;
+
+    width:min(850px,96vw);
+
+    margin:0 auto;
+
+    background:white;
+
+    padding:65px 30px 30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+.lobby-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:22px;
+
+    padding:8px 14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef5fc;
+
+    color:#34495e;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.lobby-btn:hover{
+
+    background:#dcecff;
+
+    transform:translateX(-2px);
+
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+#intro{
+
+    text-align:center;
+
+    padding:20px 20px 30px;
+
+}
+
+
+#intro .emoji{
+
+    font-size:65px;
+
+    margin-bottom:10px;
+
+}
+
+
+#intro h1{
+
+    margin:0 0 12px;
+
+    font-size:34px;
+
+}
+
+
+#intro p{
+
+    color:#7f8c8d;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+}
+
+
+.start-btn{
+
+    margin-top:18px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#34495e;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#2c3e50;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.title{
+
+    text-align:center;
+
+    margin:0 0 5px;
+
+}
+
+
+.subtitle{
+
+    text-align:center;
+
+    color:#7f8c8d;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================================
+   GAME BOX
+========================================================== */
+
+.game-box{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    border:1px solid #eee;
+
+    text-align:center;
+
+}
+
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+
+}
+
+
+.question-count{
+
+    color:#7f8c8d;
+
+}
+
+
+.score{
+
+    color:#27ae60;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.progress-wrap{
+
+    width:100%;
+
+    height:9px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#34495e;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-label{
+
+    color:#7f8c8d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+    text-transform:uppercase;
+
+}
+
+
+.question{
+
+    background:#f8f9fa;
+
+    border:2px solid #e8edf0;
+
+    border-radius:15px;
+
+    padding:30px 20px;
+
+    margin-bottom:25px;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+}
+
+
+/* ==========================================================
+   OPTIONS
+========================================================== */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+
+}
+
+
+.option-btn{
+
+    padding:17px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    background:#34495e;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.option-btn:hover{
+
+    background:#2c3e50;
+
+    transform:translateY(-2px);
+
+}
+
+
+.option-btn.correct{
+
+    background:#27ae60;
+
+}
+
+
+.option-btn.wrong{
+
+    background:#e74c3c;
+
+}
+
+
+.option-btn.disabled{
+
+    pointer-events:none;
+
+    opacity:.75;
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.result-message{
+
+    min-height:90px;
+
+    margin-top:20px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+}
+
+
+.correct-text{
+
+    color:#27ae60;
+
+}
+
+
+.wrong-text{
+
+    color:#e74c3c;
+
+}
+
+
+.explanation{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:#7f8c8d;
+
+    font-size:16px;
+
+    font-weight:normal;
+
+}
+
+
+/* ==========================================================
+   NEXT BUTTON
+========================================================== */
+
+.next-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#34495e;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:5px;
+
+    transition:.2s;
+
+}
+
+
+.next-btn:hover{
+
+    background:#2c3e50;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   FINAL
+========================================================== */
+
+#final{
+
+    text-align:center;
+
+    padding:30px 20px 40px;
+
+}
+
+
+#final h2{
+
+    font-size:35px;
+
+    color:#27ae60;
+
+}
+
+
+.final-score{
+
+    font-size:30px;
+
+    margin:25px 0;
+
+    font-weight:bold;
+
+    color:#1976d2;
+
+}
+
+
+.final-message{
+
+    color:#7f8c8d;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+
+    .container{
+
+        padding:60px 15px 20px;
+
+    }
+
+
+    .game-box{
+
+        padding:18px;
+
+    }
+
+
+    .options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .question{
+
+        font-size:21px;
+
+        padding:25px 15px;
+
+    }
+
+
+    .option-btn{
+
+        font-size:17px;
+
+        padding:15px;
+
+    }
+
+
+    .result-message{
+
+        min-height:100px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    #final h2{
+
+        font-size:30px;
+
+    }
+
+
+    .lobby-btn{
+
+        top:16px;
+
+        left:16px;
+
+        font-size:13px;
+
+        padding:7px 12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ========================================================
+     BACK TO LOBBY
+========================================================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()"
+>
+
+    ← Back to Lobby
+
+</button>
+
+
+
+<!-- ========================================================
+     INTRO
+========================================================= -->
+
+<div
+    id="intro"
+    class="screen active"
+>
+
+    <div class="emoji">
+
+        🔎
+
+    </div>
+
+
+    <h1>
+
+        Vietnamese Describe Things Challenge
+
+    </h1>
+
+
+    <p>
+
+        Read the English sentence<br>
+
+        and choose the correct Vietnamese word.
+
+    </p>
+
+
+    <p>
+
+        🎯 20 questions
+
+    </p>
+
+
+    <button
+        class="start-btn"
+        onclick="startGame()"
+    >
+
+        Start Game
+
+    </button>
+
+</div>
+
+
+
+<!-- ========================================================
+     GAME
+========================================================= -->
+
+<div
+    id="game"
+    class="screen"
+>
+
+
+    <h1 class="title">
+
+        🔎 Describe Things Challenge
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Choose the correct Vietnamese word.
+
+    </p>
+
+
+
+    <div class="game-box">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div class="question-count">
+
+                Question
+
+                <span id="questionNumber">
+                    1
+                </span>
+
+                /
+
+                <span id="totalQuestions">
+                    20
+                </span>
+
+            </div>
+
+
+            <div class="score">
+
+                Score:
+
+                <span id="score">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-wrap">
+
+            <div
+                class="progress"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+
+        <!-- QUESTION -->
+
+        <div class="question-label">
+
+            What does this mean?
+
+        </div>
+
+
+        <div
+            class="question"
+            id="questionText"
+        >
+
+            The box is big.
+
+        </div>
+
+
+
+        <!-- OPTIONS -->
+
+        <div
+            class="options"
+            id="optionsContainer"
+        ></div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            class="result-message"
+            id="resultText"
+        ></div>
+
+
+
+        <!-- NEXT -->
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+            style="display:none;"
+        >
+
+            Next →
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ========================================================
+     FINAL
+========================================================= -->
+
+<div
+    id="final"
+    class="screen"
+>
+
+
+    <h2>
+
+        🎉 Game Complete!
+
+    </h2>
+
+
+    <p class="final-message">
+
+        You completed the Vietnamese Describe Things Challenge.
+
+    </p>
+
+
+    <div class="final-score">
+
+        Score:
+
+        <span id="finalScore"></span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==========================================================
+   QUESTION DATABASE
+   ONLY DESCRIBE THINGS VOCABULARY
+   WEATHER EXCLUDED
+========================================================== */
+
+const database = [
+
+    /* =========================
+       SIZE
+    ========================= */
+
+    {
+        question:"The box is big.",
+        answer:"lớn",
+        meaning:"big, large"
+    },
+
+    {
+        question:"The cup is small.",
+        answer:"nhỏ",
+        meaning:"small"
+    },
+
+    {
+        question:"The table is very big.",
+        answer:"bự",
+        meaning:"big, huge"
+    },
+
+    {
+        question:"The road is long.",
+        answer:"dài",
+        meaning:"long"
+    },
+
+    {
+        question:"The pencil is short.",
+        answer:"ngắn",
+        meaning:"short"
+    },
+
+    {
+        question:"The building is tall.",
+        answer:"cao",
+        meaning:"tall, high"
+    },
+
+    {
+        question:"The table is low.",
+        answer:"thấp",
+        meaning:"low, short"
+    },
+
+    {
+        question:"The room is spacious.",
+        answer:"rộng",
+        meaning:"wide, spacious"
+    },
+
+    {
+        question:"The room is cramped.",
+        answer:"chật",
+        meaning:"tight, cramped"
+    },
+
+    {
+        question:"The bag is heavy.",
+        answer:"nặng",
+        meaning:"heavy"
+    },
+
+    {
+        question:"The box is light.",
+        answer:"nhẹ",
+        meaning:"light"
+    },
+
+
+    /* =========================
+       FEEL & TEXTURE
+    ========================= */
+
+    {
+        question:"The table is hard.",
+        answer:"cứng",
+        meaning:"hard"
+    },
+
+    {
+        question:"The pillow is soft.",
+        answer:"mềm",
+        meaning:"soft"
+    },
+
+    {
+        question:"The coffee is hot.",
+        answer:"nóng",
+        meaning:"hot"
+    },
+
+    {
+        question:"The water is cold.",
+        answer:"lạnh",
+        meaning:"cold"
+    },
+
+    {
+        question:"The towel is dry.",
+        answer:"khô",
+        meaning:"dry"
+    },
+
+    {
+        question:"The floor is wet.",
+        answer:"ướt",
+        meaning:"wet"
+    },
+
+
+    /* =========================
+       CONDITION
+    ========================= */
+
+    {
+        question:"This shirt is new.",
+        answer:"mới",
+        meaning:"new"
+    },
+
+    {
+        question:"This phone is old.",
+        answer:"cũ",
+        meaning:"old"
+    },
+
+    {
+        question:"The room is clean.",
+        answer:"sạch",
+        meaning:"clean"
+    },
+
+    {
+        question:"The shoes are dirty.",
+        answer:"dơ",
+        meaning:"dirty"
+    },
+
+
+    /* =========================
+       SHAPE
+    ========================= */
+
+    {
+        question:"The ball is round.",
+        answer:"tròn",
+        meaning:"round"
+    },
+
+    {
+        question:"The window is square.",
+        answer:"vuông",
+        meaning:"square"
+    },
+
+    {
+        question:"The road is straight.",
+        answer:"thẳng",
+        meaning:"straight"
+    },
+
+    {
+        question:"The line is curved.",
+        answer:"cong",
+        meaning:"curved, bent"
+    },
+
+    {
+        question:"The knife is sharp.",
+        answer:"nhọn",
+        meaning:"pointed, sharp"
+    },
+
+    {
+        question:"Her hair is curly.",
+        answer:"xoăn",
+        meaning:"curly"
+    },
+
+
+    /* =========================
+       APPEARANCE
+    ========================= */
+
+    {
+        question:"The dress is beautiful.",
+        answer:"đẹp",
+        meaning:"beautiful, pretty"
+    },
+
+    {
+        question:"The picture is ugly.",
+        answer:"xấu",
+        meaning:"ugly"
+    },
+
+    {
+        question:"The baby is cute.",
+        answer:"dễ thương",
+        meaning:"cute"
+    },
+
+    {
+        question:"She is pretty.",
+        answer:"xinh",
+        meaning:"pretty, lovely"
+    },
+
+    {
+        question:"The dog looks fierce.",
+        answer:"dữ",
+        meaning:"fierce, mean"
+    },
+
+    {
+        question:"He looks serious.",
+        answer:"nghiêm túc",
+        meaning:"serious"
+    },
+
+    {
+        question:"The boy is young.",
+        answer:"trẻ",
+        meaning:"young"
+    },
+
+    {
+        question:"The man is old.",
+        answer:"già",
+        meaning:"old"
+    },
+
+    {
+        question:"He is skinny.",
+        answer:"ốm",
+        meaning:"thin, skinny"
+    },
+
+    {
+        question:"The child is chubby.",
+        answer:"mập",
+        meaning:"fat, chubby"
+    },
+
+
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    {
+        question:"There are many books.",
+        answer:"nhiều",
+        meaning:"many, much"
+    },
+
+    {
+        question:"There are only a few apples.",
+        answer:"ít",
+        meaning:"few, little"
+    }
+
+];
+
+
+
+/* ==========================================================
+   STATE
+========================================================== */
+
+let questions = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array){
+
+    const arr = [...array];
+
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            arr[i],
+            arr[j]
+        ] = [
+            arr[j],
+            arr[i]
+        ];
+
+    }
+
+
+    return arr;
+
+}
+
+
+
+/* ==========================================================
+   CREATE OPTIONS
+========================================================== */
+
+function createOptions(correctWord){
+
+    const allWords = [
+
+        "lớn",
+        "nhỏ",
+        "bự",
+        "dài",
+        "ngắn",
+        "cao",
+        "thấp",
+        "rộng",
+        "chật",
+        "nặng",
+        "nhẹ",
+
+        "cứng",
+        "mềm",
+        "nóng",
+        "lạnh",
+        "khô",
+        "ướt",
+
+        "mới",
+        "cũ",
+        "sạch",
+        "dơ",
+
+        "tròn",
+        "vuông",
+        "thẳng",
+        "cong",
+        "nhọn",
+        "xoăn",
+
+        "đẹp",
+        "xấu",
+        "dễ thương",
+        "xinh",
+        "dữ",
+        "nghiêm túc",
+        "trẻ",
+        "già",
+        "ốm",
+        "mập",
+
+        "nhiều",
+        "ít"
+
+    ];
+
+
+    const wrongWords =
+        shuffle(
+            allWords.filter(
+                word =>
+                    word !== correctWord
+            )
+        ).slice(0,3);
+
+
+    return shuffle([
+
+        correctWord,
+
+        ...wrongWords
+
+    ]);
+
+}
+
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    questions =
+        shuffle(database)
+        .slice(0,20);
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+
+    document
+        .getElementById("intro")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("final")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("game")
+        .classList.add("active");
+
+
+    document
+        .getElementById("score")
+        .textContent =
+        "0";
+
+
+    document
+        .getElementById("totalQuestions")
+        .textContent =
+        questions.length;
+
+
+    loadQuestion();
+
+}
+
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion(){
+
+    answered = false;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        currentQuestion + 1;
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        (
+            currentQuestion /
+            questions.length *
+            100
+        ) + "%";
+
+
+    document
+        .getElementById("questionText")
+        .textContent =
+        question.question;
+
+
+    document
+        .getElementById("resultText")
+        .innerHTML =
+        "";
+
+
+    document
+        .getElementById("resultText")
+        .className =
+        "result-message";
+
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("nextBtn")
+        .textContent =
+        "Next →";
+
+
+    const container =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    const options =
+        createOptions(
+            question.answer
+        );
+
+
+    options.forEach(option => {
+
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.className =
+            "option-btn";
+
+
+        button.textContent =
+            option;
+
+
+        button.onclick = () =>
+            handleAnswer(
+                button,
+                option
+            );
+
+
+        container.appendChild(
+            button
+        );
+
+    });
+
+}
+
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    button,
+    selected
+){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
+
+
+    buttons.forEach(btn => {
+
+        btn.classList.add(
+            "disabled"
+        );
+
+    });
+
+
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
+    if(
+        selected ===
+        question.answer
+    ){
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        document
+            .getElementById("score")
+            .textContent =
+            score;
+
+
+        document
+            .getElementById("resultText")
+            .innerHTML =
+
+            "🎉 Correct!" +
+
+            '<span class="explanation">' +
+
+            "<strong>" +
+            question.answer +
+            "</strong> = " +
+            question.meaning +
+
+            "</span>";
+
+
+        document
+            .getElementById("resultText")
+            .className =
+            "result-message correct-text";
+
+
+        document
+            .getElementById("nextBtn")
+            .style.display =
+            "inline-block";
+
+
+        if(
+            currentQuestion ===
+            questions.length - 1
+        ){
+
+            document
+                .getElementById("nextBtn")
+                .textContent =
+                "Finish 🎉";
+
+        }
+
+
+    }
+
+
+
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        buttons.forEach(btn => {
+
+            if(
+                btn.textContent ===
+                question.answer
+            ){
+
+                btn.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
+
+
+        document
+            .getElementById("resultText")
+            .innerHTML =
+
+            "❌ Incorrect!" +
+
+            '<span class="explanation">' +
+
+            "Correct answer: " +
+
+            "<strong>" +
+            question.answer +
+            "</strong>" +
+
+            "<br>" +
+
+            question.answer +
+            " = " +
+            question.meaning +
+
+            "</span>";
+
+
+        document
+            .getElementById("resultText")
+            .className =
+            "result-message wrong-text";
+
+
+        /*
+         * Wrong answers do not get a point.
+         * Automatically move to the next question.
+         */
+
+        setTimeout(() => {
+
+            nextQuestion();
+
+        },1200);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+
+    if(
+        currentQuestion <
+        questions.length
+    ){
+
+        loadQuestion();
+
+    }else{
+
+        finishGame();
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
+
+
+    document
+        .getElementById("game")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("final")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("finalScore")
+        .textContent =
+        score +
+        " / " +
+        questions.length;
+
+
+    const percent =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    let message;
+
+
+    if(percent >= 90){
+
+        message =
+            "🏆 Excellent! You know how to describe things in Vietnamese.";
+
+    }else if(percent >= 70){
+
+        message =
+            "🎉 Good job! Keep practicing these Vietnamese words.";
+
+    }else{
+
+        message =
+            "📚 Keep practicing your Vietnamese describing words.";
+
+    }
+
+
+    document
+        .getElementById("finalMessage")
+        .textContent =
+        message;
+
+}
+
+
+
+/* ==========================================================
+   RESTART
+========================================================== */
+
+function restartGame(){
+
+    startGame();
+
+}
+
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        "href=../../category.html?category=Describe things";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,432 +1,1395 @@
-<!-- game1.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Choose the Correct Color</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<!-- =========================
-     GAME METADATA
-========================= -->
+<title>Color Matching</title>
 
-<meta name="game-title" content="Color Matching">
-<meta name="game-description" content="Match Vietnamese color words with the correct colors.">
-<meta name="game-icon" content="🎨">
+<meta
+    name="game-title"
+    content="Color Matching"
+>
+
+<meta
+    name="game-description"
+    content="Match Vietnamese color words with the correct colors."
+>
+
+<meta
+    name="game-icon"
+    content="🎨"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+
+    --paper:
+        #f5f9fd;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --border:
+        #c4daf6;
+
+    --green:
+        #27ae60;
+
+    --green-light:
+        #eaf8f0;
+
+    --red:
+        #e05252;
+
+    --red-light:
+        #fff0f0;
+
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(180deg,#58cc02,#46b000);
-    min-height:100vh;
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
 }
 
-/* Back to Main Lobby button styling */
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
+
+    font-family:
+        'Be Vietnam Pro',
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9fd 48%,
+            #edf5fc 100%
+        );
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+
+    width:
+        min(
+            760px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
 .back-btn-container {
-    width: 100%;
-    max-width: 650px;
-    margin-bottom: 15px;
-    text-align: left;
+
+    margin-bottom:
+        18px;
+
 }
+
 
 .back-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .2s;
-    text-decoration: none;
-    display: inline-block;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
 }
+
 
 .back-btn:hover {
-    background: #fff;
-    color: #46b000;
-}
 
-.card{
-    background:#fff;
-    width:100%;
-    max-width:650px;
-    border-radius:24px;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
-}
+    transform:
+        translateY(-2px);
 
-h1{
-    color:#46b000;
-    margin-bottom:10px;
-}
+    background:
+        var(--accent);
 
-.subtitle{
-    color:#666;
-    margin-bottom:30px;
-    font-size:18px;
-}
+    border-color:
+        var(--accent);
 
-.question-number{
-    color:#666;
-    font-size:18px;
-    margin-bottom:15px;
-}
-
-.choose-text{
-    font-size:20px;
-    color:#555;
-    margin-bottom:8px;
-}
-
-.word{
-    font-size:34px;
-    font-weight:bold;
-    color:#46b000;
-    margin-bottom:30px;
-}
-
-.answers{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
-}
-
-.color-btn{
-    width:160px;
-    height:160px;
-    border-radius:22px;
-    border:4px solid transparent;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.color-btn:hover:not(.disabled){
-    transform:translateY(-6px) scale(1.04);
-    box-shadow:0 10px 20px rgba(0,0,0,.18);
-}
-
-.color-btn.disabled{
-    cursor:default;
-}
-
-.message{
-    min-height:34px;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.correct-text{
-    color:#27ae60;
-}
-
-.wrong-text{
-    color:#e74c3c;
-}
-
-.green-border{
-    border-color:#2ecc71 !important;
-}
-
-.red-border{
-    border-color:#e74c3c !important;
-}
-
-.action-btn{
-    background:#58cc02;
-    color:#fff;
-    border:none;
-    border-radius:16px;
-    padding:15px 32px;
-    font-size:18px;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.action-btn:hover{
-    background:#46b000;
-    transform:translateY(-2px);
-}
-
-.hidden{
-    display:none;
-}
-
-.score{
-    font-size:40px;
-    color:#46b000;
-    margin:20px 0;
-    font-weight:bold;
-}
-
-.performance{
-    font-size:26px;
-    margin-bottom:30px;
-    color:#555;
-}
-
-@media(max-width:600px){
-
-.card{
-    padding:22px;
-}
-
-.answers{
-    gap:18px;
-}
-
-.color-btn{
-    width:130px;
-    height:130px;
-}
-
-.word{
-    font-size:28px;
-}
+    color:
+        white;
 
 }
+
+
+/* ==========================================================
+   GAME CARD
+========================================================== */
+
+.card {
+
+    width:
+        100%;
+
+    padding:
+        38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            20,
+            58,
+            107,
+            0.10
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.game-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        1.8rem;
+
+}
+
+
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.9rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        520px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   GAME SCREEN
+========================================================== */
+
+.question-number {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.choose-text {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        600;
+
+}
+
+
+.word {
+
+    margin-bottom:
+        30px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        2.35rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.2;
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap:
+        22px;
+
+    flex-wrap:
+        wrap;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.color-btn {
+
+    width:
+        170px;
+
+    height:
+        150px;
+
+    border:
+        4px solid
+        transparent;
+
+    border-radius:
+        20px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 7px 18px
+        rgba(
+            20,
+            58,
+            107,
+            0.12
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.color-btn:hover:not(.disabled) {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 13px 25px
+        rgba(
+            20,
+            58,
+            107,
+            0.18
+        );
+
+}
+
+
+.color-btn.disabled {
+
+    cursor:
+        default;
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.message {
+
+    min-height:
+        32px;
+
+    margin-bottom:
+        18px;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--green);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--red);
+
+}
+
+
+.green-border {
+
+    border-color:
+        var(--green) !important;
+
+}
+
+
+.red-border {
+
+    border-color:
+        var(--red) !important;
+
+}
+
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.action-btn {
+
+    min-width:
+        170px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 5px 12px
+        rgba(
+            40,
+            120,
+            223,
+            0.20
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.action-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.action-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==========================================================
+   RESULT SCREEN
+========================================================== */
+
+.result-icon {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        2rem;
+
+}
+
+
+.result-title {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        2.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    body {
+
+        padding:
+            18px 14px 35px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            0.84rem;
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .word {
+
+        font-size:
+            2rem;
+
+        margin-bottom:
+            24px;
+
+    }
+
+
+    .answers {
+
+        gap:
+            14px;
+
+    }
+
+
+    .color-btn {
+
+        width:
+            135px;
+
+        height:
+            125px;
+
+        border-radius:
+            17px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+========================================================== */
+
+@media (
+    max-width: 380px
+) {
+
+    .color-btn {
+
+        width:
+            115px;
+
+        height:
+            110px;
+
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- Navigation container -->
-<div class="back-btn-container">
-    <a href="../../index.html" class="back-btn">
-        ⬅ Back to Lobby
-    </a>
-</div>
+
+<div class="page">
 
 
-<div class="card">
+    <!-- ======================================================
+         BACK TO LOBBY
+    ======================================================= -->
 
-    <h1>
-        Choose the Correct Color
-    </h1>
+    <div class="back-btn-container">
 
-    <div class="subtitle">
-        Click the color that matches the Vietnamese text.
-    </div>
-
-
-    <div id="gameScreen">
-
-        <div
-            class="question-number"
-            id="questionNumber">
-        </div>
-
-        <div class="choose-text">
-            Choose:
-        </div>
-
-        <div
-            class="word"
-            id="questionWord">
-        </div>
-
-        <div
-            class="answers"
-            id="answers">
-        </div>
-
-        <div
-            class="message"
-            id="message">
-        </div>
-
-        <button
-            id="nextBtn"
-            class="action-btn hidden">
-        </button>
+        <a
+            href="../../category.html?category=Color"
+            class="back-btn"
+        >
+            ← Back to Colors
+        </a>
 
     </div>
 
 
-    <div
-        id="resultScreen"
-        class="hidden">
+    <!-- ======================================================
+         GAME CARD
+    ======================================================= -->
+
+    <main class="card">
+
+
+        <!-- ==================================================
+             GAME HEADER
+        =================================================== -->
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            🎨
+        </div>
+
 
         <h1>
-            Great Job!
+            Color Matching
         </h1>
 
-        <div
-            class="score"
-            id="scoreText">
-        </div>
 
-        <div
-            class="performance"
-            id="performance">
-        </div>
+        <p class="subtitle">
+            Match the Vietnamese color word with the
+            correct color.
+        </p>
 
-        <button
-            class="action-btn"
-            id="playAgain">
 
-            Play Again
+        <!-- ==================================================
+             GAME SCREEN
+        =================================================== -->
 
-        </button>
+        <section id="gameScreen">
 
-    </div>
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div class="choose-text">
+                Choose:
+            </div>
+
+
+            <div
+                id="questionWord"
+                class="word"
+            >
+            </div>
+
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             RESULT SCREEN
+        =================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
+        >
+
+
+            <div
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <h1 class="result-title">
+                Great Job!
+            </h1>
+
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
+
+
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+        </section>
+
+
+    </main>
 
 </div>
 
 
 <script>
 
-// =========================
-// Vocabulary
-// =========================
+/* ==========================================================
+   VOCABULARY
+   Core Color Vocabulary
+========================================================== */
 
-const COLORS=[
-    {text:"Màu đỏ",color:"red"},
-    {text:"Màu cam",color:"orange"},
-    {text:"Màu vàng",color:"yellow"},
-    {text:"Màu hồng",color:"hotpink"},
-    {text:"Màu xanh lá",color:"limegreen"},
-    {text:"Màu đen",color:"black"},
-    {text:"Màu trắng",color:"white"}
+const COLORS = [
+
+    {
+        text:
+            "đỏ",
+
+        phonetic:
+            "/daw/",
+
+        english:
+            "red",
+
+        color:
+            "red"
+    },
+
+    {
+        text:
+            "cam",
+
+        phonetic:
+            "/kam/",
+
+        english:
+            "orange",
+
+        color:
+            "orange"
+    },
+
+    {
+        text:
+            "vàng",
+
+        phonetic:
+            "/vang/",
+
+        english:
+            "yellow",
+
+        color:
+            "yellow"
+    },
+
+    {
+        text:
+            "xanh lá",
+
+        phonetic:
+            "/sanh la/",
+
+        english:
+            "green",
+
+        color:
+            "limegreen"
+    },
+
+    {
+        text:
+            "xanh dương",
+
+        phonetic:
+            "/sanh zoong/",
+
+        english:
+            "blue",
+
+        color:
+            "royalblue"
+    },
+
+    {
+        text:
+            "tím",
+
+        phonetic:
+            "/tim/",
+
+        english:
+            "purple",
+
+        color:
+            "purple"
+    },
+
+    {
+        text:
+            "hồng",
+
+        phonetic:
+            "/hong/",
+
+        english:
+            "pink",
+
+        color:
+            "hotpink"
+    },
+
+    {
+        text:
+            "nâu",
+
+        phonetic:
+            "/nəw/",
+
+        english:
+            "brown",
+
+        color:
+            "saddlebrown"
+    },
+
+    {
+        text:
+            "đen",
+
+        phonetic:
+            "/den/",
+
+        english:
+            "black",
+
+        color:
+            "black"
+    },
+
+    {
+        text:
+            "trắng",
+
+        phonetic:
+            "/chang/",
+
+        english:
+            "white",
+
+        color:
+            "white"
+    },
+
+    {
+        text:
+            "xám",
+
+        phonetic:
+            "/sam/",
+
+        english:
+            "gray",
+
+        color:
+            "gray"
+    }
+
 ];
 
 
-// =========================
-// Constants
-// =========================
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
 
-const TOTAL_QUESTIONS = 15;
-
-
-// =========================
-// Game state
-// =========================
-
-let questions=[];
-let currentQuestion=0;
-let score=0;
-let answered=false;
+const TOTAL_QUESTIONS =
+    20;
 
 
-// =========================
-// DOM
-// =========================
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let questions =
+    [];
+
+let currentQuestion =
+    0;
+
+let score =
+    0;
+
+let answered =
+    false;
+
+
+/* ==========================================================
+   DOM ELEMENTS
+========================================================== */
 
 const questionNumber =
-    document.getElementById("questionNumber");
+    document.getElementById(
+        "questionNumber"
+    );
+
 
 const questionWord =
-    document.getElementById("questionWord");
+    document.getElementById(
+        "questionWord"
+    );
+
 
 const answers =
-    document.getElementById("answers");
+    document.getElementById(
+        "answers"
+    );
+
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
+
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
+
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
+
 
 const resultScreen =
-    document.getElementById("resultScreen");
+    document.getElementById(
+        "resultScreen"
+    );
+
 
 const scoreText =
-    document.getElementById("scoreText");
+    document.getElementById(
+        "scoreText"
+    );
+
 
 const performance =
-    document.getElementById("performance");
+    document.getElementById(
+        "performance"
+    );
+
 
 const playAgain =
-    document.getElementById("playAgain");
+    document.getElementById(
+        "playAgain"
+    );
 
 
-// =========================
-// Random helper
-// =========================
+/* ==========================================================
+   RANDOM
+========================================================== */
 
-function rand(max){
-    return Math.floor(Math.random()*max);
+function randomIndex(max) {
+
+    return Math.floor(
+        Math.random() * max
+    );
+
 }
 
 
-// =========================
-// Shuffle
-// =========================
+/* ==========================================================
+   SHUFFLE
+========================================================== */
 
-function shuffle(array){
+function shuffle(array) {
 
-    for(let i=array.length-1;i>0;i--){
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
 
         const j =
-            Math.floor(Math.random()*(i+1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
-        [array[i],array[j]] =
-            [array[j],array[i]];
+
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
     }
 
+
     return array;
+
 }
 
 
-// =========================
-// Generate questions
-// =========================
+/* ==========================================================
+   GET RANDOM WRONG ANSWER
+========================================================== */
 
-function generateQuestions(){
+function getWrongAnswer(correct) {
 
-    questions=[];
+    let wrong;
 
-    for(
-        let i=0;
-        i<TOTAL_QUESTIONS;
+
+    do {
+
+        wrong =
+            COLORS[
+                randomIndex(
+                    COLORS.length
+                )
+            ];
+
+    }
+    while (
+        wrong.color ===
+        correct.color
+    );
+
+
+    return wrong;
+
+}
+
+
+/* ==========================================================
+   GENERATE QUESTIONS
+========================================================== */
+
+function generateQuestions() {
+
+    questions = [];
+
+
+    for (
+        let i = 0;
+        i < TOTAL_QUESTIONS;
         i++
-    ){
+    ) {
 
         const correct =
-            COLORS[rand(COLORS.length)];
+            COLORS[
+                randomIndex(
+                    COLORS.length
+                )
+            ];
 
-        let wrong;
 
-        do{
+        const wrong =
+            getWrongAnswer(
+                correct
+            );
 
-            wrong =
-                COLORS[rand(COLORS.length)];
 
-        }
-        while(
-            wrong.color===correct.color
-        );
+        const options = [
 
-        const options=[
             correct,
             wrong
+
         ];
 
-        shuffle(options);
+
+        shuffle(
+            options
+        );
+
 
         questions.push({
-            correct,
-            options
+
+            correct:
+                correct,
+
+            options:
+                options
+
         });
 
     }
@@ -434,136 +1397,238 @@ function generateQuestions(){
 }
 
 
-// =========================
-// Start game
-// =========================
+/* ==========================================================
+   START GAME
+========================================================== */
 
-function startGame(){
+function startGame() {
 
     generateQuestions();
 
-    currentQuestion=0;
-    score=0;
 
-    gameScreen.classList.remove("hidden");
+    currentQuestion =
+        0;
 
-    resultScreen.classList.add("hidden");
+
+    score =
+        0;
+
+
+    gameScreen.classList.remove(
+        "hidden"
+    );
+
+
+    resultScreen.classList.add(
+        "hidden"
+    );
+
 
     loadQuestion();
 
 }
 
 
-// =========================
-// Load question
-// =========================
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
 
-function loadQuestion(){
+function loadQuestion() {
 
-    answered=false;
+    answered =
+        false;
 
-    message.textContent="";
 
-    message.className="message";
+    message.textContent =
+        "";
 
-    nextBtn.classList.add("hidden");
 
-    const q =
-        questions[currentQuestion];
+    message.className =
+        "message";
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
 
     questionNumber.textContent =
-        `Question ${currentQuestion+1} / ${TOTAL_QUESTIONS}`;
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
+
 
     questionWord.textContent =
-        q.correct.text;
+        question.correct.text;
 
-    answers.innerHTML="";
 
-    q.options.forEach(option=>{
+    answers.innerHTML =
+        "";
 
-        const btn =
-            document.createElement("button");
 
-        btn.className="color-btn";
+    question.options.forEach(
+        option => {
 
-        btn.dataset.correct =
-            (option.color===q.correct.color);
+            const button =
+                document.createElement(
+                    "button"
+                );
 
-        btn.style.background =
-            option.color;
 
-        if(option.color==="white"){
+            button.type =
+                "button";
 
-            btn.style.border =
-                "4px solid #bbb";
+
+            button.className =
+                "color-btn";
+
+
+            button.dataset.correct =
+                (
+                    option.color ===
+                    question.correct.color
+                );
+
+
+            button.style.background =
+                option.color;
+
+
+            /*
+             * White needs a visible border
+             * before the user answers.
+             */
+
+            if (
+                option.color ===
+                "white"
+            ) {
+
+                button.style.borderColor =
+                    "#c9d4df";
+
+            }
+
+
+            button.setAttribute(
+                "aria-label",
+                option.english
+            );
+
+
+            button.addEventListener(
+                "click",
+                () =>
+                    handleAnswer(
+                        button
+                    )
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
         }
-
-        btn.addEventListener(
-            "click",
-            ()=>handleAnswer(btn)
-        );
-
-        answers.appendChild(btn);
-
-    });
+    );
 
 }
 
 
-// =========================
-// Handle answer
-// =========================
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
 
-function handleAnswer(selected){
+function handleAnswer(
+    selected
+) {
 
-    if(answered) return;
+    if (
+        answered
+    ) {
 
-    answered=true;
+        return;
+
+    }
+
+
+    answered =
+        true;
+
 
     const buttons =
-        document.querySelectorAll(".color-btn");
-
-    buttons.forEach(
-        btn =>
-            btn.classList.add("disabled")
-    );
-
-    const correctButton =
-        [...buttons].find(
-            btn =>
-                btn.dataset.correct==="true"
+        document.querySelectorAll(
+            ".color-btn"
         );
 
-    if(
-        selected.dataset.correct==="true"
-    ){
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+        }
+    );
+
+
+    const correctButton =
+        [
+            ...buttons
+        ].find(
+            button =>
+                button.dataset.correct ===
+                "true"
+        );
+
+
+    if (
+        selected.dataset.correct ===
+        "true"
+    ) {
 
         score++;
 
+
         message.textContent =
-            "✅ Correct!";
+            "✓ Correct!";
+
 
         message.classList.add(
             "correct-text"
         );
 
+
         correctButton.classList.add(
             "green-border"
         );
 
     }
-    else{
+
+    else {
 
         message.textContent =
-            "❌ Wrong!";
+            "✕ Wrong!";
+
 
         message.classList.add(
             "wrong-text"
         );
 
+
         selected.classList.add(
             "red-border"
         );
+
 
         correctButton.classList.add(
             "green-border"
@@ -571,18 +1636,23 @@ function handleAnswer(selected){
 
     }
 
-    nextBtn.classList.remove("hidden");
 
-    if(
-        currentQuestion===
-        TOTAL_QUESTIONS-1
-    ){
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+
+    if (
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ) {
 
         nextBtn.textContent =
             "Finish";
 
     }
-    else{
+
+    else {
 
         nextBtn.textContent =
             "Next Question →";
@@ -592,25 +1662,27 @@ function handleAnswer(selected){
 }
 
 
-// =========================
-// Next button
-// =========================
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
 
 nextBtn.addEventListener(
     "click",
-    ()=>{
+    () => {
 
         currentQuestion++;
 
-        if(
-            currentQuestion>=
+
+        if (
+            currentQuestion >=
             TOTAL_QUESTIONS
-        ){
+        ) {
 
             showResults();
 
         }
-        else{
+
+        else {
 
             loadQuestion();
 
@@ -620,38 +1692,55 @@ nextBtn.addEventListener(
 );
 
 
-// =========================
-// Results
-// =========================
+/* ==========================================================
+   SHOW RESULTS
+========================================================== */
 
-function showResults(){
+function showResults() {
 
-    gameScreen.classList.add("hidden");
+    gameScreen.classList.add(
+        "hidden"
+    );
 
-    resultScreen.classList.remove("hidden");
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
+
 
     scoreText.textContent =
         `${score} / ${TOTAL_QUESTIONS}`;
 
-    if(score===15){
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
 
         performance.textContent =
-            "Perfect!";
+            "Perfect! 🎨";
 
     }
-    else if(score>=12){
+
+    else if (
+        score >= 16
+    ) {
 
         performance.textContent =
             "Excellent!";
 
     }
-    else if(score>=9){
+
+    else if (
+        score >= 12
+    ) {
 
         performance.textContent =
             "Good Job!";
 
     }
-    else{
+
+    else {
 
         performance.textContent =
             "Keep Practicing!";
@@ -661,9 +1750,9 @@ function showResults(){
 }
 
 
-// =========================
-// Play Again
-// =========================
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
 
 playAgain.addEventListener(
     "click",
@@ -671,13 +1760,15 @@ playAgain.addEventListener(
 );
 
 
-// =========================
-// Initialize
-// =========================
+/* ==========================================================
+   INITIALIZE
+========================================================== */
 
 startGame();
 
 </script>
 
+
 </body>
+
 </html>

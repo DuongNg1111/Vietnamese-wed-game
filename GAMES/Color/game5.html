@@ -11,10 +11,13 @@
 <meta name="game-title" content="Vietnamese Color Quiz">
 <meta
     name="game-description"
-    content="Practice Vietnamese color words by matching each color with the correct Vietnamese word."
+    content="Practice Vietnamese color words by matching colors with the correct Vietnamese words."
 >
 <meta name="game-icon" content="🎨">
-<meta name="game-explanation" content="false">
+<meta
+    name="game-explanation"
+    content="Look at the color and choose the correct Vietnamese word. Each question is worth 1 point. Wrong answers cannot be changed."
+>
 
 <style>
 
@@ -29,7 +32,6 @@
 body{
 
     margin:0;
-
     padding:20px;
 
     font-family:
@@ -37,7 +39,7 @@ body{
         Helvetica,
         sans-serif;
 
-    background:#f7f9fc;
+    background:#e8f5e9;
 
     min-height:100vh;
 
@@ -66,9 +68,9 @@ body{
 
     background:white;
 
-    color:#555;
+    color:#2e7d32;
 
-    border:2px solid #ddd;
+    border:2px solid #4caf50;
 
     border-radius:10px;
 
@@ -82,7 +84,9 @@ body{
 
 .back-btn:hover{
 
-    background:#f0f0f0;
+    background:#4caf50;
+
+    color:white;
 
     transform:translateY(-2px);
 
@@ -90,7 +94,7 @@ body{
 
 
 /* =========================================================
-   GAME CONTAINER
+   GAME BOX
 ========================================================= */
 
 .game-box{
@@ -114,7 +118,7 @@ body{
 
 
 /* =========================================================
-   SCREEN
+   SCREENS
 ========================================================= */
 
 .screen{
@@ -136,7 +140,7 @@ body{
 
 .game-icon{
 
-    font-size:70px;
+    font-size:65px;
 
     margin-bottom:10px;
 
@@ -148,7 +152,7 @@ body{
 
     font-size:34px;
 
-    color:#333;
+    color:#2e7d32;
 
 }
 
@@ -183,9 +187,9 @@ body{
 
 .game-info div{
 
-    background:#f4f8fb;
+    background:#f1f8f1;
 
-    border:1px solid #e1e8ee;
+    border:1px solid #c8e6c9;
 
     border-radius:12px;
 
@@ -239,7 +243,7 @@ button:disabled{
 
 .primary-btn{
 
-    background:#4779b8;
+    background:#4caf50;
 
     color:white;
 
@@ -247,7 +251,7 @@ button:disabled{
 
 .primary-btn:hover{
 
-    background:#3d6ba5;
+    background:#388e3c;
 
 }
 
@@ -262,7 +266,7 @@ button:disabled{
 
     font-size:30px;
 
-    color:#333;
+    color:#2e7d32;
 
 }
 
@@ -297,7 +301,7 @@ button:disabled{
 
 .score{
 
-    color:#4779b8;
+    color:#2e7d32;
 
     font-size:18px;
 
@@ -330,7 +334,7 @@ button:disabled{
 
     height:100%;
 
-    background:#4779b8;
+    background:#4caf50;
 
     transition:.3s;
 
@@ -358,11 +362,11 @@ button:disabled{
 
 #colorBox{
 
-    width:230px;
+    width:210px;
 
-    height:230px;
+    height:210px;
 
-    margin:20px auto 30px;
+    margin:20px auto 28px;
 
     border:3px solid #ddd;
 
@@ -393,20 +397,19 @@ button:disabled{
 
 }
 
-
 .option{
 
     width:100%;
 
-    padding:17px 15px;
+    padding:16px 15px;
 
-    background:#fff3d6;
+    background:#f1f8f1;
 
-    border:2px solid #d8ad50;
+    border:2px solid #81c784;
 
     color:#333;
 
-    font-size:21px;
+    font-size:20px;
 
     border-radius:12px;
 
@@ -416,16 +419,15 @@ button:disabled{
 
 }
 
-.option:hover{
+.option:hover:not(.disabled){
 
-    background:#ffe8b5;
+    background:#dcedc8;
 
-    border-color:#c99425;
+    border-color:#4caf50;
 
     transform:translateY(-2px);
 
 }
-
 
 .option.correct{
 
@@ -441,7 +443,7 @@ button:disabled{
 
     background:#ffcdd2;
 
-    border-color:#ef5350;
+    border-color:#e74c3c;
 
     color:#b71c1c;
 
@@ -487,7 +489,7 @@ button:disabled{
 
     margin:0 0 20px;
 
-    color:#4779b8;
+    color:#2e7d32;
 
     font-size:32px;
 
@@ -526,7 +528,6 @@ button:disabled{
 
     }
 
-
     .game-box{
 
         width:100%;
@@ -537,20 +538,17 @@ button:disabled{
 
     }
 
-
     #introScreen h1{
 
         font-size:28px;
 
     }
 
-
     .intro-description{
 
         font-size:16px;
 
     }
-
 
     .game-info{
 
@@ -560,13 +558,11 @@ button:disabled{
 
     }
 
-
     .game-info div{
 
         width:100%;
 
     }
-
 
     .game-title{
 
@@ -574,13 +570,11 @@ button:disabled{
 
     }
 
-
     .topbar{
 
         font-size:15px;
 
     }
-
 
     .score{
 
@@ -588,17 +582,15 @@ button:disabled{
 
     }
 
-
     #colorBox{
 
-        width:190px;
+        width:180px;
 
-        height:190px;
+        height:180px;
 
         margin:20px auto 25px;
 
     }
-
 
     #options{
 
@@ -606,15 +598,13 @@ button:disabled{
 
     }
 
-
     .option{
 
-        font-size:19px;
+        font-size:18px;
 
         padding:15px;
 
     }
-
 
     #message{
 
@@ -639,14 +629,13 @@ button:disabled{
 <div class="back-btn-container">
 
     <a
-        href="../../index.html"
+        href="../../category.html?category=Color"
         class="back-btn"
     >
         ⬅ Back to Lobby
     </a>
 
 </div>
-
 
 
 <!-- =========================================================
@@ -669,16 +658,19 @@ button:disabled{
             🎨
         </div>
 
-
         <h1>
             Vietnamese Color Quiz
         </h1>
-
 
         <p class="intro-description">
 
             Look at the color and choose
             the correct Vietnamese word.
+
+            <br>
+
+            Choose carefully —
+            wrong answers cannot be changed.
 
         </p>
 
@@ -687,12 +679,17 @@ button:disabled{
 
             <div>
                 📝
-                <strong>15 Questions</strong>
+                <strong>20 Questions</strong>
             </div>
 
             <div>
                 🎯
                 <strong>4 Choices</strong>
+            </div>
+
+            <div>
+                🏆
+                <strong>1 Point Each</strong>
             </div>
 
         </div>
@@ -708,7 +705,6 @@ button:disabled{
     </div>
 
 
-
     <!-- =====================================================
          GAME SCREEN
     ====================================================== -->
@@ -717,7 +713,6 @@ button:disabled{
         id="gameScreen"
         class="screen"
     >
-
 
         <h1 class="game-title">
 
@@ -730,7 +725,6 @@ button:disabled{
 
         <div class="topbar">
 
-
             <div class="question-count">
 
                 Question
@@ -739,7 +733,7 @@ button:disabled{
                     1
                 </span>
 
-                /15
+                /20
 
             </div>
 
@@ -754,9 +748,7 @@ button:disabled{
 
             </div>
 
-
         </div>
-
 
 
         <!-- PROGRESS -->
@@ -771,7 +763,6 @@ button:disabled{
         </div>
 
 
-
         <!-- QUESTION -->
 
         <p class="instruction">
@@ -781,11 +772,9 @@ button:disabled{
         </p>
 
 
-
         <!-- COLOR -->
 
         <div id="colorBox"></div>
-
 
 
         <!-- OPTIONS -->
@@ -795,16 +784,13 @@ button:disabled{
         ></div>
 
 
-
         <!-- FEEDBACK -->
 
         <div
             id="message"
         ></div>
 
-
     </div>
-
 
 
     <!-- =====================================================
@@ -815,7 +801,6 @@ button:disabled{
         id="resultScreen"
         class="screen"
     >
-
 
         <h2>
 
@@ -834,7 +819,7 @@ button:disabled{
                     0
                 </span>
 
-                /15
+                /20
 
             </strong>
 
@@ -856,18 +841,16 @@ button:disabled{
 
         </button>
 
-
     </div>
 
 
 </div>
 
 
-
 <script>
 
 /* =========================================================
-   GAME DATA
+   VOCABULARY
 ========================================================= */
 
 const colors = [
@@ -879,7 +862,7 @@ const colors = [
 
     {
         name:"màu cam",
-        color:"#ff8800"
+        color:"#ff9800"
     },
 
     {
@@ -889,12 +872,27 @@ const colors = [
 
     {
         name:"màu xanh lá",
-        color:"#00aa00"
+        color:"#4caf50"
+    },
+
+    {
+        name:"màu xanh dương",
+        color:"#2196f3"
+    },
+
+    {
+        name:"màu tím",
+        color:"#9c27b0"
     },
 
     {
         name:"màu hồng",
         color:"#ff69b4"
+    },
+
+    {
+        name:"màu nâu",
+        color:"#795548"
     },
 
     {
@@ -905,6 +903,11 @@ const colors = [
     {
         name:"màu trắng",
         color:"#ffffff"
+    },
+
+    {
+        name:"màu xám",
+        color:"#9e9e9e"
     }
 
 ];
@@ -914,7 +917,7 @@ const colors = [
    SETTINGS
 ========================================================= */
 
-const TOTAL_QUESTIONS = 15;
+const TOTAL_QUESTIONS = 20;
 
 const TOTAL_OPTIONS = 4;
 
@@ -1002,7 +1005,6 @@ function shuffle(array){
 
     const arr = [...array];
 
-
     for(
         let i = arr.length - 1;
         i > 0;
@@ -1014,7 +1016,6 @@ function shuffle(array){
                 Math.random() * (i + 1)
             );
 
-
         [
             arr[i],
             arr[j]
@@ -1024,7 +1025,6 @@ function shuffle(array){
         ];
 
     }
-
 
     return arr;
 
@@ -1036,14 +1036,6 @@ function shuffle(array){
 ========================================================= */
 
 function createQuestions(){
-
-    /*
-       Create 15 questions.
-
-       Colors can appear more than once,
-       but the same color will not appear
-       twice in a row.
-    */
 
     questions = [];
 
@@ -1082,7 +1074,6 @@ function createQuestions(){
 
 
         questions.push(selected);
-
 
         previousColor =
             selected;
@@ -1167,9 +1158,29 @@ function loadQuestion(){
         question.color;
 
 
+    /*
+       Add a visible border for white.
+    */
+
+    if(
+        question.color === "#ffffff"
+    ){
+
+        colorBox.style.border =
+            "3px solid #999";
+
+    }
+
+    else{
+
+        colorBox.style.border =
+            "3px solid #ddd";
+
+    }
+
+
     message.textContent =
         "";
-
 
     message.style.color =
         "";
@@ -1180,7 +1191,7 @@ function loadQuestion(){
 
 
     /*
-       Create wrong answers
+       Create 3 wrong answers.
     */
 
     const wrongAnswers =
@@ -1198,7 +1209,7 @@ function loadQuestion(){
 
 
     /*
-       1 correct + 3 wrong
+       1 correct + 3 wrong.
     */
 
     const options =
@@ -1258,11 +1269,19 @@ function chooseAnswer(
     selected
 ){
 
+    /*
+       Once an answer has been selected,
+       the question cannot be answered again.
+    */
+
     if(answered){
 
         return;
 
     }
+
+
+    answered = true;
 
 
     /*
@@ -1272,9 +1291,6 @@ function chooseAnswer(
     if(
         selected === currentAnswer
     ){
-
-        answered = true;
-
 
         button.classList.add(
             "correct"
@@ -1289,62 +1305,78 @@ function chooseAnswer(
 
 
         message.style.color =
-            "#3b8b58";
+            "#2e7d32";
 
 
         message.textContent =
             "✅ Correct!";
 
 
-        disableOptions();
-
-
-        setTimeout(
-            nextQuestion,
-            900
-        );
-
-
-        return;
-
     }
 
 
     /*
        WRONG
-
-       Learner can try again.
     */
 
-    button.classList.add(
-        "wrong"
-    );
+    else{
+
+        button.classList.add(
+            "wrong"
+        );
 
 
-    message.style.color =
-        "#c54d4d";
+        message.style.color =
+            "#c62828";
 
 
-    message.textContent =
-        "❌ Try again!";
+        message.textContent =
+            "❌ Wrong!";
 
 
-    setTimeout(
-        () => {
+        /*
+           Show the correct answer,
+           but do not award a point.
+        */
 
-            button.classList.remove(
-                "wrong"
+        document
+            .querySelectorAll(
+                ".option"
+            )
+            .forEach(
+                optionButton => {
+
+                    if(
+                        optionButton.textContent ===
+                        currentAnswer.name
+                    ){
+
+                        optionButton.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+                }
             );
 
-            if(!answered){
+    }
 
-                message.textContent =
-                    "";
 
-            }
+    /*
+       Lock all choices.
+    */
 
-        },
-        600
+    disableOptions();
+
+
+    /*
+       Move to next question.
+    */
+
+    setTimeout(
+        nextQuestion,
+        900
     );
 
 }

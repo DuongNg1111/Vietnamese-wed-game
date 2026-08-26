@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese Weather Challenge</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese Weather Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Practice common Vietnamese weather words through pictures."
+>
+
+<meta
+    name="game-icon"
+    content="🌤️"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<style>
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    padding:70px 20px 30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef4ff,
+            #fff8e8
+        );
+
+    color:#26354a;
+
+}
+
+
+/* ==========================================================
+   SCREEN
+========================================================== */
+
+.screen{
+
+    display:none;
+
+}
+
+
+.screen.active{
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.container{
+
+    position:relative;
+
+    width:min(850px,96vw);
+
+    margin:0 auto;
+
+    background:white;
+
+    padding:65px 30px 30px;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 10px 35px rgba(60,80,110,.15);
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+.lobby-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:22px;
+
+    padding:9px 15px;
+
+    border:2px solid #dce6f3;
+
+    border-radius:10px;
+
+    background:white;
+
+    color:#4779b8;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.lobby-btn:hover{
+
+    background:#f7faff;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+#intro{
+
+    text-align:center;
+
+    padding:20px 20px 30px;
+
+}
+
+
+#intro .emoji{
+
+    font-size:65px;
+
+    margin-bottom:10px;
+
+}
+
+
+#intro h1{
+
+    margin:0 0 12px;
+
+    font-size:34px;
+
+}
+
+
+#intro p{
+
+    color:#667085;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+}
+
+
+.how-to-play{
+
+    max-width:520px;
+
+    margin:22px auto;
+
+    padding:16px;
+
+    background:#f7f9fc;
+
+    border-radius:14px;
+
+    color:#475467;
+
+    line-height:1.5;
+
+}
+
+
+.start-btn{
+
+    margin-top:10px;
+
+    padding:13px 30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#3d6ba5;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   GAME TITLE
+========================================================== */
+
+.title{
+
+    text-align:center;
+
+    margin:0 0 6px;
+
+    font-size:30px;
+
+}
+
+
+.subtitle{
+
+    text-align:center;
+
+    color:#667085;
+
+    margin:0 0 22px;
+
+    font-size:16px;
+
+}
+
+
+/* ==========================================================
+   GAME BOX
+========================================================== */
+
+.game-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:16px;
+
+    border:1px solid #e8edf3;
+
+    text-align:center;
+
+}
+
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+
+.question-count{
+
+    color:#667085;
+
+}
+
+
+.score{
+
+    color:#4779b8;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.progress-wrap{
+
+    width:100%;
+
+    height:9px;
+
+    background:#edf0f4;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#4779b8;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+   WEATHER CARD
+========================================================== */
+
+.weather-card{
+
+    background:#eef6ff;
+
+    border:2px dashed #8db2dc;
+
+    border-radius:16px;
+
+    padding:30px 20px;
+
+    margin:20px 0;
+
+    min-height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.weather-icon{
+
+    font-size:88px;
+
+    line-height:1;
+
+    margin-bottom:17px;
+
+}
+
+
+.weather-prompt{
+
+    color:#667085;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+   OPTIONS
+========================================================== */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+
+.option-btn{
+
+    min-height:60px;
+
+    padding:14px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    background:white;
+
+    color:#26354a;
+
+    border:2px solid #dce2ea;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.option-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#89a9d6;
+
+    box-shadow:
+        0 4px 12px rgba(60,80,110,.08);
+
+}
+
+
+.option-btn.correct{
+
+    background:#e8f7ed;
+
+    border-color:#3da35a;
+
+    color:#27783d;
+
+}
+
+
+.option-btn.wrong{
+
+    background:#fdecec;
+
+    border-color:#d95353;
+
+    color:#b63c3c;
+
+    animation:shake .3s;
+
+}
+
+
+.option-btn.disabled{
+
+    pointer-events:none;
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.result-message{
+
+    min-height:32px;
+
+    margin:8px 0 15px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+
+.correct-text{
+
+    color:#2d9b57;
+
+}
+
+
+.wrong-text{
+
+    color:#d95353;
+
+}
+
+
+/* ==========================================================
+   NEXT BUTTON
+========================================================== */
+
+.next-btn{
+
+    display:none;
+
+    margin:0 auto;
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#4779b8;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.next-btn:hover{
+
+    background:#3d6ba5;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   FINAL SCREEN
+========================================================== */
+
+#final{
+
+    text-align:center;
+
+    padding:30px 20px 40px;
+
+}
+
+
+.finish-icon{
+
+    font-size:62px;
+
+}
+
+
+#final h2{
+
+    font-size:34px;
+
+    margin:10px 0;
+
+    color:#4779b8;
+
+}
+
+
+.final-score{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin:22px 0;
+
+}
+
+
+.final-message{
+
+    color:#667085;
+
+    font-size:17px;
+
+    line-height:1.5;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================================
+   ANIMATION
+========================================================== */
+
+@keyframes shake{
+
+    0%,100%{
+
+        transform:translateX(0);
+
+    }
+
+    25%{
+
+        transform:translateX(-6px);
+
+    }
+
+    75%{
+
+        transform:translateX(6px);
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:
+            65px 12px 20px;
+
+    }
+
+
+    .container{
+
+        width:100%;
+
+        padding:
+            60px 17px 22px;
+
+        border-radius:20px;
+
+    }
+
+
+    .lobby-btn{
+
+        top:14px;
+
+        left:14px;
+
+        padding:8px 12px;
+
+        font-size:13px;
+
+    }
+
+
+    #intro h1{
+
+        font-size:28px;
+
+    }
+
+
+    .title{
+
+        font-size:26px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:14px;
+
+    }
+
+
+    .topbar{
+
+        font-size:13px;
+
+    }
+
+
+    .score{
+
+        font-size:16px;
+
+    }
+
+
+    .weather-card{
+
+        min-height:190px;
+
+        padding:25px 15px;
+
+    }
+
+
+    .weather-icon{
+
+        font-size:72px;
+
+    }
+
+
+    .options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .option-btn{
+
+        font-size:16px;
+
+    }
+
+
+    .next-btn{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ========================================================
+     BACK TO LOBBY
+========================================================= -->
+
+<button
+    class="lobby-btn"
+    onclick="backToLobby()"
+>
+
+    ← Back to Lobby
+
+</button>
+
+
+
+<!-- ========================================================
+     INTRO
+========================================================= -->
+
+<div
+    id="intro"
+    class="screen active"
+>
+
+
+    <div class="emoji">
+
+        🌤️
+
+    </div>
+
+
+    <h1>
+
+        Vietnamese Weather Challenge
+
+    </h1>
+
+
+    <p>
+
+        Look at the picture and choose
+        the correct Vietnamese weather word.
+
+    </p>
+
+
+    <div class="how-to-play">
+
+        💡 <b>How to play:</b><br>
+
+        Look at the weather picture →
+        choose the Vietnamese word →
+        check your answer → next question.
+
+    </div>
+
+
+    <p>
+
+        🎯 20 questions
+
+    </p>
+
+
+    <button
+        class="start-btn"
+        onclick="startGame()"
+    >
+
+        Start Game
+
+    </button>
+
+
+</div>
+
+
+
+<!-- ========================================================
+     GAME
+========================================================= -->
+
+<div
+    id="game"
+    class="screen"
+>
+
+
+    <h1 class="title">
+
+        🌤️ Vietnamese Weather Challenge
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Choose the correct Vietnamese weather word.
+
+    </p>
+
+
+
+    <div class="game-box">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+
+            <div class="question-count">
+
+                Question
+
+                <span id="questionNumber">
+
+                    1
+
+                </span>
+
+                /
+
+                <span id="totalQuestions">
+
+                    20
+
+                </span>
+
+            </div>
+
+
+            <div class="score">
+
+                ⭐ Score:
+
+                <span id="score">
+
+                    0
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-wrap">
+
+            <div
+                class="progress"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+
+        <!-- WEATHER -->
+
+        <div class="weather-card">
+
+
+            <div
+                class="weather-icon"
+                id="weatherIcon"
+            >
+
+                ☀️
+
+            </div>
+
+
+            <div class="weather-prompt">
+
+                What is the weather?
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- OPTIONS -->
+
+        <div
+            class="options"
+            id="optionsContainer"
+        ></div>
+
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            class="result-message"
+            id="resultText"
+        ></div>
+
+
+
+        <!-- NEXT -->
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+        >
+
+            Next →
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ========================================================
+     FINAL
+========================================================= -->
+
+<div
+    id="final"
+    class="screen"
+>
+
+
+    <div class="finish-icon">
+
+        🎉
+
+    </div>
+
+
+    <h2>
+
+        Game Complete!
+
+    </h2>
+
+
+    <p class="final-message">
+
+        You completed the Vietnamese Weather Challenge.
+
+    </p>
+
+
+    <div class="final-score">
+
+        <span id="finalScore">
+
+            0 / 20
+
+        </span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* ==========================================================
+   WEATHER VOCABULARY
+   ONLY WORDS FROM THE WEATHER TOPIC
+========================================================== */
+
+const weatherVocab = [
+
+    "nóng",
+    "lạnh",
+    "ấm",
+    "mát",
+    "nắng",
+    "mưa",
+    "gió",
+    "nhiều mây"
+
+];
+
+
+/* ==========================================================
+   QUESTION DATABASE
+========================================================== */
+
+const database = [
+
+    {
+        icon:"☀️",
+        word:"nắng"
+    },
+
+    {
+        icon:"🌧️",
+        word:"mưa"
+    },
+
+    {
+        icon:"💨",
+        word:"gió"
+    },
+
+    {
+        icon:"☁️",
+        word:"nhiều mây"
+    },
+
+    {
+        icon:"🥵",
+        word:"nóng"
+    },
+
+    {
+        icon:"🥶",
+        word:"lạnh"
+    },
+
+    {
+        icon:"🌤️",
+        word:"ấm"
+    },
+
+    {
+        icon:"🍃",
+        word:"mát"
+    },
+
+    {
+        icon:"🌞",
+        word:"nắng"
+    },
+
+    {
+        icon:"🌦️",
+        word:"mưa"
+    },
+
+    {
+        icon:"🌬️",
+        word:"gió"
+    },
+
+    {
+        icon:"🌥️",
+        word:"nhiều mây"
+    },
+
+    {
+        icon:"🔥",
+        word:"nóng"
+    },
+
+    {
+        icon:"❄️",
+        word:"lạnh"
+    },
+
+    {
+        icon:"🌤️",
+        word:"ấm"
+    },
+
+    {
+        icon:"🍃",
+        word:"mát"
+    },
+
+    {
+        icon:"🌞",
+        word:"nắng"
+    },
+
+    {
+        icon:"🌧️",
+        word:"mưa"
+    },
+
+    {
+        icon:"💨",
+        word:"gió"
+    },
+
+    {
+        icon:"☁️",
+        word:"nhiều mây"
+    }
+
+];
+
+
+/* ==========================================================
+   STATE
+========================================================== */
+
+let questions = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array){
+
+    const arr = [...array];
+
+
+    for(
+        let i = arr.length - 1;
+
+        i > 0;
+
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            arr[i],
+            arr[j]
+        ] = [
+
+            arr[j],
+            arr[i]
+
+        ];
+
+    }
+
+
+    return arr;
+
+}
+
+
+/* ==========================================================
+   CREATE OPTIONS
+========================================================== */
+
+function createOptions(correctWord){
+
+    const wrongWords =
+        shuffle(
+            weatherVocab.filter(
+                word =>
+                    word !== correctWord
+            )
+        ).slice(0,3);
+
+
+    return shuffle([
+
+        correctWord,
+
+        ...wrongWords
+
+    ]);
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame(){
+
+    questions =
+        shuffle(database);
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    answered = false;
+
+
+    document
+        .getElementById("intro")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("final")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("game")
+        .classList.add("active");
+
+
+    document
+        .getElementById("score")
+        .textContent = "0";
+
+
+    document
+        .getElementById("totalQuestions")
+        .textContent =
+        questions.length;
+
+
+    loadQuestion();
+
+}
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion(){
+
+    answered = false;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        currentQuestion + 1;
+
+
+    document
+        .getElementById("totalQuestions")
+        .textContent =
+        questions.length;
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+
+        (
+            currentQuestion /
+            questions.length *
+            100
+        ) + "%";
+
+
+    document
+        .getElementById("weatherIcon")
+        .textContent =
+        question.icon;
+
+
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    resultText.textContent = "";
+
+    resultText.className =
+        "result-message";
+
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
+        "none";
+
+
+    nextBtn.textContent =
+
+        currentQuestion ===
+        questions.length - 1
+
+        ? "Finish 🎉"
+
+        : "Next →";
+
+
+    const container =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const options =
+        createOptions(
+            question.word
+        );
+
+
+    options.forEach(option => {
+
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.className =
+            "option-btn";
+
+
+        button.textContent =
+            option;
+
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                handleAnswer(
+                    button,
+                    option
+                );
+
+            }
+        );
+
+
+        container.appendChild(
+            button
+        );
+
+    });
+
+}
+
+
+/* ==========================================================
+   HANDLE ANSWER
+
+   IMPORTANT:
+   Once the user chooses an answer,
+   the answer is checked immediately.
+   The user cannot try another answer.
+========================================================== */
+
+function handleAnswer(
+    button,
+    selected
+){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    const allButtons =
+        document.querySelectorAll(
+            ".option-btn"
+        );
+
+
+    /* Disable every answer */
+
+    allButtons.forEach(btn => {
+
+        btn.classList.add(
+            "disabled"
+        );
+
+    });
+
+
+    /* ======================================================
+       CORRECT
+    ====================================================== */
+
+    if(
+        selected ===
+        question.word
+    ){
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        document
+            .getElementById("score")
+            .textContent =
+            score;
+
+
+        const resultText =
+            document.getElementById(
+                "resultText"
+            );
+
+
+        resultText.className =
+            "result-message correct-text";
+
+
+        resultText.textContent =
+            "🎉 Correct!";
+
+
+    }
+
+
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        const resultText =
+            document.getElementById(
+                "resultText"
+            );
+
+
+        resultText.className =
+            "result-message wrong-text";
+
+
+        resultText.textContent =
+
+            `❌ Incorrect. The answer is "${question.word}".`;
+
+    }
+
+
+    /* Show next */
+
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "inline-block";
+
+}
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+
+    if(
+        currentQuestion <
+        questions.length
+    ){
+
+        loadQuestion();
+
+    }
+
+    else{
+
+        finishGame();
+
+    }
+
+}
+
+
+/* ==========================================================
+   FINISH GAME
+========================================================== */
+
+function finishGame(){
+
+    document
+        .getElementById("game")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("final")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
+
+
+    document
+        .getElementById("finalScore")
+        .textContent =
+
+        score +
+        " / " +
+        questions.length;
+
+
+    const percent =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    let message;
+
+
+    if(percent === 100){
+
+        message =
+            "🏆 Perfect! You know these Vietnamese weather words very well.";
+
+    }
+
+    else if(percent >= 85){
+
+        message =
+            "🌟 Excellent! Your Vietnamese weather vocabulary is strong.";
+
+    }
+
+    else if(percent >= 70){
+
+        message =
+            "🎉 Good job! Keep practicing these weather words.";
+
+    }
+
+    else{
+
+        message =
+            "📚 Keep practicing the Vietnamese weather vocabulary.";
+
+    }
+
+
+    document
+        .getElementById("finalMessage")
+        .textContent =
+        message;
+
+}
+
+
+/* ==========================================================
+   RESTART
+========================================================== */
+
+function restartGame(){
+
+    document
+        .getElementById("final")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("intro")
+        .classList.add(
+            "active"
+        );
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    answered = false;
+
+}
+
+
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        "href=../../category.html?category=Describe things";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -8,26 +8,13 @@
 
 <title>Find The Same Meaning</title>
 
-<meta
-    name="game-title"
-    content="Find The Same Meaning"
->
-
+<meta name="game-title" content="Find The Same Meaning">
 <meta
     name="game-description"
     content="Match English words with Vietnamese words that have the same meaning."
 >
-
-<meta
-    name="game-icon"
-    content="🔎"
->
-
-<meta
-    name="game-explanation"
-    content="true"
->
-
+<meta name="game-icon" content="🔎">
+<meta name="game-explanation" content="true">
 
 <style>
 
@@ -40,9 +27,7 @@
 }
 
 body{
-
     margin:0;
-
     padding:20px;
 
     font-family:
@@ -56,7 +41,6 @@ body{
     min-height:100vh;
 
     color:#222;
-
 }
 
 
@@ -65,45 +49,31 @@ body{
 ========================================================= */
 
 .back-btn-container{
-
     width:min(1000px,95vw);
-
     margin:0 auto 15px;
-
 }
 
-
 .back-btn{
-
     display:inline-block;
 
     padding:10px 18px;
 
     background:white;
-
     color:#555;
 
     border:2px solid #ddd;
-
     border-radius:10px;
 
     text-decoration:none;
-
     font-weight:bold;
 
     transition:.2s;
-
 }
-
 
 .back-btn:hover{
-
     background:#f0f0f0;
-
     transform:translateY(-2px);
-
 }
-
 
 
 /* =========================================================
@@ -111,7 +81,6 @@ body{
 ========================================================= */
 
 .game{
-
     width:min(1000px,95vw);
 
     margin:0 auto;
@@ -126,9 +95,7 @@ body{
         0 10px 35px rgba(0,0,0,.10);
 
     text-align:center;
-
 }
-
 
 
 /* =========================================================
@@ -136,18 +103,14 @@ body{
 ========================================================= */
 
 h1{
-
     margin:0 0 10px;
 
     font-size:32px;
 
     color:#333;
-
 }
 
-
 .instruction{
-
     margin:0 auto 25px;
 
     max-width:720px;
@@ -157,9 +120,7 @@ h1{
     font-size:17px;
 
     line-height:1.5;
-
 }
-
 
 
 /* =========================================================
@@ -167,7 +128,6 @@ h1{
 ========================================================= */
 
 .topbar{
-
     display:flex;
 
     justify-content:space-between;
@@ -181,31 +141,22 @@ h1{
     font-weight:bold;
 
     color:#555;
-
 }
-
 
 .round-text{
-
     color:#666;
-
 }
-
 
 .score-text{
-
     font-size:18px;
-
 }
-
 
 
 /* =========================================================
-   SECTION LABELS
+   SECTION LABEL
 ========================================================= */
 
 .section-title{
-
     margin:15px 0 10px;
 
     font-size:16px;
@@ -217,9 +168,7 @@ h1{
     text-transform:uppercase;
 
     letter-spacing:.5px;
-
 }
-
 
 
 /* =========================================================
@@ -227,17 +176,14 @@ h1{
 ========================================================= */
 
 .targets{
-
     display:grid;
 
     gap:15px;
-
 }
-
 
 .target{
 
-    min-height:90px;
+    min-height:115px;
 
     border-radius:16px;
 
@@ -247,31 +193,36 @@ h1{
 
     display:flex;
 
+    flex-direction:column;
+
     align-items:center;
 
     justify-content:center;
 
-    padding:15px;
+    padding:12px;
 
-    font-size:23px;
+    font-size:21px;
 
     font-weight:bold;
 
     transition:.2s;
 
     user-select:none;
-
 }
-
 
 .target.over{
 
     transform:scale(1.03);
 
     background:#dcecff;
-
 }
 
+.target.has-word{
+
+    border-style:solid;
+
+    border-color:#6b8fc4;
+}
 
 .target.correct{
 
@@ -282,33 +233,53 @@ h1{
     border-color:#4caf70;
 
     color:#3b7650;
-
 }
 
+.target.incorrect{
 
-.target.wrong{
+    background:#ffe2e2;
 
-    animation:shake .3s;
+    border-style:solid;
 
+    border-color:#d65b5b;
+
+    color:#a33d3d;
 }
 
+.target-label{
 
-@keyframes shake{
-
-    25%{
-
-        transform:translateX(-7px);
-
-    }
-
-    75%{
-
-        transform:translateX(7px);
-
-    }
-
+    margin-bottom:8px;
 }
 
+.target-word{
+
+    min-height:30px;
+
+    padding:6px 12px;
+
+    border-radius:9px;
+
+    background:#fff3d6;
+
+    border:2px solid #d8ad50;
+
+    color:#444;
+
+    font-size:16px;
+
+    font-weight:bold;
+}
+
+.target-word.empty{
+
+    background:transparent;
+
+    border:2px dashed #b8c7dc;
+
+    color:#9aa8bb;
+
+    font-weight:normal;
+}
 
 
 /* =========================================================
@@ -322,9 +293,7 @@ h1{
     gap:15px;
 
     margin-top:20px;
-
 }
-
 
 .word{
 
@@ -344,7 +313,7 @@ h1{
 
     padding:15px;
 
-    font-size:21px;
+    font-size:20px;
 
     font-weight:bold;
 
@@ -355,34 +324,44 @@ h1{
     touch-action:none;
 
     transition:.2s;
-
 }
-
 
 .word:hover{
 
     transform:translateY(-3px);
 
     background:#ffe8b5;
-
 }
-
 
 .word.dragging{
 
     opacity:.45;
-
 }
 
+.word.placed{
 
-.word.used{
+    background:#e8eef7;
 
-    visibility:hidden;
-
-    pointer-events:none;
-
+    border-color:#9aaec7;
 }
 
+.word.checked-correct{
+
+    background:#dff5e5;
+
+    border-color:#4caf70;
+
+    color:#3b7650;
+}
+
+.word.checked-incorrect{
+
+    background:#ffe2e2;
+
+    border-color:#d65b5b;
+
+    color:#a33d3d;
+}
 
 
 /* =========================================================
@@ -398,9 +377,7 @@ h1{
     font-size:19px;
 
     font-weight:bold;
-
 }
-
 
 
 /* =========================================================
@@ -428,36 +405,28 @@ h1{
     line-height:1.5;
 
     text-align:left;
-
 }
-
 
 .explanation strong{
 
     color:#4779b8;
-
 }
-
 
 .explanation .related{
 
     display:block;
 
-    margin-top:7px;
+    margin-top:5px;
 
     font-size:14px;
 
     color:#68788a;
-
 }
-
 
 .hidden{
 
     display:none !important;
-
 }
-
 
 
 /* =========================================================
@@ -483,18 +452,14 @@ button{
     color:white;
 
     transition:.2s;
-
 }
-
 
 button:hover{
 
     background:#3d6ba5;
 
     transform:translateY(-2px);
-
 }
-
 
 button:disabled{
 
@@ -503,9 +468,7 @@ button:disabled{
     cursor:default;
 
     transform:none;
-
 }
-
 
 
 /* =========================================================
@@ -517,9 +480,7 @@ button:disabled{
     display:none;
 
     padding:20px 10px;
-
 }
-
 
 .final h2{
 
@@ -528,27 +489,21 @@ button:disabled{
     font-size:32px;
 
     color:#4779b8;
-
 }
-
 
 .final-score{
 
     font-size:26px;
 
     margin:15px 0;
-
 }
-
 
 .final-message{
 
     font-size:21px;
 
     margin:15px 0 25px;
-
 }
-
 
 
 /* =========================================================
@@ -560,9 +515,7 @@ button:disabled{
     body{
 
         padding:15px;
-
     }
-
 
     .game{
 
@@ -571,64 +524,47 @@ button:disabled{
         padding:25px 18px;
 
         border-radius:20px;
-
     }
-
 
     h1{
 
         font-size:27px;
-
     }
-
 
     .instruction{
 
         font-size:16px;
-
     }
-
 
     .topbar{
 
         font-size:15px;
-
     }
-
 
     .score-text{
 
         font-size:16px;
-
     }
-
 
     .target{
 
-        min-height:75px;
+        min-height:95px;
 
-        font-size:20px;
-
+        font-size:18px;
     }
-
 
     .word{
 
         min-height:70px;
 
         font-size:18px;
-
     }
-
 
     .explanation{
 
         font-size:15px;
-
     }
-
 }
-
 
 
 /* =========================================================
@@ -644,36 +580,27 @@ button:disabled{
         gap:7px;
 
         margin-bottom:20px;
-
     }
-
 
     .target{
 
-        font-size:18px;
-
+        font-size:17px;
     }
-
 
     .word{
 
-        font-size:17px;
-
+        font-size:16px;
     }
-
 
     button{
 
         width:100%;
-
     }
-
 }
 
 </style>
 
 </head>
-
 
 
 <body>
@@ -686,14 +613,13 @@ button:disabled{
 <div class="back-btn-container">
 
     <a
-        href="../../index.html"
+        href="../../category.html?category=Describe things"
         class="back-btn"
     >
         ⬅ Back to Lobby
     </a>
 
 </div>
-
 
 
 <!-- =========================================================
@@ -719,23 +645,22 @@ button:disabled{
 
             Drag each English word to the Vietnamese
             word with the same meaning.
+            Place all words first, then check your answers.
 
         </p>
 
 
-
-        <!-- TOP BAR -->
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
 
         <div class="topbar">
-
 
             <div
                 class="round-text"
                 id="roundText"
             >
-
-                Round 1 / 15
-
+                Round 1 / 20
             </div>
 
 
@@ -743,17 +668,15 @@ button:disabled{
                 class="score-text"
                 id="scoreText"
             >
-
                 Score: 0
-
             </div>
-
 
         </div>
 
 
-
-        <!-- VIETNAMESE -->
+        <!-- =================================================
+             VIETNAMESE
+        ================================================== -->
 
         <div class="section-title">
 
@@ -765,13 +688,12 @@ button:disabled{
         <div
             class="targets"
             id="targets"
-        >
-
-        </div>
+        ></div>
 
 
-
-        <!-- ENGLISH -->
+        <!-- =================================================
+             ENGLISH
+        ================================================== -->
 
         <div class="section-title">
 
@@ -783,48 +705,54 @@ button:disabled{
         <div
             class="words"
             id="words"
-        >
-
-        </div>
+        ></div>
 
 
-
-        <!-- MESSAGE -->
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
 
         <div
             class="message"
             id="message"
-        >
-
-        </div>
+        ></div>
 
 
-
-        <!-- EXPLANATION -->
+        <!-- =================================================
+             EXPLANATION
+        ================================================== -->
 
         <div
             class="explanation hidden"
             id="explanation"
+        ></div>
+
+
+        <!-- =================================================
+             CHECK
+        ================================================== -->
+
+        <button
+            id="checkBtn"
+            disabled
         >
+            Check Answers ✓
+        </button>
 
-        </div>
 
-
-
-        <!-- NEXT BUTTON -->
+        <!-- =================================================
+             NEXT
+        ================================================== -->
 
         <button
             id="nextBtn"
-            disabled
+            class="hidden"
         >
-
             Next Round →
-
         </button>
 
 
     </div>
-
 
 
     <!-- =====================================================
@@ -836,7 +764,6 @@ button:disabled{
         id="finalScreen"
     >
 
-
         <h2>
 
             🎉 Game Finished!
@@ -847,17 +774,13 @@ button:disabled{
         <div
             class="final-score"
             id="finalScore"
-        >
-
-        </div>
+        ></div>
 
 
         <div
             class="final-message"
             id="finalMessage"
-        >
-
-        </div>
+        ></div>
 
 
         <button
@@ -868,12 +791,9 @@ button:disabled{
 
         </button>
 
-
     </div>
 
-
 </div>
-
 
 
 <script>
@@ -881,392 +801,179 @@ button:disabled{
 
 /* =========================================================
    GAME DATA
+   Describe Things — Size
 ========================================================= */
 
 const rounds = [
 
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "NHANH"
-        ],
-
-        en:[
-            "big",
-            "small",
-            "fast"
-        ],
-
-        map:{
-            big:"TO",
-            small:"NHỎ",
-            fast:"NHANH"
-        }
+        pairs:[
+            ["lớn","big"],
+            ["nhỏ","small"],
+            ["dài","long"]
+        ]
     },
 
-
     {
-        vi:[
-            "CHẬM",
-            "XA",
-            "GẦN"
-        ],
-
-        en:[
-            "slow",
-            "far",
-            "near"
-        ],
-
-        map:{
-            slow:"CHẬM",
-            far:"XA",
-            near:"GẦN"
-        }
+        pairs:[
+            ["cao","tall"],
+            ["thấp","short"],
+            ["rộng","wide"]
+        ]
     },
 
-
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "RẺ",
-            "MẮC"
-        ],
-
-        en:[
-            "large",
-            "tiny",
-            "cheap",
-            "expensive"
-        ],
-
-        map:{
-            large:"TO",
-            tiny:"NHỎ",
-            cheap:"RẺ",
-            expensive:"MẮC"
-        }
+        pairs:[
+            ["chật","tight"],
+            ["nặng","heavy"],
+            ["nhẹ","light"]
+        ]
     },
 
-
     {
-        vi:[
-            "NHANH",
-            "CHẬM",
-            "XA",
-            "GẦN"
-        ],
-
-        en:[
-            "quick",
-            "slow",
-            "distant",
-            "close"
-        ],
-
-        map:{
-            quick:"NHANH",
-            slow:"CHẬM",
-            distant:"XA",
-            close:"GẦN"
-        }
+        pairs:[
+            ["lớn","large"],
+            ["nhỏ","tiny"],
+            ["cao","high"]
+        ]
     },
 
-
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "NHANH",
-            "CHẬM"
-        ],
-
-        en:[
-            "huge",
-            "little",
-            "rapid",
-            "slow"
-        ],
-
-        map:{
-            huge:"TO",
-            little:"NHỎ",
-            rapid:"NHANH",
-            slow:"CHẬM"
-        }
+        pairs:[
+            ["dài","long"],
+            ["ngắn","short"],
+            ["rộng","spacious"]
+        ]
     },
 
-
     {
-        vi:[
-            "XA",
-            "GẦN",
-            "RẺ",
-            "MẮC"
-        ],
-
-        en:[
-            "far",
-            "nearby",
-            "cheap",
-            "costly"
-        ],
-
-        map:{
-            far:"XA",
-            nearby:"GẦN",
-            cheap:"RẺ",
-            costly:"MẮC"
-        }
+        pairs:[
+            ["nặng","heavy"],
+            ["nhẹ","light"],
+            ["chật","cramped"]
+        ]
     },
 
-
     {
-        vi:[
-            "CAO",
-            "THẤP",
-            "ĐẸP",
-            "XẤU"
-        ],
-
-        en:[
-            "tall",
-            "low",
-            "beautiful",
-            "ugly"
-        ],
-
-        map:{
-            tall:"CAO",
-            low:"THẤP",
-            beautiful:"ĐẸP",
-            ugly:"XẤU"
-        }
+        pairs:[
+            ["lớn","big"],
+            ["bự","huge"],
+            ["nhỏ","small"]
+        ]
     },
 
-
     {
-        vi:[
-            "TO",
-            "CAO",
-            "NHỎ",
-            "THẤP"
-        ],
-
-        en:[
-            "huge",
-            "high",
-            "tiny",
-            "low"
-        ],
-
-        map:{
-            huge:"TO",
-            high:"CAO",
-            tiny:"NHỎ",
-            low:"THẤP"
-        }
+        pairs:[
+            ["cao","tall"],
+            ["thấp","low"],
+            ["dài","long"]
+        ]
     },
 
-
     {
-        vi:[
-            "ĐẸP",
-            "XẤU",
-            "NHANH",
-            "CHẬM"
-        ],
-
-        en:[
-            "pretty",
-            "ugly",
-            "quick",
-            "slow"
-        ],
-
-        map:{
-            pretty:"ĐẸP",
-            ugly:"XẤU",
-            quick:"NHANH",
-            slow:"CHẬM"
-        }
+        pairs:[
+            ["rộng","wide"],
+            ["chật","tight"],
+            ["nhẹ","light"]
+        ]
     },
 
-
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "GẦN",
-            "NHANH",
-            "MẮC"
-        ],
-
-        en:[
-            "giant",
-            "little",
-            "near",
-            "rapid",
-            "expensive"
-        ],
-
-        map:{
-            giant:"TO",
-            little:"NHỎ",
-            near:"GẦN",
-            rapid:"NHANH",
-            expensive:"MẮC"
-        }
+        pairs:[
+            ["bự","big"],
+            ["nặng","heavy"],
+            ["ngắn","short"]
+        ]
     },
 
-
     {
-        vi:[
-            "CAO",
-            "THẤP",
-            "XA",
-            "GẦN",
-            "RẺ"
-        ],
-
-        en:[
-            "tall",
-            "short",
-            "distant",
-            "close",
-            "cheap"
-        ],
-
-        map:{
-            tall:"CAO",
-            short:"THẤP",
-            distant:"XA",
-            close:"GẦN",
-            cheap:"RẺ"
-        }
+        pairs:[
+            ["lớn","large"],
+            ["cao","high"],
+            ["rộng","spacious"]
+        ]
     },
 
-
     {
-        vi:[
-            "ĐẸP",
-            "XẤU",
-            "TO",
-            "NHỎ",
-            "MẮC"
-        ],
-
-        en:[
-            "lovely",
-            "unattractive",
-            "large",
-            "tiny",
-            "pricey"
-        ],
-
-        map:{
-            lovely:"ĐẸP",
-            unattractive:"XẤU",
-            large:"TO",
-            tiny:"NHỎ",
-            pricey:"MẮC"
-        }
+        pairs:[
+            ["nhỏ","tiny"],
+            ["thấp","short"],
+            ["nhẹ","light"]
+        ]
     },
 
-
     {
-        vi:[
-            "XA",
-            "GẦN",
-            "TO",
-            "CAO",
-            "THẤP",
-            "RẺ"
-        ],
-
-        en:[
-            "far",
-            "nearby",
-            "big",
-            "high",
-            "low",
-            "cheap"
-        ],
-
-        map:{
-            far:"XA",
-            nearby:"GẦN",
-            big:"TO",
-            high:"CAO",
-            low:"THẤP",
-            cheap:"RẺ"
-        }
+        pairs:[
+            ["dài","long"],
+            ["ngắn","short"],
+            ["nặng","heavy"]
+        ]
     },
 
-
     {
-        vi:[
-            "NHỎ",
-            "CHẬM",
-            "XẤU",
-            "ĐẸP",
-            "TO",
-            "MẮC"
-        ],
-
-        en:[
-            "small",
-            "slow",
-            "ugly",
-            "beautiful",
-            "enormous",
-            "costly"
-        ],
-
-        map:{
-            small:"NHỎ",
-            slow:"CHẬM",
-            ugly:"XẤU",
-            beautiful:"ĐẸP",
-            enormous:"TO",
-            costly:"MẮC"
-        }
+        pairs:[
+            ["bự","huge"],
+            ["chật","cramped"],
+            ["rộng","wide"]
+        ]
     },
 
+    {
+        pairs:[
+            ["lớn","big"],
+            ["nhỏ","small"],
+            ["nặng","heavy"],
+            ["nhẹ","light"]
+        ]
+    },
 
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "NHANH",
-            "CHẬM",
-            "CAO",
-            "THẤP"
-        ],
+        pairs:[
+            ["cao","tall"],
+            ["thấp","low"],
+            ["dài","long"],
+            ["ngắn","short"]
+        ]
+    },
 
-        en:[
-            "massive",
-            "tiny",
-            "fast",
-            "slow",
-            "tall",
-            "short"
-        ],
+    {
+        pairs:[
+            ["rộng","wide"],
+            ["chật","tight"],
+            ["lớn","large"],
+            ["nhỏ","tiny"]
+        ]
+    },
 
-        map:{
-            massive:"TO",
-            tiny:"NHỎ",
-            fast:"NHANH",
-            slow:"CHẬM",
-            tall:"CAO",
-            short:"THẤP"
-        }
+    {
+        pairs:[
+            ["bự","huge"],
+            ["cao","high"],
+            ["nặng","heavy"],
+            ["nhẹ","light"]
+        ]
+    },
+
+    {
+        pairs:[
+            ["dài","long"],
+            ["rộng","spacious"],
+            ["chật","cramped"],
+            ["thấp","low"]
+        ]
+    },
+
+    {
+        pairs:[
+            ["lớn","big"],
+            ["bự","huge"],
+            ["nhỏ","tiny"],
+            ["cao","tall"],
+            ["thấp","short"]
+        ]
     }
 
 ];
-
 
 
 /* =========================================================
@@ -1275,88 +982,55 @@ const rounds = [
 
 const explanations = {
 
-    "TO":{
+    "lớn":{
         meaning:
-            "TO means big or large in Vietnamese.",
+            "LỚN means big or large in Vietnamese.",
 
         related:
-            "big, large, huge, giant, enormous, massive"
+            "big, large"
     },
 
-
-    "NHỎ":{
+    "nhỏ":{
         meaning:
             "NHỎ means small or little in Vietnamese.",
 
         related:
-            "small, tiny, little"
+            "small, tiny"
     },
 
-
-    "NHANH":{
+    "bự":{
         meaning:
-            "NHANH means fast or quick in Vietnamese.",
+            "BỰ means big or huge. It is commonly used in casual Vietnamese.",
 
         related:
-            "fast, quick, rapid"
+            "big, huge"
     },
 
-
-    "CHẬM":{
+    "dài":{
         meaning:
-            "CHẬM means slow in Vietnamese.",
+            "DÀI means long in Vietnamese.",
 
         related:
-            "slow"
+            "long"
     },
 
-
-    "XA":{
+    "ngắn":{
         meaning:
-            "XA means far or distant in Vietnamese.",
+            "NGẮN means short when talking about length.",
 
         related:
-            "far, distant"
+            "short"
     },
 
-
-    "GẦN":{
+    "cao":{
         meaning:
-            "GẦN means near, nearby, or close in Vietnamese.",
-
-        related:
-            "near, nearby, close"
-    },
-
-
-    "RẺ":{
-        meaning:
-            "RẺ means cheap or inexpensive in Vietnamese.",
-
-        related:
-            "cheap"
-    },
-
-
-    "MẮC":{
-        meaning:
-            "MẮC means expensive or costly in Vietnamese.",
-
-        related:
-            "expensive, costly, pricey"
-    },
-
-
-    "CAO":{
-        meaning:
-            "CAO means tall when describing a person, or high when describing a level, place, or object.",
+            "CAO means tall when describing a person, or high when describing a level or position.",
 
         related:
             "tall, high"
     },
 
-
-    "THẤP":{
+    "thấp":{
         meaning:
             "THẤP means short when describing height, or low when describing a level or position.",
 
@@ -1364,26 +1038,39 @@ const explanations = {
             "short, low"
     },
 
-
-    "ĐẸP":{
+    "rộng":{
         meaning:
-            "ĐẸP means beautiful or pretty in Vietnamese.",
+            "RỘNG means wide, spacious, or having a lot of space.",
 
         related:
-            "beautiful, pretty, lovely"
+            "wide, spacious"
     },
 
-
-    "XẤU":{
+    "chật":{
         meaning:
-            "XẤU means ugly or unattractive in Vietnamese.",
+            "CHẬT means tight or cramped when there is not enough space.",
 
         related:
-            "ugly, unattractive"
+            "tight, cramped"
+    },
+
+    "nặng":{
+        meaning:
+            "NẶNG means heavy in Vietnamese.",
+
+        related:
+            "heavy"
+    },
+
+    "nhẹ":{
+        meaning:
+            "NHẸ means light when something does not weigh much.",
+
+        related:
+            "light"
     }
 
 };
-
 
 
 /* =========================================================
@@ -1394,10 +1081,11 @@ let current = 0;
 
 let score = 0;
 
-let matched = 0;
-
 let draggedWord = null;
 
+let placements = {};
+
+let checked = false;
 
 
 /* =========================================================
@@ -1405,46 +1093,28 @@ let draggedWord = null;
 ========================================================= */
 
 const targetsEl =
-    document.getElementById(
-        "targets"
-    );
-
+    document.getElementById("targets");
 
 const wordsEl =
-    document.getElementById(
-        "words"
-    );
-
+    document.getElementById("words");
 
 const messageEl =
-    document.getElementById(
-        "message"
-    );
-
+    document.getElementById("message");
 
 const explanationEl =
-    document.getElementById(
-        "explanation"
-    );
+    document.getElementById("explanation");
 
+const checkBtn =
+    document.getElementById("checkBtn");
 
 const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
-
+    document.getElementById("nextBtn");
 
 const gameScreen =
-    document.getElementById(
-        "gameScreen"
-    );
-
+    document.getElementById("gameScreen");
 
 const finalScreen =
-    document.getElementById(
-        "finalScreen"
-    );
-
+    document.getElementById("finalScreen");
 
 
 /* =========================================================
@@ -1453,20 +1123,12 @@ const finalScreen =
 
 function shuffle(array){
 
-    const newArray = [
-        ...array
-    ];
-
+    const newArray = [...array];
 
     for(
-
-        let i =
-            newArray.length - 1;
-
+        let i = newArray.length - 1;
         i > 0;
-
         i--
-
     ){
 
         const j =
@@ -1475,25 +1137,18 @@ function shuffle(array){
                 (i + 1)
             );
 
-
         [
             newArray[i],
             newArray[j]
-
         ] = [
-
             newArray[j],
             newArray[i]
-
         ];
 
     }
 
-
     return newArray;
-
 }
-
 
 
 /* =========================================================
@@ -1502,9 +1157,11 @@ function shuffle(array){
 
 function loadRound(){
 
-    matched = 0;
+    placements = {};
 
     draggedWord = null;
+
+    checked = false;
 
 
     messageEl.textContent = "";
@@ -1512,23 +1169,35 @@ function loadRound(){
     messageEl.style.color = "";
 
 
-    nextBtn.disabled = true;
-
-
     explanationEl.classList.add(
         "hidden"
     );
 
-
     explanationEl.innerHTML = "";
+
+
+    checkBtn.disabled = true;
+
+    checkBtn.classList.remove(
+        "hidden"
+    );
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
 
 
     const round =
         rounds[current];
 
 
+    const pairs =
+        round.pairs;
+
+
     const count =
-        round.vi.length;
+        pairs.length;
 
 
     document.getElementById(
@@ -1556,62 +1225,86 @@ function loadRound(){
     wordsEl.innerHTML = "";
 
 
-
     /* =====================================================
-       VIETNAMESE TARGETS
-    ===================================================== */
+       CREATE VIETNAMESE TARGETS
+    ====================================================== */
 
-    shuffle(
-        round.vi
-    ).forEach(word => {
+    shuffle(pairs).forEach(pair => {
+
+        const vietnamese =
+            pair[0];
 
 
         const box =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         box.className =
             "target";
 
 
-        box.textContent =
-            word;
-
-
         box.dataset.vi =
-            word;
+            vietnamese;
 
 
+        const label =
+            document.createElement("div");
 
-        /* DRAG OVER */
+
+        label.className =
+            "target-label";
+
+
+        label.textContent =
+            vietnamese;
+
+
+        const placed =
+            document.createElement("div");
+
+
+        placed.className =
+            "target-word empty";
+
+
+        placed.textContent =
+            "Drop here";
+
+
+        box.appendChild(label);
+
+        box.appendChild(placed);
+
+
+        /* =========================================
+           DRAG OVER
+        ========================================= */
 
         box.addEventListener(
             "dragover",
             event => {
 
+                if(checked){
+
+                    return;
+
+                }
+
+
                 event.preventDefault();
 
 
-                if(
-                    !box.classList.contains(
-                        "correct"
-                    )
-                ){
-
-                    box.classList.add(
-                        "over"
-                    );
-
-                }
+                box.classList.add(
+                    "over"
+                );
 
             }
         );
 
 
-
-        /* DRAG LEAVE */
+        /* =========================================
+           DRAG LEAVE
+        ========================================= */
 
         box.addEventListener(
             "dragleave",
@@ -1625,8 +1318,9 @@ function loadRound(){
         );
 
 
-
-        /* DROP */
+        /* =========================================
+           DROP
+        ========================================= */
 
         box.addEventListener(
             "drop",
@@ -1634,17 +1328,14 @@ function loadRound(){
 
                 event.preventDefault();
 
-
                 box.classList.remove(
                     "over"
                 );
 
 
                 if(
-                    !draggedWord ||
-                    box.classList.contains(
-                        "correct"
-                    )
+                    checked ||
+                    !draggedWord
                 ){
 
                     return;
@@ -1656,100 +1347,116 @@ function loadRound(){
                     draggedWord.dataset.word;
 
 
-                /* =========================
-                   CORRECT
-                ========================= */
+                /* =====================================
+                   REMOVE WORD FROM PREVIOUS TARGET
+                ===================================== */
+
+                Object.keys(placements).forEach(
+                    vi => {
+
+                        if(
+                            placements[vi] ===
+                            english
+                        ){
+
+                            delete placements[vi];
+
+
+                            const oldTarget =
+                                document.querySelector(
+                                    `.target[data-vi="${CSS.escape(vi)}"]`
+                                );
+
+
+                            if(oldTarget){
+
+                                const oldPlaced =
+                                    oldTarget.querySelector(
+                                        ".target-word"
+                                    );
+
+
+                                oldPlaced.textContent =
+                                    "Drop here";
+
+
+                                oldPlaced.classList.add(
+                                    "empty"
+                                );
+
+
+                                oldTarget.classList.remove(
+                                    "has-word"
+                                );
+
+                            }
+
+                        }
+
+                    }
+                );
+
+
+                /* =====================================
+                   REMOVE EXISTING WORD FROM THIS TARGET
+                ===================================== */
 
                 if(
-                    round.map[english] ===
-                    box.dataset.vi
+                    placements[vietnamese]
                 ){
 
-                    box.classList.add(
-                        "correct"
-                    );
+                    const oldEnglish =
+                        placements[vietnamese];
 
 
-                    draggedWord.classList.add(
-                        "used"
-                    );
+                    const oldCard =
+                        document.querySelector(
+                            `.word[data-word="${CSS.escape(oldEnglish)}"]`
+                        );
 
 
-                    matched++;
+                    if(oldCard){
 
-                    score++;
-
-
-                    messageEl.textContent =
-                        "✅ Correct!";
-
-
-                    messageEl.style.color =
-                        "#3b8b58";
-
-
-                    document.getElementById(
-                        "scoreText"
-                    ).textContent =
-                        `Score: ${score}`;
-
-
-                    showExplanation(
-                        english,
-                        box.dataset.vi
-                    );
-
-
-                    if(
-                        matched === count
-                    ){
-
-                        messageEl.textContent =
-                            "🎉 Perfect!";
-
-
-                        nextBtn.disabled =
-                            false;
+                        oldCard.classList.remove(
+                            "placed"
+                        );
 
                     }
 
                 }
 
 
-                /* =========================
-                   WRONG
-                ========================= */
+                /* =====================================
+                   SAVE PLACEMENT
+                ===================================== */
 
-                else{
-
-                    box.classList.add(
-                        "wrong"
-                    );
+                placements[vietnamese] =
+                    english;
 
 
-                    setTimeout(
-                        () => {
-
-                            box.classList.remove(
-                                "wrong"
-                            );
-
-                        },
-                        300
-                    );
+                placed.textContent =
+                    english;
 
 
-                    messageEl.textContent =
-                        "❌ Try again!";
+                placed.classList.remove(
+                    "empty"
+                );
 
 
-                    messageEl.style.color =
-                        "#c54d4d";
+                box.classList.add(
+                    "has-word"
+                );
 
-                }
+
+                draggedWord.classList.add(
+                    "placed"
+                );
 
 
                 draggedWord = null;
+
+
+                updateCheckButton();
 
             }
         );
@@ -1762,20 +1469,18 @@ function loadRound(){
     });
 
 
-
     /* =====================================================
-       ENGLISH WORDS
-    ===================================================== */
+       CREATE ENGLISH WORDS
+    ====================================================== */
 
-    shuffle(
-        round.en
-    ).forEach(word => {
+    shuffle(pairs).forEach(pair => {
+
+        const english =
+            pair[1];
 
 
         const card =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         card.className =
@@ -1787,19 +1492,27 @@ function loadRound(){
 
 
         card.dataset.word =
-            word;
+            english;
 
 
         card.textContent =
-            word;
+            english;
 
 
-
-        /* DRAG START */
+        /* =========================================
+           DRAG START
+        ========================================= */
 
         card.addEventListener(
             "dragstart",
             () => {
+
+                if(checked){
+
+                    return;
+
+                }
+
 
                 draggedWord =
                     card;
@@ -1813,8 +1526,9 @@ function loadRound(){
         );
 
 
-
-        /* DRAG END */
+        /* =========================================
+           DRAG END
+        ========================================= */
 
         card.addEventListener(
             "dragend",
@@ -1828,7 +1542,6 @@ function loadRound(){
         );
 
 
-
         wordsEl.appendChild(
             card
         );
@@ -1838,53 +1551,288 @@ function loadRound(){
 }
 
 
-
 /* =========================================================
-   SHOW EXPLANATION
+   UPDATE CHECK BUTTON
 ========================================================= */
 
-function showExplanation(
-    english,
-    vietnamese
-){
+function updateCheckButton(){
 
-    const data =
-        explanations[
-            vietnamese
-        ];
+    const total =
+        rounds[current].pairs.length;
 
 
-    if(!data){
+    const placed =
+        Object.keys(placements).length;
+
+
+    checkBtn.disabled =
+        placed !== total;
+
+}
+
+
+/* =========================================================
+   CHECK ANSWERS
+========================================================= */
+
+function checkAnswers(){
+
+    if(checked){
 
         return;
 
     }
 
 
+    const round =
+        rounds[current];
+
+
+    const total =
+        round.pairs.length;
+
+
+    let correctCount =
+        0;
+
+
+    /* =====================================================
+       CHECK EVERY PAIR
+    ====================================================== */
+
+    round.pairs.forEach(pair => {
+
+        const vietnamese =
+            pair[0];
+
+
+        const correctEnglish =
+            pair[1];
+
+
+        const selectedEnglish =
+            placements[vietnamese];
+
+
+        const target =
+            document.querySelector(
+                `.target[data-vi="${CSS.escape(vietnamese)}"]`
+            );
+
+
+        const card =
+            document.querySelector(
+                `.word[data-word="${CSS.escape(selectedEnglish)}"]`
+            );
+
+
+        if(
+            selectedEnglish ===
+            correctEnglish
+        ){
+
+            correctCount++;
+
+
+            target.classList.add(
+                "correct"
+            );
+
+
+            if(card){
+
+                card.classList.add(
+                    "checked-correct"
+                );
+
+            }
+
+        }
+
+        else{
+
+            target.classList.add(
+                "incorrect"
+            );
+
+
+            if(card){
+
+                card.classList.add(
+                    "checked-incorrect"
+                );
+
+            }
+
+        }
+
+    });
+
+
+    /* =====================================================
+       UPDATE SCORE
+    ====================================================== */
+
+    score += correctCount;
+
+
+    document.getElementById(
+        "scoreText"
+    ).textContent =
+        `Score: ${score}`;
+
+
+    /* =====================================================
+       LOCK ROUND
+    ====================================================== */
+
+    checked = true;
+
+
+    document
+        .querySelectorAll(".word")
+        .forEach(word => {
+
+            word.draggable = false;
+
+            word.style.cursor =
+                "default";
+
+        });
+
+
+    /* =====================================================
+       RESULT MESSAGE
+    ====================================================== */
+
+    if(
+        correctCount === total
+    ){
+
+        messageEl.textContent =
+            "🎉 Perfect! All answers are correct.";
+
+        messageEl.style.color =
+            "#3b8b58";
+
+    }
+
+    else{
+
+        messageEl.textContent =
+            `You got ${correctCount} / ${total} correct.`;
+
+        messageEl.style.color =
+            "#c54d4d";
+
+    }
+
+
+    /* =====================================================
+       SHOW EXPLANATION
+    ====================================================== */
+
+    showRoundExplanation();
+
+
+    /* =====================================================
+       CHECK → NEXT
+    ====================================================== */
+
+    checkBtn.classList.add(
+        "hidden"
+    );
+
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   SHOW EXPLANATION
+========================================================= */
+
+function showRoundExplanation(){
+
+    const round =
+        rounds[current];
+
+
+    const lines =
+        round.pairs.map(pair => {
+
+            const vietnamese =
+                pair[0];
+
+
+            const english =
+                pair[1];
+
+
+            const data =
+                explanations[vietnamese];
+
+
+            return `
+
+                <div style="margin-bottom:12px;">
+
+                    <strong>
+                        ${english}
+                    </strong>
+
+                    →
+
+                    <strong>
+                        ${vietnamese}
+                    </strong>
+
+                    <br>
+
+                    ${
+                        data
+                        ?
+                        data.meaning
+                        :
+                        ""
+                    }
+
+                    ${
+                        data
+                        ?
+                        `
+                        <span class="related">
+
+                            Related English words:
+                            ${data.related}
+
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
     explanationEl.innerHTML = `
 
-        <strong>💡 Learn:</strong>
-
         <strong>
-            ${english}
+            💡 Learn:
         </strong>
 
-        →
+        <div style="margin-top:12px;">
 
-        <strong>
-            ${vietnamese}
-        </strong>
+            ${lines}
 
-        <br><br>
-
-        ${data.meaning}
-
-        <span class="related">
-
-            Related English words:
-            ${data.related}
-
-        </span>
+        </div>
 
     `;
 
@@ -1896,6 +1844,19 @@ function showExplanation(
 }
 
 
+/* =========================================================
+   CHECK BUTTON
+========================================================= */
+
+checkBtn.addEventListener(
+    "click",
+    () => {
+
+        checkAnswers();
+
+    }
+);
+
 
 /* =========================================================
    NEXT ROUND
@@ -1904,7 +1865,6 @@ function showExplanation(
 nextBtn.addEventListener(
     "click",
     () => {
-
 
         current++;
 
@@ -1926,7 +1886,6 @@ nextBtn.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -1969,7 +1928,7 @@ function finishGame(){
     ){
 
         message =
-            "🏆 Excellent!";
+            "🏆 Excellent! You really know these words.";
 
     }
 
@@ -1978,14 +1937,14 @@ function finishGame(){
     ){
 
         message =
-            "🎉 Good Job!";
+            "🎉 Good job! Keep practicing.";
 
     }
 
     else{
 
         message =
-            "📚 Keep Practicing!";
+            "📚 Keep practicing. You'll get better.";
 
     }
 
@@ -1996,7 +1955,6 @@ function finishGame(){
         `${percentage}% — ${message}`;
 
 }
-
 
 
 /* =========================================================
@@ -2012,13 +1970,12 @@ function getTotalPairs(){
         ) =>
 
             total +
-            round.vi.length,
+            round.pairs.length,
 
         0
     );
 
 }
-
 
 
 /* =========================================================
@@ -2031,9 +1988,11 @@ function restartGame(){
 
     score = 0;
 
-    matched = 0;
-
     draggedWord = null;
+
+    placements = {};
+
+    checked = false;
 
 
     finalScreen.style.display =
@@ -2049,9 +2008,8 @@ function restartGame(){
 }
 
 
-
 /* =========================================================
-   START
+   START GAME
 ========================================================= */
 
 loadRound();

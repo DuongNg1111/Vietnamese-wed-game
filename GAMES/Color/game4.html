@@ -1,76 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Match Colors with Vietnamese Words</title>
+<title>Color Matching</title>
 
 <meta name="game-title" content="Colors Matching">
 <meta name="game-description" content="Match colors with their Vietnamese words.">
 <meta name="game-icon" content="🎨">
+<meta name="game-explanation" content="Choose the correct Vietnamese word for each color. Complete all four answers, then check your answers. A perfect round earns 1 point.">
 
 <style>
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
 
-    font-family:Arial,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    background:#f4f6f8;
-
-    margin:0;
-    padding:20px;
+    background:#f5f7fb;
 
     min-height:100vh;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding:18px;
+
+    color:#333;
 
 }
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .game-box{
 
+    width:760px;
+
+    max-width:100%;
+
+    margin:0 auto;
+
     background:white;
-
-    width:90%;
-    max-width:750px;
-
-    padding:40px;
 
     border-radius:20px;
 
-    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    padding:22px 26px;
 
-    text-align:center;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.08);
 
 }
 
 
-/* =========================
-   LOBBY BUTTON
-========================= */
+/* =========================================================
+   BACK TO CATEGORY
+========================================================= */
 
 .lobby-btn{
 
-    display:block;
+    display:inline-block;
 
-    margin-bottom:15px;
+    background:white;
 
-    padding:8px 14px;
+    color:#4b5563;
 
-    border:none;
+    border:2px solid #d9dee8;
 
-    border-radius:8px;
+    border-radius:10px;
 
-    background:#f1f3f5;
-
-    color:#555;
+    padding:8px 15px;
 
     font-size:14px;
 
@@ -80,85 +93,97 @@ body{
 
     transition:.2s;
 
+    margin-bottom:15px;
+
 }
 
 .lobby-btn:hover{
 
-    background:#e2e6ea;
+    background:#4b5563;
 
-    transform:translateX(-2px);
+    color:white;
 
 }
 
 
-/* =========================
+/* =========================================================
    INTRO SCREEN
-========================= */
+========================================================= */
+
+#introScreen{
+
+    text-align:center;
+
+}
 
 #introScreen h1{
 
-    color:#333;
+    color:#374151;
 
-    font-size:34px;
+    font-size:30px;
 
-    margin-bottom:20px;
+    margin-bottom:12px;
 
 }
 
 #introScreen h2{
 
-    color:#444;
+    color:#4b5563;
 
-    margin-bottom:20px;
+    font-size:21px;
+
+    margin-bottom:15px;
 
 }
 
 #introScreen p{
 
-    font-size:18px;
+    color:#6b7280;
 
-    color:#555;
+    font-size:16px;
 
     line-height:1.6;
+
+    margin:7px 0;
 
 }
 
 .start-btn{
 
-    margin-top:20px;
+    margin-top:18px;
 
-    padding:14px 35px;
+    padding:12px 28px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
 
-    font-size:20px;
+    background:#4f46e5;
+
+    color:white;
+
+    font-size:17px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    background:#2196f3;
-
-    color:white;
-
-    transition:0.2s;
+    transition:.2s;
 
 }
 
 .start-btn:hover{
 
-    background:#1976d2;
+    background:#4338ca;
 
-    transform:scale(1.03);
+    transform:translateY(-2px);
 
 }
 
 
-/* =========================
+/* =========================================================
    GAME SCREEN
-========================= */
+========================================================= */
 
 #gameScreen{
 
@@ -166,29 +191,61 @@ body{
 
 }
 
-#gameScreen h1{
+.game-header{
 
-    color:#333;
+    text-align:center;
+
+    margin-bottom:12px;
 
 }
+
+.game-header h1{
+
+    color:#374151;
+
+    font-size:27px;
+
+    margin-bottom:5px;
+
+}
+
+.subtitle{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
 
 #info{
 
-    font-size:20px;
+    text-align:center;
+
+    color:#6b7280;
+
+    font-size:16px;
 
     font-weight:bold;
 
-    margin-bottom:25px;
-
-    color:#444;
+    margin-bottom:12px;
 
 }
 
+
+/* =========================================================
+   GAME AREA
+========================================================= */
+
 #game{
 
-    max-width:700px;
+    max-width:570px;
 
-    margin:auto;
+    margin:0 auto;
 
 }
 
@@ -200,116 +257,274 @@ body{
 
     justify-content:center;
 
-    gap:20px;
+    gap:22px;
 
-    margin:15px 0;
+    margin:9px 0;
 
 }
 
 .colorBox{
 
-    width:100px;
+    width:70px;
 
-    height:100px;
+    height:55px;
 
-    border-radius:12px;
+    border-radius:11px;
 
-    border:2px solid #ddd;
+    border:3px solid #d1d5db;
+
+    flex-shrink:0;
 
 }
 
 select{
 
-    width:220px;
+    width:260px;
 
-    padding:10px;
+    height:46px;
 
-    font-size:18px;
+    padding:8px 12px;
 
-    border:1px solid #ccc;
+    font-size:16px;
 
-    border-radius:8px;
-
-    background:white;
-
-}
-
-.check-btn{
-
-    margin-top:20px;
-
-    padding:12px 24px;
-
-    font-size:18px;
-
-    border:none;
+    border:2px solid #d1d5db;
 
     border-radius:10px;
 
+    background:white;
+
+    color:#374151;
+
     cursor:pointer;
 
-    background:#2196f3;
+}
 
-    color:white;
+select:focus{
 
-    transition:0.2s;
+    outline:none;
+
+    border-color:#6366f1;
 
 }
 
-.check-btn:hover{
+select:disabled{
 
-    background:#1976d2;
-
-}
-
-.check-btn:disabled{
-
-    opacity:0.6;
+    background:#f3f4f6;
 
     cursor:default;
 
 }
 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:14px;
+
+}
+
+.action-btn{
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.clear-btn{
+
+    background:#f1f3f5;
+
+    color:#4b5563;
+
+    border:2px solid #d9dee8;
+
+}
+
+.clear-btn:hover{
+
+    background:#e5e7eb;
+
+}
+
+.check-btn,
+.next-btn{
+
+    background:#4f46e5;
+
+    color:white;
+
+}
+
+.check-btn:hover,
+.next-btn:hover{
+
+    background:#4338ca;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
 #message{
 
-    margin-top:20px;
+    min-height:30px;
 
-    font-size:24px;
+    text-align:center;
 
-    font-weight:bold;
-
-    min-height:40px;
-
-}
-
-#result{
-
-    margin-top:30px;
-
-    font-size:28px;
+    font-size:20px;
 
     font-weight:bold;
 
+    margin-top:12px;
+
+}
+
+.correct-message{
+
+    color:#16a34a;
+
+}
+
+.wrong-message{
+
+    color:#dc2626;
+
 }
 
 
-/* =========================
+/* =========================================================
+   EXPLANATION
+========================================================= */
+
+#explanation{
+
+    margin-top:10px;
+
+    padding:11px 14px;
+
+    background:#f8fafc;
+
+    border-left:4px solid #6366f1;
+
+    border-radius:8px;
+
+    color:#4b5563;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    text-align:left;
+
+}
+
+.explanation-title{
+
+    color:#374151;
+
+    font-weight:bold;
+
+    margin-bottom:4px;
+
+}
+
+
+/* =========================================================
+   RESULT SCREEN
+========================================================= */
+
+#resultScreen{
+
+    display:none;
+
+    text-align:center;
+
+}
+
+.result-title{
+
+    color:#374151;
+
+    font-size:29px;
+
+    margin-bottom:12px;
+
+}
+
+.result-label{
+
+    color:#6b7280;
+
+    font-size:17px;
+
+}
+
+.score{
+
+    color:#4f46e5;
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    margin:10px 0;
+
+}
+
+.performance{
+
+    color:#6b7280;
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
-    .game-box{
+    body{
 
-        width:95%;
-
-        padding:25px 20px;
+        padding:12px;
 
     }
 
-    #introScreen h1{
+    .game-box{
 
-        font-size:28px;
+        padding:18px 14px;
 
     }
 
@@ -321,17 +536,29 @@ select{
 
     .colorBox{
 
-        width:75px;
+        width:62px;
 
-        height:75px;
+        height:50px;
 
     }
 
     select{
 
-        width:190px;
+        width:calc(100% - 74px);
 
-        font-size:16px;
+        font-size:15px;
+
+    }
+
+    #game{
+
+        width:100%;
+
+    }
+
+    .controls{
+
+        flex-wrap:wrap;
 
     }
 
@@ -348,98 +575,151 @@ select{
 <div class="game-box">
 
 
-    <!-- =========================
-         LOBBY
-    ========================= -->
+<!-- =========================================================
+     BACK TO COLOR CATEGORY
+========================================================= -->
+
+<button
+    class="lobby-btn"
+    onclick="goToCategory()">
+
+    ← Back to Color Games
+
+</button>
+
+
+<!-- =========================================================
+     INTRO SCREEN
+========================================================= -->
+
+<div id="introScreen">
+
+    <h1>
+        🎨 Match Colors
+    </h1>
+
+    <h2>
+        Hello 👋
+    </h2>
+
+    <p>
+        Match each color with the correct Vietnamese word.
+    </p>
+
+    <p>
+        🎨 20 Rounds &nbsp;•&nbsp; 4 Colors per Round
+    </p>
+
+    <p>
+        🏆 Each perfect round = 1 point
+    </p>
+
+    <p>
+        <b>Total: 20 Points</b>
+    </p>
 
     <button
-        class="lobby-btn"
-        onclick="goToLobby()"
-    >
-        ← Back to Lobby
+        class="start-btn"
+        id="startBtn">
+
+        Start Game
+
     </button>
 
+</div>
 
-    <!-- =========================
-         INTRO SCREEN
-    ========================= -->
 
-    <div id="introScreen">
+<!-- =========================================================
+     GAME SCREEN
+========================================================= -->
+
+<div id="gameScreen">
+
+
+    <div class="game-header">
 
         <h1>
             🎨 Match Colors
         </h1>
 
-        <h2>
-            Hello 👋
-        </h2>
+        <div class="subtitle">
+            Choose the Vietnamese word for each color.
+        </div>
 
-        <p>
-            Welcome to the Vietnamese color matching game!
-        </p>
+    </div>
 
-        <p>
-            🎨 Match each color with the correct Vietnamese word.
-        </p>
 
-        <p>
-            📝 15 Rounds &nbsp;•&nbsp; 4 Colors per Round
-        </p>
+    <div id="info">
 
-        <p>
-            🏆 Total: <b>60 Points</b>
-        </p>
+        Round:
+        <span id="round">1</span>/20
+
+        &nbsp; | &nbsp;
+
+        Score:
+        <span id="score">0</span>
+
+    </div>
+
+
+    <div id="game"></div>
+
+
+    <!-- =====================================================
+         CONTROLS
+    ====================================================== -->
+
+    <div class="controls">
 
         <button
-            class="start-btn"
-            id="startBtn"
-        >
-            Start Game
+            class="action-btn clear-btn"
+            id="clearBtn">
+
+            Clear
+
+        </button>
+
+
+        <button
+            class="action-btn check-btn"
+            id="checkBtn">
+
+            Check Answers
+
+        </button>
+
+
+        <button
+            class="action-btn next-btn hidden"
+            id="nextBtn">
+
+            Next Question →
+
         </button>
 
     </div>
 
 
-    <!-- =========================
-         GAME SCREEN
-    ========================= -->
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
 
-    <div id="gameScreen">
-
-        <h1>
-            🎨 Match Colors
-        </h1>
+    <div id="message"></div>
 
 
-        <div id="info">
+    <!-- =====================================================
+         EXPLANATION
+    ====================================================== -->
 
-            Round:
-            <span id="round">1</span>/15
+    <div
+        id="explanation"
+        class="hidden">
 
-            &nbsp; | &nbsp;
-
-            Score:
-            <span id="score">0</span>
-
+        <div class="explanation-title">
+            Explanation
         </div>
 
-
-        <div id="game"></div>
-
-
-        <button
-            class="check-btn"
-            id="checkBtn"
-            onclick="checkAnswers()"
-        >
-            Check Answers
-        </button>
-
-
-        <div id="message"></div>
-
-
-        <div id="result"></div>
+        <div id="explanationText"></div>
 
     </div>
 
@@ -447,64 +727,162 @@ select{
 </div>
 
 
+<!-- =========================================================
+     RESULT SCREEN
+========================================================= -->
+
+<div id="resultScreen">
+
+
+    <div class="result-title">
+        🎉 Game Finished!
+    </div>
+
+
+    <div class="result-label">
+        Final Score
+    </div>
+
+
+    <div
+        class="score"
+        id="scoreText">
+    </div>
+
+
+    <div
+        class="performance"
+        id="performance">
+    </div>
+
+
+    <button
+        class="start-btn"
+        id="playAgain">
+
+        Play Again
+
+    </button>
+
+
+</div>
+
+
+</div>
+
+
 <script>
 
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-/* =========================
-   LOBBY
-========================= */
-
-function goToLobby(){
+function goToCategory(){
 
     window.location.href =
-        "../../index.html";
+        "../../category.html?category=Color";
 
 }
 
 
-/* =========================
-   GAME DATA
-========================= */
+/* =========================================================
+   VOCABULARY
+========================================================= */
 
-const colors = [
+const COLORS = [
 
     {
-        name:"màu đỏ",
-        color:"#ff0000"
+        text:"đỏ",
+        phonetics:"daw",
+        english:"red",
+        color:"#ef4444"
     },
 
     {
-        name:"màu cam",
-        color:"#ff8800"
+        text:"cam",
+        phonetics:"kam",
+        english:"orange",
+        color:"#f97316"
     },
 
     {
-        name:"màu vàng",
-        color:"#ffd700"
+        text:"vàng",
+        phonetics:"vang",
+        english:"yellow",
+        color:"#facc15"
     },
 
     {
-        name:"màu xanh lá",
-        color:"#00aa00"
+        text:"xanh lá",
+        phonetics:"sanh la",
+        english:"green",
+        color:"#22c55e"
     },
 
     {
-        name:"màu hồng",
-        color:"#ff69b4"
+        text:"xanh dương",
+        phonetics:"sanh zoong",
+        english:"blue",
+        color:"#3b82f6"
     },
 
     {
-        name:"màu đen",
-        color:"#000000"
+        text:"tím",
+        phonetics:"tim",
+        english:"purple",
+        color:"#a855f7"
     },
 
     {
-        name:"màu trắng",
+        text:"hồng",
+        phonetics:"hong",
+        english:"pink",
+        color:"#ec4899"
+    },
+
+    {
+        text:"nâu",
+        phonetics:"nəw",
+        english:"brown",
+        color:"#92400e"
+    },
+
+    {
+        text:"đen",
+        phonetics:"den",
+        english:"black",
+        color:"#111827"
+    },
+
+    {
+        text:"trắng",
+        phonetics:"chang",
+        english:"white",
         color:"#ffffff"
+    },
+
+    {
+        text:"xám",
+        phonetics:"sam",
+        english:"gray",
+        color:"#6b7280"
     }
 
 ];
 
+
+/* =========================================================
+   CONSTANTS
+========================================================= */
+
+const TOTAL_ROUNDS = 20;
+
+const COLORS_PER_ROUND = 4;
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
 
 let round = 1;
 
@@ -515,147 +893,387 @@ let currentColors = [];
 let locked = false;
 
 
-/* =========================
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById(
+        "introScreen"
+    );
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+const resultScreen =
+    document.getElementById(
+        "resultScreen"
+    );
+
+const game =
+    document.getElementById(
+        "game"
+    );
+
+const roundText =
+    document.getElementById(
+        "round"
+    );
+
+const scoreText =
+    document.getElementById(
+        "score"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+const explanationText =
+    document.getElementById(
+        "explanationText"
+    );
+
+const clearBtn =
+    document.getElementById(
+        "clearBtn"
+    );
+
+const checkBtn =
+    document.getElementById(
+        "checkBtn"
+    );
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+/* =========================================================
    SHUFFLE
-========================= */
+========================================================= */
 
-function shuffle(arr){
+function shuffle(array){
 
-    return [...arr]
-        .sort(() => Math.random() - 0.5);
+    const arr = [...array];
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            arr[i],
+            arr[j]
+        ] = [
+            arr[j],
+            arr[i]
+        ];
+
+    }
+
+    return arr;
 
 }
 
 
-/* =========================
+/* =========================================================
    START GAME
-========================= */
+========================================================= */
 
-document.getElementById("startBtn").onclick = function(){
+document.getElementById(
+    "startBtn"
+).onclick = function(){
 
-    document.getElementById("introScreen")
-        .style.display = "none";
+    round = 1;
 
-    document.getElementById("gameScreen")
-        .style.display = "block";
+    score = 0;
+
+    scoreText.textContent =
+        "0";
+
+    introScreen.style.display =
+        "none";
+
+    resultScreen.style.display =
+        "none";
+
+    gameScreen.style.display =
+        "block";
 
     createRound();
 
 };
 
 
-/* =========================
+/* =========================================================
    CREATE ROUND
-========================= */
+========================================================= */
 
 function createRound(){
 
     locked = false;
 
-    document.getElementById("round")
-        .textContent = round;
+    message.textContent =
+        "";
 
-    document.getElementById("message")
-        .textContent = "";
+    message.className =
+        "";
 
-    document.getElementById("result")
-        .innerHTML = "";
+    explanation.classList.add(
+        "hidden"
+    );
 
-    document.getElementById("checkBtn")
-        .disabled = false;
+    explanationText.innerHTML =
+        "";
 
+    clearBtn.classList.remove(
+        "hidden"
+    );
+
+    checkBtn.classList.remove(
+        "hidden"
+    );
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+    checkBtn.disabled =
+        false;
+
+
+    roundText.textContent =
+        round;
+
+
+    /* =====================================================
+       SELECT 4 RANDOM COLORS
+    ====================================================== */
 
     currentColors =
-        shuffle(colors).slice(0,4);
+        shuffle(COLORS).slice(
+            0,
+            COLORS_PER_ROUND
+        );
 
+
+    /* =====================================================
+       SHUFFLE WORDS
+    ====================================================== */
 
     const words =
         shuffle(
             currentColors.map(
-                c => c.name
+                color => color.text
             )
         );
 
 
-    const game =
-        document.getElementById("game");
+    game.innerHTML =
+        "";
 
 
-    game.innerHTML = "";
-
+    /* =====================================================
+       CREATE ROWS
+    ====================================================== */
 
     currentColors.forEach(
         (item,index)=>{
 
+            const row =
+                document.createElement(
+                    "div"
+                );
 
-        const row =
-            document.createElement("div");
-
-
-        row.className = "row";
-
-
-        const box =
-            document.createElement("div");
+            row.className =
+                "row";
 
 
-        box.className = "colorBox";
+            const colorBox =
+                document.createElement(
+                    "div"
+                );
+
+            colorBox.className =
+                "colorBox";
+
+            colorBox.style.background =
+                item.color;
 
 
-        box.style.background =
-            item.color;
+            if(
+                item.color === "#ffffff"
+            ){
+
+                colorBox.style.border =
+                    "3px solid #9ca3af";
+
+            }
 
 
-        const select =
-            document.createElement("select");
+            const select =
+                document.createElement(
+                    "select"
+                );
+
+            select.id =
+                `answer${index}`;
 
 
-        select.id =
-            "answer" + index;
+            const defaultOption =
+                document.createElement(
+                    "option"
+                );
+
+            defaultOption.value =
+                "";
+
+            defaultOption.textContent =
+                "Select a word";
+
+            select.appendChild(
+                defaultOption
+            );
 
 
-        select.innerHTML =
-            '<option value="">Select a word</option>';
+            words.forEach(
+                word=>{
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        word;
+
+                    option.textContent =
+                        word;
+
+                    select.appendChild(
+                        option
+                    );
+
+                }
+            );
 
 
-        words.forEach(word=>{
+            row.appendChild(
+                colorBox
+            );
 
+            row.appendChild(
+                select
+            );
 
-            const option =
-                document.createElement("option");
+            game.appendChild(
+                row
+            );
 
-
-            option.value =
-                word;
-
-
-            option.textContent =
-                word;
-
-
-            select.appendChild(option);
-
-        });
-
-
-        row.appendChild(box);
-
-        row.appendChild(select);
-
-        game.appendChild(row);
-
-    });
+        }
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
+   CLEAR ANSWERS
+========================================================= */
+
+clearBtn.onclick = function(){
+
+    if(locked){
+
+        return;
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "#game select"
+        )
+        .forEach(
+            select=>{
+
+                select.value =
+                    "";
+
+            }
+        );
+
+
+    message.textContent =
+        "";
+
+    message.className =
+        "";
+
+};
+
+
+/* =========================================================
    CHECK ANSWERS
-========================= */
+========================================================= */
 
-function checkAnswers(){
+checkBtn.onclick = function(){
 
-    if(locked) return;
+    if(locked){
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       REQUIRE ALL ANSWERS
+    ====================================================== */
+
+    const selects =
+        document.querySelectorAll(
+            "#game select"
+        );
+
+
+    const incomplete =
+        [...selects].some(
+            select =>
+                select.value === ""
+        );
+
+
+    if(incomplete){
+
+        message.textContent =
+            "Please answer all 4 colors first.";
+
+        message.className =
+            "wrong-message";
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       LOCK ROUND
+    ====================================================== */
 
     locked = true;
 
@@ -666,192 +1284,267 @@ function checkAnswers(){
     currentColors.forEach(
         (item,index)=>{
 
+            const answer =
+                document.getElementById(
+                    `answer${index}`
+                ).value;
 
-        const answer =
-            document.getElementById(
-                "answer"+index
-            ).value;
 
+            if(
+                answer === item.text
+            ){
 
-        if(answer === item.name){
+                correct++;
 
-            correct++;
+            }
 
         }
-
-    });
-
-
-    score += correct;
+    );
 
 
-    document.getElementById("score")
-        .textContent = score;
+    /* =====================================================
+       SCORING RULE
+       
+       ONLY A PERFECT ROUND GETS 1 POINT.
+       ANY WRONG ANSWER = 0 POINTS.
+    ====================================================== */
 
+    if(
+        correct === COLORS_PER_ROUND
+    ){
 
-    const message =
-        document.getElementById("message");
+        score++;
 
-
-    if(correct === 4){
-
-        message.style.color =
-            "green";
+        scoreText.textContent =
+            score;
 
         message.textContent =
-            "✓ Perfect! 4/4 Correct";
+            "✅ Perfect! +1 point";
+
+        message.className =
+            "correct-message";
 
     }
 
     else{
 
-        message.style.color =
-            "orange";
-
         message.textContent =
-            `You got ${correct}/4 correct`;
+            `❌ ${correct}/4 correct — 0 points`;
+
+        message.className =
+            "wrong-message";
 
     }
 
 
-    document.getElementById("checkBtn")
-        .disabled = true;
+    /* =====================================================
+       LOCK ANSWERS
+    ====================================================== */
 
+    selects.forEach(
+        select=>{
 
-    setTimeout(()=>{
-
-
-        round++;
-
-
-        if(round > 15){
-
-            finishGame();
-
-            return;
+            select.disabled =
+                true;
 
         }
+    );
 
 
-        createRound();
+    clearBtn.classList.add(
+        "hidden"
+    );
+
+    checkBtn.classList.add(
+        "hidden"
+    );
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
 
 
-    },2000);
+    /* =====================================================
+       SHOW EXPLANATION
+    ====================================================== */
+
+    showExplanation();
+
+};
+
+
+/* =========================================================
+   EXPLANATION
+========================================================= */
+
+function showExplanation(){
+
+    let html =
+        "";
+
+
+    currentColors.forEach(
+        item=>{
+
+            html += `
+
+                <strong>
+                    ${item.text}
+                </strong>
+
+                /${item.phonetics}/
+
+                — ${item.english}
+
+                <br>
+
+            `;
+
+        }
+    );
+
+
+    explanationText.innerHTML =
+        html;
+
+
+    explanation.classList.remove(
+        "hidden"
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
+   NEXT ROUND
+========================================================= */
+
+nextBtn.onclick = function(){
+
+    if(!locked){
+
+        return;
+
+    }
+
+
+    round++;
+
+
+    if(
+        round > TOTAL_ROUNDS
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    createRound();
+
+};
+
+
+/* =========================================================
    FINISH GAME
-========================= */
+========================================================= */
 
 function finishGame(){
 
-    document.getElementById("game")
-        .innerHTML = "";
+    gameScreen.style.display =
+        "none";
+
+    resultScreen.style.display =
+        "block";
 
 
-    document.getElementById("checkBtn")
-        .style.display = "none";
+    document.getElementById(
+        "scoreText"
+    ).textContent =
+        `${score} / ${TOTAL_ROUNDS}`;
 
 
-    document.getElementById("message")
-        .innerHTML = "";
+    let performanceText;
 
 
-    let performance = "";
+    if(
+        score === TOTAL_ROUNDS
+    ){
 
+        performanceText =
+            "Perfect! 🎉";
 
-    if(score >= 55){
+    }
 
-        performance =
+    else if(
+        score >= 17
+    ){
+
+        performanceText =
             "Excellent!";
 
     }
 
-    else if(score >= 40){
+    else if(
+        score >= 14
+    ){
 
-        performance =
+        performanceText =
             "Great Job!";
 
     }
 
-    else if(score >= 25){
+    else if(
+        score >= 10
+    ){
 
-        performance =
-            "Good Work!";
+        performanceText =
+            "Good Job!";
 
     }
 
     else{
 
-        performance =
+        performanceText =
             "Keep Practicing!";
 
     }
 
 
-    document.getElementById("result")
-        .innerHTML = `
-
-            🏆 Game Finished
-
-            <br><br>
-
-            Final Score:
-            ${score}/60
-
-            <br><br>
-
-            ${performance}
-
-            <br><br>
-
-            <button
-                class="start-btn"
-                onclick="restartGame()"
-            >
-                Play Again
-            </button>
-
-        `;
+    document.getElementById(
+        "performance"
+    ).textContent =
+        performanceText;
 
 }
 
 
-/* =========================
-   RESTART
-========================= */
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
 
-function restartGame(){
+document.getElementById(
+    "playAgain"
+).onclick = function(){
 
     round = 1;
 
     score = 0;
 
-    locked = false;
+    scoreText.textContent =
+        "0";
 
+    resultScreen.style.display =
+        "none";
 
-    document.getElementById("score")
-        .textContent = "0";
-
-
-    document.getElementById("result")
-        .innerHTML = "";
-
-
-    document.getElementById("message")
-        .innerHTML = "";
-
-
-    document.getElementById("checkBtn")
-        .style.display = "inline-block";
-
+    gameScreen.style.display =
+        "block";
 
     createRound();
 
-}
-
+};
 
 </script>
 

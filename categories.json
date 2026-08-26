@@ -2,7 +2,6 @@
   "Color": {
     "subtitle": "Recognize and use common Vietnamese color words.",
     "icon": "🎨",
-
     "games": [
       {
         "path": "Color/game1.html",
@@ -25,16 +24,80 @@
         "title": "Color Game 5"
       }
     ],
-
-    "vocab": [],
-
+    "vocab": [
+      {
+        "english": "red",
+        "vietnamese": "đỏ",
+        "phonetic": "/daw/",
+        "audio": ""
+      },
+      {
+        "english": "orange",
+        "vietnamese": "cam",
+        "phonetic": "/kam/",
+        "audio": ""
+      },
+      {
+        "english": "yellow",
+        "vietnamese": "vàng",
+        "phonetic": "/vang/",
+        "audio": ""
+      },
+      {
+        "english": "green",
+        "vietnamese": "xanh lá",
+        "phonetic": "/sanh la/",
+        "audio": ""
+      },
+      {
+        "english": "blue",
+        "vietnamese": "xanh dương",
+        "phonetic": "/sanh zoong/",
+        "audio": ""
+      },
+      {
+        "english": "purple",
+        "vietnamese": "tím",
+        "phonetic": "/tim/",
+        "audio": ""
+      },
+      {
+        "english": "pink",
+        "vietnamese": "hồng",
+        "phonetic": "/hong/",
+        "audio": ""
+      },
+      {
+        "english": "brown",
+        "vietnamese": "nâu",
+        "phonetic": "/nəw/",
+        "audio": ""
+      },
+      {
+        "english": "black",
+        "vietnamese": "đen",
+        "phonetic": "/den/",
+        "audio": ""
+      },
+      {
+        "english": "white",
+        "vietnamese": "trắng",
+        "phonetic": "/chang/",
+        "audio": ""
+      },
+      {
+        "english": "gray",
+        "vietnamese": "xám",
+        "phonetic": "/sam/",
+        "audio": ""
+      }
+    ],
     "quickLessons": []
   },
 
   "Describe things": {
     "subtitle": "Use simple Vietnamese words to describe people, things, and weather.",
     "icon": "✨",
-
     "games": [
       {
         "path": "Describe things/game1.html",
@@ -51,18 +114,294 @@
       {
         "path": "Describe things/game4.html",
         "title": "Weather Sentence Order"
+      },
+      {
+        "path": "Describe things/game5.html",
+        "title": "Describe Things Challenge"
+      },
+      {
+        "path": "Describe things/game6.html",
+        "title": "Vietnamese Opposite Match"
       }
     ],
-
-    "vocab": [],
-
+    "vocab": [
+      {
+        "topic": "Size",
+        "vocabulary": [
+          {
+            "vietnamese": "lớn",
+            "phonetics": "lon",
+            "english": "big, large"
+          },
+          {
+            "vietnamese": "nhỏ",
+            "phonetics": "nyo",
+            "english": "small"
+          },
+          {
+            "vietnamese": "bự",
+            "phonetics": "boo",
+            "english": "big, huge"
+          },
+          {
+            "vietnamese": "dài",
+            "phonetics": "zai",
+            "english": "long"
+          },
+          {
+            "vietnamese": "ngắn",
+            "phonetics": "ngan",
+            "english": "short"
+          },
+          {
+            "vietnamese": "cao",
+            "phonetics": "kao",
+            "english": "tall, high"
+          },
+          {
+            "vietnamese": "thấp",
+            "phonetics": "tap",
+            "english": "low, short"
+          },
+          {
+            "vietnamese": "rộng",
+            "phonetics": "zong",
+            "english": "wide, spacious"
+          },
+          {
+            "vietnamese": "chật",
+            "phonetics": "chat",
+            "english": "tight, cramped"
+          },
+          {
+            "vietnamese": "nặng",
+            "phonetics": "nang",
+            "english": "heavy"
+          },
+          {
+            "vietnamese": "nhẹ",
+            "phonetics": "nye",
+            "english": "light"
+          }
+        ]
+      },
+      {
+        "topic": "Feel & Texture",
+        "vocabulary": [
+          {
+            "vietnamese": "cứng",
+            "phonetics": "koong",
+            "english": "hard"
+          },
+          {
+            "vietnamese": "mềm",
+            "phonetics": "mem",
+            "english": "soft"
+          },
+          {
+            "vietnamese": "nóng",
+            "phonetics": "nong",
+            "english": "hot"
+          },
+          {
+            "vietnamese": "lạnh",
+            "phonetics": "lanh",
+            "english": "cold"
+          },
+          {
+            "vietnamese": "khô",
+            "phonetics": "kho",
+            "english": "dry"
+          },
+          {
+            "vietnamese": "ướt",
+            "phonetics": "oot",
+            "english": "wet"
+          }
+        ]
+      },
+      {
+        "topic": "Condition",
+        "vocabulary": [
+          {
+            "vietnamese": "mới",
+            "phonetics": "moi",
+            "english": "new"
+          },
+          {
+            "vietnamese": "cũ",
+            "phonetics": "koo",
+            "english": "old"
+          },
+          {
+            "vietnamese": "sạch",
+            "phonetics": "sach",
+            "english": "clean"
+          },
+          {
+            "vietnamese": "dơ",
+            "phonetics": "zơ",
+            "english": "dirty"
+          }
+        ]
+      },
+      {
+        "topic": "Shape",
+        "vocabulary": [
+          {
+            "vietnamese": "tròn",
+            "phonetics": "chon",
+            "english": "round"
+          },
+          {
+            "vietnamese": "vuông",
+            "phonetics": "voong",
+            "english": "square"
+          },
+          {
+            "vietnamese": "thẳng",
+            "phonetics": "tang",
+            "english": "straight"
+          },
+          {
+            "vietnamese": "cong",
+            "phonetics": "kong",
+            "english": "curved, bent"
+          },
+          {
+            "vietnamese": "nhọn",
+            "phonetics": "nyon",
+            "english": "pointed, sharp"
+          },
+          {
+            "vietnamese": "xoăn",
+            "phonetics": "swan",
+            "english": "curly"
+          }
+        ]
+      },
+      {
+        "topic": "Appearance",
+        "vocabulary": [
+          {
+            "vietnamese": "đẹp",
+            "phonetics": "dep",
+            "english": "beautiful, pretty"
+          },
+          {
+            "vietnamese": "xấu",
+            "phonetics": "sow",
+            "english": "ugly"
+          },
+          {
+            "vietnamese": "dễ thương",
+            "phonetics": "zeh thuong",
+            "english": "cute"
+          },
+          {
+            "vietnamese": "xinh",
+            "phonetics": "sin",
+            "english": "pretty, lovely"
+          },
+          {
+            "vietnamese": "dữ",
+            "phonetics": "zoo",
+            "english": "fierce, mean"
+          },
+          {
+            "vietnamese": "nghiêm túc",
+            "phonetics": "nyeem took",
+            "english": "serious"
+          },
+          {
+            "vietnamese": "trẻ",
+            "phonetics": "cheh",
+            "english": "young"
+          },
+          {
+            "vietnamese": "già",
+            "phonetics": "za",
+            "english": "old"
+          },
+          {
+            "vietnamese": "ốm",
+            "phonetics": "om",
+            "english": "thin, skinny"
+          },
+          {
+            "vietnamese": "mập",
+            "phonetics": "map",
+            "english": "fat, chubby"
+          }
+        ]
+      },
+      {
+        "topic": "Quantity",
+        "vocabulary": [
+          {
+            "vietnamese": "nhiều",
+            "phonetics": "nyew",
+            "english": "many, much"
+          },
+          {
+            "vietnamese": "ít",
+            "phonetics": "it",
+            "english": "few, little"
+          }
+        ]
+      },
+      {
+        "topic": "Weather",
+        "vocabulary": [
+          {
+            "vietnamese": "nóng",
+            "phonetics": "nong",
+            "english": "hot"
+          },
+          {
+            "vietnamese": "lạnh",
+            "phonetics": "lanh",
+            "english": "cold"
+          },
+          {
+            "vietnamese": "ấm",
+            "phonetics": "əm",
+            "english": "warm"
+          },
+          {
+            "vietnamese": "mát",
+            "phonetics": "mat",
+            "english": "cool"
+          },
+          {
+            "vietnamese": "nắng",
+            "phonetics": "nang",
+            "english": "sunny"
+          },
+          {
+            "vietnamese": "mưa",
+            "phonetics": "mưa",
+            "english": "rainy, rain"
+          },
+          {
+            "vietnamese": "gió",
+            "phonetics": "zo",
+            "english": "windy, wind"
+          },
+          {
+            "vietnamese": "nhiều mây",
+            "phonetics": "nyew may",
+            "english": "cloudy"
+          }
+        ]
+      }
+    ],
     "quickLessons": []
   },
 
   "Food and Drinks": {
     "subtitle": "Learn useful words for ordering and talking about food.",
     "icon": "🍜",
-
     "games": [
       {
         "path": "Food and Drinks/game1/game1.html",
@@ -83,22 +422,15 @@
       {
         "path": "Food and Drinks/game5.html",
         "title": "Food & Drinks Game 5"
-      },
-      {
-        "path": "Food and Drinks/game6.html",
-        "title": "Food & Drinks Game 6"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
   "Grammar": {
     "subtitle": "Practice useful Vietnamese grammar through interactive games.",
     "icon": "💬",
-
     "games": [
       {
         "path": "Grammar/game1/game1.html",
@@ -109,16 +441,13 @@
         "title": "Grammar Practice"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
   "Health": {
     "subtitle": "Learn useful Vietnamese words for talking about health.",
     "icon": "💙",
-
     "games": [
       {
         "path": "Health/game1.html",
@@ -133,16 +462,13 @@
         "title": "Health Practice"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
   "Mix Practice": {
     "subtitle": "Practice a little bit of everything.",
     "icon": "🔀",
-
     "games": [
       {
         "path": "Mix Practice/game1.html",
@@ -157,16 +483,13 @@
         "title": "Fast Choice"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
   "Numbers": {
     "subtitle": "Practice Vietnamese numbers in everyday situations.",
     "icon": "🔢",
-
     "games": [
       {
         "path": "Numbers/game1.html",
@@ -193,16 +516,13 @@
         "title": "Numbers Game 6"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
   "People & Pronouns": {
     "subtitle": "Learn how to address people naturally in Vietnamese.",
     "icon": "👤",
-
     "games": [
       {
         "path": "People & Pronouns/game1.html",
@@ -221,25 +541,36 @@
         "title": "Pronoun Practice"
       }
     ],
-
     "vocab": [],
-
     "quickLessons": []
   },
 
-  "Places & Locations": {
-    "subtitle": "Talk about where things and people are.",
+  "Places, Directions & Transportation": {
+    "subtitle": "Talk about places, directions, and how to get around.",
     "icon": "📍",
-
     "games": [
       {
         "path": "Places & Locations/game1.html",
         "title": "Places & Locations"
       }
     ],
-
     "vocab": [],
+    "quickLessons": []
+  },
 
+  "Useful Phrases": {
+    "subtitle": "Practice useful Vietnamese phrases for everyday communication.",
+    "icon": "🗣️",
+    "games": [],
+    "vocab": [],
+    "quickLessons": []
+  },
+
+  "Shopping & Money": {
+    "subtitle": "Learn useful Vietnamese words and phrases for shopping and money.",
+    "icon": "🛒",
+    "games": [],
+    "vocab": [],
     "quickLessons": []
   }
 }
