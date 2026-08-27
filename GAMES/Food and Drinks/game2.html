@@ -15,7 +15,7 @@
 
 <meta
     name="game-description"
-    content="Match English words with Vietnamese words that have the same meaning."
+    content="Match English words with Vietnamese food and drink words that have the same meaning."
 >
 
 <meta
@@ -212,39 +212,6 @@ body{
 
 
 /* =========================================================
-   GAME INFO
-========================================================= */
-
-.game-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:20px 0 25px;
-}
-
-.game-info div{
-
-    background:#f4f8fb;
-
-    border:1px solid #e1e8ee;
-
-    border-radius:12px;
-
-    padding:12px 20px;
-
-    color:#555;
-
-    font-size:16px;
-}
-
-
-/* =========================================================
    BUTTON
 ========================================================= */
 
@@ -337,6 +304,38 @@ button{
 
 
 /* =========================================================
+   MATCHING AREA
+========================================================= */
+
+.matching-area{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    width:100%;
+}
+
+
+/* =========================================================
+   COLUMN TITLES
+========================================================= */
+
+.column-title{
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#666;
+
+    margin-bottom:12px;
+}
+
+
+/* =========================================================
    TARGETS
 ========================================================= */
 
@@ -367,11 +366,13 @@ button{
 
     padding:15px;
 
-    font-size:24px;
+    font-size:22px;
 
     font-weight:bold;
 
     transition:.2s;
+
+    user-select:none;
 }
 
 .target.over{
@@ -390,6 +391,8 @@ button{
     border-color:#4caf70;
 
     color:#3b7650;
+
+    cursor:default;
 }
 
 .target.wrong{
@@ -421,13 +424,11 @@ button{
     gap:15px;
 
     width:100%;
-
-    margin-top:20px;
 }
 
 .word{
 
-    min-height:85px;
+    min-height:95px;
 
     border-radius:16px;
 
@@ -525,17 +526,6 @@ button{
 .explanation strong{
 
     color:#4779b8;
-}
-
-.related{
-
-    display:block;
-
-    margin-top:6px;
-
-    font-size:14px;
-
-    color:#68788a;
 }
 
 .hidden{
@@ -673,18 +663,6 @@ button{
         padding:18px;
     }
 
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .game-info div{
-
-        width:100%;
-    }
-
     #gameScreen h1{
 
         font-size:27px;
@@ -700,14 +678,16 @@ button{
         font-size:14px;
     }
 
-    .score{
+    .matching-area{
 
-        font-size:16px;
+        grid-template-columns:1fr;
+
+        gap:20px;
     }
 
     .target{
 
-        min-height:80px;
+        min-height:75px;
 
         font-size:20px;
     }
@@ -766,58 +746,28 @@ button{
 
 <div id="introScreen">
 
-
     <div class="game-icon">
-
         🔎
-
     </div>
 
 
     <h1>
-
         Find The Same Meaning
-
     </h1>
 
 
     <p class="intro-description">
-
-        Match English words with Vietnamese words
-        that have the same meaning.
-
+        Match English words with Vietnamese food and drink words that have the same meaning.
     </p>
 
-
-    <!-- =================================================
-         HOW TO PLAY
-    ================================================= -->
-
-    <div class="how-to-play">
-
-        <h2>🎮 How to Play</h2>
-
-        <p>👆 Drag an English word → drop it on its Vietnamese match.</p>
-
-    </div>
-
-
-    <!-- =================================================
-         GAME INFO
-    ================================================= -->
     <button
         id="startBtn"
         onclick="startGame()"
     >
-
         Start Game →
-
     </button>
 
-
 </div>
-
-
 
 <!-- =======================================================
      GAME SCREEN
@@ -830,63 +780,76 @@ button{
 
 
     <h1>
-
         🔎 Find The Same Meaning
-
     </h1>
 
 
     <p class="instruction">
-
         Drag each English word to the Vietnamese word
         with the same meaning.
-
     </p>
 
 
     <div class="game-status">
 
         <div id="roundText">
-
-            Round 1 / 15
-
+            Round 1 / 20
         </div>
 
-
         <div id="scoreText">
-
             Score: 0
-
         </div>
 
     </div>
 
 
-    <!-- Vietnamese targets -->
-
-    <div
-        class="labels"
-        id="targets"
-    ></div>
+    <div class="matching-area">
 
 
-    <!-- English words -->
+        <!-- =================================================
+             VIETNAMESE
+        ================================================== -->
 
-    <div
-        class="words"
-        id="words"
-    ></div>
+        <div>
+
+            <div class="column-title">
+                🇻🇳 Vietnamese
+            </div>
+
+            <div
+                class="labels"
+                id="targets"
+            ></div>
+
+        </div>
 
 
-    <!-- Feedback -->
+        <!-- =================================================
+             ENGLISH
+        ================================================== -->
+
+        <div>
+
+            <div class="column-title">
+                🇬🇧 English
+            </div>
+
+            <div
+                class="words"
+                id="words"
+            ></div>
+
+        </div>
+
+
+    </div>
+
 
     <div
         class="message"
         id="message"
     ></div>
 
-
-    <!-- Explanation -->
 
     <div
         id="explanation"
@@ -898,9 +861,7 @@ button{
         id="nextBtn"
         disabled
     >
-
         Next Round →
-
     </button>
 
 
@@ -916,9 +877,7 @@ button{
 
 
     <h2>
-
         🎉 Great Job!
-
     </h2>
 
 
@@ -938,9 +897,7 @@ button{
         class="restart-btn"
         onclick="restartGame()"
     >
-
         Play Again
-
     </button>
 
 
@@ -955,469 +912,311 @@ button{
 
 
 /* =========================================================
-   GAME DATA
+   VOCABULARY
 ========================================================= */
 
-const rounds = [
+const vocabulary = [
 
     {
-        vi:["TO","NHỎ","NHANH"],
-
-        en:["big","small","fast"],
-
-        map:{
-            big:"TO",
-            small:"NHỎ",
-            fast:"NHANH"
-        }
+        vi:"cơm",
+        en:"rice",
+        explanation:
+            "CƠM means rice and is one of the most common foods in Vietnam."
     },
 
-
     {
-        vi:["CHẬM","XA","GẦN"],
-
-        en:["slow","far","near"],
-
-        map:{
-            slow:"CHẬM",
-            far:"XA",
-            near:"GẦN"
-        }
+        vi:"bún",
+        en:"rice noodles",
+        explanation:
+            "BÚN refers to thin round rice noodles commonly used in Vietnamese dishes."
     },
 
-
     {
-        vi:["TO","NHỎ","RẺ","MẮC"],
-
-        en:["large","tiny","cheap","expensive"],
-
-        map:{
-            large:"TO",
-            tiny:"NHỎ",
-            cheap:"RẺ",
-            expensive:"MẮC"
-        }
+        vi:"mì",
+        en:"noodles",
+        explanation:
+            "MÌ means noodles and can refer to wheat or egg noodles."
     },
 
-
     {
-        vi:["NHANH","CHẬM","XA","GẦN"],
-
-        en:["quick","slow","distant","close"],
-
-        map:{
-            quick:"NHANH",
-            slow:"CHẬM",
-            distant:"XA",
-            close:"GẦN"
-        }
+        vi:"bánh mì",
+        en:"bread",
+        explanation:
+            "BÁNH MÌ means bread. It can also refer to the famous Vietnamese sandwich."
     },
 
-
     {
-        vi:["TO","NHỎ","NHANH","CHẬM"],
-
-        en:["huge","little","rapid","slow"],
-
-        map:{
-            huge:"TO",
-            little:"NHỎ",
-            rapid:"NHANH",
-            slow:"CHẬM"
-        }
+        vi:"bò",
+        en:"beef",
+        explanation:
+            "BÒ means beef when talking about food. It can also mean cow."
     },
 
-
     {
-        vi:["XA","GẦN","RẺ","MẮC"],
-
-        en:["far","nearby","cheap","costly"],
-
-        map:{
-            far:"XA",
-            nearby:"GẦN",
-            cheap:"RẺ",
-            costly:"MẮC"
-        }
+        vi:"gà",
+        en:"chicken",
+        explanation:
+            "GÀ means chicken."
     },
 
-
     {
-        vi:["CAO","THẤP","ĐẸP","XẤU"],
-
-        en:["tall","low","beautiful","ugly"],
-
-        map:{
-            tall:"CAO",
-            low:"THẤP",
-            beautiful:"ĐẸP",
-            ugly:"XẤU"
-        }
+        vi:"heo",
+        en:"pork",
+        explanation:
+            "HEO means pig and is commonly used to refer to pork in Southern Vietnamese."
     },
 
-
     {
-        vi:["TO","CAO","NHỎ","THẤP"],
-
-        en:["huge","high","tiny","low"],
-
-        map:{
-            huge:"TO",
-            high:"CAO",
-            tiny:"NHỎ",
-            low:"THẤP"
-        }
+        vi:"cá",
+        en:"fish",
+        explanation:
+            "CÁ means fish."
     },
 
-
     {
-        vi:["ĐẸP","XẤU","NHANH","CHẬM"],
-
-        en:["pretty","ugly","quick","slow"],
-
-        map:{
-            pretty:"ĐẸP",
-            ugly:"XẤU",
-            quick:"NHANH",
-            slow:"CHẬM"
-        }
+        vi:"trứng",
+        en:"egg",
+        explanation:
+            "TRỨNG means egg."
     },
 
-
     {
-        vi:["TO","NHỎ","GẦN","NHANH","MẮC"],
-
-        en:[
-            "giant",
-            "little",
-            "near",
-            "rapid",
-            "expensive"
-        ],
-
-        map:{
-            giant:"TO",
-            little:"NHỎ",
-            near:"GẦN",
-            rapid:"NHANH",
-            expensive:"MẮC"
-        }
+        vi:"rau",
+        en:"vegetables",
+        explanation:
+            "RAU means vegetables or greens."
     },
 
-
     {
-        vi:["CAO","THẤP","XA","GẦN","RẺ"],
-
-        en:[
-            "tall",
-            "short",
-            "distant",
-            "close",
-            "cheap"
-        ],
-
-        map:{
-            tall:"CAO",
-            short:"THẤP",
-            distant:"XA",
-            close:"GẦN",
-            cheap:"RẺ"
-        }
+        vi:"nước lọc",
+        en:"drinking water",
+        explanation:
+            "NƯỚC LỌC means drinking water or plain filtered water."
     },
 
-
     {
-        vi:["ĐẸP","XẤU","TO","NHỎ","MẮC"],
-
-        en:[
-            "lovely",
-            "unattractive",
-            "large",
-            "tiny",
-            "pricey"
-        ],
-
-        map:{
-            lovely:"ĐẸP",
-            unattractive:"XẤU",
-            large:"TO",
-            tiny:"NHỎ",
-            pricey:"MẮC"
-        }
+        vi:"sữa",
+        en:"milk",
+        explanation:
+            "SỮA means milk."
     },
 
-
     {
-        vi:["XA","GẦN","TO","CAO","THẤP","RẺ"],
-
-        en:[
-            "far",
-            "nearby",
-            "big",
-            "high",
-            "low",
-            "cheap"
-        ],
-
-        map:{
-            far:"XA",
-            nearby:"GẦN",
-            big:"TO",
-            high:"CAO",
-            low:"THẤP",
-            cheap:"RẺ"
-        }
+        vi:"trà",
+        en:"tea",
+        explanation:
+            "TRÀ means tea."
     },
 
-
     {
-        vi:[
-            "NHỎ",
-            "CHẬM",
-            "XẤU",
-            "ĐẸP",
-            "TO",
-            "MẮC"
-        ],
-
-        en:[
-            "small",
-            "slow",
-            "ugly",
-            "beautiful",
-            "enormous",
-            "costly"
-        ],
-
-        map:{
-            small:"NHỎ",
-            slow:"CHẬM",
-            ugly:"XẤU",
-            beautiful:"ĐẸP",
-            enormous:"TO",
-            costly:"MẮC"
-        }
+        vi:"cà phê",
+        en:"coffee",
+        explanation:
+            "CÀ PHÊ means coffee."
     },
 
+    {
+        vi:"nước cam",
+        en:"orange juice",
+        explanation:
+            "NƯỚC CAM means orange juice."
+    },
 
     {
-        vi:[
-            "TO",
-            "NHỎ",
-            "NHANH",
-            "CHẬM",
-            "CAO",
-            "THẤP"
-        ],
+        vi:"nước chanh",
+        en:"lemon juice",
+        explanation:
+            "NƯỚC CHANH means lemon or lime juice."
+    },
 
-        en:[
-            "massive",
-            "tiny",
-            "fast",
-            "slow",
-            "tall",
-            "short"
-        ],
+    {
+        vi:"chuối",
+        en:"banana",
+        explanation:
+            "CHUỐI means banana."
+    },
 
-        map:{
-            massive:"TO",
-            tiny:"NHỎ",
-            fast:"NHANH",
-            slow:"CHẬM",
-            tall:"CAO",
-            short:"THẤP"
-        }
+    {
+        vi:"dừa",
+        en:"coconut",
+        explanation:
+            "DỪA means coconut."
+    },
+
+    {
+        vi:"bơ",
+        en:"avocado",
+        explanation:
+            "BƠ means avocado."
+    },
+
+    {
+        vi:"cam",
+        en:"orange",
+        explanation:
+            "CAM means orange, the fruit."
+    },
+
+    {
+        vi:"chanh",
+        en:"lemon",
+        explanation:
+            "CHANH commonly refers to lime in Vietnamese, but can also be translated as lemon depending on context."
+    },
+
+    {
+        vi:"táo",
+        en:"apple",
+        explanation:
+            "TÁO means apple."
+    },
+
+    {
+        vi:"xoài",
+        en:"mango",
+        explanation:
+            "XOÀI means mango."
+    },
+
+    {
+        vi:"cà chua",
+        en:"tomato",
+        explanation:
+            "CÀ CHUA means tomato."
+    },
+
+    {
+        vi:"khoai tây",
+        en:"potato",
+        explanation:
+            "KHOAI TÂY means potato."
+    },
+
+    {
+        vi:"cà rốt",
+        en:"carrot",
+        explanation:
+            "CÀ RỐT means carrot."
+    },
+
+    {
+        vi:"dưa leo",
+        en:"cucumber",
+        explanation:
+            "DƯA LEO means cucumber."
+    },
+
+    {
+        vi:"bắp",
+        en:"corn",
+        explanation:
+            "BẮP means corn. This word is especially common in Southern Vietnamese."
+    },
+
+    {
+        vi:"xà lách",
+        en:"lettuce",
+        explanation:
+            "XÀ LÁCH means lettuce."
+    },
+
+    {
+        vi:"ngon",
+        en:"delicious",
+        explanation:
+            "NGON means delicious or tasty."
+    },
+
+    {
+        vi:"mặn",
+        en:"salty",
+        explanation:
+            "MẶN means salty."
+    },
+
+    {
+        vi:"cay",
+        en:"spicy",
+        explanation:
+            "CAY means spicy."
+    },
+
+    {
+        vi:"ngọt",
+        en:"sweet",
+        explanation:
+            "NGỌT means sweet."
+    },
+
+    {
+        vi:"chua",
+        en:"sour",
+        explanation:
+            "CHUA means sour."
+    },
+
+    {
+        vi:"đắng",
+        en:"bitter",
+        explanation:
+            "ĐẮNG means bitter."
+    },
+
+    {
+        vi:"nóng",
+        en:"hot",
+        explanation:
+            "NÓNG means hot. For food and drinks, it describes temperature."
+    },
+
+    {
+        vi:"lạnh",
+        en:"cold",
+        explanation:
+            "LẠNH means cold. For food and drinks, it describes temperature."
     }
 
 ];
 
 
 /* =========================================================
-   EXPLANATIONS
+   ROUND STRUCTURE
+
+   4 rounds  × 2 pairs
+   6 rounds  × 3 pairs
+   8 rounds  × 4 pairs
+   2 rounds  × 5 pairs
+
+   TOTAL = 20 rounds / 64 matches
 ========================================================= */
 
-const explanations = {
-
-    "TO":{
-
-        meaning:
-            "TO means big or large in Vietnamese.",
-
-        related:
-            "big, large, huge, giant, enormous, massive"
-    },
-
-
-    "NHỎ":{
-
-        meaning:
-            "NHỎ means small or little in Vietnamese.",
-
-        related:
-            "small, tiny, little"
-    },
-
-
-    "NHANH":{
-
-        meaning:
-            "NHANH means fast or quick in Vietnamese.",
-
-        related:
-            "fast, quick, rapid"
-    },
-
-
-    "CHẬM":{
-
-        meaning:
-            "CHẬM means slow in Vietnamese.",
-
-        related:
-            "slow"
-    },
-
-
-    "XA":{
-
-        meaning:
-            "XA means far or distant in Vietnamese.",
-
-        related:
-            "far, distant"
-    },
-
-
-    "GẦN":{
-
-        meaning:
-            "GẦN means near, nearby, or close in Vietnamese.",
-
-        related:
-            "near, nearby, close"
-    },
-
-
-    "RẺ":{
-
-        meaning:
-            "RẺ means cheap or inexpensive in Vietnamese.",
-
-        related:
-            "cheap"
-    },
-
-
-    "MẮC":{
-
-        meaning:
-            "MẮC means expensive or costly in Vietnamese.",
-
-        related:
-            "expensive, costly, pricey"
-    },
-
-
-    "CAO":{
-
-        meaning:
-            "CAO means tall when describing a person, or high when describing a level, place, or object.",
-
-        related:
-            "tall, high"
-    },
-
-
-    "THẤP":{
-
-        meaning:
-            "THẤP means short when describing height, or low when describing a level or position.",
-
-        related:
-            "short, low"
-    },
-
-
-    "ĐẸP":{
-
-        meaning:
-            "ĐẸP means beautiful or pretty in Vietnamese.",
-
-        related:
-            "beautiful, pretty, lovely"
-    },
-
-
-    "XẤU":{
-
-        meaning:
-            "XẤU means ugly or unattractive in Vietnamese.",
-
-        related:
-            "ugly, unattractive"
-    }
-
-};
-
-
-/* =========================================================
-   GAME STATE
-========================================================= */
-
-let current = 0;
-
-let score = 0;
-
-let matched = 0;
-
-let draggedWord = null;
-
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const introScreen =
-    document.getElementById("introScreen");
-
-const gameScreen =
-    document.getElementById("gameScreen");
-
-const finalScreen =
-    document.getElementById("finalScreen");
-
-const targetsEl =
-    document.getElementById("targets");
-
-const wordsEl =
-    document.getElementById("words");
-
-const messageEl =
-    document.getElementById("message");
-
-const explanationEl =
-    document.getElementById("explanation");
-
-const nextBtn =
-    document.getElementById("nextBtn");
-
-const roundText =
-    document.getElementById("roundText");
-
-const scoreText =
-    document.getElementById("scoreText");
-
-
-/* =========================================================
-   TOTAL PAIRS
-========================================================= */
-
-const totalPairs =
-    rounds.reduce(
-        (total, round) =>
-            total + round.vi.length,
-        0
-    );
+const roundSizes = [
+
+    2,
+    2,
+    2,
+    2,
+
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+
+    5,
+    5
+
+];
 
 
 /* =========================================================
@@ -1456,6 +1255,172 @@ function shuffle(array){
 
 
 /* =========================================================
+   CREATE ROUNDS
+
+   The vocabulary is shuffled first.
+
+   Each round contains unique vocabulary items.
+   When all 37 words have been used, the pool
+   is shuffled again so words can be reused.
+========================================================= */
+
+function createRounds(){
+
+    const createdRounds = [];
+
+    let pool =
+        shuffle(vocabulary);
+
+    let poolIndex = 0;
+
+
+    roundSizes.forEach(
+        size => {
+
+            const selected = [];
+
+
+            while(
+                selected.length < size
+            ){
+
+                if(
+                    poolIndex >= pool.length
+                ){
+
+                    pool =
+                        shuffle(vocabulary);
+
+                    poolIndex = 0;
+
+                }
+
+
+                const item =
+                    pool[poolIndex];
+
+                poolIndex++;
+
+
+                const alreadySelected =
+                    selected.some(
+                        selectedItem =>
+                            selectedItem.vi ===
+                            item.vi
+                    );
+
+
+                if(
+                    !alreadySelected
+                ){
+
+                    selected.push(item);
+
+                }
+
+            }
+
+
+            createdRounds.push({
+
+                pairs:selected
+
+            });
+
+        }
+    );
+
+
+    return createdRounds;
+
+}
+
+
+let rounds =
+    createRounds();
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let current = 0;
+
+let score = 0;
+
+let matched = 0;
+
+let draggedWord = null;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById(
+        "introScreen"
+    );
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+const finalScreen =
+    document.getElementById(
+        "finalScreen"
+    );
+
+const targetsEl =
+    document.getElementById(
+        "targets"
+    );
+
+const wordsEl =
+    document.getElementById(
+        "words"
+    );
+
+const messageEl =
+    document.getElementById(
+        "message"
+    );
+
+const explanationEl =
+    document.getElementById(
+        "explanation"
+    );
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+const roundText =
+    document.getElementById(
+        "roundText"
+    );
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+/* =========================================================
+   TOTAL MATCHES
+========================================================= */
+
+const totalPairs =
+    roundSizes.reduce(
+        (total, size) =>
+            total + size,
+        0
+    );
+
+
+/* =========================================================
    START GAME
 ========================================================= */
 
@@ -1468,6 +1433,9 @@ function startGame(){
     matched = 0;
 
     draggedWord = null;
+
+    rounds =
+        createRounds();
 
 
     introScreen.style.display =
@@ -1518,8 +1486,11 @@ function loadRound(){
     const round =
         rounds[current];
 
+    const pairs =
+        round.pairs;
+
     const count =
-        round.vi.length;
+        pairs.length;
 
 
     roundText.textContent =
@@ -1528,14 +1499,6 @@ function loadRound(){
 
     scoreText.textContent =
         `Score: ${score}`;
-
-
-    targetsEl.style.gridTemplateColumns =
-        `repeat(${count}, minmax(0, 1fr))`;
-
-
-    wordsEl.style.gridTemplateColumns =
-        `repeat(${count}, minmax(0, 1fr))`;
 
 
     targetsEl.innerHTML =
@@ -1549,11 +1512,13 @@ function loadRound(){
        VIETNAMESE TARGETS
     ===================================================== */
 
-    shuffle(round.vi).forEach(
-        vietnamese => {
+    shuffle(pairs).forEach(
+        item => {
 
             const box =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             box.className =
@@ -1561,11 +1526,11 @@ function loadRound(){
 
 
             box.textContent =
-                vietnamese;
+                item.vi;
 
 
             box.dataset.vi =
-                vietnamese;
+                item.vi;
 
 
             /* =============================================
@@ -1643,12 +1608,16 @@ function loadRound(){
                         draggedWord.dataset.word;
 
 
+                    const correctVietnamese =
+                        draggedWord.dataset.vi;
+
+
                     /* =====================================
                        CORRECT
                     ====================================== */
 
                     if(
-                        round.map[english] ===
+                        correctVietnamese ===
                         box.dataset.vi
                     ){
 
@@ -1752,11 +1721,13 @@ function loadRound(){
        ENGLISH WORDS
     ===================================================== */
 
-    shuffle(round.en).forEach(
-        english => {
+    shuffle(pairs).forEach(
+        item => {
 
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             card.className =
@@ -1768,11 +1739,15 @@ function loadRound(){
 
 
             card.dataset.word =
-                english;
+                item.en;
+
+
+            card.dataset.vi =
+                item.vi;
 
 
             card.textContent =
-                english;
+                item.en;
 
 
             /* =============================================
@@ -1830,11 +1805,15 @@ function showExplanation(
     vietnamese
 ){
 
-    const data =
-        explanations[vietnamese];
+    const item =
+        vocabulary.find(
+            word =>
+                word.vi === vietnamese &&
+                word.en === english
+        );
 
 
-    if(!data){
+    if(!item){
 
         return;
 
@@ -1851,14 +1830,7 @@ function showExplanation(
 
         <br><br>
 
-        ${data.meaning}
-
-        <span class="related">
-
-            Related English words:
-            ${data.related}
-
-        </span>
+        ${item.explanation}
 
     `;
 
@@ -1911,12 +1883,6 @@ function finishGame(){
 
     finalScreen.style.display =
         "block";
-
-
-    finalScreen.querySelector(
-        "h2"
-    ).textContent =
-        "🎉 Great Job!";
 
 
     document.getElementById(
