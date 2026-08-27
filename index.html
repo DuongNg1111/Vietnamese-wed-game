@@ -824,7 +824,7 @@
 
 
         /* =====================================================
-           LOBBY
+           LOBBY PAGE
         ====================================================== */
 
         #lobby-page {
@@ -838,7 +838,7 @@
 
             text-align: center;
 
-            margin-bottom: 35px;
+            margin-bottom: 38px;
 
         }
 
@@ -905,7 +905,7 @@
 
             gap: 14px;
 
-            margin-bottom: 32px;
+            margin-bottom: 42px;
 
         }
 
@@ -958,6 +958,76 @@
             font-size: 0.75rem;
 
             font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           CATEGORY SECTIONS
+        ====================================================== */
+
+        .category-section {
+
+            margin-bottom: 55px;
+
+        }
+
+
+        .category-section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .category-section-header {
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .category-section-title {
+
+            margin: 0;
+
+            color: var(--ink);
+
+            font-size: 1.55rem;
+
+            font-weight: 800;
+
+        }
+
+
+        .category-section-title::after {
+
+            content: "";
+
+            display: block;
+
+            width: 48px;
+
+            height: 4px;
+
+            margin-top: 9px;
+
+            border-radius: 999px;
+
+            background: var(--blue);
+
+        }
+
+
+        .category-section-subtitle {
+
+            margin: 8px 0 0;
+
+            color: var(--ink-soft);
+
+            font-size: 0.86rem;
+
+            line-height: 1.5;
 
         }
 
@@ -1139,15 +1209,6 @@
             --accent: #e0527a;
             --background: #fff0f4;
             --border: #f3c5d3;
-
-        }
-
-
-        .category-mix {
-
-            --accent: #e0a51a;
-            --background: #fff8df;
-            --border: #f1df9f;
 
         }
 
@@ -1555,6 +1616,27 @@
             }
 
 
+            .category-section {
+
+                margin-bottom: 40px;
+
+            }
+
+
+            .category-section-title {
+
+                font-size: 1.35rem;
+
+            }
+
+
+            .category-section-subtitle {
+
+                font-size: 0.8rem;
+
+            }
+
+
             .category-grid {
 
                 grid-template-columns: 1fr;
@@ -1829,8 +1911,8 @@
             </h2>
 
             <p class="section-subtitle">
-                Pick a topic and practice Vietnamese through
-                vocabulary games and interactive activities.
+                Choose a topic and practice Vietnamese through
+                vocabulary and sentence-based games.
             </p>
 
         </div>
@@ -1881,19 +1963,76 @@
 
 
         <!-- =================================================
-             CATEGORY CONTAINER
+             VOCABULARY
         ================================================== -->
 
-        <div
-            id="category-container"
-            class="category-grid"
+        <section
+            id="vocabulary-section"
+            class="category-section"
         >
 
-            <div class="loading">
-                Loading topics...
+            <div class="category-section-header">
+
+                <h3 class="category-section-title">
+                    📚 Vocabulary
+                </h3>
+
+                <p class="category-section-subtitle">
+                    Build your Vietnamese vocabulary by topic.
+                </p>
+
             </div>
 
-        </div>
+
+            <div
+                id="vocabulary-container"
+                class="category-grid"
+            >
+
+                <div class="loading">
+                    Loading vocabulary topics...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SENTENCES
+        ================================================== -->
+
+        <section
+            id="sentences-section"
+            class="category-section"
+        >
+
+            <div class="category-section-header">
+
+                <h3 class="category-section-title">
+                    💬 Sentences
+                </h3>
+
+                <p class="category-section-subtitle">
+                    Practice Vietnamese through questions
+                    and sentence structures.
+                </p>
+
+            </div>
+
+
+            <div
+                id="sentences-container"
+                class="category-grid"
+            >
+
+                <div class="loading">
+                    Loading sentence topics...
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
@@ -1922,7 +2061,8 @@
            CONFIGURATION
         ====================================================== */
 
-        const CATEGORY_FILE = "categories.json";
+        const CATEGORY_FILE =
+            "categories.json";
 
 
         /* =====================================================
@@ -1965,9 +2105,27 @@
             );
 
 
-        const categoryContainer =
+        const vocabularyContainer =
             document.getElementById(
-                "category-container"
+                "vocabulary-container"
+            );
+
+
+        const sentencesContainer =
+            document.getElementById(
+                "sentences-container"
+            );
+
+
+        const vocabularySection =
+            document.getElementById(
+                "vocabulary-section"
+            );
+
+
+        const sentencesSection =
+            document.getElementById(
+                "sentences-section"
             );
 
 
@@ -1987,11 +2145,10 @@
            CATEGORY STYLE MAP
            
            The category name comes from categories.json.
-           The class only controls visual styling.
+           These classes only control visual styling.
            
-           Adding a new category does NOT break the system.
-           It simply receives the default blue style unless
-           a specific class is added here later.
+           Categories that are not listed here automatically
+           use the default blue style.
         ====================================================== */
 
         const categoryClasses = {
@@ -2010,9 +2167,6 @@
 
             "Health":
                 "category-health",
-
-            "Mix Practice Vocabulary":
-                "category-mix",
 
             "Numbers":
                 "category-numbers",
@@ -2187,18 +2341,6 @@
 
         /* =====================================================
            GET GAME COUNT
-           
-           categories.json is the single source of truth.
-           
-           Example:
-           
-           "Food and Drinks": {
-               "games": [
-                   ...
-               ]
-           }
-           
-           The count is calculated dynamically.
         ====================================================== */
 
         function getGameCount(category) {
@@ -2241,13 +2383,7 @@
                 "category-card";
 
 
-            /*
-             * Apply the visual class if this category
-             * already has a defined color.
-             *
-             * New categories automatically keep the
-             * default blue style.
-             */
+            /* Apply visual style */
 
             const categoryClass =
                 categoryClasses[
@@ -2264,11 +2400,7 @@
             }
 
 
-            /*
-             * Category page is handled by category.html.
-             *
-             * We only pass the category name here.
-             */
+            /* Category page */
 
             card.href =
                 `category.html?category=${encodeURIComponent(
@@ -2276,16 +2408,22 @@
                 )}`;
 
 
+            /* Game count */
+
             const games =
                 getGameCount(
                     category
                 );
 
 
+            /* Icon */
+
             const icon =
                 category.icon ||
                 "📚";
 
+
+            /* Subtitle */
 
             const subtitle =
                 category.subtitle ||
@@ -2315,8 +2453,13 @@
                 <div class="category-footer">
 
                     <span class="category-count">
+
                         ${games}
-                        ${games === 1 ? "game" : "games"}
+
+                        ${games === 1
+                            ? "game"
+                            : "games"}
+
                     </span>
 
 
@@ -2362,6 +2505,13 @@
 
         /* =====================================================
            RENDER CATEGORIES
+           
+           Categories are separated into:
+           
+           - vocabulary
+           - sentences
+           
+           The "type" property will come from categories.json.
         ====================================================== */
 
         async function renderCategories() {
@@ -2372,7 +2522,11 @@
                     await loadCategories();
 
 
-                categoryContainer.innerHTML =
+                vocabularyContainer.innerHTML =
+                    "";
+
+
+                sentencesContainer.innerHTML =
                     "";
 
 
@@ -2382,9 +2536,9 @@
                     );
 
 
-                /*
-                 * Only valid category objects are rendered.
-                 */
+                /* =================================================
+                   VALID CATEGORIES
+                ================================================== */
 
                 const validCategories =
                     categoryNames.filter(
@@ -2406,10 +2560,9 @@
                     );
 
 
-                /*
-                 * Calculate total games directly
-                 * from categories.json.
-                 */
+                /* =================================================
+                   TOTAL GAME COUNT
+                ================================================== */
 
                 const totalGames =
                     validCategories.reduce(
@@ -2432,23 +2585,64 @@
                     );
 
 
-                /*
-                 * Update lobby statistics.
-                 */
+                totalGamesElement.textContent =
+                    totalGames;
+
 
                 totalCategoriesElement.textContent =
                     validCategories.length;
 
 
-                totalGamesElement.textContent =
-                    totalGames;
+                /* =================================================
+                   SPLIT INTO GROUPS
+                   
+                   IMPORTANT:
+                   
+                   type === "vocabulary"
+                       → Vocabulary
+                   
+                   type === "sentences"
+                       → Sentences
+                   
+                   If a category has no type yet, it is NOT
+                   automatically placed into either group.
+                   This prevents old / unwanted categories
+                   such as Mix Practice from appearing.
+                ================================================== */
+
+                const vocabularyCategories =
+                    validCategories.filter(
+                        categoryName => {
+
+                            return (
+                                categories[
+                                    categoryName
+                                ].type === "vocabulary"
+                            );
+
+                        }
+                    );
 
 
-                /*
-                 * Render category cards.
-                 */
+                const sentenceCategories =
+                    validCategories.filter(
+                        categoryName => {
 
-                validCategories.forEach(
+                            return (
+                                categories[
+                                    categoryName
+                                ].type === "sentences"
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   RENDER VOCABULARY
+                ================================================== */
+
+                vocabularyCategories.forEach(
                     categoryName => {
 
                         const card =
@@ -2460,7 +2654,7 @@
                             );
 
 
-                        categoryContainer.appendChild(
+                        vocabularyContainer.appendChild(
                             card
                         );
 
@@ -2468,28 +2662,68 @@
                 );
 
 
-                /*
-                 * Empty-state handling.
-                 */
+                /* =================================================
+                   RENDER SENTENCES
+                ================================================== */
+
+                sentenceCategories.forEach(
+                    categoryName => {
+
+                        const card =
+                            createCategoryCard(
+                                categoryName,
+                                categories[
+                                    categoryName
+                                ]
+                            );
+
+
+                        sentencesContainer.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   EMPTY VOCABULARY STATE
+                ================================================== */
 
                 if (
-                    validCategories.length === 0
+                    vocabularyCategories.length === 0
                 ) {
 
-                    categoryContainer.innerHTML = `
+                    vocabularyContainer.innerHTML = `
 
                         <div class="error-message">
 
                             <strong>
-                                No categories found.
+                                No vocabulary topics yet.
                             </strong>
 
-                            <br><br>
+                        </div>
 
-                            Please check
+                    `;
+
+                }
+
+
+                /* =================================================
+                   EMPTY SENTENCE STATE
+                ================================================== */
+
+                if (
+                    sentenceCategories.length === 0
+                ) {
+
+                    sentencesContainer.innerHTML = `
+
+                        <div class="error-message">
+
                             <strong>
-                                categories.json
-                            </strong>.
+                                No sentence topics yet.
+                            </strong>
 
                         </div>
 
@@ -2515,7 +2749,7 @@
                     "—";
 
 
-                categoryContainer.innerHTML = `
+                vocabularyContainer.innerHTML = `
 
                     <div class="error-message">
 
@@ -2542,6 +2776,10 @@
                     </div>
 
                 `;
+
+
+                sentencesContainer.innerHTML =
+                    "";
 
             }
 
@@ -2699,6 +2937,7 @@
                 logoutBtn.disabled =
                     true;
 
+
                 logoutBtn.textContent =
                     "Logging out...";
 
@@ -2754,6 +2993,7 @@
 
                     logoutBtn.disabled =
                         false;
+
 
                     logoutBtn.textContent =
                         "Log out";
