@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="game-title"
+        content="Flip & Match"
+    >
+
+    <meta
+        name="game-description"
+        content="Flip the cards and match each Vietnamese word with its English meaning."
+    >
+
+    <meta
+        name="game-icon"
+        content="🃏"
+    >
+
+    <meta
+        name="game-category"
+        content="Places, Directions & Transportation"
+    >
+
+    <title>
+        Flip & Match | Vietnamese Game
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #f5f9fd;
+
+            color:
+                #143a6b;
+
+        }
+
+
+        .game-wrapper {
+
+            width:
+                min(900px, 92%);
+
+            margin:
+                0 auto;
+
+            padding:
+                30px 0 50px;
+
+        }
+
+
+        /* =====================================================
+           TOP
+        ====================================================== */
+
+        .top-bar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .back-btn {
+
+            display: inline-block;
+
+            padding:
+                9px 16px;
+
+            border:
+                1px solid #c4daf6;
+
+            border-radius:
+                999px;
+
+            background:
+                #ffffff;
+
+            color:
+                #2f6fed;
+
+            text-decoration:
+                none;
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .back-btn:hover {
+
+            background:
+                #eaf3ff;
+
+        }
+
+
+        .progress {
+
+            padding:
+                8px 14px;
+
+            border:
+                1px solid #c4daf6;
+
+            border-radius:
+                999px;
+
+            background:
+                #eaf3ff;
+
+            color:
+                #2f6fed;
+
+            font-size:
+                0.8rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .game-header {
+
+            margin-bottom:
+                25px;
+
+            padding:
+                28px;
+
+            border:
+                1px solid #c4daf6;
+
+            border-radius:
+                22px;
+
+            background:
+                #ffffff;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 8px 24px rgba(
+                    20,
+                    58,
+                    107,
+                    0.07
+                );
+
+        }
+
+
+        .game-icon {
+
+            font-size:
+                2.4rem;
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        h1 {
+
+            margin:
+                0 0 8px;
+
+            font-size:
+                2rem;
+
+        }
+
+
+        .subtitle {
+
+            margin:
+                0;
+
+            color:
+                #66809d;
+
+            font-size:
+                0.9rem;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        /* =====================================================
+           SCORE
+        ====================================================== */
+
+        .score-row {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .score-box {
+
+            min-width:
+                110px;
+
+            padding:
+                10px 16px;
+
+            border:
+                1px solid #c4daf6;
+
+            border-radius:
+                14px;
+
+            background:
+                #ffffff;
+
+            text-align:
+                center;
+
+        }
+
+
+        .score-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                4px;
+
+            color:
+                #66809d;
+
+            font-size:
+                0.68rem;
+
+            font-weight:
+                700;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .score-value {
+
+            font-size:
+                1.15rem;
+
+            font-weight:
+                800;
+
+            color:
+                #2f6fed;
+
+        }
+
+
+        /* =====================================================
+           INSTRUCTION
+        ====================================================== */
+
+        .instruction {
+
+            margin-bottom:
+                20px;
+
+            color:
+                #66809d;
+
+            font-size:
+                0.84rem;
+
+            text-align:
+                center;
+
+        }
+
+
+        /* =====================================================
+           CARD GRID
+        ====================================================== */
+
+        .card-grid {
+
+            width:
+                min(650px, 100%);
+
+            margin:
+                0 auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                18px;
+
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .memory-card {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            aspect-ratio:
+                1 / 1;
+
+            perspective:
+                1000px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .memory-card.disabled {
+
+            cursor:
+                default;
+
+        }
+
+
+        .card-inner {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            transition:
+                transform 0.45s ease;
+
+            transform-style:
+                preserve-3d;
+
+        }
+
+
+        .memory-card.flipped .card-inner,
+        .memory-card.matched .card-inner {
+
+            transform:
+                rotateY(180deg);
+
+        }
+
+
+        .card-face {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                15px;
+
+            border:
+                2px solid #c4daf6;
+
+            border-radius:
+                18px;
+
+            backface-visibility:
+                hidden;
+
+            -webkit-backface-visibility:
+                hidden;
+
+            text-align:
+                center;
+
+        }
+
+
+        .card-front {
+
+            background:
+                #eaf3ff;
+
+            color:
+                #2f6fed;
+
+            font-size:
+                2rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .card-back {
+
+            transform:
+                rotateY(180deg);
+
+            background:
+                #ffffff;
+
+            color:
+                #143a6b;
+
+            font-size:
+                clamp(
+                    0.85rem,
+                    2.3vw,
+                    1.05rem
+                );
+
+            font-weight:
+                800;
+
+            line-height:
+                1.3;
+
+        }
+
+
+        /* =====================================================
+           MATCHED COLORS
+        ====================================================== */
+
+        .memory-card.matched .card-back {
+
+            border-width:
+                3px;
+
+        }
+
+
+        .memory-card.match-1 .card-back {
+            border-color:
+                #e05a42;
+        }
+
+
+        .memory-card.match-2 .card-back {
+            border-color:
+                #7657d9;
+        }
+
+
+        .memory-card.match-3 .card-back {
+            border-color:
+                #079b91;
+        }
+
+
+        .memory-card.match-4 .card-back {
+            border-color:
+                #d14f76;
+        }
+
+
+        .memory-card.match-5 .card-back {
+            border-color:
+                #3b82c4;
+        }
+
+
+        .memory-card.match-6 .card-back {
+            border-color:
+                #d14f9b;
+        }
+
+
+        /* =====================================================
+           WRONG MARK
+        ====================================================== */
+
+        .wrong-mark {
+
+            position:
+                absolute;
+
+            top:
+                50%;
+
+            left:
+                50%;
+
+            z-index:
+                20;
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            transform:
+                translate(-50%, -50%);
+
+            border:
+                3px solid #d94b4b;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
+
+            color:
+                #d94b4b;
+
+            font-size:
+                2rem;
+
+            font-weight:
+                900;
+
+            opacity:
+                0;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .memory-card.show-wrong .wrong-mark {
+
+            opacity:
+                1;
+
+        }
+
+
+        .memory-card.show-wrong .card-back {
+
+            border-color:
+                #d94b4b;
+
+        }
+
+
+        /* =====================================================
+           ROUND MESSAGE
+        ====================================================== */
+
+        .round-message {
+
+            min-height:
+                30px;
+
+            margin:
+                22px 0 0;
+
+            color:
+                #66809d;
+
+            font-size:
+                0.85rem;
+
+            font-weight:
+                700;
+
+            text-align:
+                center;
+
+        }
+
+
+        /* =====================================================
+           NEXT BUTTON
+        ====================================================== */
+
+        .next-btn {
+
+            display:
+                block;
+
+            margin:
+                18px auto 0;
+
+            padding:
+                12px 24px;
+
+            border:
+                0;
+
+            border-radius:
+                12px;
+
+            background:
+                #2f6fed;
+
+            color:
+                #ffffff;
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.85rem;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .next-btn:hover {
+
+            background:
+                #1e4fc7;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .next-btn:disabled {
+
+            opacity:
+                0.45;
+
+            cursor:
+                default;
+
+            transform:
+                none;
+
+        }
+
+
+        /* =====================================================
+           RESULT
+        ====================================================== */
+
+        .result-screen {
+
+            display:
+                none;
+
+            padding:
+                40px 25px;
+
+            border:
+                1px solid #c4daf6;
+
+            border-radius:
+                22px;
+
+            background:
+                #ffffff;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 10px 30px rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+        }
+
+
+        .result-icon {
+
+            font-size:
+                3rem;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .result-screen h2 {
+
+            margin:
+                0 0 10px;
+
+            font-size:
+                1.8rem;
+
+        }
+
+
+        .final-score {
+
+            margin:
+                15px 0;
+
+            color:
+                #2f6fed;
+
+            font-size:
+                2.5rem;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .result-text {
+
+            margin:
+                0;
+
+            color:
+                #66809d;
+
+            font-size:
+                0.9rem;
+
+        }
+
+
+        .restart-btn {
+
+            margin-top:
+                22px;
+
+            padding:
+                12px 24px;
+
+            border:
+                0;
+
+            border-radius:
+                12px;
+
+            background:
+                #2f6fed;
+
+            color:
+                #ffffff;
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.85rem;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (
+            max-width: 600px
+        ) {
+
+            .game-wrapper {
+
+                width:
+                    94%;
+
+                padding-top:
+                    18px;
+
+            }
+
+
+            .game-header {
+
+                padding:
+                    23px 18px;
+
+            }
+
+
+            h1 {
+
+                font-size:
+                    1.6rem;
+
+            }
+
+
+            .card-grid {
+
+                gap:
+                    10px;
+
+            }
+
+
+            .card-face {
+
+                border-radius:
+                    14px;
+
+                padding:
+                    8px;
+
+            }
+
+
+            .card-front {
+
+                font-size:
+                    1.5rem;
+
+            }
+
+
+            .wrong-mark {
+
+                width:
+                    45px;
+
+                height:
+                    45px;
+
+                font-size:
+                    1.5rem;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="game-wrapper">
+
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <div class="top-bar">
+
+        <a
+            href="../../index.html"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+
+        <div
+            id="progress"
+            class="progress"
+        >
+            Round 1 / 20
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GAME HEADER
+    ====================================================== -->
+
+    <section class="game-header">
+
+        <div class="game-icon">
+            🃏
+        </div>
+
+
+        <h1>
+            Flip & Match
+        </h1>
+
+
+        <p class="subtitle">
+            Match each Vietnamese word with its English meaning.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCORE
+    ====================================================== -->
+
+    <div class="score-row">
+
+        <div class="score-box">
+
+            <span class="score-label">
+                Score
+            </span>
+
+            <span
+                id="score"
+                class="score-value"
+            >
+                0 / 20
+            </span>
+
+        </div>
+
+
+        <div class="score-box">
+
+            <span class="score-label">
+                Matches
+            </span>
+
+            <span
+                id="matches"
+                class="score-value"
+            >
+                0 / 3
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GAME AREA
+    ====================================================== -->
+
+    <div id="game-area">
+
+        <div class="instruction">
+            Flip two cards to find a matching pair.
+        </div>
+
+
+        <div
+            id="card-grid"
+            class="card-grid"
+        >
+        </div>
+
+
+        <div
+            id="round-message"
+            class="round-message"
+        >
+        </div>
+
+
+        <button
+            id="next-btn"
+            class="next-btn"
+            type="button"
+            disabled
+        >
+            Next Round →
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+
+    <section
+        id="result-screen"
+        class="result-screen"
+    >
+
+        <div class="result-icon">
+            🎉
+        </div>
+
+
+        <h2>
+            Great job!
+        </h2>
+
+
+        <div
+            id="final-score"
+            class="final-score"
+        >
+            0 / 20
+        </div>
+
+
+        <p
+            id="result-text"
+            class="result-text"
+        >
+            You completed all 20 rounds.
+        </p>
+
+
+        <button
+            id="restart-btn"
+            class="restart-btn"
+            type="button"
+        >
+            Play Again
+        </button>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   VOCABULARY
+   ========================================================= */
+
+const vocabulary = [
+
+    {
+        vietnamese: "nhà",
+        phonetic: "nya",
+        english: "House / Home"
+    },
+
+    {
+        vietnamese: "trường học",
+        phonetic: "chuong hawk",
+        english: "School"
+    },
+
+    {
+        vietnamese: "bệnh viện",
+        phonetic: "benh vien",
+        english: "Hospital"
+    },
+
+    {
+        vietnamese: "chợ",
+        phonetic: "chaw",
+        english: "Market"
+    },
+
+    {
+        vietnamese: "siêu thị",
+        phonetic: "siu thi",
+        english: "Supermarket"
+    },
+
+    {
+        vietnamese: "nhà hàng",
+        phonetic: "nya hang",
+        english: "Restaurant"
+    },
+
+    {
+        vietnamese: "khách sạn",
+        phonetic: "khak san",
+        english: "Hotel"
+    },
+
+    {
+        vietnamese: "ngân hàng",
+        phonetic: "ngan hang",
+        english: "Bank"
+    },
+
+    {
+        vietnamese: "sân bay",
+        phonetic: "sən bai",
+        english: "Airport"
+    },
+
+    {
+        vietnamese: "bến xe",
+        phonetic: "ben seh",
+        english: "Bus station"
+    },
+
+
+    {
+        vietnamese: "bên trái",
+        phonetic: "ben chai",
+        english: "Left"
+    },
+
+    {
+        vietnamese: "bên phải",
+        phonetic: "ben fai",
+        english: "Right"
+    },
+
+    {
+        vietnamese: "trên",
+        phonetic: "chen",
+        english: "Above"
+    },
+
+    {
+        vietnamese: "dưới",
+        phonetic: "zưới",
+        english: "Below"
+    },
+
+    {
+        vietnamese: "bên cạnh",
+        phonetic: "ben kanh",
+        english: "Next to"
+    },
+
+    {
+        vietnamese: "trong",
+        phonetic: "chong",
+        english: "Inside"
+    },
+
+    {
+        vietnamese: "giữa",
+        phonetic: "zữa",
+        english: "Between"
+    },
+
+    {
+        vietnamese: "phía trước",
+        phonetic: "fia chước",
+        english: "In front"
+    },
+
+    {
+        vietnamese: "phía sau",
+        phonetic: "fia sau",
+        english: "Behind"
+    },
+
+    {
+        vietnamese: "ở",
+        phonetic: "ơ",
+        english: "At / In / On / Live in / Live at"
+    },
+
+    {
+        vietnamese: "rẽ",
+        phonetic: "zeh",
+        english: "To turn"
+    },
+
+    {
+        vietnamese: "đi thẳng",
+        phonetic: "dee tang",
+        english: "Go straight"
+    },
+
+
+    {
+        vietnamese: "xe máy",
+        phonetic: "seh mai",
+        english: "Motorbike"
+    },
+
+    {
+        vietnamese: "xe đạp",
+        phonetic: "seh dap",
+        english: "Bicycle"
+    },
+
+    {
+        vietnamese: "xe buýt",
+        phonetic: "seh bwit",
+        english: "Bus"
+    },
+
+    {
+        vietnamese: "xe hơi",
+        phonetic: "seh hoy",
+        english: "Car"
+    },
+
+    {
+        vietnamese: "taxi",
+        phonetic: "tak-see",
+        english: "Taxi"
+    },
+
+    {
+        vietnamese: "xe lửa",
+        phonetic: "seh lửa",
+        english: "Train"
+    },
+
+    {
+        vietnamese: "máy bay",
+        phonetic: "mai bai",
+        english: "Airplane"
+    },
+
+    {
+        vietnamese: "tàu",
+        phonetic: "tao",
+        english: "Boat / Ship"
+    },
+
+    {
+        vietnamese: "xe ôm",
+        phonetic: "seh om",
+        english: "Motorbike taxi"
+    },
+
+    {
+        vietnamese: "đi bộ",
+        phonetic: "dee boh",
+        english: "Walk / On foot"
+    }
+
+];
+
+
+/* =========================================================
+   GAME SETTINGS
+   ========================================================= */
+
+const TOTAL_ROUNDS =
+    20;
+
+const PAIRS_PER_ROUND =
+    3;
+
+const CARDS_PER_ROUND =
+    6;
+
+
+/*
+ * The delay is intentional.
+ *
+ * Players need enough time to see
+ * both cards before the result appears.
+ */
+
+const WRONG_DISPLAY_TIME =
+    900;
+
+const CORRECT_DISPLAY_TIME =
+    500;
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let round =
+    1;
+
+let score =
+    0;
+
+let matchedPairs =
+    0;
+
+let selectedCards =
+    [];
+
+let lockBoard =
+    false;
+
+let currentPairs =
+    [];
+
+let availableVocabulary =
+    [];
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const cardGrid =
+    document.getElementById(
+        "card-grid"
+    );
+
+const progress =
+    document.getElementById(
+        "progress"
+    );
+
+const scoreElement =
+    document.getElementById(
+        "score"
+    );
+
+const matchesElement =
+    document.getElementById(
+        "matches"
+    );
+
+const roundMessage =
+    document.getElementById(
+        "round-message"
+    );
+
+const nextButton =
+    document.getElementById(
+        "next-btn"
+    );
+
+const gameArea =
+    document.getElementById(
+        "game-area"
+    );
+
+const resultScreen =
+    document.getElementById(
+        "result-screen"
+    );
+
+const finalScore =
+    document.getElementById(
+        "final-score"
+    );
+
+const resultText =
+    document.getElementById(
+        "result-text"
+    );
+
+const restartButton =
+    document.getElementById(
+        "restart-btn"
+    );
+
+
+/* =========================================================
+   SHUFFLE
+   ========================================================= */
+
+function shuffle(
+    array
+) {
+
+    const result =
+        [...array];
+
+
+    for (
+        let i = result.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            result[i],
+            result[j]
+        ] =
+        [
+            result[j],
+            result[i]
+        ];
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   GET ROUND VOCABULARY
+   ========================================================= */
+
+function getRoundPairs() {
+
+    /*
+     * Refill the pool when needed.
+     */
+
+    if (
+        availableVocabulary.length <
+        PAIRS_PER_ROUND
+    ) {
+
+        availableVocabulary =
+            shuffle(
+                vocabulary
+            );
+
+    }
+
+
+    const selected =
+        availableVocabulary.splice(
+            0,
+            PAIRS_PER_ROUND
+        );
+
+
+    return selected;
+
+}
+
+
+/* =========================================================
+   CREATE CARD
+   ========================================================= */
+
+function createCard(
+    pair,
+    type
+) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "memory-card";
+
+
+    card.dataset.pairId =
+        pair.id;
+
+
+    card.dataset.type =
+        type;
+
+
+    const value =
+        type === "vietnamese"
+            ? pair.vietnamese
+            : pair.english;
+
+
+    card.innerHTML = `
+
+        <div class="card-inner">
+
+            <div class="card-face card-front">
+                ?
+            </div>
+
+
+            <div class="card-face card-back">
+
+                ${escapeHtml(
+                    value
+                )}
+
+            </div>
+
+        </div>
+
+
+        <div class="wrong-mark">
+            ✕
+        </div>
+
+    `;
+
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            handleCardClick(
+                card
+            );
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHtml(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(
+            value ?? ""
+        );
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   START ROUND
+   ========================================================= */
+
+function startRound() {
+
+    selectedCards =
+        [];
+
+    matchedPairs =
+        0;
+
+    lockBoard =
+        false;
+
+    nextButton.disabled =
+        true;
+
+    roundMessage.textContent =
+        "";
+
+
+    progress.textContent =
+        `Round ${round} / ${TOTAL_ROUNDS}`;
+
+
+    scoreElement.textContent =
+        `${score} / ${TOTAL_ROUNDS}`;
+
+
+    matchesElement.textContent =
+        `${matchedPairs} / ${PAIRS_PER_ROUND}`;
+
+
+    currentPairs =
+        getRoundPairs();
+
+
+    /*
+     * Give every pair a unique ID.
+     */
+
+    currentPairs =
+        currentPairs.map(
+            (
+                pair,
+                index
+            ) => ({
+                ...pair,
+                id:
+                    `round-${round}-pair-${index}`
+            })
+        );
+
+
+    let cards =
+        [];
+
+
+    currentPairs.forEach(
+        pair => {
+
+            cards.push(
+                createCard(
+                    pair,
+                    "vietnamese"
+                )
+            );
+
+
+            cards.push(
+                createCard(
+                    pair,
+                    "english"
+                )
+            );
+
+        }
+    );
+
+
+    cards =
+        shuffle(
+            cards
+        );
+
+
+    cardGrid.innerHTML =
+        "";
+
+
+    cards.forEach(
+        card => {
+
+            cardGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HANDLE CARD CLICK
+   ========================================================= */
+
+function handleCardClick(
+    card
+) {
+
+    if (
+        lockBoard
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        card.classList.contains(
+            "flipped"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        card.classList.contains(
+            "matched"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+     * Flip first.
+     */
+
+    card.classList.add(
+        "flipped"
+    );
+
+
+    selectedCards.push(
+        card
+    );
+
+
+    /*
+     * Wait for two cards.
+     */
+
+    if (
+        selectedCards.length !== 2
+    ) {
+
+        return;
+
+    }
+
+
+    lockBoard =
+        true;
+
+
+    checkMatch();
+
+}
+
+
+/* =========================================================
+   CHECK MATCH
+   ========================================================= */
+
+function checkMatch() {
+
+    const [
+        first,
+        second
+    ] =
+    selectedCards;
+
+
+    const isMatch =
+        first.dataset.pairId ===
+        second.dataset.pairId;
+
+
+    /*
+     * CORRECT
+     */
+
+    if (
+        isMatch
+    ) {
+
+        setTimeout(
+            () => {
+
+                markCorrect(
+                    first,
+                    second
+                );
+
+            },
+            CORRECT_DISPLAY_TIME
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * WRONG
+     *
+     * The cards stay visible first.
+     * The X appears only after both
+     * cards have already been flipped.
+     */
+
+    setTimeout(
+        () => {
+
+            first.classList.add(
+                "show-wrong"
+            );
+
+            second.classList.add(
+                "show-wrong"
+            );
+
+
+            roundMessage.textContent =
+                "✕ Not a match";
+
+
+            setTimeout(
+                () => {
+
+                    first.classList.remove(
+                        "show-wrong"
+                    );
+
+                    second.classList.remove(
+                        "show-wrong"
+                    );
+
+
+                    first.classList.remove(
+                        "flipped"
+                    );
+
+                    second.classList.remove(
+                        "flipped"
+                    );
+
+
+                    selectedCards =
+                        [];
+
+                    lockBoard =
+                        false;
+
+
+                    if (
+                        matchedPairs <
+                        PAIRS_PER_ROUND
+                    ) {
+
+                        roundMessage.textContent =
+                            "Try another pair.";
+
+                    }
+
+                },
+                WRONG_DISPLAY_TIME
+            );
+
+        },
+        650
+    );
+
+}
+
+
+/* =========================================================
+   MARK CORRECT
+   ========================================================= */
+
+function markCorrect(
+    first,
+    second
+) {
+
+    matchedPairs++;
+
+    score++;
+
+
+    const colorClass =
+        `match-${
+            (
+                matchedPairs - 1
+            ) % 6 + 1
+        }`;
+
+
+    first.classList.add(
+        "matched",
+        colorClass
+    );
+
+
+    second.classList.add(
+        "matched",
+        colorClass
+    );
+
+
+    first.classList.add(
+        "disabled"
+    );
+
+
+    second.classList.add(
+        "disabled"
+    );
+
+
+    selectedCards =
+        [];
+
+
+    lockBoard =
+        false;
+
+
+    scoreElement.textContent =
+        `${score} / ${TOTAL_ROUNDS}`;
+
+
+    matchesElement.textContent =
+        `${matchedPairs} / ${PAIRS_PER_ROUND}`;
+
+
+    roundMessage.textContent =
+        "✓ Match!";
+
+
+    /*
+     * Round complete.
+     */
+
+    if (
+        matchedPairs ===
+        PAIRS_PER_ROUND
+    ) {
+
+        roundMessage.textContent =
+            "🎉 Round complete!";
+
+
+        if (
+            round <
+            TOTAL_ROUNDS
+        ) {
+
+            nextButton.disabled =
+                false;
+
+        }
+
+        else {
+
+            setTimeout(
+                showResults,
+                700
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   NEXT ROUND
+   ========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            matchedPairs !==
+            PAIRS_PER_ROUND
+        ) {
+
+            return;
+
+        }
+
+
+        round++;
+
+
+        startRound();
+
+    }
+);
+
+
+/* =========================================================
+   SHOW RESULTS
+   ========================================================= */
+
+function showResults() {
+
+    gameArea.style.display =
+        "none";
+
+
+    resultScreen.style.display =
+        "block";
+
+
+    finalScore.textContent =
+        `${score} / ${TOTAL_ROUNDS}`;
+
+
+    if (
+        score === TOTAL_ROUNDS
+    ) {
+
+        resultText.textContent =
+            "Perfect score! Excellent vocabulary matching.";
+
+    }
+
+    else if (
+        score >= 15
+    ) {
+
+        resultText.textContent =
+            "Great job! You know these Vietnamese words well.";
+
+    }
+
+    else if (
+        score >= 10
+    ) {
+
+        resultText.textContent =
+            "Good work! Keep practicing these vocabulary words.";
+
+    }
+
+    else {
+
+        resultText.textContent =
+            "Keep practicing and try again!";
+
+    }
+
+}
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+restartButton.addEventListener(
+    "click",
+    () => {
+
+        round =
+            1;
+
+        score =
+            0;
+
+        matchedPairs =
+            0;
+
+        selectedCards =
+            [];
+
+        lockBoard =
+            false;
+
+        availableVocabulary =
+            shuffle(
+                vocabulary
+            );
+
+
+        gameArea.style.display =
+            "block";
+
+
+        resultScreen.style.display =
+            "none";
+
+
+        startRound();
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+availableVocabulary =
+    shuffle(
+        vocabulary
+    );
+
+
+startRound();
+
+
+</script>
+
+
+</body>
+
+</html>

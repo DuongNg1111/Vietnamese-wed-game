@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="game-title"
+        content="Classify the Word"
+    >
+
+    <meta
+        name="game-description"
+        content="Classify common Vietnamese words into places, directions, or transportation."
+    >
+
+    <meta
+        name="game-icon"
+        content="🗂️"
+    >
+
+    <meta
+        name="game-category"
+        content="Places, Directions & Transportation"
+    >
+
+    <title>
+        Classify the Word | Survival Vietnamese with Duong
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           DESIGN TOKENS
+        ====================================================== */
+
+        :root {
+
+            --paper:
+                #f5f9fd;
+
+            --white:
+                #ffffff;
+
+            --ink:
+                #143a6b;
+
+            --ink-soft:
+                #66809d;
+
+            --accent:
+                #2f9a67;
+
+            --accent-light:
+                #68c493;
+
+            --accent-background:
+                #eaf8f0;
+
+            --accent-border:
+                #c5e9d5;
+
+            --correct:
+                #238b5c;
+
+            --correct-background:
+                #e9f8f0;
+
+            --correct-border:
+                #a9dfc4;
+
+            --wrong:
+                #c94f5d;
+
+            --wrong-background:
+                #fff0f2;
+
+            --wrong-border:
+                #efc4ca;
+
+            --line:
+                #d9e6f2;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+
+            box-sizing:
+                border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior:
+                smooth;
+
+        }
+
+
+        body {
+
+            margin:
+                0;
+
+            min-height:
+                100vh;
+
+            font-family:
+                'Be Vietnam Pro',
+                'Segoe UI',
+                Arial,
+                sans-serif;
+
+            color:
+                var(--ink);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #f5f9fd 48%,
+                    #edf5fc 100%
+                );
+
+        }
+
+
+        button {
+
+            font-family:
+                inherit;
+
+        }
+
+
+        /* =====================================================
+           TOP NAV
+        ====================================================== */
+
+        .top-nav {
+
+            width:
+                min(
+                    1000px,
+                    92%
+                );
+
+            margin:
+                22px auto 0;
+
+        }
+
+
+        .back-btn {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                10px 17px;
+
+            border:
+                1px solid
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.14
+                );
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            color:
+                var(--ink);
+
+            text-decoration:
+                none;
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                700;
+
+            box-shadow:
+                0 4px 14px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .back-btn:hover {
+
+            transform:
+                translateX(-3px);
+
+            color:
+                var(--accent);
+
+            border-color:
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .game-container {
+
+            width:
+                min(
+                    900px,
+                    92%
+                );
+
+            margin:
+                30px auto 70px;
+
+        }
+
+
+        /* =====================================================
+           GAME HEADER
+        ====================================================== */
+
+        .game-header {
+
+            position:
+                relative;
+
+            padding:
+                32px 34px;
+
+            margin-bottom:
+                22px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                24px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.97
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+        }
+
+
+        .game-header::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                6px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent-light)
+                );
+
+        }
+
+
+        .game-eyebrow {
+
+            margin:
+                0 0 7px;
+
+            color:
+                var(--accent);
+
+            font-size:
+                0.72rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.1em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .game-title {
+
+            margin:
+                0;
+
+            font-family:
+                'Kalam',
+                cursive;
+
+            color:
+                var(--ink);
+
+            font-size:
+                clamp(
+                    2rem,
+                    5vw,
+                    3rem
+                );
+
+            line-height:
+                1.05;
+
+        }
+
+
+        .game-description {
+
+            margin:
+                10px 0 0;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.88rem;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ====================================================== */
+
+        .progress-area {
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .progress-top {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                8px;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .progress-bar {
+
+            width:
+                100%;
+
+            height:
+                9px;
+
+            overflow:
+                hidden;
+
+            border-radius:
+                999px;
+
+            background:
+                #e4edf5;
+
+        }
+
+
+        .progress-fill {
+
+            width:
+                0%;
+
+            height:
+                100%;
+
+            border-radius:
+                inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent-light)
+                );
+
+            transition:
+                width 0.3s ease;
+
+        }
+
+
+        /* =====================================================
+           QUESTION CARD
+        ====================================================== */
+
+        .question-card {
+
+            padding:
+                35px;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius:
+                24px;
+
+            background:
+                var(--white);
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+        }
+
+
+        .question-number {
+
+            margin:
+                0 0 12px;
+
+            color:
+                var(--accent);
+
+            font-size:
+                0.73rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.08em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .question-instruction {
+
+            margin:
+                0 0 25px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                1rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           WORD DISPLAY
+        ====================================================== */
+
+        .word-box {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                145px;
+
+            margin-bottom:
+                28px;
+
+            padding:
+                25px;
+
+            border:
+                2px solid
+                var(--accent-border);
+
+            border-radius:
+                20px;
+
+            background:
+                var(--accent-background);
+
+            text-align:
+                center;
+
+        }
+
+
+        .word {
+
+            font-family:
+                'Kalam',
+                cursive;
+
+            color:
+                var(--ink);
+
+            font-size:
+                clamp(
+                    2.2rem,
+                    7vw,
+                    3.7rem
+                );
+
+            font-weight:
+                700;
+
+            line-height:
+                1.1;
+
+        }
+
+
+        /* =====================================================
+           CATEGORY OPTIONS
+        ====================================================== */
+
+        .category-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap:
+                15px;
+
+        }
+
+
+        .category-btn {
+
+            min-height:
+                100px;
+
+            padding:
+                18px 12px;
+
+            border:
+                2px solid
+                var(--line);
+
+            border-radius:
+                18px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--ink);
+
+            cursor:
+                pointer;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        .category-btn:hover:not(:disabled) {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                var(--accent);
+
+            background:
+                var(--accent-background);
+
+            box-shadow:
+                0 8px 18px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.08
+                );
+
+        }
+
+
+        .category-btn:disabled {
+
+            cursor:
+                default;
+
+        }
+
+
+        .category-icon {
+
+            display:
+                block;
+
+            margin-bottom:
+                7px;
+
+            font-size:
+                1.7rem;
+
+        }
+
+
+        .category-name {
+
+            display:
+                block;
+
+            font-size:
+                0.84rem;
+
+            font-weight:
+                800;
+
+            line-height:
+                1.3;
+
+        }
+
+
+        .category-btn.correct {
+
+            border-color:
+                var(--correct-border);
+
+            background:
+                var(--correct-background);
+
+            color:
+                var(--correct);
+
+        }
+
+
+        .category-btn.wrong {
+
+            border-color:
+                var(--wrong-border);
+
+            background:
+                var(--wrong-background);
+
+            color:
+                var(--wrong);
+
+        }
+
+
+        /* =====================================================
+           FEEDBACK
+        ====================================================== */
+
+        .feedback {
+
+            display:
+                none;
+
+            margin-top:
+                22px;
+
+            padding:
+                18px 20px;
+
+            border-radius:
+                16px;
+
+        }
+
+
+        .feedback.show {
+
+            display:
+                block;
+
+        }
+
+
+        .feedback.correct {
+
+            border:
+                1px solid
+                var(--correct-border);
+
+            background:
+                var(--correct-background);
+
+        }
+
+
+        .feedback.wrong {
+
+            border:
+                1px solid
+                var(--wrong-border);
+
+            background:
+                var(--wrong-background);
+
+        }
+
+
+        .feedback-title {
+
+            margin:
+                0 0 6px;
+
+            font-size:
+                0.9rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .feedback.correct .feedback-title {
+
+            color:
+                var(--correct);
+
+        }
+
+
+        .feedback.wrong .feedback-title {
+
+            color:
+                var(--wrong);
+
+        }
+
+
+        .feedback-text {
+
+            margin:
+                0;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.82rem;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        .correct-answer {
+
+            margin-top:
+                8px;
+
+            color:
+                var(--ink);
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           NEXT BUTTON
+        ====================================================== */
+
+        .next-area {
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            margin-top:
+                22px;
+
+        }
+
+
+        .next-btn {
+
+            display:
+                none;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            min-width:
+                145px;
+
+            padding:
+                12px 20px;
+
+            border:
+                0;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--accent);
+
+            color:
+                #ffffff;
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 7px 16px
+                rgba(
+                    47,
+                    154,
+                    103,
+                    0.22
+                );
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .next-btn.show {
+
+            display:
+                inline-flex;
+
+        }
+
+
+        .next-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #257f55;
+
+        }
+
+
+        /* =====================================================
+           SCORE
+        ====================================================== */
+
+        .score-display {
+
+            margin-top:
+                20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .score-number {
+
+            color:
+                var(--accent);
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           RESULT SCREEN
+        ====================================================== */
+
+        .result-screen {
+
+            display:
+                none;
+
+            padding:
+                45px 35px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                25px;
+
+            background:
+                var(--white);
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.09
+                );
+
+            text-align:
+                center;
+
+        }
+
+
+        .result-screen.show {
+
+            display:
+                block;
+
+        }
+
+
+        .result-icon {
+
+            margin-bottom:
+                10px;
+
+            font-size:
+                4rem;
+
+        }
+
+
+        .result-title {
+
+            margin:
+                0;
+
+            font-family:
+                'Kalam',
+                cursive;
+
+            color:
+                var(--ink);
+
+            font-size:
+                2.7rem;
+
+        }
+
+
+        .result-subtitle {
+
+            margin:
+                8px 0 25px;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.9rem;
+
+        }
+
+
+        .final-score {
+
+            display:
+                inline-flex;
+
+            align-items:
+                baseline;
+
+            gap:
+                7px;
+
+            margin-bottom:
+                28px;
+
+        }
+
+
+        .final-score-number {
+
+            color:
+                var(--accent);
+
+            font-size:
+                4.3rem;
+
+            font-weight:
+                800;
+
+            line-height:
+                1;
+
+        }
+
+
+        .final-score-total {
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                1rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .result-message {
+
+            max-width:
+                600px;
+
+            margin:
+                0 auto 28px;
+
+            padding:
+                17px 20px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                16px;
+
+            background:
+                var(--accent-background);
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                0.84rem;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        .restart-btn {
+
+            padding:
+                12px 24px;
+
+            border:
+                0;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--accent);
+
+            color:
+                #ffffff;
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .restart-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #257f55;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            width:
+                min(
+                    900px,
+                    92%
+                );
+
+            margin:
+                0 auto;
+
+            padding:
+                15px 0 35px;
+
+            color:
+                #7c93aa;
+
+            font-size:
+                0.78rem;
+
+            text-align:
+                center;
+
+        }
+
+
+        .footer-line {
+
+            width:
+                100%;
+
+            height:
+                1px;
+
+            margin-bottom:
+                20px;
+
+            background:
+                #d8e5f0;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (
+            max-width: 650px
+        ) {
+
+            .game-header {
+
+                padding:
+                    27px 22px;
+
+                border-radius:
+                    20px;
+
+            }
+
+
+            .question-card {
+
+                padding:
+                    25px 18px;
+
+                border-radius:
+                    20px;
+
+            }
+
+
+            .category-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .category-btn {
+
+                min-height:
+                    75px;
+
+                display:
+                    flex;
+
+                align-items:
+                    center;
+
+                justify-content:
+                    center;
+
+                gap:
+                    10px;
+
+            }
+
+
+            .category-icon {
+
+                margin:
+                    0;
+
+            }
+
+
+            .word-box {
+
+                min-height:
+                    125px;
+
+            }
+
+
+            .next-area {
+
+                justify-content:
+                    stretch;
+
+            }
+
+
+            .next-btn {
+
+                width:
+                    100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         TOP NAVIGATION
+    ====================================================== -->
+
+    <nav class="top-nav">
+
+        <a
+            href="../../category.html?category=Places%2C%20Directions%20%26%20Transportation"
+            class="back-btn"
+        >
+            ← Back to Category
+        </a>
+
+    </nav>
+
+
+    <!-- =====================================================
+         MAIN GAME
+    ====================================================== -->
+
+    <main class="game-container">
+
+
+        <!-- =================================================
+             GAME HEADER
+        ================================================== -->
+
+        <header class="game-header">
+
+            <p class="game-eyebrow">
+                Places, Directions & Transportation
+            </p>
+
+            <h1 class="game-title">
+                Classify the Word
+            </h1>
+
+            <p class="game-description">
+                Read the Vietnamese word and choose the correct category.
+            </p>
+
+        </header>
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
+
+        <div class="progress-area">
+
+            <div class="progress-top">
+
+                <span id="question-progress">
+                    Question 1 of 20
+                </span>
+
+                <span>
+                    Score:
+                    <span
+                        id="score-top"
+                        class="score-number"
+                    >
+                        0
+                    </span>
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    id="progress-fill"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION AREA
+        ================================================== -->
+
+        <section
+            id="question-card"
+            class="question-card"
+        >
+
+            <p
+                id="question-number"
+                class="question-number"
+            >
+                QUESTION 01
+            </p>
+
+
+            <p class="question-instruction">
+                What category does this word belong to?
+            </p>
+
+
+            <div class="word-box">
+
+                <div
+                    id="word"
+                    class="word"
+                >
+                    nhà
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 CATEGORY OPTIONS
+            ============================================== -->
+
+            <div class="category-grid">
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="Places"
+                >
+
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        📍
+                    </span>
+
+                    <span class="category-name">
+                        Places
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="Directions"
+                >
+
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        🧭
+                    </span>
+
+                    <span class="category-name">
+                        Directions
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="Transportation"
+                >
+
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        🚌
+                    </span>
+
+                    <span class="category-name">
+                        Transportation
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- =============================================
+                 FEEDBACK
+            ============================================== -->
+
+            <div
+                id="feedback"
+                class="feedback"
+            >
+
+                <p
+                    id="feedback-title"
+                    class="feedback-title"
+                ></p>
+
+
+                <p
+                    id="feedback-text"
+                    class="feedback-text"
+                ></p>
+
+
+                <div
+                    id="correct-answer"
+                    class="correct-answer"
+                ></div>
+
+            </div>
+
+
+            <!-- =============================================
+                 NEXT
+            ============================================== -->
+
+            <div class="next-area">
+
+                <button
+                    id="next-btn"
+                    type="button"
+                    class="next-btn"
+                >
+                    Next Question →
+                </button>
+
+            </div>
+
+
+            <div class="score-display">
+
+                Current score:
+                <span
+                    id="score-bottom"
+                    class="score-number"
+                >
+                    0
+                </span>
+                / 20
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESULT SCREEN
+        ================================================== -->
+
+        <section
+            id="result-screen"
+            class="result-screen"
+        >
+
+            <div
+                id="result-icon"
+                class="result-icon"
+            >
+                🎉
+            </div>
+
+
+            <h2 class="result-title">
+                Game Complete!
+            </h2>
+
+
+            <p class="result-subtitle">
+                You finished all 20 questions.
+            </p>
+
+
+            <div class="final-score">
+
+                <span
+                    id="final-score"
+                    class="final-score-number"
+                >
+                    0
+                </span>
+
+                <span class="final-score-total">
+                    / 20
+                </span>
+
+            </div>
+
+
+            <div
+                id="result-message"
+                class="result-message"
+            >
+                Great job!
+
+            </div>
+
+
+            <button
+                id="restart-btn"
+                type="button"
+                class="restart-btn"
+            >
+                Play Again
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-line"></div>
+
+        © 2026 Survival Vietnamese with Duong
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           GAME DATA
+
+           30 approved vocabulary words:
+
+           10 Places
+           10 Directions
+           10 Transportation
+        ====================================================== */
+
+        const WORD_BANK = [
+
+            /* =============================================
+               PLACES
+            ============================================== */
+
+            {
+                word: "nhà",
+                meaning: "House / Home",
+                category: "Places"
+            },
+
+            {
+                word: "trường học",
+                meaning: "School",
+                category: "Places"
+            },
+
+            {
+                word: "bệnh viện",
+                meaning: "Hospital",
+                category: "Places"
+            },
+
+            {
+                word: "chợ",
+                meaning: "Market",
+                category: "Places"
+            },
+
+            {
+                word: "siêu thị",
+                meaning: "Supermarket",
+                category: "Places"
+            },
+
+            {
+                word: "nhà hàng",
+                meaning: "Restaurant",
+                category: "Places"
+            },
+
+            {
+                word: "khách sạn",
+                meaning: "Hotel",
+                category: "Places"
+            },
+
+            {
+                word: "ngân hàng",
+                meaning: "Bank",
+                category: "Places"
+            },
+
+            {
+                word: "sân bay",
+                meaning: "Airport",
+                category: "Places"
+            },
+
+            {
+                word: "bến xe",
+                meaning: "Bus station",
+                category: "Places"
+            },
+
+
+            /* =============================================
+               DIRECTIONS
+            ============================================== */
+
+            {
+                word: "bên trái",
+                meaning: "Left",
+                category: "Directions"
+            },
+
+            {
+                word: "bên phải",
+                meaning: "Right",
+                category: "Directions"
+            },
+
+            {
+                word: "trên",
+                meaning: "Above",
+                category: "Directions"
+            },
+
+            {
+                word: "dưới",
+                meaning: "Below",
+                category: "Directions"
+            },
+
+            {
+                word: "bên cạnh",
+                meaning: "Next to",
+                category: "Directions"
+            },
+
+            {
+                word: "trong",
+                meaning: "Inside",
+                category: "Directions"
+            },
+
+            {
+                word: "giữa",
+                meaning: "Between",
+                category: "Directions"
+            },
+
+            {
+                word: "phía trước",
+                meaning: "In front",
+                category: "Directions"
+            },
+
+            {
+                word: "phía sau",
+                meaning: "Behind",
+                category: "Directions"
+            },
+
+            {
+                word: "ở",
+                meaning: "At / In / On / Live in / Live at",
+                category: "Directions"
+            },
+
+
+            /* =============================================
+               TRANSPORTATION
+            ============================================== */
+
+            {
+                word: "xe máy",
+                meaning: "Motorbike",
+                category: "Transportation"
+            },
+
+            {
+                word: "xe đạp",
+                meaning: "Bicycle",
+                category: "Transportation"
+            },
+
+            {
+                word: "xe buýt",
+                meaning: "Bus",
+                category: "Transportation"
+            },
+
+            {
+                word: "xe hơi",
+                meaning: "Car",
+                category: "Transportation"
+            },
+
+            {
+                word: "taxi",
+                meaning: "Taxi",
+                category: "Transportation"
+            },
+
+            {
+                word: "xe lửa",
+                meaning: "Train",
+                category: "Transportation"
+            },
+
+            {
+                word: "máy bay",
+                meaning: "Airplane",
+                category: "Transportation"
+            },
+
+            {
+                word: "tàu",
+                meaning: "Boat / Ship",
+                category: "Transportation"
+            },
+
+            {
+                word: "xe ôm",
+                meaning: "Motorbike taxi",
+                category: "Transportation"
+            },
+
+            {
+                word: "đi bộ",
+                meaning: "Walk / On foot",
+                category: "Transportation"
+            }
+
+        ];
+
+
+        /* =====================================================
+           GAME STATE
+        ====================================================== */
+
+        const TOTAL_QUESTIONS =
+            20;
+
+
+        let questions =
+            [];
+
+
+        let currentQuestion =
+            0;
+
+
+        let score =
+            0;
+
+
+        let answered =
+            false;
+
+
+        /* =====================================================
+           ELEMENTS
+        ====================================================== */
+
+        const questionCard =
+            document.getElementById(
+                "question-card"
+            );
+
+
+        const resultScreen =
+            document.getElementById(
+                "result-screen"
+            );
+
+
+        const questionProgress =
+            document.getElementById(
+                "question-progress"
+            );
+
+
+        const progressFill =
+            document.getElementById(
+                "progress-fill"
+            );
+
+
+        const questionNumber =
+            document.getElementById(
+                "question-number"
+            );
+
+
+        const wordElement =
+            document.getElementById(
+                "word"
+            );
+
+
+        const feedback =
+            document.getElementById(
+                "feedback"
+            );
+
+
+        const feedbackTitle =
+            document.getElementById(
+                "feedback-title"
+            );
+
+
+        const feedbackText =
+            document.getElementById(
+                "feedback-text"
+            );
+
+
+        const correctAnswer =
+            document.getElementById(
+                "correct-answer"
+            );
+
+
+        const nextButton =
+            document.getElementById(
+                "next-btn"
+            );
+
+
+        const scoreTop =
+            document.getElementById(
+                "score-top"
+            );
+
+
+        const scoreBottom =
+            document.getElementById(
+                "score-bottom"
+            );
+
+
+        const finalScore =
+            document.getElementById(
+                "final-score"
+            );
+
+
+        const resultIcon =
+            document.getElementById(
+                "result-icon"
+            );
+
+
+        const resultMessage =
+            document.getElementById(
+                "result-message"
+            );
+
+
+        const restartButton =
+            document.getElementById(
+                "restart-btn"
+            );
+
+
+        const categoryButtons =
+            document.querySelectorAll(
+                ".category-btn"
+            );
+
+
+        /* =====================================================
+           SHUFFLE ARRAY
+        ====================================================== */
+
+        function shuffle(
+            array
+        ) {
+
+            const copy =
+                [...array];
+
+
+            for (
+                let i = copy.length - 1;
+                i > 0;
+                i--
+            ) {
+
+                const j =
+                    Math.floor(
+                        Math.random() *
+                        (i + 1)
+                    );
+
+
+                [
+                    copy[i],
+                    copy[j]
+                ] =
+                [
+                    copy[j],
+                    copy[i]
+                ];
+
+            }
+
+
+            return copy;
+
+        }
+
+
+        /* =====================================================
+           CREATE QUESTIONS
+
+           Select exactly 20 questions from
+           the 30-word vocabulary bank.
+
+           The selection tries to keep the three
+           categories balanced.
+        ====================================================== */
+
+        function createQuestions() {
+
+            const places =
+                shuffle(
+                    WORD_BANK.filter(
+                        item =>
+                            item.category ===
+                            "Places"
+                    )
+                );
+
+
+            const directions =
+                shuffle(
+                    WORD_BANK.filter(
+                        item =>
+                            item.category ===
+                            "Directions"
+                    )
+                );
+
+
+            const transportation =
+                shuffle(
+                    WORD_BANK.filter(
+                        item =>
+                            item.category ===
+                            "Transportation"
+                    )
+                );
+
+
+            const selected = [
+
+                ...places.slice(
+                    0,
+                    7
+                ),
+
+                ...directions.slice(
+                    0,
+                    7
+                ),
+
+                ...transportation.slice(
+                    0,
+                    6
+                )
+
+            ];
+
+
+            return shuffle(
+                selected
+            );
+
+        }
+
+
+        /* =====================================================
+           UPDATE SCORE
+        ====================================================== */
+
+        function updateScore() {
+
+            scoreTop.textContent =
+                score;
+
+
+            scoreBottom.textContent =
+                score;
+
+        }
+
+
+        /* =====================================================
+           UPDATE PROGRESS
+        ====================================================== */
+
+        function updateProgress() {
+
+            questionProgress.textContent =
+                `Question ${
+                    currentQuestion + 1
+                } of ${
+                    TOTAL_QUESTIONS
+                }`;
+
+
+            questionNumber.textContent =
+                `QUESTION ${
+                    String(
+                        currentQuestion + 1
+                    ).padStart(
+                        2,
+                        "0"
+                    )
+                }`;
+
+
+            const percentage =
+                (
+                    currentQuestion /
+                    TOTAL_QUESTIONS
+                ) *
+                100;
+
+
+            progressFill.style.width =
+                `${percentage}%`;
+
+        }
+
+
+        /* =====================================================
+           RESET QUESTION UI
+        ====================================================== */
+
+        function resetQuestionUI() {
+
+            answered =
+                false;
+
+
+            categoryButtons.forEach(
+                button => {
+
+                    button.disabled =
+                        false;
+
+                    button.classList.remove(
+                        "correct",
+                        "wrong"
+                    );
+
+                }
+            );
+
+
+            feedback.className =
+                "feedback";
+
+
+            feedbackTitle.textContent =
+                "";
+
+
+            feedbackText.textContent =
+                "";
+
+
+            correctAnswer.textContent =
+                "";
+
+
+            nextButton.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* =====================================================
+           RENDER QUESTION
+        ====================================================== */
+
+        function renderQuestion() {
+
+            if (
+                currentQuestion >=
+                TOTAL_QUESTIONS
+            ) {
+
+                showResults();
+
+                return;
+
+            }
+
+
+            resetQuestionUI();
+
+
+            const question =
+                questions[
+                    currentQuestion
+                ];
+
+
+            wordElement.textContent =
+                question.word;
+
+
+            updateProgress();
+
+        }
+
+
+        /* =====================================================
+           ANSWER QUESTION
+        ====================================================== */
+
+        function answerQuestion(
+            selectedCategory,
+            selectedButton
+        ) {
+
+            /*
+             * Prevent a second answer.
+             */
+
+            if (
+                answered
+            ) {
+
+                return;
+
+            }
+
+
+            answered =
+                true;
+
+
+            const question =
+                questions[
+                    currentQuestion
+                ];
+
+
+            const isCorrect =
+                selectedCategory ===
+                question.category;
+
+
+            /*
+             * Lock ALL buttons.
+             */
+
+            categoryButtons.forEach(
+                button => {
+
+                    button.disabled =
+                        true;
+
+                }
+            );
+
+
+            /*
+             * Mark selected button.
+             */
+
+            if (
+                isCorrect
+            ) {
+
+                selectedButton.classList.add(
+                    "correct"
+                );
+
+
+                score++;
+
+                updateScore();
+
+
+                feedback.className =
+                    "feedback correct";
+
+
+                feedbackTitle.textContent =
+                    "✓ Correct!";
+
+
+                feedbackText.textContent =
+                    `${question.word} means "${question.meaning}".`;
+
+            }
+
+            else {
+
+                selectedButton.classList.add(
+                    "wrong"
+                );
+
+
+                /*
+                 * Reveal correct category.
+                 */
+
+                categoryButtons.forEach(
+                    button => {
+
+                        if (
+                            button.dataset.category ===
+                            question.category
+                        ) {
+
+                            button.classList.add(
+                                "correct"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                feedback.className =
+                    "feedback wrong";
+
+
+                feedbackTitle.textContent =
+                    "✗ Not quite!";
+
+
+                feedbackText.textContent =
+                    `${question.word} means "${question.meaning}".`;
+
+
+                correctAnswer.textContent =
+                    `Correct category: ${question.category}`;
+
+            }
+
+
+            /*
+             * Show Next button.
+             */
+
+            nextButton.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* =====================================================
+           SHOW RESULTS
+        ====================================================== */
+
+        function showResults() {
+
+            questionCard.style.display =
+                "none";
+
+
+            resultScreen.classList.add(
+                "show"
+            );
+
+
+            progressFill.style.width =
+                "100%";
+
+
+            questionProgress.textContent =
+                "Complete";
+
+
+            finalScore.textContent =
+                score;
+
+
+            if (
+                score === 20
+            ) {
+
+                resultIcon.textContent =
+                    "🏆";
+
+
+                resultMessage.textContent =
+                    "Perfect score! You know these Places, Directions & Transportation words very well.";
+
+            }
+
+            else if (
+                score >= 16
+            ) {
+
+                resultIcon.textContent =
+                    "🎉";
+
+
+                resultMessage.textContent =
+                    "Great job! You have a strong understanding of this vocabulary.";
+
+            }
+
+            else if (
+                score >= 12
+            ) {
+
+                resultIcon.textContent =
+                    "👏";
+
+
+                resultMessage.textContent =
+                    "Nice work! Keep practicing these Vietnamese words.";
+
+            }
+
+            else {
+
+                resultIcon.textContent =
+                    "📚";
+
+
+                resultMessage.textContent =
+                    "Good start! Review the vocabulary and try again.";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           START GAME
+        ====================================================== */
+
+        function startGame() {
+
+            questions =
+                createQuestions();
+
+
+            currentQuestion =
+                0;
+
+
+            score =
+                0;
+
+
+            updateScore();
+
+
+            questionCard.style.display =
+                "block";
+
+
+            resultScreen.classList.remove(
+                "show"
+            );
+
+
+            renderQuestion();
+
+        }
+
+
+        /* =====================================================
+           CATEGORY BUTTON EVENTS
+        ====================================================== */
+
+        categoryButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        answerQuestion(
+                            button.dataset.category,
+                            button
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           NEXT BUTTON
+        ====================================================== */
+
+        nextButton.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    !answered
+                ) {
+
+                    return;
+
+                }
+
+
+                currentQuestion++;
+
+
+                renderQuestion();
+
+            }
+        );
+
+
+        /* =====================================================
+           RESTART BUTTON
+        ====================================================== */
+
+        restartButton.addEventListener(
+            "click",
+            () => {
+
+                startGame();
+
+                window.scrollTo(
+                    {
+                        top:
+                            0,
+
+                        behavior:
+                            "smooth"
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           START
+        ====================================================== */
+
+        startGame();
+
+    </script>
+
+
+</body>
+
+</html>
