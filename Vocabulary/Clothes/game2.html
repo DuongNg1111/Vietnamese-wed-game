@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>What Do You Wear?</title>
+
+<meta
+    name="game-title"
+    content="What Do You Wear?"
+>
+
+<meta
+    name="game-description"
+    content="Read the English situation and choose the Vietnamese clothing word that fits best."
+>
+
+<meta
+    name="game-icon"
+    content="👕"
+>
+
+<meta
+    name="game-explanation"
+    content="Read the situation and choose the Vietnamese clothing word that best fits. Each question has only one correct answer."
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+
+    --paper:
+        #f5f9fd;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --border:
+        #c4daf6;
+
+    --green:
+        #27ae60;
+
+    --green-light:
+        #eaf8f0;
+
+    --red:
+        #e05252;
+
+    --red-light:
+        #fff0f0;
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
+
+    font-family:
+        'Be Vietnam Pro',
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9fd 48%,
+            #edf5fc 100%
+        );
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+
+    width:
+        min(
+            760px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-btn-container {
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.card {
+
+    width:
+        100%;
+
+    padding:
+        38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            20,
+            58,
+            107,
+            0.10
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.game-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        1.8rem;
+
+}
+
+
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.9rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        550px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-number {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.choose-text {
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        600;
+
+}
+
+
+.question {
+
+    max-width:
+        600px;
+
+    min-height:
+        90px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 28px;
+
+    padding:
+        20px 25px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.25rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.answer-btn {
+
+    min-height:
+        72px;
+
+    padding:
+        16px 20px;
+
+    border:
+        2px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        white;
+
+    color:
+        var(--ink);
+
+    font-family:
+        inherit;
+
+    font-size:
+        1.05rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.answer-btn:hover:not(.disabled) {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+
+    background:
+        var(--accent-light);
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            40,
+            120,
+            223,
+            0.12
+        );
+
+}
+
+
+.answer-btn.disabled {
+
+    cursor:
+        default;
+
+}
+
+
+/* ==========================================================
+   ANSWER STATES
+========================================================== */
+
+.correct-answer {
+
+    border-color:
+        var(--green) !important;
+
+    background:
+        var(--green-light) !important;
+
+}
+
+
+.wrong-answer {
+
+    border-color:
+        var(--red) !important;
+
+    background:
+        var(--red-light) !important;
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.message {
+
+    min-height:
+        30px;
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--green);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--red);
+
+}
+
+
+.explanation {
+
+    min-height:
+        30px;
+
+    margin:
+        0 auto 18px;
+
+    max-width:
+        600px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.86rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.action-btn {
+
+    min-width:
+        180px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 5px 12px
+        rgba(
+            40,
+            120,
+            223,
+            0.20
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.action-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.action-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.result-icon {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        2rem;
+
+}
+
+
+.result-title {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        2.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    body {
+
+        padding:
+            18px 14px 35px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            0.84rem;
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .question {
+
+        font-size:
+            1.05rem;
+
+        min-height:
+            80px;
+
+        padding:
+            17px;
+
+    }
+
+
+    .answers {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            64px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+========================================================== */
+
+@media (
+    max-width: 380px
+) {
+
+    .card {
+
+        padding:
+            24px 16px;
+
+    }
+
+
+    .question {
+
+        font-size:
+            0.98rem;
+
+    }
+
+
+    .answer-btn {
+
+        font-size:
+            0.98rem;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- ======================================================
+         BACK
+    ======================================================= -->
+
+    <div class="back-btn-container">
+
+        <a
+            href="../../category.html?category=Clothes"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================
+         GAME CARD
+    ======================================================= -->
+
+    <main class="card">
+
+
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            👕
+        </div>
+
+
+        <h1>
+            What Do You Wear?
+        </h1>
+
+
+        <p class="subtitle">
+            Read the situation and choose the Vietnamese
+            clothing word that fits best.
+        </p>
+
+
+        <!-- ==================================================
+             GAME SCREEN
+        =================================================== -->
+
+        <section id="gameScreen">
+
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div class="choose-text">
+                Choose the best answer:
+            </div>
+
+
+            <div
+                id="question"
+                class="question"
+            >
+            </div>
+
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <div
+                id="explanation"
+                class="explanation"
+            >
+            </div>
+
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             RESULT SCREEN
+        =================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
+        >
+
+
+            <div
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <h1 class="result-title">
+                Great Job!
+            </h1>
+
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
+
+
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   VOCABULARY
+========================================================== */
+
+const CLOTHES = [
+
+    {
+        text:
+            "áo",
+
+        english:
+            "shirt / top"
+    },
+
+    {
+        text:
+            "quần",
+
+        english:
+            "pants / trousers"
+    },
+
+    {
+        text:
+            "váy",
+
+        english:
+            "skirt"
+    },
+
+    {
+        text:
+            "áo đầm",
+
+        english:
+            "dress"
+    },
+
+    {
+        text:
+            "áo thun",
+
+        english:
+            "T-shirt"
+    },
+
+    {
+        text:
+            "áo sơ mi",
+
+        english:
+            "shirt / dress shirt"
+    },
+
+    {
+        text:
+            "áo khoác",
+
+        english:
+            "jacket / coat"
+    },
+
+    {
+        text:
+            "quần jean",
+
+        english:
+            "jeans"
+    },
+
+    {
+        text:
+            "quần short",
+
+        english:
+            "shorts"
+    },
+
+    {
+        text:
+            "giày",
+
+        english:
+            "shoes"
+    },
+
+    {
+        text:
+            "dép",
+
+        english:
+            "sandals / slippers / flip-flops"
+    },
+
+    {
+        text:
+            "vớ",
+
+        english:
+            "socks"
+    },
+
+    {
+        text:
+            "nón",
+
+        english:
+            "hat / cap"
+    },
+
+    {
+        text:
+            "túi",
+
+        english:
+            "bag"
+    },
+
+    {
+        text:
+            "mặc",
+
+        english:
+            "to wear / to put on"
+    }
+
+];
+
+
+/* ==========================================================
+   QUESTIONS
+========================================================== */
+
+const QUESTIONS = [
+
+    {
+        question:
+            "You wear these on your feet.",
+
+        correct:
+            "giày",
+
+        wrong:
+            "nón",
+
+        explanation:
+            "Giày means “shoes,” and you wear shoes on your feet."
+    },
+
+    {
+        question:
+            "You wear this on your head.",
+
+        correct:
+            "nón",
+
+        wrong:
+            "quần",
+
+        explanation:
+            "Nón means “hat / cap,” which you wear on your head."
+    },
+
+    {
+        question:
+            "You wear these with shoes to cover your feet.",
+
+        correct:
+            "vớ",
+
+        wrong:
+            "túi",
+
+        explanation:
+            "Vớ means “socks,” which you wear on your feet with shoes."
+    },
+
+    {
+        question:
+            "You wear this when the weather is cold.",
+
+        correct:
+            "áo khoác",
+
+        wrong:
+            "váy",
+
+        explanation:
+            "Áo khoác means “jacket / coat,” which you wear when it is cold."
+    },
+
+    {
+        question:
+            "You wear these on your legs. They are made of denim.",
+
+        correct:
+            "quần jean",
+
+        wrong:
+            "áo thun",
+
+        explanation:
+            "Quần jean means “jeans,” which are denim pants."
+    },
+
+    {
+        question:
+            "You wear these when it is hot. They are short pants.",
+
+        correct:
+            "quần short",
+
+        wrong:
+            "áo sơ mi",
+
+        explanation:
+            "Quần short means “shorts,” which are short pants."
+    },
+
+    {
+        question:
+            "You wear this on the top half of your body. It is a T-shirt.",
+
+        correct:
+            "áo thun",
+
+        wrong:
+            "giày",
+
+        explanation:
+            "Áo thun means “T-shirt,” a casual top."
+    },
+
+    {
+        question:
+            "You wear this on the top half of your body. It is a dress shirt.",
+
+        correct:
+            "áo sơ mi",
+
+        wrong:
+            "dép",
+
+        explanation:
+            "Áo sơ mi means “shirt / dress shirt.”"
+    },
+
+    {
+        question:
+            "You wear this as a one-piece outfit. It is a dress.",
+
+        correct:
+            "áo đầm",
+
+        wrong:
+            "quần",
+
+        explanation:
+            "Áo đầm means “dress,” a one-piece clothing item."
+    },
+
+    {
+        question:
+            "You wear this clothing item on your lower body. It is a skirt.",
+
+        correct:
+            "váy",
+
+        wrong:
+            "áo",
+
+        explanation:
+            "Váy means “skirt,” which you wear on your lower body."
+    },
+
+    {
+        question:
+            "You wear these on your feet instead of shoes. They can be flip-flops.",
+
+        correct:
+            "dép",
+
+        wrong:
+            "vớ",
+
+        explanation:
+            "Dép means “sandals / slippers / flip-flops.”"
+    },
+
+    {
+        question:
+            "You carry things in this when you go shopping.",
+
+        correct:
+            "túi",
+
+        wrong:
+            "giày",
+
+        explanation:
+            "Túi means “bag,” which you can use to carry things."
+    },
+
+    {
+        question:
+            "This is the general verb for putting clothes on your body.",
+
+        correct:
+            "mặc",
+
+        wrong:
+            "nón",
+
+        explanation:
+            "Mặc means “to wear / to put on” clothes."
+    },
+
+    {
+        question:
+            "You wear these on your feet when you go running.",
+
+        correct:
+            "giày",
+
+        wrong:
+            "túi",
+
+        explanation:
+            "Giày means “shoes,” which you wear when running."
+    },
+
+    {
+        question:
+            "You wear this when you want a casual top with short sleeves.",
+
+        correct:
+            "áo thun",
+
+        wrong:
+            "áo khoác",
+
+        explanation:
+            "Áo thun means “T-shirt,” a common casual top."
+    },
+
+    {
+        question:
+            "You wear this over your clothes when it is cold outside.",
+
+        correct:
+            "áo khoác",
+
+        wrong:
+            "quần short",
+
+        explanation:
+            "Áo khoác means “jacket / coat,” worn over clothes for warmth."
+    },
+
+    {
+        question:
+            "You wear these when you want comfortable short pants.",
+
+        correct:
+            "quần short",
+
+        wrong:
+            "áo đầm",
+
+        explanation:
+            "Quần short means “shorts,” which are comfortable short pants."
+    },
+
+    {
+        question:
+            "You wear this on your head to protect it from the sun.",
+
+        correct:
+            "nón",
+
+        wrong:
+            "váy",
+
+        explanation:
+            "Nón means “hat / cap,” which can protect your head from the sun."
+    },
+
+    {
+        question:
+            "You wear these inside your shoes.",
+
+        correct:
+            "vớ",
+
+        wrong:
+            "quần jean",
+
+        explanation:
+            "Vớ means “socks,” which you wear inside your shoes."
+    },
+
+    {
+        question:
+            "You wear this when you put clothes on in the morning.",
+
+        correct:
+            "mặc",
+
+        wrong:
+            "túi",
+
+        explanation:
+            "Mặc means “to wear / to put on,” so it describes putting clothes on."
+    }
+
+];
+
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS =
+    20;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let questions =
+    [];
+
+let currentQuestion =
+    0;
+
+let score =
+    0;
+
+let answered =
+    false;
+
+
+/* ==========================================================
+   DOM ELEMENTS
+========================================================== */
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const question =
+    document.getElementById(
+        "question"
+    );
+
+
+const answers =
+    document.getElementById(
+        "answers"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+
+const resultScreen =
+    document.getElementById(
+        "resultScreen"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+const performance =
+    document.getElementById(
+        "performance"
+    );
+
+
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array) {
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
+    }
+
+
+    return array;
+
+}
+
+
+/* ==========================================================
+   GENERATE QUESTIONS
+========================================================== */
+
+function generateQuestions() {
+
+    questions =
+        QUESTIONS.map(
+            item => {
+
+                const options = [
+
+                    {
+                        text:
+                            item.correct,
+
+                        correct:
+                            true
+                    },
+
+                    {
+                        text:
+                            item.wrong,
+
+                        correct:
+                            false
+                    }
+
+                ];
+
+
+                shuffle(
+                    options
+                );
+
+
+                return {
+
+                    question:
+                        item.question,
+
+                    options:
+                        options,
+
+                    correct:
+                        item.correct,
+
+                    explanation:
+                        item.explanation
+
+                };
+
+            }
+        );
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame() {
+
+    generateQuestions();
+
+
+    currentQuestion =
+        0;
+
+
+    score =
+        0;
+
+
+    gameScreen.classList.remove(
+        "hidden"
+    );
+
+
+    resultScreen.classList.add(
+        "hidden"
+    );
+
+
+    loadQuestion();
+
+}
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion() {
+
+    answered =
+        false;
+
+
+    message.textContent =
+        "";
+
+    message.className =
+        "message";
+
+
+    explanation.textContent =
+        "";
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+
+    const current =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionNumber.textContent =
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
+
+
+    question.textContent =
+        current.question;
+
+
+    answers.innerHTML =
+        "";
+
+
+    current.options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.textContent =
+                option.text;
+
+
+            button.dataset.correct =
+                option.correct;
+
+
+            button.addEventListener(
+                "click",
+                () =>
+                    handleAnswer(
+                        button,
+                        current
+                    )
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    selected,
+    current
+) {
+
+    if (
+        answered
+    ) {
+
+        return;
+
+    }
+
+
+    answered =
+        true;
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+        }
+    );
+
+
+    const correctButton =
+        [
+            ...buttons
+        ].find(
+            button =>
+                button.dataset.correct ===
+                "true"
+        );
+
+
+    if (
+        selected.dataset.correct ===
+        "true"
+    ) {
+
+        score++;
+
+
+        selected.classList.add(
+            "correct-answer"
+        );
+
+
+        message.textContent =
+            "✓ Correct!";
+
+
+        message.classList.add(
+            "correct-text"
+        );
+
+    }
+
+    else {
+
+        selected.classList.add(
+            "wrong-answer"
+        );
+
+
+        correctButton.classList.add(
+            "correct-answer"
+        );
+
+
+        message.textContent =
+            "✕ Wrong!";
+
+
+        message.classList.add(
+            "wrong-text"
+        );
+
+    }
+
+
+    explanation.textContent =
+        current.explanation;
+
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+
+    if (
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ) {
+
+        nextBtn.textContent =
+            "Finish";
+
+    }
+
+    else {
+
+        nextBtn.textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentQuestion++;
+
+
+        if (
+            currentQuestion >=
+            TOTAL_QUESTIONS
+        ) {
+
+            showResults();
+
+        }
+
+        else {
+
+            loadQuestion();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   SHOW RESULTS
+========================================================== */
+
+function showResults() {
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
+
+
+    scoreText.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
+
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
+
+        performance.textContent =
+            "Perfect! 👕";
+
+    }
+
+    else if (
+        score >= 16
+    ) {
+
+        performance.textContent =
+            "Excellent!";
+
+    }
+
+    else if (
+        score >= 12
+    ) {
+
+        performance.textContent =
+            "Good Job!";
+
+    }
+
+    else {
+
+        performance.textContent =
+            "Keep Practicing!";
+
+    }
+
+}
+
+
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+playAgain.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+startGame();
+
+</script>
+
+
+</body>
+
+</html>

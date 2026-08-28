@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>What Are They Doing?</title>
+
+<meta
+    name="game-title"
+    content="What Are They Doing?"
+>
+
+<meta
+    name="game-description"
+    content="Look at the picture and choose the Vietnamese activity."
+>
+
+<meta
+    name="game-icon"
+    content="🎯"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+
+    --paper:
+        #f5f9fd;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --border:
+        #c4daf6;
+
+    --green:
+        #27ae60;
+
+    --green-light:
+        #eaf8f0;
+
+    --red:
+        #e05252;
+
+    --red-light:
+        #fff0f0;
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
+
+    font-family:
+        'Be Vietnam Pro',
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9fd 48%,
+            #edf5fc 100%
+        );
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+
+    width:
+        min(
+            760px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-btn-container {
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+}
+
+
+/* ==========================================================
+   GAME CARD
+========================================================== */
+
+.card {
+
+    width:
+        100%;
+
+    padding:
+        38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            20,
+            58,
+            107,
+            0.10
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.game-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        1.8rem;
+
+}
+
+
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.9rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        520px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-number {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.choose-text {
+
+    margin-bottom:
+        16px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   IMAGE
+========================================================== */
+
+.image-container {
+
+    width:
+        min(
+            430px,
+            100%
+        );
+
+    height:
+        280px;
+
+    margin:
+        0 auto 28px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        20px;
+
+    background:
+        #f8fbff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
+
+}
+
+
+.activity-image {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+    display:
+        block;
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        stretch;
+
+    gap:
+        16px;
+
+    margin:
+        0 auto 22px;
+
+    max-width:
+        560px;
+
+}
+
+
+.answer-btn {
+
+    flex:
+        1;
+
+    min-height:
+        58px;
+
+    padding:
+        14px 20px;
+
+    border:
+        2px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        white;
+
+    color:
+        var(--ink);
+
+    font-family:
+        inherit;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.answer-btn:hover:not(.disabled) {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+
+    background:
+        var(--accent-light);
+
+    box-shadow:
+        0 7px 16px
+        rgba(
+            40,
+            120,
+            223,
+            0.12
+        );
+
+}
+
+
+.answer-btn.disabled {
+
+    cursor:
+        default;
+
+}
+
+
+.answer-btn.correct {
+
+    border-color:
+        var(--green);
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green);
+
+}
+
+
+.answer-btn.wrong {
+
+    border-color:
+        var(--red);
+
+    background:
+        var(--red-light);
+
+    color:
+        var(--red);
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.message {
+
+    min-height:
+        28px;
+
+    margin-bottom:
+        10px;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--green);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--red);
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation {
+
+    max-width:
+        580px;
+
+    margin:
+        0 auto 20px;
+
+    padding:
+        14px 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        14px;
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.86rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+.explanation strong {
+
+    color:
+        var(--ink);
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.action-btn {
+
+    min-width:
+        170px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 5px 12px
+        rgba(
+            40,
+            120,
+            223,
+            0.20
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.action-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.action-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==========================================================
+   RESULT SCREEN
+========================================================== */
+
+.result-icon {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        2rem;
+
+}
+
+
+.result-title {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        2.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    body {
+
+        padding:
+            18px 14px 35px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            0.84rem;
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .image-container {
+
+        height:
+            230px;
+
+        margin-bottom:
+            22px;
+
+    }
+
+
+    .answers {
+
+        gap:
+            10px;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            54px;
+
+        padding:
+            12px 10px;
+
+        font-size:
+            0.9rem;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+========================================================== */
+
+@media (
+    max-width: 380px
+) {
+
+    .image-container {
+
+        height:
+            200px;
+
+    }
+
+
+    .answers {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .answer-btn {
+
+        width:
+            100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- ======================================================
+         BACK TO CATEGORY
+    ======================================================= -->
+
+    <div class="back-btn-container">
+
+        <a
+            href="../../../category.html?category=Activities"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================
+         GAME CARD
+    ======================================================= -->
+
+    <main class="card">
+
+
+        <!-- ==================================================
+             GAME HEADER
+        =================================================== -->
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            🎯
+        </div>
+
+
+        <h1>
+            What Are They Doing?
+        </h1>
+
+
+        <p class="subtitle">
+            Look at the picture and choose the
+            correct Vietnamese activity.
+        </p>
+
+
+        <!-- ==================================================
+             GAME SCREEN
+        =================================================== -->
+
+        <section id="gameScreen">
+
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div class="choose-text">
+                What are they doing?
+            </div>
+
+
+            <!-- ==============================================
+                 IMAGE
+            =============================================== -->
+
+            <div class="image-container">
+
+                <img
+                    id="activityImage"
+                    class="activity-image"
+                    src=""
+                    alt="Activity"
+                >
+
+            </div>
+
+
+            <!-- ==============================================
+                 ANSWERS
+            =============================================== -->
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <!-- ==============================================
+                 MESSAGE
+            =============================================== -->
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <!-- ==============================================
+                 EXPLANATION
+            =============================================== -->
+
+            <div
+                id="explanation"
+                class="explanation hidden"
+            >
+            </div>
+
+
+            <!-- ==============================================
+                 NEXT BUTTON
+            =============================================== -->
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             RESULT SCREEN
+        =================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
+        >
+
+
+            <div
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <h1 class="result-title">
+                Great Job!
+            </h1>
+
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
+
+
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   ACTIVITY VOCABULARY
+========================================================== */
+
+const ACTIVITIES = [
+
+    {
+        text:
+            "chơi game",
+
+        english:
+            "play games",
+
+        image:
+            "images/choi-game.png",
+
+        explanation:
+            "Chơi game means “play games.” The picture shows someone playing a game."
+    },
+
+    {
+        text:
+            "chụp hình",
+
+        english:
+            "take photos",
+
+        image:
+            "images/chup-hinh.png",
+
+        explanation:
+            "Chụp hình means “take photos.” The person is using a camera or phone to take a picture."
+    },
+
+    {
+        text:
+            "đi biển",
+
+        english:
+            "go to the beach",
+
+        image:
+            "images/di-bien.png",
+
+        explanation:
+            "Đi biển means “go to the beach.” The picture shows someone at the beach."
+    },
+
+    {
+        text:
+            "đi công tác",
+
+        english:
+            "go on a business trip",
+
+        image:
+            "images/di-cong-tac.png",
+
+        explanation:
+            "Đi công tác means “go on a business trip.” The person is traveling for work."
+    },
+
+    {
+        text:
+            "đi học",
+
+        english:
+            "go to school",
+
+        image:
+            "images/di-hoc.png",
+
+        explanation:
+            "Đi học means “go to school.” The picture shows someone going to school."
+    },
+
+    {
+        text:
+            "đi làm",
+
+        english:
+            "go to work",
+
+        image:
+            "images/di-lam.png",
+
+        explanation:
+            "Đi làm means “go to work.” The person is going to their workplace."
+    },
+
+    {
+        text:
+            "du lịch",
+
+        english:
+            "travel",
+
+        image:
+            "images/du-lich.png",
+
+        explanation:
+            "Du lịch means “travel.” The picture shows someone traveling and exploring a place."
+    },
+
+    {
+        text:
+            "học ngoại ngữ",
+
+        english:
+            "learn a foreign language",
+
+        image:
+            "images/hoc-ngoai-ngu.png",
+
+        explanation:
+            "Học ngoại ngữ means “learn a foreign language.” The person is studying another language."
+    },
+
+    {
+        text:
+            "họp",
+
+        english:
+            "have a meeting",
+
+        image:
+            "images/hop.png",
+
+        explanation:
+            "Họp means “have a meeting.” The picture shows people having a meeting."
+    },
+
+    {
+        text:
+            "làm việc",
+
+        english:
+            "work",
+
+        image:
+            "images/lam-viec.png",
+
+        explanation:
+            "Làm việc means “work.” The person is working."
+    },
+
+    {
+        text:
+            "mua sắm",
+
+        english:
+            "go shopping",
+
+        image:
+            "images/mua-sam.png",
+
+        explanation:
+            "Mua sắm means “go shopping.” The person is shopping for things."
+    },
+
+    {
+        text:
+            "nấu ăn",
+
+        english:
+            "cook",
+
+        image:
+            "images/nau-an.png",
+
+        explanation:
+            "Nấu ăn means “cook.” The person is preparing food."
+    },
+
+    {
+        text:
+            "nghe nhạc",
+
+        english:
+            "listen to music",
+
+        image:
+            "images/nghe-nhac.png",
+
+        explanation:
+            "Nghe nhạc means “listen to music.” The person is listening to music."
+    },
+
+    {
+        text:
+            "ngủ",
+
+        english:
+            "sleep",
+
+        image:
+            "images/ngu.png",
+
+        explanation:
+            "Ngủ means “sleep.” The person is sleeping."
+    },
+
+    {
+        text:
+            "nhắn tin",
+
+        english:
+            "text / send messages",
+
+        image:
+            "images/nhan-tin.png",
+
+        explanation:
+            "Nhắn tin means “text” or “send messages.” The person is using a phone to send a message."
+    },
+
+    {
+        text:
+            "tập thể dục",
+
+        english:
+            "exercise / work out",
+
+        image:
+            "images/tap-the-duc.png",
+
+        explanation:
+            "Tập thể dục means “exercise” or “work out.” The person is exercising."
+    },
+
+    {
+        text:
+            "xem phim",
+
+        english:
+            "watch a movie",
+
+        image:
+            "images/xem-phim.png",
+
+        explanation:
+            "Xem phim means “watch a movie.” The person is watching a movie."
+    }
+
+];
+
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS =
+    20;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let questions =
+    [];
+
+let currentQuestion =
+    0;
+
+let score =
+    0;
+
+let answered =
+    false;
+
+
+/* ==========================================================
+   DOM ELEMENTS
+========================================================== */
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const activityImage =
+    document.getElementById(
+        "activityImage"
+    );
+
+
+const answers =
+    document.getElementById(
+        "answers"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+
+const resultScreen =
+    document.getElementById(
+        "resultScreen"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+const performance =
+    document.getElementById(
+        "performance"
+    );
+
+
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
+
+
+/* ==========================================================
+   RANDOM INDEX
+========================================================== */
+
+function randomIndex(max) {
+
+    return Math.floor(
+        Math.random() * max
+    );
+
+}
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array) {
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
+    }
+
+
+    return array;
+
+}
+
+
+/* ==========================================================
+   CREATE UNIQUE QUESTION ACTIVITIES
+========================================================== */
+
+function getQuestionActivities() {
+
+    const pool =
+        shuffle(
+            [
+                ...ACTIVITIES
+            ]
+        );
+
+
+    /*
+     * Use all 17 activities once,
+     * then add 3 random activities
+     * to make 20 questions.
+     */
+
+    const extra =
+        shuffle(
+            [
+                ...ACTIVITIES
+            ]
+        ).slice(
+            0,
+            TOTAL_QUESTIONS -
+            ACTIVITIES.length
+        );
+
+
+    return [
+        ...pool,
+        ...extra
+    ];
+
+}
+
+
+/* ==========================================================
+   GET WRONG ANSWER
+========================================================== */
+
+function getWrongAnswer(
+    correct
+) {
+
+    /*
+     * Try to choose an answer
+     * that is visually and semantically
+     * different from the correct activity.
+     */
+
+    let candidates =
+        ACTIVITIES.filter(
+            activity =>
+                activity.text !==
+                correct.text
+        );
+
+
+    /*
+     * Avoid activities that are
+     * especially close in meaning.
+     */
+
+    const avoidPairs = {
+
+        "đi học":
+            [
+                "học ngoại ngữ"
+            ],
+
+        "học ngoại ngữ":
+            [
+                "đi học"
+            ],
+
+        "đi làm":
+            [
+                "làm việc"
+            ],
+
+        "làm việc":
+            [
+                "đi làm"
+            ],
+
+        "đi biển":
+            [
+                "du lịch"
+            ],
+
+        "du lịch":
+            [
+                "đi biển"
+            ]
+
+    };
+
+
+    if (
+        avoidPairs[
+            correct.text
+        ]
+    ) {
+
+        candidates =
+            candidates.filter(
+                activity =>
+                    !avoidPairs[
+                        correct.text
+                    ].includes(
+                        activity.text
+                    )
+            );
+
+    }
+
+
+    return candidates[
+        randomIndex(
+            candidates.length
+        )
+    ];
+
+}
+
+
+/* ==========================================================
+   GENERATE QUESTIONS
+========================================================== */
+
+function generateQuestions() {
+
+    questions =
+        [];
+
+
+    const activityPool =
+        getQuestionActivities();
+
+
+    activityPool.forEach(
+        correct => {
+
+            const wrong =
+                getWrongAnswer(
+                    correct
+                );
+
+
+            const options = [
+
+                correct,
+
+                wrong
+
+            ];
+
+
+            shuffle(
+                options
+            );
+
+
+            questions.push({
+
+                correct:
+                    correct,
+
+                options:
+                    options
+
+            });
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame() {
+
+    generateQuestions();
+
+
+    currentQuestion =
+        0;
+
+
+    score =
+        0;
+
+
+    gameScreen.classList.remove(
+        "hidden"
+    );
+
+
+    resultScreen.classList.add(
+        "hidden"
+    );
+
+
+    loadQuestion();
+
+}
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion() {
+
+    answered =
+        false;
+
+
+    message.textContent =
+        "";
+
+
+    message.className =
+        "message";
+
+
+    explanation.textContent =
+        "";
+
+
+    explanation.classList.add(
+        "hidden"
+    );
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionNumber.textContent =
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
+
+
+    activityImage.src =
+        question.correct.image;
+
+
+    activityImage.alt =
+        question.correct.english;
+
+
+    answers.innerHTML =
+        "";
+
+
+    question.options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.textContent =
+                option.text;
+
+
+            button.dataset.correct =
+                (
+                    option.text ===
+                    question.correct.text
+                );
+
+
+            button.addEventListener(
+                "click",
+                () =>
+                    handleAnswer(
+                        button
+                    )
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    selected
+) {
+
+    if (
+        answered
+    ) {
+
+        return;
+
+    }
+
+
+    answered =
+        true;
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    const correctButton =
+        [
+            ...buttons
+        ].find(
+            button =>
+                button.dataset.correct ===
+                "true"
+        );
+
+
+    if (
+        selected.dataset.correct ===
+        "true"
+    ) {
+
+        score++;
+
+
+        selected.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✓ Correct!";
+
+
+        message.classList.add(
+            "correct-text"
+        );
+
+    }
+
+    else {
+
+        selected.classList.add(
+            "wrong"
+        );
+
+
+        correctButton.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✕ Wrong!";
+
+
+        message.classList.add(
+            "wrong-text"
+        );
+
+    }
+
+
+    /*
+     * Always show explanation
+     * after the answer is checked.
+     */
+
+    explanation.innerHTML =
+        `<strong>${
+            question.correct.text
+        }</strong> — ${
+            question.correct.english
+        }.<br>${
+            question.correct.explanation
+        }`;
+
+
+    explanation.classList.remove(
+        "hidden"
+    );
+
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+
+    if (
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ) {
+
+        nextBtn.textContent =
+            "Finish";
+
+    }
+
+    else {
+
+        nextBtn.textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentQuestion++;
+
+
+        if (
+            currentQuestion >=
+            TOTAL_QUESTIONS
+        ) {
+
+            showResults();
+
+        }
+
+        else {
+
+            loadQuestion();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   SHOW RESULTS
+========================================================== */
+
+function showResults() {
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
+
+
+    scoreText.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
+
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
+
+        performance.textContent =
+            "Perfect! 🎯";
+
+    }
+
+    else if (
+        score >= 16
+    ) {
+
+        performance.textContent =
+            "Excellent!";
+
+    }
+
+    else if (
+        score >= 12
+    ) {
+
+        performance.textContent =
+            "Good Job!";
+
+    }
+
+    else {
+
+        performance.textContent =
+            "Keep Practicing!";
+
+    }
+
+}
+
+
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+playAgain.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+startGame();
+
+</script>
+
+
+</body>
+
+</html>

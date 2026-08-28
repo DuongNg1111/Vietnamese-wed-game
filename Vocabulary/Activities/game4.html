@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Complete the Sentence</title>
+
+<meta
+    name="game-title"
+    content="Complete the Sentence"
+>
+
+<meta
+    name="game-description"
+    content="Read the English description and choose the Vietnamese activity that completes the sentence."
+>
+
+<meta
+    name="game-icon"
+    content="✏️"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+
+    --paper:
+        #f5f9fd;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --border:
+        #c4daf6;
+
+    --green:
+        #27ae60;
+
+    --green-light:
+        #eaf8f0;
+
+    --red:
+        #e05252;
+
+    --red-light:
+        #fff0f0;
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
+
+    font-family:
+        'Be Vietnam Pro',
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9fd 48%,
+            #edf5fc 100%
+        );
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+
+    width:
+        min(
+            760px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-btn-container {
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+}
+
+
+/* ==========================================================
+   GAME CARD
+========================================================== */
+
+.card {
+
+    width:
+        100%;
+
+    padding:
+        38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            20,
+            58,
+            107,
+            0.10
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.game-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        1.8rem;
+
+}
+
+
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.9rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        550px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-number {
+
+    margin-bottom:
+        20px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.instruction {
+
+    margin-bottom:
+        12px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        600;
+
+}
+
+
+.description {
+
+    max-width:
+        610px;
+
+    margin:
+        0 auto 30px;
+
+    padding:
+        22px 24px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+    max-width:
+        600px;
+
+    margin:
+        0 auto 22px;
+
+}
+
+
+.answer-btn {
+
+    min-height:
+        76px;
+
+    padding:
+        14px 18px;
+
+    border:
+        2px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        white;
+
+    color:
+        var(--ink);
+
+    font-family:
+        inherit;
+
+    font-size:
+        1.05rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.answer-btn:hover:not(.disabled) {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+
+    background:
+        var(--accent-light);
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            40,
+            120,
+            223,
+            0.12
+        );
+
+}
+
+
+.answer-btn.disabled {
+
+    cursor:
+        default;
+
+}
+
+
+/* ==========================================================
+   ANSWER STATES
+========================================================== */
+
+.answer-btn.correct {
+
+    border-color:
+        var(--green);
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green);
+
+}
+
+
+.answer-btn.wrong {
+
+    border-color:
+        var(--red);
+
+    background:
+        var(--red-light);
+
+    color:
+        var(--red);
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.message {
+
+    min-height:
+        30px;
+
+    margin:
+        0 auto 8px;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--green);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--red);
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation {
+
+    max-width:
+        600px;
+
+    min-height:
+        24px;
+
+    margin:
+        0 auto 18px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.84rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.action-btn {
+
+    min-width:
+        170px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 5px 12px
+        rgba(
+            40,
+            120,
+            223,
+            0.20
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.action-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.action-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==========================================================
+   RESULT SCREEN
+========================================================== */
+
+.result-icon {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        2rem;
+
+}
+
+
+.result-title {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        2.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    body {
+
+        padding:
+            18px 14px 35px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            0.84rem;
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .description {
+
+        padding:
+            18px 16px;
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .answers {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            12px;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            66px;
+
+        font-size:
+            0.98rem;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+========================================================== */
+
+@media (
+    max-width: 380px
+) {
+
+    .description {
+
+        font-size:
+            0.94rem;
+
+    }
+
+
+    .answer-btn {
+
+        font-size:
+            0.92rem;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- ======================================================
+         BACK TO CATEGORY
+    ======================================================= -->
+
+    <div class="back-btn-container">
+
+        <a
+            href="../../category.html?category=Activity"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================
+         GAME CARD
+    ======================================================= -->
+
+    <main class="card">
+
+
+        <!-- ==================================================
+             GAME HEADER
+        =================================================== -->
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            ✏️
+        </div>
+
+
+        <h1>
+            Complete the Sentence
+        </h1>
+
+
+        <p class="subtitle">
+            Read the English description and choose the
+            Vietnamese activity that fits best.
+        </p>
+
+
+        <!-- ==================================================
+             GAME SCREEN
+        =================================================== -->
+
+        <section id="gameScreen">
+
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div class="instruction">
+                Choose the Vietnamese activity:
+            </div>
+
+
+            <div
+                id="description"
+                class="description"
+            >
+            </div>
+
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <div
+                id="explanation"
+                class="explanation"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             RESULT SCREEN
+        =================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
+        >
+
+
+            <div
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <h1 class="result-title">
+                Great Job!
+            </h1>
+
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
+
+
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   VOCABULARY
+   Activity / Free Time / Daily Life
+========================================================== */
+
+const ACTIVITIES = [
+
+    {
+        text:
+            "học bài",
+
+        english:
+            "study"
+    },
+
+    {
+        text:
+            "làm bài",
+
+        english:
+            "do homework / do exercises"
+    },
+
+    {
+        text:
+            "đi học",
+
+        english:
+            "go to school"
+    },
+
+    {
+        text:
+            "học ngoại ngữ",
+
+        english:
+            "learn a foreign language"
+    },
+
+    {
+        text:
+            "làm việc",
+
+        english:
+            "work"
+    },
+
+    {
+        text:
+            "đi làm",
+
+        english:
+            "go to work"
+    },
+
+    {
+        text:
+            "họp",
+
+        english:
+            "have a meeting"
+    },
+
+    {
+        text:
+            "thi",
+
+        english:
+            "take an exam"
+    },
+
+    {
+        text:
+            "đi công tác",
+
+        english:
+            "go on a business trip"
+    },
+
+    {
+        text:
+            "ngủ",
+
+        english:
+            "sleep"
+    },
+
+    {
+        text:
+            "xem phim",
+
+        english:
+            "watch a movie"
+    },
+
+    {
+        text:
+            "nghe nhạc",
+
+        english:
+            "listen to music"
+    },
+
+    {
+        text:
+            "đọc sách",
+
+        english:
+            "read books"
+    },
+
+    {
+        text:
+            "chơi game",
+
+        english:
+            "play games"
+    },
+
+    {
+        text:
+            "đi chơi",
+
+        english:
+            "hang out / go out"
+    },
+
+    {
+        text:
+            "đi dạo",
+
+        english:
+            "go for a walk"
+    },
+
+    {
+        text:
+            "tập thể dục",
+
+        english:
+            "exercise / work out"
+    },
+
+    {
+        text:
+            "đi biển",
+
+        english:
+            "go to the beach"
+    },
+
+    {
+        text:
+            "du lịch",
+
+        english:
+            "travel"
+    },
+
+    {
+        text:
+            "chụp hình",
+
+        english:
+            "take photos"
+    },
+
+    {
+        text:
+            "gặp bạn",
+
+        english:
+            "meet friends"
+    },
+
+    {
+        text:
+            "ăn",
+
+        english:
+            "eat"
+    },
+
+    {
+        text:
+            "uống",
+
+        english:
+            "drink"
+    },
+
+    {
+        text:
+            "nấu ăn",
+
+        english:
+            "cook"
+    },
+
+    {
+        text:
+            "mua sắm",
+
+        english:
+            "go shopping"
+    },
+
+    {
+        text:
+            "gọi điện",
+
+        english:
+            "make a phone call"
+    },
+
+    {
+        text:
+            "nhắn tin",
+
+        english:
+            "text / send messages"
+    },
+
+    {
+        text:
+            "nói chuyện",
+
+        english:
+            "talk / chat"
+    }
+
+];
+
+
+/* ==========================================================
+   QUESTIONS
+   English description → Vietnamese activity
+========================================================== */
+
+const QUESTION_BANK = [
+
+    {
+        description:
+            "You sit down and review your lessons for school.",
+
+        correct:
+            "học bài",
+
+        wrong:
+            "đi biển",
+
+        explanation:
+            "Học bài means to study or review your lessons."
+    },
+
+    {
+        description:
+            "You answer questions or practice exercises for class.",
+
+        correct:
+            "làm bài",
+
+        wrong:
+            "nghe nhạc",
+
+        explanation:
+            "Làm bài means to do homework or do exercises."
+    },
+
+    {
+        description:
+            "You leave home and go to school for your classes.",
+
+        correct:
+            "đi học",
+
+        wrong:
+            "đi làm",
+
+        explanation:
+            "Đi học means to go to school."
+    },
+
+    {
+        description:
+            "You study English, Chinese, or another language.",
+
+        correct:
+            "học ngoại ngữ",
+
+        wrong:
+            "nấu ăn",
+
+        explanation:
+            "Học ngoại ngữ means to learn a foreign language."
+    },
+
+    {
+        description:
+            "You spend time doing your job during the day.",
+
+        correct:
+            "làm việc",
+
+        wrong:
+            "đọc sách",
+
+        explanation:
+            "Làm việc means to work."
+    },
+
+    {
+        description:
+            "You leave home and travel to your workplace.",
+
+        correct:
+            "đi làm",
+
+        wrong:
+            "đi học",
+
+        explanation:
+            "Đi làm means to go to work."
+    },
+
+    {
+        description:
+            "You sit with your coworkers to discuss plans and work.",
+
+        correct:
+            "họp",
+
+        wrong:
+            "chụp hình",
+
+        explanation:
+            "Họp means to have a meeting."
+    },
+
+    {
+        description:
+            "You sit in a classroom and answer questions for a test.",
+
+        correct:
+            "thi",
+
+        wrong:
+            "đi dạo",
+
+        explanation:
+            "Thi means to take an exam or test."
+    },
+
+    {
+        description:
+            "You travel to another city for work.",
+
+        correct:
+            "đi công tác",
+
+        wrong:
+            "đi biển",
+
+        explanation:
+            "Đi công tác means to go on a business trip."
+    },
+
+    {
+        description:
+            "You are tired and lie down in bed at night.",
+
+        correct:
+            "ngủ",
+
+        wrong:
+            "tập thể dục",
+
+        explanation:
+            "Ngủ means to sleep."
+    },
+
+    {
+        description:
+            "You sit on the sofa and watch a movie on TV.",
+
+        correct:
+            "xem phim",
+
+        wrong:
+            "mua sắm",
+
+        explanation:
+            "Xem phim means to watch a movie."
+    },
+
+    {
+        description:
+            "You put on your headphones and listen to songs.",
+
+        correct:
+            "nghe nhạc",
+
+        wrong:
+            "nấu ăn",
+
+        explanation:
+            "Nghe nhạc means to listen to music."
+    },
+
+    {
+        description:
+            "You sit quietly with a book and read its pages.",
+
+        correct:
+            "đọc sách",
+
+        wrong:
+            "gọi điện",
+
+        explanation:
+            "Đọc sách means to read books."
+    },
+
+    {
+        description:
+            "You use your phone or computer to play a video game.",
+
+        correct:
+            "chơi game",
+
+        wrong:
+            "học bài",
+
+        explanation:
+            "Chơi game means to play games."
+    },
+
+    {
+        description:
+            "You spend your free time having fun outside with others.",
+
+        correct:
+            "đi chơi",
+
+        wrong:
+            "họp",
+
+        explanation:
+            "Đi chơi means to hang out or go out for fun."
+    },
+
+    {
+        description:
+            "You walk slowly around a park or neighborhood for fun.",
+
+        correct:
+            "đi dạo",
+
+        wrong:
+            "thi",
+
+        explanation:
+            "Đi dạo means to go for a walk."
+    },
+
+    {
+        description:
+            "You run, stretch, or do other physical activities to stay healthy.",
+
+        correct:
+            "tập thể dục",
+
+        wrong:
+            "xem phim",
+
+        explanation:
+            "Tập thể dục means to exercise or work out."
+    },
+
+    {
+        description:
+            "You spend the day swimming and relaxing by the ocean.",
+
+        correct:
+            "đi biển",
+
+        wrong:
+            "đi công tác",
+
+        explanation:
+            "Đi biển means to go to the beach."
+    },
+
+    {
+        description:
+            "You visit another city or country for a holiday.",
+
+        correct:
+            "du lịch",
+
+        wrong:
+            "đi làm",
+
+        explanation:
+            "Du lịch means to travel."
+    },
+
+    {
+        description:
+            "You use your phone or camera to capture pictures.",
+
+        correct:
+            "chụp hình",
+
+        wrong:
+            "họp",
+
+        explanation:
+            "Chụp hình means to take photos."
+    }
+
+];
+
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS =
+    20;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let questions =
+    [];
+
+let currentQuestion =
+    0;
+
+let score =
+    0;
+
+let answered =
+    false;
+
+
+/* ==========================================================
+   DOM ELEMENTS
+========================================================== */
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const description =
+    document.getElementById(
+        "description"
+    );
+
+
+const answers =
+    document.getElementById(
+        "answers"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+
+const resultScreen =
+    document.getElementById(
+        "resultScreen"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+const performance =
+    document.getElementById(
+        "performance"
+    );
+
+
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array) {
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
+    }
+
+
+    return array;
+
+}
+
+
+/* ==========================================================
+   GENERATE QUESTIONS
+========================================================== */
+
+function generateQuestions() {
+
+    const shuffled =
+        shuffle(
+            [...QUESTION_BANK]
+        );
+
+
+    questions =
+        shuffled.slice(
+            0,
+            TOTAL_QUESTIONS
+        );
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame() {
+
+    generateQuestions();
+
+
+    currentQuestion =
+        0;
+
+
+    score =
+        0;
+
+
+    gameScreen.classList.remove(
+        "hidden"
+    );
+
+
+    resultScreen.classList.add(
+        "hidden"
+    );
+
+
+    loadQuestion();
+
+}
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion() {
+
+    answered =
+        false;
+
+
+    message.textContent =
+        "";
+
+
+    message.className =
+        "message";
+
+
+    explanation.textContent =
+        "";
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionNumber.textContent =
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
+
+
+    description.textContent =
+        question.description;
+
+
+    answers.innerHTML =
+        "";
+
+
+    const options = [
+
+        {
+            text:
+                question.correct,
+
+            correct:
+                true
+        },
+
+        {
+            text:
+                question.wrong,
+
+            correct:
+                false
+        }
+
+    ];
+
+
+    shuffle(
+        options
+    );
+
+
+    options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.textContent =
+                option.text;
+
+
+            button.dataset.correct =
+                option.correct;
+
+
+            button.addEventListener(
+                "click",
+                () =>
+                    handleAnswer(
+                        button,
+                        question
+                    )
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    selected,
+    question
+) {
+
+    if (
+        answered
+    ) {
+
+        return;
+
+    }
+
+
+    answered =
+        true;
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    const correctButton =
+        [
+            ...buttons
+        ].find(
+            button =>
+                button.dataset.correct ===
+                "true"
+        );
+
+
+    if (
+        selected.dataset.correct ===
+        "true"
+    ) {
+
+        score++;
+
+
+        selected.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✓ Correct!";
+
+
+        message.classList.add(
+            "correct-text"
+        );
+
+    }
+
+    else {
+
+        selected.classList.add(
+            "wrong"
+        );
+
+
+        correctButton.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✕ Wrong!";
+
+
+        message.classList.add(
+            "wrong-text"
+        );
+
+    }
+
+
+    explanation.textContent =
+        `${question.correct} — ${getEnglishMeaning(question.correct)}. ${question.explanation}`;
+
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+
+    if (
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ) {
+
+        nextBtn.textContent =
+            "Finish";
+
+    }
+
+    else {
+
+        nextBtn.textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+/* ==========================================================
+   GET ENGLISH MEANING
+========================================================== */
+
+function getEnglishMeaning(
+    vietnamese
+) {
+
+    const item =
+        ACTIVITIES.find(
+            activity =>
+                activity.text ===
+                vietnamese
+        );
+
+
+    return item
+        ? item.english
+        : "";
+
+}
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentQuestion++;
+
+
+        if (
+            currentQuestion >=
+            TOTAL_QUESTIONS
+        ) {
+
+            showResults();
+
+        }
+
+        else {
+
+            loadQuestion();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   SHOW RESULTS
+========================================================== */
+
+function showResults() {
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
+
+
+    scoreText.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
+
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
+
+        performance.textContent =
+            "Perfect! ✨";
+
+    }
+
+    else if (
+        score >= 16
+    ) {
+
+        performance.textContent =
+            "Excellent!";
+
+    }
+
+    else if (
+        score >= 12
+    ) {
+
+        performance.textContent =
+            "Good Job!";
+
+    }
+
+    else {
+
+        performance.textContent =
+            "Keep Practicing!";
+
+    }
+
+}
+
+
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+playAgain.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+startGame();
+
+</script>
+
+
+</body>
+
+</html>

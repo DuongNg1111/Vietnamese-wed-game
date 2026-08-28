@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese Clothes Quiz</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese Clothes Quiz"
+>
+
+<meta
+    name="game-description"
+    content="Look at the English clothes word and choose the correct Vietnamese word."
+>
+
+<meta
+    name="game-icon"
+    content="👕"
+>
+
+<meta
+    name="game-explanation"
+    content="Choose the Vietnamese word that matches the English clothes word. Each question can only be answered once."
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+
+    --paper:
+        #fffaf2;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #5b3b1f;
+
+    --ink-soft:
+        #9a8068;
+
+    --accent:
+        #d99028;
+
+    --accent-dark:
+        #b56f12;
+
+    --accent-light:
+        #fff3dc;
+
+    --border:
+        #efd5a8;
+
+    --green:
+        #27ae60;
+
+    --green-light:
+        #eaf8f0;
+
+    --red:
+        #e05252;
+
+    --red-light:
+        #fff0f0;
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
+
+    font-family:
+        'Be Vietnam Pro',
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fffaf2 48%,
+            #fff4e2 100%
+        );
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+
+    width:
+        min(
+            760px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-btn-container {
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            91,
+            59,
+            31,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.card {
+
+    width:
+        100%;
+
+    padding:
+        38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            91,
+            59,
+            31,
+            0.10
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.game-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        1.8rem;
+
+}
+
+
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.9rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        520px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   QUESTION
+========================================================== */
+
+.question-number {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.choose-text {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        600;
+
+}
+
+
+.english-word {
+
+    margin-bottom:
+        30px;
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        2.25rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+    max-width:
+        560px;
+
+    margin:
+        0 auto 24px;
+
+}
+
+
+.answer-btn {
+
+    min-height:
+        76px;
+
+    padding:
+        15px 18px;
+
+    border:
+        2px solid
+        var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--white);
+
+    color:
+        var(--ink);
+
+    font-family:
+        inherit;
+
+    font-size:
+        1.05rem;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.answer-btn:hover:not(.disabled) {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+
+    background:
+        var(--accent-light);
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            91,
+            59,
+            31,
+            0.10
+        );
+
+}
+
+
+.answer-btn.disabled {
+
+    cursor:
+        default;
+
+}
+
+
+/* ==========================================================
+   ANSWER STATES
+========================================================== */
+
+.answer-btn.correct {
+
+    border-color:
+        var(--green);
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green);
+
+}
+
+
+.answer-btn.wrong {
+
+    border-color:
+        var(--red);
+
+    background:
+        var(--red-light);
+
+    color:
+        var(--red);
+
+}
+
+
+/* ==========================================================
+   FEEDBACK
+========================================================== */
+
+.message {
+
+    min-height:
+        32px;
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--green);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--red);
+
+}
+
+
+.explanation {
+
+    min-height:
+        28px;
+
+    margin:
+        0 auto 18px;
+
+    max-width:
+        560px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.86rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.action-btn {
+
+    min-width:
+        170px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 5px 12px
+        rgba(
+            217,
+            144,
+            40,
+            0.20
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.action-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.action-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.result-icon {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent-light);
+
+    font-size:
+        2rem;
+
+}
+
+
+.result-title {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        2.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* ==========================================================
+   HIDDEN
+========================================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    body {
+
+        padding:
+            18px 14px 35px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            0.84rem;
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .english-word {
+
+        font-size:
+            2rem;
+
+        margin-bottom:
+            24px;
+
+    }
+
+
+    .answers {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            12px;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            68px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- ======================================================
+         BACK
+    ======================================================= -->
+
+    <div class="back-btn-container">
+
+        <a
+            href="../../category.html?category=Clothes"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================
+         GAME CARD
+    ======================================================= -->
+
+    <main class="card">
+
+
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            👕
+        </div>
+
+
+        <h1>
+            Vietnamese Clothes Quiz
+        </h1>
+
+
+        <p class="subtitle">
+            Look at the English word and choose
+            the correct Vietnamese word.
+        </p>
+
+
+        <!-- ==================================================
+             GAME SCREEN
+        =================================================== -->
+
+        <section id="gameScreen">
+
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div class="choose-text">
+                Choose the Vietnamese word:
+            </div>
+
+
+            <div
+                id="englishWord"
+                class="english-word"
+            >
+            </div>
+
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <div
+                id="explanation"
+                class="explanation"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             RESULT SCREEN
+        =================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
+        >
+
+
+            <div
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <h1 class="result-title">
+                Great Job!
+            </h1>
+
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
+
+
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   VOCABULARY
+========================================================== */
+
+const CLOTHES = [
+
+    {
+        vietnamese:
+            "áo",
+
+        english:
+            "shirt / top"
+    },
+
+    {
+        vietnamese:
+            "quần",
+
+        english:
+            "pants / trousers"
+    },
+
+    {
+        vietnamese:
+            "váy",
+
+        english:
+            "skirt"
+    },
+
+    {
+        vietnamese:
+            "áo đầm",
+
+        english:
+            "dress"
+    },
+
+    {
+        vietnamese:
+            "áo thun",
+
+        english:
+            "T-shirt"
+    },
+
+    {
+        vietnamese:
+            "áo sơ mi",
+
+        english:
+            "shirt / dress shirt"
+    },
+
+    {
+        vietnamese:
+            "áo khoác",
+
+        english:
+            "jacket / coat"
+    },
+
+    {
+        vietnamese:
+            "quần jean",
+
+        english:
+            "jeans"
+    },
+
+    {
+        vietnamese:
+            "quần short",
+
+        english:
+            "shorts"
+    },
+
+    {
+        vietnamese:
+            "giày",
+
+        english:
+            "shoes"
+    },
+
+    {
+        vietnamese:
+            "dép",
+
+        english:
+            "sandals / slippers / flip-flops"
+    },
+
+    {
+        vietnamese:
+            "vớ",
+
+        english:
+            "socks"
+    },
+
+    {
+        vietnamese:
+            "nón",
+
+        english:
+            "hat / cap"
+    },
+
+    {
+        vietnamese:
+            "túi",
+
+        english:
+            "bag"
+    },
+
+    {
+        vietnamese:
+            "mặc",
+
+        english:
+            "to wear / to put on"
+    }
+
+];
+
+
+/* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS =
+    20;
+
+
+/* ==========================================================
+   GAME STATE
+========================================================== */
+
+let questions =
+    [];
+
+let currentQuestion =
+    0;
+
+let score =
+    0;
+
+let answered =
+    false;
+
+
+/* ==========================================================
+   DOM ELEMENTS
+========================================================== */
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const englishWord =
+    document.getElementById(
+        "englishWord"
+    );
+
+
+const answers =
+    document.getElementById(
+        "answers"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+const gameScreen =
+    document.getElementById(
+        "gameScreen"
+    );
+
+
+const resultScreen =
+    document.getElementById(
+        "resultScreen"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+const performance =
+    document.getElementById(
+        "performance"
+    );
+
+
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
+
+
+/* ==========================================================
+   SHUFFLE
+========================================================== */
+
+function shuffle(array) {
+
+    const copy =
+        [...array];
+
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
+        ];
+
+    }
+
+
+    return copy;
+
+}
+
+
+/* ==========================================================
+   RANDOM INDEX
+========================================================== */
+
+function randomIndex(max) {
+
+    return Math.floor(
+        Math.random() * max
+    );
+
+}
+
+
+/* ==========================================================
+   GENERATE QUESTIONS
+========================================================== */
+
+function generateQuestions() {
+
+    questions =
+        [];
+
+
+    /*
+     * Shuffle the vocabulary first so that
+     * the 20 questions are varied.
+     */
+
+    const pool =
+        shuffle(
+            CLOTHES
+        );
+
+
+    for (
+        let i = 0;
+        i < TOTAL_QUESTIONS;
+        i++
+    ) {
+
+        const correct =
+            pool[
+                i %
+                pool.length
+            ];
+
+
+        let wrong;
+
+
+        do {
+
+            wrong =
+                CLOTHES[
+                    randomIndex(
+                        CLOTHES.length
+                    )
+                ];
+
+        }
+        while (
+            wrong.vietnamese ===
+            correct.vietnamese
+        );
+
+
+        const options =
+            shuffle(
+                [
+                    correct.vietnamese,
+                    wrong.vietnamese
+                ]
+            );
+
+
+        questions.push({
+
+            correct:
+                correct,
+
+            options:
+                options
+
+        });
+
+    }
+
+}
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+function startGame() {
+
+    generateQuestions();
+
+
+    currentQuestion =
+        0;
+
+
+    score =
+        0;
+
+
+    gameScreen.classList.remove(
+        "hidden"
+    );
+
+
+    resultScreen.classList.add(
+        "hidden"
+    );
+
+
+    loadQuestion();
+
+}
+
+
+/* ==========================================================
+   LOAD QUESTION
+========================================================== */
+
+function loadQuestion() {
+
+    answered =
+        false;
+
+
+    message.textContent =
+        "";
+
+
+    message.className =
+        "message";
+
+
+    explanation.textContent =
+        "";
+
+
+    nextBtn.classList.add(
+        "hidden"
+    );
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionNumber.textContent =
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
+
+
+    englishWord.textContent =
+        question.correct.english;
+
+
+    answers.innerHTML =
+        "";
+
+
+    question.options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.textContent =
+                option;
+
+
+            button.addEventListener(
+                "click",
+                () =>
+                    handleAnswer(
+                        button,
+                        question
+                    )
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   HANDLE ANSWER
+========================================================== */
+
+function handleAnswer(
+    selected,
+    question
+) {
+
+    if (
+        answered
+    ) {
+
+        return;
+
+    }
+
+
+    answered =
+        true;
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    const correctAnswer =
+        question.correct.vietnamese;
+
+
+    const isCorrect =
+        selected.textContent ===
+        correctAnswer;
+
+
+    const correctButton =
+        [
+            ...buttons
+        ].find(
+            button =>
+                button.textContent ===
+                correctAnswer
+        );
+
+
+    if (
+        isCorrect
+    ) {
+
+        score++;
+
+
+        selected.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✓ Correct!";
+
+
+        message.classList.add(
+            "correct-text"
+        );
+
+    }
+
+    else {
+
+        selected.classList.add(
+            "wrong"
+        );
+
+
+        correctButton.classList.add(
+            "correct"
+        );
+
+
+        message.textContent =
+            "✕ Wrong!";
+
+
+        message.classList.add(
+            "wrong-text"
+        );
+
+    }
+
+
+    /*
+     * Explanation appears after every answer.
+     */
+
+    explanation.textContent =
+        `"${correctAnswer}" means "${correctAnswer === "mặc"
+            ? "to wear / to put on"
+            : question.correct.english
+        }."`;
+
+
+    nextBtn.classList.remove(
+        "hidden"
+    );
+
+
+    if (
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+    ) {
+
+        nextBtn.textContent =
+            "Finish";
+
+    }
+
+    else {
+
+        nextBtn.textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+/* ==========================================================
+   NEXT QUESTION
+========================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentQuestion++;
+
+
+        if (
+            currentQuestion >=
+            TOTAL_QUESTIONS
+        ) {
+
+            showResults();
+
+        }
+
+        else {
+
+            loadQuestion();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   SHOW RESULTS
+========================================================== */
+
+function showResults() {
+
+    gameScreen.classList.add(
+        "hidden"
+    );
+
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
+
+
+    scoreText.textContent =
+        `${score} / ${TOTAL_QUESTIONS}`;
+
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
+
+        performance.textContent =
+            "Perfect! 👕";
+
+    }
+
+    else if (
+        score >= 16
+    ) {
+
+        performance.textContent =
+            "Excellent!";
+
+    }
+
+    else if (
+        score >= 12
+    ) {
+
+        performance.textContent =
+            "Good Job!";
+
+    }
+
+    else {
+
+        performance.textContent =
+            "Keep Practicing!";
+
+    }
+
+}
+
+
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+playAgain.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+startGame();
+
+</script>
+
+
+</body>
+
+</html>
