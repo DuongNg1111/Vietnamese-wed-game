@@ -1,191 +1,1605 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="description"
-        content="Practice survival Vietnamese through simple vocabulary games, quick lessons, and interactive activities."
-    >
+<meta
+    name="description"
+    content="Practice survival Vietnamese through simple vocabulary games, quick lessons, and interactive activities."
+>
 
-    <meta
-        name="keywords"
-        content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary"
-    >
+<meta
+    name="keywords"
+    content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary"
+>
 
-    <meta
-        name="author"
-        content="Duong"
-    >
+<meta
+    name="author"
+    content="Duong"
+>
 
-    <title>Survival Vietnamese with Duong</title>
-
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<title>Survival Vietnamese with Duong</title>
 
 
-    <!-- =====================================================
-         SUPABASE
-    ====================================================== -->
+<!-- =====================================================
+     GOOGLE FONTS
+====================================================== -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-    ></script>
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <script
-        src="BACKEND/supabase.js"
-    ></script>
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-
-    <style>
-
-        /* =====================================================
-           DESIGN TOKENS
-        ====================================================== */
-
-        :root {
-
-            --paper: #f5f9fd;
-            --white: #ffffff;
-
-            --ink: #143a6b;
-            --ink-soft: #66809d;
-
-            --blue: #2f6fed;
-            --blue-dark: #1e4fc7;
-
-            --line: #d9e6f2;
-
-        }
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 
-        /* =====================================================
-           RESET
-        ====================================================== */
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
 
-        * {
-            box-sizing: border-box;
-        }
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-
-            margin: 0;
-
-            min-height: 100vh;
-
-            font-family:
-                'Be Vietnam Pro',
-                'Segoe UI',
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
-
-            color: var(--ink);
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f5f9fd 48%,
-                    #edf5fc 100%
-                );
-
-        }
+<script
+    src="BACKEND/supabase.js"
+></script>
 
 
-        /* =====================================================
-           TOP NAVIGATION
-        ====================================================== */
+<style>
+
+    /* =====================================================
+       DESIGN TOKENS
+    ====================================================== */
+
+    :root {
+
+        --paper: #f5f9fd;
+        --white: #ffffff;
+
+        --ink: #143a6b;
+        --ink-soft: #66809d;
+
+        --blue: #2f6fed;
+        --blue-dark: #1e4fc7;
+
+        --line: #d9e6f2;
+
+    }
+
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        min-height: 100vh;
+
+        font-family:
+            'Be Vietnam Pro',
+            'Segoe UI',
+            Tahoma,
+            Geneva,
+            Verdana,
+            sans-serif;
+
+        color: var(--ink);
+
+        background:
+            linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #f5f9fd 48%,
+                #edf5fc 100%
+            );
+
+    }
+
+
+    /* =====================================================
+       TOP NAVIGATION
+    ====================================================== */
+
+    .top-nav {
+
+        position: absolute;
+
+        top: 20px;
+
+        left: 0;
+        right: 0;
+
+        z-index: 20;
+
+        width: min(1500px, 94%);
+
+        margin: auto;
+
+        display: flex;
+
+        justify-content: flex-end;
+
+    }
+
+
+    .nav-actions {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+
+    .user-greeting {
+
+        padding: 9px 15px;
+
+        border:
+            1px solid
+            rgba(20, 58, 107, 0.12);
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.88);
+
+        color: var(--ink);
+
+        font-size: 0.82rem;
+
+        font-weight: 700;
+
+        box-shadow:
+            0 4px 14px
+            rgba(20, 58, 107, 0.08);
+
+        backdrop-filter: blur(8px);
+
+    }
+
+
+    .login-btn,
+    .logout-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 9px 18px;
+
+        border:
+            1px solid
+            rgba(20, 58, 107, 0.15);
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.9);
+
+        color: var(--ink);
+
+        text-decoration: none;
+
+        font-family: inherit;
+
+        font-size: 0.85rem;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 4px 14px
+            rgba(20, 58, 107, 0.1);
+
+        backdrop-filter: blur(8px);
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .login-btn:hover,
+    .logout-btn:hover {
+
+        transform: translateY(-2px);
+
+        background: var(--blue);
+
+        border-color: var(--blue);
+
+        color: white;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    header {
+
+        position: relative;
+
+        width: 100%;
+
+        min-height: 350px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 85px 20px 65px;
+
+        overflow: hidden;
+
+        background:
+            linear-gradient(
+                135deg,
+                #dcecff 0%,
+                #eaf6ff 48%,
+                #fff5d8 100%
+            );
+
+        box-shadow:
+            0 8px 30px
+            rgba(20, 58, 107, 0.12);
+
+    }
+
+
+    header::before {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background-image:
+            url('banner.jpg');
+
+        background-size: cover;
+
+        background-position: center;
+
+        filter:
+            brightness(1.08)
+            saturate(0.92);
+
+        transform: scale(1.03);
+
+        z-index: 0;
+
+    }
+
+
+    header::after {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(245, 249, 253, 0.34),
+                rgba(245, 249, 253, 0.68)
+            );
+
+        z-index: 1;
+
+    }
+
+
+    .header-eyebrow {
+
+        position: relative;
+
+        z-index: 2;
+
+        margin-bottom: 15px;
+
+        padding: 6px 15px;
+
+        border:
+            1px solid
+            rgba(47, 111, 237, 0.25);
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.62);
+
+        color: var(--blue-dark);
+
+        font-size: 0.75rem;
+
+        font-weight: 700;
+
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+    }
+
+
+    header h1 {
+
+        position: relative;
+
+        z-index: 2;
+
+        margin: 0;
+
+        font-family: 'Kalam', cursive;
+
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                5rem
+            );
+
+        line-height: 1;
+
+        font-weight: 700;
+
+        letter-spacing: 1px;
+
+        color: var(--ink);
+
+        text-shadow:
+            0 2px 0
+            rgba(255, 255, 255, 0.9);
+
+    }
+
+
+    header p {
+
+        position: relative;
+
+        z-index: 2;
+
+        margin: 18px auto 0;
+
+        max-width: 650px;
+
+        font-size: 1.08rem;
+
+        line-height: 1.55;
+
+        font-weight: 500;
+
+        color: #55718e;
+
+    }
+
+
+    .header-line {
+
+        position: relative;
+
+        z-index: 2;
+
+        width: 70px;
+
+        height: 5px;
+
+        margin-top: 22px;
+
+        border-radius: 999px;
+
+        background: var(--blue);
+
+    }
+
+
+    /* =====================================================
+       HEADER DIVIDER
+    ====================================================== */
+
+    .header-divider {
+
+        width: 100%;
+
+        height: 9px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2f6fed,
+                #17b6d0,
+                #ffc93c,
+                #2f6fed
+            );
+
+    }
+
+
+    /* =====================================================
+       MAIN CONTAINER
+    ====================================================== */
+
+    .container {
+
+        width: min(1400px, 94%);
+
+        margin: 48px auto 65px;
+
+    }
+
+
+    /* =====================================================
+       LANDING PAGE
+    ====================================================== */
+
+    #landing-page {
+
+        display: flex;
+
+        justify-content: center;
+
+        width: 100%;
+
+    }
+
+
+    .intro-card {
+
+        width: min(1100px, 94%);
+
+        margin: 0 auto;
+
+        padding: 42px 55px;
+
+        background:
+            rgba(255, 255, 255, 0.96);
+
+        border:
+            1.5px solid
+            var(--line);
+
+        border-radius: 26px;
+
+        box-shadow:
+            0 18px 50px
+            rgba(20, 58, 107, 0.10);
+
+        text-align: left;
+
+    }
+
+
+    .about-eyebrow {
+
+        margin: 0 0 10px;
+
+        color: var(--blue);
+
+        font-size: 0.78rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+    }
+
+
+    .intro-card h2 {
+
+        margin: 0 0 22px;
+
+        color: var(--ink);
+
+        font-size: 2rem;
+
+        font-weight: 800;
+
+        line-height: 1.25;
+
+    }
+
+
+    .intro-card > p {
+
+        margin: 0 0 15px;
+
+        color: var(--ink-soft);
+
+        font-size: 0.92rem;
+
+        line-height: 1.7;
+
+    }
+
+
+    .intro-card p strong {
+
+        color: var(--ink);
+
+    }
+
+
+    .preply-link {
+
+        display: inline-flex;
+
+        margin-top: 4px;
+
+        color: var(--blue);
+
+        font-size: 0.88rem;
+
+        font-weight: 800;
+
+        text-decoration: none;
+
+    }
+
+
+    .preply-link:hover {
+
+        color: var(--blue-dark);
+
+        text-decoration: underline;
+
+    }
+
+
+    /* =====================================================
+       INTRO FEATURES
+    ====================================================== */
+
+    .intro-features {
+
+        width: 100%;
+
+        margin: 30px 0;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 18px;
+
+    }
+
+
+    .intro-feature {
+
+        --accent: #2f6fed;
+
+        --background: #edf5ff;
+
+        --border: #c9def8;
+
+        position: relative;
+
+        padding: 24px 22px;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius: 18px;
+
+        background: var(--background);
+
+        text-align: left;
+
+        overflow: hidden;
+
+    }
+
+
+    .intro-feature::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        height: 4px;
+
+        background: var(--accent);
+
+    }
+
+
+    .feature-games {
+
+        --accent: #2f6fed;
+        --background: #edf5ff;
+        --border: #c9def8;
+
+    }
+
+
+    .feature-practice {
+
+        --accent: #0d9dbd;
+        --background: #e6f8fb;
+        --border: #bee8f0;
+
+    }
+
+
+    .feature-beginner {
+
+        --accent: #1f9d6b;
+        --background: #e9f8f0;
+        --border: #c3ecda;
+
+    }
+
+
+    .intro-feature-icon {
+
+        width: 46px;
+        height: 46px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 14px;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius: 13px;
+
+        background:
+            rgba(255, 255, 255, 0.75);
+
+        font-size: 1.4rem;
+
+    }
+
+
+    .intro-feature h3 {
+
+        margin: 0 0 7px;
+
+        color: var(--ink);
+
+        font-size: 1rem;
+
+        font-weight: 800;
+
+    }
+
+
+    .intro-feature p {
+
+        margin: 0;
+
+        color: var(--ink-soft);
+
+        font-size: 0.8rem;
+
+        line-height: 1.5;
+
+    }
+
+
+    /* =====================================================
+       INTRO DIVIDER
+    ====================================================== */
+
+    .intro-divider {
+
+        width: 100%;
+
+        height: 1px;
+
+        margin: 28px 0;
+
+        background: var(--line);
+
+    }
+
+
+    /* =====================================================
+       INTRO BOTTOM
+    ====================================================== */
+
+    .intro-bottom {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 25px;
+
+    }
+
+
+    .intro-bottom-text {
+
+        margin: 0 !important;
+
+        max-width: 650px;
+
+    }
+
+
+    .start-btn {
+
+        flex-shrink: 0;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 12px 22px;
+
+        border-radius: 999px;
+
+        background: var(--blue);
+
+        color: white !important;
+
+        text-decoration: none;
+
+        font-size: 0.85rem;
+
+        font-weight: 800;
+
+        box-shadow:
+            inset 0 -3px 0
+            rgba(0, 0, 0, 0.14),
+            0 5px 12px
+            rgba(47, 111, 237, 0.20);
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .start-btn:hover {
+
+        background: var(--blue-dark);
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* =====================================================
+       LOBBY PAGE
+    ====================================================== */
+
+    #lobby-page {
+
+        display: none;
+
+    }
+
+
+    .page-intro {
+
+        text-align: center;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .section-title {
+
+        margin: 0;
+
+        font-size: 2rem;
+
+        font-weight: 800;
+
+        color: var(--ink);
+
+    }
+
+
+    .section-subtitle {
+
+        margin: 9px auto 0;
+
+        max-width: 650px;
+
+        color: var(--ink-soft);
+
+        font-size: 0.94rem;
+
+        line-height: 1.55;
+
+    }
+
+
+    .section-title::after {
+
+        content: "";
+
+        display: block;
+
+        width: 60px;
+
+        height: 4px;
+
+        margin: 11px auto 0;
+
+        border-radius: 999px;
+
+        background: var(--blue);
+
+    }
+
+
+    /* =====================================================
+       TYPE FILTERS
+    ====================================================== */
+
+    .type-filters {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        margin: 0 auto 35px;
+
+    }
+
+
+    .type-filter {
+
+        padding: 10px 20px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.9);
+
+        color: var(--ink-soft);
+
+        font-family: inherit;
+
+        font-size: 0.82rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.01em;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 4px 12px
+            rgba(20, 58, 107, 0.055);
+
+        transition:
+            0.2s ease;
+
+    }
+
+
+    .type-filter:hover {
+
+        transform: translateY(-2px);
+
+        border-color: var(--blue);
+
+        color: var(--blue);
+
+    }
+
+
+    .type-filter.active {
+
+        background: var(--blue);
+
+        border-color: var(--blue);
+
+        color: white;
+
+        box-shadow:
+            0 6px 15px
+            rgba(47, 111, 237, 0.22);
+
+    }
+
+
+    /* =====================================================
+       LOBBY STATS
+    ====================================================== */
+
+    .lobby-stats {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(180px, 240px)
+            );
+
+        justify-content: center;
+
+        gap: 14px;
+
+        margin-bottom: 42px;
+
+    }
+
+
+    .stat-card {
+
+        padding: 17px 20px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 16px;
+
+        background:
+            rgba(255, 255, 255, 0.82);
+
+        text-align: center;
+
+        box-shadow:
+            0 6px 18px
+            rgba(20, 58, 107, 0.055);
+
+    }
+
+
+    .stat-number {
+
+        display: block;
+
+        color: var(--blue);
+
+        font-size: 1.45rem;
+
+        font-weight: 800;
+
+        line-height: 1.2;
+
+    }
+
+
+    .stat-label {
+
+        display: block;
+
+        margin-top: 4px;
+
+        color: var(--ink-soft);
+
+        font-size: 0.75rem;
+
+        font-weight: 700;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY GRID
+    ====================================================== */
+
+    .category-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    270px,
+                    1fr
+                )
+            );
+
+        gap: 20px;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY CARD
+    ====================================================== */
+
+    .category-card {
+
+        --accent: #2f6fed;
+
+        --background: #edf5ff;
+
+        --border: #c9def8;
+
+        position: relative;
+
+        min-height: 225px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        overflow: hidden;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius: 20px;
+
+        background: var(--background);
+
+        text-decoration: none;
+
+        box-shadow:
+            0 7px 20px
+            rgba(20, 58, 107, 0.065);
+
+        transition:
+            transform 0.22s ease,
+            box-shadow 0.22s ease,
+            border-color 0.22s ease;
+
+    }
+
+
+    .category-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        height: 5px;
+
+        background: var(--accent);
+
+    }
+
+
+    .category-card:hover {
+
+        transform:
+            translateY(-7px)
+            scale(1.015);
+
+        border-color: var(--accent);
+
+        box-shadow:
+            0 18px 34px
+            rgba(20, 58, 107, 0.15);
+
+    }
+
+
+    .category-card:hover .category-icon {
+
+        transform:
+            rotate(-5deg)
+            scale(1.08);
+
+        background: white;
+
+        border-color: var(--accent);
+
+    }
+
+
+    .category-card:hover .category-arrow {
+
+        transform: translateX(4px);
+
+    }
+
+
+    .category-icon,
+    .category-arrow {
+
+        transition:
+            transform 0.22s ease,
+            background 0.22s ease,
+            border-color 0.22s ease;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY COLORS
+    ====================================================== */
+
+    .category-activities {
+
+        --accent: #D25F52;
+        --background: #fdeeeb;
+        --border: #f0cec6;
+
+    }
+
+
+    .category-clothes {
+
+        --accent: #CC8B4F;
+        --background: #fbf1e6;
+        --border: #ecdab6;
+
+    }
+
+
+    .category-food {
+
+        --accent: #B8A24A;
+        --background: #f9f6e6;
+        --border: #e8dfb2;
+
+    }
+
+
+    .category-numbers {
+
+        --accent: #7CAE4F;
+        --background: #f0f7e8;
+        --border: #d5e6b8;
+
+    }
+
+
+    .category-places-transport {
+
+        --accent: #4FAE68;
+        --background: #eaf6ee;
+        --border: #c1e0cc;
+
+    }
+
+
+    .category-sentences {
+
+        --accent: #3F9D8C;
+        --background: #e8f5f2;
+        --border: #bce0d8;
+
+    }
+
+
+    .category-describe {
+
+        --accent: #4593AE;
+        --background: #e9f3f7;
+        --border: #bcdae5;
+
+    }
+
+
+    .category-pronouns {
+
+        --accent: #4F73C4;
+        --background: #eaf0fa;
+        --border: #c3d4ef;
+
+    }
+
+
+    .category-colors {
+
+        --accent: #6F5FB8;
+        --background: #efedf9;
+        --border: #d0c9ec;
+
+    }
+
+
+    .category-health {
+
+        --accent: #9C5FB8;
+        --background: #f6eef9;
+        --border: #dfc9ec;
+
+    }
+
+
+    .category-useful-phrases {
+
+        --accent: #B85088;
+        --background: #f9eaf1;
+        --border: #ecc4dc;
+
+    }
+
+
+    .category-dictionary {
+
+        --accent: #b7791f;
+        --background: #fff8e7;
+        --border: #efdca8;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY ICON
+    ====================================================== */
+
+    .category-icon {
+
+        width: 52px;
+        height: 52px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 17px;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius: 15px;
+
+        background:
+            rgba(255, 255, 255, 0.72);
+
+        font-size: 1.65rem;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY TYPE BADGE
+    ====================================================== */
+
+    .category-type {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        width: fit-content;
+
+        margin-bottom: 8px;
+
+        padding: 4px 9px;
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.72);
+
+        color: var(--accent);
+
+        font-size: 0.65rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.04em;
+
+        text-transform: uppercase;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY TEXT
+    ====================================================== */
+
+    .category-title {
+
+        margin: 0 0 7px;
+
+        color: var(--ink);
+
+        font-size: 1.25rem;
+
+        font-weight: 800;
+
+        line-height: 1.3;
+
+    }
+
+
+    .category-subtitle {
+
+        margin: 0;
+
+        color: var(--ink-soft);
+
+        font-size: 0.84rem;
+
+        line-height: 1.5;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY FOOTER
+    ====================================================== */
+
+    .category-footer {
+
+        margin-top: auto;
+
+        padding-top: 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+    }
+
+
+    .category-count {
+
+        color: var(--accent);
+
+        font-size: 0.75rem;
+
+        font-weight: 800;
+
+    }
+
+
+    .category-arrow {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: 50%;
+
+        background: var(--accent);
+
+        color: white;
+
+        font-size: 0.9rem;
+
+        font-weight: 800;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+    ====================================================== */
+
+    .loading {
+
+        grid-column: 1 / -1;
+
+        padding: 50px;
+
+        text-align: center;
+
+        color: var(--ink-soft);
+
+    }
+
+
+    /* =====================================================
+       EMPTY STATE
+    ====================================================== */
+
+    .empty-state {
+
+        grid-column: 1 / -1;
+
+        padding: 45px 25px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 18px;
+
+        background:
+            rgba(255, 255, 255, 0.8);
+
+        color: var(--ink-soft);
+
+        text-align: center;
+
+    }
+
+
+    .empty-state-icon {
+
+        display: block;
+
+        margin-bottom: 10px;
+
+        font-size: 2rem;
+
+    }
+
+
+    .empty-state strong {
+
+        display: block;
+
+        margin-bottom: 5px;
+
+        color: var(--ink);
+
+    }
+
+
+    /* =====================================================
+       ERROR
+    ====================================================== */
+
+    .error-message {
+
+        grid-column: 1 / -1;
+
+        padding: 25px;
+
+        background: #fff3f1;
+
+        border:
+            1px solid
+            #edcec8;
+
+        border-radius: 16px;
+
+        color: #9a3324;
+
+        text-align: center;
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer {
+
+        padding: 15px 20px 38px;
+
+        color: #7c93aa;
+
+        font-size: 0.8rem;
+
+        text-align: center;
+
+    }
+
+
+    .footer-line {
+
+        width: min(1400px, 94%);
+
+        height: 1px;
+
+        margin: 0 auto 20px;
+
+        background: #d8e5f0;
+
+    }
+
+
+    /* =====================================================
+       HIDDEN
+    ====================================================== */
+
+    .hidden {
+
+        display: none !important;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 700px) {
 
         .top-nav {
 
-            position: absolute;
+            top: 14px;
 
-            top: 20px;
-
-            left: 0;
-            right: 0;
-
-            z-index: 20;
-
-            width: min(1500px, 94%);
-
-            margin: auto;
-
-            display: flex;
-
-            justify-content: flex-end;
+            width: 94%;
 
         }
 
 
         .nav-actions {
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
+            gap: 6px;
 
         }
 
 
         .user-greeting {
 
-            padding: 9px 15px;
+            padding: 8px 11px;
 
-            border:
-                1px solid
-                rgba(20, 58, 107, 0.12);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.88);
-
-            color: var(--ink);
-
-            font-size: 0.82rem;
-
-            font-weight: 700;
-
-            box-shadow:
-                0 4px 14px
-                rgba(20, 58, 107, 0.08);
-
-            backdrop-filter: blur(8px);
+            font-size: 0.75rem;
 
         }
 
@@ -193,1583 +1607,175 @@
         .login-btn,
         .logout-btn {
 
-            display: inline-flex;
+            padding: 8px 14px;
 
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 9px 18px;
-
-            border:
-                1px solid
-                rgba(20, 58, 107, 0.15);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.9);
-
-            color: var(--ink);
-
-            text-decoration: none;
-
-            font-family: inherit;
-
-            font-size: 0.85rem;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 4px 14px
-                rgba(20, 58, 107, 0.1);
-
-            backdrop-filter: blur(8px);
-
-            transition: 0.2s ease;
+            font-size: 0.8rem;
 
         }
 
-
-        .login-btn:hover,
-        .logout-btn:hover {
-
-            transform: translateY(-2px);
-
-            background: var(--blue);
-
-            border-color: var(--blue);
-
-            color: white;
-
-        }
-
-
-        /* =====================================================
-           HEADER
-        ====================================================== */
 
         header {
 
-            position: relative;
+            min-height: 285px;
 
-            width: 100%;
-
-            min-height: 350px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 85px 20px 65px;
-
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #dcecff 0%,
-                    #eaf6ff 48%,
-                    #fff5d8 100%
-                );
-
-            box-shadow:
-                0 8px 30px
-                rgba(20, 58, 107, 0.12);
-
-        }
-
-
-        header::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background-image:
-                url('banner.jpg');
-
-            background-size: cover;
-
-            background-position: center;
-
-            filter:
-                brightness(1.08)
-                saturate(0.92);
-
-            transform: scale(1.03);
-
-            z-index: 0;
-
-        }
-
-
-        header::after {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(245, 249, 253, 0.34),
-                    rgba(245, 249, 253, 0.68)
-                );
-
-            z-index: 1;
-
-        }
-
-
-        .header-eyebrow {
-
-            position: relative;
-
-            z-index: 2;
-
-            margin-bottom: 15px;
-
-            padding: 6px 15px;
-
-            border:
-                1px solid
-                rgba(47, 111, 237, 0.25);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.62);
-
-            color: var(--blue-dark);
-
-            font-size: 0.75rem;
-
-            font-weight: 700;
-
-            letter-spacing: 0.08em;
-
-            text-transform: uppercase;
+            padding: 70px 18px 50px;
 
         }
 
 
         header h1 {
 
-            position: relative;
-
-            z-index: 2;
-
-            margin: 0;
-
-            font-family: 'Kalam', cursive;
-
-            font-size:
-                clamp(
-                    3rem,
-                    6vw,
-                    5rem
-                );
-
-            line-height: 1;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            color: var(--ink);
-
-            text-shadow:
-                0 2px 0
-                rgba(255, 255, 255, 0.9);
+            font-size: 2.75rem;
 
         }
 
 
         header p {
 
-            position: relative;
-
-            z-index: 2;
-
-            margin: 18px auto 0;
-
-            max-width: 650px;
-
-            font-size: 1.08rem;
-
-            line-height: 1.55;
-
-            font-weight: 500;
-
-            color: #55718e;
+            font-size: 0.98rem;
 
         }
 
-
-        .header-line {
-
-            position: relative;
-
-            z-index: 2;
-
-            width: 70px;
-
-            height: 5px;
-
-            margin-top: 22px;
-
-            border-radius: 999px;
-
-            background: var(--blue);
-
-        }
-
-
-        /* =====================================================
-           HEADER DIVIDER
-        ====================================================== */
-
-        .header-divider {
-
-            width: 100%;
-
-            height: 9px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #2f6fed,
-                    #17b6d0,
-                    #ffc93c,
-                    #2f6fed
-                );
-
-        }
-
-
-        /* =====================================================
-           MAIN CONTAINER
-        ====================================================== */
 
         .container {
 
-            width: min(1400px, 94%);
+            width: 94%;
 
-            margin: 48px auto 65px;
-
-        }
-
-
-        /* =====================================================
-           LANDING PAGE
-        ====================================================== */
-
-        #landing-page {
-
-            display: flex;
-
-            justify-content: center;
-
-            width: 100%;
+            margin: 30px auto 50px;
 
         }
 
 
         .intro-card {
 
-            width: min(1100px, 94%);
+            width: 100%;
 
-            margin: 0 auto;
+            padding: 30px 22px;
 
-            padding: 42px 55px;
-
-            background:
-                rgba(255, 255, 255, 0.96);
-
-            border:
-                1.5px solid
-                var(--line);
-
-            border-radius: 26px;
-
-            box-shadow:
-                0 18px 50px
-                rgba(20, 58, 107, 0.10);
-
-            text-align: left;
-
-        }
-
-
-        .about-eyebrow {
-
-            margin: 0 0 10px;
-
-            color: var(--blue);
-
-            font-size: 0.78rem;
-
-            font-weight: 800;
-
-            letter-spacing: 0.08em;
-
-            text-transform: uppercase;
+            border-radius: 20px;
 
         }
 
 
         .intro-card h2 {
 
-            margin: 0 0 22px;
-
-            color: var(--ink);
-
-            font-size: 2rem;
-
-            font-weight: 800;
-
-            line-height: 1.25;
+            font-size: 1.65rem;
 
         }
 
 
         .intro-card > p {
 
-            margin: 0 0 15px;
-
-            color: var(--ink-soft);
-
-            font-size: 0.92rem;
-
-            line-height: 1.7;
-
-        }
-
-
-        .intro-card p strong {
-
-            color: var(--ink);
-
-        }
-
-
-        .preply-link {
-
-            display: inline-flex;
-
-            margin-top: 4px;
-
-            color: var(--blue);
-
             font-size: 0.88rem;
 
-            font-weight: 800;
-
-            text-decoration: none;
-
         }
 
-
-        .preply-link:hover {
-
-            color: var(--blue-dark);
-
-            text-decoration: underline;
-
-        }
-
-
-        /* =====================================================
-           INTRO FEATURES
-        ====================================================== */
 
         .intro-features {
 
-            width: 100%;
+            grid-template-columns: 1fr;
 
-            margin: 30px 0;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 18px;
+            gap: 14px;
 
         }
 
-
-        .intro-feature {
-
-            --accent: #2f6fed;
-
-            --background: #edf5ff;
-
-            --border: #c9def8;
-
-            position: relative;
-
-            padding: 24px 22px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 18px;
-
-            background: var(--background);
-
-            text-align: left;
-
-            overflow: hidden;
-
-        }
-
-
-        .intro-feature::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-
-            height: 4px;
-
-            background: var(--accent);
-
-        }
-
-
-        .feature-games {
-
-            --accent: #2f6fed;
-            --background: #edf5ff;
-            --border: #c9def8;
-
-        }
-
-
-        .feature-practice {
-
-            --accent: #0d9dbd;
-            --background: #e6f8fb;
-            --border: #bee8f0;
-
-        }
-
-
-        .feature-beginner {
-
-            --accent: #1f9d6b;
-            --background: #e9f8f0;
-            --border: #c3ecda;
-
-        }
-
-
-        .intro-feature-icon {
-
-            width: 46px;
-            height: 46px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            margin-bottom: 14px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 13px;
-
-            background:
-                rgba(255, 255, 255, 0.75);
-
-            font-size: 1.4rem;
-
-        }
-
-
-        .intro-feature h3 {
-
-            margin: 0 0 7px;
-
-            color: var(--ink);
-
-            font-size: 1rem;
-
-            font-weight: 800;
-
-        }
-
-
-        .intro-feature p {
-
-            margin: 0;
-
-            color: var(--ink-soft);
-
-            font-size: 0.8rem;
-
-            line-height: 1.5;
-
-        }
-
-
-        /* =====================================================
-           INTRO DIVIDER
-        ====================================================== */
-
-        .intro-divider {
-
-            width: 100%;
-
-            height: 1px;
-
-            margin: 28px 0;
-
-            background: var(--line);
-
-        }
-
-
-        /* =====================================================
-           INTRO BOTTOM
-        ====================================================== */
 
         .intro-bottom {
 
-            display: flex;
+            flex-direction: column;
 
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 25px;
-
-        }
-
-
-        .intro-bottom-text {
-
-            margin: 0 !important;
-
-            max-width: 650px;
+            align-items: flex-start;
 
         }
 
 
         .start-btn {
 
-            flex-shrink: 0;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 12px 22px;
-
-            border-radius: 999px;
-
-            background: var(--blue);
-
-            color: white !important;
-
-            text-decoration: none;
-
-            font-size: 0.85rem;
-
-            font-weight: 800;
-
-            box-shadow:
-                inset 0 -3px 0
-                rgba(0, 0, 0, 0.14),
-                0 5px 12px
-                rgba(47, 111, 237, 0.20);
-
-            transition: 0.2s ease;
-
-        }
-
-
-        .start-btn:hover {
-
-            background: var(--blue-dark);
-
-            transform: translateY(-2px);
-
-        }
-
-
-        /* =====================================================
-           LOBBY PAGE
-        ====================================================== */
-
-        #lobby-page {
-
-            display: none;
-
-        }
-
-
-        .page-intro {
+            width: 100%;
 
             text-align: center;
-
-            margin-bottom: 28px;
 
         }
 
 
         .section-title {
 
-            margin: 0;
-
-            font-size: 2rem;
-
-            font-weight: 800;
-
-            color: var(--ink);
+            font-size: 1.65rem;
 
         }
 
 
         .section-subtitle {
 
-            margin: 9px auto 0;
-
-            max-width: 650px;
-
-            color: var(--ink-soft);
-
-            font-size: 0.94rem;
-
-            line-height: 1.55;
+            font-size: 0.86rem;
 
         }
 
-
-        .section-title::after {
-
-            content: "";
-
-            display: block;
-
-            width: 60px;
-
-            height: 4px;
-
-            margin: 11px auto 0;
-
-            border-radius: 999px;
-
-            background: var(--blue);
-
-        }
-
-
-        /* =====================================================
-           TYPE FILTERS
-        ====================================================== */
 
         .type-filters {
 
-            display: flex;
+            gap: 7px;
 
-            justify-content: center;
-
-            align-items: center;
-
-            flex-wrap: wrap;
-
-            gap: 10px;
-
-            margin: 0 auto 35px;
+            margin-bottom: 28px;
 
         }
 
 
         .type-filter {
 
-            padding: 10px 20px;
+            padding: 9px 14px;
 
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.9);
-
-            color: var(--ink-soft);
-
-            font-family: inherit;
-
-            font-size: 0.82rem;
-
-            font-weight: 800;
-
-            letter-spacing: 0.01em;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 4px 12px
-                rgba(20, 58, 107, 0.055);
-
-            transition:
-                0.2s ease;
+            font-size: 0.72rem;
 
         }
 
-
-        .type-filter:hover {
-
-            transform: translateY(-2px);
-
-            border-color: var(--blue);
-
-            color: var(--blue);
-
-        }
-
-
-        .type-filter.active {
-
-            background: var(--blue);
-
-            border-color: var(--blue);
-
-            color: white;
-
-            box-shadow:
-                0 6px 15px
-                rgba(47, 111, 237, 0.22);
-
-        }
-
-
-        /* =====================================================
-           LOBBY STATS
-        ====================================================== */
 
         .lobby-stats {
 
-            display: grid;
-
             grid-template-columns:
-                repeat(
-                    2,
-                    minmax(180px, 240px)
-                );
+                repeat(2, 1fr);
 
-            justify-content: center;
-
-            gap: 14px;
-
-            margin-bottom: 42px;
+            gap: 10px;
 
         }
 
 
         .stat-card {
 
-            padding: 17px 20px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: 16px;
-
-            background:
-                rgba(255, 255, 255, 0.82);
-
-            text-align: center;
-
-            box-shadow:
-                0 6px 18px
-                rgba(20, 58, 107, 0.055);
+            padding: 14px 10px;
 
         }
 
 
         .stat-number {
 
-            display: block;
-
-            color: var(--blue);
-
-            font-size: 1.45rem;
-
-            font-weight: 800;
-
-            line-height: 1.2;
+            font-size: 1.25rem;
 
         }
 
-
-        .stat-label {
-
-            display: block;
-
-            margin-top: 4px;
-
-            color: var(--ink-soft);
-
-            font-size: 0.75rem;
-
-            font-weight: 700;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY GRID
-        ====================================================== */
 
         .category-grid {
 
-            display: grid;
+            grid-template-columns: 1fr;
 
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(
-                        270px,
-                        1fr
-                    )
-                );
-
-            gap: 20px;
+            gap: 14px;
 
         }
 
-
-        /* =====================================================
-           CATEGORY CARD
-        ====================================================== */
 
         .category-card {
 
-            --accent: #2f6fed;
+            min-height: 200px;
 
-            --background: #edf5ff;
+            padding: 21px;
 
-            --border: #c9def8;
-
-            position: relative;
-
-            min-height: 225px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            padding: 25px;
-
-            overflow: hidden;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 20px;
-
-            background: var(--background);
-
-            text-decoration: none;
-
-            box-shadow:
-                0 7px 20px
-                rgba(20, 58, 107, 0.065);
-
-            transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease,
-                border-color 0.22s ease;
+            border-radius: 17px;
 
         }
 
+    }
 
-        .category-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-
-            height: 5px;
-
-            background: var(--accent);
-
-        }
-
-
-        .category-card:hover {
-
-            transform:
-                translateY(-7px)
-                scale(1.015);
-
-            border-color: var(--accent);
-
-            box-shadow:
-                0 18px 34px
-                rgba(20, 58, 107, 0.15);
-
-        }
-
-
-        .category-card:hover .category-icon {
-
-            transform:
-                rotate(-5deg)
-                scale(1.08);
-
-            background: white;
-
-            border-color: var(--accent);
-
-        }
-
-
-        .category-card:hover .category-arrow {
-
-            transform: translateX(4px);
-
-        }
-
-
-        .category-icon,
-        .category-arrow {
-
-            transition:
-                transform 0.22s ease,
-                background 0.22s ease,
-                border-color 0.22s ease;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY COLORS
-        ====================================================== */
-
-        .category-color {
-
-            --accent: #2878df;
-            --background: #eaf3ff;
-            --border: #c4daf6;
-
-        }
-
-
-        .category-describe {
-
-            --accent: #8b5cf6;
-            --background: #f3edff;
-            --border: #ddd0fa;
-
-        }
-
-
-        .category-food {
-
-            --accent: #f06b3c;
-            --background: #fff0e9;
-            --border: #f6cdbd;
-
-        }
-
-
-        .category-grammar {
-
-            --accent: #0f9f8f;
-            --background: #e7f8f5;
-            --border: #bde9e2;
-
-        }
-
-
-        .category-health {
-
-            --accent: #e0527a;
-            --background: #fff0f4;
-            --border: #f3c5d3;
-
-        }
-
-
-        .category-numbers {
-
-            --accent: #3b82c4;
-            --background: #eaf5fc;
-            --border: #c4dff1;
-
-        }
-
-
-        .category-pronouns {
-
-            --accent: #d14f9b;
-            --background: #fff0f8;
-            --border: #efc7df;
-
-        }
-
-
-        .category-places-transport {
-
-            --accent: #4f8a4b;
-            --background: #edf7ec;
-            --border: #c9e2c6;
-
-        }
-
-
-        .category-useful-phrases {
-
-            --accent: #7c5cc4;
-            --background: #f3efff;
-            --border: #d9cff5;
-
-        }
-
-
-        .category-shopping {
-
-            --accent: #c46a2b;
-            --background: #fff2e8;
-            --border: #f0d0b8;
-
-        }
-
-
-        /* =====================================================
-           DICTIONARY STYLE
-        ====================================================== */
-
-        .category-dictionary {
-
-            --accent: #b7791f;
-            --background: #fff8e7;
-            --border: #efdca8;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY ICON
-        ====================================================== */
-
-        .category-icon {
-
-            width: 52px;
-            height: 52px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            margin-bottom: 17px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 15px;
-
-            background:
-                rgba(255, 255, 255, 0.72);
-
-            font-size: 1.65rem;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY TYPE BADGE
-        ====================================================== */
-
-        .category-type {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            width: fit-content;
-
-            margin-bottom: 8px;
-
-            padding: 4px 9px;
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.72);
-
-            color: var(--accent);
-
-            font-size: 0.65rem;
-
-            font-weight: 800;
-
-            letter-spacing: 0.04em;
-
-            text-transform: uppercase;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY TEXT
-        ====================================================== */
-
-        .category-title {
-
-            margin: 0 0 7px;
-
-            color: var(--ink);
-
-            font-size: 1.25rem;
-
-            font-weight: 800;
-
-            line-height: 1.3;
-
-        }
-
-
-        .category-subtitle {
-
-            margin: 0;
-
-            color: var(--ink-soft);
-
-            font-size: 0.84rem;
-
-            line-height: 1.5;
-
-        }
-
-
-        /* =====================================================
-           CATEGORY FOOTER
-        ====================================================== */
-
-        .category-footer {
-
-            margin-top: auto;
-
-            padding-top: 18px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-        }
-
-
-        .category-count {
-
-            color: var(--accent);
-
-            font-size: 0.75rem;
-
-            font-weight: 800;
-
-        }
-
-
-        .category-arrow {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            width: 32px;
-            height: 32px;
-
-            border-radius: 50%;
-
-            background: var(--accent);
-
-            color: white;
-
-            font-size: 0.9rem;
-
-            font-weight: 800;
-
-        }
-
-
-        /* =====================================================
-           LOADING
-        ====================================================== */
-
-        .loading {
-
-            grid-column: 1 / -1;
-
-            padding: 50px;
-
-            text-align: center;
-
-            color: var(--ink-soft);
-
-        }
-
-
-        /* =====================================================
-           EMPTY STATE
-        ====================================================== */
-
-        .empty-state {
-
-            grid-column: 1 / -1;
-
-            padding: 45px 25px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: 18px;
-
-            background:
-                rgba(255, 255, 255, 0.8);
-
-            color: var(--ink-soft);
-
-            text-align: center;
-
-        }
-
-
-        .empty-state-icon {
-
-            display: block;
-
-            margin-bottom: 10px;
-
-            font-size: 2rem;
-
-        }
-
-
-        .empty-state strong {
-
-            display: block;
-
-            margin-bottom: 5px;
-
-            color: var(--ink);
-
-        }
-
-
-        /* =====================================================
-           ERROR
-        ====================================================== */
-
-        .error-message {
-
-            grid-column: 1 / -1;
-
-            padding: 25px;
-
-            background: #fff3f1;
-
-            border:
-                1px solid
-                #edcec8;
-
-            border-radius: 16px;
-
-            color: #9a3324;
-
-            text-align: center;
-
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-
-        footer {
-
-            padding: 15px 20px 38px;
-
-            color: #7c93aa;
-
-            font-size: 0.8rem;
-
-            text-align: center;
-
-        }
-
-
-        .footer-line {
-
-            width: min(1400px, 94%);
-
-            height: 1px;
-
-            margin: 0 auto 20px;
-
-            background: #d8e5f0;
-
-        }
-
-
-        /* =====================================================
-           HIDDEN
-        ====================================================== */
-
-        .hidden {
-
-            display: none !important;
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ====================================================== */
-
-        @media (max-width: 700px) {
-
-            .top-nav {
-
-                top: 14px;
-
-                width: 94%;
-
-            }
-
-
-            .nav-actions {
-
-                gap: 6px;
-
-            }
-
-
-            .user-greeting {
-
-                padding: 8px 11px;
-
-                font-size: 0.75rem;
-
-            }
-
-
-            .login-btn,
-            .logout-btn {
-
-                padding: 8px 14px;
-
-                font-size: 0.8rem;
-
-            }
-
-
-            header {
-
-                min-height: 285px;
-
-                padding: 70px 18px 50px;
-
-            }
-
-
-            header h1 {
-
-                font-size: 2.75rem;
-
-            }
-
-
-            header p {
-
-                font-size: 0.98rem;
-
-            }
-
-
-            .container {
-
-                width: 94%;
-
-                margin: 30px auto 50px;
-
-            }
-
-
-            .intro-card {
-
-                width: 100%;
-
-                padding: 30px 22px;
-
-                border-radius: 20px;
-
-            }
-
-
-            .intro-card h2 {
-
-                font-size: 1.65rem;
-
-            }
-
-
-            .intro-card > p {
-
-                font-size: 0.88rem;
-
-            }
-
-
-            .intro-features {
-
-                grid-template-columns: 1fr;
-
-                gap: 14px;
-
-            }
-
-
-            .intro-bottom {
-
-                flex-direction: column;
-
-                align-items: flex-start;
-
-            }
-
-
-            .start-btn {
-
-                width: 100%;
-
-                text-align: center;
-
-            }
-
-
-            .section-title {
-
-                font-size: 1.65rem;
-
-            }
-
-
-            .section-subtitle {
-
-                font-size: 0.86rem;
-
-            }
-
-
-            .type-filters {
-
-                gap: 7px;
-
-                margin-bottom: 28px;
-
-            }
-
-
-            .type-filter {
-
-                padding: 9px 14px;
-
-                font-size: 0.72rem;
-
-            }
-
-
-            .lobby-stats {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 10px;
-
-            }
-
-
-            .stat-card {
-
-                padding: 14px 10px;
-
-            }
-
-
-            .stat-number {
-
-                font-size: 1.25rem;
-
-            }
-
-
-            .category-grid {
-
-                grid-template-columns: 1fr;
-
-                gap: 14px;
-
-            }
-
-
-            .category-card {
-
-                min-height: 200px;
-
-                padding: 21px;
-
-                border-radius: 17px;
-
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -1777,936 +1783,1685 @@
 <body>
 
 
-    <!-- =====================================================
-         TOP NAVIGATION
-    ====================================================== -->
+<!-- =====================================================
+     TOP NAVIGATION
+====================================================== -->
 
-    <nav class="top-nav">
+<nav class="top-nav">
 
-        <div
-            id="logged-out-nav"
-            class="nav-actions"
+    <div
+        id="logged-out-nav"
+        class="nav-actions"
+    >
+
+        <a
+            href="MAIN/LOG IN/login.html"
+            class="login-btn"
         >
+            Log in
+        </a>
 
-            <a
-                href="MAIN/LOG IN/login.html"
-                class="login-btn"
-            >
-                Log in
-            </a>
-
-        </div>
-
-
-        <div
-            id="logged-in-nav"
-            class="nav-actions hidden"
-        >
-
-            <span
-                id="user-greeting"
-                class="user-greeting"
-            >
-                Xin chào!
-            </span>
-
-            <button
-                type="button"
-                id="logout-btn"
-                class="logout-btn"
-            >
-                Log out
-            </button>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
-    <header>
-
-        <span class="header-eyebrow">
-            Vietnamese · Learn by Playing
-        </span>
-
-        <h1>
-            Survival Vietnamese
-        </h1>
-
-        <p>
-            Learn Vietnamese.
-            Play games.
-            Survive real life.
-        </p>
-
-        <div class="header-line"></div>
-
-    </header>
+    </div>
 
 
     <div
-        class="header-divider"
-        aria-hidden="true"
-    ></div>
-
-
-    <!-- =====================================================
-         LANDING PAGE
-    ====================================================== -->
-
-    <main
-        id="landing-page"
-        class="container"
+        id="logged-in-nav"
+        class="nav-actions hidden"
     >
 
-        <section
-            class="intro-card"
-            aria-label="About Survival Vietnamese"
+        <span
+            id="user-greeting"
+            class="user-greeting"
         >
+            Xin chào!
+        </span>
 
-            <p class="about-eyebrow">
-                About this website
-            </p>
+        <button
+            type="button"
+            id="logout-btn"
+            class="logout-btn"
+        >
+            Log out
+        </button>
 
+    </div>
 
-            <h2>
-                Vietnamese practice, made simple.
-            </h2>
-
-
-            <p>
-                Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
-            </p>
-
-
-            <p>
-                This website is built for any beginner (A0-A1) who wants
-                to practice and remember practical Vietnamese vocabulary
-                through quick, simple games.
-            </p>
+</nav>
 
 
-            <p>
-                <strong>
-                    Vietnamese is more approachable than it looks.
-                </strong>
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
-                Start with a few useful words, practice them often,
-                and build your vocabulary step by step.
-                A little practice goes a long way.
+<header>
+
+    <span class="header-eyebrow">
+        Vietnamese · Learn by Playing
+    </span>
+
+    <h1>
+        Survival Vietnamese
+    </h1>
+
+    <p>
+        Learn Vietnamese.
+        Play games.
+        Survive real life.
+    </p>
+
+    <div class="header-line"></div>
+
+</header>
+
+
+<div
+    class="header-divider"
+    aria-hidden="true"
+></div>
+
+
+<!-- =====================================================
+     LANDING PAGE
+====================================================== -->
+
+<main
+    id="landing-page"
+    class="container"
+>
+
+    <section
+        class="intro-card"
+        aria-label="About Survival Vietnamese"
+    >
+
+        <p class="about-eyebrow">
+            About this website
+        </p>
+
+
+        <h2>
+            Vietnamese practice, made simple.
+        </h2>
+
+
+        <p>
+            Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
+        </p>
+
+
+        <p>
+            This website is built for any beginner (A0-A1) who wants
+            to practice and remember practical Vietnamese vocabulary
+            through quick, simple games.
+        </p>
+
+
+        <p>
+            <strong>
+                Vietnamese is more approachable than it looks.
+            </strong>
+
+            Start with a few useful words, practice them often,
+            and build your vocabulary step by step.
+            A little practice goes a long way.
+        </p>
+
+
+        <a
+            href="https://preply.in/DUONG6EN32308690102?ts=17876464"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="preply-link"
+        >
+            Vietnamese lessons with me on Preply →
+        </a>
+
+
+        <div class="intro-features">
+
+
+            <div class="intro-feature feature-games">
+
+                <div
+                    class="intro-feature-icon"
+                    aria-hidden="true"
+                >
+                    🎮
+                </div>
+
+                <h3>
+                    Vocabulary Games
+                </h3>
+
+                <p>
+                    Learn useful Vietnamese words through
+                    short, interactive games.
+                </p>
+
+            </div>
+
+
+            <div class="intro-feature feature-practice">
+
+                <div
+                    class="intro-feature-icon"
+                    aria-hidden="true"
+                >
+                    ⚡
+                </div>
+
+                <h3>
+                    Short Practice
+                </h3>
+
+                <p>
+                    Practice for a few minutes whenever
+                    you have time.
+                </p>
+
+            </div>
+
+
+            <div class="intro-feature feature-beginner">
+
+                <div
+                    class="intro-feature-icon"
+                    aria-hidden="true"
+                >
+                    🌱
+                </div>
+
+                <h3>
+                    Beginner Friendly
+                </h3>
+
+                <p>
+                    Made for absolute beginners who want
+                    practical Vietnamese.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="intro-divider"></div>
+
+
+        <div class="intro-bottom">
+
+            <p class="intro-bottom-text">
+                Ready to practice?
+                Create an account or log in to access
+                the vocabulary games.
             </p>
 
 
             <a
-                href="https://preply.in/DUONG6EN32308690102?ts=17876464"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="preply-link"
+                href="MAIN/LOG IN/login.html"
+                class="start-btn"
             >
-                Vietnamese lessons with me on Preply →
+                Log In →
             </a>
 
+        </div>
 
-            <div class="intro-features">
+    </section>
 
-
-                <div class="intro-feature feature-games">
-
-                    <div
-                        class="intro-feature-icon"
-                        aria-hidden="true"
-                    >
-                        🎮
-                    </div>
-
-                    <h3>
-                        Vocabulary Games
-                    </h3>
-
-                    <p>
-                        Learn useful Vietnamese words through
-                        short, interactive games.
-                    </p>
-
-                </div>
+</main>
 
 
-                <div class="intro-feature feature-practice">
+<!-- =====================================================
+     LOBBY PAGE
+====================================================== -->
 
-                    <div
-                        class="intro-feature-icon"
-                        aria-hidden="true"
-                    >
-                        ⚡
-                    </div>
+<main
+    id="lobby-page"
+    class="container"
+>
 
-                    <h3>
-                        Short Practice
-                    </h3>
+    <div class="page-intro">
 
-                    <p>
-                        Practice for a few minutes whenever
-                        you have time.
-                    </p>
+        <h2 class="section-title">
+            Choose a Topic
+        </h2>
 
-                </div>
+        <p class="section-subtitle">
+            Choose a category and practice Vietnamese
+            through interactive games and activities.
+        </p>
 
-
-                <div class="intro-feature feature-beginner">
-
-                    <div
-                        class="intro-feature-icon"
-                        aria-hidden="true"
-                    >
-                        🌱
-                    </div>
-
-                    <h3>
-                        Beginner Friendly
-                    </h3>
-
-                    <p>
-                        Made for absolute beginners who want
-                        practical Vietnamese.
-                    </p>
-
-                </div>
+    </div>
 
 
-            </div>
+    <!-- =================================================
+         TYPE FILTERS
+    ================================================== -->
 
-
-            <div class="intro-divider"></div>
-
-
-            <div class="intro-bottom">
-
-                <p class="intro-bottom-text">
-                    Ready to practice?
-                    Create an account or log in to access
-                    the vocabulary games.
-                </p>
-
-
-                <a
-                    href="MAIN/LOG IN/login.html"
-                    class="start-btn"
-                >
-                    Log In →
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =====================================================
-         LOBBY PAGE
-    ====================================================== -->
-
-    <main
-        id="lobby-page"
-        class="container"
+    <div
+        class="type-filters"
+        role="tablist"
+        aria-label="Filter topics by type"
     >
 
-        <div class="page-intro">
-
-            <h2 class="section-title">
-                Choose a Topic
-            </h2>
-
-            <p class="section-subtitle">
-                Choose a category and practice Vietnamese
-                through interactive games and activities.
-            </p>
-
-        </div>
-
-
-        <!-- =================================================
-             TYPE FILTERS
-        ================================================== -->
-
-        <div
-            class="type-filters"
-            role="tablist"
-            aria-label="Filter topics by type"
+        <button
+            type="button"
+            class="type-filter active"
+            data-type="all"
+            role="tab"
+            aria-selected="true"
         >
-
-            <button
-                type="button"
-                class="type-filter active"
-                data-type="all"
-                role="tab"
-                aria-selected="true"
-            >
-                ALL
-            </button>
+            ALL
+        </button>
 
 
-            <button
-                type="button"
-                class="type-filter"
-                data-type="vocabulary"
-                role="tab"
-                aria-selected="false"
-            >
-                VOCABULARY
-            </button>
-
-
-            <button
-                type="button"
-                class="type-filter"
-                data-type="sentences"
-                role="tab"
-                aria-selected="false"
-            >
-                SENTENCES
-            </button>
-
-
-            <button
-                type="button"
-                class="type-filter"
-                data-type="dictionary"
-                role="tab"
-                aria-selected="false"
-            >
-                DICTIONARY
-            </button>
-
-        </div>
-
-
-        <!-- =================================================
-             DYNAMIC STATISTICS
-        ================================================== -->
-
-        <div
-            id="lobby-stats"
-            class="lobby-stats"
-            aria-label="Game statistics"
+        <button
+            type="button"
+            class="type-filter"
+            data-type="vocabulary"
+            role="tab"
+            aria-selected="false"
         >
-
-            <div class="stat-card">
-
-                <span
-                    id="total-games"
-                    class="stat-number"
-                >
-                    —
-                </span>
-
-                <span class="stat-label">
-                    Games
-                </span>
-
-            </div>
+            VOCABULARY
+        </button>
 
 
-            <div class="stat-card">
-
-                <span
-                    id="total-categories"
-                    class="stat-number"
-                >
-                    —
-                </span>
-
-                <span class="stat-label">
-                    Topics
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CATEGORY GRID
-        ================================================== -->
-
-        <div
-            id="category-container"
-            class="category-grid"
+        <button
+            type="button"
+            class="type-filter"
+            data-type="sentences"
+            role="tab"
+            aria-selected="false"
         >
+            PHRASES AND SENTENCES
+        </button>
 
-            <div class="loading">
-                Loading topics...
-            </div>
+
+        <button
+            type="button"
+            class="type-filter"
+            data-type="dictionary"
+            role="tab"
+            aria-selected="false"
+        >
+            DICTIONARY
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         DYNAMIC STATISTICS
+    ================================================== -->
+
+    <div
+        id="lobby-stats"
+        class="lobby-stats"
+        aria-label="Lesson and game statistics"
+    >
+
+        <div class="stat-card">
+
+            <span
+                id="total-games"
+                class="stat-number"
+            >
+                —
+            </span>
+
+            <span class="stat-label">
+                Lessons / Games
+            </span>
 
         </div>
 
-    </main>
 
+        <div class="stat-card">
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+            <span
+                id="total-categories"
+                class="stat-number"
+            >
+                —
+            </span>
 
-    <footer>
+            <span class="stat-label">
+                Topics
+            </span>
 
-        <div class="footer-line"></div>
+        </div>
 
-        © 2026 Survival Vietnamese with Duong
+    </div>
 
-    </footer>
 
+    <!-- =================================================
+         CATEGORY GRID
+    ================================================== -->
 
-    <!-- =====================================================
-         APPLICATION SCRIPT
-    ====================================================== -->
+    <div
+        id="category-container"
+        class="category-grid"
+    >
 
-    <script>
+        <div class="loading">
+            Loading topics...
+        </div>
 
+    </div>
 
-        /* =====================================================
-           CONFIGURATION
-        ====================================================== */
+</main>
 
-        const CATEGORY_FILE =
-            "categories.json";
 
+<!-- =====================================================
+     FOOTER
+====================================================== -->
 
-        /* =====================================================
-           CURRENT FILTER
-        ====================================================== */
+<footer>
 
-        let currentFilter =
-            "all";
+    <div class="footer-line"></div>
 
+    © 2026 Survival Vietnamese with Duong
 
-        /* =====================================================
-           CACHED CATEGORIES
-        ====================================================== */
+</footer>
 
-        let allCategories = {};
 
+<!-- =====================================================
+     APPLICATION SCRIPT
+====================================================== -->
 
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
+<script>
 
-        const landingPage =
-            document.getElementById(
-                "landing-page"
-            );
 
+    /* =====================================================
+       CONFIGURATION
+    ====================================================== */
 
-        const lobbyPage =
-            document.getElementById(
-                "lobby-page"
-            );
+    const CATEGORY_FILE =
+        "categories.json";
 
 
-        const loggedOutNav =
-            document.getElementById(
-                "logged-out-nav"
-            );
+    /* =====================================================
+       CURRENT FILTER
+    ====================================================== */
 
+    let currentFilter =
+        "all";
 
-        const loggedInNav =
-            document.getElementById(
-                "logged-in-nav"
-            );
 
+    /* =====================================================
+       CACHED CATEGORIES
+    ====================================================== */
 
-        const userGreeting =
-            document.getElementById(
-                "user-greeting"
-            );
+    let allCategories = {};
 
 
-        const logoutBtn =
-            document.getElementById(
-                "logout-btn"
-            );
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
 
+    const landingPage =
+        document.getElementById(
+            "landing-page"
+        );
 
-        const categoryContainer =
-            document.getElementById(
-                "category-container"
-            );
 
+    const lobbyPage =
+        document.getElementById(
+            "lobby-page"
+        );
 
-        const totalGamesElement =
-            document.getElementById(
-                "total-games"
-            );
 
+    const loggedOutNav =
+        document.getElementById(
+            "logged-out-nav"
+        );
 
-        const totalCategoriesElement =
-            document.getElementById(
-                "total-categories"
-            );
 
+    const loggedInNav =
+        document.getElementById(
+            "logged-in-nav"
+        );
 
-        const typeFilters =
-            document.querySelectorAll(
-                ".type-filter"
-            );
 
+    const userGreeting =
+        document.getElementById(
+            "user-greeting"
+        );
 
-        /* =====================================================
-           CATEGORY STYLE MAP
-        ====================================================== */
 
-        const categoryClasses = {
+    const logoutBtn =
+        document.getElementById(
+            "logout-btn"
+        );
 
-            "Color":
-                "category-color",
 
-            "Describe things":
-                "category-describe",
+    const categoryContainer =
+        document.getElementById(
+            "category-container"
+        );
 
-            "Food and Drinks":
-                "category-food",
 
-            "Grammar":
-                "category-grammar",
+    const totalGamesElement =
+        document.getElementById(
+            "total-games"
+        );
 
-            "Health":
-                "category-health",
 
-            "Numbers":
-                "category-numbers",
+    const totalCategoriesElement =
+        document.getElementById(
+            "total-categories"
+        );
 
-            "People & Pronouns":
-                "category-pronouns",
 
-            "Places, Directions & Transportation":
-                "category-places-transport",
+    const typeFilters =
+        document.querySelectorAll(
+            ".type-filter"
+        );
 
-            "Useful Phrases":
-                "category-useful-phrases",
 
-            "Shopping & Money":
-                "category-shopping",
+    /* =====================================================
+       CATEGORY STYLE MAP
+    ====================================================== */
 
-            "Dictionary":
-                "category-dictionary"
+    const categoryClasses = {
 
-        };
+        "Activities":
+            "category-activities",
 
+        "Clothes":
+            "category-clothes",
 
-        /* =====================================================
-           TYPE LABELS
-        ====================================================== */
+        "Colors":
+            "category-colors",
 
-        const typeLabels = {
+        "Describe Things":
+            "category-describe",
 
-            vocabulary:
-                "Vocabulary",
+        "Food and Drinks":
+            "category-food",
 
-            sentences:
-                "Sentences",
+        "Health":
+            "category-health",
 
-            dictionary:
-                "Dictionary"
+        "Numbers":
+            "category-numbers",
 
-        };
+        "People & Pronouns":
+            "category-pronouns",
 
+        "Places, Directions & Transportation":
+            "category-places-transport",
 
-        /* =====================================================
-           SHOW LANDING PAGE
-        ====================================================== */
+        "Sentences":
+            "category-sentences",
 
-        function showLandingPage() {
+        "Useful Phrases":
+            "category-useful-phrases",
 
-            landingPage.classList.remove(
-                "hidden"
-            );
+        "Dictionary":
+            "category-dictionary"
 
-            landingPage.style.display =
-                "flex";
+    };
 
 
-            lobbyPage.style.display =
-                "none";
+    /* =====================================================
+       TYPE LABELS
+    ====================================================== */
 
+    const typeLabels = {
 
-            loggedOutNav.classList.remove(
-                "hidden"
-            );
+        vocabulary:
+            "Vocabulary",
 
+        "phrases-and-sentences":
+            "Phrases & Sentences",
 
-            loggedInNav.classList.add(
-                "hidden"
-            );
+        sentences:
+            "Phrases & Sentences",
 
-        }
+        dictionary:
+            "Dictionary"
 
+    };
 
-        /* =====================================================
-           SHOW LOBBY
-        ====================================================== */
 
-        function showLobby(user) {
+    /* =====================================================
+       CATEGORY GROUPS
+    ====================================================== */
 
-            landingPage.style.display =
-                "none";
+    const vocabularyCategories = [
 
+        "Activities",
+        "Clothes",
+        "Colors",
+        "Describe Things",
+        "Food and Drinks",
+        "Health",
+        "Numbers",
+        "People & Pronouns",
+        "Places, Directions & Transportation"
 
-            lobbyPage.style.display =
-                "block";
+    ];
 
 
-            loggedOutNav.classList.add(
-                "hidden"
-            );
+    const phraseCategories = [
 
+        "Sentences",
+        "Useful Phrases"
 
-            loggedInNav.classList.remove(
-                "hidden"
-            );
+    ];
 
 
-            const name =
-                getUserName(user);
+    /* =====================================================
+       SHOW LANDING PAGE
+    ====================================================== */
 
+    function showLandingPage() {
 
-            userGreeting.textContent =
-                `Xin chào, ${name}!`;
+        landingPage.classList.remove(
+            "hidden"
+        );
 
-        }
+        landingPage.style.display =
+            "flex";
 
 
-        /* =====================================================
-           GET USER NAME
-        ====================================================== */
+        lobbyPage.style.display =
+            "none";
 
-        function getUserName(user) {
 
-            if (
-                user &&
-                user.user_metadata &&
-                user.user_metadata.name
-            ) {
+        loggedOutNav.classList.remove(
+            "hidden"
+        );
 
-                return user.user_metadata.name;
 
-            }
+        loggedInNav.classList.add(
+            "hidden"
+        );
 
+    }
 
-            if (
-                user &&
-                user.user_metadata &&
-                user.user_metadata.full_name
-            ) {
 
-                return user.user_metadata.full_name;
+    /* =====================================================
+       SHOW LOBBY
+    ====================================================== */
 
-            }
+    function showLobby(user) {
 
+        landingPage.style.display =
+            "none";
 
-            if (
-                user &&
-                user.email
-            ) {
 
-                return user.email.split("@")[0];
+        lobbyPage.style.display =
+            "block";
 
-            }
 
+        loggedOutNav.classList.add(
+            "hidden"
+        );
 
-            return "bạn";
 
-        }
+        loggedInNav.classList.remove(
+            "hidden"
+        );
 
 
-        /* =====================================================
-           LOAD CATEGORIES
-        ====================================================== */
+        const name =
+            getUserName(user);
 
-        async function loadCategories() {
 
-            const response =
-                await fetch(
-                    CATEGORY_FILE,
-                    {
-                        cache: "no-store"
-                    }
-                );
+        userGreeting.textContent =
+            `Xin chào, ${name}!`;
 
+    }
 
-            if (!response.ok) {
 
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
+    /* =====================================================
+       GET USER NAME
+    ====================================================== */
 
-            }
+    function getUserName(user) {
 
-
-            const categories =
-                await response.json();
-
-
-            if (
-                !categories ||
-                typeof categories !== "object" ||
-                Array.isArray(categories)
-            ) {
-
-                throw new Error(
-                    "categories.json must contain a category object."
-                );
-
-            }
-
-
-            return categories;
-
-        }
-
-
-        /* =====================================================
-           GET GAME COUNT
-        ====================================================== */
-
-        function getGameCount(category) {
-
-            if (
-                !category ||
-                typeof category !== "object"
-            ) {
-
-                return 0;
-
-            }
-
-
-            return Array.isArray(
-                category.games
-            )
-                ? category.games.length
-                : 0;
-
-        }
-
-
-        /* =====================================================
-           GET VALID CATEGORIES
-        ====================================================== */
-
-        function getValidCategories() {
-
-            return Object.keys(
-                allCategories
-            ).filter(
-                categoryName => {
-
-                    const category =
-                        allCategories[
-                            categoryName
-                        ];
-
-
-                    return (
-                        category &&
-                        typeof category === "object" &&
-                        !Array.isArray(category)
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           FILTER CATEGORIES
-        ====================================================== */
-
-        function getFilteredCategories() {
-
-            const validCategories =
-                getValidCategories();
-
-
-            if (
-                currentFilter === "all"
-            ) {
-
-                return validCategories;
-
-            }
-
-
-            return validCategories.filter(
-                categoryName => {
-
-                    const category =
-                        allCategories[
-                            categoryName
-                        ];
-
-
-                    return (
-                        category.type ===
-                        currentFilter
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           CREATE CATEGORY CARD
-        ====================================================== */
-
-        function createCategoryCard(
-            categoryName,
-            category
+        if (
+            user &&
+            user.user_metadata &&
+            user.user_metadata.name
         ) {
 
-            const card =
-                document.createElement(
-                    "a"
-                );
+            return user.user_metadata.name;
+
+        }
 
 
-            card.className =
-                "category-card";
+        if (
+            user &&
+            user.user_metadata &&
+            user.user_metadata.full_name
+        ) {
+
+            return user.user_metadata.full_name;
+
+        }
 
 
-            /* =================================================
-               APPLY CATEGORY STYLE
-            ================================================== */
+        if (
+            user &&
+            user.email
+        ) {
 
-            const categoryClass =
-                categoryClasses[
-                    categoryName
-                ];
+            return user.email.split("@")[0];
+
+        }
 
 
-            if (categoryClass) {
+        return "bạn";
 
-                card.classList.add(
-                    categoryClass
+    }
+
+
+    /* =====================================================
+       LOAD CATEGORIES
+    ====================================================== */
+
+    async function loadCategories() {
+
+        const response =
+            await fetch(
+                CATEGORY_FILE,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Could not load categories.json (${response.status})`
+            );
+
+        }
+
+
+        const categories =
+            await response.json();
+
+
+        if (
+            !categories ||
+            typeof categories !== "object" ||
+            Array.isArray(categories)
+        ) {
+
+            throw new Error(
+                "categories.json must contain a category object."
+            );
+
+        }
+
+
+        return categories;
+
+    }
+
+
+    /* =====================================================
+       GET CATEGORY
+    ====================================================== */
+
+    function getCategory(
+        categoryName
+    ) {
+
+        const category =
+            allCategories[
+                categoryName
+            ];
+
+
+        if (
+            category &&
+            typeof category === "object" &&
+            !Array.isArray(category)
+        ) {
+
+            return category;
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       GET GAME COUNT
+       
+       Vocabulary categories:
+           games.length
+
+       Phrases & Sentences categories:
+           lessons.length
+
+       This is the important fix.
+    ====================================================== */
+
+    function getGameCount(category) {
+
+        if (
+            !category ||
+            typeof category !== "object"
+        ) {
+
+            return 0;
+
+        }
+
+
+        if (
+            Array.isArray(
+                category.games
+            )
+        ) {
+
+            return category.games.length;
+
+        }
+
+
+        return 0;
+
+    }
+
+
+    /* =====================================================
+       GET LESSON COUNT
+    ====================================================== */
+
+    function getLessonCount(category) {
+
+        if (
+            !category ||
+            typeof category !== "object"
+        ) {
+
+            return 0;
+
+        }
+
+
+        if (
+            Array.isArray(
+                category.lessons
+            )
+        ) {
+
+            return category.lessons.length;
+
+        }
+
+
+        return 0;
+
+    }
+
+
+    /* =====================================================
+       GET VOCABULARY COUNT
+    ====================================================== */
+
+    function getVocabularyCount(category) {
+
+        if (
+            !category ||
+            typeof category !== "object"
+        ) {
+
+            return 0;
+
+        }
+
+
+        if (
+            Array.isArray(
+                category.vocab
+            )
+        ) {
+
+            return category.vocab.length;
+
+        }
+
+
+        if (
+            Array.isArray(
+                category.vocabulary
+            )
+        ) {
+
+            return category.vocabulary.length;
+
+        }
+
+
+        return 0;
+
+    }
+
+
+    /* =====================================================
+       GET VALID CATEGORIES
+    ====================================================== */
+
+    function getValidCategories() {
+
+        return Object.keys(
+            allCategories
+        ).filter(
+            categoryName => {
+
+                const category =
+                    allCategories[
+                        categoryName
+                    ];
+
+
+                return (
+                    category &&
+                    typeof category === "object" &&
+                    !Array.isArray(category)
                 );
 
             }
+        );
+
+    }
 
 
-            /* =================================================
-               CATEGORY PAGE
-            ================================================== */
+    /* =====================================================
+       GET LOBBY CATEGORY NAMES
+       
+       Lobby shows:
+
+       Vocabulary:
+           9 vocabulary categories
+
+       Phrases & Sentences:
+           Sentences
+           Useful Phrases
+
+       Dictionary:
+           Dictionary
+    ====================================================== */
+
+    function getLobbyCategoryNames() {
+
+        const names = [];
+
+
+        /* =================================================
+           VOCABULARY
+        ================================================== */
+
+        vocabularyCategories.forEach(
+            categoryName => {
+
+                if (
+                    getCategory(
+                        categoryName
+                    )
+                ) {
+
+                    names.push(
+                        categoryName
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           PHRASES & SENTENCES
+        ================================================== */
+
+        phraseCategories.forEach(
+            categoryName => {
+
+                if (
+                    getCategory(
+                        categoryName
+                    )
+                ) {
+
+                    names.push(
+                        categoryName
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           DICTIONARY
+        ================================================== */
+
+        if (
+            getCategory(
+                "Dictionary"
+            )
+        ) {
+
+            names.push(
+                "Dictionary"
+            );
+
+        }
+
+
+        return names;
+
+    }
+
+
+    /* =====================================================
+       GET CATEGORY TYPE
+    ====================================================== */
+
+    function getCategoryType(
+        categoryName
+    ) {
+
+        const category =
+            getCategory(
+                categoryName
+            );
+
+
+        if (!category) {
+
+            return "";
+
+        }
+
+
+        return String(
+            category.type ||
+            ""
+        ).toLowerCase();
+
+    }
+
+
+    /* =====================================================
+       FILTER CATEGORIES
+    ====================================================== */
+
+    function getFilteredCategories() {
+
+        const lobbyCategories =
+            getLobbyCategoryNames();
+
+
+        /* =================================================
+           ALL
+        ================================================== */
+
+        if (
+            currentFilter === "all"
+        ) {
+
+            return lobbyCategories;
+
+        }
+
+
+        /* =================================================
+           VOCABULARY
+        ================================================== */
+
+        if (
+            currentFilter === "vocabulary"
+        ) {
+
+            return lobbyCategories.filter(
+                categoryName => {
+
+                    return vocabularyCategories.includes(
+                        categoryName
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           PHRASES AND SENTENCES
+           
+           Shows:
+
+               Sentences
+               Useful Phrases
+        ================================================== */
+
+        if (
+            currentFilter === "sentences"
+        ) {
+
+            return lobbyCategories.filter(
+                categoryName => {
+
+                    return phraseCategories.includes(
+                        categoryName
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           DICTIONARY
+        ================================================== */
+
+        if (
+            currentFilter === "dictionary"
+        ) {
+
+            return lobbyCategories.filter(
+                categoryName => {
+
+                    return (
+                        categoryName ===
+                        "Dictionary"
+                    );
+
+                }
+            );
+
+        }
+
+
+        return [];
+
+    }
+
+
+    /* =====================================================
+       GET DISPLAY COUNT
+
+       Vocabulary:
+           Games
+
+       Sentences:
+           Lessons
+
+       Useful Phrases:
+           Lessons
+
+       Dictionary:
+           Words
+    ====================================================== */
+
+    function getDisplayCount(
+        categoryName,
+        category
+    ) {
+
+        /* =================================================
+           DICTIONARY
+        ================================================== */
+
+        if (
+            categoryName ===
+            "Dictionary"
+        ) {
+
+            const words =
+                getVocabularyCount(
+                    category
+                );
+
+
+            return {
+                number: words,
+                label:
+                    words === 1
+                        ? "word"
+                        : "words"
+            };
+
+        }
+
+
+        /* =================================================
+           SENTENCES
+        ================================================== */
+
+        if (
+            categoryName ===
+            "Sentences"
+        ) {
+
+            const lessons =
+                getLessonCount(
+                    category
+                );
+
+
+            return {
+                number: lessons,
+                label:
+                    lessons === 1
+                        ? "lesson"
+                        : "lessons"
+            };
+
+        }
+
+
+        /* =================================================
+           USEFUL PHRASES
+        ================================================== */
+
+        if (
+            categoryName ===
+            "Useful Phrases"
+        ) {
+
+            const lessons =
+                getLessonCount(
+                    category
+                );
+
+
+            return {
+                number: lessons,
+                label:
+                    lessons === 1
+                        ? "lesson"
+                        : "lessons"
+            };
+
+        }
+
+
+        /* =================================================
+           ALL VOCABULARY CATEGORIES
+
+           → count = Games
+        ================================================== */
+
+        const games =
+            getGameCount(
+                category
+            );
+
+
+        return {
+            number: games,
+            label:
+                games === 1
+                    ? "game"
+                    : "games"
+        };
+
+    }
+
+
+    /* =====================================================
+       GET TOTAL DISPLAY ITEMS
+
+       This is also important for the top statistics.
+
+       Vocabulary:
+           games
+
+       Sentences:
+           lessons
+
+       Useful Phrases:
+           lessons
+
+       Dictionary:
+           words
+    ====================================================== */
+
+    function getCategoryItemCount(
+        categoryName,
+        category
+    ) {
+
+        if (
+            categoryName ===
+            "Dictionary"
+        ) {
+
+            return getVocabularyCount(
+                category
+            );
+
+        }
+
+
+        if (
+            categoryName === "Sentences" ||
+            categoryName === "Useful Phrases"
+        ) {
+
+            return getLessonCount(
+                category
+            );
+
+        }
+
+
+        return getGameCount(
+            category
+        );
+
+    }
+
+
+    /* =====================================================
+       CREATE CATEGORY CARD
+    ====================================================== */
+
+    function createCategoryCard(
+        categoryName,
+        category
+    ) {
+
+        const card =
+            document.createElement(
+                "a"
+            );
+
+
+        card.className =
+            "category-card";
+
+
+        /* =================================================
+           APPLY CATEGORY STYLE
+        ================================================== */
+
+        const categoryClass =
+            categoryClasses[
+                categoryName
+            ];
+
+
+        if (categoryClass) {
+
+            card.classList.add(
+                categoryClass
+            );
+
+        }
+
+
+        /* =================================================
+           CATEGORY PAGE
+        ================================================== */
+
+        if (
+            categoryName === "Sentences" ||
+            categoryName === "Useful Phrases"
+        ) {
+
+            card.href =
+                `phrases-and-sentences.html?category=${encodeURIComponent(
+                    categoryName
+                )}`;
+
+        }
+
+        else {
 
             card.href =
                 `category.html?category=${encodeURIComponent(
                     categoryName
                 )}`;
 
+        }
 
-            /* =================================================
-               GAME COUNT
-            ================================================== */
 
-            const games =
-                getGameCount(
-                    category
+        /* =================================================
+           COUNT
+        ================================================== */
+
+        const displayCount =
+            getDisplayCount(
+                categoryName,
+                category
+            );
+
+
+        /* =================================================
+           ICON
+        ================================================== */
+
+        const icon =
+            category.icon ||
+            "📚";
+
+
+        /* =================================================
+           SUBTITLE
+        ================================================== */
+
+        const subtitle =
+            category.subtitle ||
+            "Practice Vietnamese with this topic.";
+
+
+        /* =================================================
+           TYPE
+        ================================================== */
+
+        let typeLabel = "";
+
+
+        if (
+            vocabularyCategories.includes(
+                categoryName
+            )
+        ) {
+
+            typeLabel =
+                "Vocabulary";
+
+        }
+
+        else if (
+            phraseCategories.includes(
+                categoryName
+            )
+        ) {
+
+            typeLabel =
+                "Phrases & Sentences";
+
+        }
+
+        else if (
+            categoryName ===
+            "Dictionary"
+        ) {
+
+            typeLabel =
+                "Dictionary";
+
+        }
+
+        else {
+
+            const type =
+                getCategoryType(
+                    categoryName
                 );
 
 
-            /* =================================================
-               ICON
-            ================================================== */
-
-            const icon =
-                category.icon ||
-                "📚";
-
-
-            /* =================================================
-               SUBTITLE
-            ================================================== */
-
-            const subtitle =
-                category.subtitle ||
-                "Practice Vietnamese with this topic.";
-
-
-            /* =================================================
-               TYPE
-            ================================================== */
-
-            const type =
-                String(
-                    category.type ||
-                    ""
-                ).toLowerCase();
-
-
-            const typeLabel =
+            typeLabel =
                 typeLabels[type] ||
                 type;
 
+        }
 
-            /* =================================================
-               CARD CONTENT
-            ================================================== */
 
-            card.innerHTML = `
+        /* =================================================
+           CARD CONTENT
+        ================================================== */
 
-                <div
-                    class="category-icon"
+        card.innerHTML = `
+
+            <div
+                class="category-icon"
+                aria-hidden="true"
+            >
+                ${escapeHtml(icon)}
+            </div>
+
+
+            ${
+                typeLabel
+                    ? `
+                        <span class="category-type">
+                            ${escapeHtml(typeLabel)}
+                        </span>
+                      `
+                    : ""
+            }
+
+
+            <h2 class="category-title">
+                ${escapeHtml(categoryName)}
+            </h2>
+
+
+            <p class="category-subtitle">
+                ${escapeHtml(subtitle)}
+            </p>
+
+
+            <div class="category-footer">
+
+                <span class="category-count">
+
+                    ${displayCount.number}
+
+                    ${escapeHtml(
+                        displayCount.label
+                    )}
+
+                </span>
+
+
+                <span
+                    class="category-arrow"
                     aria-hidden="true"
                 >
-                    ${escapeHtml(icon)}
-                </div>
+                    →
+                </span>
+
+            </div>
+
+        `;
 
 
-                ${
-                    typeLabel
-                        ? `
-                            <span class="category-type">
-                                ${escapeHtml(typeLabel)}
-                            </span>
-                          `
-                        : ""
+        return card;
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ====================================================== */
+
+    function escapeHtml(value) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.textContent =
+            String(
+                value ?? ""
+            );
+
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =====================================================
+       UPDATE STATS
+
+       Uses the SAME counting logic as category cards.
+
+       This means:
+
+       Sentences:
+           7 lessons
+
+       Useful Phrases:
+           number of lessons
+
+       Vocabulary:
+           number of games
+
+       Dictionary:
+           number of words
+    ====================================================== */
+
+    function updateStats(
+        filteredCategories
+    ) {
+
+        let totalItems = 0;
+
+
+        filteredCategories.forEach(
+            categoryName => {
+
+                const category =
+                    getCategory(
+                        categoryName
+                    );
+
+
+                if (!category) {
+
+                    return;
+
                 }
 
 
-                <h2 class="category-title">
-                    ${escapeHtml(categoryName)}
-                </h2>
+                totalItems +=
+                    getCategoryItemCount(
+                        categoryName,
+                        category
+                    );
+
+            }
+        );
 
 
-                <p class="category-subtitle">
-                    ${escapeHtml(subtitle)}
-                </p>
+        totalGamesElement.textContent =
+            totalItems;
 
 
-                <div class="category-footer">
+        totalCategoriesElement.textContent =
+            filteredCategories.length;
 
-                    <span class="category-count">
+    }
 
-                        ${games}
 
-                        ${
-                            games === 1
-                                ? "game"
-                                : "games"
-                        }
+    /* =====================================================
+       GET EMPTY STATE NAME
+    ====================================================== */
 
-                    </span>
+    function getEmptyStateName() {
 
+        if (
+            currentFilter ===
+            "vocabulary"
+        ) {
+
+            return "vocabulary";
+
+        }
+
+
+        if (
+            currentFilter ===
+            "sentences"
+        ) {
+
+            return "phrases and sentences";
+
+        }
+
+
+        if (
+            currentFilter ===
+            "dictionary"
+        ) {
+
+            return "dictionary";
+
+        }
+
+
+        return "topics";
+
+    }
+
+
+    /* =====================================================
+       RENDER CATEGORIES
+    ====================================================== */
+
+    function renderCategories() {
+
+        const filteredCategories =
+            getFilteredCategories();
+
+
+        categoryContainer.innerHTML =
+            "";
+
+
+        /* =================================================
+           UPDATE STATS
+        ================================================== */
+
+        updateStats(
+            filteredCategories
+        );
+
+
+        /* =================================================
+           EMPTY STATE
+        ================================================== */
+
+        if (
+            filteredCategories.length === 0
+        ) {
+
+            const typeName =
+                getEmptyStateName();
+
+
+            categoryContainer.innerHTML = `
+
+                <div class="empty-state">
 
                     <span
-                        class="category-arrow"
+                        class="empty-state-icon"
                         aria-hidden="true"
                     >
-                        →
+                        📚
+                    </span>
+
+                    <strong>
+                        No ${escapeHtml(typeName)} topics yet.
+                    </strong>
+
+                    <span>
+                        Check back later for more Vietnamese practice.
                     </span>
 
                 </div>
@@ -2714,411 +3469,392 @@
             `;
 
 
-            return card;
+            return;
 
         }
 
 
-        /* =====================================================
-           ESCAPE HTML
-        ====================================================== */
+        /* =================================================
+           RENDER CARDS
+        ================================================== */
 
-        function escapeHtml(value) {
+        filteredCategories.forEach(
+            categoryName => {
 
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.textContent =
-                String(
-                    value ?? ""
-                );
-
-
-            return div.innerHTML;
-
-        }
-
-
-        /* =====================================================
-           UPDATE STATS
-           
-           Stats follow the CURRENT FILTER.
-           
-           ALL:
-               all games / all topics
-           
-           VOCABULARY:
-               vocabulary games / vocabulary topics
-           
-           SENTENCES:
-               sentence games / sentence topics
-           
-           DICTIONARY:
-               dictionary games / dictionary topics
-        ====================================================== */
-
-        function updateStats(
-            filteredCategories
-        ) {
-
-            const totalGames =
-                filteredCategories.reduce(
-                    (
-                        total,
+                const category =
+                    getCategory(
                         categoryName
-                    ) => {
-
-                        return (
-                            total +
-                            getGameCount(
-                                allCategories[
-                                    categoryName
-                                ]
-                            )
-                        );
-
-                    },
-                    0
-                );
-
-
-            totalGamesElement.textContent =
-                totalGames;
-
-
-            totalCategoriesElement.textContent =
-                filteredCategories.length;
-
-        }
-
-
-        /* =====================================================
-           RENDER CATEGORIES
-        ====================================================== */
-
-        function renderCategories() {
-
-            const filteredCategories =
-                getFilteredCategories();
-
-
-            categoryContainer.innerHTML =
-                "";
-
-
-            /* =================================================
-               UPDATE STATS
-            ================================================== */
-
-            updateStats(
-                filteredCategories
-            );
-
-
-            /* =================================================
-               EMPTY STATE
-            ================================================== */
-
-            if (
-                filteredCategories.length === 0
-            ) {
-
-                const typeName =
-                    currentFilter === "all"
-                        ? "topics"
-                        : typeLabels[
-                            currentFilter
-                        ] || currentFilter;
-
-
-                categoryContainer.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <span
-                            class="empty-state-icon"
-                            aria-hidden="true"
-                        >
-                            📚
-                        </span>
-
-                        <strong>
-                            No ${escapeHtml(typeName.toLowerCase())} topics yet.
-                        </strong>
-
-                        <span>
-                            Check back later for more Vietnamese practice.
-                        </span>
-
-                    </div>
-
-                `;
-
-
-                return;
-
-            }
-
-
-            /* =================================================
-               RENDER CARDS
-            ================================================== */
-
-            filteredCategories.forEach(
-                categoryName => {
-
-                    const card =
-                        createCategoryCard(
-                            categoryName,
-                            allCategories[
-                                categoryName
-                            ]
-                        );
-
-
-                    categoryContainer.appendChild(
-                        card
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           LOAD AND RENDER CATEGORIES
-        ====================================================== */
-
-        async function initializeCategories() {
-
-            try {
-
-                allCategories =
-                    await loadCategories();
-
-
-                renderCategories();
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Category loader error:",
-                    error
-                );
-
-
-                totalCategoriesElement.textContent =
-                    "—";
-
-
-                totalGamesElement.textContent =
-                    "—";
-
-
-                categoryContainer.innerHTML = `
-
-                    <div class="error-message">
-
-                        <strong>
-                            Unable to load categories.
-                        </strong>
-
-                        <br><br>
-
-                        Please check that
-                        <strong>
-                            categories.json
-                        </strong>
-                        exists and contains valid JSON.
-
-                        <br><br>
-
-                        <small>
-                            ${escapeHtml(
-                                error.message
-                            )}
-                        </small>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           CHANGE TYPE FILTER
-        ====================================================== */
-
-        function changeFilter(
-            selectedType
-        ) {
-
-            currentFilter =
-                selectedType;
-
-
-            /* =================================================
-               UPDATE BUTTON STATES
-            ================================================== */
-
-            typeFilters.forEach(
-                button => {
-
-                    const buttonType =
-                        button.dataset.type;
-
-
-                    const isActive =
-                        buttonType ===
-                        currentFilter;
-
-
-                    button.classList.toggle(
-                        "active",
-                        isActive
                     );
 
 
-                    button.setAttribute(
-                        "aria-selected",
-                        String(
-                            isActive
-                        )
-                    );
-
-                }
-            );
-
-
-            /* =================================================
-               RENDER FILTERED CATEGORIES
-            ================================================== */
-
-            if (
-                Object.keys(
-                    allCategories
-                ).length > 0
-            ) {
-
-                renderCategories();
-
-            }
-
-        }
-
-
-        /* =====================================================
-           TYPE FILTER EVENTS
-        ====================================================== */
-
-        typeFilters.forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        changeFilter(
-                            button.dataset.type
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           CHECK CURRENT SESSION
-        ====================================================== */
-
-        async function checkAuthState() {
-
-            if (
-                !window.supabaseClient
-            ) {
-
-                console.error(
-                    "Supabase client is not available."
-                );
-
-
-                showLandingPage();
-
-                return;
-
-            }
-
-
-            try {
-
-                const {
-                    data,
-                    error
-                } =
-                    await window.supabaseClient
-                        .auth
-                        .getSession();
-
-
-                if (error) {
-
-                    console.error(
-                        "Session check error:",
-                        error
-                    );
-
-
-                    showLandingPage();
+                if (!category) {
 
                     return;
 
                 }
 
 
-                const session =
-                    data &&
-                    data.session;
-
-
-                const user =
-                    session &&
-                    session.user;
-
-
-                if (user) {
-
-                    showLobby(
-                        user
+                const card =
+                    createCategoryCard(
+                        categoryName,
+                        category
                     );
 
 
-                    await initializeCategories();
+                categoryContainer.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       LOAD AND RENDER CATEGORIES
+    ====================================================== */
+
+    async function initializeCategories() {
+
+        try {
+
+            allCategories =
+                await loadCategories();
+
+
+            renderCategories();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Category loader error:",
+                error
+            );
+
+
+            totalCategoriesElement.textContent =
+                "—";
+
+
+            totalGamesElement.textContent =
+                "—";
+
+
+            categoryContainer.innerHTML = `
+
+                <div class="error-message">
+
+                    <strong>
+                        Unable to load categories.
+                    </strong>
+
+                    <br><br>
+
+                    Please check that
+                    <strong>
+                        categories.json
+                    </strong>
+                    exists and contains valid JSON.
+
+                    <br><br>
+
+                    <small>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CHANGE TYPE FILTER
+    ====================================================== */
+
+    function changeFilter(
+        selectedType
+    ) {
+
+        currentFilter =
+            selectedType;
+
+
+        /* =================================================
+           UPDATE BUTTON STATES
+        ================================================== */
+
+        typeFilters.forEach(
+            button => {
+
+                const buttonType =
+                    button.dataset.type;
+
+
+                const isActive =
+                    buttonType ===
+                    currentFilter;
+
+
+                button.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+
+                button.setAttribute(
+                    "aria-selected",
+                    String(
+                        isActive
+                    )
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           RENDER FILTERED CATEGORIES
+        ================================================== */
+
+        if (
+            Object.keys(
+                allCategories
+            ).length > 0
+        ) {
+
+            renderCategories();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       TYPE FILTER EVENTS
+    ====================================================== */
+
+    typeFilters.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    changeFilter(
+                        button.dataset.type
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       CHECK CURRENT SESSION
+    ====================================================== */
+
+    async function checkAuthState() {
+
+        if (
+            !window.supabaseClient
+        ) {
+
+            console.error(
+                "Supabase client is not available."
+            );
+
+
+            showLandingPage();
+
+            return;
+
+        }
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await window.supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (error) {
+
+                console.error(
+                    "Session check error:",
+                    error
+                );
+
+
+                showLandingPage();
+
+                return;
+
+            }
+
+
+            const session =
+                data &&
+                data.session;
+
+
+            const user =
+                session &&
+                session.user;
+
+
+            if (user) {
+
+                showLobby(
+                    user
+                );
+
+
+                await initializeCategories();
+
+            }
+
+            else {
+
+                showLandingPage();
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Auth check failed:",
+                error
+            );
+
+
+            showLandingPage();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       AUTH STATE LISTENER
+    ====================================================== */
+
+    if (
+        window.supabaseClient
+    ) {
+
+        window.supabaseClient
+            .auth
+            .onAuthStateChange(
+                (
+                    event,
+                    session
+                ) => {
+
+                    console.log(
+                        "Auth state changed:",
+                        event
+                    );
+
+
+                    if (
+                        session &&
+                        session.user
+                    ) {
+
+                        showLobby(
+                            session.user
+                        );
+
+
+                        initializeCategories();
+
+                    }
+
+                    else {
+
+                        showLandingPage();
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    /* =====================================================
+       LOG OUT
+    ====================================================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async () => {
+
+            logoutBtn.disabled =
+                true;
+
+
+            logoutBtn.textContent =
+                "Logging out...";
+
+
+            try {
+
+                if (
+                    window.supabaseClient
+                ) {
+
+                    const {
+                        error
+                    } =
+                        await window.supabaseClient
+                            .auth
+                            .signOut();
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
 
                 }
 
-                else {
 
-                    showLandingPage();
+                showLandingPage();
 
-                }
+
+                window.scrollTo(
+                    {
+                        top: 0,
+                        behavior: "smooth"
+                    }
+                );
 
             }
 
             catch (error) {
 
                 console.error(
-                    "Auth check failed:",
+                    "Logout error:",
                     error
                 );
 
@@ -3127,143 +3863,28 @@
 
             }
 
-        }
-
-
-        /* =====================================================
-           AUTH STATE LISTENER
-        ====================================================== */
-
-        if (
-            window.supabaseClient
-        ) {
-
-            window.supabaseClient
-                .auth
-                .onAuthStateChange(
-                    (
-                        event,
-                        session
-                    ) => {
-
-                        console.log(
-                            "Auth state changed:",
-                            event
-                        );
-
-
-                        if (
-                            session &&
-                            session.user
-                        ) {
-
-                            showLobby(
-                                session.user
-                            );
-
-
-                            initializeCategories();
-
-                        }
-
-                        else {
-
-                            showLandingPage();
-
-                        }
-
-                    }
-                );
-
-        }
-
-
-        /* =====================================================
-           LOG OUT
-        ====================================================== */
-
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
+            finally {
 
                 logoutBtn.disabled =
-                    true;
+                    false;
 
 
                 logoutBtn.textContent =
-                    "Logging out...";
-
-
-                try {
-
-                    if (
-                        window.supabaseClient
-                    ) {
-
-                        const {
-                            error
-                        } =
-                            await window.supabaseClient
-                                .auth
-                                .signOut();
-
-
-                        if (error) {
-
-                            throw error;
-
-                        }
-
-                    }
-
-
-                    showLandingPage();
-
-
-                    window.scrollTo(
-                        {
-                            top: 0,
-                            behavior: "smooth"
-                        }
-                    );
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-
-                    showLandingPage();
-
-                }
-
-                finally {
-
-                    logoutBtn.disabled =
-                        false;
-
-
-                    logoutBtn.textContent =
-                        "Log out";
-
-                }
+                    "Log out";
 
             }
-        );
+
+        }
+    );
 
 
-        /* =====================================================
-           START APPLICATION
-        ====================================================== */
+    /* =====================================================
+       START APPLICATION
+    ====================================================== */
 
-        checkAuthState();
+    checkAuthState();
 
-    </script>
-
+</script>
 
 </body>
 

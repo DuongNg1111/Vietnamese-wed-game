@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Statement — Negative</title>
+
+    <meta
+        name="sentence-title"
+        content="Statement — Negative"
+    >
+
+    <meta
+        name="sentence-description"
+        content="Use negative statements with không to say what someone does not do, like, want, or experience in Vietnamese."
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        :root {
+
+            --background: #ffffff;
+
+            --surface: #f7f7f5;
+
+            --text: #171717;
+
+            --secondary: #4a4a4a;
+
+            --border: #d5d5d0;
+
+            --accent: #a86f00;
+
+            --accent-soft: #fff4d8;
+
+            --success: #28633b;
+
+            --error: #9a3d32;
+
+            --phonetic: #2563eb;
+        }
+
+
+        body {
+
+            font-family:
+                Calibri,
+                Arial,
+                sans-serif;
+
+            background:
+                var(--background);
+
+            color:
+                var(--text);
+
+            min-height:
+                100vh;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+
+            width:
+                min(920px, 92%);
+
+            margin:
+                0 auto;
+
+            padding:
+                30px 0 70px;
+        }
+
+
+        /* =========================
+           BACK
+        ========================= */
+
+        .back-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            color:
+                var(--text);
+
+            text-decoration:
+                none;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                55px;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .back-button:hover {
+
+            transform:
+                translateX(-4px);
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            padding-bottom:
+                42px;
+
+            border-bottom:
+                2px solid var(--text);
+
+            margin-bottom:
+                55px;
+        }
+
+
+        .header h1 {
+
+            font-size:
+                clamp(32px, 5vw, 46px);
+
+            line-height:
+                1.15;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -1px;
+
+            margin-bottom:
+                13px;
+        }
+
+
+        .question-note {
+
+            font-size:
+                16px;
+
+            color:
+                var(--secondary);
+
+            line-height:
+                1.6;
+        }
+
+
+        .phonetic {
+
+            color:
+                var(--phonetic);
+
+            font-style:
+                italic;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+
+            margin-bottom:
+                65px;
+        }
+
+
+        .section-title {
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1.4px;
+
+            color:
+                var(--text);
+
+            margin-bottom:
+                18px;
+        }
+
+
+        /* =========================
+           PATTERN
+        ========================= */
+
+        .pattern-box {
+
+            background:
+                var(--accent-soft);
+
+            border:
+                2px solid var(--accent);
+
+            border-radius:
+                14px;
+
+            padding:
+                30px;
+
+            font-size:
+                clamp(20px, 3vw, 25px);
+
+            font-weight:
+                700;
+
+            text-align:
+                center;
+
+            line-height:
+                1.6;
+        }
+
+
+        .pattern-word {
+
+            font-weight:
+                900;
+
+            color:
+                var(--accent);
+        }
+
+
+        /* =========================
+           PATTERN EXPLANATION
+        ========================= */
+
+        .pattern-explanation {
+
+            margin-top:
+                18px;
+
+            font-size:
+                16px;
+
+            color:
+                var(--secondary);
+
+            line-height:
+                1.7;
+
+            font-weight:
+                500;
+        }
+
+
+        .pattern-explanation strong {
+
+            color:
+                var(--text);
+        }
+
+
+        .pattern-explanation .phonetic {
+
+            color:
+                var(--phonetic);
+
+            font-style:
+                italic;
+        }
+
+
+        /* =========================
+           EXAMPLES
+        ========================= */
+
+        .examples {
+
+            border-top:
+                2px solid var(--text);
+        }
+
+
+        .example {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                30px;
+
+            align-items:
+                center;
+
+            padding:
+                22px 8px;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        .example-vietnamese {
+
+            font-size:
+                20px;
+
+            font-weight:
+                800;
+
+            line-height:
+                1.4;
+        }
+
+
+        .example-phonetic {
+
+            font-size:
+                15px;
+
+            color:
+                var(--phonetic);
+
+            font-style:
+                italic;
+
+            font-weight:
+                500;
+
+            margin-top:
+                4px;
+        }
+
+
+        .example-english {
+
+            font-size:
+                16px;
+
+            color:
+                var(--secondary);
+
+            font-weight:
+                500;
+
+            line-height:
+                1.5;
+        }
+
+
+        /* =========================
+           PRACTICE
+        ========================= */
+
+        .practice-intro {
+
+            font-size:
+                16px;
+
+            color:
+                var(--secondary);
+
+            font-weight:
+                500;
+
+            line-height:
+                1.6;
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .practice-list {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                25px;
+        }
+
+
+        .practice-card {
+
+            border:
+                2px solid var(--text);
+
+            border-radius:
+                14px;
+
+            background:
+                var(--background);
+
+            padding:
+                30px;
+        }
+
+
+        /* =========================
+           NUMBER
+        ========================= */
+
+        .practice-number {
+
+            display:
+                inline-block;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+
+            color:
+                white;
+
+            background:
+                var(--text);
+
+            padding:
+                6px 10px;
+
+            border-radius:
+                6px;
+
+            margin-bottom:
+                17px;
+        }
+
+
+        /* =========================
+           PROMPT
+        ========================= */
+
+        .english-prompt {
+
+            font-size:
+                21px;
+
+            font-weight:
+                800;
+
+            line-height:
+                1.45;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .instruction {
+
+            font-size:
+                14px;
+
+            color:
+                var(--secondary);
+
+            font-weight:
+                500;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        /* =========================
+           ANSWER AREA
+        ========================= */
+
+        .drop-zone {
+
+            min-height:
+                64px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                9px;
+
+            padding:
+                10px;
+
+            border:
+                2px dashed #8b8b85;
+
+            border-radius:
+                10px;
+
+            background:
+                var(--surface);
+
+            margin-bottom:
+                22px;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .drop-zone.drag-over {
+
+            border-color:
+                var(--accent);
+
+            background:
+                var(--accent-soft);
+        }
+
+
+        /* =========================
+           LABEL
+        ========================= */
+
+        .word-bank-label {
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+            color:
+                var(--text);
+
+            margin-bottom:
+                11px;
+        }
+
+
+        /* =========================
+           WORD BANK
+        ========================= */
+
+        .word-bank {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                9px;
+        }
+
+
+        /* =========================
+           WORD CHIP
+        ========================= */
+
+        .word {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                43px;
+
+            padding:
+                8px 15px;
+
+            background:
+                white;
+
+            border:
+                1.5px solid #8f8f89;
+
+            border-radius:
+                8px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--text);
+
+            cursor:
+                pointer;
+
+            user-select:
+                none;
+
+            transition:
+                transform 0.15s ease,
+                background 0.15s ease,
+                border-color 0.15s ease;
+        }
+
+
+        .word:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                var(--text);
+
+            background:
+                #f4f4f1;
+        }
+
+
+        .word:active {
+
+            transform:
+                scale(0.97);
+        }
+
+
+        .word.dragging {
+
+            opacity:
+                0.45;
+        }
+
+
+        /* =========================
+           CHECK
+        ========================= */
+
+        .check-button {
+
+            margin-top:
+                24px;
+
+            padding:
+                12px 22px;
+
+            border:
+                2px solid var(--text);
+
+            border-radius:
+                8px;
+
+            background:
+                var(--text);
+
+            color:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
+        }
+
+
+        .check-button:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .check-button:disabled {
+
+            opacity:
+                0.45;
+
+            cursor:
+                default;
+
+            transform:
+                none;
+        }
+
+
+        /* =========================
+           FEEDBACK
+        ========================= */
+
+        .feedback {
+
+            min-height:
+                22px;
+
+            margin-top:
+                15px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+        }
+
+
+        .feedback.correct {
+
+            color:
+                var(--success);
+        }
+
+
+        .feedback.wrong {
+
+            color:
+                var(--error);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .page {
+
+                width:
+                    90%;
+
+                padding-top:
+                    25px;
+            }
+
+
+            .back-button {
+
+                margin-bottom:
+                    40px;
+            }
+
+
+            .header {
+
+                margin-bottom:
+                    45px;
+
+                padding-bottom:
+                    30px;
+            }
+
+
+            .section {
+
+                margin-bottom:
+                    50px;
+            }
+
+
+            .example {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    6px;
+
+                padding:
+                    20px 5px;
+            }
+
+
+            .example-vietnamese {
+
+                font-size:
+                    18px;
+            }
+
+
+            .example-english {
+
+                font-size:
+                    15px;
+            }
+
+
+            .practice-card {
+
+                padding:
+                    23px;
+            }
+
+
+            .english-prompt {
+
+                font-size:
+                    19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================
+         BACK
+    ========================= -->
+
+    <a
+        href="../../phrases-and-sentences.html?category=Sentences"
+        class="back-button"
+    >
+        ← Back
+    </a>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <h1>
+            STATEMENT — NEGATIVE
+        </h1>
+
+
+        <p class="question-note">
+
+            <strong>"Không"</strong>
+
+            <span class="phonetic">
+                /khong/
+            </span>
+
+            <em>
+                is used before the verb to make a statement negative.
+            </em>
+
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         PATTERN
+    ========================= -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            PATTERN
+        </h2>
+
+
+        <div class="pattern-box">
+
+            subject
+
+            +
+
+            <span class="pattern-word">
+                KHÔNG
+            </span>
+
+            +
+
+            verb + noun / verb
+
+        </div>
+
+
+        <p class="pattern-explanation">
+
+            <strong>Không</strong>
+            <span class="phonetic">/khong/</span>
+            means <strong>"not"</strong>.
+
+            <br>
+
+            Put <strong>không</strong> before the verb to make the sentence negative.
+
+            <br>
+
+            The final part can be a
+            <strong>noun</strong>
+            or another
+            <strong>verb</strong>.
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EXAMPLES
+    ========================= -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            EXAMPLES
+        </h2>
+
+
+        <div class="examples">
+
+
+            <!-- EXAMPLE 1 -->
+
+            <div class="example">
+
+                <div>
+
+                    <div class="example-vietnamese">
+                        Tôi không ăn cơm.
+                    </div>
+
+                    <div class="example-phonetic">
+                        toy khong an kəm.
+                    </div>
+
+                </div>
+
+
+                <div class="example-english">
+                    I don't eat rice.
+                </div>
+
+            </div>
+
+
+            <!-- EXAMPLE 2 -->
+
+            <div class="example">
+
+                <div>
+
+                    <div class="example-vietnamese">
+                        Tôi không uống cà phê.
+                    </div>
+
+                    <div class="example-phonetic">
+                        toy khong uong ka feh.
+                    </div>
+
+                </div>
+
+
+                <div class="example-english">
+                    I don't drink coffee.
+                </div>
+
+            </div>
+
+
+            <!-- EXAMPLE 3 -->
+
+            <div class="example">
+
+                <div>
+
+                    <div class="example-vietnamese">
+                        Tôi không thích ăn bún.
+                    </div>
+
+                    <div class="example-phonetic">
+                        toy khong thich an boon.
+                    </div>
+
+                </div>
+
+
+                <div class="example-english">
+                    I don't like eating noodles.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRY IT YOURSELF
+    ========================= -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            TRY IT YOURSELF
+        </h2>
+
+
+        <p class="practice-intro">
+            Click or drag the Vietnamese words to build
+            the correct sentence.
+        </p>
+
+
+        <div
+            class="practice-list"
+            id="practiceList"
+        ></div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+
+    /* =========================
+       PRACTICE DATA
+    ========================= */
+
+    const practiceQuestions = [
+
+        {
+            english:
+                "I don't eat rice.",
+
+            answer:
+                [
+                    "Tôi",
+                    "không",
+                    "ăn",
+                    "cơm."
+                ]
+        },
+
+
+        {
+            english:
+                "I don't drink coffee.",
+
+            answer:
+                [
+                    "Tôi",
+                    "không",
+                    "uống",
+                    "cà phê."
+                ]
+        },
+
+
+        {
+            english:
+                "I don't like eating noodles.",
+
+            answer:
+                [
+                    "Tôi",
+                    "không",
+                    "thích",
+                    "ăn",
+                    "bún."
+                ]
+        }
+
+    ];
+
+
+    let draggedWord = null;
+
+
+    /* =========================
+       SHUFFLE
+    ========================= */
+
+    function shuffle(array) {
+
+        const shuffled =
+            [...array];
+
+
+        for (
+            let i =
+                shuffled.length - 1;
+
+            i > 0;
+
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() *
+                    (i + 1)
+                );
+
+
+            [
+                shuffled[i],
+                shuffled[j]
+            ] =
+            [
+                shuffled[j],
+                shuffled[i]
+            ];
+
+        }
+
+
+        return shuffled;
+
+    }
+
+
+    /* =========================
+       CREATE WORD
+    ========================= */
+
+    function createWord(word) {
+
+        const element =
+            document.createElement("div");
+
+
+        element.className =
+            "word";
+
+
+        element.draggable =
+            true;
+
+
+        element.dataset.word =
+            word;
+
+
+        element.textContent =
+            word;
+
+
+        /* =========================
+           CLICK
+        ========================= */
+
+        element.addEventListener(
+            "click",
+            function() {
+
+                const parent =
+                    element.parentElement;
+
+
+                /*
+                    WORD BANK → ANSWER
+                */
+
+                if (
+                    parent.classList.contains(
+                        "word-bank"
+                    )
+                ) {
+
+                    const card =
+                        element.closest(
+                            ".practice-card"
+                        );
+
+
+                    const dropZone =
+                        card.querySelector(
+                            ".drop-zone"
+                        );
+
+
+                    dropZone.appendChild(
+                        element
+                    );
+
+                }
+
+
+                /*
+                    ANSWER → WORD BANK
+                */
+
+                else if (
+                    parent.classList.contains(
+                        "drop-zone"
+                    )
+                ) {
+
+                    const card =
+                        element.closest(
+                            ".practice-card"
+                        );
+
+
+                    const wordBank =
+                        card.querySelector(
+                            ".word-bank"
+                        );
+
+
+                    wordBank.appendChild(
+                        element
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           DRAG START
+        ========================= */
+
+        element.addEventListener(
+            "dragstart",
+            function(event) {
+
+                draggedWord =
+                    element;
+
+
+                element.classList.add(
+                    "dragging"
+                );
+
+
+                event.dataTransfer.effectAllowed =
+                    "move";
+
+            }
+        );
+
+
+        /* =========================
+           DRAG END
+        ========================= */
+
+        element.addEventListener(
+            "dragend",
+            function() {
+
+                element.classList.remove(
+                    "dragging"
+                );
+
+
+                draggedWord =
+                    null;
+
+            }
+        );
+
+
+        return element;
+
+    }
+
+
+    /* =========================
+       CREATE PRACTICE CARD
+    ========================= */
+
+    function createPracticeCard(
+        question,
+        index
+    ) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "practice-card";
+
+
+        card.dataset.answer =
+            JSON.stringify(
+                question.answer
+            );
+
+
+        /* =========================
+           NUMBER
+        ========================= */
+
+        const number =
+            document.createElement("div");
+
+
+        number.className =
+            "practice-number";
+
+
+        number.textContent =
+            String(
+                index + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        /* =========================
+           ENGLISH
+        ========================= */
+
+        const english =
+            document.createElement("div");
+
+
+        english.className =
+            "english-prompt";
+
+
+        english.textContent =
+            question.english;
+
+
+        /* =========================
+           INSTRUCTION
+        ========================= */
+
+        const instruction =
+            document.createElement("div");
+
+
+        instruction.className =
+            "instruction";
+
+
+        instruction.textContent =
+            "Build the Vietnamese sentence.";
+
+
+        /* =========================
+           DROP ZONE
+        ========================= */
+
+        const dropZone =
+            document.createElement("div");
+
+
+        dropZone.className =
+            "drop-zone";
+
+
+        /* =========================
+           WORD BANK LABEL
+        ========================= */
+
+        const wordBankLabel =
+            document.createElement("div");
+
+
+        wordBankLabel.className =
+            "word-bank-label";
+
+
+        wordBankLabel.textContent =
+            "AVAILABLE WORDS";
+
+
+        /* =========================
+           WORD BANK
+        ========================= */
+
+        const wordBank =
+            document.createElement("div");
+
+
+        wordBank.className =
+            "word-bank";
+
+
+        shuffle(
+            question.answer
+        ).forEach(
+            function(word) {
+
+                wordBank.appendChild(
+                    createWord(word)
+                );
+
+            }
+        );
+
+
+        /* =========================
+           CHECK BUTTON
+        ========================= */
+
+        const checkButton =
+            document.createElement("button");
+
+
+        checkButton.className =
+            "check-button";
+
+
+        checkButton.textContent =
+            "Check Answer";
+
+
+        /* =========================
+           FEEDBACK
+        ========================= */
+
+        const feedback =
+            document.createElement("div");
+
+
+        feedback.className =
+            "feedback";
+
+
+        /* =========================
+           DROP ZONE
+        ========================= */
+
+        dropZone.addEventListener(
+            "dragover",
+            function(event) {
+
+                event.preventDefault();
+
+
+                dropZone.classList.add(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        dropZone.addEventListener(
+            "dragleave",
+            function() {
+
+                dropZone.classList.remove(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        dropZone.addEventListener(
+            "drop",
+            function(event) {
+
+                event.preventDefault();
+
+
+                dropZone.classList.remove(
+                    "drag-over"
+                );
+
+
+                if (!draggedWord) {
+                    return;
+                }
+
+
+                dropZone.appendChild(
+                    draggedWord
+                );
+
+
+                draggedWord =
+                    null;
+
+            }
+        );
+
+
+        /* =========================
+           WORD BANK DROP
+        ========================= */
+
+        wordBank.addEventListener(
+            "dragover",
+            function(event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+        wordBank.addEventListener(
+            "drop",
+            function(event) {
+
+                event.preventDefault();
+
+
+                if (!draggedWord) {
+                    return;
+                }
+
+
+                wordBank.appendChild(
+                    draggedWord
+                );
+
+
+                draggedWord =
+                    null;
+
+            }
+        );
+
+
+        /* =========================
+           CHECK ANSWER
+        ========================= */
+
+        checkButton.addEventListener(
+            "click",
+            function() {
+
+                const currentAnswer =
+                    Array.from(
+                        dropZone.querySelectorAll(
+                            ".word"
+                        )
+                    ).map(
+                        function(word) {
+
+                            return word.dataset.word;
+
+                        }
+                    );
+
+
+                const correctAnswer =
+                    JSON.parse(
+                        card.dataset.answer
+                    );
+
+
+                /* =========================
+                   NOT COMPLETE
+                ========================= */
+
+                if (
+                    currentAnswer.length !==
+                    correctAnswer.length
+                ) {
+
+                    feedback.textContent =
+                        "Please place all the words.";
+
+
+                    feedback.className =
+                        "feedback wrong";
+
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   CHECK ORDER
+                ========================= */
+
+                const isCorrect =
+                    currentAnswer.every(
+                        function(word, index) {
+
+                            return (
+                                word ===
+                                correctAnswer[index]
+                            );
+
+                        }
+                    );
+
+
+                /* =========================
+                   CORRECT
+                ========================= */
+
+                if (isCorrect) {
+
+                    feedback.textContent =
+                        "Correct!";
+
+
+                    feedback.className =
+                        "feedback correct";
+
+
+                    checkButton.disabled =
+                        true;
+
+
+                    /*
+                        Lock all words.
+                    */
+
+                    card
+                        .querySelectorAll(
+                            ".word"
+                        )
+                        .forEach(
+                            function(word) {
+
+                                word.draggable =
+                                    false;
+
+
+                                word.style.cursor =
+                                    "default";
+
+
+                                word.onclick =
+                                    null;
+
+                            }
+                        );
+
+
+                    dropZone.style.borderStyle =
+                        "solid";
+
+
+                    dropZone.style.borderColor =
+                        "#28633b";
+
+                }
+
+
+                /* =========================
+                   WRONG
+                ========================= */
+
+                else {
+
+                    feedback.textContent =
+                        "Try again.";
+
+
+                    feedback.className =
+                        "feedback wrong";
+
+
+                    resetQuestion(
+                        card
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           BUILD CARD
+        ========================= */
+
+        card.appendChild(
+            number
+        );
+
+
+        card.appendChild(
+            english
+        );
+
+
+        card.appendChild(
+            instruction
+        );
+
+
+        card.appendChild(
+            dropZone
+        );
+
+
+        card.appendChild(
+            wordBankLabel
+        );
+
+
+        card.appendChild(
+            wordBank
+        );
+
+
+        card.appendChild(
+            checkButton
+        );
+
+
+        card.appendChild(
+            feedback
+        );
+
+
+        return card;
+
+    }
+
+
+    /* =========================
+       RESET QUESTION
+    ========================= */
+
+    function resetQuestion(card) {
+
+        const dropZone =
+            card.querySelector(
+                ".drop-zone"
+            );
+
+
+        const wordBank =
+            card.querySelector(
+                ".word-bank"
+            );
+
+
+        const feedback =
+            card.querySelector(
+                ".feedback"
+            );
+
+
+        /*
+            Move all words
+            back to word bank.
+        */
+
+        Array.from(
+            dropZone.querySelectorAll(
+                ".word"
+            )
+        ).forEach(
+            function(word) {
+
+                wordBank.appendChild(
+                    word
+                );
+
+            }
+        );
+
+
+        /*
+            Shuffle available words.
+        */
+
+        const words =
+            Array.from(
+                wordBank.querySelectorAll(
+                    ".word"
+                )
+            );
+
+
+        shuffle(
+            words
+        ).forEach(
+            function(word) {
+
+                wordBank.appendChild(
+                    word
+                );
+
+            }
+        );
+
+
+        /*
+            Clear feedback.
+        */
+
+        setTimeout(
+            function() {
+
+                feedback.textContent =
+                    "";
+
+                feedback.className =
+                    "feedback";
+
+            },
+            900
+        );
+
+    }
+
+
+    /* =========================
+       RENDER
+    ========================= */
+
+    const practiceList =
+        document.getElementById(
+            "practiceList"
+        );
+
+
+    practiceQuestions.forEach(
+        function(question, index) {
+
+            practiceList.appendChild(
+                createPracticeCard(
+                    question,
+                    index
+                )
+            );
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

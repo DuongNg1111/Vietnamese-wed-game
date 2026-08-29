@@ -1,1206 +1,1710 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="description"
-        content="Practice Vietnamese vocabulary through games"
-    >
+<meta
+    name="description"
+    content="Learn Vietnamese through interactive games, lessons, sentences, and useful phrases."
+>
 
-    <title>Vietnamese Vocabulary</title>
+<title>Vietnamese Category</title>
 
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+<!-- =====================================================
+     GOOGLE FONTS
+====================================================== -->
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-        crossorigin
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 
-    <style>
+<style>
 
-        /* =====================================================
-           DESIGN TOKENS
-        ====================================================== */
+/* =====================================================
+   DESIGN TOKENS
+====================================================== */
 
-        :root {
+:root {
 
-            --paper: #f5f9fd;
-            --white: #ffffff;
+    --paper: #f7f9fc;
+    --white: #ffffff;
 
-            --ink: #143a6b;
-            --ink-soft: #66809d;
+    --ink: #173b68;
+    --ink-soft: #70849b;
 
-            --blue: #2f6fed;
-            --blue-dark: #1e4fc7;
+    --line: #dce6ef;
 
-            --line: #d9e6f2;
+    --category-accent: #2f6fed;
+    --category-accent-light: #6fa4ff;
+    --category-background: #eaf3ff;
+    --category-border: #c4daf6;
 
-            --category-accent: #2f6fed;
-            --category-accent-light: #6fa4ff;
-            --category-background: #eaf3ff;
-            --category-border: #c4daf6;
+}
 
-        }
 
+/* =====================================================
+   RESET
+====================================================== */
 
-        /* =====================================================
-           RESET
-        ====================================================== */
+* {
+    box-sizing: border-box;
+}
 
-        * {
-            box-sizing: border-box;
-        }
 
+html {
+    scroll-behavior: smooth;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
 
+body {
 
-        body {
+    margin: 0;
 
-            margin: 0;
-            min-height: 100vh;
+    min-height: 100vh;
 
-            font-family:
-                "Be Vietnam Pro",
-                "Segoe UI",
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
+    font-family:
+        "Be Vietnam Pro",
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-            color: var(--ink);
+    color: var(--ink);
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f5f9fd 48%,
-                    #edf5fc 100%
-                );
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f9fc 50%,
+            #eef4fa 100%
+        );
 
-        }
+}
 
 
-        /* =====================================================
-           TOP NAVIGATION
-        ====================================================== */
+/* =====================================================
+   TOP NAVIGATION
+====================================================== */
 
-        .top-nav {
+.top-nav {
 
-            width: min(1400px, 94%);
-            margin: 22px auto 0;
+    width: min(1280px, 92%);
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    margin: 24px auto 0;
 
-        }
+    display: flex;
 
+    align-items: center;
 
-        .back-btn {
+    justify-content: space-between;
 
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+}
 
-            padding: 10px 17px;
 
-            border: 1px solid rgba(20, 58, 107, 0.14);
-            border-radius: 999px;
+.back-btn {
 
-            background: rgba(255, 255, 255, 0.9);
+    display: inline-flex;
 
-            color: var(--ink);
+    align-items: center;
 
-            text-decoration: none;
+    gap: 8px;
 
-            font-size: 0.82rem;
-            font-weight: 700;
+    padding: 10px 17px;
 
-            box-shadow:
-                0 4px 14px rgba(20, 58, 107, 0.08);
+    border:
+        1px solid
+        var(--line);
 
-            transition: 0.2s ease;
+    border-radius: 999px;
 
-        }
+    background:
+        rgba(255,255,255,0.9);
 
+    color:
+        var(--ink);
 
-        .back-btn:hover {
+    text-decoration: none;
 
-            transform: translateX(-3px);
+    font-size: 0.78rem;
 
-            color: var(--category-accent);
+    font-weight: 800;
 
-            border-color: var(--category-accent);
+    box-shadow:
+        0 5px 16px
+        rgba(23,59,104,0.07);
 
-        }
+    transition: 0.2s ease;
 
+}
 
-        /* =====================================================
-           MAIN CONTAINER
-        ====================================================== */
 
-        .container {
+.back-btn:hover {
 
-            width: min(1400px, 94%);
-            margin: 35px auto 70px;
+    color:
+        var(--category-accent);
 
-        }
+    border-color:
+        var(--category-accent);
 
+    transform:
+        translateX(-3px);
 
-        /* =====================================================
-           CATEGORY HEADER
-        ====================================================== */
+}
 
-        .category-header {
 
-            position: relative;
+/* =====================================================
+   MAIN CONTAINER
+====================================================== */
 
-            margin-bottom: 28px;
-            padding: 34px 38px;
+.container {
 
-            overflow: hidden;
+    width: min(1280px, 92%);
 
-            border: 1px solid var(--category-border);
-            border-radius: 24px;
+    margin: 30px auto 70px;
 
-            background: rgba(255, 255, 255, 0.97);
+}
 
-            box-shadow:
-                0 12px 35px rgba(20, 58, 107, 0.08);
 
-        }
+/* =====================================================
+   CATEGORY HERO
+====================================================== */
 
+.category-header {
 
-        .category-header::before {
+    position: relative;
 
-            content: "";
+    overflow: hidden;
 
-            position: absolute;
+    padding: 38px 42px;
 
-            top: 0;
-            left: 0;
+    margin-bottom: 24px;
 
-            width: 100%;
-            height: 6px;
+    border:
+        1px solid
+        var(--category-border);
 
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--category-accent),
-                    var(--category-accent-light)
-                );
+    border-radius: 28px;
 
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #ffffff 58%,
+            var(--category-background) 100%
+        );
 
+    box-shadow:
+        0 15px 38px
+        rgba(23,59,104,0.08);
 
-        .category-header-content {
+}
 
-            position: relative;
-            z-index: 2;
 
-            display: flex;
-            align-items: center;
+.category-header::before {
 
-            gap: 22px;
+    content: "";
 
-        }
+    position: absolute;
 
+    top: 0;
+    left: 0;
 
-        .category-header-icon {
+    width: 100%;
+    height: 7px;
 
-            width: 76px;
-            height: 76px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--category-accent),
+            var(--category-accent-light)
+        );
 
-            flex-shrink: 0;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            border: 1px solid var(--category-border);
-            border-radius: 21px;
+.category-header::after {
 
-            background: var(--category-background);
+    content: "";
 
-            font-size: 2.45rem;
+    position: absolute;
 
-            box-shadow:
-                inset 0 -4px 0 rgba(0, 0, 0, 0.04);
+    width: 190px;
+    height: 190px;
 
-        }
+    right: -75px;
+    top: -85px;
 
+    border-radius: 50%;
 
-        .category-eyebrow {
+    background:
+        var(--category-accent);
 
-            margin: 0 0 5px;
+    opacity: 0.06;
 
-            color: var(--category-accent);
+}
 
-            font-size: 0.72rem;
-            font-weight: 800;
 
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
+.category-header-content {
 
-        }
+    position: relative;
 
+    z-index: 2;
 
-        .category-title {
+    display: flex;
 
-            margin: 0;
+    align-items: center;
 
-            font-family: "Kalam", cursive;
+    gap: 24px;
 
-            color: var(--ink);
+}
 
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.05;
 
-        }
+.category-header-icon {
 
+    width: 82px;
+    height: 82px;
 
-        .category-description {
+    flex-shrink: 0;
 
-            margin: 9px 0 0;
+    display: flex;
 
-            max-width: 720px;
+    align-items: center;
 
-            color: var(--ink-soft);
+    justify-content: center;
 
-            font-size: 0.9rem;
-            line-height: 1.55;
+    border:
+        1px solid
+        var(--category-border);
 
-        }
+    border-radius: 23px;
 
+    background:
+        var(--category-background);
 
-        /* =====================================================
-           TABS
-           
-           ONLY 2 SECTIONS:
-           1. Games
-           2. Vocabulary
-        ====================================================== */
+    font-size: 2.65rem;
 
-        .tabs {
+    box-shadow:
+        0 8px 18px
+        rgba(23,59,104,0.07);
 
-            display: flex;
-            align-items: center;
+}
 
-            gap: 8px;
 
-            margin-bottom: 30px;
-            padding: 7px;
+.category-eyebrow {
 
-            border: 1px solid var(--line);
-            border-radius: 17px;
+    margin: 0 0 5px;
 
-            background: rgba(255, 255, 255, 0.92);
+    color:
+        var(--category-accent);
 
-            box-shadow:
-                0 6px 18px rgba(20, 58, 107, 0.06);
+    font-size: 0.68rem;
 
-        }
+    font-weight: 800;
 
+    letter-spacing: 0.12em;
 
-        .tab-btn {
+    text-transform: uppercase;
 
-            flex: 1;
+}
 
-            min-height: 48px;
 
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+.category-title {
 
-            gap: 8px;
+    margin: 0;
 
-            padding: 10px 18px;
+    font-family:
+        "Kalam",
+        cursive;
 
-            border: 0;
-            border-radius: 12px;
+    color:
+        var(--ink);
 
-            background: transparent;
+    font-size:
+        clamp(
+            2.25rem,
+            5vw,
+            3.5rem
+        );
 
-            color: var(--ink-soft);
+    line-height: 1;
 
-            font-family: inherit;
+}
 
-            font-size: 0.82rem;
-            font-weight: 800;
 
-            cursor: pointer;
+.category-description {
 
-            transition: 0.2s ease;
+    max-width: 760px;
 
-        }
+    margin: 10px 0 0;
 
+    color:
+        var(--ink-soft);
 
-        .tab-btn:hover {
+    font-size: 0.88rem;
 
-            background: var(--category-background);
+    line-height: 1.6;
 
-            color: var(--category-accent);
+}
 
-        }
 
+/* =====================================================
+   TABS
+====================================================== */
 
-        .tab-btn.active {
+.tabs {
 
-            background: var(--category-background);
+    display: grid;
 
-            color: var(--category-accent);
+    grid-template-columns:
+        1fr 1fr;
 
-            box-shadow:
-                inset 0 0 0 1px var(--category-border),
-                0 3px 10px rgba(20, 58, 107, 0.06);
+    gap: 8px;
 
-        }
+    padding: 7px;
 
+    margin-bottom: 30px;
 
-        .tab-icon {
-            font-size: 1.05rem;
-        }
+    border:
+        1px solid
+        var(--line);
 
+    border-radius: 18px;
 
-        /* =====================================================
-           TAB CONTENT
-        ====================================================== */
+    background:
+        rgba(255,255,255,0.94);
 
-        .tab-panel {
-            display: none;
-        }
+    box-shadow:
+        0 7px 20px
+        rgba(23,59,104,0.06);
 
+}
 
-        .tab-panel.active {
-            display: block;
-        }
 
+.tabs.hidden {
 
-        /* =====================================================
-           SECTION HEADER
-        ====================================================== */
+    display: none;
 
-        .games-heading {
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
 
-            margin-bottom: 18px;
+.tab-btn {
 
-        }
+    min-height: 52px;
 
+    display: flex;
 
-        .games-heading h2 {
+    align-items: center;
 
-            margin: 0;
+    justify-content: center;
 
-            color: var(--ink);
+    gap: 9px;
 
-            font-size: 1.25rem;
-            font-weight: 800;
+    border: 0;
 
-        }
+    border-radius: 13px;
 
+    background:
+        transparent;
 
-        .item-count {
+    color:
+        var(--ink-soft);
 
-            padding: 6px 12px;
+    font-family: inherit;
 
-            border: 1px solid var(--category-border);
-            border-radius: 999px;
+    font-size: 0.82rem;
 
-            background: var(--category-background);
+    font-weight: 800;
 
-            color: var(--category-accent);
+    cursor: pointer;
 
-            font-size: 0.72rem;
-            font-weight: 700;
+    transition: 0.2s ease;
 
-        }
+}
 
 
-        /* =====================================================
-           GAME GRID
-        ====================================================== */
+.tab-btn:hover {
 
-        .game-grid {
+    color:
+        var(--category-accent);
 
-            display: grid;
+    background:
+        var(--category-background);
 
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(270px, 1fr)
-                );
+}
 
-            gap: 20px;
 
-        }
+.tab-btn.active {
 
+    color:
+        var(--category-accent);
 
-        /* =====================================================
-           GAME CARD
-        ====================================================== */
+    background:
+        var(--category-background);
 
-        .game-card {
+    box-shadow:
+        inset 0 0 0 1px
+        var(--category-border);
 
-            position: relative;
+}
 
-            min-height: 245px;
 
-            display: flex;
-            flex-direction: column;
+.tab-icon {
 
-            padding: 25px;
+    font-size: 1.05rem;
 
-            overflow: hidden;
+}
 
-            border: 2px solid var(--category-border);
-            border-radius: 21px;
 
-            background: #ffffff;
+/* =====================================================
+   TAB PANELS
+====================================================== */
 
-            color: var(--ink);
+.tab-panel {
 
-            text-decoration: none;
+    display: none;
 
-            box-shadow:
-                0 8px 20px rgba(20, 58, 107, 0.07);
+}
 
-            transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease,
-                border-color 0.22s ease;
 
-        }
+.tab-panel.active {
 
+    display: block;
 
-        .game-card::before {
+    animation:
+        fadeIn 0.25s ease;
 
-            content: "";
+}
 
-            position: absolute;
 
-            top: 0;
-            left: 0;
+@keyframes fadeIn {
 
-            width: 100%;
-            height: 5px;
+    from {
 
-            background: var(--category-accent);
+        opacity: 0;
 
-        }
+        transform:
+            translateY(4px);
 
+    }
 
-        .game-card::after {
+    to {
 
-            content: "";
+        opacity: 1;
 
-            position: absolute;
+        transform:
+            translateY(0);
 
-            width: 120px;
-            height: 120px;
+    }
 
-            right: -45px;
-            bottom: -50px;
+}
 
-            border-radius: 50%;
 
-            background: var(--category-accent);
+/* =====================================================
+   SECTION HEADER
+====================================================== */
 
-            opacity: 0.06;
+.section-heading {
 
-            transition:
-                transform 0.25s ease,
-                opacity 0.25s ease;
+    display: flex;
 
-        }
+    align-items: center;
 
+    justify-content: space-between;
 
-        .game-card:hover {
+    gap: 15px;
 
-            transform: translateY(-7px);
+    margin-bottom: 18px;
 
-            border-color: var(--category-accent);
+}
 
-            box-shadow:
-                0 17px 32px rgba(20, 58, 107, 0.14);
 
-        }
+.section-heading-left {
 
+    display: flex;
 
-        .game-card:hover::after {
+    align-items: center;
 
-            transform: scale(1.35);
-            opacity: 0.10;
+    gap: 11px;
 
-        }
+}
 
 
-        .game-icon {
+.section-heading-icon {
 
-            position: relative;
-            z-index: 2;
+    width: 36px;
+    height: 36px;
 
-            width: 58px;
-            height: 58px;
+    display: flex;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    align-items: center;
 
-            margin-bottom: 19px;
+    justify-content: center;
 
-            border: 1px solid var(--category-border);
-            border-radius: 16px;
+    border-radius: 11px;
 
-            background: var(--category-background);
+    background:
+        var(--category-background);
 
-            font-size: 1.8rem;
+    border:
+        1px solid
+        var(--category-border);
 
-            box-shadow:
-                0 4px 10px rgba(20, 58, 107, 0.05);
+    font-size: 1rem;
 
-            transition: transform 0.22s ease;
+}
 
-        }
 
+.section-heading h2 {
 
-        .game-card:hover .game-icon {
+    margin: 0;
 
-            transform:
-                rotate(-4deg)
-                scale(1.08);
+    color:
+        var(--ink);
 
-        }
+    font-size: 1.18rem;
 
+    font-weight: 800;
 
-        .game-number {
+}
 
-            position: absolute;
 
-            top: 22px;
-            right: 22px;
+.item-count {
 
-            z-index: 2;
+    padding: 6px 12px;
 
-            color: var(--category-accent);
+    border:
+        1px solid
+        var(--category-border);
 
-            font-size: 0.68rem;
-            font-weight: 800;
+    border-radius: 999px;
 
-            letter-spacing: 0.06em;
+    background:
+        var(--category-background);
 
-        }
+    color:
+        var(--category-accent);
 
+    font-size: 0.7rem;
 
-        .game-title {
+    font-weight: 800;
 
-            position: relative;
-            z-index: 2;
+}
 
-            margin: 0 0 8px;
 
-            color: var(--ink);
+/* =====================================================
+   GAME GRID
+====================================================== */
 
-            font-size: 1.18rem;
-            font-weight: 800;
+.game-grid {
 
-            line-height: 1.3;
+    display: grid;
 
-        }
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(270px, 1fr)
+        );
 
+    gap: 18px;
 
-        .game-description {
+}
 
-            position: relative;
-            z-index: 2;
 
-            margin: 0;
+/* =====================================================
+   GAME CARD
+====================================================== */
 
-            color: var(--ink-soft);
+.game-card {
 
-            font-size: 0.81rem;
-            line-height: 1.5;
+    position: relative;
 
-        }
+    min-height: 245px;
 
+    display: flex;
 
-        .game-footer {
+    flex-direction: column;
 
-            position: relative;
-            z-index: 2;
+    padding: 24px;
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    overflow: hidden;
 
-            margin-top: auto;
-            padding-top: 22px;
+    border:
+        1px solid
+        var(--category-border);
 
-        }
+    border-radius: 22px;
 
+    background:
+        #ffffff;
 
-        .play-label {
+    color:
+        var(--ink);
 
-            color: var(--category-accent);
+    text-decoration: none;
 
-            font-size: 0.73rem;
-            font-weight: 800;
+    box-shadow:
+        0 8px 22px
+        rgba(23,59,104,0.065);
 
-            letter-spacing: 0.04em;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 
-        }
+}
 
 
-        .play-arrow {
+.game-card::before {
 
-            width: 34px;
-            height: 34px;
+    content: "";
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    position: absolute;
 
-            border-radius: 50%;
+    top: 0;
+    left: 0;
 
-            background: var(--category-accent);
+    width: 100%;
+    height: 5px;
 
-            color: #ffffff;
+    background:
+        var(--category-accent);
 
-            font-size: 0.9rem;
-            font-weight: 800;
+}
 
-            transition: transform 0.2s ease;
 
-        }
+.game-card::after {
 
+    content: "";
 
-        .game-card:hover .play-arrow {
-            transform: translateX(4px);
-        }
+    position: absolute;
 
+    width: 150px;
+    height: 150px;
 
-        /* =====================================================
-           VOCABULARY
-        ====================================================== */
+    right: -70px;
+    bottom: -75px;
 
-        .vocab-grid {
+    border-radius: 50%;
 
-            display: grid;
+    background:
+        var(--category-accent);
 
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(220px, 1fr)
-                );
+    opacity: 0.055;
 
-            gap: 15px;
+    transition:
+        transform 0.25s ease;
 
-        }
+}
 
 
-        .vocab-card {
+.game-card:hover {
 
-            padding: 21px;
+    transform:
+        translateY(-6px);
 
-            border: 1px solid var(--category-border);
-            border-radius: 18px;
+    border-color:
+        var(--category-accent);
 
-            background: #ffffff;
+    box-shadow:
+        0 18px 35px
+        rgba(23,59,104,0.12);
 
-            box-shadow:
-                0 6px 17px rgba(20, 58, 107, 0.05);
+}
 
-            transition: 0.2s ease;
 
-        }
+.game-card:hover::after {
 
+    transform:
+        scale(1.3);
 
-        .vocab-card:hover {
+}
 
-            transform: translateY(-4px);
 
-            border-color: var(--category-accent);
+.game-number {
 
-            box-shadow:
-                0 13px 25px rgba(20, 58, 107, 0.10);
+    position: absolute;
 
-        }
+    top: 22px;
+    right: 22px;
 
+    color:
+        var(--category-accent);
 
-        .vocab-vietnamese {
+    font-size: 0.65rem;
 
-            margin: 0 0 5px;
+    font-weight: 800;
 
-            color: var(--ink);
+    letter-spacing: 0.08em;
 
-            font-size: 1.2rem;
-            font-weight: 800;
+}
 
-        }
 
+.game-icon {
 
-        .vocab-meaning {
+    position: relative;
 
-            margin: 0;
+    z-index: 2;
 
-            color: var(--ink-soft);
+    width: 58px;
+    height: 58px;
 
-            font-size: 0.82rem;
-            line-height: 1.45;
+    display: flex;
 
-        }
+    align-items: center;
 
+    justify-content: center;
 
-        .vocab-phonetic {
+    margin-bottom: 18px;
 
-            margin-top: 8px;
+    border:
+        1px solid
+        var(--category-border);
 
-            color: var(--category-accent);
+    border-radius: 16px;
 
-            font-size: 0.76rem;
-            font-weight: 700;
+    background:
+        var(--category-background);
 
-        }
+    font-size: 1.75rem;
 
+    transition:
+        transform 0.22s ease;
 
-        /* =====================================================
-           VOCABULARY TOPIC CARD
-        ====================================================== */
+}
 
-        .vocab-topic-card {
 
-            position: relative;
+.game-card:hover .game-icon {
 
-            padding: 24px;
+    transform:
+        rotate(-4deg)
+        scale(1.08);
 
-            border: 2px solid var(--category-border);
-            border-radius: 20px;
+}
 
-            background: #ffffff;
 
-            cursor: pointer;
+.game-title {
 
-            box-shadow:
-                0 7px 20px rgba(20, 58, 107, 0.06);
+    position: relative;
 
-            transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease,
-                border-color 0.22s ease;
+    z-index: 2;
 
-        }
+    margin: 0 0 8px;
 
+    color:
+        var(--ink);
 
-        .vocab-topic-card:hover {
+    font-size: 1.1rem;
 
-            transform: translateY(-6px);
+    line-height: 1.35;
 
-            border-color: var(--category-accent);
+    font-weight: 800;
 
-            box-shadow:
-                0 15px 28px rgba(20, 58, 107, 0.12);
+}
 
-        }
 
+.game-description {
 
-        .vocab-topic-icon {
+    position: relative;
 
-            width: 50px;
-            height: 50px;
+    z-index: 2;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    margin: 0;
 
-            margin-bottom: 17px;
+    color:
+        var(--ink-soft);
 
-            border: 1px solid var(--category-border);
-            border-radius: 14px;
+    font-size: 0.79rem;
 
-            background: var(--category-background);
+    line-height: 1.55;
 
-            font-size: 1.45rem;
+}
 
-        }
 
+.game-footer {
 
-        .vocab-topic-title {
+    position: relative;
 
-            margin: 0 0 6px;
+    z-index: 2;
 
-            color: var(--ink);
+    margin-top: auto;
 
-            font-size: 1.12rem;
-            font-weight: 800;
+    padding-top: 20px;
 
-        }
+    display: flex;
 
+    align-items: center;
 
-        .vocab-topic-count {
+    justify-content: space-between;
 
-            margin: 0;
+}
 
-            color: var(--ink-soft);
 
-            font-size: 0.8rem;
+.play-label {
 
-        }
+    color:
+        var(--category-accent);
 
+    font-size: 0.7rem;
 
-        .vocab-topic-arrow {
+    font-weight: 800;
 
-            margin-top: 20px;
+    letter-spacing: 0.05em;
 
-            color: var(--category-accent);
+}
 
-            font-size: 0.72rem;
-            font-weight: 800;
 
-            letter-spacing: 0.03em;
+.play-arrow {
 
-        }
+    width: 34px;
+    height: 34px;
 
+    display: flex;
 
-        /* =====================================================
-           VOCABULARY TOPIC VIEW
-        ====================================================== */
+    align-items: center;
 
-        .vocab-back-btn {
+    justify-content: center;
 
-            grid-column: 1 / -1;
+    border-radius: 50%;
 
-            width: fit-content;
+    background:
+        var(--category-accent);
 
-            padding: 9px 15px;
+    color:
+        #ffffff;
 
-            border: 1px solid var(--category-border);
-            border-radius: 999px;
+    font-size: 0.9rem;
 
-            background: #ffffff;
+    font-weight: 800;
 
-            color: var(--category-accent);
+    transition:
+        transform 0.2s ease;
 
-            font-family: inherit;
+}
 
-            font-size: 0.78rem;
-            font-weight: 800;
 
-            cursor: pointer;
+.game-card:hover .play-arrow {
 
-            transition: 0.2s ease;
+    transform:
+        translateX(4px);
 
-        }
+}
 
 
-        .vocab-back-btn:hover {
+/* =====================================================
+   VOCABULARY GRID
+====================================================== */
 
-            background: var(--category-background);
+.vocab-grid {
 
-            transform: translateX(-3px);
+    display: grid;
 
-        }
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(215px, 1fr)
+        );
 
+    gap: 14px;
 
-        .vocab-topic-heading {
+}
 
-            grid-column: 1 / -1;
 
-            margin: 2px 0 5px;
-            padding: 4px 0 10px;
+/* =====================================================
+   VOCAB CARD
+====================================================== */
 
-        }
+.vocab-card {
 
+    padding: 20px;
 
-        .vocab-topic-heading h3 {
+    border:
+        1px solid
+        var(--category-border);
 
-            margin: 0 0 5px;
+    border-radius: 18px;
 
-            color: var(--ink);
+    background:
+        #ffffff;
 
-            font-size: 1.35rem;
-            font-weight: 800;
+    box-shadow:
+        0 6px 17px
+        rgba(23,59,104,0.05);
 
-        }
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 
+}
 
-        .vocab-topic-heading span {
 
-            color: var(--ink-soft);
+.vocab-card:hover {
 
-            font-size: 0.78rem;
-            font-weight: 600;
+    transform:
+        translateY(-4px);
 
-        }
+    border-color:
+        var(--category-accent);
 
+    box-shadow:
+        0 13px 26px
+        rgba(23,59,104,0.1);
 
-        /* =====================================================
-           EMPTY STATE
-        ====================================================== */
+}
 
-        .empty-message {
 
-            grid-column: 1 / -1;
+.vocab-vietnamese {
 
-            padding: 45px 25px;
+    margin: 0 0 5px;
 
-            border: 1px dashed var(--category-border);
-            border-radius: 20px;
+    color:
+        var(--ink);
 
-            background: rgba(255, 255, 255, 0.75);
+    font-size: 1.16rem;
 
-            color: var(--ink-soft);
+    font-weight: 800;
 
-            text-align: center;
+}
 
-        }
 
+.vocab-meaning {
 
-        .empty-icon {
+    margin: 0;
 
-            margin-bottom: 10px;
+    color:
+        var(--ink-soft);
 
-            font-size: 2rem;
+    font-size: 0.8rem;
 
-        }
+    line-height: 1.5;
 
+}
 
-        .empty-title {
 
-            margin: 0 0 6px;
+.vocab-phonetic {
 
-            color: var(--ink);
+    display: inline-block;
 
-            font-size: 1rem;
-            font-weight: 800;
+    margin-top: 9px;
 
-        }
+    padding: 3px 8px;
 
+    border-radius: 7px;
 
-        .empty-text {
+    background:
+        var(--category-background);
 
-            margin: 0;
+    color:
+        var(--category-accent);
 
-            font-size: 0.82rem;
+    font-size: 0.72rem;
 
-        }
+    font-weight: 700;
 
+}
 
-        /* =====================================================
-           FOOTER
-        ====================================================== */
 
-        footer {
+/* =====================================================
+   TOPIC CARDS
+====================================================== */
 
-            width: min(1400px, 94%);
+.vocab-topic-card {
 
-            margin: 0 auto;
+    position: relative;
 
-            padding: 15px 0 35px;
+    padding: 23px;
 
-            color: #7c93aa;
+    border:
+        1px solid
+        var(--category-border);
 
-            font-size: 0.78rem;
+    border-radius: 20px;
 
-            text-align: center;
+    background:
+        #ffffff;
 
-        }
+    cursor: pointer;
 
+    box-shadow:
+        0 7px 20px
+        rgba(23,59,104,0.055);
 
-        .footer-line {
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 
-            width: 100%;
-            height: 1px;
+}
 
-            margin-bottom: 20px;
 
-            background: #d8e5f0;
+.vocab-topic-card:hover {
 
-        }
+    transform:
+        translateY(-5px);
 
+    border-color:
+        var(--category-accent);
 
-        /* =====================================================
-           MOBILE
-        ====================================================== */
+    box-shadow:
+        0 15px 28px
+        rgba(23,59,104,0.11);
 
-        @media (max-width: 700px) {
+}
 
-            .top-nav {
 
-                width: 92%;
-                margin-top: 14px;
+.vocab-topic-icon {
 
-            }
+    width: 48px;
+    height: 48px;
 
+    display: flex;
 
-            .container {
+    align-items: center;
 
-                width: 92%;
-                margin: 25px auto 50px;
+    justify-content: center;
 
-            }
+    margin-bottom: 16px;
 
+    border:
+        1px solid
+        var(--category-border);
 
-            .category-header {
+    border-radius: 14px;
 
-                padding: 27px 22px;
-                border-radius: 20px;
+    background:
+        var(--category-background);
 
-            }
+    font-size: 1.4rem;
 
+}
 
-            .category-header-content {
 
-                align-items: flex-start;
+.vocab-topic-title {
 
-                gap: 16px;
+    margin: 0 0 6px;
 
-            }
+    color:
+        var(--ink);
 
+    font-size: 1.08rem;
 
-            .category-header-icon {
+    font-weight: 800;
 
-                width: 60px;
-                height: 60px;
+}
 
-                border-radius: 16px;
 
-                font-size: 1.9rem;
+.vocab-topic-count {
 
-            }
+    margin: 0;
 
+    color:
+        var(--ink-soft);
 
-            .category-title {
-                font-size: 2.1rem;
-            }
+    font-size: 0.78rem;
 
+}
 
-            .category-description {
-                font-size: 0.82rem;
-            }
 
+.vocab-topic-arrow {
 
-            .tabs {
+    margin-top: 19px;
 
-                gap: 4px;
-                padding: 5px;
+    color:
+        var(--category-accent);
 
-            }
+    font-size: 0.68rem;
 
+    font-weight: 800;
 
-            .tab-btn {
+    letter-spacing: 0.04em;
 
-                min-height: 45px;
+}
 
-                padding: 8px 7px;
 
-                font-size: 0.7rem;
+/* =====================================================
+   LESSON GRID
+====================================================== */
 
-            }
+.lesson-grid {
 
+    display: grid;
 
-            .tab-icon {
-                font-size: 0.9rem;
-            }
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
 
+    gap: 18px;
 
-            .game-grid {
+}
 
-                grid-template-columns: 1fr;
 
-                gap: 14px;
+/* =====================================================
+   LESSON CARD
+====================================================== */
 
-            }
+.lesson-card {
 
+    position: relative;
 
-            .vocab-grid {
+    overflow: hidden;
 
-                grid-template-columns: 1fr 1fr;
+    padding: 25px;
 
-                gap: 10px;
+    border:
+        1px solid
+        var(--category-border);
 
-            }
+    border-radius: 22px;
 
+    background:
+        #ffffff;
 
-            .game-card {
+    box-shadow:
+        0 8px 22px
+        rgba(23,59,104,0.065);
 
-                min-height: 220px;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 
-                padding: 22px;
+}
 
-                border-radius: 18px;
 
-            }
+.lesson-card::before {
 
+    content: "";
 
-            .games-heading h2 {
-                font-size: 1.1rem;
-            }
+    position: absolute;
 
-        }
+    top: 0;
+    left: 0;
 
+    width: 100%;
+    height: 5px;
 
-        @media (max-width: 430px) {
+    background:
+        var(--category-accent);
 
-            .category-header-content {
-                flex-direction: column;
-            }
+}
 
 
-            .tabs {
+.lesson-card:hover {
 
-                display: grid;
+    transform:
+        translateY(-5px);
 
-                grid-template-columns:
-                    repeat(2, 1fr);
+    border-color:
+        var(--category-accent);
 
-            }
+    box-shadow:
+        0 16px 32px
+        rgba(23,59,104,0.11);
 
+}
 
-            .tab-btn {
 
-                flex-direction: column;
+.lesson-number {
 
-                gap: 3px;
+    margin-bottom: 14px;
 
-            }
+    color:
+        var(--category-accent);
 
+    font-size: 0.66rem;
 
-            .vocab-grid {
-                grid-template-columns: 1fr;
-            }
+    font-weight: 800;
 
-        }
+    letter-spacing: 0.08em;
 
-    </style>
+}
+
+
+.lesson-title {
+
+    margin: 0 0 10px;
+
+    color:
+        var(--ink);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size: 1.55rem;
+
+    line-height: 1.25;
+
+}
+
+
+.lesson-phonetic {
+
+    display: inline-block;
+
+    margin-bottom: 13px;
+
+    padding: 4px 9px;
+
+    border-radius: 8px;
+
+    background:
+        var(--category-background);
+
+    color:
+        var(--category-accent);
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+}
+
+
+.lesson-meaning {
+
+    margin: 0;
+
+    color:
+        var(--ink-soft);
+
+    font-size: 0.82rem;
+
+    line-height: 1.6;
+
+}
+
+
+.lesson-explanation {
+
+    margin-top: 16px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid
+        var(--line);
+
+    color:
+        var(--ink-soft);
+
+    font-size: 0.77rem;
+
+    line-height: 1.6;
+
+}
+
+
+.lesson-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        var(--category-accent);
+
+    font-size: 0.64rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =====================================================
+   TOPIC VOCABULARY VIEW
+====================================================== */
+
+.vocab-back-btn {
+
+    grid-column: 1 / -1;
+
+    width: fit-content;
+
+    padding: 8px 14px;
+
+    border:
+        1px solid
+        var(--category-border);
+
+    border-radius: 999px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--category-accent);
+
+    font-family: inherit;
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.vocab-back-btn:hover {
+
+    background:
+        var(--category-background);
+
+    transform:
+        translateX(-3px);
+
+}
+
+
+.vocab-topic-heading {
+
+    grid-column: 1 / -1;
+
+    padding: 4px 0 10px;
+
+}
+
+
+.vocab-topic-heading h3 {
+
+    margin: 0 0 4px;
+
+    color:
+        var(--ink);
+
+    font-size: 1.28rem;
+
+    font-weight: 800;
+
+}
+
+
+.vocab-topic-heading span {
+
+    color:
+        var(--ink-soft);
+
+    font-size: 0.76rem;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+====================================================== */
+
+.empty-message {
+
+    grid-column: 1 / -1;
+
+    padding: 50px 25px;
+
+    border:
+        1px dashed
+        var(--category-border);
+
+    border-radius: 21px;
+
+    background:
+        rgba(255,255,255,0.7);
+
+    color:
+        var(--ink-soft);
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    margin-bottom: 10px;
+
+    font-size: 2rem;
+
+}
+
+
+.empty-title {
+
+    margin: 0 0 6px;
+
+    color:
+        var(--ink);
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+}
+
+
+.empty-text {
+
+    margin: 0;
+
+    font-size: 0.8rem;
+
+}
+
+
+/* =====================================================
+   FOOTER
+====================================================== */
+
+footer {
+
+    width: min(1280px, 92%);
+
+    margin: 0 auto;
+
+    padding: 15px 0 35px;
+
+    color:
+        #7d91a7;
+
+    font-size: 0.76rem;
+
+    text-align: center;
+
+}
+
+
+.footer-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 20px;
+
+    background:
+        #d9e4ee;
+
+}
+
+
+/* =====================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 700px) {
+
+    .top-nav {
+
+        width: 92%;
+
+        margin-top: 15px;
+
+    }
+
+
+    .container {
+
+        width: 92%;
+
+        margin-top: 24px;
+
+    }
+
+
+    .category-header {
+
+        padding: 29px 23px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .category-header-content {
+
+        align-items: flex-start;
+
+        gap: 17px;
+
+    }
+
+
+    .category-header-icon {
+
+        width: 62px;
+        height: 62px;
+
+        border-radius: 17px;
+
+        font-size: 2rem;
+
+    }
+
+
+    .category-title {
+
+        font-size: 2.25rem;
+
+    }
+
+
+    .category-description {
+
+        font-size: 0.8rem;
+
+    }
+
+
+    .tabs {
+
+        gap: 5px;
+
+        padding: 5px;
+
+    }
+
+
+    .tab-btn {
+
+        min-height: 46px;
+
+        padding: 8px;
+
+        font-size: 0.72rem;
+
+    }
+
+
+    .game-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+
+    }
+
+
+    .lesson-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+
+    }
+
+
+    .vocab-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    .game-card {
+
+        min-height: 220px;
+
+        padding: 21px;
+
+        border-radius: 19px;
+
+    }
+
+
+    .lesson-card {
+
+        padding: 21px;
+
+        border-radius: 19px;
+
+    }
+
+
+    .vocab-card {
+
+        padding: 17px;
+
+    }
+
+
+    .vocab-vietnamese {
+
+        font-size: 1.05rem;
+
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .category-header-content {
+
+        flex-direction: column;
+
+    }
+
+
+    .category-title {
+
+        font-size: 2.15rem;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 1.05rem;
+
+    }
+
+
+    .vocab-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -1208,1295 +1712,1279 @@
 <body>
 
 
-    <!-- =====================================================
-         TOP NAVIGATION
-    ====================================================== -->
+<!-- =====================================================
+     TOP NAVIGATION
+====================================================== -->
 
-    <nav class="top-nav">
+<nav class="top-nav">
 
-        <a
-            href="index.html"
-            class="back-btn"
+    <a
+        href="index.html"
+        class="back-btn"
+    >
+        ← Back to Lobby
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         CATEGORY HEADER
+    ================================================== -->
+
+    <section
+        class="category-header"
+        id="category-header"
+    >
+
+        <div class="category-header-content">
+
+            <div
+                id="category-icon"
+                class="category-header-icon"
+                aria-hidden="true"
+            >
+                📚
+            </div>
+
+
+            <div>
+
+                <p
+                    id="category-eyebrow"
+                    class="category-eyebrow"
+                >
+                    Vietnamese Learning
+                </p>
+
+
+                <h1
+                    id="category-title"
+                    class="category-title"
+                >
+                    Loading...
+                </h1>
+
+
+                <p
+                    id="category-description"
+                    class="category-description"
+                >
+                    Loading category...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         TABS
+
+         ONLY vocabulary categories use tabs.
+
+         vocabulary:
+         Games + Vocabulary
+
+         sentences:
+         NO TABS
+
+         useful-phrases:
+         NO TABS
+    ================================================== -->
+
+    <nav
+        id="category-tabs"
+        class="tabs"
+        aria-label="Category sections"
+    >
+
+        <button
+            type="button"
+            class="tab-btn active"
+            data-tab="games"
         >
-            ← Back to Lobby
-        </a>
+
+            <span
+                class="tab-icon"
+                aria-hidden="true"
+            >
+                🎮
+            </span>
+
+            Games
+
+        </button>
+
+
+        <button
+            type="button"
+            class="tab-btn"
+            data-tab="vocab"
+        >
+
+            <span
+                id="content-tab-icon"
+                class="tab-icon"
+                aria-hidden="true"
+            >
+                🧠
+            </span>
+
+            <span id="content-tab-label">
+                Vocabulary
+            </span>
+
+        </button>
 
     </nav>
 
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
+    <!-- =================================================
+         GAMES PANEL
 
-    <main class="container">
+         ONLY USED BY VOCABULARY CATEGORIES
+    ================================================== -->
 
+    <section
+        id="games-tab"
+        class="tab-panel active"
+    >
 
-        <!-- =================================================
-             CATEGORY HEADER
-        ================================================== -->
+        <div class="section-heading">
 
-        <section
-            id="category-header"
-            class="category-header"
-        >
-
-            <div class="category-header-content">
+            <div class="section-heading-left">
 
                 <div
-                    id="category-icon"
-                    class="category-header-icon"
-                    aria-hidden="true"
-                >
-                    📚
-                </div>
-
-
-                <div>
-
-                    <p class="category-eyebrow">
-                        Vietnamese Practice
-                    </p>
-
-
-                    <h1
-                        id="category-title"
-                        class="category-title"
-                    >
-                        Loading...
-                    </h1>
-
-
-                    <p
-                        id="category-description"
-                        class="category-description"
-                    >
-                        Loading category...
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             MAIN CATEGORY SECTIONS
-
-             Exactly 2 sections:
-             1. GAMES
-             2. VOCABULARY
-        ================================================== -->
-
-        <nav
-            class="tabs"
-            aria-label="Category sections"
-        >
-
-            <button
-                type="button"
-                class="tab-btn active"
-                data-tab="games"
-            >
-
-                <span
-                    class="tab-icon"
+                    class="section-heading-icon"
                     aria-hidden="true"
                 >
                     🎮
-                </span>
-
-                Games
-
-            </button>
-
-
-            <button
-                type="button"
-                class="tab-btn"
-                data-tab="vocab"
-            >
-
-                <span
-                    class="tab-icon"
-                    aria-hidden="true"
-                >
-                    🧠
-                </span>
-
-                Vocabulary
-
-            </button>
-
-        </nav>
-
-
-        <!-- =================================================
-             GAMES
-        ================================================== -->
-
-        <section
-            id="games-tab"
-            class="tab-panel active"
-        >
-
-            <div class="games-heading">
+                </div>
 
                 <h2>
                     Choose a game
                 </h2>
 
-
-                <span
-                    id="game-count"
-                    class="item-count"
-                >
-                    Loading...
-                </span>
-
             </div>
 
 
-            <div
-                id="game-grid"
-                class="game-grid"
+            <span
+                id="game-count"
+                class="item-count"
             >
+                Loading...
+            </span>
 
-                <div class="empty-message">
-
-                    <div class="empty-icon">
-                        🎮
-                    </div>
-
-                    <h3 class="empty-title">
-                        Loading games...
-                    </h3>
-
-                    <p class="empty-text">
-                        Finding games for this category.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
+        </div>
 
 
-        <!-- =================================================
-             VOCABULARY
-        ================================================== -->
-
-        <section
-            id="vocab-tab"
-            class="tab-panel"
+        <div
+            id="game-grid"
+            class="game-grid"
         >
 
-            <div class="games-heading">
+            <div class="empty-message">
 
-                <h2>
+                <div class="empty-icon">
+                    🎮
+                </div>
+
+                <h3 class="empty-title">
+                    Loading games...
+                </h3>
+
+                <p class="empty-text">
+                    Finding games for this category.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SECOND CONTENT PANEL
+
+         VOCABULARY:
+         Vocabulary cards
+
+         SENTENCES:
+         Lesson cards
+
+         USEFUL PHRASES:
+         Lesson cards
+    ================================================== -->
+
+    <section
+        id="content-tab"
+        class="tab-panel"
+    >
+
+        <div class="section-heading">
+
+            <div class="section-heading-left">
+
+                <div
+                    id="content-heading-icon"
+                    class="section-heading-icon"
+                    aria-hidden="true"
+                >
+                    🧠
+                </div>
+
+                <h2
+                    id="content-heading"
+                >
                     Vocabulary
                 </h2>
 
-
-                <span
-                    id="vocab-count"
-                    class="item-count"
-                >
-                    0 words
-                </span>
-
             </div>
 
 
-            <div
-                id="vocab-grid"
-                class="vocab-grid"
+            <span
+                id="content-count"
+                class="item-count"
             >
+                0
+            </span>
 
-                <div class="empty-message">
+        </div>
 
-                    <div class="empty-icon">
-                        🧠
-                    </div>
 
-                    <h3 class="empty-title">
-                        Vocabulary coming soon
-                    </h3>
+        <div
+            id="content-grid"
+            class="vocab-grid"
+        >
 
-                    <p class="empty-text">
-                        Useful Vietnamese words for this
-                        topic will appear here.
-                    </p>
+            <div class="empty-message">
 
+                <div class="empty-icon">
+                    🧠
                 </div>
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <div class="footer-line"></div>
-
-        © 2026 Survival Vietnamese with Duong
-
-    </footer>
-
-
-    <!-- =====================================================
-         SCRIPT
-    ====================================================== -->
-
-    <script>
-
-        /* =====================================================
-           CONFIGURATION
-
-           category.html:
-           MAIN/WEB/category.html
-
-           categories.json:
-           MAIN/WEB/categories.json
-
-           Therefore all game paths are relative to MAIN/WEB/.
-        ====================================================== */
-
-        const CATEGORY_FILE = "categories.json";
-
-
-        /* =====================================================
-           STATE
-        ====================================================== */
-
-        let currentVocabulary = [];
-        let currentCategory = null;
-
-
-        /* =====================================================
-           GET CATEGORY FROM URL
-        ====================================================== */
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const categoryName =
-            params.get("category");
-
-
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
-
-        const categoryTitle =
-            document.getElementById(
-                "category-title"
-            );
-
-
-        const categoryDescription =
-            document.getElementById(
-                "category-description"
-            );
-
-
-        const categoryIcon =
-            document.getElementById(
-                "category-icon"
-            );
-
-
-        const gameGrid =
-            document.getElementById(
-                "game-grid"
-            );
-
-
-        const vocabGrid =
-            document.getElementById(
-                "vocab-grid"
-            );
-
-
-        const gameCount =
-            document.getElementById(
-                "game-count"
-            );
-
-
-        const vocabCount =
-            document.getElementById(
-                "vocab-count"
-            );
-
-
-        /* =====================================================
-           FALLBACK THEMES
-        ====================================================== */
-
-        const fallbackThemes = {
-
-            "Color": {
-
-                accent: "#2878df",
-                light: "#6fa4ff",
-                background: "#eaf3ff",
-                border: "#c4daf6"
-
-            },
-
-
-            "Describe things": {
-
-                accent: "#7657d9",
-                light: "#a38be8",
-                background: "#f1edff",
-                border: "#d9d0fa"
-
-            },
-
-
-            "Food and Drinks": {
-
-                accent: "#e05a42",
-                light: "#f08b78",
-                background: "#fff0ec",
-                border: "#f3cdc5"
-
-            },
-
-
-            "Grammar": {
-
-                accent: "#079b91",
-                light: "#55c4bb",
-                background: "#e7f8f5",
-                border: "#bee8e3"
-
-            },
-
-
-            "Health": {
-
-                accent: "#d14f76",
-                light: "#e68ba5",
-                background: "#fff0f4",
-                border: "#f0cbd7"
-
-            },
-
-
-            "Numbers": {
-
-                accent: "#3b82c4",
-                light: "#72a9d8",
-                background: "#eaf5fc",
-                border: "#c4dff1"
-
-            },
-
-
-            "People & Pronouns": {
-
-                accent: "#d14f9b",
-                light: "#df82b8",
-                background: "#fff0f8",
-                border: "#efc7df"
-
-            },
-
-
-            "Places, Directions & Transportation": {
-
-                accent: "#2f9a67",
-                light: "#68c493",
-                background: "#eaf8f0",
-                border: "#c5e9d5"
-
-            },
-
-
-            "Useful Phrases": {
-
-                accent: "#d47b2f",
-                light: "#e4a35f",
-                background: "#fff5e8",
-                border: "#f1d6b6"
-
-            },
-
-
-            "Shopping & Money": {
-
-                accent: "#c65a9e",
-                light: "#df8bc0",
-                background: "#fff1f8",
-                border: "#efcce1"
-
-            },
-
-
-            "Mix Practice Vocabulary": {
-
-                accent: "#d7a600",
-                light: "#f0ca4d",
-                background: "#fff8d9",
-                border: "#eadb9b"
-
-            }
-
-        };
-
-
-        /* =====================================================
-           DEFAULT THEME
-        ====================================================== */
-
-        const defaultTheme = {
-
-            accent: "#2f6fed",
-            light: "#6fa4ff",
-            background: "#eaf3ff",
-            border: "#c4daf6"
-
-        };
-
-
-        /* =====================================================
-           ESCAPE HTML
-        ====================================================== */
-
-        function escapeHtml(value) {
-
-            const div =
-                document.createElement("div");
-
-
-            div.textContent =
-                String(value ?? "");
-
-
-            return div.innerHTML;
-
-        }
-
-
-        /* =====================================================
-           NORMALIZE CATEGORY NAME
-        ====================================================== */
-
-        function normalizeCategoryName(value) {
-
-            return String(value || "")
-                .trim()
-                .toLowerCase();
-
-        }
-
-
-        /* =====================================================
-           FIND CATEGORY NAME
-        ====================================================== */
-
-        function findCategoryKey(
-            categories,
-            requestedName
-        ) {
-
-            if (
-                categories[
-                    requestedName
-                ]
-            ) {
-
-                return requestedName;
-
-            }
-
-
-            const requested =
-                normalizeCategoryName(
-                    requestedName
-                );
-
-
-            return Object.keys(
-                categories
-            ).find(
-                key =>
-                    normalizeCategoryName(
-                        key
-                    ) === requested
-            ) || null;
-
-        }
-
-
-        /* =====================================================
-           APPLY CATEGORY THEME
-        ====================================================== */
-
-        function applyCategoryTheme(
-            category,
-            categoryKey
-        ) {
-
-            const theme =
-                category &&
-                category.theme
-                    ? {
-                        ...defaultTheme,
-                        ...category.theme
-                    }
-                    : (
-                        fallbackThemes[
-                            categoryKey
-                        ] ||
-                        defaultTheme
-                    );
-
-
-            document.documentElement.style.setProperty(
-                "--category-accent",
-                theme.accent
-            );
-
-
-            document.documentElement.style.setProperty(
-                "--category-accent-light",
-                theme.light
-            );
-
-
-            document.documentElement.style.setProperty(
-                "--category-background",
-                theme.background
-            );
-
-
-            document.documentElement.style.setProperty(
-                "--category-border",
-                theme.border
-            );
-
-        }
-
-
-        /* =====================================================
-           LOAD CATEGORIES.JSON
-        ====================================================== */
-
-        async function loadCategories() {
-
-            const response =
-                await fetch(
-                    CATEGORY_FILE,
-                    {
-                        cache: "no-store"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Could not load categories.json (${response.status})`
-                );
-
-            }
-
-
-            const data =
-                await response.json();
-
-
-            if (
-                !data ||
-                typeof data !== "object" ||
-                Array.isArray(data)
-            ) {
-
-                throw new Error(
-                    "categories.json has an invalid format."
-                );
-
-            }
-
-
-            return data;
-
-        }
-
-
-        /* =====================================================
-           CREATE GAME CARD
-        ====================================================== */
-
-        function createGameCard(
-            game,
-            index
-        ) {
-
-            const card =
-                document.createElement("a");
-
-
-            card.className =
-                "game-card";
-
-
-            const gamePath =
-                game &&
-                typeof game === "object"
-                    ? game.path
-                    : "";
-
-
-            /*
-             * Paths in categories.json are relative
-             * to MAIN/WEB/category.html.
-             *
-             * Examples:
-             *
-             * Vocabulary/Color/game1.html
-             *
-             * Vocabulary/Food and Drinks/game1/game1.html
-             *
-             * Sentences/Grammar/game1/game1.html
-             */
-
-
-            if (gamePath) {
-
-                card.href =
-                    encodeURI(
-                        gamePath
-                    );
-
-            }
-
-            else {
-
-                card.href = "#";
-
-
-                card.addEventListener(
-                    "click",
-                    event => {
-
-                        event.preventDefault();
-
-                    }
-                );
-
-            }
-
-
-            const icon =
-                game &&
-                game.icon
-                    ? game.icon
-                    : "🎮";
-
-
-            const title =
-                game &&
-                game.title
-                    ? game.title
-                    : `Game ${index + 1}`;
-
-
-            const description =
-                game &&
-                game.description
-                    ? game.description
-                    : "Practice Vietnamese vocabulary through a quick interactive game.";
-
-
-            card.innerHTML = `
-
-                <span class="game-number">
-                    GAME ${String(
-                        index + 1
-                    ).padStart(
-                        2,
-                        "0"
-                    )}
-                </span>
-
-
-                <div
-                    class="game-icon"
-                    aria-hidden="true"
-                >
-                    ${escapeHtml(icon)}
-                </div>
-
-
-                <h3 class="game-title">
-                    ${escapeHtml(title)}
-                </h3>
-
-
-                <p class="game-description">
-                    ${escapeHtml(description)}
-                </p>
-
-
-                <div class="game-footer">
-
-                    <span class="play-label">
-                        PLAY GAME
-                    </span>
-
-
-                    <span
-                        class="play-arrow"
-                        aria-hidden="true"
-                    >
-                        →
-                    </span>
-
-                </div>
-
-            `;
-
-
-            return card;
-
-        }
-
-
-        /* =====================================================
-           CREATE VOCABULARY CARD
-        ====================================================== */
-
-        function createVocabCard(
-            word,
-            index
-        ) {
-
-            const card =
-                document.createElement("article");
-
-
-            card.className =
-                "vocab-card";
-
-
-            let vietnamese = "";
-            let meaning = "";
-            let phonetic = "";
-
-
-            /*
-             * Array format:
-             *
-             * ["nhà", "House / Home", "nha"]
-             */
-
-            if (Array.isArray(word)) {
-
-                vietnamese =
-                    word[0] || "";
-
-                meaning =
-                    word[1] || "";
-
-                phonetic =
-                    word[2] || "";
-
-            }
-
-
-            /*
-             * Object format.
-             */
-
-            else if (
-                word &&
-                typeof word === "object"
-            ) {
-
-                vietnamese =
-                    word.vietnamese ||
-                    word.word ||
-                    word.term ||
-                    "";
-
-                meaning =
-                    word.english ||
-                    word.meaning ||
-                    word.translation ||
-                    "";
-
-                phonetic =
-                    word.phonetics ||
-                    word.phonetic ||
-                    word.pronunciation ||
-                    "";
-
-            }
-
-
-            const cleanPhonetic =
-                String(
-                    phonetic
-                )
-                    .replace(
-                        /^\/|\/$/g,
-                        ""
-                    );
-
-
-            card.innerHTML = `
-
-                <h3 class="vocab-vietnamese">
-                    ${escapeHtml(
-                        vietnamese ||
-                        `Word ${index + 1}`
-                    )}
-                </h3>
-
-
-                <p class="vocab-meaning">
-                    ${escapeHtml(
-                        meaning ||
-                        "Vietnamese vocabulary"
-                    )}
-                </p>
-
-
-                ${
-                    cleanPhonetic
-                        ? `
-                            <div class="vocab-phonetic">
-                                /${escapeHtml(
-                                    cleanPhonetic
-                                )}/
-                            </div>
-                          `
-                        : ""
-                }
-
-            `;
-
-
-            return card;
-
-        }
-
-
-        /* =====================================================
-           CREATE EMPTY STATE
-        ====================================================== */
-
-        function createEmptyState(
-            icon,
-            title,
-            text
-        ) {
-
-            const element =
-                document.createElement("div");
-
-
-            element.className =
-                "empty-message";
-
-
-            element.innerHTML = `
-
-                <div
-                    class="empty-icon"
-                    aria-hidden="true"
-                >
-                    ${escapeHtml(icon)}
-                </div>
-
 
                 <h3 class="empty-title">
-                    ${escapeHtml(title)}
+                    Loading...
                 </h3>
 
-
                 <p class="empty-text">
-                    ${escapeHtml(text)}
+                    Loading learning materials.
                 </p>
 
-            `;
+            </div>
+
+        </div>
+
+    </section>
 
 
-            return element;
+    <!-- =================================================
+         LESSONS PANEL
 
-        }
+         Used by:
+         sentences
+         useful-phrases
 
+         This is NOT inside tabs.
+    ================================================== -->
 
-        /* =====================================================
-           RENDER GAMES
-        ====================================================== */
+    <section
+        id="lessons-section"
+        class="tab-panel"
+    >
 
-        function renderGames(games) {
+        <div class="section-heading">
 
-            gameGrid.innerHTML = "";
+            <div class="section-heading-left">
 
+                <div
+                    id="lessons-heading-icon"
+                    class="section-heading-icon"
+                    aria-hidden="true"
+                >
+                    📖
+                </div>
 
-            const validGames =
-                Array.isArray(games)
-                    ? games.filter(
-                        game =>
-                            game &&
-                            typeof game === "object"
-                    )
-                    : [];
+                <h2
+                    id="lessons-heading"
+                >
+                    Lessons
+                </h2>
 
-
-            gameCount.textContent =
-                `${validGames.length} ${
-                    validGames.length === 1
-                        ? "game"
-                        : "games"
-                }`;
-
-
-            if (
-                validGames.length === 0
-            ) {
-
-                gameGrid.appendChild(
-                    createEmptyState(
-                        "🎮",
-                        "Games coming soon",
-                        "Games for this category will appear here."
-                    )
-                );
+            </div>
 
 
-                return;
+            <span
+                id="lessons-count"
+                class="item-count"
+            >
+                0
+            </span>
+
+        </div>
+
+
+        <div
+            id="lesson-grid"
+            class="lesson-grid"
+        >
+
+            <div class="empty-message">
+
+                <div class="empty-icon">
+                    📖
+                </div>
+
+                <h3 class="empty-title">
+                    Loading lessons...
+                </h3>
+
+                <p class="empty-text">
+                    Loading learning materials.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-line"></div>
+
+    © 2026 Survival Vietnamese with Duong
+
+</footer>
+
+
+<!-- =====================================================
+     SCRIPT
+====================================================== -->
+
+<script>
+
+/* =====================================================
+   CONFIGURATION
+====================================================== */
+
+const CATEGORY_FILE = "categories.json";
+
+
+/* =====================================================
+   STATE
+====================================================== */
+
+let currentVocabulary = [];
+
+let currentCategory = null;
+
+let currentCategoryType = "";
+
+
+/* =====================================================
+   GET CATEGORY FROM URL
+====================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const categoryName =
+    params.get("category");
+
+
+/* =====================================================
+   ELEMENTS
+====================================================== */
+
+const categoryTitle =
+    document.getElementById(
+        "category-title"
+    );
+
+
+const categoryDescription =
+    document.getElementById(
+        "category-description"
+    );
+
+
+const categoryIcon =
+    document.getElementById(
+        "category-icon"
+    );
+
+
+const categoryEyebrow =
+    document.getElementById(
+        "category-eyebrow"
+    );
+
+
+const categoryTabs =
+    document.getElementById(
+        "category-tabs"
+    );
+
+
+const gamesTab =
+    document.getElementById(
+        "games-tab"
+    );
+
+
+const contentTab =
+    document.getElementById(
+        "content-tab"
+    );
+
+
+const lessonsSection =
+    document.getElementById(
+        "lessons-section"
+    );
+
+
+const gameGrid =
+    document.getElementById(
+        "game-grid"
+    );
+
+
+const contentGrid =
+    document.getElementById(
+        "content-grid"
+    );
+
+
+const lessonGrid =
+    document.getElementById(
+        "lesson-grid"
+    );
+
+
+const gameCount =
+    document.getElementById(
+        "game-count"
+    );
+
+
+const contentCount =
+    document.getElementById(
+        "content-count"
+    );
+
+
+const lessonsCount =
+    document.getElementById(
+        "lessons-count"
+    );
+
+
+const contentTabLabel =
+    document.getElementById(
+        "content-tab-label"
+    );
+
+
+const contentTabIcon =
+    document.getElementById(
+        "content-tab-icon"
+    );
+
+
+const contentHeading =
+    document.getElementById(
+        "content-heading"
+    );
+
+
+const contentHeadingIcon =
+    document.getElementById(
+        "content-heading-icon"
+    );
+
+
+const lessonsHeading =
+    document.getElementById(
+        "lessons-heading"
+    );
+
+
+const lessonsHeadingIcon =
+    document.getElementById(
+        "lessons-heading-icon"
+    );
+
+
+/* =====================================================
+   DEFAULT THEME
+====================================================== */
+
+const defaultTheme = {
+    accent: "#2f6fed",
+    light: "#6fa4ff",
+    background: "#eaf3ff",
+    border: "#c4daf6"
+};
+
+const categoryThemes = {
+    "Activities": { accent: "#D25F52", light: "#e0897e", background: "#fdeeeb", border: "#f0cec6" },
+    "Clothes": { accent: "#CC8B4F", light: "#dba876", background: "#fbf1e6", border: "#ecdab6" },
+    "Food and Drinks": { accent: "#B8A24A", light: "#cbb96e", background: "#f9f6e6", border: "#e8dfb2" },
+    "Numbers": { accent: "#7CAE4F", light: "#9dc379", background: "#f0f7e8", border: "#d5e6b8" },
+    "Places, Directions & Transportation": { accent: "#4FAE68", light: "#79c48c", background: "#eaf6ee", border: "#c1e0cc" },
+    "Sentences": { accent: "#3F9D8C", light: "#6fb7a9", background: "#e8f5f2", border: "#bce0d8" },
+    "Describe Things": { accent: "#4593AE", light: "#71acc0", background: "#e9f3f7", border: "#bcdae5" },
+    "People & Pronouns": { accent: "#4F73C4", light: "#7f97d4", background: "#eaf0fa", border: "#c3d4ef" },
+    "Colors": { accent: "#6F5FB8", light: "#9186c9", background: "#efedf9", border: "#d0c9ec" },
+    "Health": { accent: "#9C5FB8", light: "#b686c9", background: "#f6eef9", border: "#dfc9ec" },
+    "Useful Phrases": { accent: "#B85088", light: "#c97ba3", background: "#f9eaf1", border: "#ecc4dc" },
+    "Dictionary": { accent: "#b7791f", light: "#c9954f", background: "#fff8e7", border: "#efdca8" }
+};
+
+function applyCategoryTheme(category, categoryKey) {
+
+    const presetTheme = categoryThemes[categoryKey] || null;
+
+    // bảng màu khớp lobby luôn được ưu tiên cao nhất
+    const theme = {
+        ...defaultTheme,
+        ...(category && category.theme ? category.theme : {}),
+        ...(presetTheme || {})
+    };
+
+    document.documentElement.style.setProperty("--category-accent", theme.accent);
+    document.documentElement.style.setProperty("--category-accent-light", theme.light);
+    document.documentElement.style.setProperty("--category-background", theme.background);
+    document.documentElement.style.setProperty("--category-border", theme.border);
+}
+
+/* =====================================================
+   TYPE CONFIGURATION
+====================================================== */
+
+const TYPE_CONFIG = {
+
+    vocabulary: {
+
+        eyebrow:
+            "Vietnamese Vocabulary",
+
+        tabLabel:
+            "Vocabulary",
+
+        tabIcon:
+            "🧠",
+
+        heading:
+            "Vocabulary",
+
+        headingIcon:
+            "🧠"
+
+    },
+
+
+    sentences: {
+
+        eyebrow:
+            "Vietnamese Sentences",
+
+        heading:
+            "Lessons",
+
+        headingIcon:
+            "📖",
+
+        icon:
+            "💬"
+
+    },
+
+
+    "useful-phrases": {
+
+        eyebrow:
+            "Useful Vietnamese Phrases",
+
+        heading:
+            "Lessons",
+
+        headingIcon:
+            "💬",
+
+        icon:
+            "💡"
+
+    }
+
+};
+
+
+/* =====================================================
+   ESCAPE HTML
+====================================================== */
+
+function escapeHtml(value) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(
+            value ?? ""
+        );
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   NORMALIZE TYPE
+====================================================== */
+
+function normalizeType(value) {
+
+    return String(
+        value || ""
+    )
+        .trim()
+        .toLowerCase()
+        .replace(
+            /[_\s]+/g,
+            "-"
+        );
+
+}
+
+
+/* =====================================================
+   NORMALIZE CATEGORY NAME
+====================================================== */
+
+function normalizeCategoryName(value) {
+
+    return String(
+        value || ""
+    )
+        .trim()
+        .toLowerCase();
+
+}
+
+
+/* =====================================================
+   FIND CATEGORY KEY
+====================================================== */
+
+function findCategoryKey(
+    categories,
+    requestedName
+) {
+
+    if (!requestedName) {
+
+        return null;
+
+    }
+
+
+    const requested =
+        normalizeCategoryName(
+            requestedName
+        );
+
+
+    return Object.keys(
+        categories
+    ).find(
+        key =>
+            normalizeCategoryName(
+                key
+            ) === requested
+    ) || null;
+
+}
+
+
+/* =====================================================
+   APPLY CATEGORY THEME
+====================================================== */
+
+function applyCategoryTheme(category, categoryKey) {
+
+    const presetTheme =
+        categoryThemes[categoryKey] || null;
+
+    const theme = {
+        ...defaultTheme,
+        ...(presetTheme || {}),
+        ...(category && category.theme ? category.theme : {})
+    };
+
+    document.documentElement.style.setProperty("--category-accent", theme.accent);
+    document.documentElement.style.setProperty("--category-accent-light", theme.light);
+    document.documentElement.style.setProperty("--category-background", theme.background);
+    document.documentElement.style.setProperty("--category-border", theme.border);
+}
+
+/* =====================================================
+   LOAD CATEGORIES.JSON
+====================================================== */
+
+async function loadCategories() {
+
+    const response =
+        await fetch(
+            CATEGORY_FILE,
+            {
+                cache: "no-store"
+            }
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            `Could not load categories.json (${response.status})`
+        );
+
+    }
+
+
+    const data =
+        await response.json();
+
+
+    if (
+        !data ||
+        typeof data !== "object" ||
+        Array.isArray(data)
+    ) {
+
+        throw new Error(
+            "categories.json has an invalid format."
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* =====================================================
+   CREATE GAME CARD
+====================================================== */
+
+function createGameCard(
+    game,
+    index
+) {
+
+    const card =
+        document.createElement(
+            "a"
+        );
+
+
+    card.className =
+        "game-card";
+
+
+    const gamePath =
+        game &&
+        typeof game === "object"
+            ? game.path
+            : "";
+
+
+    if (gamePath) {
+
+        card.href =
+            encodeURI(
+                gamePath
+            );
+
+    }
+
+    else {
+
+        card.href =
+            "#";
+
+
+        card.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
 
             }
+        );
+
+    }
 
 
-            validGames.forEach(
-                (
+    const icon =
+        game &&
+        game.icon
+            ? game.icon
+            : "🎮";
+
+
+    const title =
+        game &&
+        game.title
+            ? game.title
+            : `Game ${index + 1}`;
+
+
+    const description =
+        game &&
+        game.description
+            ? game.description
+            : "Practice Vietnamese through a quick interactive game.";
+
+
+    card.innerHTML = `
+
+        <span class="game-number">
+
+            GAME ${
+                String(index + 1)
+                    .padStart(2, "0")
+            }
+
+        </span>
+
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
+        >
+            ${escapeHtml(icon)}
+        </div>
+
+
+        <h3 class="game-title">
+            ${escapeHtml(title)}
+        </h3>
+
+
+        <p class="game-description">
+            ${escapeHtml(description)}
+        </p>
+
+
+        <div class="game-footer">
+
+            <span class="play-label">
+                PLAY GAME
+            </span>
+
+
+            <span
+                class="play-arrow"
+                aria-hidden="true"
+            >
+                →
+            </span>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   RENDER GAMES
+====================================================== */
+
+function renderGames(games) {
+
+    gameGrid.innerHTML = "";
+
+
+    const validGames =
+        Array.isArray(games)
+            ? games.filter(
+                game =>
+                    game &&
+                    typeof game === "object"
+            )
+            : [];
+
+
+    gameCount.textContent =
+        `${validGames.length} ${
+            validGames.length === 1
+                ? "game"
+                : "games"
+        }`;
+
+
+    if (
+        validGames.length === 0
+    ) {
+
+        gameGrid.appendChild(
+            createEmptyState(
+                "🎮",
+                "Games coming soon",
+                "Games for this category will appear here."
+            )
+        );
+
+
+        return;
+
+    }
+
+
+    validGames.forEach(
+        (
+            game,
+            index
+        ) => {
+
+            gameGrid.appendChild(
+                createGameCard(
                     game,
                     index
-                ) => {
-
-                    gameGrid.appendChild(
-                        createGameCard(
-                            game,
-                            index
-                        )
-                    );
-
-                }
+                )
             );
 
         }
+    );
+
+}
 
 
-        /* =====================================================
-           RENDER VOCABULARY
-        ====================================================== */
+/* =====================================================
+   CREATE VOCABULARY CARD
+====================================================== */
 
-        function renderVocabulary(vocabulary) {
+function createVocabCard(
+    word,
+    index
+) {
 
-            vocabGrid.innerHTML = "";
-
-
-            currentVocabulary =
-                Array.isArray(vocabulary)
-                    ? vocabulary
-                    : [];
-
-
-            if (
-                currentVocabulary.length === 0
-            ) {
-
-                vocabCount.textContent =
-                    "0 words";
+    const card =
+        document.createElement(
+            "article"
+        );
 
 
-                vocabGrid.appendChild(
-                    createEmptyState(
-                        "🧠",
-                        "Vocabulary coming soon",
-                        "Useful Vietnamese words for this topic will appear here."
+    card.className =
+        "vocab-card";
+
+
+    let vietnamese = "";
+
+    let meaning = "";
+
+    let phonetic = "";
+
+
+    if (
+        Array.isArray(word)
+    ) {
+
+        vietnamese =
+            word[0] || "";
+
+        meaning =
+            word[1] || "";
+
+        phonetic =
+            word[2] || "";
+
+    }
+
+
+    else if (
+        word &&
+        typeof word === "object"
+    ) {
+
+        vietnamese =
+            word.vietnamese ||
+            word.word ||
+            word.term ||
+            word.vi ||
+            word.sentence ||
+            "";
+
+
+        meaning =
+            word.english ||
+            word.meaning ||
+            word.translation ||
+            word.en ||
+            "";
+
+
+        phonetic =
+            word.phonetics ||
+            word.phonetic ||
+            word.pronunciation ||
+            "";
+
+    }
+
+
+    const cleanPhonetic =
+        String(
+            phonetic
+        )
+            .replace(
+                /^\/|\/$/g,
+                ""
+            );
+
+
+    card.innerHTML = `
+
+        <h3 class="vocab-vietnamese">
+            ${escapeHtml(
+                vietnamese ||
+                `Word ${index + 1}`
+            )}
+        </h3>
+
+
+        <p class="vocab-meaning">
+            ${escapeHtml(
+                meaning ||
+                "Vietnamese vocabulary"
+            )}
+        </p>
+
+
+        ${
+            cleanPhonetic
+                ? `
+                    <div class="vocab-phonetic">
+                        /${escapeHtml(
+                            cleanPhonetic
+                        )}/
+                    </div>
+                  `
+                : ""
+        }
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   RENDER VOCABULARY
+====================================================== */
+
+function renderVocabulary(
+    vocabulary
+) {
+
+    contentGrid.className =
+        "vocab-grid";
+
+
+    contentGrid.innerHTML = "";
+
+
+    currentVocabulary =
+        Array.isArray(
+            vocabulary
+        )
+            ? vocabulary
+            : [];
+
+
+    if (
+        currentVocabulary.length === 0
+    ) {
+
+        contentCount.textContent =
+            "0 words";
+
+
+        contentGrid.appendChild(
+            createEmptyState(
+                "🧠",
+                "Vocabulary coming soon",
+                "Useful Vietnamese words for this topic will appear here."
+            )
+        );
+
+
+        return;
+
+    }
+
+
+    const isTopicBased =
+        currentVocabulary.some(
+            item =>
+                item &&
+                typeof item === "object" &&
+                !Array.isArray(item) &&
+                (
+                    Array.isArray(
+                        item.vocabulary
+                    ) ||
+                    Array.isArray(
+                        item.words
+                    )
+                )
+        );
+
+
+    /* =================================================
+       SIMPLE VOCABULARY
+    ================================================== */
+
+    if (!isTopicBased) {
+
+        const validWords =
+            currentVocabulary.filter(
+                word =>
+                    Array.isArray(word) ||
+                    (
+                        word &&
+                        typeof word === "object"
+                    )
+            );
+
+
+        contentCount.textContent =
+            `${validWords.length} ${
+                validWords.length === 1
+                    ? "word"
+                    : "words"
+            }`;
+
+
+        validWords.forEach(
+            (
+                word,
+                index
+            ) => {
+
+                contentGrid.appendChild(
+                    createVocabCard(
+                        word,
+                        index
                     )
                 );
 
-
-                return;
-
             }
+        );
 
 
-            /*
-             * Detect topic-based vocabulary.
-             *
-             * Example:
-             *
-             * [
-             *     {
-             *         "topic": "Fruit",
-             *         "vocabulary": [...]
-             *     }
-             * ]
-             */
+        return;
 
-            const isTopicBased =
-                currentVocabulary.some(
-                    item =>
-                        item &&
-                        typeof item === "object" &&
-                        !Array.isArray(item) &&
-                        Array.isArray(
-                            item.vocabulary
-                        )
-                );
+    }
 
 
-            /*
-             * Simple vocabulary.
-             */
+    /* =================================================
+       TOPIC-BASED VOCABULARY
+    ================================================== */
 
-            if (!isTopicBased) {
+    let totalWords = 0;
 
-                const validWords =
-                    currentVocabulary.filter(
-                        word =>
-                            Array.isArray(word) ||
-                            (
-                                word &&
-                                typeof word === "object"
+
+    currentVocabulary.forEach(
+        topic => {
+
+            if (
+                topic &&
+                typeof topic === "object"
+            ) {
+
+                const words =
+                    Array.isArray(
+                        topic.vocabulary
+                    )
+                        ? topic.vocabulary
+                        :
+                        (
+                            Array.isArray(
+                                topic.words
                             )
-                    );
-
-
-                vocabCount.textContent =
-                    `${validWords.length} ${
-                        validWords.length === 1
-                            ? "word"
-                            : "words"
-                    }`;
-
-
-                validWords.forEach(
-                    (
-                        word,
-                        index
-                    ) => {
-
-                        vocabGrid.appendChild(
-                            createVocabCard(
-                                word,
-                                index
-                            )
-                        );
-
-                    }
-                );
-
-
-                return;
-
-            }
-
-
-            /*
-             * Topic-based vocabulary.
-             */
-
-            let totalWords = 0;
-
-
-            currentVocabulary.forEach(
-                topic => {
-
-                    if (
-                        topic &&
-                        typeof topic === "object" &&
-                        Array.isArray(
-                            topic.vocabulary
-                        )
-                    ) {
-
-                        totalWords +=
-                            topic.vocabulary.length;
-
-                    }
-
-                }
-            );
-
-
-            vocabCount.textContent =
-                `${totalWords} ${
-                    totalWords === 1
-                        ? "word"
-                        : "words"
-                }`;
-
-
-            currentVocabulary.forEach(
-                (
-                    topic,
-                    index
-                ) => {
-
-                    if (
-                        !topic ||
-                        typeof topic !== "object" ||
-                        !Array.isArray(
-                            topic.vocabulary
-                        )
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    const card =
-                        document.createElement(
-                            "article"
+                                ? topic.words
+                                : []
                         );
 
 
-                    card.className =
-                        "vocab-topic-card";
+                totalWords +=
+                    words.length;
 
-
-                    const topicName =
-                        topic.topic ||
-                        `Topic ${index + 1}`;
-
-
-                    const wordCount =
-                        topic.vocabulary.length;
-
-
-                    card.innerHTML = `
-
-                        <div
-                            class="vocab-topic-icon"
-                            aria-hidden="true"
-                        >
-                            🧠
-                        </div>
-
-
-                        <h3 class="vocab-topic-title">
-                            ${escapeHtml(
-                                topicName
-                            )}
-                        </h3>
-
-
-                        <p class="vocab-topic-count">
-                            ${wordCount}
-                            ${
-                                wordCount === 1
-                                    ? "word"
-                                    : "words"
-                            }
-                        </p>
-
-
-                        <div class="vocab-topic-arrow">
-                            VIEW VOCABULARY →
-                        </div>
-
-                    `;
-
-
-                    card.addEventListener(
-                        "click",
-                        () => {
-
-                            showTopicVocabulary(
-                                topic
-                            );
-
-                        }
-                    );
-
-
-                    vocabGrid.appendChild(
-                        card
-                    );
-
-                }
-            );
+            }
 
         }
+    );
 
 
-        /* =====================================================
-           SHOW TOPIC VOCABULARY
-        ====================================================== */
-
-        function showTopicVocabulary(topic) {
-
-            vocabGrid.innerHTML = "";
-
-
-            const backButton =
-                document.createElement("button");
+    contentCount.textContent =
+        `${totalWords} ${
+            totalWords === 1
+                ? "word"
+                : "words"
+        }`;
 
 
-            backButton.type = "button";
+    currentVocabulary.forEach(
+        (
+            topic,
+            index
+        ) => {
 
+            if (
+                !topic ||
+                typeof topic !== "object"
+            ) {
 
-            backButton.className =
-                "vocab-back-btn";
+                return;
 
-
-            backButton.textContent =
-                "← Back";
-
-
-            backButton.addEventListener(
-                "click",
-                () => {
-
-                    renderVocabulary(
-                        currentVocabulary
-                    );
-
-                }
-            );
-
-
-            vocabGrid.appendChild(
-                backButton
-            );
-
-
-            const heading =
-                document.createElement("div");
-
-
-            heading.className =
-                "vocab-topic-heading";
-
-
-            const topicName =
-                topic.topic ||
-                "Vocabulary";
+            }
 
 
             const words =
@@ -2504,414 +2992,1243 @@
                     topic.vocabulary
                 )
                     ? topic.vocabulary
-                    : [];
+                    :
+                    (
+                        Array.isArray(
+                            topic.words
+                        )
+                            ? topic.words
+                            : []
+                    );
 
 
-            heading.innerHTML = `
+            if (
+                words.length === 0
+            ) {
 
-                <h3>
+                return;
+
+            }
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "vocab-topic-card";
+
+
+            const topicName =
+                topic.topic ||
+                topic.title ||
+                `Topic ${index + 1}`;
+
+
+            card.innerHTML = `
+
+                <div
+                    class="vocab-topic-icon"
+                    aria-hidden="true"
+                >
+                    🧠
+                </div>
+
+
+                <h3 class="vocab-topic-title">
                     ${escapeHtml(
                         topicName
                     )}
                 </h3>
 
 
-                <span>
+                <p class="vocab-topic-count">
                     ${words.length}
                     ${
                         words.length === 1
                             ? "word"
                             : "words"
                     }
-                </span>
+                </p>
+
+
+                <div class="vocab-topic-arrow">
+                    VIEW VOCABULARY →
+                </div>
 
             `;
 
 
-            vocabGrid.appendChild(
-                heading
+            card.addEventListener(
+                "click",
+                () => {
+
+                    showTopicVocabulary(
+                        topic
+                    );
+
+                }
             );
 
 
-            words.forEach(
-                (
+            contentGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SHOW TOPIC VOCABULARY
+====================================================== */
+
+function showTopicVocabulary(
+    topic
+) {
+
+    contentGrid.className =
+        "vocab-grid";
+
+
+    contentGrid.innerHTML = "";
+
+
+    const backButton =
+        document.createElement(
+            "button"
+        );
+
+
+    backButton.type =
+        "button";
+
+
+    backButton.className =
+        "vocab-back-btn";
+
+
+    backButton.textContent =
+        "← Back";
+
+
+    backButton.addEventListener(
+        "click",
+        () => {
+
+            renderVocabulary(
+                currentVocabulary
+            );
+
+        }
+    );
+
+
+    contentGrid.appendChild(
+        backButton
+    );
+
+
+    const heading =
+        document.createElement(
+            "div"
+        );
+
+
+    heading.className =
+        "vocab-topic-heading";
+
+
+    const topicName =
+        topic.topic ||
+        topic.title ||
+        "Vocabulary";
+
+
+    const words =
+        Array.isArray(
+            topic.vocabulary
+        )
+            ? topic.vocabulary
+            :
+            (
+                Array.isArray(
+                    topic.words
+                )
+                    ? topic.words
+                    : []
+            );
+
+
+    heading.innerHTML = `
+
+        <h3>
+            ${escapeHtml(
+                topicName
+            )}
+        </h3>
+
+
+        <span>
+            ${words.length}
+            ${
+                words.length === 1
+                    ? "word"
+                    : "words"
+            }
+        </span>
+
+    `;
+
+
+    contentGrid.appendChild(
+        heading
+    );
+
+
+    words.forEach(
+        (
+            word,
+            index
+        ) => {
+
+            contentGrid.appendChild(
+                createVocabCard(
                     word,
                     index
-                ) => {
+                )
+            );
 
-                    vocabGrid.appendChild(
-                        createVocabCard(
-                            word,
-                            index
-                        )
-                    );
+        }
+    );
 
-                }
+}
+
+
+/* =====================================================
+   FIND LESSON DATA
+====================================================== */
+
+function getLessonData(
+    category,
+    type
+) {
+
+    if (
+        !category ||
+        typeof category !== "object"
+    ) {
+
+        return [];
+
+    }
+
+
+    /* ---------------------------------------------
+       Most general format
+    --------------------------------------------- */
+
+    if (
+        Array.isArray(
+            category.lessons
+        )
+    ) {
+
+        return category.lessons;
+
+    }
+
+
+    /* ---------------------------------------------
+       Sentences
+    --------------------------------------------- */
+
+    if (
+        type === "sentences" &&
+        Array.isArray(
+            category.sentences
+        )
+    ) {
+
+        return category.sentences;
+
+    }
+
+
+    /* ---------------------------------------------
+       Useful phrases
+    --------------------------------------------- */
+
+    if (
+        type === "useful-phrases"
+    ) {
+
+        if (
+            Array.isArray(
+                category.phrases
+            )
+        ) {
+
+            return category.phrases;
+
+        }
+
+
+        if (
+            Array.isArray(
+                category.usefulPhrases
+            )
+        ) {
+
+            return category.usefulPhrases;
+
+        }
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   CREATE LESSON CARD
+====================================================== */
+
+function createLessonCard(
+    lesson,
+    index,
+    type
+) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "lesson-card";
+
+
+    let title = "";
+
+    let phonetic = "";
+
+    let meaning = "";
+
+    let explanation = "";
+
+
+    if (
+        typeof lesson === "string"
+    ) {
+
+        title =
+            lesson;
+
+    }
+
+
+    else if (
+        Array.isArray(
+            lesson
+        )
+    ) {
+
+        title =
+            lesson[0] || "";
+
+        meaning =
+            lesson[1] || "";
+
+        phonetic =
+            lesson[2] || "";
+
+        explanation =
+            lesson[3] || "";
+
+    }
+
+
+    else if (
+        lesson &&
+        typeof lesson === "object"
+    ) {
+
+        title =
+            lesson.title ||
+            lesson.sentence ||
+            lesson.phrase ||
+            lesson.vietnamese ||
+            lesson.vi ||
+            lesson.pattern ||
+            "";
+
+
+        phonetic =
+            lesson.phonetics ||
+            lesson.phonetic ||
+            lesson.pronunciation ||
+            "";
+
+
+        meaning =
+            lesson.english ||
+            lesson.meaning ||
+            lesson.translation ||
+            lesson.en ||
+            lesson.description ||
+            "";
+
+
+        explanation =
+            lesson.explanation ||
+            lesson.note ||
+            lesson.notes ||
+            lesson.grammar ||
+            "";
+
+    }
+
+
+    const cleanPhonetic =
+        String(
+            phonetic
+        )
+            .replace(
+                /^\/|\/$/g,
+                ""
+            );
+
+
+    card.innerHTML = `
+
+        <div class="lesson-number">
+
+            ${
+                type === "sentences"
+                    ? "LESSON"
+                    : "PHRASE"
+            }
+
+            ${
+                String(
+                    index + 1
+                )
+                .padStart(
+                    2,
+                    "0"
+                )
+            }
+
+        </div>
+
+
+        <h3 class="lesson-title">
+
+            ${escapeHtml(
+                title ||
+                `Lesson ${index + 1}`
+            )}
+
+        </h3>
+
+
+        ${
+            cleanPhonetic
+                ? `
+                    <div class="lesson-phonetic">
+                        /${escapeHtml(
+                            cleanPhonetic
+                        )}/
+                    </div>
+                  `
+                : ""
+        }
+
+
+        ${
+            meaning
+                ? `
+                    <p class="lesson-meaning">
+                        ${escapeHtml(
+                            meaning
+                        )}
+                    </p>
+                  `
+                : ""
+        }
+
+
+        ${
+            explanation
+                ? `
+                    <div class="lesson-explanation">
+
+                        <span class="lesson-label">
+                            Explanation
+                        </span>
+
+                        ${escapeHtml(
+                            explanation
+                        )}
+
+                    </div>
+                  `
+                : ""
+        }
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   RENDER LESSONS
+====================================================== */
+
+function renderLessons(
+    lessons,
+    type
+) {
+
+    lessonGrid.innerHTML = "";
+
+
+    lessonGrid.className =
+        "lesson-grid";
+
+
+    const validLessons =
+        Array.isArray(
+            lessons
+        )
+            ? lessons
+            : [];
+
+
+    lessonsCount.textContent =
+        `${validLessons.length} ${
+            validLessons.length === 1
+                ? "lesson"
+                : "lessons"
+        }`;
+
+
+    if (
+        validLessons.length === 0
+    ) {
+
+        const icon =
+            type === "sentences"
+                ? "💬"
+                : "💡";
+
+
+        const title =
+            type === "sentences"
+                ? "Lessons coming soon"
+                : "Useful phrases coming soon";
+
+
+        const text =
+            type === "sentences"
+                ? "Vietnamese sentence lessons for this category will appear here."
+                : "Useful Vietnamese phrase lessons for this category will appear here.";
+
+
+        lessonGrid.appendChild(
+            createEmptyState(
+                icon,
+                title,
+                text
+            )
+        );
+
+
+        return;
+
+    }
+
+
+    validLessons.forEach(
+        (
+            lesson,
+            index
+        ) => {
+
+            lessonGrid.appendChild(
+                createLessonCard(
+                    lesson,
+                    index,
+                    type
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CREATE EMPTY STATE
+====================================================== */
+
+function createEmptyState(
+    icon,
+    title,
+    text
+) {
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "empty-message";
+
+
+    element.innerHTML = `
+
+        <div
+            class="empty-icon"
+            aria-hidden="true"
+        >
+            ${escapeHtml(
+                icon
+            )}
+        </div>
+
+
+        <h3 class="empty-title">
+            ${escapeHtml(
+                title
+            )}
+        </h3>
+
+
+        <p class="empty-text">
+            ${escapeHtml(
+                text
+            )}
+        </p>
+
+    `;
+
+
+    return element;
+
+}
+
+
+/* =====================================================
+   CONFIGURE PAGE BY TYPE
+====================================================== */
+
+function configurePageByType(
+    type
+) {
+
+    currentCategoryType =
+        normalizeType(
+            type
+        );
+
+
+    /* =================================================
+       VOCABULARY
+       
+       SHOW:
+       Games tab
+       Vocabulary tab
+    ================================================== */
+
+    if (
+        currentCategoryType ===
+        "vocabulary"
+    ) {
+
+        categoryTabs.classList.remove(
+            "hidden"
+        );
+
+
+        gamesTab.classList.add(
+            "active"
+        );
+
+
+        contentTab.classList.remove(
+            "active"
+        );
+
+
+        lessonsSection.classList.remove(
+            "active"
+        );
+
+
+        contentTabLabel.textContent =
+            "Vocabulary";
+
+
+        contentTabIcon.textContent =
+            "🧠";
+
+
+        contentHeading.textContent =
+            "Vocabulary";
+
+
+        contentHeadingIcon.textContent =
+            "🧠";
+
+
+        categoryEyebrow.textContent =
+            "Vietnamese Vocabulary";
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       SENTENCES
+       
+       NO TABS
+       
+       SHOW:
+       Lesson cards only
+    ================================================== */
+
+    if (
+        currentCategoryType ===
+        "sentences"
+    ) {
+
+        categoryTabs.classList.add(
+            "hidden"
+        );
+
+
+        gamesTab.classList.remove(
+            "active"
+        );
+
+
+        contentTab.classList.remove(
+            "active"
+        );
+
+
+        lessonsSection.classList.add(
+            "active"
+        );
+
+
+        lessonsHeading.textContent =
+            "Lessons";
+
+
+        lessonsHeadingIcon.textContent =
+            "📖";
+
+
+        categoryEyebrow.textContent =
+            "Vietnamese Sentences";
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       USEFUL PHRASES
+       
+       NO TABS
+       
+       SHOW:
+       Lesson cards only
+    ================================================== */
+
+    if (
+        currentCategoryType ===
+        "useful-phrases"
+    ) {
+
+        categoryTabs.classList.add(
+            "hidden"
+        );
+
+
+        gamesTab.classList.remove(
+            "active"
+        );
+
+
+        contentTab.classList.remove(
+            "active"
+        );
+
+
+        lessonsSection.classList.add(
+            "active"
+        );
+
+
+        lessonsHeading.textContent =
+            "Lessons";
+
+
+        lessonsHeadingIcon.textContent =
+            "💬";
+
+
+        categoryEyebrow.textContent =
+            "Useful Vietnamese Phrases";
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       UNKNOWN TYPE
+    ================================================== */
+
+    categoryTabs.classList.add(
+        "hidden"
+    );
+
+
+    gamesTab.classList.remove(
+        "active"
+    );
+
+
+    contentTab.classList.remove(
+        "active"
+    );
+
+
+    lessonsSection.classList.add(
+        "active"
+    );
+
+
+    lessonsHeading.textContent =
+        "Lessons";
+
+
+    lessonsHeadingIcon.textContent =
+        "📖";
+
+
+    categoryEyebrow.textContent =
+        "Vietnamese Learning";
+
+}
+
+
+/* =====================================================
+   RENDER CATEGORY
+====================================================== */
+
+async function renderCategory() {
+
+    try {
+
+        /* ---------------------------------------------
+           CHECK CATEGORY PARAMETER
+        --------------------------------------------- */
+
+        if (!categoryName) {
+
+            throw new Error(
+                "No category was selected."
             );
 
         }
 
 
-        /* =====================================================
-           RENDER CATEGORY
+        /* ---------------------------------------------
+           LOAD JSON
+        --------------------------------------------- */
 
-           New structure:
-
-           MAIN/
-               WEB/
-                   index.html
-                   categories.json
-                   category.html
-
-                   Dictionary/
-
-                   Sentences/
-                       Grammar/
-                           game1/
-                               game1.html
-                           game2/
-                               game2.html
-
-                   Vocabulary/
-                       Color/
-                           game1.html
-                           game2.html
-                           ...
-
-                       Describe things/
-                           game1.html
-                           ...
-
-                       Food and Drinks/
-                           game1/
-                               game1.html
-                           game2.html
-                           ...
-
-                       Health/
-                           game1.html
-                           ...
-
-                       Numbers/
-                           game1.html
-                           ...
-
-                       People & Pronouns/
-                           game1.html
-                           ...
-
-                       Places, Directions & Transportation/
-                           game1.html
-                           ...
-
-           category.html ONLY reads categories.json.
-
-           No GitHub API.
-           No automatic folder scanning.
-           No GAMES folder.
-           No Quick Lessons.
-        ====================================================== */
-
-        async function renderCategory() {
-
-            try {
-
-                if (!categoryName) {
-
-                    throw new Error(
-                        "No category was selected."
-                    );
-
-                }
+        const categories =
+            await loadCategories();
 
 
-                const categories =
-                    await loadCategories();
+        /* ---------------------------------------------
+           FIND CATEGORY
+        --------------------------------------------- */
+
+        const categoryKey =
+            findCategoryKey(
+                categories,
+                categoryName
+            );
 
 
-                const categoryKey =
-                    findCategoryKey(
-                        categories,
-                        categoryName
-                    );
+        if (!categoryKey) {
+
+            throw new Error(
+                `Category "${categoryName}" was not found in categories.json.`
+            );
+
+        }
 
 
-                if (!categoryKey) {
-
-                    throw new Error(
-                        `Category "${categoryName}" was not found in categories.json.`
-                    );
-
-                }
+        const category =
+            categories[
+                categoryKey
+            ];
 
 
-                const category =
-                    categories[
-                        categoryKey
-                    ];
+        if (
+            !category ||
+            typeof category !== "object" ||
+            Array.isArray(category)
+        ) {
 
+            throw new Error(
+                `Category "${categoryKey}" has an invalid format in categories.json.`
+            );
+
+        }
+
+
+        currentCategory =
+            category;
+
+
+        /* ---------------------------------------------
+           DETECT TYPE
+           ---------------------------------------------
+
+           Example:
+
+           {
+               "type": "vocabulary"
+           }
+
+           OR
+
+           {
+               "type": "sentences"
+           }
+
+           OR
+
+           {
+               "type": "useful-phrases"
+           }
+
+        --------------------------------------------- */
+
+        const type =
+            normalizeType(
+                category.type
+            );
+
+
+        /* ---------------------------------------------
+           PAGE TITLE
+        --------------------------------------------- */
+
+        document.title =
+            `${categoryKey} | Survival Vietnamese with Duong`;
+
+
+        /* ---------------------------------------------
+           CATEGORY HEADER
+        --------------------------------------------- */
+
+        categoryTitle.textContent =
+            categoryKey;
+
+
+        categoryDescription.textContent =
+            category.subtitle ||
+            "Learn Vietnamese through practical lessons and interactive activities.";
+
+
+        categoryIcon.textContent =
+            category.icon ||
+            "📚";
+
+
+        /* ---------------------------------------------
+           THEME
+        --------------------------------------------- */
+
+        applyCategoryTheme(
+            category,
+            categoryKey
+        );
+
+
+        /* ---------------------------------------------
+           CONFIGURE PAGE
+        --------------------------------------------- */
+
+        configurePageByType(
+            type
+        );
+
+
+        /* =================================================
+           VOCABULARY CATEGORY
+        ================================================== */
+
+        if (
+            type === "vocabulary"
+        ) {
+
+            const games =
+                Array.isArray(
+                    category.games
+                )
+                    ? category.games
+                    : [];
+
+
+            const vocabulary =
+                Array.isArray(
+                    category.vocab
+                )
+                    ? category.vocab
+                    : [];
+
+
+            renderGames(
+                games
+            );
+
+
+            renderVocabulary(
+                vocabulary
+            );
+
+
+            return;
+
+        }
+
+
+        /* =================================================
+           SENTENCES / USEFUL PHRASES
+        ================================================== */
+
+        if (
+            type === "sentences" ||
+            type === "useful-phrases"
+        ) {
+
+            const lessons =
+                getLessonData(
+                    category,
+                    type
+                );
+
+
+            renderLessons(
+                lessons,
+                type
+            );
+
+
+            return;
+
+        }
+
+
+        /* =================================================
+           UNKNOWN TYPE
+        ================================================== */
+
+        renderLessons(
+            [],
+            type
+        );
+
+
+        console.warn(
+            `Unknown category type: "${category.type}"`
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Category loading error:",
+            error
+        );
+
+
+        categoryTitle.textContent =
+            "Vietnamese Category";
+
+
+        categoryDescription.textContent =
+            "";
+
+
+        categoryTabs.classList.add(
+            "hidden"
+        );
+
+
+        gamesTab.classList.remove(
+            "active"
+        );
+
+
+        contentTab.classList.remove(
+            "active"
+        );
+
+
+        lessonsSection.classList.add(
+            "active"
+        );
+
+
+        lessonGrid.innerHTML =
+            "";
+
+
+        lessonGrid.appendChild(
+            createEmptyState(
+                "⚠️",
+                "Unable to load this category",
+                error &&
+                error.message
+                    ? error.message
+                    : "An unknown error occurred."
+            )
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TAB SWITCHING
+       
+   ONLY VOCABULARY CATEGORIES USE THIS.
+====================================================== */
+
+const tabButtons =
+    document.querySelectorAll(
+        ".tab-btn"
+    );
+
+
+tabButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                /* -----------------------------------------
+                   Safety:
+                   Tabs only work for vocabulary.
+                ----------------------------------------- */
 
                 if (
-                    !category ||
-                    typeof category !== "object" ||
-                    Array.isArray(category)
+                    currentCategoryType !==
+                    "vocabulary"
                 ) {
 
-                    throw new Error(
-                        `Category "${categoryKey}" has an invalid format in categories.json.`
-                    );
+                    return;
 
                 }
 
 
-                currentCategory =
-                    category;
+                const target =
+                    button.dataset.tab;
 
 
-                /* =================================================
-                   PAGE TITLE
-                ================================================== */
+                tabButtons.forEach(
+                    tab => {
 
-                document.title =
-                    `${categoryKey} | Survival Vietnamese with Duong`;
-
-
-                /* =================================================
-                   CATEGORY HEADER
-                ================================================== */
-
-                categoryTitle.textContent =
-                    categoryKey;
-
-
-                categoryDescription.textContent =
-                    category.subtitle ||
-                    "Practice Vietnamese through games and vocabulary review.";
-
-
-                categoryIcon.textContent =
-                    category.icon ||
-                    "📚";
-
-
-                /* =================================================
-                   CATEGORY THEME
-                ================================================== */
-
-                applyCategoryTheme(
-                    category,
-                    categoryKey
-                );
-
-
-                /* =================================================
-                   GAMES
-
-                   categories.json:
-                   category.games
-                ================================================== */
-
-                const games =
-                    Array.isArray(
-                        category.games
-                    )
-                        ? category.games
-                        : [];
-
-
-                /* =================================================
-                   VOCABULARY
-
-                   categories.json:
-                   category.vocab
-                ================================================== */
-
-                const vocabulary =
-                    Array.isArray(
-                        category.vocab
-                    )
-                        ? category.vocab
-                        : [];
-
-
-                currentVocabulary =
-                    vocabulary;
-
-
-                /* =================================================
-                   RENDER
-                ================================================= */
-
-                renderGames(
-                    games
-                );
-
-
-                renderVocabulary(
-                    vocabulary
-                );
-
-
-                console.log(
-                    `Category "${categoryKey}" loaded.`,
-                    {
-                        games:
-                            games.length,
-
-                        vocabulary:
-                            vocabulary.length
-                    }
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Category loading error:",
-                    error
-                );
-
-
-                categoryTitle.textContent =
-                    "Something went wrong";
-
-
-                categoryDescription.textContent =
-                    "";
-
-
-                gameCount.textContent =
-                    "Error";
-
-
-                vocabCount.textContent =
-                    "Error";
-
-
-                gameGrid.innerHTML =
-                    "";
-
-
-                gameGrid.appendChild(
-                    createEmptyState(
-                        "⚠️",
-                        "Unable to load this category",
-                        error &&
-                        error.message
-                            ? error.message
-                            : "An unknown error occurred."
-                    )
-                );
-
-
-                vocabGrid.innerHTML =
-                    "";
-
-
-                vocabGrid.appendChild(
-                    createEmptyState(
-                        "⚠️",
-                        "Unable to load vocabulary",
-                        "Please check categories.json and try again."
-                    )
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           TAB SWITCHING
-        ====================================================== */
-
-        const tabButtons =
-            document.querySelectorAll(
-                ".tab-btn"
-            );
-
-
-        const tabPanels = {
-
-            games:
-                document.getElementById(
-                    "games-tab"
-                ),
-
-            vocab:
-                document.getElementById(
-                    "vocab-tab"
-                )
-
-        };
-
-
-        tabButtons.forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        const target =
-                            button.dataset.tab;
-
-
-                        tabButtons.forEach(
-                            tab => {
-
-                                tab.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        button.classList.add(
+                        tab.classList.remove(
                             "active"
                         );
 
-
-                        Object.values(
-                            tabPanels
-                        ).forEach(
-                            panel => {
-
-                                panel.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        if (
-                            tabPanels[target]
-                        ) {
-
-                            tabPanels[target].classList.add(
-                                "active"
-                            );
-
-                        }
-
                     }
                 );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                if (
+                    target === "games"
+                ) {
+
+                    gamesTab.classList.add(
+                        "active"
+                    );
+
+
+                    contentTab.classList.remove(
+                        "active"
+                    );
+
+                }
+
+
+                if (
+                    target === "vocab"
+                ) {
+
+                    gamesTab.classList.remove(
+                        "active"
+                    );
+
+
+                    contentTab.classList.add(
+                        "active"
+                    );
+
+                }
 
             }
         );
 
+    }
+);
 
-        /* =====================================================
-           START
-        ====================================================== */
 
-        renderCategory();
+/* =====================================================
+   START
+====================================================== */
 
-    </script>
+renderCategory();
 
+</script>
 
 </body>
 
