@@ -7,27 +7,30 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <meta
-    name="description"
-    content="Practice survival Vietnamese through simple vocabulary games, quick lessons, and interactive activities."
+name="description"
+content="Practice survival Vietnamese through simple vocabulary games, quick lessons, and interactive activities."
+
 >
 
 <meta
-    name="keywords"
-    content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary"
+name="keywords"
+content="learn Vietnamese, Vietnamese games, survival Vietnamese, Vietnamese vocabulary"
+
 >
 
 <meta
-    name="author"
-    content="Duong"
+name="author"
+content="Duong"
+
 >
 
 <title>Survival Vietnamese with Duong</title>
-
 
 <!-- =====================================================
      GOOGLE FONTS
@@ -49,7 +52,6 @@
     rel="stylesheet"
 >
 
-
 <!-- =====================================================
      SUPABASE
 ====================================================== -->
@@ -61,7 +63,6 @@
 <script
     src="BACKEND/supabase.js"
 ></script>
-
 
 <style>
 
@@ -1283,15 +1284,6 @@
     }
 
 
-    .category-dictionary {
-
-        --accent: #b7791f;
-        --background: #fff8e7;
-        --border: #efdca8;
-
-    }
-
-
     /* =====================================================
        CATEGORY ICON
     ====================================================== */
@@ -1533,6 +1525,381 @@
 
 
     /* =====================================================
+       DICTIONARY
+    ====================================================== */
+
+    #dictionary-container {
+
+        width: 100%;
+
+    }
+
+
+    .dictionary-page {
+
+        width: 100%;
+
+    }
+
+
+    .dictionary-header {
+
+        text-align: center;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .dictionary-title {
+
+        margin: 0;
+
+        font-family: 'Kalam', cursive;
+
+        font-size: 2.35rem;
+
+        font-weight: 700;
+
+        line-height: 1.2;
+
+        color: var(--ink);
+
+    }
+
+
+    .dictionary-subtitle {
+
+        margin: 9px auto 0;
+
+        max-width: 650px;
+
+        color: var(--ink-soft);
+
+        font-size: 0.9rem;
+
+        line-height: 1.55;
+
+    }
+
+
+    .dictionary-search {
+
+        position: relative;
+
+        width: min(760px, 100%);
+
+        margin: 0 auto 17px;
+
+    }
+
+
+    .dictionary-search-icon {
+
+        position: absolute;
+
+        left: 17px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-size: 1.05rem;
+
+        pointer-events: none;
+
+    }
+
+
+    #dictionary-search-input {
+
+        width: 100%;
+
+        padding:
+            15px
+            18px
+            15px
+            48px;
+
+        border:
+            1.5px solid
+            var(--line);
+
+        border-radius: 15px;
+
+        background: white;
+
+        color: var(--ink);
+
+        font-family: inherit;
+
+        font-size: 0.88rem;
+
+        outline: none;
+
+        box-shadow:
+            0 6px 18px
+            rgba(20, 58, 107, 0.055);
+
+        transition: 0.2s ease;
+
+    }
+
+
+    #dictionary-search-input::placeholder {
+
+        color: #8ca0b4;
+
+    }
+
+
+    #dictionary-search-input:focus {
+
+        border-color: var(--blue);
+
+        box-shadow:
+            0 8px 22px
+            rgba(47, 111, 237, 0.12);
+
+    }
+
+
+    .dictionary-count {
+
+        margin: 0 0 25px;
+
+        color: var(--ink-soft);
+
+        font-size: 0.76rem;
+
+        font-weight: 700;
+
+        text-align: center;
+
+    }
+
+
+    .dictionary-count strong {
+
+        color: var(--blue);
+
+    }
+
+
+    .dictionary-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    250px,
+                    1fr
+                )
+            );
+
+        gap: 17px;
+
+    }
+
+
+    .dictionary-card {
+
+        position: relative;
+
+        padding: 21px;
+
+        border:
+            1px solid
+            #eadfb9;
+
+        border-radius: 18px;
+
+        background:
+            linear-gradient(
+                145deg,
+                #fffdf5,
+                #fff8e7
+            );
+
+        box-shadow:
+            0 6px 18px
+            rgba(20, 58, 107, 0.055);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    .dictionary-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        height: 4px;
+
+        border-radius:
+            18px 18px 0 0;
+
+        background:
+            #b7791f;
+
+    }
+
+
+    .dictionary-card:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            #dcbf73;
+
+        box-shadow:
+            0 13px 28px
+            rgba(20, 58, 107, 0.10);
+
+    }
+
+
+    .dictionary-vietnamese {
+
+        margin-bottom: 5px;
+
+        color: var(--ink);
+
+        font-size: 1.3rem;
+
+        font-weight: 800;
+
+        line-height: 1.3;
+
+    }
+
+
+    .dictionary-phonetics {
+
+        margin-bottom: 10px;
+
+        color: var(--blue);
+
+        font-size: 0.82rem;
+
+        font-style: italic;
+
+        line-height: 1.4;
+
+    }
+
+
+    .dictionary-english {
+
+        color: var(--ink-soft);
+
+        font-size: 0.86rem;
+
+        font-weight: 600;
+
+        line-height: 1.5;
+
+    }
+
+
+    .dictionary-meta {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 6px;
+
+        margin-top: 15px;
+
+    }
+
+
+    .dictionary-tag {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        padding:
+            4px 8px;
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.8);
+
+        border:
+            1px solid
+            #eadfb9;
+
+        color:
+            #8a681d;
+
+        font-size: 0.62rem;
+
+        font-weight: 800;
+
+    }
+
+
+    .dictionary-empty {
+
+        grid-column: 1 / -1;
+
+        padding: 45px 20px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 18px;
+
+        background: white;
+
+        color: var(--ink-soft);
+
+        text-align: center;
+
+    }
+
+
+    .dictionary-empty-icon {
+
+        display: block;
+
+        margin-bottom: 10px;
+
+        font-size: 2rem;
+
+    }
+
+
+    /* =====================================================
+       HIDDEN
+    ====================================================== */
+
+    .hidden {
+
+        display: none !important;
+
+    }
+
+
+    /* =====================================================
        FOOTER
     ====================================================== */
 
@@ -1558,17 +1925,6 @@
         margin: 0 auto 20px;
 
         background: #d8e5f0;
-
-    }
-
-
-    /* =====================================================
-       HIDDEN
-    ====================================================== */
-
-    .hidden {
-
-        display: none !important;
 
     }
 
@@ -1773,15 +2129,34 @@
 
         }
 
+
+        .dictionary-title {
+
+            font-size: 2rem;
+
+        }
+
+
+        .dictionary-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .dictionary-card {
+
+            padding: 19px;
+
+        }
+
     }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      TOP NAVIGATION
@@ -1789,45 +2164,46 @@
 
 <nav class="top-nav">
 
-    <div
-        id="logged-out-nav"
-        class="nav-actions"
+```
+<div
+    id="logged-out-nav"
+    class="nav-actions"
+>
+
+    <a
+        href="MAIN/LOG IN/login.html"
+        class="login-btn"
     >
+        Log in
+    </a>
 
-        <a
-            href="MAIN/LOG IN/login.html"
-            class="login-btn"
-        >
-            Log in
-        </a>
-
-    </div>
+</div>
 
 
-    <div
-        id="logged-in-nav"
-        class="nav-actions hidden"
+<div
+    id="logged-in-nav"
+    class="nav-actions hidden"
+>
+
+    <span
+        id="user-greeting"
+        class="user-greeting"
     >
+        Xin chào!
+    </span>
 
-        <span
-            id="user-greeting"
-            class="user-greeting"
-        >
-            Xin chào!
-        </span>
+    <button
+        type="button"
+        id="logout-btn"
+        class="logout-btn"
+    >
+        Log out
+    </button>
 
-        <button
-            type="button"
-            id="logout-btn"
-            class="logout-btn"
-        >
-            Log out
-        </button>
-
-    </div>
+</div>
+```
 
 </nav>
-
 
 <!-- =====================================================
      HEADER
@@ -1835,30 +2211,30 @@
 
 <header>
 
-    <span class="header-eyebrow">
-        Vietnamese · Learn by Playing
-    </span>
+```
+<span class="header-eyebrow">
+    Vietnamese · Learn by Playing
+</span>
 
-    <h1>
-        Survival Vietnamese
-    </h1>
+<h1>
+    Survival Vietnamese
+</h1>
 
-    <p>
-        Learn Vietnamese.
-        Play games.
-        Survive real life.
-    </p>
+<p>
+    Learn Vietnamese.
+    Play games.
+    Survive real life.
+</p>
 
-    <div class="header-line"></div>
+<div class="header-line"></div>
+```
 
 </header>
-
 
 <div
     class="header-divider"
     aria-hidden="true"
 ></div>
-
 
 <!-- =====================================================
      LANDING PAGE
@@ -1869,148 +2245,149 @@
     class="container"
 >
 
-    <section
-        class="intro-card"
-        aria-label="About Survival Vietnamese"
+```
+<section
+    class="intro-card"
+    aria-label="About Survival Vietnamese"
+>
+
+    <p class="about-eyebrow">
+        About this website
+    </p>
+
+
+    <h2>
+        Vietnamese practice, made simple.
+    </h2>
+
+
+    <p>
+        Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
+    </p>
+
+
+    <p>
+        This website is built for any beginner (A0-A1) who wants
+        to practice and remember practical Vietnamese vocabulary
+        through quick, simple games.
+    </p>
+
+
+    <p>
+        <strong>
+            Vietnamese is more approachable than it looks.
+        </strong>
+
+        Start with a few useful words, practice them often,
+        and build your vocabulary step by step.
+        A little practice goes a long way.
+    </p>
+
+
+    <a
+        href="https://preply.in/DUONG6EN32308690102?ts=17876464"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="preply-link"
     >
-
-        <p class="about-eyebrow">
-            About this website
-        </p>
+        Vietnamese lessons with me on Preply →
+    </a>
 
 
-        <h2>
-            Vietnamese practice, made simple.
-        </h2>
+    <div class="intro-features">
 
 
-        <p>
-            Hi, I'm Dương, a Vietnamese living in Ho Chi Minh City.
-        </p>
+        <div class="intro-feature feature-games">
+
+            <div
+                class="intro-feature-icon"
+                aria-hidden="true"
+            >
+                🎮
+            </div>
+
+            <h3>
+                Vocabulary Games
+            </h3>
+
+            <p>
+                Learn useful Vietnamese words through
+                short, interactive games.
+            </p>
+
+        </div>
 
 
-        <p>
-            This website is built for any beginner (A0-A1) who wants
-            to practice and remember practical Vietnamese vocabulary
-            through quick, simple games.
-        </p>
+        <div class="intro-feature feature-practice">
+
+            <div
+                class="intro-feature-icon"
+                aria-hidden="true"
+            >
+                ⚡
+            </div>
+
+            <h3>
+                Short Practice
+            </h3>
+
+            <p>
+                Practice for a few minutes whenever
+                you have time.
+            </p>
+
+        </div>
 
 
-        <p>
-            <strong>
-                Vietnamese is more approachable than it looks.
-            </strong>
+        <div class="intro-feature feature-beginner">
 
-            Start with a few useful words, practice them often,
-            and build your vocabulary step by step.
-            A little practice goes a long way.
+            <div
+                class="intro-feature-icon"
+                aria-hidden="true"
+            >
+                🌱
+            </div>
+
+            <h3>
+                Beginner Friendly
+            </h3>
+
+            <p>
+                Made for absolute beginners who want
+                practical Vietnamese.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="intro-divider"></div>
+
+
+    <div class="intro-bottom">
+
+        <p class="intro-bottom-text">
+            Ready to practice?
+            Create an account or log in to access
+            the vocabulary games.
         </p>
 
 
         <a
-            href="https://preply.in/DUONG6EN32308690102?ts=17876464"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="preply-link"
+            href="MAIN/LOG IN/login.html"
+            class="start-btn"
         >
-            Vietnamese lessons with me on Preply →
+            Log In →
         </a>
 
+    </div>
 
-        <div class="intro-features">
-
-
-            <div class="intro-feature feature-games">
-
-                <div
-                    class="intro-feature-icon"
-                    aria-hidden="true"
-                >
-                    🎮
-                </div>
-
-                <h3>
-                    Vocabulary Games
-                </h3>
-
-                <p>
-                    Learn useful Vietnamese words through
-                    short, interactive games.
-                </p>
-
-            </div>
-
-
-            <div class="intro-feature feature-practice">
-
-                <div
-                    class="intro-feature-icon"
-                    aria-hidden="true"
-                >
-                    ⚡
-                </div>
-
-                <h3>
-                    Short Practice
-                </h3>
-
-                <p>
-                    Practice for a few minutes whenever
-                    you have time.
-                </p>
-
-            </div>
-
-
-            <div class="intro-feature feature-beginner">
-
-                <div
-                    class="intro-feature-icon"
-                    aria-hidden="true"
-                >
-                    🌱
-                </div>
-
-                <h3>
-                    Beginner Friendly
-                </h3>
-
-                <p>
-                    Made for absolute beginners who want
-                    practical Vietnamese.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="intro-divider"></div>
-
-
-        <div class="intro-bottom">
-
-            <p class="intro-bottom-text">
-                Ready to practice?
-                Create an account or log in to access
-                the vocabulary games.
-            </p>
-
-
-            <a
-                href="MAIN/LOG IN/login.html"
-                class="start-btn"
-            >
-                Log In →
-            </a>
-
-        </div>
-
-    </section>
+</section>
+```
 
 </main>
-
 
 <!-- =====================================================
      LOBBY PAGE
@@ -2021,137 +2398,156 @@
     class="container"
 >
 
-    <div class="page-intro">
+```
+<div class="page-intro">
 
-        <h2 class="section-title">
-            Choose a Topic
-        </h2>
+    <h2 class="section-title">
+        Choose a Topic
+    </h2>
 
-        <p class="section-subtitle">
-            Choose a category and practice Vietnamese
-            through interactive games and activities.
-        </p>
+    <p class="section-subtitle">
+        Choose a category and practice Vietnamese
+        through interactive games and activities.
+    </p>
 
-    </div>
+</div>
 
 
-    <!-- =================================================
-         TYPE FILTERS
-    ================================================== -->
+<!-- =================================================
+     TYPE FILTERS
+================================================== -->
 
-    <div
-        class="type-filters"
-        role="tablist"
-        aria-label="Filter topics by type"
+<div
+    class="type-filters"
+    role="tablist"
+    aria-label="Filter topics by type"
+>
+
+    <button
+        type="button"
+        class="type-filter active"
+        data-type="all"
+        role="tab"
+        aria-selected="true"
     >
-
-        <button
-            type="button"
-            class="type-filter active"
-            data-type="all"
-            role="tab"
-            aria-selected="true"
-        >
-            ALL
-        </button>
+        ALL
+    </button>
 
 
-        <button
-            type="button"
-            class="type-filter"
-            data-type="vocabulary"
-            role="tab"
-            aria-selected="false"
-        >
-            VOCABULARY
-        </button>
-
-
-        <button
-            type="button"
-            class="type-filter"
-            data-type="sentences"
-            role="tab"
-            aria-selected="false"
-        >
-            PHRASES AND SENTENCES
-        </button>
-
-
-        <button
-            type="button"
-            class="type-filter"
-            data-type="dictionary"
-            role="tab"
-            aria-selected="false"
-        >
-            DICTIONARY
-        </button>
-
-    </div>
-
-
-    <!-- =================================================
-         DYNAMIC STATISTICS
-    ================================================== -->
-
-    <div
-        id="lobby-stats"
-        class="lobby-stats"
-        aria-label="Lesson and game statistics"
+    <button
+        type="button"
+        class="type-filter"
+        data-type="vocabulary"
+        role="tab"
+        aria-selected="false"
     >
-
-        <div class="stat-card">
-
-            <span
-                id="total-games"
-                class="stat-number"
-            >
-                —
-            </span>
-
-            <span class="stat-label">
-                Lessons / Games
-            </span>
-
-        </div>
+        VOCABULARY
+    </button>
 
 
-        <div class="stat-card">
-
-            <span
-                id="total-categories"
-                class="stat-number"
-            >
-                —
-            </span>
-
-            <span class="stat-label">
-                Topics
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         CATEGORY GRID
-    ================================================== -->
-
-    <div
-        id="category-container"
-        class="category-grid"
+    <button
+        type="button"
+        class="type-filter"
+        data-type="sentences"
+        role="tab"
+        aria-selected="false"
     >
+        PHRASES AND SENTENCES
+    </button>
 
-        <div class="loading">
-            Loading topics...
-        </div>
+
+    <button
+        type="button"
+        class="type-filter"
+        data-type="dictionary"
+        role="tab"
+        aria-selected="false"
+    >
+        DICTIONARY
+    </button>
+
+</div>
+
+
+<!-- =================================================
+     DYNAMIC STATISTICS
+================================================== -->
+
+<div
+    id="lobby-stats"
+    class="lobby-stats"
+    aria-label="Lesson and game statistics"
+>
+
+    <div class="stat-card">
+
+        <span
+            id="total-games"
+            class="stat-number"
+        >
+            —
+        </span>
+
+        <span
+            id="total-items-label"
+            class="stat-label"
+        >
+            Lessons / Games
+        </span>
 
     </div>
+
+
+    <div class="stat-card">
+
+        <span
+            id="total-categories"
+            class="stat-number"
+        >
+            —
+        </span>
+
+        <span
+            id="total-categories-label"
+            class="stat-label"
+        >
+            Topics
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     CATEGORY GRID
+================================================== -->
+
+<div
+    id="category-container"
+    class="category-grid"
+>
+
+    <div class="loading">
+        Loading topics...
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     DICTIONARY
+================================================== -->
+
+<div
+    id="dictionary-container"
+    class="hidden"
+>
+
+</div>
+```
 
 </main>
-
 
 <!-- =====================================================
      FOOTER
@@ -2159,12 +2555,13 @@
 
 <footer>
 
-    <div class="footer-line"></div>
+```
+<div class="footer-line"></div>
 
-    © 2026 Survival Vietnamese with Duong
+© 2026 Survival Vietnamese with Duong
+```
 
 </footer>
-
 
 <!-- =====================================================
      APPLICATION SCRIPT
@@ -2242,15 +2639,33 @@
         );
 
 
+    const dictionaryContainer =
+        document.getElementById(
+            "dictionary-container"
+        );
+
+
     const totalGamesElement =
         document.getElementById(
             "total-games"
         );
 
 
+    const totalItemsLabel =
+        document.getElementById(
+            "total-items-label"
+        );
+
+
     const totalCategoriesElement =
         document.getElementById(
             "total-categories"
+        );
+
+
+    const totalCategoriesLabel =
+        document.getElementById(
+            "total-categories-label"
         );
 
 
@@ -2297,10 +2712,7 @@
             "category-sentences",
 
         "Useful Phrases":
-            "category-useful-phrases",
-
-        "Dictionary":
-            "category-dictionary"
+            "category-useful-phrases"
 
     };
 
@@ -2318,10 +2730,7 @@
             "Phrases & Sentences",
 
         sentences:
-            "Phrases & Sentences",
-
-        dictionary:
-            "Dictionary"
+            "Phrases & Sentences"
 
     };
 
@@ -2538,14 +2947,6 @@
 
     /* =====================================================
        GET GAME COUNT
-       
-       Vocabulary categories:
-           games.length
-
-       Phrases & Sentences categories:
-           lessons.length
-
-       This is the important fix.
     ====================================================== */
 
     function getGameCount(category) {
@@ -2606,11 +3007,10 @@
         return 0;
 
     }
-    /* =====================================================
-        GET PHRASE COUNT
 
-        Useful Phrases category:
-            phrases.length
+
+    /* =====================================================
+       GET PHRASE COUNT
     ====================================================== */
 
     function getPhraseCount(category) {
@@ -2624,20 +3024,35 @@
 
         }
 
+
         return 0;
 
     }
-          
+
 
     /* =====================================================
-       GET VOCABULARY COUNT
+       GET VOCABULARY WORD COUNT
+       
+       IMPORTANT:
+       category.vocab is an array of TOPICS.
+
+       Each topic has:
+
+           topic.vocabulary = [ words ]
+
+       Therefore we count actual words,
+       not the number of vocabulary topics.
     ====================================================== */
 
-    function getVocabularyCount(category) {
+    function getVocabularyWordCount(
+        category
+    ) {
 
         if (
             !category ||
-            typeof category !== "object"
+            !Array.isArray(
+                category.vocab
+            )
         ) {
 
             return 0;
@@ -2645,29 +3060,29 @@
         }
 
 
-        if (
-            Array.isArray(
-                category.vocab
-            )
-        ) {
-
-            return category.vocab.length;
-
-        }
+        let count = 0;
 
 
-        if (
-            Array.isArray(
-                category.vocabulary
-            )
-        ) {
+        category.vocab.forEach(
+            topic => {
 
-            return category.vocabulary.length;
+                if (
+                    topic &&
+                    Array.isArray(
+                        topic.vocabulary
+                    )
+                ) {
 
-        }
+                    count +=
+                        topic.vocabulary.length;
+
+                }
+
+            }
+        );
 
 
-        return 0;
+        return count;
 
     }
 
@@ -2704,17 +3119,9 @@
     /* =====================================================
        GET LOBBY CATEGORY NAMES
        
-       Lobby shows:
+       Dictionary is NOT a category.
 
-       Vocabulary:
-           9 vocabulary categories
-
-       Phrases & Sentences:
-           Sentences
-           Useful Phrases
-
-       Dictionary:
-           Dictionary
+       Therefore it is NOT returned here.
     ====================================================== */
 
     function getLobbyCategoryNames() {
@@ -2766,23 +3173,6 @@
 
             }
         );
-
-
-        /* =================================================
-           DICTIONARY
-        ================================================== */
-
-        if (
-            getCategory(
-                "Dictionary"
-            )
-        ) {
-
-            names.push(
-                "Dictionary"
-            );
-
-        }
 
 
         return names;
@@ -2865,11 +3255,6 @@
 
         /* =================================================
            PHRASES AND SENTENCES
-           
-           Shows:
-
-               Sentences
-               Useful Phrases
         ================================================== */
 
         if (
@@ -2889,24 +3274,15 @@
         }
 
 
-        /* =================================================
-           DICTIONARY
-        ================================================== */
+        /*
+         * Dictionary does NOT render category cards.
+         */
 
         if (
             currentFilter === "dictionary"
         ) {
 
-            return lobbyCategories.filter(
-                categoryName => {
-
-                    return (
-                        categoryName ===
-                        "Dictionary"
-                    );
-
-                }
-            );
+            return [];
 
         }
 
@@ -2917,19 +3293,7 @@
 
 
     /* =====================================================
-        GET DISPLAY COUNT
-
-        Vocabulary:
-            Games
-
-        Sentences:
-            Lessons
-
-        Useful Phrases:
-            Phrases
-
-        Dictionary:
-            Words
+       GET DISPLAY COUNT
     ====================================================== */
 
     function getDisplayCount(
@@ -2938,32 +3302,7 @@
     ) {
 
         /* =================================================
-        DICTIONARY
-        ================================================== */
-
-        if (
-            categoryName ===
-            "Dictionary"
-        ) {
-
-            const words =
-                getVocabularyCount(
-                    category
-                );
-
-            return {
-                number: words,
-                label:
-                    words === 1
-                        ? "word"
-                        : "words"
-            };
-
-        }
-
-
-        /* =================================================
-        SENTENCES
+           SENTENCES
         ================================================== */
 
         if (
@@ -2976,20 +3315,24 @@
                     category
                 );
 
+
             return {
+
                 number: lessons,
+
                 label:
                     lessons === 1
                         ? "lesson"
                         : "lessons"
+
             };
 
         }
 
 
         /* =================================================
-        USEFUL PHRASES
-        ================================================= */
+           USEFUL PHRASES
+        ================================================== */
 
         if (
             categoryName ===
@@ -3001,21 +3344,23 @@
                     category
                 );
 
+
             return {
+
                 number: phrases,
+
                 label:
                     phrases === 1
                         ? "phrase"
                         : "phrases"
+
             };
 
         }
 
 
         /* =================================================
-        ALL VOCABULARY CATEGORIES
-
-        → count = Games
+           VOCABULARY
         ================================================== */
 
         const games =
@@ -3023,57 +3368,29 @@
                 category
             );
 
+
         return {
+
             number: games,
+
             label:
                 games === 1
                     ? "game"
                     : "games"
+
         };
 
     }
 
 
     /* =====================================================
-        GET TOTAL DISPLAY ITEMS
-
-        Vocabulary:
-            games
-
-        Sentences:
-            lessons
-
-        Useful Phrases:
-            phrases
-
-        Dictionary:
-            words
-        ====================================================== */
+       GET CATEGORY ITEM COUNT
+    ====================================================== */
 
     function getCategoryItemCount(
         categoryName,
         category
     ) {
-
-        /* =================================================
-        DICTIONARY
-        ================================================== */
-
-        if (
-            categoryName ===
-            "Dictionary"
-        ) {
-
-            return getVocabularyCount(
-                category
-            );
-
-        }
-
-
-        /* =================================================
-        SENTENCES
-        ================================================== */
 
         if (
             categoryName ===
@@ -3087,10 +3404,6 @@
         }
 
 
-        /* =================================================
-        USEFUL PHRASES
-        ================================================== */
-
         if (
             categoryName ===
             "Useful Phrases"
@@ -3102,10 +3415,6 @@
 
         }
 
-
-        /* =================================================
-        VOCABULARY
-        ================================================== */
 
         return getGameCount(
             category
@@ -3236,16 +3545,6 @@
 
         }
 
-        else if (
-            categoryName ===
-            "Dictionary"
-        ) {
-
-            typeLabel =
-                "Dictionary";
-
-        }
-
         else {
 
             const type =
@@ -3350,23 +3649,442 @@
 
 
     /* =====================================================
+       BUILD DICTIONARY
+       
+       ONLY:
+
+           type === "vocabulary"
+
+       AND:
+
+           vocab is an array
+
+       Sentences and Useful Phrases are ignored.
+    ====================================================== */
+
+    function buildDictionary() {
+
+        const dictionary = [];
+
+
+        Object.entries(
+            allCategories
+        ).forEach(
+            ([categoryName, category]) => {
+
+
+                /* =========================================
+                   ONLY VOCABULARY CATEGORIES
+                ========================================== */
+
+                if (
+                    !category ||
+                    typeof category !== "object"
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    category.type !==
+                    "vocabulary"
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    !Array.isArray(
+                        category.vocab
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   LOOP THROUGH VOCAB TOPICS
+                ========================================== */
+
+                category.vocab.forEach(
+                    topic => {
+
+
+                        if (
+                            !topic ||
+                            !Array.isArray(
+                                topic.vocabulary
+                            )
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        /* =================================
+                           LOOP THROUGH WORDS
+                        ================================== */
+
+                        topic.vocabulary.forEach(
+                            word => {
+
+
+                                if (
+                                    !word ||
+                                    !word.vietnamese
+                                ) {
+
+                                    return;
+
+                                }
+
+
+                                dictionary.push({
+
+                                    vietnamese:
+                                        word.vietnamese || "",
+
+                                    phonetics:
+                                        word.phonetics || "",
+
+                                    english:
+                                        word.english || "",
+
+                                    category:
+                                        categoryName,
+
+                                    topic:
+                                        topic.topic || ""
+
+                                });
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* ================================================
+           SORT VIETNAMESE ALPHABETICALLY
+        ================================================= */
+
+        dictionary.sort(
+            (a, b) =>
+                a.vietnamese.localeCompare(
+                    b.vietnamese,
+                    "vi"
+                )
+        );
+
+
+        return dictionary;
+
+    }
+
+
+    /* =====================================================
+       RENDER DICTIONARY
+    ====================================================== */
+
+    function renderDictionary(
+        searchTerm = ""
+    ) {
+
+        const dictionary =
+            buildDictionary();
+
+
+        const query =
+            searchTerm
+                .trim()
+                .toLowerCase();
+
+
+        const filtered =
+            dictionary.filter(
+                word => {
+
+                    if (!query) {
+
+                        return true;
+
+                    }
+
+
+                    return (
+
+                        word.vietnamese
+                            .toLowerCase()
+                            .includes(query)
+
+                        ||
+
+                        word.phonetics
+                            .toLowerCase()
+                            .includes(query)
+
+                        ||
+
+                        word.english
+                            .toLowerCase()
+                            .includes(query)
+
+                        ||
+
+                        word.category
+                            .toLowerCase()
+                            .includes(query)
+
+                        ||
+
+                        word.topic
+                            .toLowerCase()
+                            .includes(query)
+
+                    );
+
+                }
+            );
+
+
+        dictionaryContainer.innerHTML = `
+
+            <section
+                class="dictionary-page"
+                aria-label="Vietnamese Dictionary"
+            >
+
+                <div class="dictionary-header">
+
+                    <h2 class="dictionary-title">
+                        Dictionary
+                    </h2>
+
+                    <p class="dictionary-subtitle">
+                        Browse all Vietnamese vocabulary
+                        from every vocabulary topic.
+                    </p>
+
+                </div>
+
+
+                <div class="dictionary-search">
+
+                    <span
+                        class="dictionary-search-icon"
+                        aria-hidden="true"
+                    >
+                        🔍
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="dictionary-search-input"
+                        placeholder="Search Vietnamese or English..."
+                        autocomplete="off"
+                        value="${escapeHtml(
+                            searchTerm
+                        )}"
+                    >
+
+                </div>
+
+
+                <div class="dictionary-count">
+
+                    Showing
+                    <strong>
+                        ${filtered.length}
+                    </strong>
+                    of
+                    <strong>
+                        ${dictionary.length}
+                    </strong>
+                    words
+
+                </div>
+
+
+                <div class="dictionary-grid">
+
+                    ${
+                        filtered.length
+                            ? filtered.map(
+                                word => `
+
+                                    <article
+                                        class="dictionary-card"
+                                    >
+
+                                        <div
+                                            class="dictionary-vietnamese"
+                                        >
+                                            ${escapeHtml(
+                                                word.vietnamese
+                                            )}
+                                        </div>
+
+
+                                        ${
+                                            word.phonetics
+                                                ? `
+                                                    <div
+                                                        class="dictionary-phonetics"
+                                                    >
+                                                        /${escapeHtml(
+                                                            word.phonetics
+                                                        )}/
+                                                    </div>
+                                                  `
+                                                : ""
+                                        }
+
+
+                                        <div
+                                            class="dictionary-english"
+                                        >
+                                            ${escapeHtml(
+                                                word.english
+                                            )}
+                                        </div>
+
+
+                                        <div
+                                            class="dictionary-meta"
+                                        >
+
+                                            <span
+                                                class="dictionary-tag"
+                                            >
+                                                ${escapeHtml(
+                                                    word.category
+                                                )}
+                                            </span>
+
+
+                                            ${
+                                                word.topic
+                                                    ? `
+                                                        <span
+                                                            class="dictionary-tag"
+                                                        >
+                                                            ${escapeHtml(
+                                                                word.topic
+                                                            )}
+                                                        </span>
+                                                      `
+                                                    : ""
+                                            }
+
+                                        </div>
+
+                                    </article>
+
+                                `
+                            ).join("")
+                            : `
+
+                                <div
+                                    class="dictionary-empty"
+                                >
+
+                                    <span
+                                        class="dictionary-empty-icon"
+                                    >
+                                        🔍
+                                    </span>
+
+                                    <strong>
+                                        No words found
+                                    </strong>
+
+                                    <br>
+
+                                    Try searching for
+                                    another Vietnamese
+                                    or English word.
+
+                                </div>
+
+                              `
+                    }
+
+                </div>
+
+            </section>
+
+        `;
+
+
+        /* =================================================
+           SEARCH EVENT
+        ================================================== */
+
+        const searchInput =
+            document.getElementById(
+                "dictionary-search-input"
+            );
+
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                event => {
+
+                    const value =
+                        event.target.value;
+
+
+                    renderDictionary(
+                        value
+                    );
+
+
+                    /*
+                     * Restore cursor position.
+                     */
+
+                    const newInput =
+                        document.getElementById(
+                            "dictionary-search-input"
+                        );
+
+
+                    if (newInput) {
+
+                        newInput.focus();
+
+
+                        newInput.setSelectionRange(
+                            newInput.value.length,
+                            newInput.value.length
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
        UPDATE STATS
-
-       Uses the SAME counting logic as category cards.
-
-       This means:
-
-       Sentences:
-           7 lessons
-
-       Useful Phrases:
-           number of lessons
-
-       Vocabulary:
-           number of games
-
-       Dictionary:
-           number of words
     ====================================================== */
 
     function updateStats(
@@ -3409,6 +4127,51 @@
         totalCategoriesElement.textContent =
             filteredCategories.length;
 
+
+        /*
+         * Change stat labels depending
+         * on the current filter.
+         */
+
+        if (
+            currentFilter ===
+            "vocabulary"
+        ) {
+
+            totalItemsLabel.textContent =
+                "Games";
+
+
+            totalCategoriesLabel.textContent =
+                "Topics";
+
+        }
+
+        else if (
+            currentFilter ===
+            "sentences"
+        ) {
+
+            totalItemsLabel.textContent =
+                "Lessons / Phrases";
+
+
+            totalCategoriesLabel.textContent =
+                "Topics";
+
+        }
+
+        else {
+
+            totalItemsLabel.textContent =
+                "Lessons / Games";
+
+
+            totalCategoriesLabel.textContent =
+                "Topics";
+
+        }
+
     }
 
 
@@ -3434,16 +4197,6 @@
         ) {
 
             return "phrases and sentences";
-
-        }
-
-
-        if (
-            currentFilter ===
-            "dictionary"
-        ) {
-
-            return "dictionary";
 
         }
 
@@ -3555,6 +4308,77 @@
 
 
     /* =====================================================
+       RENDER CURRENT VIEW
+    ====================================================== */
+
+    function renderCurrentView() {
+
+        /*
+         * Dictionary is a completely different
+         * view from category cards.
+         */
+
+        if (
+            currentFilter ===
+            "dictionary"
+        ) {
+
+            categoryContainer.classList.add(
+                "hidden"
+            );
+
+
+            dictionaryContainer.classList.remove(
+                "hidden"
+            );
+
+
+            document
+                .getElementById(
+                    "lobby-stats"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+
+            renderDictionary();
+
+
+            return;
+
+        }
+
+
+        /*
+         * All other tabs use category cards.
+         */
+
+        categoryContainer.classList.remove(
+            "hidden"
+        );
+
+
+        dictionaryContainer.classList.add(
+            "hidden"
+        );
+
+
+        document
+            .getElementById(
+                "lobby-stats"
+            )
+            .classList.remove(
+                "hidden"
+            );
+
+
+        renderCategories();
+
+    }
+
+
+    /* =====================================================
        LOAD AND RENDER CATEGORIES
     ====================================================== */
 
@@ -3566,7 +4390,7 @@
                 await loadCategories();
 
 
-            renderCategories();
+            renderCurrentView();
 
         }
 
@@ -3627,9 +4451,20 @@
         selectedType
     ) {
 
-        currentFilter =
-            selectedType;
+        if (
+            selectedType === "dictionary"
+        ) {
 
+            window.location.href =
+                "Dictionary/dictionary.html";
+
+            return;
+
+        }
+
+
+    currentFilter =
+        selectedType;
 
         /* =================================================
            UPDATE BUTTON STATES
@@ -3665,7 +4500,7 @@
 
 
         /* =================================================
-           RENDER FILTERED CATEGORIES
+           RENDER SELECTED VIEW
         ================================================== */
 
         if (
@@ -3674,7 +4509,7 @@
             ).length > 0
         ) {
 
-            renderCategories();
+            renderCurrentView();
 
         }
 

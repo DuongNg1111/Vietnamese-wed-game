@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Browse and search Vietnamese vocabulary from all vocabulary categories."
+>
+
+<title>Vietnamese Dictionary</title>
+
+
+<!-- =====================================================
+     GOOGLE FONTS
+====================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =====================================================
+     STYLE
+====================================================== -->
+
+<style>
+
+    :root {
+
+        --bg: #eef8f7;
+        --bg-soft: #f7fcfb;
+
+        --primary: #2f8f83;
+        --primary-dark: #24756c;
+        --primary-light: #dff3ef;
+
+        --yellow: #f4c95d;
+        --yellow-soft: #fff6d9;
+        --yellow-dark: #8c6b12;
+
+        --text: #23413d;
+        --text-soft: #6d8581;
+
+        --white: #ffffff;
+
+        --border: #dcecea;
+
+        --shadow:
+            0 8px 25px rgba(47, 143, 131, 0.08);
+
+        --radius: 18px;
+    }
+
+
+    * {
+
+        box-sizing: border-box;
+
+        margin: 0;
+
+        padding: 0;
+
+    }
+
+
+    body {
+
+        font-family:
+            "Be Vietnam Pro",
+            sans-serif;
+
+        background:
+            linear-gradient(
+                180deg,
+                var(--bg) 0%,
+                var(--bg-soft) 100%
+            );
+
+        color: var(--text);
+
+        min-height: 100vh;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    header {
+
+        width: 100%;
+
+        background:
+            var(--white);
+
+        border-bottom:
+            1px solid var(--border);
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 100;
+
+    }
+
+
+    .header-inner {
+
+        max-width: 1200px;
+
+        margin: 0 auto;
+
+        padding:
+            18px 24px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+    }
+
+
+    .logo {
+
+        text-decoration: none;
+
+        color:
+            var(--primary);
+
+        font-family:
+            "Kalam",
+            cursive;
+
+        font-size: 28px;
+
+        font-weight: 700;
+
+    }
+
+
+    .back-button {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding:
+            10px 16px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 12px;
+
+        background:
+            var(--white);
+
+        color:
+            var(--text);
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        transition:
+            0.2s ease;
+
+    }
+
+
+    .back-button:hover {
+
+        border-color:
+            var(--primary);
+
+        color:
+            var(--primary);
+
+        transform:
+            translateY(-1px);
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+
+        max-width: 1200px;
+
+        margin: 0 auto;
+
+        padding:
+            55px 24px 30px;
+
+        text-align: center;
+
+    }
+
+
+    .hero-icon {
+
+        width: 68px;
+
+        height: 68px;
+
+        margin:
+            0 auto 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 20px;
+
+        background:
+            var(--primary-light);
+
+        font-size: 34px;
+
+    }
+
+
+    .hero h1 {
+
+        font-family:
+            "Kalam",
+            cursive;
+
+        font-size:
+            clamp(38px, 6vw, 58px);
+
+        line-height: 1.1;
+
+        color:
+            var(--primary-dark);
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .hero p {
+
+        max-width: 650px;
+
+        margin:
+            0 auto;
+
+        color:
+            var(--text-soft);
+
+        font-size: 15px;
+
+        line-height: 1.7;
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    .controls {
+
+        max-width: 900px;
+
+        margin:
+            10px auto 35px;
+
+        padding:
+            0 24px;
+
+    }
+
+
+    .search-box {
+
+        position: relative;
+
+    }
+
+
+    .search-icon {
+
+        position: absolute;
+
+        left: 18px;
+
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        font-size: 19px;
+
+        pointer-events: none;
+
+    }
+
+
+    #searchInput {
+
+        width: 100%;
+
+        padding:
+            17px 20px 17px 50px;
+
+        border:
+            2px solid var(--border);
+
+        border-radius: 16px;
+
+        background:
+            var(--white);
+
+        color:
+            var(--text);
+
+        font-family:
+            "Be Vietnam Pro",
+            sans-serif;
+
+        font-size: 15px;
+
+        outline: none;
+
+        box-shadow:
+            var(--shadow);
+
+        transition:
+            0.2s ease;
+
+    }
+
+
+    #searchInput::placeholder {
+
+        color:
+            #9aafac;
+
+    }
+
+
+    #searchInput:focus {
+
+        border-color:
+            var(--primary);
+
+        box-shadow:
+            0 8px 30px
+            rgba(47, 143, 131, 0.13);
+
+    }
+
+
+    .stats {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-top: 14px;
+
+        color:
+            var(--text-soft);
+
+        font-size: 13px;
+
+    }
+
+
+    .stats strong {
+
+        color:
+            var(--primary-dark);
+
+    }
+
+
+    /* =====================================================
+       DICTIONARY GRID
+    ====================================================== */
+
+    main {
+
+        max-width: 1200px;
+
+        margin:
+            0 auto;
+
+        padding:
+            0 24px 70px;
+
+    }
+
+
+    #dictionaryGrid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 18px;
+
+    }
+
+
+    /* =====================================================
+       WORD CARD
+    ====================================================== */
+
+    .word-card {
+
+        width: 100%;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            var(--radius);
+
+        padding:
+            22px;
+
+        background:
+            var(--white);
+
+        box-shadow:
+            var(--shadow);
+
+        text-align: left;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+        font-family:
+            "Be Vietnam Pro",
+            sans-serif;
+
+        color:
+            var(--text);
+
+        appearance: none;
+
+        -webkit-appearance: none;
+
+    }
+
+
+    .word-card:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            #b8dcd6;
+
+        box-shadow:
+            0 14px 35px
+            rgba(47, 143, 131, 0.14);
+
+    }
+
+
+    .word-card:focus {
+
+        outline:
+            3px solid
+            rgba(47, 143, 131, 0.18);
+
+        outline-offset:
+            2px;
+
+    }
+
+
+    .word-card:active {
+
+        transform:
+            translateY(-1px);
+
+    }
+
+
+    .word-top {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .vietnamese {
+
+        color:
+            var(--primary-dark);
+
+        font-size: 22px;
+
+        font-weight: 800;
+
+        line-height: 1.3;
+
+    }
+
+
+    .phonetics {
+
+        color:
+            var(--primary);
+
+        font-size: 14px;
+
+        font-style: italic;
+
+        line-height: 1.5;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .english {
+
+        color:
+            var(--text);
+
+        font-size: 15px;
+
+        font-weight: 500;
+
+        line-height: 1.5;
+
+    }
+
+
+    .metadata {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 7px;
+
+        margin-top: 16px;
+
+    }
+
+
+    .tag {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        padding:
+            5px 9px;
+
+        border-radius:
+            8px;
+
+        background:
+            var(--primary-light);
+
+        color:
+            var(--primary-dark);
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+    }
+
+
+    .topic-tag {
+
+        background:
+            var(--yellow-soft);
+
+        color:
+            var(--yellow-dark);
+
+    }
+
+
+    .click-hint {
+
+        margin-top: 15px;
+
+        color:
+            #9aafac;
+
+        font-size: 11px;
+
+        font-weight: 500;
+
+    }
+
+
+    /* =====================================================
+       MESSAGE
+    ====================================================== */
+
+    .message {
+
+        grid-column:
+            1 / -1;
+
+        text-align: center;
+
+        padding:
+            60px 20px;
+
+        color:
+            var(--text-soft);
+
+    }
+
+
+    .message-icon {
+
+        font-size: 40px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .message h2 {
+
+        color:
+            var(--text);
+
+        margin-bottom: 8px;
+
+        font-size: 20px;
+
+    }
+
+
+    .message p {
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+        #dictionaryGrid {
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .header-inner {
+
+            padding:
+                15px 18px;
+
+        }
+
+
+        .logo {
+
+            font-size:
+                24px;
+
+        }
+
+
+        .back-button {
+
+            padding:
+                9px 12px;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .hero {
+
+            padding:
+                40px 18px 25px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                42px;
+
+        }
+
+
+        .controls {
+
+            padding:
+                0 18px;
+
+        }
+
+
+        main {
+
+            padding:
+                0 18px 50px;
+
+        }
+
+
+        #dictionaryGrid {
+
+            grid-template-columns:
+                1fr;
+
+            gap:
+                14px;
+
+        }
+
+
+        .word-card {
+
+            padding:
+                19px;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <div class="header-inner">
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+            Vietnamese
+        </a>
+
+
+        <a
+            href="../index.html"
+            class="back-button"
+        >
+            ← Back to Lobby
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-icon">
+        📖
+    </div>
+
+
+    <h1>
+        Dictionary
+    </h1>
+
+
+    <p>
+        Browse and search Vietnamese vocabulary
+        from all vocabulary categories.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH
+====================================================== -->
+
+<section class="controls">
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔎
+        </span>
+
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Vietnamese or English..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <div class="stats">
+
+        <span>
+            Showing
+            <strong id="resultCount">0</strong>
+            words
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DICTIONARY
+====================================================== -->
+
+<main>
+
+    <div id="dictionaryGrid">
+
+        <div class="message">
+
+            <div class="message-icon">
+                ⏳
+            </div>
+
+            <h2>
+                Loading dictionary...
+            </h2>
+
+            <p>
+                Please wait while we load the vocabulary.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     SCRIPT
+====================================================== -->
+
+<script>
+
+    const dictionaryGrid =
+        document.getElementById(
+            "dictionaryGrid"
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const resultCount =
+        document.getElementById(
+            "resultCount"
+        );
+
+
+    let dictionary = [];
+
+
+
+    /* =====================================================
+       LOAD CATEGORIES.JSON
+    ====================================================== */
+
+    async function loadDictionary() {
+
+        try {
+
+            /*
+             * dictionary.html is inside:
+             *
+             * Dictionary/
+             *
+             * categories.json is in:
+             *
+             * WEB GAME/
+             *
+             * Therefore:
+             *
+             * ../categories.json
+             */
+
+            const response =
+                await fetch(
+                    "../categories.json"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load categories.json"
+                );
+
+            }
+
+
+            const categories =
+                await response.json();
+
+
+            buildDictionary(
+                categories
+            );
+
+
+            renderDictionary(
+                dictionary
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Dictionary error:",
+                error
+            );
+
+
+            dictionaryGrid.innerHTML = `
+
+                <div class="message">
+
+                    <div class="message-icon">
+                        ⚠️
+                    </div>
+
+                    <h2>
+                        Could not load dictionary
+                    </h2>
+
+                    <p>
+                        Please make sure
+                        <strong>categories.json</strong>
+                        is in the main WEB GAME folder.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       BUILD DICTIONARY
+    ====================================================== */
+
+    function buildDictionary(
+        categories
+    ) {
+
+        dictionary = [];
+
+
+        Object.entries(
+            categories
+        ).forEach(
+            ([categoryName, category]) => {
+
+
+                /*
+                 * ONLY vocabulary categories.
+                 *
+                 * This means:
+                 *
+                 * type = vocabulary
+                 *
+                 * Sentences and Useful Phrases
+                 * are automatically ignored.
+                 */
+
+                if (
+                    category.type !== "vocabulary"
+                    ||
+                    !Array.isArray(
+                        category.vocab
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                category.vocab.forEach(
+                    topic => {
+
+
+                        if (
+                            !Array.isArray(
+                                topic.vocabulary
+                            )
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        topic.vocabulary.forEach(
+                            word => {
+
+
+                                dictionary.push({
+
+                                    vietnamese:
+                                        word.vietnamese || "",
+
+                                    phonetics:
+                                        word.phonetics || "",
+
+                                    english:
+                                        word.english || "",
+
+                                    category:
+                                        categoryName,
+
+                                    topic:
+                                        topic.topic || ""
+
+                                });
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /*
+         * Sort alphabetically
+         * by Vietnamese word.
+         */
+
+        dictionary.sort(
+            (a, b) =>
+                a.vietnamese.localeCompare(
+                    b.vietnamese,
+                    "vi"
+                )
+        );
+
+    }
+
+
+
+    /* =====================================================
+       RENDER DICTIONARY
+    ====================================================== */
+
+    function renderDictionary(
+        words
+    ) {
+
+        resultCount.textContent =
+            words.length;
+
+
+        if (
+            words.length === 0
+        ) {
+
+            dictionaryGrid.innerHTML = `
+
+                <div class="message">
+
+                    <div class="message-icon">
+                        🔍
+                    </div>
+
+                    <h2>
+                        No words found
+                    </h2>
+
+                    <p>
+                        Try a different search.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        dictionaryGrid.innerHTML =
+            words.map(
+                (word, index) => `
+
+                    <button
+                        type="button"
+                        class="word-card"
+                        data-index="${index}"
+                        data-word="${escapeHTML(
+                            word.vietnamese
+                        )}"
+                        aria-label="View details for ${escapeHTML(
+                            word.vietnamese
+                        )}"
+                    >
+
+                        <div class="word-top">
+
+                            <div class="vietnamese">
+
+                                ${escapeHTML(
+                                    word.vietnamese
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        ${
+                            word.phonetics
+                                ? `
+
+                                    <div class="phonetics">
+
+                                        /${escapeHTML(
+                                            word.phonetics
+                                        )}/
+
+                                    </div>
+
+                                  `
+                                : ""
+                        }
+
+
+                        <div class="english">
+
+                            ${escapeHTML(
+                                word.english
+                            )}
+
+                        </div>
+
+
+                        <div class="metadata">
+
+                            ${
+                                word.category
+                                    ? `
+
+                                        <span class="tag">
+
+                                            ${escapeHTML(
+                                                word.category
+                                            )}
+
+                                        </span>
+
+                                      `
+                                    : ""
+                            }
+
+
+                            ${
+                                word.topic
+                                    ? `
+
+                                        <span class="tag topic-tag">
+
+                                            ${escapeHTML(
+                                                word.topic
+                                            )}
+
+                                        </span>
+
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+
+                        <div class="click-hint">
+
+                            Click to view details →
+
+                        </div>
+
+                    </button>
+
+                `
+            )
+            .join("");
+
+
+        /*
+         * Every word card is clickable.
+         *
+         * Clicking a word opens:
+         *
+         * Dictionary/word.html?word=...&cat=...&topic=...
+         *
+         * We pass category + topic too (not just the word)
+         * so word.html can find the EXACT entry even when
+         * the same Vietnamese word appears in more than one
+         * category (e.g. "cam" = orange fruit AND orange color).
+         */
+
+        document
+            .querySelectorAll(
+                ".word-card"
+            )
+            .forEach(
+                card => {
+
+                    card.addEventListener(
+                        "click",
+                        () => {
+
+                            const idx =
+                                Number(
+                                    card.dataset.index
+                                );
+
+
+                            const word =
+                                words[idx];
+
+
+                            if (!word) {
+
+                                return;
+
+                            }
+
+
+                            const url =
+                                "word.html" +
+                                "?word=" + encodeURIComponent(word.vietnamese) +
+                                "&cat=" + encodeURIComponent(word.category) +
+                                "&topic=" + encodeURIComponent(word.topic);
+
+
+                            window.location.href =
+                                url;
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            const query =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!query) {
+
+                renderDictionary(
+                    dictionary
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                dictionary.filter(
+                    word => {
+
+                        const vietnamese =
+                            word.vietnamese
+                                .toLowerCase();
+
+
+                        const phonetics =
+                            word.phonetics
+                                .toLowerCase();
+
+
+                        const english =
+                            word.english
+                                .toLowerCase();
+
+
+                        const category =
+                            word.category
+                                .toLowerCase();
+
+
+                        const topic =
+                            word.topic
+                                .toLowerCase();
+
+
+                        return (
+
+                            vietnamese.includes(
+                                query
+                            )
+
+                            ||
+
+                            phonetics.includes(
+                                query
+                            )
+
+                            ||
+
+                            english.includes(
+                                query
+                            )
+
+                            ||
+
+                            category.includes(
+                                query
+                            )
+
+                            ||
+
+                            topic.includes(
+                                query
+                            )
+
+                        );
+
+                    }
+                );
+
+
+            renderDictionary(
+                filtered
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       HTML ESCAPE
+    ====================================================== */
+
+    function escapeHTML(
+        value
+    ) {
+
+        return String(value)
+
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
+
+    }
+
+
+
+    /* =====================================================
+       START
+    ====================================================== */
+
+    loadDictionary();
+
+</script>
+
+</body>
+
+</html>
