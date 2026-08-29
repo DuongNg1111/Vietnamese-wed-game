@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Learn useful Vietnamese phrases for everyday communication and travel."
+>
+
+<title>Useful Vietnamese Phrases</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    :root {
+
+        --background: #ffffff;
+
+        --surface: #f7f7f5;
+
+        --text: #171717;
+
+        --secondary: #4a4a4a;
+
+        --border: #d5d5d0;
+
+        --accent: #a86f00;
+
+        --accent-soft: #fff4d8;
+
+        --phonetic: #2563eb;
+
+    }
+
+
+    body {
+
+        font-family:
+            Calibri,
+            Arial,
+            sans-serif;
+
+        background:
+            var(--background);
+
+        color:
+            var(--text);
+
+        min-height:
+            100vh;
+
+    }
+
+
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+
+        width:
+            min(920px, 92%);
+
+        margin:
+            0 auto;
+
+        padding:
+            30px 0 70px;
+
+    }
+
+
+    /* =========================
+       BACK
+    ========================= */
+
+    .back-button {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        color:
+            var(--text);
+
+        text-decoration:
+            none;
+
+        font-size:
+            15px;
+
+        font-weight:
+            700;
+
+        margin-bottom:
+            55px;
+
+        transition:
+            transform 0.2s ease;
+
+    }
+
+
+    .back-button:hover {
+
+        transform:
+            translateX(-4px);
+
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+
+        padding-bottom:
+            42px;
+
+        border-bottom:
+            2px solid var(--text);
+
+        margin-bottom:
+            55px;
+
+    }
+
+
+    .header h1 {
+
+        font-size:
+            clamp(32px, 5vw, 46px);
+
+        line-height:
+            1.15;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            -1px;
+
+        margin-bottom:
+            13px;
+
+    }
+
+
+    .header p {
+
+        font-size:
+            16px;
+
+        color:
+            var(--secondary);
+
+        line-height:
+            1.6;
+
+    }
+
+
+    .phonetic {
+
+        color:
+            var(--phonetic);
+
+        font-style:
+            italic;
+
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section {
+
+        margin-bottom:
+            65px;
+
+    }
+
+
+    .section-title {
+
+        font-size:
+            14px;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            1.4px;
+
+        color:
+            var(--text);
+
+        margin-bottom:
+            18px;
+
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+
+        font-size:
+            16px;
+
+        color:
+            var(--secondary);
+
+        line-height:
+            1.6;
+
+        margin-bottom:
+            28px;
+
+    }
+
+
+    /* =========================
+       PHRASE LIST
+    ========================= */
+
+    .phrase-list {
+
+        border-top:
+            2px solid var(--text);
+
+    }
+
+
+    .phrase {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            45px 1fr 1fr;
+
+        gap:
+            25px;
+
+        align-items:
+            center;
+
+        padding:
+            22px 8px;
+
+        border-bottom:
+            1px solid var(--border);
+
+    }
+
+
+    /* =========================
+       NUMBER
+    ========================= */
+
+    .phrase-number {
+
+        font-size:
+            13px;
+
+        font-weight:
+            800;
+
+        color:
+            var(--secondary);
+
+    }
+
+
+    /* =========================
+       VIETNAMESE
+    ========================= */
+
+    .phrase-vietnamese {
+
+        font-size:
+            19px;
+
+        font-weight:
+            800;
+
+        line-height:
+            1.45;
+
+    }
+
+
+    /* =========================
+       PHONETICS
+    ========================= */
+
+    .phrase-phonetic {
+
+        margin-top:
+            5px;
+
+        font-size:
+            15px;
+
+        color:
+            var(--phonetic);
+
+        font-style:
+            italic;
+
+        font-weight:
+            500;
+
+        line-height:
+            1.45;
+
+    }
+
+
+    /* =========================
+       ENGLISH
+    ========================= */
+
+    .phrase-english {
+
+        font-size:
+            16px;
+
+        color:
+            var(--secondary);
+
+        font-weight:
+            500;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    /* =========================
+       NOTE
+    ========================= */
+
+    .note-box {
+
+        margin-top:
+            25px;
+
+        padding:
+            20px 22px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            10px;
+
+        background:
+            var(--surface);
+
+    }
+
+
+    .note-title {
+
+        font-size:
+            13px;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            1.2px;
+
+        margin-bottom:
+            10px;
+
+    }
+
+
+    .note-text {
+
+        font-size:
+            15px;
+
+        color:
+            var(--secondary);
+
+        line-height:
+            1.6;
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+        .page {
+
+            width:
+                90%;
+
+            padding-top:
+                25px;
+
+        }
+
+
+        .back-button {
+
+            margin-bottom:
+                40px;
+
+        }
+
+
+        .header {
+
+            margin-bottom:
+                45px;
+
+            padding-bottom:
+                30px;
+
+        }
+
+
+        .section {
+
+            margin-bottom:
+                50px;
+
+        }
+
+
+        .phrase {
+
+            grid-template-columns:
+                35px 1fr;
+
+            gap:
+                15px;
+
+            padding:
+                20px 5px;
+
+        }
+
+
+        .phrase-number {
+
+            grid-row:
+                span 1;
+
+            align-self:
+                start;
+
+            padding-top:
+                3px;
+
+        }
+
+
+        .phrase-english {
+
+            grid-column:
+                2;
+
+            margin-top:
+                4px;
+
+        }
+
+
+        .phrase-vietnamese {
+
+            font-size:
+                18px;
+
+        }
+
+
+        .phrase-english {
+
+            font-size:
+                15px;
+
+        }
+
+
+        .phrase-phonetic {
+
+            font-size:
+                14px;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- =========================
+     BACK
+========================= -->
+
+<a
+    href="../../phrases-and-sentences.html?category=Useful%20Phrases"
+    class="back-button"
+>
+    ← Back
+</a>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <h1>
+        15 USEFUL VIETNAMESE PHRASES
+    </h1>
+
+    <p class="question-note">
+
+        <em>
+            Learn practical Vietnamese phrases for
+            everyday communication and travel.
+        </em>
+
+    </p>
+
+</header>
+
+
+        <!-- =========================
+             PHRASE 01
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                01
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Xin chào
+                </div>
+
+                <div class="phrase-phonetic">
+                    /sin chao/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Hello
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 02
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                02
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Cảm ơn
+                </div>
+
+                <div class="phrase-phonetic">
+                    /kam ən/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Thank you
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 03
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                03
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Xin lỗi
+                </div>
+
+                <div class="phrase-phonetic">
+                    /sin loy/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Sorry / Excuse me
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 04
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                04
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Không sao / Không có gì
+                </div>
+
+                <div class="phrase-phonetic">
+                    /khong sao/ /khong kaw zee/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                It’s okay / No problem / You're welcome
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 05
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                05
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Hẹn gặp lại
+                </div>
+
+                <div class="phrase-phonetic">
+                    /hen gap lai/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                See you again
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 06
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                06
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tạm biệt
+                </div>
+
+                <div class="phrase-phonetic">
+                    /tam bee-et/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Goodbye
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 07
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                07
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Bạn nói tiếng Anh không?
+                </div>
+
+                <div class="phrase-phonetic">
+                    /ban noy tieng Anh khong?/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Do you speak English?
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 08
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                08
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tôi biết một chút tiếng Việt
+                </div>
+
+                <div class="phrase-phonetic">
+                    /toy bee-et mot choot tieng Viet/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                I know a little Vietnamese
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 09
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                09
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tôi không hiểu
+                </div>
+
+                <div class="phrase-phonetic">
+                    /toy khong hyeu/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                I don’t understand
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 10
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                10
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Xin nói chậm lại
+                </div>
+
+                <div class="phrase-phonetic">
+                    /sin noy cham lai/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Please speak more slowly
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 11
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                11
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tôi bị dị ứng ______
+                </div>
+
+                <div class="phrase-phonetic">
+                    /toy bee zee ưng/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                I’m allergic to ______ / I have an allergy to ______
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 12
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                12
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Giúp tôi với!
+                </div>
+
+                <div class="phrase-phonetic">
+                    /zoop toy voy/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Help me, please!
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 13
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                13
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Chúc ngủ ngon
+                </div>
+
+                <div class="phrase-phonetic">
+                    /chook ngoo ngon/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                Good night
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 14
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                14
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tôi không có tiền
+                </div>
+
+                <div class="phrase-phonetic">
+                    /toy khong kaw tien/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                I don’t have money
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PHRASE 15
+        ========================= -->
+
+        <div class="phrase">
+
+            <div class="phrase-number">
+                15
+            </div>
+
+
+            <div>
+
+                <div class="phrase-vietnamese">
+                    Tôi không mua.
+                </div>
+
+                <div class="phrase-phonetic">
+                    /toy khong mua/
+                </div>
+
+            </div>
+
+
+            <div class="phrase-english">
+                I’m not buying it.
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+</div>
+
+</body>
+
+</html>

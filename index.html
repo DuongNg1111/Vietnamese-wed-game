@@ -2606,7 +2606,28 @@
         return 0;
 
     }
+    /* =====================================================
+        GET PHRASE COUNT
 
+        Useful Phrases category:
+            phrases.length
+    ====================================================== */
+
+    function getPhraseCount(category) {
+
+        if (
+            category &&
+            typeof category.phraseCount === "number"
+        ) {
+
+            return category.phraseCount;
+
+        }
+
+        return 0;
+
+    }
+          
 
     /* =====================================================
        GET VOCABULARY COUNT
@@ -2896,19 +2917,19 @@
 
 
     /* =====================================================
-       GET DISPLAY COUNT
+        GET DISPLAY COUNT
 
-       Vocabulary:
-           Games
+        Vocabulary:
+            Games
 
-       Sentences:
-           Lessons
+        Sentences:
+            Lessons
 
-       Useful Phrases:
-           Lessons
+        Useful Phrases:
+            Phrases
 
-       Dictionary:
-           Words
+        Dictionary:
+            Words
     ====================================================== */
 
     function getDisplayCount(
@@ -2917,7 +2938,7 @@
     ) {
 
         /* =================================================
-           DICTIONARY
+        DICTIONARY
         ================================================== */
 
         if (
@@ -2929,7 +2950,6 @@
                 getVocabularyCount(
                     category
                 );
-
 
             return {
                 number: words,
@@ -2943,7 +2963,7 @@
 
 
         /* =================================================
-           SENTENCES
+        SENTENCES
         ================================================== */
 
         if (
@@ -2956,7 +2976,6 @@
                     category
                 );
 
-
             return {
                 number: lessons,
                 label:
@@ -2969,42 +2988,40 @@
 
 
         /* =================================================
-           USEFUL PHRASES
-        ================================================== */
+        USEFUL PHRASES
+        ================================================= */
 
         if (
             categoryName ===
             "Useful Phrases"
         ) {
 
-            const lessons =
-                getLessonCount(
+            const phrases =
+                getPhraseCount(
                     category
                 );
 
-
             return {
-                number: lessons,
+                number: phrases,
                 label:
-                    lessons === 1
-                        ? "lesson"
-                        : "lessons"
+                    phrases === 1
+                        ? "phrase"
+                        : "phrases"
             };
 
         }
 
 
         /* =================================================
-           ALL VOCABULARY CATEGORIES
+        ALL VOCABULARY CATEGORIES
 
-           → count = Games
+        → count = Games
         ================================================== */
 
         const games =
             getGameCount(
                 category
             );
-
 
         return {
             number: games,
@@ -3018,27 +3035,29 @@
 
 
     /* =====================================================
-       GET TOTAL DISPLAY ITEMS
+        GET TOTAL DISPLAY ITEMS
 
-       This is also important for the top statistics.
+        Vocabulary:
+            games
 
-       Vocabulary:
-           games
+        Sentences:
+            lessons
 
-       Sentences:
-           lessons
+        Useful Phrases:
+            phrases
 
-       Useful Phrases:
-           lessons
-
-       Dictionary:
-           words
-    ====================================================== */
+        Dictionary:
+            words
+        ====================================================== */
 
     function getCategoryItemCount(
         categoryName,
         category
     ) {
+
+        /* =================================================
+        DICTIONARY
+        ================================================== */
 
         if (
             categoryName ===
@@ -3052,9 +3071,13 @@
         }
 
 
+        /* =================================================
+        SENTENCES
+        ================================================== */
+
         if (
-            categoryName === "Sentences" ||
-            categoryName === "Useful Phrases"
+            categoryName ===
+            "Sentences"
         ) {
 
             return getLessonCount(
@@ -3063,6 +3086,26 @@
 
         }
 
+
+        /* =================================================
+        USEFUL PHRASES
+        ================================================== */
+
+        if (
+            categoryName ===
+            "Useful Phrases"
+        ) {
+
+            return getPhraseCount(
+                category
+            );
+
+        }
+
+
+        /* =================================================
+        VOCABULARY
+        ================================================== */
 
         return getGameCount(
             category
