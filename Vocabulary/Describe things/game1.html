@@ -4,97 +4,241 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Find The Same Meaning</title>
 
-<meta name="game-title" content="Find The Same Meaning">
+<meta
+    name="game-title"
+    content="Find The Same Meaning"
+>
+
 <meta
     name="game-description"
     content="Match English words with Vietnamese words that have the same meaning."
 >
-<meta name="game-icon" content="🔎">
-<meta name="game-explanation" content="true">
+
+<meta
+    name="game-icon"
+    content="🔎"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
+
+/* =========================================================
+   COLOR SYSTEM
+========================================================= */
+
+:root{
+
+    --accent:#2878df;
+
+    --accent-dark:#1e5fba;
+
+    --accent-light:#eaf3ff;
+
+    --accent-border:#c4daf6;
+
+    --general-border:#d9e6f2;
+
+    --correct:#2878df;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
+    --text:#263238;
+
+    --muted:#667788;
+
+    --background:#f6f9fc;
+
+    --white:#ffffff;
+
+}
+
 
 /* =========================================================
    GLOBAL
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
+
 body{
+
     margin:0;
+
     padding:20px;
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:#f7f9fc;
+    background:var(--background);
 
     min-height:100vh;
 
-    color:#222;
+    color:var(--text);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
 }
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
-    width:min(1000px,95vw);
+
+    width:min(900px,95vw);
+
     margin:0 auto 15px;
+
 }
 
+
 .back-btn{
+
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 17px;
 
     background:white;
-    color:#555;
 
-    border:2px solid #ddd;
+    color:var(--accent);
+
+    border:2px solid var(--accent-border);
+
     border-radius:10px;
 
     text-decoration:none;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:21px;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
 
+
 .back-btn:hover{
-    background:#f0f0f0;
+
+    background:var(--accent-light);
+
+    border-color:var(--accent);
+
+    color:var(--accent-dark);
+
     transform:translateY(-2px);
+
 }
 
 
 /* =========================================================
-   GAME CONTAINER
+   MAIN CARD
 ========================================================= */
 
 .game{
-    width:min(1000px,95vw);
+
+    position:relative;
+
+    width:min(900px,95vw);
 
     margin:0 auto;
 
-    background:white;
+    padding:32px 38px 35px;
 
-    border-radius:24px;
+    background:var(--white);
 
-    padding:35px 40px;
+    border:1px solid var(--general-border);
+
+    border-radius:22px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.10);
+        0 8px 28px rgba(40,120,223,.08);
 
     text-align:center;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE
+========================================================= */
+
+.game::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:var(--accent);
+
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
+
+    display:block;
+
 }
 
 
@@ -103,23 +247,35 @@ body{
 ========================================================= */
 
 h1{
-    margin:0 0 10px;
 
-    font-size:32px;
+    margin:0 0 7px;
 
-    color:#333;
+    font-family:"Kalam", cursive;
+
+    font-size:43px;
+
+    font-weight:700;
+
+    color:var(--accent-dark);
+
 }
 
+
 .instruction{
-    margin:0 auto 25px;
 
-    max-width:720px;
+    margin:0 auto 24px;
 
-    color:#666;
+    color:var(--muted);
 
-    font-size:17px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    line-height:1.5;
+    font-size:24px;
+
+    line-height:1.4;
+
 }
 
 
@@ -128,6 +284,7 @@ h1{
 ========================================================= */
 
 .topbar{
+
     display:flex;
 
     justify-content:space-between;
@@ -136,38 +293,58 @@ h1{
 
     gap:15px;
 
-    margin-bottom:25px;
+    margin-bottom:18px;
+
+    padding:11px 15px;
+
+    background:#f8fbff;
+
+    border:1px solid var(--general-border);
+
+    border-radius:12px;
+
+    font-size:22px;
 
     font-weight:bold;
 
-    color:#555;
 }
+
 
 .round-text{
-    color:#666;
+
+    color:var(--muted);
+
 }
 
+
 .score-text{
-    font-size:18px;
+
+    color:var(--accent);
+
+    font-size:24px;
+
 }
 
 
 /* =========================================================
-   SECTION LABEL
+   SECTION TITLE
 ========================================================= */
 
 .section-title{
-    margin:15px 0 10px;
 
-    font-size:16px;
+    margin:18px 0 10px;
+
+    color:var(--accent-dark);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
 
     font-weight:bold;
 
-    color:#777;
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
 }
 
 
@@ -176,20 +353,25 @@ h1{
 ========================================================= */
 
 .targets{
+
     display:grid;
 
-    gap:15px;
+    gap:13px;
+
 }
+
 
 .target{
 
-    min-height:115px;
+    min-height:105px;
 
-    border-radius:16px;
+    padding:12px;
 
-    border:3px dashed #6b8fc4;
+    background:var(--accent-light);
 
-    background:#eaf2ff;
+    border:2px dashed var(--accent-border);
+
+    border-radius:14px;
 
     display:flex;
 
@@ -199,86 +381,103 @@ h1{
 
     justify-content:center;
 
-    padding:12px;
-
-    font-size:21px;
+    font-size:28px;
 
     font-weight:bold;
+
+    color:var(--text);
 
     transition:.2s;
 
     user-select:none;
+
 }
+
 
 .target.over{
 
-    transform:scale(1.03);
+    transform:scale(1.02);
 
-    background:#dcecff;
+    background:#deedff;
+
+    border-color:var(--accent);
+
 }
+
 
 .target.has-word{
 
     border-style:solid;
 
-    border-color:#6b8fc4;
+    border-color:var(--accent-border);
+
 }
+
 
 .target.correct{
 
-    background:#dff5e5;
+    background:var(--correct-light);
 
     border-style:solid;
 
-    border-color:#4caf70;
+    border-color:var(--correct);
 
-    color:#3b7650;
+    color:var(--accent-dark);
+
 }
+
 
 .target.incorrect{
 
-    background:#ffe2e2;
+    background:var(--wrong-light);
 
     border-style:solid;
 
-    border-color:#d65b5b;
+    border-color:var(--wrong);
 
-    color:#a33d3d;
+    color:#b53f58;
+
 }
+
 
 .target-label{
 
-    margin-bottom:8px;
+    margin-bottom:7px;
+
 }
+
 
 .target-word{
 
     min-height:30px;
 
-    padding:6px 12px;
+    padding:5px 11px;
 
-    border-radius:9px;
+    border-radius:8px;
 
-    background:#fff3d6;
+    background:white;
 
-    border:2px solid #d8ad50;
+    border:2px solid var(--accent-border);
 
-    color:#444;
+    color:var(--accent-dark);
 
-    font-size:16px;
+    font-size:23px;
 
     font-weight:bold;
+
 }
+
 
 .target-word.empty{
 
     background:transparent;
 
-    border:2px dashed #b8c7dc;
+    border:2px dashed #b9cce2;
 
-    color:#9aa8bb;
+    color:#91a2b5;
 
     font-weight:normal;
+
 }
 
 
@@ -290,20 +489,24 @@ h1{
 
     display:grid;
 
-    gap:15px;
+    gap:13px;
 
-    margin-top:20px;
+    margin-top:17px;
+
 }
+
 
 .word{
 
-    min-height:80px;
+    min-height:70px;
 
-    border-radius:16px;
+    padding:13px;
 
-    background:#fff3d6;
+    background:white;
 
-    border:3px solid #d8ad50;
+    border:2px solid var(--accent-border);
+
+    border-radius:14px;
 
     display:flex;
 
@@ -311,9 +514,9 @@ h1{
 
     justify-content:center;
 
-    padding:15px;
+    color:var(--accent-dark);
 
-    font-size:20px;
+    font-size:27px;
 
     font-weight:bold;
 
@@ -324,43 +527,58 @@ h1{
     touch-action:none;
 
     transition:.2s;
+
 }
+
 
 .word:hover{
 
-    transform:translateY(-3px);
+    background:var(--accent-light);
 
-    background:#ffe8b5;
+    border-color:var(--accent);
+
+    transform:translateY(-2px);
+
 }
+
 
 .word.dragging{
 
     opacity:.45;
+
 }
+
 
 .word.placed{
 
-    background:#e8eef7;
+    background:#f5f8fb;
 
-    border-color:#9aaec7;
+    border-color:#cbd9e6;
+
+    color:#6d7d8c;
+
 }
+
 
 .word.checked-correct{
 
-    background:#dff5e5;
+    background:var(--correct-light);
 
-    border-color:#4caf70;
+    border-color:var(--correct);
 
-    color:#3b7650;
+    color:var(--accent-dark);
+
 }
+
 
 .word.checked-incorrect{
 
-    background:#ffe2e2;
+    background:var(--wrong-light);
 
-    border-color:#d65b5b;
+    border-color:var(--wrong);
 
-    color:#a33d3d;
+    color:#b53f58;
+
 }
 
 
@@ -372,11 +590,12 @@ h1{
 
     min-height:35px;
 
-    margin:20px 0 10px;
+    margin:19px 0 10px;
 
-    font-size:19px;
+    font-size:26px;
 
     font-weight:bold;
+
 }
 
 
@@ -388,78 +607,96 @@ h1{
 
     margin:15px auto 20px;
 
-    padding:16px 20px;
+    padding:15px 18px;
 
-    max-width:750px;
+    max-width:760px;
 
-    background:#f0f7ff;
+    background:#f8fbff;
 
-    border-left:5px solid #4779b8;
+    border:1px solid var(--accent-border);
 
-    border-radius:12px;
+    border-left:5px solid var(--accent);
 
-    color:#3d5066;
+    border-radius:11px;
 
-    font-size:16px;
+    color:#4e6072;
+
+    font-size:22px;
 
     line-height:1.5;
 
     text-align:left;
+
 }
+
 
 .explanation strong{
 
-    color:#4779b8;
+    color:var(--accent-dark);
+
 }
+
 
 .explanation .related{
 
     display:block;
 
-    margin-top:5px;
+    margin-top:4px;
 
-    font-size:14px;
+    font-size:20px;
 
-    color:#68788a;
+    color:#718293;
+
 }
+
 
 .hidden{
 
     display:none !important;
+
 }
 
 
 /* =========================================================
-   BUTTON
+   BUTTONS
 ========================================================= */
 
 button{
 
     border:none;
 
-    border-radius:12px;
+    border-radius:10px;
 
-    padding:13px 30px;
+    padding:11px 25px;
 
-    font-size:17px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:23px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    background:#4779b8;
+    background:var(--accent);
 
     color:white;
 
     transition:.2s;
+
 }
+
 
 button:hover{
 
-    background:#3d6ba5;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
+
 }
+
 
 button:disabled{
 
@@ -468,6 +705,14 @@ button:disabled{
     cursor:default;
 
     transform:none;
+
+}
+
+
+#nextBtn{
+
+    background:var(--accent);
+
 }
 
 
@@ -480,29 +725,42 @@ button:disabled{
     display:none;
 
     padding:20px 10px;
+
 }
+
 
 .final h2{
 
-    margin:0 0 20px;
+    margin:0 0 15px;
 
-    font-size:32px;
+    font-family:"Kalam", cursive;
 
-    color:#4779b8;
+    font-size:43px;
+
+    color:var(--accent-dark);
+
 }
+
 
 .final-score{
 
-    font-size:26px;
+    font-size:32px;
 
     margin:15px 0;
+
+    color:var(--text);
+
 }
+
 
 .final-message{
 
-    font-size:21px;
+    font-size:25px;
 
     margin:15px 0 25px;
+
+    color:var(--muted);
+
 }
 
 
@@ -514,56 +772,74 @@ button:disabled{
 
     body{
 
-        padding:15px;
+        padding:14px;
+
     }
+
 
     .game{
 
         width:100%;
 
-        padding:25px 18px;
+        padding:28px 18px 30px;
 
-        border-radius:20px;
+        border-radius:18px;
+
     }
+
 
     h1{
 
-        font-size:27px;
+        font-size:37px;
+
     }
+
 
     .instruction{
 
-        font-size:16px;
+        font-size:22px;
+
     }
+
 
     .topbar{
 
-        font-size:15px;
+        font-size:20px;
+
     }
+
 
     .score-text{
 
-        font-size:16px;
+        font-size:22px;
+
     }
+
 
     .target{
 
-        min-height:95px;
+        min-height:90px;
 
-        font-size:18px;
+        font-size:26px;
+
     }
+
 
     .word{
 
-        min-height:70px;
+        min-height:65px;
 
-        font-size:18px;
+        font-size:25px;
+
     }
+
 
     .explanation{
 
-        font-size:15px;
+        font-size:21px;
+
     }
+
 }
 
 
@@ -577,25 +853,33 @@ button:disabled{
 
         flex-direction:column;
 
-        gap:7px;
+        gap:5px;
 
-        margin-bottom:20px;
+        margin-bottom:18px;
+
     }
+
 
     .target{
 
-        font-size:17px;
+        font-size:25px;
+
     }
+
 
     .word{
 
-        font-size:16px;
+        font-size:24px;
+
     }
+
 
     button{
 
         width:100%;
+
     }
+
 }
 
 </style>
@@ -607,7 +891,7 @@ button:disabled{
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -623,7 +907,7 @@ button:disabled{
 
 
 <!-- =========================================================
-     GAME CONTAINER
+     MAIN GAME CARD
 ========================================================= -->
 
 <div class="game">
@@ -642,11 +926,7 @@ button:disabled{
 
 
         <p class="instruction">
-
-            Drag each English word to the Vietnamese
-            word with the same meaning.
-            Place all words first, then check your answers.
-
+            Drag each English word to its Vietnamese meaning, then check your answers.
         </p>
 
 
@@ -679,9 +959,7 @@ button:disabled{
         ================================================== -->
 
         <div class="section-title">
-
             🇻🇳 Vietnamese
-
         </div>
 
 
@@ -696,9 +974,7 @@ button:disabled{
         ================================================== -->
 
         <div class="section-title">
-
             🇬🇧 English
-
         </div>
 
 
@@ -765,9 +1041,7 @@ button:disabled{
     >
 
         <h2>
-
             🎉 Game Finished!
-
         </h2>
 
 
@@ -786,12 +1060,11 @@ button:disabled{
         <button
             onclick="restartGame()"
         >
-
             Play Again
-
         </button>
 
     </div>
+
 
 </div>
 
@@ -808,7 +1081,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","big"],
+            ["to","big"],
             ["nhỏ","small"],
             ["dài","long"]
         ]
@@ -832,7 +1105,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","large"],
+            ["to","large"],
             ["nhỏ","tiny"],
             ["cao","high"]
         ]
@@ -856,7 +1129,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","big"],
+            ["to","big"],
             ["bự","huge"],
             ["nhỏ","small"]
         ]
@@ -888,7 +1161,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","large"],
+            ["to","large"],
             ["cao","high"],
             ["rộng","spacious"]
         ]
@@ -920,7 +1193,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","big"],
+            ["to","big"],
             ["nhỏ","small"],
             ["nặng","heavy"],
             ["nhẹ","light"]
@@ -940,7 +1213,7 @@ const rounds = [
         pairs:[
             ["rộng","wide"],
             ["chật","tight"],
-            ["lớn","large"],
+            ["to","large"],
             ["nhỏ","tiny"]
         ]
     },
@@ -965,7 +1238,7 @@ const rounds = [
 
     {
         pairs:[
-            ["lớn","big"],
+            ["to","big"],
             ["bự","huge"],
             ["nhỏ","tiny"],
             ["cao","tall"],
@@ -982,10 +1255,9 @@ const rounds = [
 
 const explanations = {
 
-    "lớn":{
+    "to":{
         meaning:
-            "LỚN means big or large in Vietnamese.",
-
+            "to means big or large in Vietnamese.",
         related:
             "big, large"
     },
@@ -993,7 +1265,6 @@ const explanations = {
     "nhỏ":{
         meaning:
             "NHỎ means small or little in Vietnamese.",
-
         related:
             "small, tiny"
     },
@@ -1001,7 +1272,6 @@ const explanations = {
     "bự":{
         meaning:
             "BỰ means big or huge. It is commonly used in casual Vietnamese.",
-
         related:
             "big, huge"
     },
@@ -1009,7 +1279,6 @@ const explanations = {
     "dài":{
         meaning:
             "DÀI means long in Vietnamese.",
-
         related:
             "long"
     },
@@ -1017,7 +1286,6 @@ const explanations = {
     "ngắn":{
         meaning:
             "NGẮN means short when talking about length.",
-
         related:
             "short"
     },
@@ -1025,7 +1293,6 @@ const explanations = {
     "cao":{
         meaning:
             "CAO means tall when describing a person, or high when describing a level or position.",
-
         related:
             "tall, high"
     },
@@ -1033,7 +1300,6 @@ const explanations = {
     "thấp":{
         meaning:
             "THẤP means short when describing height, or low when describing a level or position.",
-
         related:
             "short, low"
     },
@@ -1041,7 +1307,6 @@ const explanations = {
     "rộng":{
         meaning:
             "RỘNG means wide, spacious, or having a lot of space.",
-
         related:
             "wide, spacious"
     },
@@ -1049,7 +1314,6 @@ const explanations = {
     "chật":{
         meaning:
             "CHẬT means tight or cramped when there is not enough space.",
-
         related:
             "tight, cramped"
     },
@@ -1057,7 +1321,6 @@ const explanations = {
     "nặng":{
         meaning:
             "NẶNG means heavy in Vietnamese.",
-
         related:
             "heavy"
     },
@@ -1065,7 +1328,6 @@ const explanations = {
     "nhẹ":{
         meaning:
             "NHẸ means light when something does not weigh much.",
-
         related:
             "light"
     }
@@ -1148,6 +1410,7 @@ function shuffle(array){
     }
 
     return newArray;
+
 }
 
 
@@ -1398,7 +1661,7 @@ function loadRound(){
 
 
                 /* =====================================
-                   REMOVE EXISTING WORD FROM THIS TARGET
+                   REMOVE EXISTING WORD FROM TARGET
                 ===================================== */
 
                 if(
@@ -1713,7 +1976,7 @@ function checkAnswers(){
             "🎉 Perfect! All answers are correct.";
 
         messageEl.style.color =
-            "#3b8b58";
+            "var(--correct)";
 
     }
 
@@ -1723,7 +1986,7 @@ function checkAnswers(){
             `You got ${correctCount} / ${total} correct.`;
 
         messageEl.style.color =
-            "#c54d4d";
+            "var(--wrong)";
 
     }
 
@@ -1825,10 +2088,10 @@ function showRoundExplanation(){
     explanationEl.innerHTML = `
 
         <strong>
-            💡 Learn:
+            💡 Learn
         </strong>
 
-        <div style="margin-top:12px;">
+        <div style="margin-top:10px;">
 
             ${lines}
 
@@ -2009,7 +2272,7 @@ function restartGame(){
 
 
 /* =========================================================
-   START GAME
+   START
 ========================================================= */
 
 loadRound();

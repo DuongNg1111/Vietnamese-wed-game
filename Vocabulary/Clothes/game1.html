@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,30 +7,35 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Vietnamese Clothes Quiz</title>
 
 <meta
-    name="game-title"
-    content="Vietnamese Clothes Quiz"
+name="game-title"
+content="Vietnamese Clothes Quiz"
+
 >
 
 <meta
-    name="game-description"
-    content="Look at the English clothes word and choose the correct Vietnamese word."
+name="game-description"
+content="Look at the English clothes word and choose the correct Vietnamese word."
+
 >
 
 <meta
-    name="game-icon"
-    content="👕"
+name="game-icon"
+content="👕"
+
 >
 
 <meta
-    name="game-explanation"
-    content="Choose the Vietnamese word that matches the English clothes word. Each question can only be answered once."
+name="game-explanation"
+content="Choose the Vietnamese word that matches the English clothes word. Each question can only be answered once."
+
 >
 
 <link
@@ -39,15 +45,14 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.googleapis.com"
+    href="https://fonts.gstatic.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
-
 
 <style>
 
@@ -58,40 +63,43 @@
 :root {
 
     --paper:
-        #fffaf2;
+        #f5f9fd;
 
     --white:
         #ffffff;
 
     --ink:
-        #5b3b1f;
+        #143a6b;
 
     --ink-soft:
-        #9a8068;
+        #66809d;
 
     --accent:
-        #d99028;
+        #2878df;
 
     --accent-dark:
-        #b56f12;
+        #1e5fba;
 
     --accent-light:
-        #fff3dc;
+        #eaf3ff;
 
-    --border:
-        #efd5a8;
+    --accent-border:
+        #c4daf6;
 
-    --green:
-        #27ae60;
+    --general-border:
+        #d9e6f2;
 
-    --green-light:
-        #eaf8f0;
+    --correct:
+        #2878df;
 
-    --red:
-        #e05252;
+    --correct-light:
+        #eaf3ff;
 
-    --red-light:
-        #fff0f0;
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
 
 }
 
@@ -127,7 +135,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -141,8 +149,8 @@ body {
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #fffaf2 48%,
-            #fff4e2 100%
+            #f5f9fd 48%,
+            #edf5fc 100%
         );
 
 }
@@ -156,7 +164,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -194,7 +202,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         999px;
@@ -204,7 +212,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.92
         );
 
     color:
@@ -214,7 +222,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.195rem;
 
     font-weight:
         700;
@@ -222,9 +230,9 @@ body {
     box-shadow:
         0 4px 14px
         rgba(
-            91,
-            59,
-            31,
+            20,
+            58,
+            107,
             0.07
         );
 
@@ -257,11 +265,14 @@ body {
 
 .card {
 
+    position:
+        relative;
+
     width:
         100%;
 
     padding:
-        38px;
+        42px;
 
     background:
         rgba(
@@ -273,7 +284,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         24px;
@@ -281,14 +292,47 @@ body {
     box-shadow:
         0 18px 50px
         rgba(
-            91,
-            59,
-            31,
+            20,
+            58,
+            107,
             0.10
         );
 
     text-align:
         center;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
 
 }
 
@@ -319,7 +363,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -328,7 +372,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.175rem;
 
 }
 
@@ -341,11 +385,15 @@ h1 {
     color:
         var(--ink);
 
+    font-family:
+        Kalam,
+        cursive;
+
     font-size:
-        1.9rem;
+        2.55rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
         1.25;
@@ -356,7 +404,7 @@ h1 {
 .subtitle {
 
     max-width:
-        520px;
+        560px;
 
     margin:
         0 auto 30px;
@@ -365,7 +413,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        0.9rem;
+        1.275rem;
 
     line-height:
         1.55;
@@ -386,7 +434,7 @@ h1 {
         var(--accent);
 
     font-size:
-        0.78rem;
+        1.155rem;
 
     font-weight:
         800;
@@ -409,7 +457,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.255rem;
 
     font-weight:
         600;
@@ -426,7 +474,7 @@ h1 {
         var(--accent-dark);
 
     font-size:
-        2.25rem;
+        2.625rem;
 
     font-weight:
         800;
@@ -459,7 +507,7 @@ h1 {
         16px;
 
     max-width:
-        560px;
+        620px;
 
     margin:
         0 auto 24px;
@@ -477,7 +525,7 @@ h1 {
 
     border:
         2px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         16px;
@@ -492,7 +540,7 @@ h1 {
         inherit;
 
     font-size:
-        1.05rem;
+        1.425rem;
 
     font-weight:
         700;
@@ -523,10 +571,10 @@ h1 {
     box-shadow:
         0 8px 18px
         rgba(
-            91,
-            59,
-            31,
-            0.10
+            20,
+            58,
+            107,
+            0.08
         );
 
 }
@@ -541,19 +589,19 @@ h1 {
 
 
 /* ==========================================================
-   ANSWER STATES
+   CORRECT / WRONG
 ========================================================== */
 
 .answer-btn.correct {
 
     border-color:
-        var(--green);
+        var(--correct);
 
     background:
-        var(--green-light);
+        var(--correct-light);
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -561,13 +609,13 @@ h1 {
 .answer-btn.wrong {
 
     border-color:
-        var(--red);
+        var(--wrong);
 
     background:
-        var(--red-light);
+        var(--wrong-light);
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -585,7 +633,7 @@ h1 {
         8px;
 
     font-size:
-        0.95rem;
+        1.325rem;
 
     font-weight:
         800;
@@ -596,7 +644,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -604,30 +652,50 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
 
 .explanation {
 
     min-height:
         28px;
 
-    margin:
-        0 auto 18px;
-
     max-width:
-        560px;
+        620px;
+
+    margin:
+        0 auto 20px;
+
+    padding:
+        15px 18px;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        14px;
+
+    background:
+        #f8fbff;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.86rem;
+        1.235rem;
 
     line-height:
         1.55;
+
+    text-align:
+        left;
 
 }
 
@@ -660,7 +728,7 @@ h1 {
         inherit;
 
     font-size:
-        0.86rem;
+        1.235rem;
 
     font-weight:
         800;
@@ -678,9 +746,9 @@ h1 {
         ),
         0 5px 12px
         rgba(
-            217,
-            144,
             40,
+            120,
+            223,
             0.20
         );
 
@@ -735,7 +803,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -744,7 +812,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.375rem;
 
 }
 
@@ -763,10 +831,10 @@ h1 {
         20px 0 8px;
 
     color:
-        var(--accent-dark);
+        var(--accent);
 
     font-size:
-        2.6rem;
+        2.975rem;
 
     font-weight:
         800;
@@ -783,7 +851,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1rem;
+        1.375rem;
 
     font-weight:
         600;
@@ -822,7 +890,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            34px 20px 28px;
 
         border-radius:
             20px;
@@ -833,7 +901,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.15rem;
 
     }
 
@@ -841,7 +909,7 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.215rem;
 
         margin-bottom:
             25px;
@@ -852,7 +920,7 @@ h1 {
     .english-word {
 
         font-size:
-            2rem;
+            2.375rem;
 
         margin-bottom:
             24px;
@@ -878,178 +946,184 @@ h1 {
 
     }
 
+
+    .explanation {
+
+        font-size:
+            1.15rem;
+
+    }
+
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
 
-    <!-- ======================================================
-         BACK
-    ======================================================= -->
+<!-- ======================================================
+     BACK
+======================================================= -->
 
-    <div class="back-btn-container">
+<div class="back-btn-container">
 
-        <a
-            href="../../category.html?category=Clothes"
-            class="back-btn"
-        >
-            ← Back
-        </a>
-
-    </div>
-
-
-    <!-- ======================================================
-         GAME CARD
-    ======================================================= -->
-
-    <main class="card">
-
-
-        <!-- ==================================================
-             HEADER
-        =================================================== -->
-
-        <div
-            class="game-icon"
-            aria-hidden="true"
-        >
-            👕
-        </div>
-
-
-        <h1>
-            Vietnamese Clothes Quiz
-        </h1>
-
-
-        <p class="subtitle">
-            Look at the English word and choose
-            the correct Vietnamese word.
-        </p>
-
-
-        <!-- ==================================================
-             GAME SCREEN
-        =================================================== -->
-
-        <section id="gameScreen">
-
-
-            <div
-                id="questionNumber"
-                class="question-number"
-            >
-            </div>
-
-
-            <div class="choose-text">
-                Choose the Vietnamese word:
-            </div>
-
-
-            <div
-                id="englishWord"
-                class="english-word"
-            >
-            </div>
-
-
-            <div
-                id="answers"
-                class="answers"
-            >
-            </div>
-
-
-            <div
-                id="message"
-                class="message"
-                aria-live="polite"
-            >
-            </div>
-
-
-            <div
-                id="explanation"
-                class="explanation"
-                aria-live="polite"
-            >
-            </div>
-
-
-            <button
-                id="nextBtn"
-                class="action-btn hidden"
-                type="button"
-            >
-            </button>
-
-
-        </section>
-
-
-        <!-- ==================================================
-             RESULT SCREEN
-        =================================================== -->
-
-        <section
-            id="resultScreen"
-            class="hidden"
-        >
-
-
-            <div
-                class="result-icon"
-                aria-hidden="true"
-            >
-                🎉
-            </div>
-
-
-            <h1 class="result-title">
-                Great Job!
-            </h1>
-
-
-            <div
-                id="scoreText"
-                class="score"
-            >
-            </div>
-
-
-            <div
-                id="performance"
-                class="performance"
-            >
-            </div>
-
-
-            <button
-                id="playAgain"
-                class="action-btn"
-                type="button"
-            >
-                Play Again
-            </button>
-
-
-        </section>
-
-
-    </main>
+    <a
+        href="../../category.html?category=Clothes"
+        class="back-btn"
+    >
+        ← Back
+    </a>
 
 </div>
 
+
+<!-- ======================================================
+     GAME CARD
+======================================================= -->
+
+<main class="card">
+
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+
+    <div
+        class="game-icon"
+        aria-hidden="true"
+    >
+        👕
+    </div>
+
+
+    <h1>
+        Vietnamese Clothes Quiz
+    </h1>
+
+
+    <p class="subtitle">
+        Look at the English word and choose
+        the correct Vietnamese word.
+    </p>
+
+
+    <!-- ==================================================
+         GAME SCREEN
+    =================================================== -->
+
+    <section id="gameScreen">
+
+
+        <div
+            id="questionNumber"
+            class="question-number"
+        >
+        </div>
+
+
+        <div class="choose-text">
+            Choose the Vietnamese word:
+        </div>
+
+
+        <div
+            id="englishWord"
+            class="english-word"
+        >
+        </div>
+
+
+        <div
+            id="answers"
+            class="answers"
+        >
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+            aria-live="polite"
+        >
+        </div>
+
+
+        <div
+            id="explanation"
+            class="explanation"
+            aria-live="polite"
+        >
+        </div>
+
+
+        <button
+            id="nextBtn"
+            class="action-btn hidden"
+            type="button"
+        >
+        </button>
+
+
+    </section>
+
+
+    <!-- ==================================================
+         RESULT SCREEN
+    =================================================== -->
+
+    <section
+        id="resultScreen"
+        class="hidden"
+    >
+
+
+        <div
+            class="result-icon"
+            aria-hidden="true"
+        >
+            🎉
+        </div>
+
+
+        <h1 class="result-title">
+            Great Job!
+        </h1>
+
+
+        <div
+            id="scoreText"
+            class="score"
+        >
+        </div>
+
+
+        <div
+            id="performance"
+            class="performance"
+        >
+        </div>
+
+
+        <button
+            id="playAgain"
+            class="action-btn"
+            type="button"
+        >
+            Play Again
+        </button>
+
+
+    </section>
+
+
+</main>
+
+
+</div>
 
 <script>
 
@@ -1377,6 +1451,7 @@ function generateQuestions() {
                 ];
 
         }
+
         while (
             wrong.vietnamese ===
             correct.vietnamese
@@ -1557,6 +1632,10 @@ function handleAnswer(
         );
 
 
+    /*
+     * Lock every answer.
+     */
+
     buttons.forEach(
         button => {
 
@@ -1591,6 +1670,10 @@ function handleAnswer(
         );
 
 
+    /*
+     * Correct answer.
+     */
+
     if (
         isCorrect
     ) {
@@ -1612,6 +1695,11 @@ function handleAnswer(
         );
 
     }
+
+
+    /*
+     * Wrong answer.
+     */
 
     else {
 
@@ -1641,10 +1729,7 @@ function handleAnswer(
      */
 
     explanation.textContent =
-        `"${correctAnswer}" means "${correctAnswer === "mặc"
-            ? "to wear / to put on"
-            : question.correct.english
-        }."`;
+        `"${correctAnswer}" means "${question.correct.english}."`;
 
 
     nextBtn.classList.remove(
@@ -1777,7 +1862,6 @@ playAgain.addEventListener(
 startGame();
 
 </script>
-
 
 </body>
 

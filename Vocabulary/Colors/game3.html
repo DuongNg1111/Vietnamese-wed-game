@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Color Matching</title>
 
@@ -11,384 +16,1191 @@
      GAME METADATA
 ========================================= -->
 
-<meta name="game-title" content="Color Matching">
-<meta name="game-description" content="Match Vietnamese color names with the correct colors.">
-<meta name="game-icon" content="🎨">
-<meta name="game-explanation" content="Connect each color with its correct Vietnamese name. Complete all matches, then check your answers.">
+<meta
+    name="game-title"
+    content="Color Matching"
+>
+
+<meta
+    name="game-description"
+    content="Match Vietnamese color names with the correct colors."
+>
+
+<meta
+    name="game-icon"
+    content="🎨"
+>
+
+<meta
+    name="game-explanation"
+    content="Connect each color with its correct Vietnamese name. Complete all matches, then check your answers."
+>
+
+
+<!-- =========================================
+     GOOGLE FONT
+========================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+
+    --paper:
+        #f7f8fc;
+
+    --white:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --accent-border:
+        #c4daf6;
+
+    --general-border:
+        #d9e6f2;
+
+    --correct:
+        #2878df;
+
+    --correct-light:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
 }
 
-body{
-    background:#f5f7fb;
-    min-height:100vh;
-    padding:18px;
-    color:#333;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    box-sizing:
+        border-box;
+
 }
 
 
-/* =========================================
-   BACK TO LOBBY
-========================================= */
+/* =========================================================
+   BODY
+========================================================= */
 
-.back-btn-container{
-    width:760px;
-    max-width:100%;
-    margin:0 auto 12px;
+body {
+
+    min-height:
+        100vh;
+
+    padding:
+        30px 20px 50px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f8f8fc 48%,
+            #f1f0f8 100%
+        );
+
 }
 
-.back-btn{
-    display:inline-block;
-    text-decoration:none;
-    color:#4a5568;
-    background:white;
-    border:2px solid #d9dee8;
-    border-radius:10px;
-    padding:8px 16px;
-    font-size:15px;
-    font-weight:bold;
-    transition:.2s;
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width:
+        min(
+            900px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
 }
 
-.back-btn:hover{
-    background:#4a5568;
-    color:white;
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn-container {
+
+    margin-bottom:
+        18px;
+
 }
 
 
-/* =========================================
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        9px 16px;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+}
+
+
+/* =========================================================
    MAIN CARD
-========================================= */
+========================================================= */
 
-.container{
-    width:760px;
-    max-width:100%;
-    margin:0 auto;
-    background:white;
-    border-radius:20px;
-    padding:20px 24px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+.container {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        42px 48px 45px;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--general-border);
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.98
+        );
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            30,
+            45,
+            80,
+            0.10
+        );
+
 }
 
 
-/* =========================================
+/* =========================================================
+   ACCENT LINE
+========================================================= */
+
+.container::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
 
-.header{
-    text-align:center;
-    margin-bottom:14px;
-}
+.header {
 
-h1{
-    font-size:28px;
-    color:#374151;
-    margin-bottom:5px;
-}
+    text-align:
+        center;
 
-.subtitle{
-    font-size:15px;
-    color:#6b7280;
+    margin-bottom:
+        28px;
+
 }
 
 
-/* =========================================
+h1 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--ink);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        2.65rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.2;
+
+}
+
+
+.subtitle {
+
+    max-width:
+        650px;
+
+    margin:
+        0 auto;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1.22rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+/* =========================================================
    QUESTION INFO
-========================================= */
+========================================================= */
 
-.question-number{
-    text-align:center;
-    font-size:16px;
-    font-weight:bold;
-    color:#6b7280;
-    margin-bottom:10px;
+.question-number {
+
+    margin-bottom:
+        14px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        1.08rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+    text-transform:
+        uppercase;
+
 }
 
-.instruction{
-    text-align:center;
-    font-size:17px;
-    color:#4b5563;
-    margin-bottom:10px;
+
+.instruction {
+
+    margin-bottom:
+        22px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1.2rem;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.45;
+
 }
 
 
-/* =========================================
+/* =========================================================
    MATCHING AREA
-========================================= */
+========================================================= */
 
-#game{
-    width:100%;
-    height:285px;
-    position:relative;
-    display:flex;
-    justify-content:space-between;
-    padding:5px 35px;
+#game {
+
+    width:
+        100%;
+
+    height:
+        285px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    padding:
+        5px 55px;
+
 }
 
-.column{
-    width:210px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    z-index:2;
+
+.column {
+
+    width:
+        260px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-around;
+
+    z-index:
+        2;
+
 }
 
 
-/* =========================================
+/* =========================================================
    COLOR ITEMS
-========================================= */
+========================================================= */
 
 .item,
-.target{
-    width:190px;
-    height:48px;
-    border-radius:10px;
-    margin:auto;
+.target {
+
+    width:
+        220px;
+
+    height:
+        52px;
+
+    border-radius:
+        12px;
+
+    margin:
+        auto;
+
 }
 
 
-/* =========================================
+/* =========================================================
    COLOR ITEM
-========================================= */
+========================================================= */
 
-.item{
-    border:4px solid transparent;
-    cursor:pointer;
-    transition:.2s;
+.item {
+
+    border:
+        4px solid
+        transparent;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        outline 0.2s ease;
+
+    box-shadow:
+        0 6px 16px
+        rgba(
+            20,
+            58,
+            107,
+            0.10
+        );
+
 }
 
-.item:hover{
-    transform:scale(1.03);
+
+.item:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 22px
+        rgba(
+            20,
+            58,
+            107,
+            0.16
+        );
+
 }
 
-.item.selected{
-    outline:4px solid #64748b;
-    outline-offset:2px;
+
+.item.selected {
+
+    outline:
+        4px solid
+        var(--accent);
+
+    outline-offset:
+        3px;
+
 }
 
-.item.matched{
-    opacity:.35;
-    cursor:default;
+
+.item.matched {
+
+    opacity:
+        0.35;
+
+    cursor:
+        default;
+
 }
 
 
-/* =========================================
+/* =========================================================
    VIETNAMESE TARGET
-========================================= */
+========================================================= */
 
-.target{
-    background:#f8fafc;
-    border:2px solid #d1d5db;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
+.target {
+
+    background:
+        #ffffff;
+
+    border:
+        2px solid
+        var(--accent-border);
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.35rem;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
 }
 
-.target:hover{
-    background:#eef2f7;
+
+.target:hover {
+
+    background:
+        var(--accent-light);
+
+    border-color:
+        var(--accent);
+
+    transform:
+        translateY(-2px);
+
 }
 
-.target.matched{
-    opacity:.35;
-    cursor:default;
+
+.target.matched {
+
+    opacity:
+        0.35;
+
+    cursor:
+        default;
+
 }
 
 
-/* =========================================
+/* =========================================================
    CANVAS
-========================================= */
+========================================================= */
 
-canvas{
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:1;
+canvas {
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    pointer-events:
+        none;
+
+    z-index:
+        1;
+
 }
 
 
-/* =========================================
+/* =========================================================
    BUTTONS
-========================================= */
+========================================================= */
 
-.controls{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:8px;
-}
+.controls {
 
-.action-btn{
-    border:none;
-    border-radius:11px;
-    padding:10px 20px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
-}
+    display:
+        flex;
 
-.clear-btn{
-    background:#f1f3f5;
-    color:#495057;
-    border:2px solid #dee2e6;
-}
+    justify-content:
+        center;
 
-.clear-btn:hover{
-    background:#e9ecef;
-}
+    align-items:
+        center;
 
-.check-btn{
-    background:#4f46e5;
-    color:white;
-}
+    gap:
+        12px;
 
-.check-btn:hover{
-    background:#4338ca;
-}
+    flex-wrap:
+        wrap;
 
-.next-btn{
-    background:#4f46e5;
-    color:white;
-}
+    margin-top:
+        16px;
 
-.next-btn:hover{
-    background:#4338ca;
 }
 
 
-/* =========================================
+.action-btn {
+
+    min-width:
+        150px;
+
+    padding:
+        12px 22px;
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    font-family:
+        inherit;
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.clear-btn {
+
+    background:
+        #ffffff;
+
+    color:
+        var(--ink-soft);
+
+    border:
+        1px solid
+        var(--general-border);
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            20,
+            58,
+            107,
+            0.06
+        );
+
+}
+
+
+.clear-btn:hover {
+
+    background:
+        var(--accent-light);
+
+    border-color:
+        var(--accent-border);
+
+    color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.check-btn,
+.next-btn {
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 6px 14px
+        rgba(
+            40,
+            120,
+            223,
+            0.22
+        );
+
+}
+
+
+.check-btn:hover,
+.next-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.check-btn:active,
+.next-btn:active,
+.clear-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
    MESSAGE
-========================================= */
+========================================================= */
 
-#message{
-    min-height:30px;
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    margin-top:10px;
+#message {
+
+    min-height:
+        34px;
+
+    margin-top:
+        18px;
+
+    font-size:
+        1.25rem;
+
+    font-weight:
+        800;
+
 }
 
-.correct-message{
-    color:#16a34a;
+
+.correct-message {
+
+    color:
+        var(--correct);
+
 }
 
-.wrong-message{
-    color:#dc2626;
+
+.wrong-message {
+
+    color:
+        var(--wrong);
+
 }
 
 
-/* =========================================
+/* =========================================================
    EXPLANATION
-========================================= */
+========================================================= */
 
-#explanation{
-    background:#f8fafc;
-    border-left:4px solid #64748b;
-    border-radius:8px;
-    padding:10px 14px;
-    margin-top:10px;
-    font-size:14px;
-    line-height:1.5;
-    color:#4b5563;
-    text-align:left;
+#explanation {
+
+    margin-top:
+        20px;
+
+    padding:
+        14px 18px;
+
+    background:
+        var(--accent-light);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-left:
+        4px solid
+        var(--accent);
+
+    border-radius:
+        12px;
+
+    color:
+        var(--ink);
+
+    font-size:
+        1.08rem;
+
+    line-height:
+        1.6;
+
+    text-align:
+        left;
+
 }
 
-.explanation-title{
-    font-weight:bold;
-    color:#374151;
-    margin-bottom:3px;
+
+.explanation-title {
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--accent-dark);
+
+    font-weight:
+        800;
+
 }
 
 
-/* =========================================
+/* =========================================================
    RESULT SCREEN
-========================================= */
+========================================================= */
 
-.result-screen{
-    text-align:center;
-}
+.result-screen {
 
-.result-title{
-    font-size:28px;
-    color:#374151;
-    margin-bottom:15px;
-}
+    text-align:
+        center;
 
-.score{
-    font-size:46px;
-    font-weight:bold;
-    color:#4f46e5;
-    margin:10px 0;
-}
-
-.performance{
-    font-size:20px;
-    color:#6b7280;
-    margin-bottom:20px;
 }
 
 
-/* =========================================
+.result-title {
+
+    margin-bottom:
+        12px;
+
+    color:
+        var(--ink);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        2.65rem;
+
+    font-weight:
+        700;
+
+}
+
+
+.score {
+
+    margin:
+        20px 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size:
+        3rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1.3rem;
+
+    font-weight:
+        600;
+
+}
+
+
+.result-label {
+
+    margin-top:
+        8px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1.1rem;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =========================================================
    HIDDEN
-========================================= */
+========================================================= */
 
-.hidden{
-    display:none;
+.hidden {
+
+    display:
+        none !important;
+
 }
 
 
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
-@media(max-width:600px){
+@media (
+    max-width: 700px
+) {
 
-    body{
-        padding:12px;
+    body {
+
+        padding:
+            18px 14px 35px;
+
     }
 
-    .container{
-        padding:18px 12px;
+
+    .container {
+
+        padding:
+            32px 20px 35px;
+
+        border-radius:
+            20px;
+
     }
 
-    h1{
-        font-size:24px;
+
+    h1 {
+
+        font-size:
+            2.15rem;
+
     }
 
-    #game{
-        height:270px;
-        padding:5px 8px;
+
+    .subtitle {
+
+        font-size:
+            1.12rem;
+
     }
 
-    .column{
-        width:46%;
+
+    .instruction {
+
+        font-size:
+            1.08rem;
+
     }
+
+
+    #game {
+
+        height:
+            270px;
+
+        padding:
+            5px 4px;
+
+    }
+
+
+    .column {
+
+        width:
+            47%;
+
+    }
+
 
     .item,
-    .target{
-        width:100%;
-        height:45px;
+    .target {
+
+        width:
+            100%;
+
+        height:
+            46px;
+
     }
 
-    .target{
-        font-size:14px;
+
+    .target {
+
+        font-size:
+            1.08rem;
+
     }
 
-    .controls{
-        flex-wrap:wrap;
+
+    .controls {
+
+        gap:
+            9px;
+
+    }
+
+
+    .action-btn {
+
+        min-width:
+            140px;
+
+        padding:
+            11px 17px;
+
+        font-size:
+            1.05rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (
+    max-width: 400px
+) {
+
+    .container {
+
+        padding:
+            30px 14px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            2rem;
+
+    }
+
+
+    #game {
+
+        height:
+            255px;
+
+    }
+
+
+    .item,
+    .target {
+
+        height:
+            43px;
+
+        border-radius:
+            10px;
+
+    }
+
+
+    .target {
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .action-btn {
+
+        min-width:
+            125px;
+
+        font-size:
+            1rem;
+
     }
 
 }
@@ -401,25 +1213,27 @@ canvas{
 <body>
 
 
+<div class="page">
+
+
 <!-- =========================================
-     BACK TO LOBBY
+     BACK
 ========================================= -->
 
 <div class="back-btn-container">
 
     <a
-        href="../../category.html?category=Color"
-        class="back-btn">
-
-        ⬅ Back
-
+        href="../../category.html?category=Colors"
+        class="back-btn"
+    >
+        ← Back
     </a>
 
 </div>
 
 
 <!-- =========================================
-     MAIN CONTAINER
+     MAIN CARD
 ========================================= -->
 
 <div class="container">
@@ -435,7 +1249,7 @@ canvas{
         <div class="header">
 
             <h1>
-                🎨 Color Matching
+                Color Matching
             </h1>
 
             <div class="subtitle">
@@ -447,7 +1261,8 @@ canvas{
 
         <div
             class="question-number"
-            id="questionNumber">
+            id="questionNumber"
+        >
         </div>
 
 
@@ -464,18 +1279,21 @@ canvas{
 
             <div
                 class="column"
-                id="left">
+                id="left"
+            >
             </div>
 
 
             <canvas
-                id="canvas">
+                id="canvas"
+            >
             </canvas>
 
 
             <div
                 class="column"
-                id="right">
+                id="right"
+            >
             </div>
 
         </div>
@@ -489,28 +1307,28 @@ canvas{
 
             <button
                 class="action-btn clear-btn"
-                id="clearBtn">
-
+                id="clearBtn"
+                type="button"
+            >
                 Clear
-
             </button>
 
 
             <button
                 class="action-btn check-btn"
-                id="checkBtn">
-
+                id="checkBtn"
+                type="button"
+            >
                 Check Answers
-
             </button>
 
 
             <button
                 class="action-btn next-btn hidden"
-                id="nextBtn">
-
+                id="nextBtn"
+                type="button"
+            >
                 Next Question →
-
             </button>
 
         </div>
@@ -521,7 +1339,9 @@ canvas{
         ================================== -->
 
         <div
-            id="message">
+            id="message"
+            aria-live="polite"
+        >
         </div>
 
 
@@ -531,13 +1351,15 @@ canvas{
 
         <div
             id="explanation"
-            class="hidden">
+            class="hidden"
+        >
 
             <div class="explanation-title">
                 Explanation
             </div>
 
-            <div id="explanationText"></div>
+            <div id="explanationText">
+            </div>
 
         </div>
 
@@ -550,36 +1372,39 @@ canvas{
 
     <div
         id="resultScreen"
-        class="result-screen hidden">
+        class="result-screen hidden"
+    >
 
         <div class="result-title">
-            🎉 Great Job!
+            Great Job!
         </div>
 
 
-        <div>
+        <div class="result-label">
             Your Score
         </div>
 
 
         <div
             class="score"
-            id="scoreText">
+            id="scoreText"
+        >
         </div>
 
 
         <div
             class="performance"
-            id="performance">
+            id="performance"
+        >
         </div>
 
 
         <button
             class="action-btn next-btn"
-            id="playAgain">
-
+            id="playAgain"
+            type="button"
+        >
             Play Again
-
         </button>
 
     </div>
@@ -587,8 +1412,10 @@ canvas{
 </div>
 
 
-<script>
+</div>
 
+
+<script>
 
 /* =========================================
    VOCABULARY
@@ -597,80 +1424,157 @@ canvas{
 const COLORS = [
 
     {
-        text:"đỏ",
-        phonetics:"daw",
-        english:"red",
-        color:"#ef4444"
+        text:
+            "đỏ",
+
+        phonetics:
+            "daw",
+
+        english:
+            "red",
+
+        color:
+            "#ef4444"
     },
 
     {
-        text:"cam",
-        phonetics:"kam",
-        english:"orange",
-        color:"#f97316"
+        text:
+            "cam",
+
+        phonetics:
+            "kam",
+
+        english:
+            "orange",
+
+        color:
+            "#f97316"
     },
 
     {
-        text:"vàng",
-        phonetics:"vang",
-        english:"yellow",
-        color:"#facc15"
+        text:
+            "vàng",
+
+        phonetics:
+            "vang",
+
+        english:
+            "yellow",
+
+        color:
+            "#facc15"
     },
 
     {
-        text:"xanh lá",
-        phonetics:"sanh la",
-        english:"green",
-        color:"#22c55e"
+        text:
+            "xanh lá",
+
+        phonetics:
+            "sanh la",
+
+        english:
+            "green",
+
+        color:
+            "#22c55e"
     },
 
     {
-        text:"xanh dương",
-        phonetics:"sanh zoong",
-        english:"blue",
-        color:"#3b82f6"
+        text:
+            "xanh dương",
+
+        phonetics:
+            "sanh zoong",
+
+        english:
+            "blue",
+
+        color:
+            "#3b82f6"
     },
 
     {
-        text:"tím",
-        phonetics:"tim",
-        english:"purple",
-        color:"#a855f7"
+        text:
+            "tím",
+
+        phonetics:
+            "tim",
+
+        english:
+            "purple",
+
+        color:
+            "#a855f7"
     },
 
     {
-        text:"hồng",
-        phonetics:"hong",
-        english:"pink",
-        color:"#ec4899"
+        text:
+            "hồng",
+
+        phonetics:
+            "hong",
+
+        english:
+            "pink",
+
+        color:
+            "#ec4899"
     },
 
     {
-        text:"nâu",
-        phonetics:"nəw",
-        english:"brown",
-        color:"#92400e"
+        text:
+            "nâu",
+
+        phonetics:
+            "nəw",
+
+        english:
+            "brown",
+
+        color:
+            "#92400e"
     },
 
     {
-        text:"đen",
-        phonetics:"den",
-        english:"black",
-        color:"#111827"
+        text:
+            "đen",
+
+        phonetics:
+            "den",
+
+        english:
+            "black",
+
+        color:
+            "#111827"
     },
 
     {
-        text:"trắng",
-        phonetics:"chang",
-        english:"white",
-        color:"#ffffff"
+        text:
+            "trắng",
+
+        phonetics:
+            "chang",
+
+        english:
+            "white",
+
+        color:
+            "#ffffff"
     },
 
     {
-        text:"xám",
-        phonetics:"sam",
-        english:"gray",
-        color:"#6b7280"
+        text:
+            "xám",
+
+        phonetics:
+            "sam",
+
+        english:
+            "gray",
+
+        color:
+            "#6b7280"
     }
 
 ];
@@ -680,26 +1584,34 @@ const COLORS = [
    CONSTANTS
 ========================================= */
 
-const TOTAL_QUESTIONS = 20;
+const TOTAL_QUESTIONS =
+    20;
 
-const PAIRS_PER_QUESTION = 4;
+const PAIRS_PER_QUESTION =
+    4;
 
 
 /* =========================================
    GAME STATE
 ========================================= */
 
-let currentQuestion = 0;
+let currentQuestion =
+    0;
 
-let score = 0;
+let score =
+    0;
 
-let currentPairs = [];
+let currentPairs =
+    [];
 
-let selectedItem = null;
+let selectedItem =
+    null;
 
-let connections = [];
+let connections =
+    [];
 
-let checked = false;
+let checked =
+    false;
 
 
 /* =========================================
@@ -707,61 +1619,97 @@ let checked = false;
 ========================================= */
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
 
 const resultScreen =
-    document.getElementById("resultScreen");
+    document.getElementById(
+        "resultScreen"
+    );
 
 const left =
-    document.getElementById("left");
+    document.getElementById(
+        "left"
+    );
 
 const right =
-    document.getElementById("right");
+    document.getElementById(
+        "right"
+    );
 
 const canvas =
-    document.getElementById("canvas");
+    document.getElementById(
+        "canvas"
+    );
 
 const ctx =
-    canvas.getContext("2d");
+    canvas.getContext(
+        "2d"
+    );
 
 const questionNumber =
-    document.getElementById("questionNumber");
+    document.getElementById(
+        "questionNumber"
+    );
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 const explanation =
-    document.getElementById("explanation");
+    document.getElementById(
+        "explanation"
+    );
 
 const explanationText =
-    document.getElementById("explanationText");
+    document.getElementById(
+        "explanationText"
+    );
 
 const clearBtn =
-    document.getElementById("clearBtn");
+    document.getElementById(
+        "clearBtn"
+    );
 
 const checkBtn =
-    document.getElementById("checkBtn");
+    document.getElementById(
+        "checkBtn"
+    );
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
+
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
 
 
 /* =========================================
    SHUFFLE
 ========================================= */
 
-function shuffle(array){
+function shuffle(array) {
 
-    for(
-        let i=array.length-1;
-        i>0;
+    for (
+        let i =
+            array.length - 1;
+
+        i > 0;
+
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
-                Math.random()*(i+1)
+                Math.random() *
+                (i + 1)
             );
+
 
         [
             array[i],
@@ -774,7 +1722,9 @@ function shuffle(array){
 
     }
 
+
     return array;
+
 }
 
 
@@ -782,10 +1732,13 @@ function shuffle(array){
    GENERATE QUESTION
 ========================================= */
 
-function generateQuestion(){
+function generateQuestion() {
 
     const pool =
-        shuffle([...COLORS]);
+        shuffle(
+            [...COLORS]
+        );
+
 
     currentPairs =
         pool.slice(
@@ -800,31 +1753,47 @@ function generateQuestion(){
    LOAD QUESTION
 ========================================= */
 
-function loadQuestion(){
+function loadQuestion() {
 
-    checked = false;
+    checked =
+        false;
 
-    selectedItem = null;
+    selectedItem =
+        null;
 
-    connections = [];
+    connections =
+        [];
 
-    message.textContent = "";
+    message.textContent =
+        "";
 
-    message.className = "";
+    message.className =
+        "";
 
-    explanation.classList.add("hidden");
+    explanation.classList.add(
+        "hidden"
+    );
 
-    explanationText.textContent = "";
+    explanationText.textContent =
+        "";
 
-    clearBtn.classList.remove("hidden");
+    clearBtn.classList.remove(
+        "hidden"
+    );
 
-    checkBtn.classList.remove("hidden");
+    checkBtn.classList.remove(
+        "hidden"
+    );
 
-    nextBtn.classList.add("hidden");
+    nextBtn.classList.add(
+        "hidden"
+    );
 
-    left.innerHTML = "";
+    left.innerHTML =
+        "";
 
-    right.innerHTML = "";
+    right.innerHTML =
+        "";
 
     clearCanvas();
 
@@ -832,38 +1801,65 @@ function loadQuestion(){
 
 
     questionNumber.textContent =
-        `Question ${currentQuestion + 1} / ${TOTAL_QUESTIONS}`;
+        `Question ${
+            currentQuestion + 1
+        } / ${
+            TOTAL_QUESTIONS
+        }`;
 
 
     /* =====================================
        CREATE COLOR ITEMS
     ====================================== */
 
-    currentPairs.forEach((pair,index)=>{
+    currentPairs.forEach(
+        (
+            pair,
+            index
+        ) => {
 
-        const item =
-            document.createElement("div");
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        item.className = "item";
 
-        item.dataset.index = index;
+            item.className =
+                "item";
 
-        item.style.background =
-            pair.color;
 
-        if(pair.color === "#ffffff"){
+            item.dataset.index =
+                index;
 
-            item.style.border =
-                "4px solid #9ca3af";
+
+            item.style.background =
+                pair.color;
+
+
+            if (
+                pair.color ===
+                "#ffffff"
+            ) {
+
+                item.style.border =
+                    "4px solid #c9d4df";
+
+            }
+
+
+            item.onclick =
+                () =>
+                    selectItem(
+                        item
+                    );
+
+
+            left.appendChild(
+                item
+            );
 
         }
-
-        item.onclick =
-            ()=>selectItem(item);
-
-        left.appendChild(item);
-
-    });
+    );
 
 
     /* =====================================
@@ -871,28 +1867,47 @@ function loadQuestion(){
     ====================================== */
 
     const shuffledWords =
-        shuffle([...currentPairs]);
+        shuffle(
+            [...currentPairs]
+        );
 
 
-    shuffledWords.forEach(pair=>{
+    shuffledWords.forEach(
+        pair => {
 
-        const target =
-            document.createElement("div");
+            const target =
+                document.createElement(
+                    "div"
+                );
 
-        target.className = "target";
 
-        target.dataset.index =
-            currentPairs.indexOf(pair);
+            target.className =
+                "target";
 
-        target.textContent =
-            pair.text;
 
-        target.onclick =
-            ()=>selectTarget(target);
+            target.dataset.index =
+                currentPairs.indexOf(
+                    pair
+                );
 
-        right.appendChild(target);
 
-    });
+            target.textContent =
+                pair.text;
+
+
+            target.onclick =
+                () =>
+                    selectTarget(
+                        target
+                    );
+
+
+            right.appendChild(
+                target
+            );
+
+        }
+    );
 
 
     resizeCanvas();
@@ -904,13 +1919,24 @@ function loadQuestion(){
    SELECT COLOR
 ========================================= */
 
-function selectItem(item){
+function selectItem(
+    item
+) {
 
-    if(checked) return;
+    if (
+        checked
+    ) {
 
-    if(
-        item.classList.contains("matched")
-    ){
+        return;
+
+    }
+
+
+    if (
+        item.classList.contains(
+            "matched"
+        )
+    ) {
 
         return;
 
@@ -918,17 +1944,27 @@ function selectItem(item){
 
 
     document
-        .querySelectorAll(".item")
-        .forEach(el=>{
+        .querySelectorAll(
+            ".item"
+        )
+        .forEach(
+            el => {
 
-            el.classList.remove("selected");
+                el.classList.remove(
+                    "selected"
+                );
 
-        });
+            }
+        );
 
 
-    item.classList.add("selected");
+    item.classList.add(
+        "selected"
+    );
 
-    selectedItem = item;
+
+    selectedItem =
+        item;
 
 }
 
@@ -937,20 +1973,33 @@ function selectItem(item){
    SELECT TARGET
 ========================================= */
 
-function selectTarget(target){
+function selectTarget(
+    target
+) {
 
-    if(checked) return;
-
-    if(
-        target.classList.contains("matched")
-    ){
+    if (
+        checked
+    ) {
 
         return;
 
     }
 
 
-    if(!selectedItem){
+    if (
+        target.classList.contains(
+            "matched"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !selectedItem
+    ) {
 
         return;
 
@@ -962,6 +2011,7 @@ function selectTarget(target){
             selectedItem.dataset.index
         );
 
+
     const targetIndex =
         Number(
             target.dataset.index
@@ -969,7 +2019,7 @@ function selectTarget(target){
 
 
     /* =====================================
-       REMOVE OLD CONNECTION FROM THIS COLOR
+       REMOVE OLD CONNECTION
     ====================================== */
 
     connections =
@@ -980,10 +2030,6 @@ function selectTarget(target){
         );
 
 
-    /* =====================================
-       REMOVE OLD CONNECTION TO THIS TARGET
-    ====================================== */
-
     connections =
         connections.filter(
             connection =>
@@ -992,11 +2038,17 @@ function selectTarget(target){
         );
 
 
+    /* =====================================
+       ADD CONNECTION
+    ====================================== */
+
     connections.push({
 
-        colorIndex,
+        colorIndex:
+            colorIndex,
 
-        targetIndex
+        targetIndex:
+            targetIndex
 
     });
 
@@ -1005,7 +2057,9 @@ function selectTarget(target){
         "selected"
     );
 
-    selectedItem = null;
+
+    selectedItem =
+        null;
 
 
     updateMatchedStates();
@@ -1019,50 +2073,66 @@ function selectTarget(target){
    UPDATE MATCHED STATES
 ========================================= */
 
-function updateMatchedStates(){
+function updateMatchedStates() {
 
     document
-        .querySelectorAll(".item")
-        .forEach(item=>{
+        .querySelectorAll(
+            ".item"
+        )
+        .forEach(
+            item => {
 
-            const index =
-                Number(item.dataset.index);
+                const index =
+                    Number(
+                        item.dataset.index
+                    );
 
-            const matched =
-                connections.some(
-                    connection =>
-                        connection.colorIndex ===
-                        index
+
+                const matched =
+                    connections.some(
+                        connection =>
+                            connection.colorIndex ===
+                            index
+                    );
+
+
+                item.classList.toggle(
+                    "matched",
+                    matched
                 );
 
-            item.classList.toggle(
-                "matched",
-                matched
-            );
-
-        });
+            }
+        );
 
 
     document
-        .querySelectorAll(".target")
-        .forEach(target=>{
+        .querySelectorAll(
+            ".target"
+        )
+        .forEach(
+            target => {
 
-            const index =
-                Number(target.dataset.index);
+                const index =
+                    Number(
+                        target.dataset.index
+                    );
 
-            const matched =
-                connections.some(
-                    connection =>
-                        connection.targetIndex ===
-                        index
+
+                const matched =
+                    connections.some(
+                        connection =>
+                            connection.targetIndex ===
+                            index
+                    );
+
+
+                target.classList.toggle(
+                    "matched",
+                    matched
                 );
 
-            target.classList.toggle(
-                "matched",
-                matched
-            );
-
-        });
+            }
+        );
 
 }
 
@@ -1071,160 +2141,205 @@ function updateMatchedStates(){
    CLEAR
 ========================================= */
 
-clearBtn.onclick = function(){
+clearBtn.onclick =
+    function() {
 
-    if(checked) return;
+        if (
+            checked
+        ) {
 
-    connections = [];
+            return;
 
-    selectedItem = null;
+        }
 
-    document
-        .querySelectorAll(".item")
-        .forEach(item=>{
 
-            item.classList.remove(
-                "selected",
-                "matched"
+        connections =
+            [];
+
+        selectedItem =
+            null;
+
+
+        document
+            .querySelectorAll(
+                ".item"
+            )
+            .forEach(
+                item => {
+
+                    item.classList.remove(
+                        "selected",
+                        "matched"
+                    );
+
+                    item.style.outline =
+                        "";
+
+                }
             );
 
-        });
 
+        document
+            .querySelectorAll(
+                ".target"
+            )
+            .forEach(
+                target => {
 
-    document
-        .querySelectorAll(".target")
-        .forEach(target=>{
+                    target.classList.remove(
+                        "matched"
+                    );
 
-            target.classList.remove(
-                "matched"
+                    target.style.border =
+                        "2px solid var(--accent-border)";
+
+                }
             );
 
-        });
 
+        clearCanvas();
 
-    clearCanvas();
-
-};
+    };
 
 
 /* =========================================
    CHECK ANSWERS
 ========================================= */
 
-checkBtn.onclick = function(){
+checkBtn.onclick =
+    function() {
 
-    if(checked) return;
+        if (
+            checked
+        ) {
 
-
-    /* Must connect all pairs */
-
-    if(
-        connections.length <
-        PAIRS_PER_QUESTION
-    ){
-
-        message.textContent =
-            `Connect all ${PAIRS_PER_QUESTION} pairs first.`;
-
-        message.className =
-            "wrong-message";
-
-        return;
-
-    }
-
-
-    checked = true;
-
-
-    let correctCount = 0;
-
-
-    connections.forEach(connection=>{
-
-        if(
-            connection.colorIndex ===
-            connection.targetIndex
-        ){
-
-            correctCount++;
+            return;
 
         }
 
-    });
+
+        /* Must connect all pairs */
+
+        if (
+            connections.length <
+            PAIRS_PER_QUESTION
+        ) {
+
+            message.textContent =
+                `Connect all ${PAIRS_PER_QUESTION} pairs first.`;
+
+            message.className =
+                "wrong-message";
+
+            return;
+
+        }
 
 
-    /* =====================================
-       ALL CORRECT
-    ====================================== */
-
-    if(
-        correctCount ===
-        PAIRS_PER_QUESTION
-    ){
-
-        score++;
+        checked =
+            true;
 
 
-        message.textContent =
-            "✅ Correct! +1 point";
-
-        message.className =
-            "correct-message";
-
-    }
+        let correctCount =
+            0;
 
 
-    /* =====================================
-       ANY WRONG
-    ====================================== */
+        connections.forEach(
+            connection => {
 
-    else{
+                if (
+                    connection.colorIndex ===
+                    connection.targetIndex
+                ) {
 
-        message.textContent =
-            "❌ Not quite. 0 points.";
+                    correctCount++;
 
-        message.className =
-            "wrong-message";
+                }
 
-    }
-
-
-    showExplanation();
-
-    clearBtn.classList.add("hidden");
-
-    checkBtn.classList.add("hidden");
-
-    nextBtn.classList.remove("hidden");
+            }
+        );
 
 
-    /* =====================================
-       DRAW RESULT COLORS
-    ====================================== */
+        /* =================================
+           ALL CORRECT
+        ================================== */
 
-    highlightAnswers();
+        if (
+            correctCount ===
+            PAIRS_PER_QUESTION
+        ) {
 
-};
+            score++;
+
+
+            message.textContent =
+                "✓ Correct! +1 point";
+
+            message.className =
+                "correct-message";
+
+        }
+
+
+        /* =================================
+           ANY WRONG
+        ================================== */
+
+        else {
+
+            message.textContent =
+                "✕ Not quite. 0 points.";
+
+            message.className =
+                "wrong-message";
+
+        }
+
+
+        showExplanation();
+
+
+        clearBtn.classList.add(
+            "hidden"
+        );
+
+        checkBtn.classList.add(
+            "hidden"
+        );
+
+        nextBtn.classList.remove(
+            "hidden"
+        );
+
+
+        highlightAnswers();
+
+    };
 
 
 /* =========================================
    EXPLANATION
 ========================================= */
 
-function showExplanation(){
+function showExplanation() {
 
-    let html = "";
-
-    currentPairs.forEach(pair=>{
-
-        html +=
-            `<strong>${pair.text}</strong> /${pair.phonetics}/ — ${pair.english}<br>`;
-
-    });
+    let html =
+        "";
 
 
-    explanationText.innerHTML = html;
+    currentPairs.forEach(
+        pair => {
+
+            html +=
+                `<strong>${pair.text}</strong> /${pair.phonetics}/ — ${pair.english}<br>`;
+
+        }
+    );
+
+
+    explanationText.innerHTML =
+        html;
+
 
     explanation.classList.remove(
         "hidden"
@@ -1237,44 +2352,48 @@ function showExplanation(){
    HIGHLIGHT ANSWERS
 ========================================= */
 
-function highlightAnswers(){
+function highlightAnswers() {
 
-    connections.forEach(connection=>{
+    connections.forEach(
+        connection => {
 
-        const colorItem =
-            document.querySelector(
-                `.item[data-index="${connection.colorIndex}"]`
-            );
-
-        const target =
-            document.querySelector(
-                `.target[data-index="${connection.targetIndex}"]`
-            );
+            const colorItem =
+                document.querySelector(
+                    `.item[data-index="${connection.colorIndex}"]`
+                );
 
 
-        if(
-            connection.colorIndex ===
-            connection.targetIndex
-        ){
+            const target =
+                document.querySelector(
+                    `.target[data-index="${connection.targetIndex}"]`
+                );
 
-            colorItem.style.outline =
-                "4px solid #22c55e";
 
-            target.style.border =
-                "3px solid #22c55e";
+            if (
+                connection.colorIndex ===
+                connection.targetIndex
+            ) {
+
+                colorItem.style.outline =
+                    `4px solid ${getComputedStyle(document.documentElement).getPropertyValue("--correct")}`;
+
+                target.style.border =
+                    `3px solid ${getComputedStyle(document.documentElement).getPropertyValue("--correct")}`;
+
+            }
+
+            else {
+
+                colorItem.style.outline =
+                    `4px solid ${getComputedStyle(document.documentElement).getPropertyValue("--wrong")}`;
+
+                target.style.border =
+                    `3px solid ${getComputedStyle(document.documentElement).getPropertyValue("--wrong")}`;
+
+            }
 
         }
-        else{
-
-            colorItem.style.outline =
-                "4px solid #ef4444";
-
-            target.style.border =
-                "3px solid #ef4444";
-
-        }
-
-    });
+    );
 
 }
 
@@ -1283,37 +2402,40 @@ function highlightAnswers(){
    NEXT QUESTION
 ========================================= */
 
-nextBtn.onclick = function(){
+nextBtn.onclick =
+    function() {
 
-    currentQuestion++;
+        currentQuestion++;
 
 
-    if(
-        currentQuestion >=
-        TOTAL_QUESTIONS
-    ){
+        if (
+            currentQuestion >=
+            TOTAL_QUESTIONS
+        ) {
 
-        showResults();
+            showResults();
 
-    }
-    else{
+        }
 
-        loadQuestion();
+        else {
 
-    }
+            loadQuestion();
 
-};
+        }
+
+    };
 
 
 /* =========================================
    RESULTS
 ========================================= */
 
-function showResults(){
+function showResults() {
 
     gameScreen.classList.add(
         "hidden"
     );
+
 
     resultScreen.classList.remove(
         "hidden"
@@ -1329,31 +2451,47 @@ function showResults(){
     let resultText;
 
 
-    if(score === 20){
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
 
         resultText =
-            "Perfect! 🎉";
+            "Perfect! 🎨";
 
     }
-    else if(score >= 17){
+
+    else if (
+        score >=
+        17
+    ) {
 
         resultText =
             "Excellent!";
 
     }
-    else if(score >= 14){
+
+    else if (
+        score >=
+        14
+    ) {
 
         resultText =
             "Great Job!";
 
     }
-    else if(score >= 10){
+
+    else if (
+        score >=
+        10
+    ) {
 
         resultText =
             "Good Job!";
 
     }
-    else{
+
+    else {
 
         resultText =
             "Keep Practicing!";
@@ -1373,108 +2511,134 @@ function showResults(){
    PLAY AGAIN
 ========================================= */
 
-document.getElementById(
-    "playAgain"
-).onclick = function(){
+playAgain.onclick =
+    function() {
 
-    currentQuestion = 0;
+        currentQuestion =
+            0;
 
-    score = 0;
+        score =
+            0;
 
-    resultScreen.classList.add(
-        "hidden"
-    );
 
-    gameScreen.classList.remove(
-        "hidden"
-    );
+        resultScreen.classList.add(
+            "hidden"
+        );
 
-    loadQuestion();
 
-};
+        gameScreen.classList.remove(
+            "hidden"
+        );
+
+
+        loadQuestion();
+
+    };
 
 
 /* =========================================
    DRAW CONNECTIONS
 ========================================= */
 
-function drawConnections(){
+function drawConnections() {
 
     clearCanvas();
 
 
-    connections.forEach(connection=>{
+    connections.forEach(
+        connection => {
 
-        const item =
-            document.querySelector(
-                `.item[data-index="${connection.colorIndex}"]`
+            const item =
+                document.querySelector(
+                    `.item[data-index="${connection.colorIndex}"]`
+                );
+
+
+            const target =
+                document.querySelector(
+                    `.target[data-index="${connection.targetIndex}"]`
+                );
+
+
+            if (
+                !item ||
+                !target
+            ) {
+
+                return;
+
+            }
+
+
+            const gameRect =
+                document
+                    .getElementById(
+                        "game"
+                    )
+                    .getBoundingClientRect();
+
+
+            const itemRect =
+                item.getBoundingClientRect();
+
+
+            const targetRect =
+                target.getBoundingClientRect();
+
+
+            const x1 =
+                itemRect.right -
+                gameRect.left;
+
+
+            const y1 =
+                itemRect.top +
+                itemRect.height / 2 -
+                gameRect.top;
+
+
+            const x2 =
+                targetRect.left -
+                gameRect.left;
+
+
+            const y2 =
+                targetRect.top +
+                targetRect.height / 2 -
+                gameRect.top;
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                x1,
+                y1
             );
 
-        const target =
-            document.querySelector(
-                `.target[data-index="${connection.targetIndex}"]`
+
+            ctx.lineTo(
+                x2,
+                y2
             );
 
 
-        if(!item || !target) return;
+            ctx.lineWidth =
+                4;
 
 
-        const gameRect =
-            document
-                .getElementById("game")
-                .getBoundingClientRect();
+            ctx.strokeStyle =
+                "#2878df";
 
 
-        const itemRect =
-            item.getBoundingClientRect();
-
-        const targetRect =
-            target.getBoundingClientRect();
+            ctx.lineCap =
+                "round";
 
 
-        const x1 =
-            itemRect.right -
-            gameRect.left;
+            ctx.stroke();
 
-        const y1 =
-            itemRect.top +
-            itemRect.height / 2 -
-            gameRect.top;
-
-
-        const x2 =
-            targetRect.left -
-            gameRect.left;
-
-        const y2 =
-            targetRect.top +
-            targetRect.height / 2 -
-            gameRect.top;
-
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            x1,
-            y1
-        );
-
-        ctx.lineTo(
-            x2,
-            y2
-        );
-
-        ctx.lineWidth = 4;
-
-        ctx.strokeStyle =
-            "#64748b";
-
-        ctx.lineCap =
-            "round";
-
-        ctx.stroke();
-
-    });
+        }
+    );
 
 }
 
@@ -1483,7 +2647,7 @@ function drawConnections(){
    CLEAR CANVAS
 ========================================= */
 
-function clearCanvas(){
+function clearCanvas() {
 
     ctx.clearRect(
         0,
@@ -1499,16 +2663,21 @@ function clearCanvas(){
    RESIZE CANVAS
 ========================================= */
 
-function resizeCanvas(){
+function resizeCanvas() {
 
     const game =
-        document.getElementById("game");
+        document.getElementById(
+            "game"
+        );
+
 
     canvas.width =
         game.clientWidth;
 
+
     canvas.height =
         game.clientHeight;
+
 
     drawConnections();
 
@@ -1534,4 +2703,5 @@ loadQuestion();
 </script>
 
 </body>
+
 </html>

@@ -4,216 +4,351 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Color Matching</title>
 
-<meta name="game-title" content="Colors Matching">
-<meta name="game-description" content="Match colors with their Vietnamese words.">
-<meta name="game-icon" content="🎨">
-<meta name="game-explanation" content="Choose the correct Vietnamese word for each color. Complete all four answers, then check your answers. A perfect round earns 1 point.">
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =========================================================
+     GAME METADATA
+========================================================= -->
+
+<meta
+    name="game-title"
+    content="Colors Matching"
+>
+
+<meta
+    name="game-description"
+    content="Match colors with their Vietnamese words."
+>
+
+<meta
+    name="game-icon"
+    content="🎨"
+>
+
+<meta
+    name="game-explanation"
+    content="Choose the correct Vietnamese word for each color."
+>
+
 
 <style>
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
 *{
-    box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
+    box-sizing:border-box;
+
 }
+
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root{
+
+    --accent:
+        #2878df;
+
+    --accent-dark:
+        #1e5fba;
+
+    --accent-light:
+        #eaf3ff;
+
+    --accent-border:
+        #c4daf6;
+
+    --general-border:
+        #d9e6f2;
+
+    --correct:
+        #2878df;
+
+    --correct-bg:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-bg:
+        #fff0f3;
+
+    --text:
+        #243b53;
+
+    --text-soft:
+        #66809d;
+
+    --white:
+        #ffffff;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body{
 
+    min-height:100vh;
+
+    padding:24px 18px;
+
     font-family:
+        Calibri,
         Arial,
         Helvetica,
         sans-serif;
 
-    background:#f5f7fb;
+    color:
+        var(--text);
 
-    min-height:100vh;
-
-    padding:18px;
-
-    color:#333;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7fbff 50%,
+            #eef6fd 100%
+        );
 
 }
 
 
 /* =========================================================
-   MAIN CONTAINER
+   BACK BUTTON
+========================================================= */
+
+.back-btn-container{
+
+    width:
+        900px;
+
+    max-width:
+        100%;
+
+    margin:
+        0 auto 14px;
+
+}
+
+
+.back-btn{
+
+    display:
+        inline-block;
+
+    padding:
+        9px 18px;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        12px;
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        24px;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.back-btn:hover{
+
+    background:
+        var(--accent);
+
+    border-color:
+        var(--accent);
+
+    color:
+        white;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CARD
 ========================================================= */
 
 .game-box{
 
-    width:760px;
+    position:
+        relative;
 
-    max-width:100%;
+    width:
+        900px;
 
-    margin:0 auto;
+    max-width:
+        100%;
 
-    background:white;
+    margin:
+        0 auto;
 
-    border-radius:20px;
+    padding:
+        34px 42px;
 
-    padding:22px 26px;
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--general-border);
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .98
+        );
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,.08);
+        0 18px 45px
+        rgba(
+            40,
+            120,
+            223,
+            .10
+        );
 
 }
 
 
 /* =========================================================
-   BACK TO CATEGORY
+   ACCENT LINE
 ========================================================= */
 
-.lobby-btn{
+.game-box::before{
 
-    display:inline-block;
+    content:
+        "";
 
-    background:white;
+    position:
+        absolute;
 
-    color:#4b5563;
+    top:
+        0;
 
-    border:2px solid #d9dee8;
+    left:
+        0;
 
-    border-radius:10px;
+    width:
+        100%;
 
-    padding:8px 15px;
+    height:
+        5px;
 
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    margin-bottom:15px;
-
-}
-
-.lobby-btn:hover{
-
-    background:#4b5563;
-
-    color:white;
+    background:
+        var(--accent);
 
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   HEADER
 ========================================================= */
-
-#introScreen{
-
-    text-align:center;
-
-}
-
-#introScreen h1{
-
-    color:#374151;
-
-    font-size:30px;
-
-    margin-bottom:12px;
-
-}
-
-#introScreen h2{
-
-    color:#4b5563;
-
-    font-size:21px;
-
-    margin-bottom:15px;
-
-}
-
-#introScreen p{
-
-    color:#6b7280;
-
-    font-size:16px;
-
-    line-height:1.6;
-
-    margin:7px 0;
-
-}
-
-.start-btn{
-
-    margin-top:18px;
-
-    padding:12px 28px;
-
-    border:none;
-
-    border-radius:11px;
-
-    background:#4f46e5;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.start-btn:hover{
-
-    background:#4338ca;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* =========================================================
-   GAME SCREEN
-========================================================= */
-
-#gameScreen{
-
-    display:none;
-
-}
 
 .game-header{
 
-    text-align:center;
+    text-align:
+        center;
 
-    margin-bottom:12px;
+    margin-bottom:
+        18px;
 
 }
+
 
 .game-header h1{
 
-    color:#374151;
+    margin-bottom:
+        4px;
 
-    font-size:27px;
+    color:
+        var(--accent-dark);
 
-    margin-bottom:5px;
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        42px;
+
+    font-weight:
+        700;
 
 }
 
+
 .subtitle{
 
-    color:#6b7280;
+    color:
+        var(--text-soft);
 
-    font-size:15px;
+    font-size:
+        22px;
+
+    line-height:
+        1.45;
 
 }
 
@@ -224,15 +359,42 @@ body{
 
 #info{
 
-    text-align:center;
+    margin-bottom:
+        22px;
 
-    color:#6b7280;
+    padding:
+        10px 18px;
 
-    font-size:16px;
+    border:
+        1px solid
+        var(--accent-border);
 
-    font-weight:bold;
+    border-radius:
+        12px;
 
-    margin-bottom:12px;
+    background:
+        var(--accent-light);
+
+    color:
+        var(--accent-dark);
+
+    text-align:
+        center;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+}
+
+
+#round,
+#score{
+
+    font-weight:
+        800;
 
 }
 
@@ -243,75 +405,186 @@ body{
 
 #game{
 
-    max-width:570px;
+    width:
+        100%;
 
-    margin:0 auto;
+    max-width:
+        650px;
+
+    margin:
+        0 auto;
 
 }
+
+
+/* =========================================================
+   ROW
+========================================================= */
 
 .row{
 
-    display:flex;
+    display:
+        flex;
 
-    align-items:center;
+    align-items:
+        center;
 
-    justify-content:center;
+    justify-content:
+        center;
 
-    gap:22px;
+    gap:
+        26px;
 
-    margin:9px 0;
+    margin:
+        13px 0;
 
 }
+
+
+/* =========================================================
+   COLOR BOX
+========================================================= */
 
 .colorBox{
 
-    width:70px;
+    width:
+        82px;
 
-    height:55px;
+    height:
+        60px;
 
-    border-radius:11px;
+    flex-shrink:
+        0;
 
-    border:3px solid #d1d5db;
+    border:
+        2px solid
+        var(--general-border);
 
-    flex-shrink:0;
+    border-radius:
+        12px;
+
+    box-shadow:
+        0 3px 8px
+        rgba(
+            36,
+            59,
+            83,
+            .06
+        );
 
 }
+
+
+/* =========================================================
+   SELECT
+========================================================= */
 
 select{
 
-    width:260px;
+    width:
+        330px;
 
-    height:46px;
+    height:
+        52px;
 
-    padding:8px 12px;
+    padding:
+        8px 14px;
 
-    font-size:16px;
+    border:
+        2px solid
+        var(--general-border);
 
-    border:2px solid #d1d5db;
+    border-radius:
+        12px;
 
-    border-radius:10px;
+    outline:
+        none;
 
-    background:white;
+    background:
+        white;
 
-    color:#374151;
+    color:
+        var(--text);
 
-    cursor:pointer;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        23px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
 
 }
+
+
+select:hover{
+
+    border-color:
+        var(--accent-border);
+
+}
+
 
 select:focus{
 
-    outline:none;
+    border-color:
+        var(--accent);
 
-    border-color:#6366f1;
+    box-shadow:
+        0 0 0 3px
+        var(--accent-light);
 
 }
 
+
 select:disabled{
 
-    background:#f3f4f6;
+    background:
+        #f5f8fb;
 
-    cursor:default;
+    color:
+        #6b7f93;
+
+    cursor:
+        default;
+
+}
+
+
+/* =========================================================
+   RESULT STATES
+========================================================= */
+
+select.correct-answer{
+
+    border-color:
+        var(--correct);
+
+    background:
+        var(--correct-bg);
+
+    color:
+        var(--accent-dark);
+
+}
+
+
+select.wrong-answer{
+
+    border-color:
+        var(--wrong);
+
+    background:
+        var(--wrong-bg);
+
+    color:
+        var(--wrong);
 
 }
 
@@ -322,69 +595,115 @@ select:disabled{
 
 .controls{
 
-    display:flex;
+    display:
+        flex;
 
-    justify-content:center;
+    justify-content:
+        center;
 
-    gap:10px;
+    gap:
+        12px;
 
-    margin-top:14px;
+    margin-top:
+        22px;
 
 }
+
 
 .action-btn{
 
-    padding:10px 20px;
+    padding:
+        11px 24px;
 
-    border:none;
+    border:
+        none;
 
-    border-radius:10px;
+    border-radius:
+        12px;
 
-    font-size:15px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    font-weight:bold;
+    font-size:
+        22px;
 
-    cursor:pointer;
+    font-weight:
+        700;
 
-    transition:.2s;
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
 
 }
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
 
 .clear-btn{
 
-    background:#f1f3f5;
+    border:
+        1px solid
+        var(--general-border);
 
-    color:#4b5563;
+    background:
+        white;
 
-    border:2px solid #d9dee8;
+    color:
+        var(--text-soft);
 
 }
+
 
 .clear-btn:hover{
 
-    background:#e5e7eb;
+    background:
+        #f5f9fd;
+
+    border-color:
+        var(--accent-border);
 
 }
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
 
 .check-btn,
 .next-btn{
 
-    background:#4f46e5;
+    background:
+        var(--accent);
 
-    color:white;
+    color:
+        white;
+
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            .10
+        );
 
 }
+
 
 .check-btn:hover,
 .next-btn:hover{
 
-    background:#4338ca;
+    background:
+        var(--accent-dark);
 
-}
-
-.hidden{
-
-    display:none !important;
+    transform:
+        translateY(-2px);
 
 }
 
@@ -395,27 +714,36 @@ select:disabled{
 
 #message{
 
-    min-height:30px;
+    min-height:
+        34px;
 
-    text-align:center;
+    margin-top:
+        16px;
 
-    font-size:20px;
+    text-align:
+        center;
 
-    font-weight:bold;
+    font-size:
+        25px;
 
-    margin-top:12px;
+    font-weight:
+        700;
 
 }
+
 
 .correct-message{
 
-    color:#16a34a;
+    color:
+        var(--correct);
 
 }
 
+
 .wrong-message{
 
-    color:#dc2626;
+    color:
+        var(--wrong);
 
 }
 
@@ -426,33 +754,51 @@ select:disabled{
 
 #explanation{
 
-    margin-top:10px;
+    margin-top:
+        16px;
 
-    padding:11px 14px;
+    padding:
+        13px 17px;
 
-    background:#f8fafc;
+    border:
+        1px solid
+        var(--accent-border);
 
-    border-left:4px solid #6366f1;
+    border-left:
+        4px solid
+        var(--accent);
 
-    border-radius:8px;
+    border-radius:
+        10px;
 
-    color:#4b5563;
+    background:
+        var(--accent-light);
 
-    font-size:14px;
+    color:
+        var(--text);
 
-    line-height:1.6;
+    text-align:
+        left;
 
-    text-align:left;
+    font-size:
+        20px;
+
+    line-height:
+        1.55;
 
 }
 
+
 .explanation-title{
 
-    color:#374151;
+    margin-bottom:
+        4px;
 
-    font-weight:bold;
+    color:
+        var(--accent-dark);
 
-    margin-bottom:4px;
+    font-weight:
+        700;
 
 }
 
@@ -463,49 +809,86 @@ select:disabled{
 
 #resultScreen{
 
-    display:none;
-
-    text-align:center;
+    text-align:
+        center;
 
 }
+
 
 .result-title{
 
-    color:#374151;
+    margin-bottom:
+        8px;
 
-    font-size:29px;
+    color:
+        var(--accent-dark);
 
-    margin-bottom:12px;
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        42px;
+
+    font-weight:
+        700;
 
 }
+
 
 .result-label{
 
-    color:#6b7280;
+    color:
+        var(--text-soft);
 
-    font-size:17px;
+    font-size:
+        23px;
 
 }
+
 
 .score{
 
-    color:#4f46e5;
+    margin:
+        8px 0;
 
-    font-size:48px;
+    color:
+        var(--accent);
 
-    font-weight:bold;
+    font-size:
+        58px;
 
-    margin:10px 0;
+    font-weight:
+        800;
 
 }
 
+
 .performance{
 
-    color:#6b7280;
+    margin-bottom:
+        24px;
 
-    font-size:20px;
+    color:
+        var(--text-soft);
 
-    margin-bottom:20px;
+    font-size:
+        27px;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden{
+
+    display:
+        none !important;
 
 }
 
@@ -514,51 +897,116 @@ select:disabled{
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(
+    max-width:600px
+){
 
     body{
 
-        padding:12px;
+        padding:
+            14px 10px;
 
     }
+
 
     .game-box{
 
-        padding:18px 14px;
+        padding:
+            28px 16px;
+
+        border-radius:
+            20px;
 
     }
 
-    .row{
 
-        gap:12px;
+    .game-header h1{
 
-    }
-
-    .colorBox{
-
-        width:62px;
-
-        height:50px;
+        font-size:
+            36px;
 
     }
 
-    select{
 
-        width:calc(100% - 74px);
+    .subtitle{
 
-        font-size:15px;
+        font-size:
+            19px;
 
     }
+
+
+    #info{
+
+        font-size:
+            19px;
+
+    }
+
 
     #game{
 
-        width:100%;
+        width:
+            100%;
 
     }
 
+
+    .row{
+
+        gap:
+            10px;
+
+    }
+
+
+    .colorBox{
+
+        width:
+            62px;
+
+        height:
+            50px;
+
+    }
+
+
+    select{
+
+        width:
+            calc(
+                100% - 72px
+            );
+
+        height:
+            48px;
+
+        font-size:
+            20px;
+
+    }
+
+
     .controls{
 
-        flex-wrap:wrap;
+        flex-wrap:
+            wrap;
+
+    }
+
+
+    .action-btn{
+
+        font-size:
+            20px;
+
+    }
+
+
+    #explanation{
+
+        font-size:
+            18px;
 
     }
 
@@ -572,61 +1020,29 @@ select:disabled{
 <body>
 
 
-<div class="game-box">
-
-
 <!-- =========================================================
-     BACK TO COLOR CATEGORY
+     BACK
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="goToCategory()">
+<div class="back-btn-container">
 
-    ← Back
+    <a
+        href="../../category.html?category=Colors"
+        class="back-btn"
+    >
 
-</button>
+        ← Back
 
-
-<!-- =========================================================
-     INTRO SCREEN
-========================================================= -->
-
-<div id="introScreen">
-
-    <h1>
-        🎨 Match Colors
-    </h1>
-
-    <h2>
-        Hello 👋
-    </h2>
-
-    <p>
-        Match each color with the correct Vietnamese word.
-    </p>
-
-    <p>
-        🎨 20 Rounds &nbsp;•&nbsp; 4 Colors per Round
-    </p>
-
-    <p>
-        🏆 Each perfect round = 1 point
-    </p>
-
-    <p>
-        <b>Total: 20 Points</b>
-    </p>
-
-    <button
-        class="start-btn"
-        id="startBtn">
-
-        Start Game
-
-    </button>
+    </a>
 
 </div>
+
+
+<!-- =========================================================
+     MAIN CARD
+========================================================= -->
+
+<div class="game-box">
 
 
 <!-- =========================================================
@@ -636,31 +1052,51 @@ select:disabled{
 <div id="gameScreen">
 
 
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <div class="game-header">
 
         <h1>
-            🎨 Match Colors
+            Color Matching
         </h1>
 
         <div class="subtitle">
+
             Choose the Vietnamese word for each color.
+
         </div>
 
     </div>
 
 
+    <!-- =====================================================
+         INFO
+    ====================================================== -->
+
     <div id="info">
 
         Round:
-        <span id="round">1</span>/20
+        <span id="round">
+            1
+        </span>
+
+        /20
 
         &nbsp; | &nbsp;
 
         Score:
-        <span id="score">0</span>
+        <span id="score">
+            0
+        </span>
 
     </div>
 
+
+    <!-- =====================================================
+         GAME
+    ====================================================== -->
 
     <div id="game"></div>
 
@@ -673,7 +1109,8 @@ select:disabled{
 
         <button
             class="action-btn clear-btn"
-            id="clearBtn">
+            id="clearBtn"
+        >
 
             Clear
 
@@ -682,7 +1119,8 @@ select:disabled{
 
         <button
             class="action-btn check-btn"
-            id="checkBtn">
+            id="checkBtn"
+        >
 
             Check Answers
 
@@ -691,7 +1129,8 @@ select:disabled{
 
         <button
             class="action-btn next-btn hidden"
-            id="nextBtn">
+            id="nextBtn"
+        >
 
             Next Question →
 
@@ -713,16 +1152,19 @@ select:disabled{
 
     <div
         id="explanation"
-        class="hidden">
+        class="hidden"
+    >
 
         <div class="explanation-title">
+
             Explanation
+
         </div>
+
 
         <div id="explanationText"></div>
 
     </div>
-
 
 </div>
 
@@ -731,39 +1173,50 @@ select:disabled{
      RESULT SCREEN
 ========================================================= -->
 
-<div id="resultScreen">
+<div
+    id="resultScreen"
+    class="hidden"
+>
 
 
     <div class="result-title">
-        🎉 Game Finished!
+
+        Game Finished!
+
     </div>
 
 
     <div class="result-label">
+
         Final Score
+
     </div>
 
 
     <div
         class="score"
-        id="scoreText">
+        id="scoreText"
+    >
+
+        0 / 20
+
     </div>
 
 
     <div
         class="performance"
-        id="performance">
-    </div>
+        id="performance"
+    ></div>
 
 
     <button
-        class="start-btn"
-        id="playAgain">
+        class="action-btn next-btn"
+        id="playAgain"
+    >
 
         Play Again
 
     </button>
-
 
 </div>
 
@@ -774,98 +1227,163 @@ select:disabled{
 <script>
 
 /* =========================================================
-   NAVIGATION
-========================================================= */
-
-function goToCategory(){
-
-    window.location.href =
-        "../../category.html?category=Color";
-
-}
-
-
-/* =========================================================
    VOCABULARY
 ========================================================= */
 
 const COLORS = [
 
     {
-        text:"đỏ",
-        phonetics:"daw",
-        english:"red",
-        color:"#ef4444"
+        text:
+            "đỏ",
+
+        phonetics:
+            "daw",
+
+        english:
+            "red",
+
+        color:
+            "#ef4444"
     },
 
     {
-        text:"cam",
-        phonetics:"kam",
-        english:"orange",
-        color:"#f97316"
+        text:
+            "cam",
+
+        phonetics:
+            "kam",
+
+        english:
+            "orange",
+
+        color:
+            "#f97316"
     },
 
     {
-        text:"vàng",
-        phonetics:"vang",
-        english:"yellow",
-        color:"#facc15"
+        text:
+            "vàng",
+
+        phonetics:
+            "vang",
+
+        english:
+            "yellow",
+
+        color:
+            "#facc15"
     },
 
     {
-        text:"xanh lá",
-        phonetics:"sanh la",
-        english:"green",
-        color:"#22c55e"
+        text:
+            "xanh lá",
+
+        phonetics:
+            "sanh la",
+
+        english:
+            "green",
+
+        color:
+            "#22c55e"
     },
 
     {
-        text:"xanh dương",
-        phonetics:"sanh zoong",
-        english:"blue",
-        color:"#3b82f6"
+        text:
+            "xanh dương",
+
+        phonetics:
+            "sanh zoong",
+
+        english:
+            "blue",
+
+        color:
+            "#3b82f6"
     },
 
     {
-        text:"tím",
-        phonetics:"tim",
-        english:"purple",
-        color:"#a855f7"
+        text:
+            "tím",
+
+        phonetics:
+            "tim",
+
+        english:
+            "purple",
+
+        color:
+            "#a855f7"
     },
 
     {
-        text:"hồng",
-        phonetics:"hong",
-        english:"pink",
-        color:"#ec4899"
+        text:
+            "hồng",
+
+        phonetics:
+            "hong",
+
+        english:
+            "pink",
+
+        color:
+            "#ec4899"
     },
 
     {
-        text:"nâu",
-        phonetics:"nəw",
-        english:"brown",
-        color:"#92400e"
+        text:
+            "nâu",
+
+        phonetics:
+            "nəw",
+
+        english:
+            "brown",
+
+        color:
+            "#92400e"
     },
 
     {
-        text:"đen",
-        phonetics:"den",
-        english:"black",
-        color:"#111827"
+        text:
+            "đen",
+
+        phonetics:
+            "den",
+
+        english:
+            "black",
+
+        color:
+            "#111827"
     },
 
     {
-        text:"trắng",
-        phonetics:"chang",
-        english:"white",
-        color:"#ffffff"
+        text:
+            "trắng",
+
+        phonetics:
+            "chang",
+
+        english:
+            "white",
+
+        color:
+            "#ffffff"
     },
 
     {
-        text:"xám",
-        phonetics:"sam",
-        english:"gray",
-        color:"#6b7280"
+        text:
+            "xám",
+
+        phonetics:
+            "sam",
+
+        english:
+            "gray",
+
+        color:
+            "#6b7280"
     }
 
 ];
@@ -875,32 +1393,33 @@ const COLORS = [
    CONSTANTS
 ========================================================= */
 
-const TOTAL_ROUNDS = 20;
+const TOTAL_ROUNDS =
+    20;
 
-const COLORS_PER_ROUND = 4;
+const COLORS_PER_ROUND =
+    4;
 
 
 /* =========================================================
    GAME STATE
 ========================================================= */
 
-let round = 1;
+let round =
+    1;
 
-let score = 0;
+let score =
+    0;
 
-let currentColors = [];
+let currentColors =
+    [];
 
-let locked = false;
+let locked =
+    false;
 
 
 /* =========================================================
    DOM
 ========================================================= */
-
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
 
 const gameScreen =
     document.getElementById(
@@ -964,61 +1483,41 @@ const nextBtn =
 
 function shuffle(array){
 
-    const arr = [...array];
+    const arr =
+        [...array];
+
 
     for(
-        let i = arr.length - 1;
+        let i =
+            arr.length - 1;
+
         i > 0;
+
         i--
     ){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
+
 
         [
             arr[i],
             arr[j]
-        ] = [
+        ] =
+        [
             arr[j],
             arr[i]
         ];
 
     }
 
+
     return arr;
 
 }
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-document.getElementById(
-    "startBtn"
-).onclick = function(){
-
-    round = 1;
-
-    score = 0;
-
-    scoreText.textContent =
-        "0";
-
-    introScreen.style.display =
-        "none";
-
-    resultScreen.style.display =
-        "none";
-
-    gameScreen.style.display =
-        "block";
-
-    createRound();
-
-};
 
 
 /* =========================================================
@@ -1027,7 +1526,9 @@ document.getElementById(
 
 function createRound(){
 
-    locked = false;
+    locked =
+        false;
+
 
     message.textContent =
         "";
@@ -1035,27 +1536,29 @@ function createRound(){
     message.className =
         "";
 
+
     explanation.classList.add(
         "hidden"
     );
 
+
     explanationText.innerHTML =
         "";
+
 
     clearBtn.classList.remove(
         "hidden"
     );
 
+
     checkBtn.classList.remove(
         "hidden"
     );
 
+
     nextBtn.classList.add(
         "hidden"
     );
-
-    checkBtn.disabled =
-        false;
 
 
     roundText.textContent =
@@ -1063,11 +1566,13 @@ function createRound(){
 
 
     /* =====================================================
-       SELECT 4 RANDOM COLORS
+       SELECT 4 COLORS
     ====================================================== */
 
     currentColors =
-        shuffle(COLORS).slice(
+        shuffle(
+            COLORS
+        ).slice(
             0,
             COLORS_PER_ROUND
         );
@@ -1080,7 +1585,8 @@ function createRound(){
     const words =
         shuffle(
             currentColors.map(
-                color => color.text
+                color =>
+                    color.text
             )
         );
 
@@ -1094,43 +1600,59 @@ function createRound(){
     ====================================================== */
 
     currentColors.forEach(
-        (item,index)=>{
+        (
+            item,
+            index
+        ) => {
 
             const row =
                 document.createElement(
                     "div"
                 );
 
+
             row.className =
                 "row";
 
+
+            /* =============================================
+               COLOR
+            ============================================== */
 
             const colorBox =
                 document.createElement(
                     "div"
                 );
 
+
             colorBox.className =
                 "colorBox";
+
 
             colorBox.style.background =
                 item.color;
 
 
             if(
-                item.color === "#ffffff"
+                item.color ===
+                "#ffffff"
             ){
 
                 colorBox.style.border =
-                    "3px solid #9ca3af";
+                    "3px solid #b8c7d8";
 
             }
 
+
+            /* =============================================
+               SELECT
+            ============================================== */
 
             const select =
                 document.createElement(
                     "select"
                 );
+
 
             select.id =
                 `answer${index}`;
@@ -1141,11 +1663,14 @@ function createRound(){
                     "option"
                 );
 
+
             defaultOption.value =
                 "";
 
+
             defaultOption.textContent =
                 "Select a word";
+
 
             select.appendChild(
                 defaultOption
@@ -1153,18 +1678,21 @@ function createRound(){
 
 
             words.forEach(
-                word=>{
+                word => {
 
                     const option =
                         document.createElement(
                             "option"
                         );
 
+
                     option.value =
                         word;
 
+
                     option.textContent =
                         word;
+
 
                     select.appendChild(
                         option
@@ -1178,9 +1706,11 @@ function createRound(){
                 colorBox
             );
 
+
             row.appendChild(
                 select
             );
+
 
             game.appendChild(
                 row
@@ -1196,181 +1726,228 @@ function createRound(){
    CLEAR ANSWERS
 ========================================================= */
 
-clearBtn.onclick = function(){
+clearBtn.onclick =
+    function(){
 
-    if(locked){
+        if(
+            locked
+        ){
 
-        return;
+            return;
 
-    }
-
-
-    document
-        .querySelectorAll(
-            "#game select"
-        )
-        .forEach(
-            select=>{
-
-                select.value =
-                    "";
-
-            }
-        );
+        }
 
 
-    message.textContent =
-        "";
+        document
+            .querySelectorAll(
+                "#game select"
+            )
+            .forEach(
+                select => {
 
-    message.className =
-        "";
+                    select.value =
+                        "";
 
-};
+                    select.classList.remove(
+                        "correct-answer",
+                        "wrong-answer"
+                    );
+
+                }
+            );
+
+
+        message.textContent =
+            "";
+
+        message.className =
+            "";
+
+    };
 
 
 /* =========================================================
    CHECK ANSWERS
 ========================================================= */
 
-checkBtn.onclick = function(){
+checkBtn.onclick =
+    function(){
 
-    if(locked){
+        if(
+            locked
+        ){
 
-        return;
+            return;
 
-    }
-
-
-    /* =====================================================
-       REQUIRE ALL ANSWERS
-    ====================================================== */
-
-    const selects =
-        document.querySelectorAll(
-            "#game select"
-        );
+        }
 
 
-    const incomplete =
-        [...selects].some(
-            select =>
-                select.value === ""
-        );
+        const selects =
+            document.querySelectorAll(
+                "#game select"
+            );
 
 
-    if(incomplete){
+        /* =================================================
+           REQUIRE ALL ANSWERS
+        ================================================== */
 
-        message.textContent =
-            "Please answer all 4 colors first.";
-
-        message.className =
-            "wrong-message";
-
-        return;
-
-    }
-
-
-    /* =====================================================
-       LOCK ROUND
-    ====================================================== */
-
-    locked = true;
+        const incomplete =
+            [
+                ...selects
+            ].some(
+                select =>
+                    select.value === ""
+            );
 
 
-    let correct = 0;
+        if(
+            incomplete
+        ){
+
+            message.textContent =
+                "Please answer all 4 colors first.";
+
+            message.className =
+                "wrong-message";
+
+            return;
+
+        }
 
 
-    currentColors.forEach(
-        (item,index)=>{
+        /* =================================================
+           LOCK
+        ================================================== */
 
-            const answer =
-                document.getElementById(
-                    `answer${index}`
-                ).value;
+        locked =
+            true;
 
 
-            if(
-                answer === item.text
-            ){
+        let correct =
+            0;
 
-                correct++;
+
+        /* =================================================
+           CHECK EACH ANSWER
+        ================================================== */
+
+        currentColors.forEach(
+            (
+                item,
+                index
+            ) => {
+
+                const select =
+                    document.getElementById(
+                        `answer${index}`
+                    );
+
+
+                const answer =
+                    select.value;
+
+
+                if(
+                    answer ===
+                    item.text
+                ){
+
+                    correct++;
+
+                    select.classList.add(
+                        "correct-answer"
+                    );
+
+                }
+
+                else{
+
+                    select.classList.add(
+                        "wrong-answer"
+                    );
+
+                }
 
             }
+        );
+
+
+        /* =================================================
+           SCORING
+           
+           ONLY PERFECT ROUND = +1
+        ================================================== */
+
+        if(
+            correct ===
+            COLORS_PER_ROUND
+        ){
+
+            score++;
+
+
+            scoreText.textContent =
+                score;
+
+
+            message.textContent =
+                "✓ Perfect! +1 point";
+
+
+            message.className =
+                "correct-message";
 
         }
-    );
+
+        else{
+
+            message.textContent =
+                `✕ ${correct}/4 correct — 0 points`;
 
 
-    /* =====================================================
-       SCORING RULE
-       
-       ONLY A PERFECT ROUND GETS 1 POINT.
-       ANY WRONG ANSWER = 0 POINTS.
-    ====================================================== */
-
-    if(
-        correct === COLORS_PER_ROUND
-    ){
-
-        score++;
-
-        scoreText.textContent =
-            score;
-
-        message.textContent =
-            "✅ Perfect! +1 point";
-
-        message.className =
-            "correct-message";
-
-    }
-
-    else{
-
-        message.textContent =
-            `❌ ${correct}/4 correct — 0 points`;
-
-        message.className =
-            "wrong-message";
-
-    }
-
-
-    /* =====================================================
-       LOCK ANSWERS
-    ====================================================== */
-
-    selects.forEach(
-        select=>{
-
-            select.disabled =
-                true;
+            message.className =
+                "wrong-message";
 
         }
-    );
 
 
-    clearBtn.classList.add(
-        "hidden"
-    );
+        /* =================================================
+           DISABLE SELECTS
+        ================================================== */
 
-    checkBtn.classList.add(
-        "hidden"
-    );
+        selects.forEach(
+            select => {
 
-    nextBtn.classList.remove(
-        "hidden"
-    );
+                select.disabled =
+                    true;
+
+            }
+        );
 
 
-    /* =====================================================
-       SHOW EXPLANATION
-    ====================================================== */
+        clearBtn.classList.add(
+            "hidden"
+        );
 
-    showExplanation();
 
-};
+        checkBtn.classList.add(
+            "hidden"
+        );
+
+
+        nextBtn.classList.remove(
+            "hidden"
+        );
+
+
+        /* =================================================
+           EXPLANATION
+        ================================================== */
+
+        showExplanation();
+
+    };
 
 
 /* =========================================================
@@ -1384,7 +1961,7 @@ function showExplanation(){
 
 
     currentColors.forEach(
-        item=>{
+        item => {
 
             html += `
 
@@ -1419,32 +1996,36 @@ function showExplanation(){
    NEXT ROUND
 ========================================================= */
 
-nextBtn.onclick = function(){
+nextBtn.onclick =
+    function(){
 
-    if(!locked){
+        if(
+            !locked
+        ){
 
-        return;
+            return;
 
-    }
-
-
-    round++;
-
-
-    if(
-        round > TOTAL_ROUNDS
-    ){
-
-        finishGame();
-
-        return;
-
-    }
+        }
 
 
-    createRound();
+        round++;
 
-};
+
+        if(
+            round >
+            TOTAL_ROUNDS
+        ){
+
+            finishGame();
+
+            return;
+
+        }
+
+
+        createRound();
+
+    };
 
 
 /* =========================================================
@@ -1453,11 +2034,14 @@ nextBtn.onclick = function(){
 
 function finishGame(){
 
-    gameScreen.style.display =
-        "none";
+    gameScreen.classList.add(
+        "hidden"
+    );
 
-    resultScreen.style.display =
-        "block";
+
+    resultScreen.classList.remove(
+        "hidden"
+    );
 
 
     document.getElementById(
@@ -1466,20 +2050,23 @@ function finishGame(){
         `${score} / ${TOTAL_ROUNDS}`;
 
 
-    let performanceText;
+    let performanceText =
+        "";
 
 
     if(
-        score === TOTAL_ROUNDS
+        score ===
+        TOTAL_ROUNDS
     ){
 
         performanceText =
-            "Perfect! 🎉";
+            "Perfect!";
 
     }
 
     else if(
-        score >= 17
+        score >=
+        17
     ){
 
         performanceText =
@@ -1488,7 +2075,8 @@ function finishGame(){
     }
 
     else if(
-        score >= 14
+        score >=
+        14
     ){
 
         performanceText =
@@ -1497,7 +2085,8 @@ function finishGame(){
     }
 
     else if(
-        score >= 10
+        score >=
+        10
     ){
 
         performanceText =
@@ -1527,24 +2116,41 @@ function finishGame(){
 
 document.getElementById(
     "playAgain"
-).onclick = function(){
+).onclick =
+    function(){
 
-    round = 1;
+        round =
+            1;
 
-    score = 0;
 
-    scoreText.textContent =
-        "0";
+        score =
+            0;
 
-    resultScreen.style.display =
-        "none";
 
-    gameScreen.style.display =
-        "block";
+        scoreText.textContent =
+            "0";
 
-    createRound();
 
-};
+        resultScreen.classList.add(
+            "hidden"
+        );
+
+
+        gameScreen.classList.remove(
+            "hidden"
+        );
+
+
+        createRound();
+
+    };
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+createRound();
 
 </script>
 

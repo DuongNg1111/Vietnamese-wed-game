@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -11,15 +12,40 @@
 <meta name="game-title" content="Vietnamese Color Quiz">
 <meta
     name="game-description"
-    content="Practice Vietnamese color words by matching colors with the correct Vietnamese words."
+    content="Practice Vietnamese color words by choosing the correct Vietnamese word."
 >
 <meta name="game-icon" content="🎨">
 <meta
     name="game-explanation"
-    content="Look at the color and choose the correct Vietnamese word. Each question is worth 1 point. Wrong answers cannot be changed."
+    content="Look at the color and choose the correct Vietnamese word. Each correct answer earns 1 point. Wrong answers cannot be changed."
+>
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
 >
 
 <style>
+
+/* =========================================================
+   COLOR SYSTEM
+
+   Accent:       #2878df
+   Accent dark:  #1e5fba
+   Accent light: #eaf3ff
+   Accent border:#c4daf6
+   General:      #d9e6f2
+   Correct:      #2878df / #eaf3ff
+   Wrong:        #d9536f / #fff0f3
+========================================================= */
+
 
 /* =========================================================
    GLOBAL
@@ -32,29 +58,31 @@
 body{
 
     margin:0;
+
     padding:20px;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:#e8f5e9;
+    background:#f7faff;
 
     min-height:100vh;
 
-    color:#222;
+    color:#333;
+
+    font-family:
+        Calibri,
+        Arial,
+        Helvetica,
+        sans-serif;
 
 }
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
 
-    width:min(850px,95vw);
+    width:min(900px,95vw);
 
     margin:0 auto 15px;
 
@@ -64,17 +92,24 @@ body{
 
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 17px;
 
     background:white;
 
-    color:#2e7d32;
+    color:#1e5fba;
 
-    border:2px solid #4caf50;
+    border:2px solid #c4daf6;
 
     border-radius:10px;
 
     text-decoration:none;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
 
     font-weight:bold;
 
@@ -84,174 +119,77 @@ body{
 
 .back-btn:hover{
 
-    background:#4caf50;
+    background:#eaf3ff;
 
-    color:white;
+    border-color:#2878df;
 
-    transform:translateY(-2px);
+    color:#1e5fba;
+
+    transform:translateY(-1px);
 
 }
 
 
 /* =========================================================
-   GAME BOX
+   GAME CARD
 ========================================================= */
 
 .game-box{
 
-    width:min(850px,95vw);
+    position:relative;
+
+    width:min(900px,95vw);
 
     margin:0 auto;
 
     background:white;
 
-    padding:35px;
+    border:1px solid #d9e6f2;
 
-    border-radius:24px;
+    border-radius:20px;
+
+    padding:30px 38px 35px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.10);
+        0 8px 28px rgba(40,120,223,.08);
 
     text-align:center;
 
+    overflow:hidden;
+
 }
 
 
 /* =========================================================
-   SCREENS
+   ACCENT LINE
 ========================================================= */
 
-.screen{
+.game-box::before{
 
-    display:none;
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:#2878df;
 
 }
 
-.screen.active{
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
 
     display:block;
-
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.game-icon{
-
-    font-size:65px;
-
-    margin-bottom:10px;
-
-}
-
-#introScreen h1{
-
-    margin:10px 0 15px;
-
-    font-size:34px;
-
-    color:#2e7d32;
-
-}
-
-.intro-description{
-
-    max-width:600px;
-
-    margin:0 auto 25px;
-
-    color:#666;
-
-    font-size:18px;
-
-    line-height:1.6;
-
-}
-
-
-.game-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:25px 0;
-
-}
-
-.game-info div{
-
-    background:#f1f8f1;
-
-    border:1px solid #c8e6c9;
-
-    border-radius:12px;
-
-    padding:12px 18px;
-
-    color:#555;
-
-    font-size:16px;
-
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-button{
-
-    border:none;
-
-    border-radius:12px;
-
-    padding:13px 30px;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-button:disabled{
-
-    cursor:default;
-
-    opacity:.7;
-
-    transform:none;
-
-}
-
-
-.primary-btn{
-
-    background:#4caf50;
-
-    color:white;
-
-}
-
-.primary-btn:hover{
-
-    background:#388e3c;
 
 }
 
@@ -262,11 +200,35 @@ button:disabled{
 
 .game-title{
 
+    margin:5px 0 4px;
+
+    font-family:"Kalam", cursive;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    color:#1e5fba;
+
+}
+
+
+/* =========================================================
+   SHORT INSTRUCTION
+========================================================= */
+
+.instruction{
+
     margin:0 0 20px;
 
-    font-size:30px;
+    color:#66788a;
 
-    color:#2e7d32;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
 
 }
 
@@ -283,27 +245,29 @@ button:disabled{
 
     align-items:center;
 
-    gap:15px;
+    gap:20px;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
+
+    color:#64748b;
+
+    font-size:24px;
 
     font-weight:bold;
-
-    color:#555;
 
 }
 
 .question-count{
 
-    color:#666;
+    color:#64748b;
 
 }
 
 .score{
 
-    color:#2e7d32;
+    color:#1e5fba;
 
-    font-size:18px;
+    font-size:26px;
 
 }
 
@@ -316,9 +280,9 @@ button:disabled{
 
     width:100%;
 
-    height:9px;
+    height:8px;
 
-    background:#eee;
+    background:#eaf3ff;
 
     border-radius:20px;
 
@@ -334,24 +298,11 @@ button:disabled{
 
     height:100%;
 
-    background:#4caf50;
+    background:#2878df;
+
+    border-radius:20px;
 
     transition:.3s;
-
-}
-
-
-/* =========================================================
-   QUESTION
-========================================================= */
-
-.instruction{
-
-    margin:10px 0 20px;
-
-    color:#666;
-
-    font-size:18px;
 
 }
 
@@ -362,18 +313,18 @@ button:disabled{
 
 #colorBox{
 
-    width:210px;
+    width:220px;
 
-    height:210px;
+    height:220px;
 
     margin:20px auto 28px;
 
-    border:3px solid #ddd;
+    border:3px solid #d9e6f2;
 
     border-radius:20px;
 
     box-shadow:
-        0 5px 15px rgba(0,0,0,.08);
+        0 5px 18px rgba(40,120,223,.10);
 
 }
 
@@ -386,12 +337,11 @@ button:disabled{
 
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:14px;
 
-    max-width:650px;
+    max-width:680px;
 
     margin:0 auto;
 
@@ -401,15 +351,22 @@ button:disabled{
 
     width:100%;
 
-    padding:16px 15px;
+    padding:15px 18px;
 
-    background:#f1f8f1;
+    background:white;
 
-    border:2px solid #81c784;
+    border:2px solid #c4daf6;
 
-    color:#333;
+    color:#334155;
 
-    font-size:20px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:29px;
+
+    font-weight:bold;
 
     border-radius:12px;
 
@@ -421,33 +378,50 @@ button:disabled{
 
 .option:hover:not(.disabled){
 
-    background:#dcedc8;
+    background:#eaf3ff;
 
-    border-color:#4caf50;
+    border-color:#2878df;
+
+    color:#1e5fba;
 
     transform:translateY(-2px);
 
 }
 
+
+/* =========================================================
+   CORRECT
+========================================================= */
+
 .option.correct{
 
-    background:#c8e6c9;
+    background:#eaf3ff;
 
-    border-color:#4caf50;
+    border-color:#2878df;
 
-    color:#256b2a;
+    color:#1e5fba;
 
 }
+
+
+/* =========================================================
+   WRONG
+========================================================= */
 
 .option.wrong{
 
-    background:#ffcdd2;
+    background:#fff0f3;
 
-    border-color:#e74c3c;
+    border-color:#d9536f;
 
-    color:#b71c1c;
+    color:#d9536f;
 
 }
+
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .option.disabled{
 
@@ -464,9 +438,14 @@ button:disabled{
 
     min-height:40px;
 
-    margin:20px 0 5px;
+    margin:18px 0 0;
 
-    font-size:20px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:29px;
 
     font-weight:bold;
 
@@ -474,44 +453,131 @@ button:disabled{
 
 
 /* =========================================================
-   RESULT
+   CORRECT MESSAGE
+========================================================= */
+
+.correct-message{
+
+    color:#2878df;
+
+}
+
+
+/* =========================================================
+   WRONG MESSAGE
+========================================================= */
+
+.wrong-message{
+
+    color:#d9536f;
+
+}
+
+
+/* =========================================================
+   RESULT SCREEN
 ========================================================= */
 
 #resultScreen{
 
+    display:none;
+
     text-align:center;
 
-    padding:20px 10px;
+    padding:20px 10px 10px;
 
 }
+
+
+/* =========================================================
+   RESULT TITLE
+========================================================= */
 
 #resultScreen h2{
 
-    margin:0 0 20px;
+    margin:0 0 15px;
 
-    color:#2e7d32;
+    font-family:"Kalam", cursive;
 
-    font-size:32px;
+    font-size:45px;
+
+    color:#1e5fba;
 
 }
+
+
+/* =========================================================
+   FINAL SCORE
+========================================================= */
 
 .final-score{
 
-    font-size:28px;
+    color:#64748b;
 
-    margin:20px 0;
+    font-size:29px;
 
-    color:#333;
+    margin:15px 0;
 
 }
 
+.final-score strong{
+
+    color:#2878df;
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
 .performance{
 
-    font-size:21px;
+    font-size:30px;
 
-    color:#666;
+    color:#64748b;
 
     margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.primary-btn{
+
+    border:none;
+
+    border-radius:11px;
+
+    padding:12px 28px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.primary-btn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
 
 }
 
@@ -524,63 +590,53 @@ button:disabled{
 
     body{
 
-        padding:15px;
+        padding:12px;
 
     }
+
 
     .game-box{
 
         width:100%;
 
-        padding:25px 18px;
+        padding:27px 16px 28px;
 
-        border-radius:20px;
-
-    }
-
-    #introScreen h1{
-
-        font-size:28px;
+        border-radius:18px;
 
     }
 
-    .intro-description{
-
-        font-size:16px;
-
-    }
-
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:stretch;
-
-    }
-
-    .game-info div{
-
-        width:100%;
-
-    }
 
     .game-title{
 
-        font-size:25px;
+        font-size:37px;
 
     }
+
+
+    .instruction{
+
+        font-size:23px;
+
+        line-height:1.35;
+
+        margin-bottom:18px;
+
+    }
+
 
     .topbar{
 
-        font-size:15px;
+        font-size:22px;
 
     }
+
 
     .score{
 
-        font-size:16px;
+        font-size:24px;
 
     }
+
 
     #colorBox{
 
@@ -588,27 +644,39 @@ button:disabled{
 
         height:180px;
 
-        margin:20px auto 25px;
+        margin:18px auto 24px;
 
     }
+
 
     #options{
 
         grid-template-columns:1fr;
 
+        gap:11px;
+
     }
+
 
     .option{
 
-        font-size:18px;
+        font-size:27px;
 
-        padding:15px;
+        padding:14px;
 
     }
 
+
     #message{
 
-        font-size:18px;
+        font-size:27px;
+
+    }
+
+
+    #resultScreen h2{
+
+        font-size:39px;
 
     }
 
@@ -618,236 +686,173 @@ button:disabled{
 
 </head>
 
-
 <body>
 
-
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK TO CATEGORY
 ========================================================= -->
 
 <div class="back-btn-container">
 
-    <a
-        href="../../category.html?category=Color"
-        class="back-btn"
-    >
-        ⬅ Back
-    </a>
+
+<a
+    href="../../category.html?category=Colors"
+    class="back-btn"
+>
+    ⬅ Back
+</a>
+
 
 </div>
 
-
 <!-- =========================================================
-     GAME BOX
+     GAME CARD
 ========================================================= -->
 
 <div class="game-box">
 
 
-    <!-- =====================================================
-         INTRO SCREEN
-    ====================================================== -->
+<!-- =====================================================
+     GAME SCREEN
+====================================================== -->
 
-    <div
-        id="introScreen"
-        class="screen active"
-    >
-
-        <div class="game-icon">
-            🎨
-        </div>
-
-        <h1>
-            Vietnamese Color Quiz
-        </h1>
-
-        <p class="intro-description">
-
-            Look at the color and choose
-            the correct Vietnamese word.
-
-            <br>
-
-            Choose carefully —
-            wrong answers cannot be changed.
-
-        </p>
+<div id="gameScreen">
 
 
-        <div class="game-info">
+    <!-- TITLE -->
 
-            <div>
-                📝
-                <strong>20 Questions</strong>
-            </div>
+    <h1 class="game-title">
 
-            <div>
-                🎯
-                <strong>4 Choices</strong>
-            </div>
+        🎨 Vietnamese Color Quiz
 
-            <div>
-                🏆
-                <strong>1 Point Each</strong>
-            </div>
+    </h1>
+
+
+    <!-- SHORT INSTRUCTION -->
+
+    <p class="instruction">
+
+        Choose the correct Vietnamese word for the color.
+
+    </p>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+
+        <div class="question-count">
+
+            Question
+
+            <span id="question">
+                1
+            </span>
+
+            /20
 
         </div>
 
 
-        <button
-            class="primary-btn"
-            onclick="startGame()"
-        >
-            Start Game →
-        </button>
+        <div class="score">
+
+            Score:
+
+            <span id="score">
+                0
+            </span>
+
+        </div>
+
 
     </div>
 
 
-    <!-- =====================================================
-         GAME SCREEN
-    ====================================================== -->
+    <!-- PROGRESS -->
 
-    <div
-        id="gameScreen"
-        class="screen"
-    >
-
-        <h1 class="game-title">
-
-            🎨 Vietnamese Color Quiz
-
-        </h1>
-
-
-        <!-- TOP BAR -->
-
-        <div class="topbar">
-
-            <div class="question-count">
-
-                Question
-
-                <span id="question">
-                    1
-                </span>
-
-                /20
-
-            </div>
-
-
-            <div class="score">
-
-                Score:
-
-                <span id="score">
-                    0
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- PROGRESS -->
-
-        <div class="progress-wrap">
-
-            <div
-                class="progress"
-                id="progress"
-            ></div>
-
-        </div>
-
-
-        <!-- QUESTION -->
-
-        <p class="instruction">
-
-            What is this color in Vietnamese?
-
-        </p>
-
-
-        <!-- COLOR -->
-
-        <div id="colorBox"></div>
-
-
-        <!-- OPTIONS -->
+    <div class="progress-wrap">
 
         <div
-            id="options"
-        ></div>
-
-
-        <!-- FEEDBACK -->
-
-        <div
-            id="message"
+            class="progress"
+            id="progress"
         ></div>
 
     </div>
 
 
-    <!-- =====================================================
-         RESULT SCREEN
-    ====================================================== -->
+    <!-- COLOR -->
 
-    <div
-        id="resultScreen"
-        class="screen"
-    >
-
-        <h2>
-
-            🎉 Game Finished!
-
-        </h2>
+    <div id="colorBox"></div>
 
 
-        <div class="final-score">
+    <!-- OPTIONS -->
 
-            Final Score:
-
-            <strong>
-
-                <span id="finalScore">
-                    0
-                </span>
-
-                /20
-
-            </strong>
-
-        </div>
+    <div id="options"></div>
 
 
-        <div
-            class="performance"
-            id="performance"
-        ></div>
+    <!-- FEEDBACK -->
 
-
-        <button
-            class="primary-btn"
-            onclick="restartGame()"
-        >
-
-            Play Again
-
-        </button>
-
-    </div>
+    <div id="message"></div>
 
 
 </div>
 
 
+<!-- =====================================================
+     RESULT SCREEN
+====================================================== -->
+
+<div id="resultScreen">
+
+
+    <h2>
+
+        🎉 Game Finished!
+
+    </h2>
+
+
+    <div class="final-score">
+
+        Final Score:
+
+        <strong>
+
+            <span id="finalScore">
+                0
+            </span>
+
+            /20
+
+        </strong>
+
+    </div>
+
+
+    <div
+        class="performance"
+        id="performance"
+    ></div>
+
+
+    <button
+        class="primary-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
+
+</div>
+
+
+</div>
+
 <script>
+
 
 /* =========================================================
    VOCABULARY
@@ -940,11 +945,6 @@ let answered = false;
 /* =========================================================
    DOM
 ========================================================= */
-
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
 
 const gameScreen =
     document.getElementById(
@@ -1101,19 +1101,12 @@ function startGame(){
     createQuestions();
 
 
-    introScreen
-        .classList
-        .remove("active");
+    gameScreen.style.display =
+        "block";
 
 
-    resultScreen
-        .classList
-        .remove("active");
-
-
-    gameScreen
-        .classList
-        .add("active");
+    resultScreen.style.display =
+        "none";
 
 
     scoreText.textContent =
@@ -1158,23 +1151,23 @@ function loadQuestion(){
         question.color;
 
 
-    /*
-       Add a visible border for white.
-    */
+    /* =====================================================
+       WHITE COLOR BORDER
+    ====================================================== */
 
     if(
         question.color === "#ffffff"
     ){
 
         colorBox.style.border =
-            "3px solid #999";
+            "3px solid #9caec1";
 
     }
 
     else{
 
         colorBox.style.border =
-            "3px solid #ddd";
+            "3px solid #d9e6f2";
 
     }
 
@@ -1182,7 +1175,7 @@ function loadQuestion(){
     message.textContent =
         "";
 
-    message.style.color =
+    message.className =
         "";
 
 
@@ -1190,9 +1183,9 @@ function loadQuestion(){
         "";
 
 
-    /*
-       Create 3 wrong answers.
-    */
+    /* =====================================================
+       CREATE WRONG ANSWERS
+    ====================================================== */
 
     const wrongAnswers =
         shuffle(
@@ -1208,9 +1201,9 @@ function loadQuestion(){
         );
 
 
-    /*
-       1 correct + 3 wrong.
-    */
+    /* =====================================================
+       CREATE OPTIONS
+    ====================================================== */
 
     const options =
         shuffle([
@@ -1270,8 +1263,7 @@ function chooseAnswer(
 ){
 
     /*
-       Once an answer has been selected,
-       the question cannot be answered again.
+       Each question can only be answered once.
     */
 
     if(answered){
@@ -1284,9 +1276,9 @@ function chooseAnswer(
     answered = true;
 
 
-    /*
+    /* =====================================================
        CORRECT
-    */
+    ====================================================== */
 
     if(
         selected === currentAnswer
@@ -1304,20 +1296,20 @@ function chooseAnswer(
             score;
 
 
-        message.style.color =
-            "#2e7d32";
+        message.className =
+            "correct-message";
 
 
         message.textContent =
-            "✅ Correct!";
+            "✓ Correct!";
 
 
     }
 
 
-    /*
+    /* =====================================================
        WRONG
-    */
+    ====================================================== */
 
     else{
 
@@ -1326,17 +1318,16 @@ function chooseAnswer(
         );
 
 
-        message.style.color =
-            "#c62828";
+        message.className =
+            "wrong-message";
 
 
         message.textContent =
-            "❌ Wrong!";
+            "✕ Wrong!";
 
 
         /*
-           Show the correct answer,
-           but do not award a point.
+           Show correct answer.
         */
 
         document
@@ -1363,16 +1354,16 @@ function chooseAnswer(
     }
 
 
-    /*
-       Lock all choices.
-    */
+    /* =====================================================
+       LOCK ALL OPTIONS
+    ====================================================== */
 
     disableOptions();
 
 
-    /*
-       Move to next question.
-    */
+    /* =====================================================
+       NEXT QUESTION
+    ====================================================== */
 
     setTimeout(
         nextQuestion,
@@ -1441,14 +1432,12 @@ function finishGame(){
         "100%";
 
 
-    gameScreen
-        .classList
-        .remove("active");
+    gameScreen.style.display =
+        "none";
 
 
-    resultScreen
-        .classList
-        .add("active");
+    resultScreen.style.display =
+        "block";
 
 
     finalScore.textContent =
@@ -1513,14 +1502,25 @@ function finishGame(){
 
 function restartGame(){
 
-    resultScreen
-        .classList
-        .remove("active");
+    resultScreen.style.display =
+        "none";
+
+
+    gameScreen.style.display =
+        "block";
 
 
     startGame();
 
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+startGame();
+
 
 </script>
 

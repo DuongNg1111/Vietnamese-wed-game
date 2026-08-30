@@ -44,7 +44,7 @@
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
@@ -78,20 +78,23 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
+    --border:
+        #d9e6f2;
 
-    --green-light:
-        #eaf8f0;
+    --correct:
+        #2878df;
 
-    --red:
-        #e05252;
+    --correct-light:
+        #eaf3ff;
 
-    --red-light:
-        #fff0f0;
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
 
 }
 
@@ -127,7 +130,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -156,7 +159,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -204,7 +207,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.92
         );
 
     color:
@@ -214,7 +217,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.195rem;
 
     font-weight:
         700;
@@ -257,11 +260,14 @@ body {
 
 .card {
 
+    position:
+        relative;
+
     width:
         100%;
 
     padding:
-        38px;
+        42px;
 
     background:
         rgba(
@@ -289,6 +295,39 @@ body {
 
     text-align:
         center;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
 
 }
 
@@ -319,7 +358,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -328,7 +367,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.175rem;
 
 }
 
@@ -341,11 +380,15 @@ h1 {
     color:
         var(--ink);
 
+    font-family:
+        "Kalam",
+        cursive;
+
     font-size:
-        1.9rem;
+        2.5rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
         1.25;
@@ -356,16 +399,16 @@ h1 {
 .subtitle {
 
     max-width:
-        550px;
+        620px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.9rem;
+        1.275rem;
 
     line-height:
         1.55;
@@ -386,7 +429,7 @@ h1 {
         var(--accent);
 
     font-size:
-        0.78rem;
+        1.155rem;
 
     font-weight:
         800;
@@ -409,7 +452,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.255rem;
 
     font-weight:
         600;
@@ -420,10 +463,10 @@ h1 {
 .question {
 
     max-width:
-        600px;
+        700px;
 
     min-height:
-        90px;
+        100px;
 
     display:
         flex;
@@ -435,14 +478,14 @@ h1 {
         center;
 
     margin:
-        0 auto 28px;
+        0 auto 30px;
 
     padding:
-        20px 25px;
+        22px 28px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -454,7 +497,7 @@ h1 {
         var(--ink);
 
     font-size:
-        1.25rem;
+        1.625rem;
 
     font-weight:
         700;
@@ -486,8 +529,11 @@ h1 {
     gap:
         16px;
 
-    margin-bottom:
-        24px;
+    max-width:
+        680px;
+
+    margin:
+        0 auto 24px;
 
 }
 
@@ -495,7 +541,7 @@ h1 {
 .answer-btn {
 
     min-height:
-        72px;
+        76px;
 
     padding:
         16px 20px;
@@ -508,7 +554,7 @@ h1 {
         16px;
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--ink);
@@ -517,7 +563,7 @@ h1 {
         inherit;
 
     font-size:
-        1.05rem;
+        1.425rem;
 
     font-weight:
         800;
@@ -526,7 +572,10 @@ h1 {
         pointer;
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -563,16 +612,19 @@ h1 {
 
 
 /* ==========================================================
-   ANSWER STATES
+   CORRECT / WRONG
 ========================================================== */
 
 .correct-answer {
 
     border-color:
-        var(--green) !important;
+        var(--correct) !important;
 
     background:
-        var(--green-light) !important;
+        var(--correct-light) !important;
+
+    color:
+        var(--correct) !important;
 
 }
 
@@ -580,10 +632,13 @@ h1 {
 .wrong-answer {
 
     border-color:
-        var(--red) !important;
+        var(--wrong) !important;
 
     background:
-        var(--red-light) !important;
+        var(--wrong-light) !important;
+
+    color:
+        var(--wrong) !important;
 
 }
 
@@ -601,7 +656,7 @@ h1 {
         8px;
 
     font-size:
-        0.95rem;
+        1.325rem;
 
     font-weight:
         800;
@@ -612,7 +667,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -620,7 +675,7 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -630,17 +685,17 @@ h1 {
     min-height:
         30px;
 
-    margin:
-        0 auto 18px;
-
     max-width:
-        600px;
+        700px;
+
+    margin:
+        0 auto 20px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.86rem;
+        1.235rem;
 
     line-height:
         1.55;
@@ -658,7 +713,7 @@ h1 {
         180px;
 
     padding:
-        12px 22px;
+        12px 24px;
 
     border:
         none;
@@ -676,7 +731,7 @@ h1 {
         inherit;
 
     font-size:
-        0.86rem;
+        1.235rem;
 
     font-weight:
         800;
@@ -751,7 +806,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -760,7 +815,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.375rem;
 
 }
 
@@ -782,7 +837,7 @@ h1 {
         var(--accent);
 
     font-size:
-        2.6rem;
+        2.975rem;
 
     font-weight:
         800;
@@ -799,7 +854,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1rem;
+        1.375rem;
 
     font-weight:
         600;
@@ -838,7 +893,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            32px 20px;
 
         border-radius:
             20px;
@@ -849,7 +904,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.05rem;
 
     }
 
@@ -857,7 +912,7 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.215rem;
 
         margin-bottom:
             25px;
@@ -868,13 +923,13 @@ h1 {
     .question {
 
         font-size:
-            1.05rem;
+            1.425rem;
 
         min-height:
-            80px;
+            85px;
 
         padding:
-            17px;
+            18px;
 
     }
 
@@ -884,13 +939,16 @@ h1 {
         grid-template-columns:
             1fr;
 
+        gap:
+            12px;
+
     }
 
 
     .answer-btn {
 
         min-height:
-            64px;
+            68px;
 
     }
 
@@ -908,7 +966,15 @@ h1 {
     .card {
 
         padding:
-            24px 16px;
+            28px 16px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.9rem;
 
     }
 
@@ -916,7 +982,7 @@ h1 {
     .question {
 
         font-size:
-            0.98rem;
+            1.355rem;
 
     }
 
@@ -924,7 +990,7 @@ h1 {
     .answer-btn {
 
         font-size:
-            0.98rem;
+            1.355rem;
 
     }
 
@@ -1031,6 +1097,7 @@ h1 {
             <div
                 id="explanation"
                 class="explanation"
+                aria-live="polite"
             >
             </div>
 
@@ -1621,8 +1688,12 @@ const playAgain =
 
 function shuffle(array) {
 
+    const copy =
+        [...array];
+
+
     for (
-        let i = array.length - 1;
+        let i = copy.length - 1;
         i > 0;
         i--
     ) {
@@ -1635,18 +1706,18 @@ function shuffle(array) {
 
 
         [
-            array[i],
-            array[j]
+            copy[i],
+            copy[j]
         ] =
         [
-            array[j],
-            array[i]
+            copy[j],
+            copy[i]
         ];
 
     }
 
 
-    return array;
+    return copy;
 
 }
 
@@ -1868,6 +1939,9 @@ function handleAnswer(
             button.classList.add(
                 "disabled"
             );
+
+            button.disabled =
+                true;
 
         }
     );

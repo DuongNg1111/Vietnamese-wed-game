@@ -44,7 +44,7 @@ content="🎯"
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
@@ -56,18 +56,6 @@ content="🎯"
 
 :root {
 
-    --paper:
-        #f5f9fd;
-
-    --white:
-        #ffffff;
-
-    --ink:
-        #143a6b;
-
-    --ink-soft:
-        #66809d;
-
     --accent:
         #2878df;
 
@@ -77,20 +65,35 @@ content="🎯"
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
+    --general-border:
+        #d9e6f2;
 
-    --green-light:
-        #eaf8f0;
+    --correct:
+        #2878df;
 
-    --red:
-        #e05252;
+    --correct-light:
+        #eaf3ff;
 
-    --red-light:
-        #fff0f0;
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+    --title:
+        #143a6b;
+
+    --body-text:
+        #143a6b;
+
+    --body-soft:
+        #66809d;
+
+    --white:
+        #ffffff;
 
 }
 
@@ -126,7 +129,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -134,14 +137,14 @@ body {
         sans-serif;
 
     color:
-        var(--ink);
+        var(--body-text);
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
-            #edf5fc 100%
+            #f7fbff 52%,
+            #eef6fc 100%
         );
 
 }
@@ -155,7 +158,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -193,7 +196,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         999px;
@@ -203,7 +206,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.95
         );
 
     color:
@@ -213,7 +216,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.1rem;
 
     font-weight:
         700;
@@ -224,7 +227,7 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
@@ -256,23 +259,26 @@ body {
 
 .card {
 
+    position:
+        relative;
+
     width:
         100%;
 
     padding:
-        38px;
+        42px;
 
     background:
         rgba(
             255,
             255,
             255,
-            0.97
+            0.98
         );
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         24px;
@@ -283,11 +289,44 @@ body {
             20,
             58,
             107,
-            0.10
+            0.09
         );
 
     text-align:
         center;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
 
 }
 
@@ -314,11 +353,11 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        4px auto 16px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -327,7 +366,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.175rem;
 
 }
 
@@ -338,13 +377,17 @@ h1 {
         0 0 9px;
 
     color:
-        var(--ink);
+        var(--title);
+
+    font-family:
+        Kalam,
+        cursive;
 
     font-size:
-        1.9rem;
+        2.45rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
         1.25;
@@ -355,16 +398,21 @@ h1 {
 .subtitle {
 
     max-width:
-        540px;
+        600px;
 
     margin:
         0 auto 30px;
 
     color:
-        var(--ink-soft);
+        var(--body-soft);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        0.9rem;
+        1.2rem;
 
     line-height:
         1.55;
@@ -385,7 +433,7 @@ h1 {
         var(--accent);
 
     font-size:
-        0.78rem;
+        1.05rem;
 
     font-weight:
         800;
@@ -405,10 +453,10 @@ h1 {
         26px;
 
     color:
-        var(--ink);
+        var(--body-text);
 
     font-size:
-        1.3rem;
+        1.55rem;
 
     font-weight:
         800;
@@ -456,22 +504,24 @@ h1 {
 
     border:
         2px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         16px;
 
     background:
-        white;
+        var(--white);
 
     color:
-        var(--ink);
+        var(--body-text);
 
     font-family:
-        inherit;
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        1.05rem;
+        1.35rem;
 
     font-weight:
         700;
@@ -514,13 +564,13 @@ h1 {
 .answer-btn.correct {
 
     border-color:
-        var(--green);
+        var(--correct);
 
     background:
-        var(--green-light);
+        var(--correct-light);
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -528,13 +578,13 @@ h1 {
 .answer-btn.wrong {
 
     border-color:
-        var(--red);
+        var(--wrong);
 
     background:
-        var(--red-light);
+        var(--wrong-light);
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -552,7 +602,7 @@ h1 {
         18px;
 
     font-size:
-        0.95rem;
+        1.25rem;
 
     font-weight:
         800;
@@ -563,7 +613,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -571,7 +621,7 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -590,7 +640,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         16px;
@@ -610,10 +660,10 @@ h1 {
         12px;
 
     color:
-        var(--ink);
+        var(--body-text);
 
     font-size:
-        0.9rem;
+        1.2rem;
 
     font-weight:
         800;
@@ -637,10 +687,10 @@ h1 {
 
     border-bottom:
         1px solid
-        #e4eef9;
+        var(--general-border);
 
     font-size:
-        0.84rem;
+        1.1rem;
 
     line-height:
         1.5;
@@ -670,7 +720,7 @@ h1 {
         800;
 
     color:
-        var(--ink);
+        var(--body-text);
 
 }
 
@@ -678,7 +728,7 @@ h1 {
 .explanation-text {
 
     color:
-        var(--ink-soft);
+        var(--body-soft);
 
 }
 
@@ -708,10 +758,12 @@ h1 {
         white;
 
     font-family:
-        inherit;
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        0.86rem;
+        1.15rem;
 
     font-weight:
         800;
@@ -732,7 +784,7 @@ h1 {
             40,
             120,
             223,
-            0.20
+            0.18
         );
 
     transition:
@@ -782,11 +834,11 @@ h1 {
         center;
 
     margin:
-        0 auto 18px;
+        4px auto 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -795,7 +847,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.375rem;
 
 }
 
@@ -817,7 +869,7 @@ h1 {
         var(--accent);
 
     font-size:
-        2.6rem;
+        2.9rem;
 
     font-weight:
         800;
@@ -831,10 +883,10 @@ h1 {
         28px;
 
     color:
-        var(--ink-soft);
+        var(--body-soft);
 
     font-size:
-        1rem;
+        1.3rem;
 
     font-weight:
         600;
@@ -873,7 +925,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            32px 20px;
 
         border-radius:
             20px;
@@ -884,7 +936,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.05rem;
 
     }
 
@@ -892,7 +944,7 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.1rem;
 
         margin-bottom:
             25px;
@@ -903,7 +955,7 @@ h1 {
     .question {
 
         font-size:
-            1.15rem;
+            1.4rem;
 
     }
 
@@ -939,15 +991,14 @@ h1 {
 
 <div class="back-btn-container">
 
-    <a
-        href="../../category.html?category=Activity"
-        class="back-btn"
-    >
-        ← Back
-    </a>
+<a
+    href="../../category.html?category=Activities"
+    class="back-btn"
+>
+    ← Back
+</a>
 
 </div>
-
 
 <!-- ======================================================
      GAME CARD
@@ -956,142 +1007,145 @@ h1 {
 <main class="card">
 
 
-    <!-- ==================================================
-         HEADER
-    =================================================== -->
+<!-- ==================================================
+     HEADER
+=================================================== -->
+
+<div
+    class="game-icon"
+    aria-hidden="true"
+>
+    🎯
+</div>
+
+
+<h1>
+    Activity Odd One Out
+</h1>
+
+
+<p class="subtitle">
+    Choose the Vietnamese word that describes an activity.
+</p>
+
+
+<!-- ==================================================
+     GAME SCREEN
+=================================================== -->
+
+<section id="gameScreen">
+
 
     <div
-        class="game-icon"
-        aria-hidden="true"
+        id="questionNumber"
+        class="question-number"
     >
-        🎯
     </div>
 
 
-    <h1>
-        Activity Odd One Out
+    <div class="question">
+        Which one is the activity?
+    </div>
+
+
+    <div
+        id="answers"
+        class="answers"
+    >
+    </div>
+
+
+    <div
+        id="message"
+        class="message"
+        aria-live="polite"
+    >
+    </div>
+
+
+    <!-- ==================================================
+         EXPLANATIONS / WHY
+    =================================================== -->
+
+    <div
+        id="explanations"
+        class="explanations hidden"
+    >
+
+        <div class="explanation-title">
+            Why?
+        </div>
+
+
+        <div
+            id="explanationList"
+        >
+        </div>
+
+    </div>
+
+
+    <button
+        id="nextBtn"
+        class="action-btn hidden"
+        type="button"
+    >
+    </button>
+
+
+</section>
+
+
+<!-- ==================================================
+     RESULT SCREEN
+=================================================== -->
+
+<section
+    id="resultScreen"
+    class="hidden"
+>
+
+
+    <div
+        class="result-icon"
+        aria-hidden="true"
+    >
+        🎉
+    </div>
+
+
+    <h1 class="result-title">
+        Great Job!
     </h1>
 
 
-    <p class="subtitle">
-        Choose the Vietnamese word that describes an activity.
-    </p>
-
-
-    <!-- ==================================================
-         GAME SCREEN
-    =================================================== -->
-
-    <section id="gameScreen">
-
-
-        <div
-            id="questionNumber"
-            class="question-number"
-        >
-        </div>
-
-
-        <div class="question">
-            Which one is the activity?
-        </div>
-
-
-        <div
-            id="answers"
-            class="answers"
-        >
-        </div>
-
-
-        <div
-            id="message"
-            class="message"
-            aria-live="polite"
-        >
-        </div>
-
-
-        <div
-            id="explanations"
-            class="explanations hidden"
-        >
-
-            <div class="explanation-title">
-                Why?
-            </div>
-
-
-            <div
-                id="explanationList"
-            >
-            </div>
-
-        </div>
-
-
-        <button
-            id="nextBtn"
-            class="action-btn hidden"
-            type="button"
-        >
-        </button>
-
-
-    </section>
-
-
-    <!-- ==================================================
-         RESULT SCREEN
-    =================================================== -->
-
-    <section
-        id="resultScreen"
-        class="hidden"
+    <div
+        id="scoreText"
+        class="score"
     >
+    </div>
 
 
-        <div
-            class="result-icon"
-            aria-hidden="true"
-        >
-            🎉
-        </div>
+    <div
+        id="performance"
+        class="performance"
+    >
+    </div>
 
 
-        <h1 class="result-title">
-            Great Job!
-        </h1>
+    <button
+        id="playAgain"
+        class="action-btn"
+        type="button"
+    >
+        Play Again
+    </button>
 
 
-        <div
-            id="scoreText"
-            class="score"
-        >
-        </div>
-
-
-        <div
-            id="performance"
-            class="performance"
-        >
-        </div>
-
-
-        <button
-            id="playAgain"
-            class="action-btn"
-            type="button"
-        >
-            Play Again
-        </button>
-
-
-    </section>
+</section>
 
 
 </main>
-```
 
 </div>
 
@@ -1276,7 +1330,6 @@ const ACTIVITIES = [
 
 /* ==========================================================
    OTHER CATEGORY VOCABULARY
-   These are deliberately unrelated to activities.
 ========================================================== */
 
 const OTHER_WORDS = [
@@ -1491,60 +1544,50 @@ const questionNumber =
         "questionNumber"
     );
 
-
 const answers =
     document.getElementById(
         "answers"
     );
-
 
 const message =
     document.getElementById(
         "message"
     );
 
-
 const explanations =
     document.getElementById(
         "explanations"
     );
-
 
 const explanationList =
     document.getElementById(
         "explanationList"
     );
 
-
 const nextBtn =
     document.getElementById(
         "nextBtn"
     );
-
 
 const gameScreen =
     document.getElementById(
         "gameScreen"
     );
 
-
 const resultScreen =
     document.getElementById(
         "resultScreen"
     );
-
 
 const scoreText =
     document.getElementById(
         "scoreText"
     );
 
-
 const performance =
     document.getElementById(
         "performance"
     );
-
 
 const playAgain =
     document.getElementById(
@@ -1566,9 +1609,9 @@ function shuffle(array) {
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
-
 
         [
             array[i],
@@ -1580,7 +1623,6 @@ function shuffle(array) {
         ];
 
     }
-
 
     return array;
 
@@ -1614,14 +1656,11 @@ function getDistractors() {
             [...OTHER_WORDS]
         );
 
-
     const selected =
         [];
 
-
     const categories =
         new Set();
-
 
     for (
         const word of shuffled
@@ -1643,7 +1682,6 @@ function getDistractors() {
 
         }
 
-
         if (
             selected.length === 3
         ) {
@@ -1653,7 +1691,6 @@ function getDistractors() {
         }
 
     }
-
 
     return selected;
 
@@ -1668,10 +1705,8 @@ function generateQuestions() {
 
     questions = [];
 
-
     const usedActivities =
         [];
-
 
     while (
         questions.length <
@@ -1683,12 +1718,6 @@ function generateQuestions() {
                 ACTIVITIES
             );
 
-
-        /*
-         * Avoid repeating the same activity
-         * until the whole vocabulary has been used.
-         */
-
         if (
             usedActivities.includes(
                 activity.text
@@ -1699,15 +1728,12 @@ function generateQuestions() {
 
         }
 
-
         usedActivities.push(
             activity.text
         );
 
-
         const distractors =
             getDistractors();
-
 
         const options = [
 
@@ -1730,11 +1756,9 @@ function generateQuestions() {
 
         ];
 
-
         shuffle(
             options
         );
-
 
         questions.push({
 
@@ -1759,24 +1783,19 @@ function startGame() {
 
     generateQuestions();
 
-
     currentQuestion =
         0;
 
-
     score =
         0;
-
 
     gameScreen.classList.remove(
         "hidden"
     );
 
-
     resultScreen.classList.add(
         "hidden"
     );
-
 
     loadQuestion();
 
@@ -1792,34 +1811,27 @@ function loadQuestion() {
     answered =
         false;
 
-
     message.textContent =
         "";
 
-
     message.className =
         "message";
-
 
     explanations.classList.add(
         "hidden"
     );
 
-
     explanationList.innerHTML =
         "";
-
 
     nextBtn.classList.add(
         "hidden"
     );
 
-
     const question =
         questions[
             currentQuestion
         ];
-
 
     questionNumber.textContent =
         `Question ${
@@ -1828,35 +1840,31 @@ function loadQuestion() {
             TOTAL_QUESTIONS
         }`;
 
-
     answers.innerHTML =
         "";
 
-
     question.options.forEach(
-        (option, index) => {
+        (
+            option,
+            index
+        ) => {
 
             const button =
                 document.createElement(
                     "button"
                 );
 
-
             button.type =
                 "button";
-
 
             button.className =
                 "answer-btn";
 
-
             button.textContent =
                 option.text;
 
-
             button.dataset.index =
                 index;
-
 
             button.addEventListener(
                 "click",
@@ -1866,7 +1874,6 @@ function loadQuestion() {
                         option
                     )
             );
-
 
             answers.appendChild(
                 button
@@ -1895,26 +1902,18 @@ function handleAnswer(
 
     }
 
-
     answered =
         true;
-
 
     const question =
         questions[
             currentQuestion
         ];
 
-
     const buttons =
         document.querySelectorAll(
             ".answer-btn"
         );
-
-
-    /*
-     * Lock every answer.
-     */
 
     buttons.forEach(
         button => {
@@ -1926,11 +1925,6 @@ function handleAnswer(
         }
     );
 
-
-    /*
-     * Find the correct answer.
-     */
-
     const correctIndex =
         question.options.findIndex(
             option =>
@@ -1938,28 +1932,17 @@ function handleAnswer(
                 true
         );
 
-
-    /*
-     * Highlight correct answer.
-     */
-
     buttons[
         correctIndex
     ].classList.add(
         "correct"
     );
 
-
-    /*
-     * Check selected answer.
-     */
-
     if (
         selectedOption.isActivity
     ) {
 
         score++;
-
 
         message.textContent =
             "✓ Correct!";
@@ -1976,7 +1959,6 @@ function handleAnswer(
             "wrong"
         );
 
-
         message.textContent =
             "✕ Wrong!";
 
@@ -1986,16 +1968,13 @@ function handleAnswer(
 
     }
 
-
     showExplanations(
         question
     );
 
-
     nextBtn.classList.remove(
         "hidden"
     );
-
 
     if (
         currentQuestion ===
@@ -2028,7 +2007,6 @@ function showExplanations(
     explanationList.innerHTML =
         "";
 
-
     question.options.forEach(
         option => {
 
@@ -2037,50 +2015,40 @@ function showExplanations(
                     "div"
                 );
 
-
             item.className =
                 "explanation-item";
-
 
             const icon =
                 document.createElement(
                     "div"
                 );
 
-
             icon.className =
                 "explanation-icon";
-
 
             const content =
                 document.createElement(
                     "div"
                 );
 
-
             const word =
                 document.createElement(
                     "div"
                 );
 
-
             word.className =
                 "explanation-word";
 
-
             word.textContent =
                 `${option.text} — ${option.english}`;
-
 
             const text =
                 document.createElement(
                     "div"
                 );
 
-
             text.className =
                 "explanation-text";
-
 
             if (
                 option.isActivity
@@ -2088,7 +2056,6 @@ function showExplanations(
 
                 icon.textContent =
                     "✓";
-
 
                 text.textContent =
                     "This is an activity.";
@@ -2100,32 +2067,26 @@ function showExplanations(
                 icon.textContent =
                     "•";
 
-
                 text.textContent =
                     `This word belongs to ${option.category}, not the Activity category.`;
 
             }
 
-
             content.appendChild(
                 word
             );
-
 
             content.appendChild(
                 text
             );
 
-
             item.appendChild(
                 icon
             );
 
-
             item.appendChild(
                 content
             );
-
 
             explanationList.appendChild(
                 item
@@ -2133,7 +2094,6 @@ function showExplanations(
 
         }
     );
-
 
     explanations.classList.remove(
         "hidden"
@@ -2151,7 +2111,6 @@ nextBtn.addEventListener(
     () => {
 
         currentQuestion++;
-
 
         if (
             currentQuestion >=
@@ -2182,15 +2141,12 @@ function showResults() {
         "hidden"
     );
 
-
     resultScreen.classList.remove(
         "hidden"
     );
 
-
     scoreText.textContent =
         `${score} / ${TOTAL_QUESTIONS}`;
-
 
     if (
         score ===

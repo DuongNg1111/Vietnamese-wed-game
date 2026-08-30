@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,274 +7,225 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Vietnamese Opposite Match</title>
 
 <meta
-    name="game-title"
-    content="Vietnamese Opposite Match"
+name="game-title"
+content="Vietnamese Opposite Match"
+
 >
 
 <meta
-    name="game-description"
-    content="Match Vietnamese describing words with their opposites and learn what each pair means."
+name="game-description"
+content="Match Vietnamese describing words with their opposites and learn what each pair means."
+
 >
 
 <meta
-    name="game-icon"
-    content="↔️"
+name="game-icon"
+content="↔️"
+
 >
 
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
-/* ==========================================================
+/* =========================================================
    RESET
-========================================================== */
+========================================================= */
 
 *{
     box-sizing:border-box;
 }
 
 
-/* ==========================================================
+/* =========================================================
    BODY
-========================================================== */
+========================================================= */
 
 body{
 
     margin:0;
 
-    font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
-
-    background:#f4f7f6;
-
     min-height:100vh;
 
-    display:flex;
+    padding:25px 20px;
 
-    justify-content:center;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    align-items:center;
+    background:#f7faff;
 
-    padding:20px;
-
-    color:#2c3e50;
-
-}
-
-
-/* ==========================================================
-   SCREEN
-========================================================== */
-
-.screen{
-
-    display:none;
+    color:#26354a;
 
 }
 
 
-.screen.active{
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
-    display:block;
+.back-btn-container{
+
+    width:min(900px,95vw);
+
+    margin:0 auto 15px;
 
 }
 
 
-/* ==========================================================
-   CONTAINER
-========================================================== */
+.back-btn{
 
-.container{
+    display:inline-block;
 
-    position:relative;
-
-    width:min(850px,96vw);
-
-    margin:0 auto;
+    padding:9px 16px;
 
     background:white;
 
-    padding:65px 30px 30px;
+    color:#2878df;
 
-    border-radius:20px;
+    border:2px solid #c4daf6;
 
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
+    border-radius:10px;
 
-}
+    text-decoration:none;
 
-
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
-
-.lobby-btn{
-
-    position:absolute;
-
-    top:20px;
-
-    left:22px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:14px;
+    font-size:22px;
 
     font-weight:bold;
-
-    cursor:pointer;
 
     transition:.2s;
 
 }
 
 
-.lobby-btn:hover{
+.back-btn:hover{
 
-    background:#dcecff;
+    background:#eaf3ff;
 
-    transform:translateX(-2px);
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
-
-    text-align:center;
-
-    padding:20px 20px 30px;
-
-}
-
-
-#intro .emoji{
-
-    font-size:65px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 12px;
-
-    font-size:34px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:17px;
-
-    line-height:1.6;
-
-}
-
-
-.start-btn{
-
-    margin-top:18px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
+    border-color:#2878df;
 
     transform:translateY(-2px);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container{
+
+    position:relative;
+
+    width:min(900px,95vw);
+
+    margin:0 auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px 35px 35px;
+
+    box-shadow:
+        0 8px 28px rgba(40,120,223,.10);
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+   MAIN ACCENT LINE
+========================================================= */
+
+.container::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:#2878df;
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+.game{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
    TITLE
-========================================================== */
+========================================================= */
 
 .title{
 
+    margin:5px 0 4px;
+
     text-align:center;
 
-    margin:0 0 5px;
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#2878df;
 
 }
 
 
-.subtitle{
+.instruction{
+
+    margin:0 auto 20px;
 
     text-align:center;
 
-    color:#7f8c8d;
+    color:#667085;
 
-    margin-bottom:25px;
+    font-size:25px;
+
+    line-height:1.4;
 
 }
 
 
-/* ==========================================================
-   GAME BOX
-========================================================== */
-
-.game-box{
-
-    background:#fff;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    border:1px solid #eee;
-
-    text-align:center;
-
-}
-
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar{
 
@@ -283,7 +235,11 @@ body{
 
     align-items:center;
 
-    margin-bottom:15px;
+    gap:15px;
+
+    margin-bottom:12px;
+
+    font-size:24px;
 
     font-weight:bold;
 
@@ -292,37 +248,39 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:#667085;
 
 }
 
 
 .score{
 
-    color:#27ae60;
+    color:#2878df;
 
-    font-size:18px;
+    font-size:27px;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    PROGRESS
-========================================================== */
+========================================================= */
 
 .progress-wrap{
 
     width:100%;
 
-    height:9px;
+    height:8px;
 
-    background:#eee;
+    background:#eaf3ff;
 
     border-radius:20px;
 
     overflow:hidden;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
+
+    border:1px solid #d9e6f2;
 
 }
 
@@ -333,56 +291,102 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:#2878df;
 
     transition:.3s;
 
 }
 
 
-/* ==========================================================
-   QUESTION
-========================================================== */
+/* =========================================================
+   QUESTION CARD
+========================================================= */
 
-.question-label{
+.question-card{
 
-    color:#7f8c8d;
+    position:relative;
 
-    font-size:14px;
+    background:#eaf3ff;
 
-    font-weight:bold;
+    border:2px solid #c4daf6;
 
-    margin-bottom:10px;
+    border-radius:16px;
 
-    text-transform:uppercase;
+    padding:25px 20px;
+
+    margin:20px 0;
+
+    text-align:center;
+
+    overflow:hidden;
 
 }
 
 
+/* =========================================================
+   CARD ACCENT LINE
+========================================================= */
+
+.question-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-2px;
+
+    left:20px;
+
+    right:20px;
+
+    height:4px;
+
+    background:#2878df;
+
+    border-radius:0 0 5px 5px;
+
+}
+
+
+/* =========================================================
+   QUESTION LABEL
+========================================================= */
+
+.question-label{
+
+    color:#52657d;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    letter-spacing:.6px;
+
+    margin-bottom:8px;
+
+}
+
+
+/* =========================================================
+   QUESTION WORD
+========================================================= */
+
 .question{
 
-    background:#f8f9fa;
-
-    border:2px solid #e8edf0;
-
-    border-radius:15px;
-
-    padding:30px 20px;
-
-    margin-bottom:25px;
-
-    font-size:32px;
+    font-size:42px;
 
     font-weight:bold;
 
     line-height:1.5;
 
+    color:#26354a;
+
 }
 
 
-/* ==========================================================
+/* =========================================================
    OPTIONS
-========================================================== */
+========================================================= */
 
 .options{
 
@@ -393,24 +397,31 @@ body{
 
     gap:12px;
 
+    margin-top:20px;
+
 }
 
 
 .option-btn{
 
-    padding:17px;
+    padding:15px 18px;
 
-    font-size:18px;
-
-    font-weight:bold;
-
-    background:#34495e;
-
-    color:white;
-
-    border:none;
+    border:2px solid #d9e6f2;
 
     border-radius:10px;
+
+    background:white;
+
+    color:#2878df;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:28px;
+
+    font-weight:bold;
 
     cursor:pointer;
 
@@ -419,9 +430,13 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(.disabled){
 
-    background:#2c3e50;
+    background:#eaf3ff;
+
+    border-color:#2878df;
+
+    color:#1e5fba;
 
     transform:translateY(-2px);
 
@@ -430,14 +445,22 @@ body{
 
 .option-btn.correct{
 
-    background:#27ae60;
+    background:#eaf3ff;
+
+    border-color:#2878df;
+
+    color:#2878df;
 
 }
 
 
 .option-btn.wrong{
 
-    background:#e74c3c;
+    background:#fff0f3;
+
+    border-color:#d9536f;
+
+    color:#d9536f;
 
 }
 
@@ -451,17 +474,19 @@ body{
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESULT
-========================================================== */
+========================================================= */
 
 .result-message{
 
-    min-height:30px;
+    min-height:38px;
 
     margin-top:18px;
 
-    font-size:18px;
+    text-align:center;
+
+    font-size:27px;
 
     font-weight:bold;
 
@@ -470,33 +495,33 @@ body{
 
 .correct-text{
 
-    color:#27ae60;
+    color:#2878df;
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:#d9536f;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    EXPLANATION
-========================================================== */
+========================================================= */
 
 .explanation{
 
     display:none;
 
-    margin-top:15px;
+    margin-top:18px;
 
-    padding:16px 18px;
+    padding:17px 19px;
 
-    background:#f8f9fa;
+    background:#eaf3ff;
 
-    border:1px solid #e4e8eb;
+    border:2px solid #c4daf6;
 
     border-radius:12px;
 
@@ -514,13 +539,11 @@ body{
 
 .explanation-title{
 
-    font-size:14px;
+    font-size:23px;
 
     font-weight:bold;
 
-    color:#7f8c8d;
-
-    text-transform:uppercase;
+    color:#2878df;
 
     margin-bottom:7px;
 
@@ -531,11 +554,11 @@ body{
 
     margin:0;
 
-    font-size:16px;
+    font-size:25px;
 
     line-height:1.6;
 
-    color:#34495e;
+    color:#26354a;
 
 }
 
@@ -544,85 +567,243 @@ body{
 
     font-weight:bold;
 
-    color:#27ae60;
+    color:#2878df;
 
 }
 
 
-/* ==========================================================
-   FINAL
-========================================================== */
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.next-btn{
+
+    display:none;
+
+    margin:20px auto 0;
+
+    padding:11px 27px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.next-btn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
 
 #final{
 
+    display:none;
+
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:25px 10px 10px;
+
+}
+
+
+.finish-icon{
+
+    font-size:70px;
+
+    margin-bottom:5px;
 
 }
 
 
 #final h2{
 
-    font-size:35px;
+    margin:5px 0 15px;
 
-    color:#27ae60;
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:42px;
+
+    color:#2878df;
 
 }
 
 
 .final-score{
 
-    font-size:30px;
-
-    margin:25px 0;
+    font-size:48px;
 
     font-weight:bold;
 
-    color:#1976d2;
+    color:#2878df;
+
+    margin:20px 0;
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    color:#667085;
 
-    font-size:18px;
+    font-size:26px;
 
-}
+    line-height:1.5;
 
-
-#final .start-btn{
-
-    margin-top:10px;
+    margin-bottom:25px;
 
 }
 
 
-/* ==========================================================
+.start-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
 @media(max-width:600px){
 
     body{
 
-        padding:10px;
+        padding:20px 12px;
+
+    }
+
+
+    .back-btn-container{
+
+        width:100%;
 
     }
 
 
     .container{
 
-        padding:60px 15px 20px;
+        width:100%;
+
+        padding:25px 17px 25px;
+
+        border-radius:19px;
 
     }
 
 
-    .game-box{
+    .back-btn{
 
-        padding:18px;
+        font-size:21px;
+
+    }
+
+
+    .title{
+
+        font-size:36px;
+
+        line-height:1.2;
+
+    }
+
+
+    .instruction{
+
+        font-size:23px;
+
+    }
+
+
+    .topbar{
+
+        font-size:22px;
+
+    }
+
+
+    .score{
+
+        font-size:25px;
+
+    }
+
+
+    .question-card{
+
+        padding:22px 15px;
+
+    }
+
+
+    .question-label{
+
+        font-size:20px;
+
+    }
+
+
+    .question{
+
+        font-size:36px;
 
     }
 
@@ -634,47 +815,53 @@ body{
     }
 
 
-    .question{
+    .option-btn{
 
         font-size:26px;
 
-        padding:25px 15px;
+        padding:13px 14px;
 
     }
 
 
-    .option-btn{
+    .explanation-title{
 
-        font-size:17px;
-
-        padding:15px;
+        font-size:22px;
 
     }
 
 
-    #intro h1{
+    .explanation-text{
 
-        font-size:28px;
+        font-size:23px;
+
+    }
+
+
+    .next-btn{
+
+        width:100%;
 
     }
 
 
     #final h2{
 
-        font-size:30px;
+        font-size:37px;
 
     }
 
 
-    .lobby-btn{
+    .final-score{
 
-        top:16px;
+        font-size:42px;
 
-        left:16px;
+    }
 
-        font-size:13px;
 
-        padding:7px 12px;
+    .final-message{
+
+        font-size:23px;
 
     }
 
@@ -684,215 +871,97 @@ body{
 
 </head>
 
-
 <body>
 
-
-<div class="container">
-
-
-<!-- ========================================================
-     BACK TO LOBBY
+<!-- =========================================================
+     BACK
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
+<div class="back-btn-container">
+
+
+<a
+    href="../../category.html?category=Describe%20things"
+    class="back-btn"
 >
 
     ← Back
 
-</button>
+</a>
 
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        ↔️
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Opposite Match
-
-    </h1>
-
-
-    <p>
-
-        Choose the Vietnamese word<br>
-
-        with the opposite meaning.
-
-    </p>
-
-
-    <p>
-
-        🎯 20 questions
-
-    </p>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
-
-        Start Game
-
-    </button>
 
 </div>
 
+<!-- =========================================================
+     MAIN CONTAINER
+========================================================= -->
 
+<div class="container">
 
-<!-- ========================================================
-     GAME
+<!-- =========================================================
+     GAME SCREEN
 ========================================================= -->
 
 <div
     id="game"
-    class="screen"
+    class="game"
 >
 
 
-    <h1 class="title">
+<!-- =====================================================
+     TITLE
+====================================================== -->
 
-        ↔️ Vietnamese Opposite Match
+<h1 class="title">
 
-    </h1>
+    ↔️ Vietnamese Opposite Match
 
-
-    <p class="subtitle">
-
-        Choose the opposite Vietnamese word.
-
-    </p>
+</h1>
 
 
+<!-- =====================================================
+     SHORT INTRODUCTION
+====================================================== -->
 
-    <div class="game-box">
+<p class="instruction">
 
+    Choose the Vietnamese word with the opposite meaning.
 
-        <!-- TOP BAR -->
-
-        <div class="topbar">
-
-            <div class="question-count">
-
-                Question
-
-                <span id="questionNumber">
-                    1
-                </span>
-
-                /
-
-                <span id="totalQuestions">
-                    20
-                </span>
-
-            </div>
-
-
-            <div class="score">
-
-                Score:
-
-                <span id="score">
-                    0
-                </span>
-
-            </div>
-
-        </div>
+</p>
 
 
 
-        <!-- PROGRESS -->
+<!-- =====================================================
+     TOP BAR
+====================================================== -->
 
-        <div class="progress-wrap">
-
-            <div
-                class="progress"
-                id="progress"
-            ></div>
-
-        </div>
+<div class="topbar">
 
 
+    <div class="question-count">
 
-        <!-- QUESTION -->
+        Question
 
-        <div class="question-label">
+        <span id="questionNumber">
+            1
+        </span>
 
-            What is the opposite?
+        /
 
-        </div>
+        <span id="totalQuestions">
+            20
+        </span>
 
-
-        <div
-            class="question"
-            id="questionText"
-        >
-
-            lớn
-
-        </div>
+    </div>
 
 
+    <div class="score">
 
-        <!-- OPTIONS -->
+        Score:
 
-        <div
-            class="options"
-            id="optionsContainer"
-        ></div>
-
-
-
-        <!-- RESULT -->
-
-        <div
-            class="result-message"
-            id="resultText"
-        ></div>
-
-
-
-        <!-- EXPLANATION -->
-
-        <div
-            class="explanation"
-            id="explanationBox"
-        >
-
-            <div class="explanation-title">
-
-                💡 Explanation
-
-            </div>
-
-
-            <p
-                class="explanation-text"
-                id="explanationText"
-            ></p>
-
-        </div>
-
+        <span id="score">
+            0
+        </span>
 
     </div>
 
@@ -901,74 +970,186 @@ body{
 
 
 
-<!-- ========================================================
-     FINAL
-========================================================= -->
+<!-- =====================================================
+     PROGRESS
+====================================================== -->
+
+<div class="progress-wrap">
+
+    <div
+        class="progress"
+        id="progress"
+    ></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     QUESTION CARD
+====================================================== -->
+
+<div class="question-card">
+
+
+    <div class="question-label">
+
+        WHAT IS THE OPPOSITE?
+
+    </div>
+
+
+    <div
+        class="question"
+        id="questionText"
+    ></div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     OPTIONS
+====================================================== -->
 
 <div
-    id="final"
-    class="screen"
+    class="options"
+    id="optionsContainer"
+></div>
+
+
+
+<!-- =====================================================
+     RESULT
+====================================================== -->
+
+<div
+    class="result-message"
+    id="resultText"
+></div>
+
+
+
+<!-- =====================================================
+     EXPLANATION
+====================================================== -->
+
+<div
+    class="explanation"
+    id="explanationBox"
 >
 
 
-    <h2>
+    <div class="explanation-title">
 
-        🎉 Game Complete!
-
-    </h2>
-
-
-    <p class="final-message">
-
-        You completed the Vietnamese Opposite Match.
-
-    </p>
-
-
-    <div class="final-score">
-
-        Score:
-
-        <span id="finalScore"></span>
+        💡 Explanation
 
     </div>
 
 
     <p
-        class="final-message"
-        id="finalMessage"
+        class="explanation-text"
+        id="explanationText"
     ></p>
 
 
-    <button
-        class="start-btn"
-        onclick="restartGame()"
-    >
+</div>
 
-        Play Again
 
-    </button>
+
+<!-- =====================================================
+     NEXT
+====================================================== -->
+
+<button
+    class="next-btn"
+    id="nextBtn"
+    onclick="nextQuestion()"
+>
+
+    Next →
+
+</button>
+
+
+</div>
+
+<!-- =========================================================
+     FINAL SCREEN
+========================================================= -->
+
+<div
+    id="final"
+>
+
+
+<div class="finish-icon">
+
+    🎉
 
 </div>
 
 
+<h2>
+
+    Game Complete!
+
+</h2>
+
+
+<p class="final-message">
+
+    You completed the Vietnamese Opposite Match.
+
+</p>
+
+
+<div class="final-score">
+
+    Score:
+
+    <span id="finalScore">
+
+        0 / 20
+
+    </span>
+
 </div>
 
 
+<p
+    class="final-message"
+    id="finalMessage"
+></p>
+
+
+<button
+    class="start-btn"
+    onclick="restartGame()"
+>
+
+    Play Again
+
+</button>
+
+
+</div>
+
+</div>
 
 <script>
 
-
-/* ==========================================================
+/* =========================================================
    OPPOSITE PAIRS
    ONLY VOCABULARY FROM DESCRIBE THINGS
-========================================================== */
+========================================================= */
 
 const oppositePairs = [
 
     {
-        words:["lớn","nhỏ"],
-        explanation:"lớn means big or large. nhỏ means small."
+        words:["to","nhỏ"],
+        explanation:"to means big or large. nhỏ means small."
     },
 
     {
@@ -1040,9 +1221,9 @@ const oppositePairs = [
 
 
 
-/* ==========================================================
+/* =========================================================
    CREATE QUESTION DATABASE
-========================================================== */
+========================================================= */
 
 const database = [];
 
@@ -1074,13 +1255,13 @@ oppositePairs.forEach(pair => {
 
 
 
-/* ==========================================================
+/* =========================================================
    ALL VOCABULARY
-========================================================== */
+========================================================= */
 
 const allWords = [
 
-    "lớn",
+    "to",
     "nhỏ",
     "bự",
     "dài",
@@ -1129,9 +1310,9 @@ const allWords = [
 
 
 
-/* ==========================================================
+/* =========================================================
    STATE
-========================================================== */
+========================================================= */
 
 let questions = [];
 
@@ -1143,9 +1324,9 @@ let answered = false;
 
 
 
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
 function shuffle(array){
 
@@ -1154,7 +1335,9 @@ function shuffle(array){
 
     for(
         let i = arr.length - 1;
+
         i > 0;
+
         i--
     ){
 
@@ -1181,13 +1364,14 @@ function shuffle(array){
 
 
 
-/* ==========================================================
+/* =========================================================
    CREATE OPTIONS
-========================================================== */
+========================================================= */
 
 function createOptions(correctWord){
 
     const wrongWords =
+
         shuffle(
             allWords.filter(
                 word =>
@@ -1209,19 +1393,14 @@ function createOptions(correctWord){
 
 
 
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
 function startGame(){
 
-    /*
-     * 20 random questions
-     * selected from the 28 available
-     * opposite-direction questions.
-     */
-
     questions =
+
         shuffle(database)
         .slice(0,20);
 
@@ -1230,26 +1409,7 @@ function startGame(){
 
     score = 0;
 
-
-    document
-        .getElementById("intro")
-        .classList.remove(
-            "active"
-        );
-
-
-    document
-        .getElementById("final")
-        .classList.remove(
-            "active"
-        );
-
-
-    document
-        .getElementById("game")
-        .classList.add(
-            "active"
-        );
+    answered = false;
 
 
     document
@@ -1264,15 +1424,27 @@ function startGame(){
         questions.length;
 
 
+    document
+        .getElementById("game")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("final")
+        .style.display =
+        "none";
+
+
     loadQuestion();
 
 }
 
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
 function loadQuestion(){
 
@@ -1287,6 +1459,12 @@ function loadQuestion(){
         .getElementById("questionNumber")
         .textContent =
         currentQuestion + 1;
+
+
+    document
+        .getElementById("totalQuestions")
+        .textContent =
+        questions.length;
 
 
     document
@@ -1330,6 +1508,31 @@ function loadQuestion(){
         "";
 
 
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
+        "none";
+
+
+    nextBtn.textContent =
+
+        currentQuestion ===
+        questions.length - 1
+
+        ? "Finish 🎉"
+
+        : "Next →";
+
+
+
+    /* =====================================================
+       OPTIONS
+    ====================================================== */
+
     const container =
         document.getElementById(
             "optionsContainer"
@@ -1347,6 +1550,7 @@ function loadQuestion(){
 
 
     options.forEach(option => {
+
 
         const button =
             document.createElement(
@@ -1379,9 +1583,9 @@ function loadQuestion(){
 
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
 function handleAnswer(
     button,
@@ -1408,7 +1612,7 @@ function handleAnswer(
         );
 
 
-    /* ======================================================
+    /* =====================================================
        CORRECT
     ====================================================== */
 
@@ -1434,7 +1638,7 @@ function handleAnswer(
         document
             .getElementById("resultText")
             .textContent =
-            "🎉 Correct!";
+            "✓ Correct!";
 
 
         document
@@ -1445,7 +1649,7 @@ function handleAnswer(
     }
 
 
-    /* ======================================================
+    /* =====================================================
        WRONG
     ====================================================== */
 
@@ -1459,7 +1663,7 @@ function handleAnswer(
         document
             .getElementById("resultText")
             .textContent =
-            "❌ Wrong!";
+            "✗ Wrong!";
 
 
         document
@@ -1469,8 +1673,8 @@ function handleAnswer(
 
 
         /*
-         * Show the correct answer
-         * because there is no retry.
+         * Show the correct answer.
+         * No retry.
          */
 
         optionButtons.forEach(btn => {
@@ -1491,7 +1695,8 @@ function handleAnswer(
     }
 
 
-    /* ======================================================
+
+    /* =====================================================
        DISABLE ALL OPTIONS
     ====================================================== */
 
@@ -1504,7 +1709,8 @@ function handleAnswer(
     });
 
 
-    /* ======================================================
+
+    /* =====================================================
        EXPLANATION
     ====================================================== */
 
@@ -1515,11 +1721,15 @@ function handleAnswer(
         <span class="correct-answer">
             ${question.question}
         </span>
+
         → opposite:
+
         <span class="correct-answer">
             ${question.answer}
         </span>
+
         <br>
+
         ${question.explanation}
         `;
 
@@ -1531,26 +1741,32 @@ function handleAnswer(
         );
 
 
-    /*
-     * Automatically move to the next question.
-     * No retry button.
-     */
 
-    setTimeout(() => {
+    /* =====================================================
+       SHOW NEXT
+    ====================================================== */
 
-        nextQuestion();
-
-    },1500);
+    document
+        .getElementById("nextBtn")
+        .style.display =
+        "block";
 
 }
 
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
 function nextQuestion(){
+
+    if(!answered){
+
+        return;
+
+    }
+
 
     currentQuestion++;
 
@@ -1562,7 +1778,9 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+
+    else{
 
         finishGame();
 
@@ -1572,9 +1790,9 @@ function nextQuestion(){
 
 
 
-/* ==========================================================
+/* =========================================================
    FINISH GAME
-========================================================== */
+========================================================= */
 
 function finishGame(){
 
@@ -1586,21 +1804,20 @@ function finishGame(){
 
     document
         .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+        .style.display =
+        "none";
 
 
     document
         .getElementById("final")
-        .classList.add(
-            "active"
-        );
+        .style.display =
+        "block";
 
 
     document
         .getElementById("finalScore")
         .textContent =
+
         score +
         " / " +
         questions.length;
@@ -1617,17 +1834,24 @@ function finishGame(){
     let message;
 
 
-    if(percent >= 90){
+    if(percent === 100){
 
         message =
-            "🏆 Excellent! You know your Vietnamese opposites.";
+            "🏆 Perfect! You know your Vietnamese opposites.";
 
     }
 
-    else if(percent >= 70){
+    else if(percent >= 80){
 
         message =
-            "🎉 Good job! Keep practicing.";
+            "🎉 Excellent! Keep practicing your Vietnamese.";
+
+    }
+
+    else if(percent >= 60){
+
+        message =
+            "👍 Good job! You're getting better.";
 
     }
 
@@ -1648,9 +1872,9 @@ function finishGame(){
 
 
 
-/* ==========================================================
+/* =========================================================
    RESTART
-========================================================== */
+========================================================= */
 
 function restartGame(){
 
@@ -1660,16 +1884,24 @@ function restartGame(){
 
 
 
-/* ==========================================================
+/* =========================================================
    BACK TO LOBBY
-========================================================== */
+========================================================= */
 
 function backToLobby(){
 
     window.location.href =
-        href="../../category.html?category=Describe%20things";
+        "../../category.html?category=Describe%20things";
 
 }
+
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+startGame();
 
 </script>
 

@@ -34,12 +34,12 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.gstatic.com"
+    href="https://fonts.googleapis.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
@@ -52,17 +52,7 @@
 
 :root {
 
-    --paper:
-        #f5f9fd;
-
-    --white:
-        #ffffff;
-
-    --ink:
-        #143a6b;
-
-    --ink-soft:
-        #66809d;
+    /* Activities category color */
 
     --accent:
         #2878df;
@@ -73,20 +63,47 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-bg:
+        #f5f9fd;
+
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
 
-    --green-light:
-        #eaf8f0;
+    /* General */
 
-    --red:
-        #e05252;
+    --main-text:
+        #143a6b;
 
-    --red-light:
-        #fff0f0;
+    --secondary-text:
+        #66809d;
+
+    --general-border:
+        #d9e6f2;
+
+
+    /* Correct */
+
+    --correct:
+        #2878df;
+
+    --correct-bg:
+        #eaf3ff;
+
+
+    /* Wrong */
+
+    --wrong:
+        #d9536f;
+
+    --wrong-bg:
+        #fff0f3;
+
+
+    /* Page */
+
+    --white:
+        #ffffff;
 
 }
 
@@ -122,7 +139,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -130,7 +147,7 @@ body {
         sans-serif;
 
     color:
-        var(--ink);
+        var(--main-text);
 
     background:
         linear-gradient(
@@ -151,7 +168,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -189,7 +206,7 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         999px;
@@ -199,7 +216,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.95
         );
 
     color:
@@ -209,7 +226,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.1rem;
 
     font-weight:
         700;
@@ -220,7 +237,7 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
@@ -247,28 +264,29 @@ body {
 
 
 /* ==========================================================
-   GAME CARD
+   MAIN CARD
 ========================================================== */
 
 .card {
+
+    position:
+        relative;
 
     width:
         100%;
 
     padding:
-        38px;
+        42px;
+
+    overflow:
+        hidden;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        var(--white);
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         24px;
@@ -279,7 +297,7 @@ body {
             20,
             58,
             107,
-            0.10
+            0.08
         );
 
     text-align:
@@ -289,16 +307,50 @@ body {
 
 
 /* ==========================================================
-   HEADER
+   HEADER ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-light)
+        );
+
+}
+
+
+/* ==========================================================
+   GAME HEADER
 ========================================================== */
 
 .game-icon {
 
     width:
-        58px;
+        60px;
 
     height:
-        58px;
+        60px;
 
     display:
         flex;
@@ -310,11 +362,11 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        0 auto 15px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -323,7 +375,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.1rem;
 
 }
 
@@ -331,19 +383,23 @@ body {
 h1 {
 
     margin:
-        0 0 9px;
+        0 0 8px;
 
     color:
-        var(--ink);
+        var(--main-text);
+
+    font-family:
+        Kalam,
+        cursive;
 
     font-size:
-        1.9rem;
+        2.6rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
-        1.25;
+        1.2;
 
 }
 
@@ -351,16 +407,16 @@ h1 {
 .subtitle {
 
     max-width:
-        520px;
+        580px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     color:
-        var(--ink-soft);
+        var(--secondary-text);
 
     font-size:
-        0.9rem;
+        1.2rem;
 
     line-height:
         1.55;
@@ -369,19 +425,19 @@ h1 {
 
 
 /* ==========================================================
-   QUESTION
+   QUESTION NUMBER
 ========================================================== */
 
 .question-number {
 
     margin-bottom:
-        18px;
+        14px;
 
     color:
         var(--accent);
 
     font-size:
-        0.78rem;
+        1.05rem;
 
     font-weight:
         800;
@@ -398,13 +454,13 @@ h1 {
 .choose-text {
 
     margin-bottom:
-        16px;
+        18px;
 
     color:
-        var(--ink-soft);
+        var(--secondary-text);
 
     font-size:
-        0.88rem;
+        1.2rem;
 
     font-weight:
         600;
@@ -420,15 +476,12 @@ h1 {
 
     width:
         min(
-            430px,
+            500px,
             100%
         );
 
     height:
-        280px;
-
-    margin:
-        0 auto 28px;
+        300px;
 
     display:
         flex;
@@ -439,18 +492,21 @@ h1 {
     justify-content:
         center;
 
+    margin:
+        0 auto 28px;
+
     overflow:
         hidden;
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
-        20px;
+        18px;
 
     background:
-        #f8fbff;
+        var(--accent-bg);
 
     box-shadow:
         0 8px 24px
@@ -458,13 +514,16 @@ h1 {
             20,
             58,
             107,
-            0.08
+            0.06
         );
 
 }
 
 
 .activity-image {
+
+    display:
+        block;
 
     width:
         100%;
@@ -474,9 +533,6 @@ h1 {
 
     object-fit:
         contain;
-
-    display:
-        block;
 
 }
 
@@ -488,58 +544,68 @@ h1 {
 .answers {
 
     display:
-        flex;
+        grid;
 
-    justify-content:
-        center;
-
-    align-items:
-        stretch;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
     gap:
-        16px;
+        14px;
+
+    width:
+        min(
+            650px,
+            100%
+        );
 
     margin:
         0 auto 22px;
 
-    max-width:
-        560px;
-
 }
 
 
+/* ==========================================================
+   ANSWER BUTTON
+========================================================== */
+
 .answer-btn {
 
-    flex:
-        1;
-
     min-height:
-        58px;
+        64px;
 
     padding:
-        14px 20px;
+        13px 18px;
 
     border:
         2px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
-        16px;
+        15px;
 
     background:
-        white;
+        var(--white);
 
     color:
-        var(--ink);
+        var(--main-text);
 
     font-family:
         inherit;
 
     font-size:
-        1rem;
+        1.25rem;
 
     font-weight:
         700;
+
+    line-height:
+        1.35;
 
     cursor:
         pointer;
@@ -553,10 +619,10 @@ h1 {
 }
 
 
-.answer-btn:hover:not(.disabled) {
+.answer-btn:hover:not(:disabled) {
 
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     border-color:
         var(--accent);
@@ -570,13 +636,13 @@ h1 {
             40,
             120,
             223,
-            0.12
+            0.10
         );
 
 }
 
 
-.answer-btn.disabled {
+.answer-btn:disabled {
 
     cursor:
         default;
@@ -584,48 +650,56 @@ h1 {
 }
 
 
+/* ==========================================================
+   CORRECT ANSWER
+========================================================== */
+
 .answer-btn.correct {
 
     border-color:
-        var(--green);
+        var(--correct);
 
     background:
-        var(--green-light);
+        var(--correct-bg);
 
     color:
-        var(--green);
-
-}
-
-
-.answer-btn.wrong {
-
-    border-color:
-        var(--red);
-
-    background:
-        var(--red-light);
-
-    color:
-        var(--red);
+        var(--correct);
 
 }
 
 
 /* ==========================================================
-   FEEDBACK
+   WRONG ANSWER
+========================================================== */
+
+.answer-btn.wrong {
+
+    border-color:
+        var(--wrong);
+
+    background:
+        var(--wrong-bg);
+
+    color:
+        var(--wrong);
+
+}
+
+
+/* ==========================================================
+   FEEDBACK MESSAGE
 ========================================================== */
 
 .message {
 
     min-height:
-        28px;
+        30px;
 
     margin-bottom:
-        10px;
+        12px;
 
     font-size:
-        0.95rem;
+        1.25rem;
 
     font-weight:
         800;
@@ -636,7 +710,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -644,7 +718,7 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -655,33 +729,39 @@ h1 {
 
 .explanation {
 
-    max-width:
-        580px;
+    width:
+        min(
+            680px,
+            100%
+        );
 
     margin:
         0 auto 20px;
 
     padding:
-        14px 18px;
+        15px 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
-        14px;
+        15px;
 
     background:
         var(--accent-light);
 
     color:
-        var(--ink-soft);
+        var(--secondary-text);
 
     font-size:
-        0.86rem;
+        1.1rem;
 
     line-height:
         1.55;
+
+    text-align:
+        left;
 
 }
 
@@ -689,7 +769,7 @@ h1 {
 .explanation strong {
 
     color:
-        var(--ink);
+        var(--main-text);
 
 }
 
@@ -701,7 +781,7 @@ h1 {
 .action-btn {
 
     min-width:
-        170px;
+        175px;
 
     padding:
         12px 22px;
@@ -722,7 +802,7 @@ h1 {
         inherit;
 
     font-size:
-        0.86rem;
+        1.15rem;
 
     font-weight:
         800;
@@ -731,19 +811,12 @@ h1 {
         pointer;
 
     box-shadow:
-        inset 0 -3px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.12
-        ),
         0 5px 12px
         rgba(
             40,
             120,
             223,
-            0.20
+            0.18
         );
 
     transition:
@@ -778,10 +851,10 @@ h1 {
 .result-icon {
 
     width:
-        64px;
+        68px;
 
     height:
-        64px;
+        68px;
 
     display:
         flex;
@@ -797,7 +870,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -806,7 +879,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.3rem;
 
 }
 
@@ -814,7 +887,7 @@ h1 {
 .result-title {
 
     margin-bottom:
-        10px;
+        8px;
 
 }
 
@@ -822,13 +895,13 @@ h1 {
 .score {
 
     margin:
-        20px 0 8px;
+        18px 0 8px;
 
     color:
         var(--accent);
 
     font-size:
-        2.6rem;
+        3rem;
 
     font-weight:
         800;
@@ -842,10 +915,10 @@ h1 {
         28px;
 
     color:
-        var(--ink-soft);
+        var(--secondary-text);
 
     font-size:
-        1rem;
+        1.25rem;
 
     font-weight:
         600;
@@ -884,7 +957,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            34px 20px;
 
         border-radius:
             20px;
@@ -895,7 +968,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.15rem;
 
     }
 
@@ -903,7 +976,7 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.1rem;
 
         margin-bottom:
             25px;
@@ -924,8 +997,11 @@ h1 {
 
     .answers {
 
+        grid-template-columns:
+            1fr;
+
         gap:
-            10px;
+            11px;
 
     }
 
@@ -933,13 +1009,21 @@ h1 {
     .answer-btn {
 
         min-height:
-            54px;
+            58px;
 
         padding:
-            12px 10px;
+            12px 14px;
 
         font-size:
-            0.9rem;
+            1.15rem;
+
+    }
+
+
+    .explanation {
+
+        font-size:
+            1.05rem;
 
     }
 
@@ -954,26 +1038,26 @@ h1 {
     max-width: 380px
 ) {
 
+    .card {
+
+        padding:
+            30px 16px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.95rem;
+
+    }
+
+
     .image-container {
 
         height:
             200px;
-
-    }
-
-
-    .answers {
-
-        flex-direction:
-            column;
-
-    }
-
-
-    .answer-btn {
-
-        width:
-            100%;
 
     }
 
@@ -1007,14 +1091,14 @@ h1 {
 
 
     <!-- ======================================================
-         GAME CARD
+         MAIN GAME CARD
     ======================================================= -->
 
     <main class="card">
 
 
         <!-- ==================================================
-             GAME HEADER
+             HEADER
         =================================================== -->
 
         <div
@@ -1083,7 +1167,7 @@ h1 {
 
 
             <!-- ==============================================
-                 MESSAGE
+                 FEEDBACK
             =============================================== -->
 
             <div
@@ -1171,13 +1255,14 @@ h1 {
 
     </main>
 
+
 </div>
 
 
 <script>
 
 /* ==========================================================
-   ACTIVITY VOCABULARY
+   ACTIVITIES VOCABULARY
 ========================================================== */
 
 const ACTIVITIES = [
@@ -1567,7 +1652,7 @@ function shuffle(array) {
 
 
 /* ==========================================================
-   CREATE UNIQUE QUESTION ACTIVITIES
+   CREATE 20 QUESTION ACTIVITIES
 ========================================================== */
 
 function getQuestionActivities() {
@@ -1581,9 +1666,9 @@ function getQuestionActivities() {
 
 
     /*
-     * Use all 17 activities once,
-     * then add 3 random activities
-     * to make 20 questions.
+     * Use all 17 activities once.
+     * Add 3 random activities
+     * to reach 20 questions.
      */
 
     const extra =
@@ -1610,15 +1695,7 @@ function getQuestionActivities() {
    GET WRONG ANSWER
 ========================================================== */
 
-function getWrongAnswer(
-    correct
-) {
-
-    /*
-     * Try to choose an answer
-     * that is visually and semantically
-     * different from the correct activity.
-     */
+function getWrongAnswer(correct) {
 
     let candidates =
         ACTIVITIES.filter(
@@ -1629,8 +1706,8 @@ function getWrongAnswer(
 
 
     /*
-     * Avoid activities that are
-     * especially close in meaning.
+     * Avoid answers that are too
+     * similar to the correct answer.
      */
 
     const avoidPairs = {
@@ -1827,6 +1904,12 @@ function loadQuestion() {
         }`;
 
 
+    /*
+     * IMPORTANT:
+     * Keep the image path exactly as:
+     * images/filename.png
+     */
+
     activityImage.src =
         question.correct.image;
 
@@ -1890,9 +1973,7 @@ function loadQuestion() {
    HANDLE ANSWER
 ========================================================== */
 
-function handleAnswer(
-    selected
-) {
+function handleAnswer(selected) {
 
     if (
         answered
@@ -1919,13 +2000,12 @@ function handleAnswer(
         );
 
 
+    /*
+     * Lock every answer.
+     */
+
     buttons.forEach(
         button => {
-
-            button.classList.add(
-                "disabled"
-            );
-
 
             button.disabled =
                 true;
@@ -1943,6 +2023,10 @@ function handleAnswer(
                 "true"
         );
 
+
+    /*
+     * CORRECT
+     */
 
     if (
         selected.dataset.correct ===
@@ -1966,6 +2050,11 @@ function handleAnswer(
         );
 
     }
+
+
+    /*
+     * WRONG
+     */
 
     else {
 
@@ -1991,8 +2080,7 @@ function handleAnswer(
 
 
     /*
-     * Always show explanation
-     * after the answer is checked.
+     * Show explanation.
      */
 
     explanation.innerHTML =
@@ -2009,6 +2097,10 @@ function handleAnswer(
         "hidden"
     );
 
+
+    /*
+     * Show next button.
+     */
 
     nextBtn.classList.remove(
         "hidden"

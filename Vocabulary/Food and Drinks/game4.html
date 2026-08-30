@@ -1,23 +1,47 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Odd One Out - Vietnamese Vocabulary Review</title>
 
-<meta name="game-title" content="Odd One Out">
+<meta
+    name="game-title"
+    content="Odd One Out"
+>
 
 <meta
     name="game-description"
     content="Find the Vietnamese word that does not belong in each group."
 >
 
-<meta name="game-icon" content="🎲">
+<meta
+    name="game-icon"
+    content="🎲"
+>
 
-<meta name="game-explanation" content="true">
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 
 <style>
@@ -30,272 +54,118 @@
     box-sizing:border-box;
 }
 
+
 body{
 
     margin:0;
 
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:#f7f9fc;
-
     min-height:100vh;
 
-    color:#222;
+    padding:25px 20px;
 
-    padding:20px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    background:#f7faff;
+
+    color:#26354a;
+
 }
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
 
-    max-width:750px;
+    width:min(900px,95vw);
 
     margin:0 auto 15px;
 
-    text-align:left;
 }
+
 
 .back-btn{
 
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 16px;
 
     background:white;
 
-    color:#555;
+    color:#2878df;
 
-    border:2px solid #ddd;
+    border:2px solid #c4daf6;
 
     border-radius:10px;
 
     text-decoration:none;
 
+    font-size:22px;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
+
 
 .back-btn:hover{
 
-    background:#f0f0f0;
+    background:#eaf3ff;
+
+    border-color:#2878df;
 
     transform:translateY(-2px);
+
 }
 
 
 /* =========================================================
-   GAME CONTAINER
+   MAIN CONTAINER
 ========================================================= */
 
 .game-box{
 
-    width:100%;
+    position:relative;
 
-    max-width:750px;
+    width:min(900px,95vw);
 
     margin:0 auto;
 
     background:white;
 
-    border-radius:24px;
+    border-radius:22px;
 
-    padding:35px 40px;
+    padding:30px 35px 35px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.10);
+        0 8px 28px rgba(40,120,223,.10);
 
-    text-align:center;
+    overflow:hidden;
+
 }
 
 
-/* =========================================================
-   INTRO SCREEN
-========================================================= */
+.game-box::before{
 
-#introScreen{
+    content:"";
 
-    padding:10px 5px;
-}
+    position:absolute;
 
-.game-icon{
+    top:0;
 
-    font-size:70px;
+    left:0;
 
-    margin-bottom:10px;
-}
+    width:100%;
 
-#introScreen h1{
+    height:6px;
 
-    margin:10px 0 15px;
+    background:#2878df;
 
-    font-size:34px;
-
-    color:#2c3e50;
-}
-
-.intro-description{
-
-    max-width:580px;
-
-    margin:0 auto 25px;
-
-    font-size:18px;
-
-    line-height:1.6;
-
-    color:#666;
-}
-
-
-/* =========================================================
-   HOW TO PLAY
-========================================================= */
-
-.how-to-play{
-
-    max-width:600px;
-
-    margin:0 auto 25px;
-
-    padding:20px 25px;
-
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
-
-    border-radius:14px;
-
-    text-align:left;
-}
-
-.how-to-play h2{
-
-    margin:0 0 12px;
-
-    color:#4779b8;
-
-    font-size:22px;
-}
-
-.how-to-play p{
-
-    margin:8px 0;
-
-    font-size:16px;
-
-    line-height:1.5;
-
-    color:#3d5066;
-}
-
-
-/* =========================================================
-   GAME INFO
-========================================================= */
-
-.game-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:20px 0 25px;
-}
-
-.game-info div{
-
-    background:#f4f8fb;
-
-    border:1px solid #e1e8ee;
-
-    border-radius:12px;
-
-    padding:12px 18px;
-
-    color:#555;
-
-    font-size:16px;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-button{
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-#startBtn{
-
-    padding:14px 35px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:19px;
-}
-
-#startBtn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-.next-btn{
-
-    padding:13px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.next-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-.play-again-btn{
-
-    padding:14px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.play-again-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
 }
 
 
@@ -305,33 +175,62 @@ button{
 
 #gameScreen{
 
-    display:none;
-}
+    width:100%;
 
-#gameScreen h1{
-
-    margin:0 0 10px;
-
-    color:#2c3e50;
-
-    font-size:32px;
-}
-
-.instruction{
-
-    color:#555;
-
-    font-size:17px;
-
-    margin:0 0 20px;
 }
 
 
 /* =========================================================
-   TOP BAR
+   TITLE
 ========================================================= */
 
-.topbar{
+#gameScreen h1{
+
+    margin:5px 0 5px;
+
+    text-align:center;
+
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    color:#2878df;
+
+    line-height:1.2;
+
+}
+
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
+.instruction{
+
+    margin:0 auto 22px;
+
+    text-align:center;
+
+    color:#667085;
+
+    font-size:25px;
+
+    line-height:1.4;
+
+}
+
+
+/* =========================================================
+   GAME STATUS
+========================================================= */
+
+.game-status{
 
     display:flex;
 
@@ -339,21 +238,66 @@ button{
 
     align-items:center;
 
-    margin:20px 0 25px;
+    gap:15px;
+
+    margin-bottom:12px;
+
+    font-size:24px;
 
     font-weight:bold;
 
-    font-size:17px;
 }
 
-.round{
 
-    color:#666;
+#roundText{
+
+    color:#667085;
+
 }
 
-.score{
 
-    color:#333;
+#scoreText{
+
+    color:#2878df;
+
+    font-size:27px;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-wrap{
+
+    width:100%;
+
+    height:8px;
+
+    background:#eaf3ff;
+
+    border:1px solid #d9e6f2;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#2878df;
+
+    transition:.3s;
+
 }
 
 
@@ -363,13 +307,18 @@ button{
 
 .question-title{
 
-    font-size:26px;
+    margin:10px 0 25px;
+
+    text-align:center;
+
+    font-size:35px;
 
     font-weight:bold;
 
-    color:#333;
+    color:#26354a;
 
-    margin:25px 0 30px;
+    line-height:1.4;
+
 }
 
 
@@ -385,17 +334,15 @@ button{
         repeat(2,1fr);
 
     gap:15px;
+
 }
+
 
 .word{
 
-    border:2px solid #ddd;
-
-    border-radius:14px;
+    min-height:95px;
 
     padding:20px;
-
-    min-height:85px;
 
     display:flex;
 
@@ -405,78 +352,119 @@ button{
 
     text-align:center;
 
-    font-size:23px;
+    background:white;
+
+    border:2px solid #d9e6f2;
+
+    border-radius:16px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:31px;
+
+    font-weight:bold;
+
+    color:#26354a;
 
     cursor:pointer;
 
-    background:white;
+    user-select:none;
 
     transition:.2s;
 
-    user-select:none;
 }
+
 
 .word:hover{
 
     transform:translateY(-3px);
 
-    background:#f8fbff;
+    background:#eaf3ff;
 
-    border-color:#b8cbe0;
+    border-color:#c4daf6;
+
 }
+
+
+/* =========================================================
+   CORRECT
+========================================================= */
 
 .word.correct{
 
-    background:#dff5e5 !important;
+    background:#eaf3ff !important;
 
-    border-color:#4caf70 !important;
+    border:3px solid #2878df !important;
 
-    color:#2e7d32;
+    color:#2878df;
 
     cursor:default;
+
 }
+
+
+/* =========================================================
+   WRONG
+========================================================= */
 
 .word.wrong{
 
-    background:#ffe0e0 !important;
+    background:#fff0f3 !important;
 
-    border-color:#e74c3c !important;
+    border:3px solid #d9536f !important;
 
-    color:#c0392b;
+    color:#d9536f;
+
+    cursor:default;
+
 }
+
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .word.disabled{
 
     cursor:default;
 
     pointer-events:none;
+
 }
 
 
 /* =========================================================
-   RESULT
+   RESULT MESSAGE
 ========================================================= */
 
 #result{
 
     min-height:55px;
 
-    margin-top:25px;
+    margin-top:22px;
 
-    font-size:20px;
+    text-align:center;
+
+    font-size:29px;
 
     font-weight:bold;
 
     line-height:1.5;
+
 }
+
 
 .answer{
 
-    margin-top:6px;
+    margin-top:5px;
 
-    font-size:17px;
+    font-size:25px;
 
     font-weight:normal;
+
 }
 
 
@@ -486,35 +474,42 @@ button{
 
 .explanation{
 
-    margin:20px auto 0;
+    display:none;
+
+    margin:16px auto 18px;
 
     padding:16px 20px;
 
-    max-width:650px;
+    width:100%;
 
-    background:#f0f7ff;
+    background:#eaf3ff;
 
-    border-left:5px solid #4779b8;
+    border:2px solid #c4daf6;
 
     border-radius:12px;
 
-    color:#3d5066;
+    color:#26354a;
 
-    font-size:16px;
+    font-size:24px;
 
-    line-height:1.6;
+    line-height:1.5;
 
     text-align:left;
+
 }
+
+
+.explanation.show{
+
+    display:block;
+
+}
+
 
 .explanation strong{
 
-    color:#4779b8;
-}
+    color:#2878df;
 
-.hidden{
-
-    display:none;
 }
 
 
@@ -524,12 +519,51 @@ button{
 
 .next-area{
 
-    margin-top:20px;
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:15px;
+
 }
+
 
 #nextBtn{
 
     display:none;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+#nextBtn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+
 }
 
 
@@ -541,54 +575,101 @@ button{
 
     display:none;
 
-    padding:20px 10px;
+    text-align:center;
+
+    padding:25px 10px 10px;
+
 }
 
-.final-icon{
-
-    font-size:65px;
-
-    margin-bottom:10px;
-}
 
 #finalScreen h1{
 
-    color:#2c3e50;
+    margin:5px 0 15px;
 
-    font-size:34px;
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
 
-    margin:10px 0 20px;
+    font-size:44px;
+
+    color:#2878df;
+
 }
+
 
 .final-score{
 
-    font-size:26px;
+    margin:20px 0;
+
+    font-size:48px;
 
     font-weight:bold;
 
-    margin:15px 0;
+    color:#2878df;
+
 }
+
 
 .final-percent{
 
-    font-size:20px;
-
-    color:#555;
-
     margin:10px 0;
+
+    font-size:30px;
+
+    color:#667085;
+
 }
+
 
 .final-message{
 
-    font-size:20px;
+    margin:20px 0 25px;
 
-    font-weight:bold;
-
-    color:#555;
+    font-size:27px;
 
     line-height:1.5;
 
-    margin:20px 0 25px;
+    color:#667085;
+
+}
+
+
+.play-again-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.play-again-btn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+
 }
 
 
@@ -596,94 +677,152 @@ button{
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
     body{
 
-        padding:15px;
+        padding:20px 12px;
+
     }
+
 
     .game-box{
 
-        padding:30px 20px;
+        width:100%;
 
-        border-radius:20px;
+        padding:25px 17px 28px;
+
+        border-radius:19px;
+
     }
 
-    #introScreen h1,
+
+    .back-btn{
+
+        font-size:21px;
+
+    }
+
+
     #gameScreen h1{
 
-        font-size:28px;
+        font-size:38px;
+
     }
 
-    .game-icon{
 
-        font-size:58px;
+    .instruction{
+
+        font-size:23px;
+
     }
 
-    .intro-description{
 
-        font-size:16px;
-    }
-
-    .how-to-play{
-
-        padding:18px;
-    }
-
-    .how-to-play p{
-
-        font-size:15px;
-    }
-
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .game-info div{
-
-        width:100%;
-    }
-
-    .topbar{
-
-        font-size:15px;
-    }
-
-    .question-title{
+    .game-status{
 
         font-size:22px;
 
-        line-height:1.5;
     }
+
+
+    #scoreText{
+
+        font-size:24px;
+
+    }
+
+
+    .question-title{
+
+        font-size:31px;
+
+        line-height:1.4;
+
+    }
+
 
     .words{
 
         grid-template-columns:1fr;
+
     }
+
 
     .word{
 
-        font-size:20px;
-
-        min-height:75px;
+        min-height:82px;
 
         padding:17px;
+
+        font-size:29px;
+
     }
+
 
     #result{
 
-        font-size:18px;
+        font-size:27px;
+
     }
+
+
+    .answer{
+
+        font-size:24px;
+
+    }
+
 
     .explanation{
 
-        font-size:15px;
+        font-size:22px;
 
         padding:15px;
+
+    }
+
+
+    #nextBtn{
+
+        width:100%;
+
+        font-size:25px;
+
+    }
+
+
+    #finalScreen h1{
+
+        font-size:38px;
+
+    }
+
+
+    .final-score{
+
+        font-size:42px;
+
+    }
+
+
+    .final-percent{
+
+        font-size:27px;
+
+    }
+
+
+    .final-message{
+
+        font-size:23px;
+
+    }
+
+
+    .play-again-btn{
+
+        width:100%;
+
     }
 
 }
@@ -697,30 +836,45 @@ button{
 
     .game-box{
 
-        padding:25px 15px;
+        padding:23px 14px 25px;
+
     }
+
 
     .back-btn{
 
-        font-size:14px;
+        font-size:20px;
 
-        padding:9px 14px;
+        padding:8px 13px;
+
     }
 
-    #introScreen h1,
+
     #gameScreen h1{
 
-        font-size:25px;
+        font-size:34px;
+
     }
+
+
+    .instruction{
+
+        font-size:22px;
+
+    }
+
 
     .question-title{
 
-        font-size:20px;
+        font-size:29px;
+
     }
+
 
     .word{
 
-        font-size:19px;
+        font-size:27px;
+
     }
 
 }
@@ -734,7 +888,7 @@ button{
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -743,70 +897,17 @@ button{
         href="../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
-        ⬅ Back
+        ← Back
     </a>
 
 </div>
 
 
-
-<div class="game-box">
-
-
 <!-- =========================================================
-     INTRO SCREEN
+     GAME CONTAINER
 ========================================================= -->
 
-<div id="introScreen">
-
-    <div class="game-icon">
-        🎲
-    </div>
-
-
-    <h1>
-        Odd One Out
-    </h1>
-
-
-    <p class="intro-description">
-
-        Find the Vietnamese word that does
-        <strong>not</strong> belong in each group.
-
-    </p>
-
-
-    <!-- =====================================================
-         HOW TO PLAY
-    ===================================================== -->
-
-    <div class="how-to-play">
-
-        <h2>🎮 How to Play</h2>
-
-        <p>
-            👀 Look at the four Vietnamese words →
-            choose the one that <strong>does NOT</strong> belong.
-        </p>
-
-    </div>
-
-
-    <!-- =====================================================
-         GAME INFO
-    ===================================================== -->
-    <button
-        id="startBtn"
-        onclick="startGame()"
-    >
-
-        Start Game →
-
-    </button>
-
-</div>
-
+<div class="game-box">
 
 
 <!-- =========================================================
@@ -817,36 +918,54 @@ button{
 
 
     <h1>
-        🎲 Odd One Out
+        Odd One Out
     </h1>
 
 
     <p class="instruction">
-
-        Which Vietnamese word does NOT belong?
-
+        Find the Vietnamese word that does not belong.
     </p>
 
 
-    <div class="topbar">
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+
+    <div class="game-status">
 
         <div
-            class="round"
-            id="questionNumber"
+            id="roundText"
         >
             Question 1 of 20
         </div>
 
 
         <div
-            class="score"
-            id="score"
+            id="scoreText"
         >
-            Score: 0 / 20
+            Score: 0
         </div>
 
     </div>
 
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+
+    <div class="progress-wrap">
+
+        <div
+            class="progress"
+            id="progress"
+        ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         QUESTION
+    ====================================================== -->
 
     <div class="question-title">
 
@@ -857,6 +976,10 @@ button{
     </div>
 
 
+    <!-- =====================================================
+         WORDS
+    ====================================================== -->
+
     <div
         class="words"
         id="words"
@@ -864,38 +987,44 @@ button{
     </div>
 
 
-    <div id="result">
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+
+    <div
+        id="result"
+    >
     </div>
 
 
     <!-- =====================================================
          EXPLANATION
-    ===================================================== -->
+    ====================================================== -->
 
     <div
         id="explanation"
-        class="explanation hidden"
+        class="explanation"
     >
     </div>
 
+
+    <!-- =====================================================
+         NEXT
+    ====================================================== -->
 
     <div class="next-area">
 
         <button
             id="nextBtn"
-            class="next-btn"
             onclick="nextQuestion()"
         >
-
             Next Question →
-
         </button>
 
     </div>
 
 
 </div>
-
 
 
 <!-- =========================================================
@@ -905,13 +1034,8 @@ button{
 <div id="finalScreen">
 
 
-    <div class="final-icon">
-        🎉
-    </div>
-
-
     <h1>
-        Game Finished!
+        🎉 Game Finished!
     </h1>
 
 
@@ -940,23 +1064,20 @@ button{
         class="play-again-btn"
         onclick="restartGame()"
     >
-
         Play Again
-
     </button>
 
-</div>
-
 
 </div>
 
+
+</div>
 
 
 <script>
 
 /* =========================================================
    QUESTION DATA
-   ONLY WORDS FROM THE 37-WORD VOCABULARY LIST
 ========================================================= */
 
 const questions = [
@@ -968,13 +1089,10 @@ const questions = [
             "Sữa",
             "Cà rốt"
         ],
-
         answer:"Cà rốt",
-
         explanation:
             "Cà phê, trà, and sữa are drinks. Cà rốt is a vegetable."
     },
-
 
     {
         words:[
@@ -983,13 +1101,10 @@ const questions = [
             "Táo",
             "Bún"
         ],
-
         answer:"Bún",
-
         explanation:
             "Chuối, xoài, and táo are fruits. Bún is a food."
     },
-
 
     {
         words:[
@@ -998,13 +1113,10 @@ const questions = [
             "Heo",
             "Cam"
         ],
-
         answer:"Cam",
-
         explanation:
             "Bò, gà, and heo are animal-based foods. Cam is a fruit."
     },
-
 
     {
         words:[
@@ -1013,13 +1125,10 @@ const questions = [
             "Mì",
             "Nước cam"
         ],
-
         answer:"Nước cam",
-
         explanation:
             "Cơm, bún, and mì are foods. Nước cam is a drink."
     },
-
 
     {
         words:[
@@ -1028,13 +1137,10 @@ const questions = [
             "Xoài",
             "Trứng"
         ],
-
         answer:"Trứng",
-
         explanation:
             "Cam, chanh, and xoài are fruits. Trứng is food from an animal."
     },
-
 
     {
         words:[
@@ -1043,13 +1149,10 @@ const questions = [
             "Dưa leo",
             "Trà"
         ],
-
         answer:"Trà",
-
         explanation:
             "Cà chua, cà rốt, and dưa leo are vegetables. Trà is a drink."
     },
-
 
     {
         words:[
@@ -1058,13 +1161,10 @@ const questions = [
             "Khoai tây",
             "Cà phê"
         ],
-
         answer:"Cà phê",
-
         explanation:
             "Bắp, xà lách, and khoai tây are vegetables. Cà phê is a drink."
     },
-
 
     {
         words:[
@@ -1073,13 +1173,10 @@ const questions = [
             "Ngọt",
             "Nóng"
         ],
-
         answer:"Nóng",
-
         explanation:
             "Mặn, cay, and ngọt describe taste. Nóng describes temperature."
     },
-
 
     {
         words:[
@@ -1088,13 +1185,10 @@ const questions = [
             "Chua",
             "Lạnh"
         ],
-
         answer:"Lạnh",
-
         explanation:
             "Đắng, ngọt, and chua describe taste. Lạnh describes temperature."
     },
-
 
     {
         words:[
@@ -1103,13 +1197,10 @@ const questions = [
             "Bún",
             "Nước lọc"
         ],
-
         answer:"Nước lọc",
-
         explanation:
             "Bánh mì, cơm, and bún are foods. Nước lọc is a drink."
     },
-
 
     {
         words:[
@@ -1118,13 +1209,10 @@ const questions = [
             "Cơm",
             "Sữa"
         ],
-
         answer:"Sữa",
-
         explanation:
             "Mì, bánh mì, and cơm are foods. Sữa is a drink."
     },
-
 
     {
         words:[
@@ -1133,13 +1221,10 @@ const questions = [
             "Nước chanh",
             "Cá"
         ],
-
         answer:"Cá",
-
         explanation:
             "Nước lọc, nước cam, and nước chanh are drinks. Cá is food."
     },
-
 
     {
         words:[
@@ -1148,13 +1233,10 @@ const questions = [
             "Nước cam",
             "Bánh mì"
         ],
-
         answer:"Bánh mì",
-
         explanation:
             "Trà, cà phê, and nước cam are drinks. Bánh mì is food."
     },
-
 
     {
         words:[
@@ -1163,13 +1245,10 @@ const questions = [
             "Bơ",
             "Cà rốt"
         ],
-
         answer:"Cà rốt",
-
         explanation:
             "Chuối, dừa, and bơ are fruits. Cà rốt is a vegetable."
     },
-
 
     {
         words:[
@@ -1178,13 +1257,10 @@ const questions = [
             "Chuối",
             "Cà rốt"
         ],
-
         answer:"Cà rốt",
-
         explanation:
             "Cam, chanh, and chuối are fruits. Cà rốt is a vegetable."
     },
-
 
     {
         words:[
@@ -1193,13 +1269,10 @@ const questions = [
             "Chuối",
             "Cà phê"
         ],
-
         answer:"Cà phê",
-
         explanation:
             "Cam, chanh, and chuối are fruits. Cà phê is a drink."
     },
-
 
     {
         words:[
@@ -1208,13 +1281,10 @@ const questions = [
             "Cá",
             "Nước chanh"
         ],
-
         answer:"Nước chanh",
-
         explanation:
             "Bò, gà, and cá are animal-based foods. Nước chanh is a drink."
     },
-
 
     {
         words:[
@@ -1223,13 +1293,10 @@ const questions = [
             "Gà",
             "Dừa"
         ],
-
         answer:"Dừa",
-
         explanation:
             "Heo, cá, and gà are animal-based foods. Dừa is a fruit."
     },
-
 
     {
         words:[
@@ -1238,13 +1305,10 @@ const questions = [
             "Cay",
             "Lạnh"
         ],
-
         answer:"Lạnh",
-
         explanation:
             "Ngon, mặn, and cay describe taste. Lạnh describes temperature."
     },
-
 
     {
         words:[
@@ -1253,9 +1317,7 @@ const questions = [
             "Mì",
             "Nước chanh"
         ],
-
         answer:"Nước chanh",
-
         explanation:
             "Cơm, bún, and mì are foods. Nước chanh is a drink."
     }
@@ -1275,13 +1337,8 @@ let locked = false;
 
 
 /* =========================================================
-   DOM ELEMENTS
+   DOM
 ========================================================= */
-
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
 
 const gameScreen =
     document.getElementById(
@@ -1310,17 +1367,22 @@ const explanationEl =
 
 const scoreEl =
     document.getElementById(
-        "score"
+        "scoreText"
     );
 
 const questionNumberEl =
     document.getElementById(
-        "questionNumber"
+        "roundText"
     );
 
 const nextBtn =
     document.getElementById(
         "nextBtn"
+    );
+
+const progressEl =
+    document.getElementById(
+        "progress"
     );
 
 
@@ -1332,7 +1394,6 @@ function shuffle(array){
 
     const shuffled = [...array];
 
-
     for(
         let i = shuffled.length - 1;
         i > 0;
@@ -1341,9 +1402,9 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
-
 
         [
             shuffled[i],
@@ -1356,38 +1417,7 @@ function shuffle(array){
 
     }
 
-
     return shuffled;
-
-}
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-function startGame(){
-
-    currentQuestion = 0;
-
-    score = 0;
-
-    locked = false;
-
-
-    introScreen.style.display =
-        "none";
-
-    finalScreen.style.display =
-        "none";
-
-    gameScreen.style.display =
-        "block";
-
-
-    updateScore();
-
-    loadQuestion();
 
 }
 
@@ -1399,7 +1429,7 @@ function startGame(){
 function updateScore(){
 
     scoreEl.textContent =
-        `Score: ${score} / ${questions.length}`;
+        `Score: ${score}`;
 
 }
 
@@ -1421,6 +1451,14 @@ function loadQuestion(){
         `Question ${currentQuestion + 1} of ${questions.length}`;
 
 
+    scoreEl.textContent =
+        `Score: ${score}`;
+
+
+    progressEl.style.width =
+        `${currentQuestion / questions.length * 100}%`;
+
+
     wordsEl.innerHTML =
         "";
 
@@ -1430,12 +1468,14 @@ function loadQuestion(){
     explanationEl.innerHTML =
         "";
 
-    explanationEl.classList.add(
-        "hidden"
+    explanationEl.classList.remove(
+        "show"
     );
+
 
     nextBtn.style.display =
         "none";
+
 
     nextBtn.textContent =
         "Next Question →";
@@ -1503,11 +1543,6 @@ function checkAnswer(
     }
 
 
-    /*
-       Lock immediately after the first answer.
-       The player cannot change the answer.
-    */
-
     locked = true;
 
 
@@ -1523,7 +1558,7 @@ function checkAnswer(
 
     /* =====================================================
        CORRECT
-    ===================================================== */
+    ====================================================== */
 
     if(
         selectedWord ===
@@ -1543,13 +1578,12 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            ✅ Correct!
+            <span style="color:#2878df;">
+                ✓ Correct!
+            </span>
 
             <div class="answer">
-
-                "${question.answer}"
-                does not belong.
-
+                "${question.answer}" does not belong.
             </div>
 
         `;
@@ -1559,7 +1593,7 @@ function checkAnswer(
 
     /* =====================================================
        WRONG
-    ===================================================== */
+    ====================================================== */
 
     else{
 
@@ -1588,13 +1622,13 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            ❌ Wrong!
+            <span style="color:#d9536f;">
+                ✕ Wrong!
+            </span>
 
             <div class="answer">
-
                 Correct answer:
                 <b>${question.answer}</b>
-
             </div>
 
         `;
@@ -1602,9 +1636,9 @@ function checkAnswer(
     }
 
 
-    /*
-       Lock every word after the answer.
-    */
+    /* =====================================================
+       LOCK ALL WORDS
+    ====================================================== */
 
     allWords.forEach(
         wordElement => {
@@ -1619,7 +1653,7 @@ function checkAnswer(
 
     /* =====================================================
        EXPLANATION
-    ===================================================== */
+    ====================================================== */
 
     explanationEl.innerHTML = `
 
@@ -1632,14 +1666,14 @@ function checkAnswer(
     `;
 
 
-    explanationEl.classList.remove(
-        "hidden"
+    explanationEl.classList.add(
+        "show"
     );
 
 
     /* =====================================================
-       NEXT BUTTON
-    ===================================================== */
+       NEXT
+    ====================================================== */
 
     nextBtn.style.display =
         "inline-block";
@@ -1689,6 +1723,10 @@ function nextQuestion(){
 ========================================================= */
 
 function finishGame(){
+
+    progressEl.style.width =
+        "100%";
+
 
     gameScreen.style.display =
         "none";
@@ -1773,19 +1811,26 @@ function restartGame(){
 
 
     gameScreen.style.display =
-        "none";
-
-
-    introScreen.style.display =
         "block";
 
 
     updateScore();
 
+
+    loadQuestion();
+
 }
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+loadQuestion();
 
 </script>
 
 </body>
 
 </html>
+```

@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,15 @@
 <meta name="game-icon" content="🔤">
 <meta name="game-explanation" content="true">
 
+<!-- =========================================================
+     GOOGLE FONT - KALAM
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
 
@@ -31,7 +41,7 @@ body{
     margin:0;
     padding:20px;
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Calibri, Arial, sans-serif;
 
     background:#f7f9fc;
 
@@ -42,12 +52,11 @@ body{
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
-
-    max-width:750px;
+    max-width:900px;
 
     margin:0 auto 15px;
 
@@ -55,7 +64,6 @@ body{
 }
 
 .back-btn{
-
     display:inline-block;
 
     padding:10px 18px;
@@ -64,7 +72,7 @@ body{
 
     color:#555;
 
-    border:2px solid #ddd;
+    border:2px solid #d9e6f2;
 
     border-radius:10px;
 
@@ -72,26 +80,30 @@ body{
 
     font-weight:bold;
 
+    font-size:20px;
+
     transition:.2s;
 }
 
 .back-btn:hover{
+    background:#eaf3ff;
 
-    background:#f0f0f0;
+    border-color:#c4daf6;
 
     transform:translateY(-2px);
 }
 
 
 /* =========================================================
-   GAME BOX
+   GAME CARD
 ========================================================= */
 
 .game-box{
+    position:relative;
 
     width:100%;
 
-    max-width:750px;
+    max-width:900px;
 
     margin:0 auto;
 
@@ -99,216 +111,33 @@ body{
 
     border-radius:24px;
 
-    padding:35px 40px;
+    padding:40px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.10);
+        0 10px 35px rgba(0,0,0,.08);
 
     text-align:center;
+
+    overflow:hidden;
 }
 
 
 /* =========================================================
-   INTRO
+   ACCENT LINE
 ========================================================= */
 
-#introScreen{
+.game-box::before{
+    content:"";
 
-    padding:10px 5px;
-}
+    position:absolute;
 
-.game-icon{
+    top:0;
+    left:0;
+    right:0;
 
-    font-size:70px;
+    height:6px;
 
-    margin-bottom:10px;
-}
-
-#introScreen h1{
-
-    margin:10px 0 15px;
-
-    font-size:34px;
-
-    color:#2c3e50;
-}
-
-.intro-description{
-
-    max-width:580px;
-
-    margin:0 auto 25px;
-
-    font-size:18px;
-
-    line-height:1.6;
-
-    color:#666;
-}
-
-
-/* =========================================================
-   HOW TO PLAY
-========================================================= */
-
-.how-to-play{
-
-    max-width:600px;
-
-    margin:0 auto 25px;
-
-    padding:20px 25px;
-
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
-
-    border-radius:14px;
-
-    text-align:left;
-}
-
-.how-to-play h2{
-
-    margin:0 0 12px;
-
-    color:#4779b8;
-
-    font-size:22px;
-}
-
-.how-to-play p{
-
-    margin:8px 0;
-
-    font-size:16px;
-
-    line-height:1.5;
-
-    color:#3d5066;
-}
-
-
-/* =========================================================
-   GAME INFO
-========================================================= */
-
-.game-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:20px 0 25px;
-}
-
-.game-info div{
-
-    background:#f4f8fb;
-
-    border:1px solid #e1e8ee;
-
-    border-radius:12px;
-
-    padding:12px 18px;
-
-    color:#555;
-
-    font-size:16px;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-button{
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-#startBtn{
-
-    padding:14px 35px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:19px;
-}
-
-#startBtn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-.check-btn{
-
-    padding:13px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.check-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-.next-btn{
-
-    padding:13px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.next-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-.play-again-btn{
-
-    padding:14px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.play-again-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
+    background:#2878df;
 }
 
 
@@ -317,26 +146,32 @@ button{
 ========================================================= */
 
 #gameScreen{
-
-    display:none;
+    display:block;
 }
 
-#gameScreen h1{
-
+#gameScreen h1,
+#finalScreen h1{
     margin:0 0 10px;
 
-    color:#2c3e50;
+    font-family:"Kalam", cursive;
 
-    font-size:32px;
+    font-size:48px;
+
+    font-weight:700;
+
+    color:#2878df;
 }
 
 .instruction{
+    margin:0 0 25px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:25px;
 
     color:#555;
 
-    font-size:17px;
-
-    margin:0 0 20px;
+    line-height:1.5;
 }
 
 
@@ -345,28 +180,60 @@ button{
 ========================================================= */
 
 .topbar{
-
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
 
-    margin:20px 0 25px;
+    gap:20px;
+
+    margin:20px 0 10px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:22px;
 
     font-weight:bold;
-
-    font-size:17px;
 }
 
 .round{
-
-    color:#666;
+    color:#555;
 }
 
 .score{
+    color:#2878df;
+}
 
-    color:#333;
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-container{
+    width:100%;
+
+    height:10px;
+
+    margin:0 auto 30px;
+
+    background:#eaf3ff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+
+    height:100%;
+
+    background:#2878df;
+
+    border-radius:20px;
+
+    transition:width .3s ease;
 }
 
 
@@ -375,81 +242,129 @@ button{
 ========================================================= */
 
 .question-title{
+    margin:25px 0 20px;
 
-    font-size:24px;
+    font-family:"Kalam", cursive;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#222;
+}
+
+
+/* =========================================================
+   SCRAMBLE BOX
+========================================================= */
+
+.scramble-box{
+    position:relative;
+
+    max-width:700px;
+
+    margin:20px auto 15px;
+
+    padding:28px 20px;
+
+    background:#f8fbff;
+
+    border:2px solid #d9e6f2;
+
+    border-radius:18px;
+}
+
+
+/* =========================================================
+   SCRAMBLED WORD LABEL
+========================================================= */
+
+.scramble-label{
+    margin-bottom:12px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:21px;
 
     font-weight:bold;
 
-    color:#333;
-
-    margin:25px 0 20px;
+    color:#777;
 }
 
 
 /* =========================================================
    SCRAMBLED WORD
+   CALIBRI
 ========================================================= */
 
-.scramble-box{
-
-    margin:20px auto 25px;
-
-    padding:25px 20px;
-
-    max-width:650px;
-
-    background:#f5f8fc;
-
-    border:2px solid #e1e8ee;
-
-    border-radius:16px;
-}
-
-.scramble-label{
-
-    font-size:15px;
-
-    color:#777;
-
-    margin-bottom:12px;
-}
-
 .scrambled-word{
+    font-family:Calibri, Arial, sans-serif;
 
-    font-size:30px;
+    font-size:42px;
 
     font-weight:bold;
 
     letter-spacing:4px;
 
-    color:#2c3e50;
+    color:#2878df;
 
     word-break:break-word;
+
+    line-height:1.3;
 }
 
 
 /* =========================================================
-   INPUT
+   ENGLISH HINT
+========================================================= */
+
+.hint{
+    max-width:700px;
+
+    margin:0 auto 25px;
+
+    padding:12px 18px;
+
+    background:#eaf3ff;
+
+    border:1px solid #c4daf6;
+
+    border-radius:12px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:22px;
+
+    color:#555;
+}
+
+.hint strong{
+    color:#2878df;
+}
+
+
+/* =========================================================
+   ANSWER AREA
 ========================================================= */
 
 .answer-area{
-
-    max-width:550px;
+    max-width:600px;
 
     margin:0 auto;
 }
 
 .answer-input{
-
     width:100%;
 
     padding:16px 18px;
 
-    font-size:21px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:29px;
 
     text-align:center;
 
-    border:2px solid #d5dce3;
+    border:2px solid #d9e6f2;
 
     border-radius:12px;
 
@@ -459,16 +374,14 @@ button{
 }
 
 .answer-input:focus{
-
-    border-color:#4779b8;
+    border-color:#2878df;
 
     box-shadow:
-        0 0 0 3px rgba(71,121,184,.12);
+        0 0 0 3px rgba(40,120,223,.12);
 }
 
 .answer-input:disabled{
-
-    background:#f3f3f3;
+    background:#f4f6f8;
 
     color:#555;
 
@@ -477,11 +390,57 @@ button{
 
 
 /* =========================================================
-   CHECK BUTTON AREA
+   BUTTONS
+========================================================= */
+
+button{
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.check-btn,
+.next-btn,
+.play-again-btn{
+    padding:13px 30px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-size:24px;
+}
+
+.check-btn:hover,
+.next-btn:hover,
+.play-again-btn:hover{
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+}
+
+.check-btn:disabled{
+    opacity:.65;
+
+    cursor:default;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   CHECK AREA
 ========================================================= */
 
 .check-area{
-
     margin-top:18px;
 }
 
@@ -491,25 +450,35 @@ button{
 ========================================================= */
 
 #result{
-
     min-height:55px;
 
     margin-top:22px;
 
-    font-size:20px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:28px;
 
     font-weight:bold;
 
     line-height:1.5;
 }
 
-.answer{
+.result-correct{
+    color:#2878df;
+}
 
+.result-wrong{
+    color:#d9536f;
+}
+
+.answer{
     margin-top:6px;
 
-    font-size:17px;
+    font-size:25px;
 
     font-weight:normal;
+
+    color:#444;
 }
 
 
@@ -518,50 +487,47 @@ button{
 ========================================================= */
 
 .explanation{
+    max-width:700px;
 
     margin:20px auto 0;
 
-    padding:16px 20px;
+    padding:17px 20px;
 
-    max-width:650px;
+    background:#eaf3ff;
 
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
+    border-left:5px solid #2878df;
 
     border-radius:12px;
 
-    color:#3d5066;
+    font-family:Calibri, Arial, sans-serif;
 
-    font-size:16px;
+    font-size:23px;
 
     line-height:1.6;
+
+    color:#3d5066;
 
     text-align:left;
 }
 
 .explanation strong{
-
-    color:#4779b8;
+    color:#2878df;
 }
 
 .hidden{
-
     display:none;
 }
 
 
 /* =========================================================
-   NEXT AREA
+   NEXT
 ========================================================= */
 
 .next-area{
-
-    margin-top:20px;
+    margin-top:22px;
 }
 
 #nextBtn{
-
     display:none;
 }
 
@@ -571,57 +537,59 @@ button{
 ========================================================= */
 
 #finalScreen{
-
     display:none;
 
     padding:20px 10px;
 }
 
 .final-icon{
-
-    font-size:65px;
+    font-size:70px;
 
     margin-bottom:10px;
 }
 
 #finalScreen h1{
-
-    color:#2c3e50;
-
-    font-size:34px;
-
     margin:10px 0 20px;
+
+    font-family:"Kalam", cursive;
+
+    font-size:48px;
+
+    color:#2878df;
 }
 
 .final-score{
+    margin:15px 0;
 
-    font-size:26px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:34px;
 
     font-weight:bold;
-
-    margin:15px 0;
 }
 
 .final-percent{
+    margin:10px 0;
 
-    font-size:20px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:30px;
 
     color:#555;
-
-    margin:10px 0;
 }
 
 .final-message{
+    margin:20px 0 25px;
 
-    font-size:20px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
     color:#555;
 
     line-height:1.5;
-
-    margin:20px 0 25px;
 }
 
 
@@ -632,89 +600,80 @@ button{
 @media(max-width:600px){
 
     body{
-
         padding:15px;
     }
 
     .game-box{
-
         padding:30px 20px;
 
         border-radius:20px;
     }
 
-    #introScreen h1,
-    #gameScreen h1{
-
-        font-size:28px;
+    #gameScreen h1,
+    #finalScreen h1{
+        font-size:40px;
     }
 
-    .game-icon{
-
-        font-size:58px;
-    }
-
-    .intro-description{
-
-        font-size:16px;
-    }
-
-    .how-to-play{
-
-        padding:18px;
-    }
-
-    .how-to-play p{
-
-        font-size:15px;
-    }
-
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .game-info div{
-
-        width:100%;
+    .instruction{
+        font-size:23px;
     }
 
     .topbar{
-
-        font-size:15px;
+        font-size:20px;
     }
 
     .question-title{
+        font-size:31px;
 
-        font-size:21px;
+        line-height:1.4;
+    }
 
-        line-height:1.5;
+    .scramble-box{
+        padding:24px 15px;
     }
 
     .scrambled-word{
+        font-family:Calibri, Arial, sans-serif;
 
-        font-size:24px;
+        font-size:35px;
 
         letter-spacing:3px;
     }
 
-    .answer-input{
+    .scramble-label{
+        font-size:20px;
+    }
 
-        font-size:19px;
+    .hint{
+        font-size:21px;
+
+        padding:11px 15px;
+    }
+
+    .answer-input{
+        font-size:27px;
 
         padding:14px;
     }
 
-    #result{
+    .check-btn,
+    .next-btn,
+    .play-again-btn{
+        font-size:22px;
 
-        font-size:18px;
+        padding:12px 24px;
+    }
+
+    #result{
+        font-size:26px;
+    }
+
+    .answer{
+        font-size:23px;
     }
 
     .explanation{
-
-        font-size:15px;
+        font-size:22px;
 
         padding:15px;
     }
@@ -729,35 +688,56 @@ button{
 @media(max-width:400px){
 
     .game-box{
-
         padding:25px 15px;
     }
 
     .back-btn{
-
-        font-size:14px;
+        font-size:19px;
 
         padding:9px 14px;
     }
 
-    #introScreen h1,
-    #gameScreen h1{
+    #gameScreen h1,
+    #finalScreen h1{
+        font-size:36px;
+    }
 
-        font-size:25px;
+    .topbar{
+        font-size:19px;
     }
 
     .question-title{
-
-        font-size:20px;
+        font-size:29px;
     }
 
     .scrambled-word{
+        font-family:Calibri, Arial, sans-serif;
 
-        font-size:21px;
+        font-size:31px;
 
         letter-spacing:2px;
     }
 
+    .hint{
+        font-size:20px;
+    }
+
+    .option{
+        font-size:25px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible{
+    outline:3px solid #c4daf6;
+
+    outline-offset:2px;
 }
 
 </style>
@@ -769,7 +749,7 @@ button{
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -788,61 +768,21 @@ button{
 
 
 <!-- =========================================================
-     INTRO SCREEN
-========================================================= -->
-
-<div id="introScreen">
-
-    <div class="game-icon">
-        🔤
-    </div>
-
-    <h1>
-        Word Scramble
-    </h1>
-
-    <p class="intro-description">
-
-        Unscramble the letters to make the
-        correct Vietnamese word.
-
-    </p>
-
-
-    <div class="how-to-play">
-
-        <h2>🎮 How to Play</h2>
-
-        <p>
-            Rearrange the Vietnamese letters to make the correct word
-        </p>
-
-    </div>
-
-    <button
-        id="startBtn"
-        onclick="startGame()"
-    >
-        Start Game →
-    </button>
-
-</div>
-
-
-<!-- =========================================================
      GAME SCREEN
 ========================================================= -->
 
 <div id="gameScreen">
 
     <h1>
-        🔤 Word Scramble
+        Word Scramble
     </h1>
 
     <p class="instruction">
         Unscramble the letters and type the Vietnamese word.
     </p>
 
+
+    <!-- TOP BAR -->
 
     <div class="topbar">
 
@@ -863,25 +803,40 @@ button{
     </div>
 
 
-    <div class="question-title">
-        What is the correct word?
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
     </div>
 
 
+    <!-- SCRAMBLED WORD -->
+
     <div class="scramble-box">
 
-        <div class="scramble-label">
-            Scrambled word
-        </div>
 
         <div
             class="scrambled-word"
             id="scrambledWord"
-        >
-        </div>
+        ></div>
 
     </div>
 
+
+    <!-- ENGLISH HINT -->
+
+    <div
+        class="hint"
+        id="hint"
+    ></div>
+
+
+    <!-- ANSWER -->
 
     <div class="answer-area">
 
@@ -892,7 +847,9 @@ button{
             placeholder="Type your answer..."
             autocomplete="off"
             spellcheck="false"
+            aria-label="Vietnamese answer"
         >
+
 
         <div class="check-area">
 
@@ -909,16 +866,20 @@ button{
     </div>
 
 
-    <div id="result">
-    </div>
+    <!-- RESULT -->
 
+    <div id="result"></div>
+
+
+    <!-- EXPLANATION -->
 
     <div
         id="explanation"
         class="explanation hidden"
-    >
-    </div>
+    ></div>
 
+
+    <!-- NEXT -->
 
     <div class="next-area">
 
@@ -952,20 +913,17 @@ button{
     <div
         class="final-score"
         id="finalScore"
-    >
-    </div>
+    ></div>
 
     <div
         class="final-percent"
         id="finalPercent"
-    >
-    </div>
+    ></div>
 
     <div
         class="final-message"
         id="finalMessage"
-    >
-    </div>
+    ></div>
 
     <button
         class="play-again-btn"
@@ -984,8 +942,7 @@ button{
 
 /* =========================================================
    GAME DATA
-   37 WORD VOCABULARY
-   SCRAMBLE USES NO TONE MARKS
+   37 FOOD & DRINKS VOCABULARY WORDS
 ========================================================= */
 
 const questions = [
@@ -993,6 +950,7 @@ const questions = [
     {
         word:"cơm",
         scramble:"omc",
+        hint:"Rice",
         explanation:
             "Cơm means rice."
     },
@@ -1000,6 +958,7 @@ const questions = [
     {
         word:"bún",
         scramble:"nub",
+        hint:"Rice noodles",
         explanation:
             "Bún means rice noodles."
     },
@@ -1007,6 +966,7 @@ const questions = [
     {
         word:"mì",
         scramble:"im",
+        hint:"Noodles",
         explanation:
             "Mì means noodles."
     },
@@ -1014,6 +974,7 @@ const questions = [
     {
         word:"bánh mì",
         scramble:"mhin ba",
+        hint:"Bread / Vietnamese sandwich",
         explanation:
             "Bánh mì means bread or Vietnamese sandwich."
     },
@@ -1021,6 +982,7 @@ const questions = [
     {
         word:"bò",
         scramble:"ob",
+        hint:"Beef / Cow",
         explanation:
             "Bò means beef or cow."
     },
@@ -1028,6 +990,7 @@ const questions = [
     {
         word:"gà",
         scramble:"ag",
+        hint:"Chicken",
         explanation:
             "Gà means chicken."
     },
@@ -1035,6 +998,7 @@ const questions = [
     {
         word:"heo",
         scramble:"oeh",
+        hint:"Pork / Pig",
         explanation:
             "Heo means pork or pig."
     },
@@ -1042,6 +1006,7 @@ const questions = [
     {
         word:"cá",
         scramble:"ac",
+        hint:"Fish",
         explanation:
             "Cá means fish."
     },
@@ -1049,6 +1014,7 @@ const questions = [
     {
         word:"trứng",
         scramble:"ngtru",
+        hint:"Egg",
         explanation:
             "Trứng means egg."
     },
@@ -1056,13 +1022,15 @@ const questions = [
     {
         word:"rau",
         scramble:"uar",
+        hint:"Vegetables / Greens",
         explanation:
-            "Rau means vegetables."
+            "Rau means vegetables or greens."
     },
 
     {
         word:"nước lọc",
         scramble:"c onuc loc",
+        hint:"Drinking water",
         explanation:
             "Nước lọc means drinking water."
     },
@@ -1070,6 +1038,7 @@ const questions = [
     {
         word:"sữa",
         scramble:"uas",
+        hint:"Milk",
         explanation:
             "Sữa means milk."
     },
@@ -1077,6 +1046,7 @@ const questions = [
     {
         word:"trà",
         scramble:"atr",
+        hint:"Tea",
         explanation:
             "Trà means tea."
     },
@@ -1084,6 +1054,7 @@ const questions = [
     {
         word:"cà phê",
         scramble:"he ca p",
+        hint:"Coffee",
         explanation:
             "Cà phê means coffee."
     },
@@ -1091,6 +1062,7 @@ const questions = [
     {
         word:"nước cam",
         scramble:"cam nuoc",
+        hint:"Orange juice",
         explanation:
             "Nước cam means orange juice."
     },
@@ -1098,6 +1070,7 @@ const questions = [
     {
         word:"nước chanh",
         scramble:"chanh nuoc",
+        hint:"Lemon / Lime juice",
         explanation:
             "Nước chanh means lemonade or lemon juice."
     },
@@ -1105,6 +1078,7 @@ const questions = [
     {
         word:"chuối",
         scramble:"oichu",
+        hint:"Banana",
         explanation:
             "Chuối means banana."
     },
@@ -1112,6 +1086,7 @@ const questions = [
     {
         word:"dừa",
         scramble:"ưad",
+        hint:"Coconut",
         explanation:
             "Dừa means coconut."
     },
@@ -1119,6 +1094,7 @@ const questions = [
     {
         word:"bơ",
         scramble:"ơb",
+        hint:"Avocado",
         explanation:
             "Bơ means avocado."
     },
@@ -1126,6 +1102,7 @@ const questions = [
     {
         word:"cam",
         scramble:"mca",
+        hint:"Orange",
         explanation:
             "Cam means orange."
     },
@@ -1133,6 +1110,7 @@ const questions = [
     {
         word:"chanh",
         scramble:"hnach",
+        hint:"Lemon / Lime",
         explanation:
             "Chanh means lemon or lime."
     },
@@ -1140,6 +1118,7 @@ const questions = [
     {
         word:"táo",
         scramble:"oat",
+        hint:"Apple",
         explanation:
             "Táo means apple."
     },
@@ -1147,6 +1126,7 @@ const questions = [
     {
         word:"xoài",
         scramble:"aixo",
+        hint:"Mango",
         explanation:
             "Xoài means mango."
     },
@@ -1154,6 +1134,7 @@ const questions = [
     {
         word:"cà chua",
         scramble:"cahu ca",
+        hint:"Tomato",
         explanation:
             "Cà chua means tomato."
     },
@@ -1161,6 +1142,7 @@ const questions = [
     {
         word:"khoai tây",
         scramble:"tay khoai",
+        hint:"Potato",
         explanation:
             "Khoai tây means potato."
     },
@@ -1168,6 +1150,7 @@ const questions = [
     {
         word:"cà rốt",
         scramble:"rot ca",
+        hint:"Carrot",
         explanation:
             "Cà rốt means carrot."
     },
@@ -1175,6 +1158,7 @@ const questions = [
     {
         word:"dưa leo",
         scramble:"leo dua",
+        hint:"Cucumber",
         explanation:
             "Dưa leo means cucumber."
     },
@@ -1182,6 +1166,7 @@ const questions = [
     {
         word:"bắp",
         scramble:"pab",
+        hint:"Corn",
         explanation:
             "Bắp means corn."
     },
@@ -1189,6 +1174,7 @@ const questions = [
     {
         word:"xà lách",
         scramble:"lach xa",
+        hint:"Lettuce",
         explanation:
             "Xà lách means lettuce."
     },
@@ -1196,6 +1182,7 @@ const questions = [
     {
         word:"ngon",
         scramble:"ongn",
+        hint:"Delicious / Tasty",
         explanation:
             "Ngon means delicious or tasty."
     },
@@ -1203,6 +1190,7 @@ const questions = [
     {
         word:"mặn",
         scramble:"nam",
+        hint:"Salty",
         explanation:
             "Mặn means salty."
     },
@@ -1210,6 +1198,7 @@ const questions = [
     {
         word:"cay",
         scramble:"yac",
+        hint:"Spicy",
         explanation:
             "Cay means spicy."
     },
@@ -1217,6 +1206,7 @@ const questions = [
     {
         word:"ngọt",
         scramble:"otng",
+        hint:"Sweet",
         explanation:
             "Ngọt means sweet."
     },
@@ -1224,6 +1214,7 @@ const questions = [
     {
         word:"chua",
         scramble:"uach",
+        hint:"Sour",
         explanation:
             "Chua means sour."
     },
@@ -1231,6 +1222,7 @@ const questions = [
     {
         word:"đắng",
         scramble:"angd",
+        hint:"Bitter",
         explanation:
             "Đắng means bitter."
     },
@@ -1238,6 +1230,7 @@ const questions = [
     {
         word:"nóng",
         scramble:"ognn",
+        hint:"Hot",
         explanation:
             "Nóng means hot."
     },
@@ -1245,6 +1238,7 @@ const questions = [
     {
         word:"lạnh",
         scramble:"hanl",
+        hint:"Cold",
         explanation:
             "Lạnh means cold."
     }
@@ -1253,16 +1247,10 @@ const questions = [
 
 
 /* =========================================================
-   SELECT 20 QUESTIONS
+   GAME SETTINGS
 ========================================================= */
 
 const TOTAL_QUESTIONS = 20;
-
-
-/*
-   Pick 20 words from the 37-word vocabulary list.
-   This keeps the game at exactly 20 questions.
-*/
 
 let gameQuestions = [];
 
@@ -1282,11 +1270,6 @@ let locked = false;
    DOM ELEMENTS
 ========================================================= */
 
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
-
 const gameScreen =
     document.getElementById(
         "gameScreen"
@@ -1300,6 +1283,11 @@ const finalScreen =
 const scrambledWordEl =
     document.getElementById(
         "scrambledWord"
+    );
+
+const hintEl =
+    document.getElementById(
+        "hint"
     );
 
 const answerInput =
@@ -1337,10 +1325,15 @@ const questionNumberEl =
         "questionNumber"
     );
 
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
 
 /* =========================================================
    NORMALIZE ANSWER
-   REMOVE TONE MARKS FOR COMPARISON
+   ACCEPTS ANSWERS WITHOUT TONE MARKS
 ========================================================= */
 
 function normalizeAnswer(text){
@@ -1385,7 +1378,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
         [
@@ -1418,8 +1412,8 @@ function startGame(){
 
 
     /*
-       Shuffle the 37 vocabulary words
-       and use the first 20.
+       Select 20 random words
+       from the 37-word vocabulary list.
     */
 
     gameQuestions =
@@ -1430,14 +1424,11 @@ function startGame(){
         );
 
 
-    introScreen.style.display =
-        "none";
+    gameScreen.style.display =
+        "block";
 
     finalScreen.style.display =
         "none";
-
-    gameScreen.style.display =
-        "block";
 
 
     updateScore();
@@ -1455,6 +1446,24 @@ function updateScore(){
 
     scoreEl.textContent =
         `Score: ${score} / ${TOTAL_QUESTIONS}`;
+
+}
+
+
+/* =========================================================
+   UPDATE PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    const progress =
+        (
+            currentQuestion /
+            TOTAL_QUESTIONS
+        ) * 100;
+
+    progressBar.style.width =
+        `${progress}%`;
 
 }
 
@@ -1480,9 +1489,24 @@ function loadQuestion(){
         } of ${TOTAL_QUESTIONS}`;
 
 
+    updateProgress();
+
+
+    /* SCRAMBLED WORD */
+
     scrambledWordEl.textContent =
         question.scramble;
 
+
+    /* ENGLISH HINT */
+
+    hintEl.innerHTML = `
+        <strong>Hint:</strong>
+        ${question.hint}
+    `;
+
+
+    /* INPUT */
 
     answerInput.value =
         "";
@@ -1491,6 +1515,8 @@ function loadQuestion(){
         false;
 
 
+    /* CHECK BUTTON */
+
     checkBtn.disabled =
         false;
 
@@ -1498,9 +1524,13 @@ function loadQuestion(){
         "inline-block";
 
 
+    /* RESULT */
+
     resultEl.innerHTML =
         "";
 
+
+    /* EXPLANATION */
 
     explanationEl.innerHTML =
         "";
@@ -1510,17 +1540,17 @@ function loadQuestion(){
     );
 
 
+    /* NEXT BUTTON */
+
     nextBtn.style.display =
         "none";
-
 
     nextBtn.textContent =
         "Next Question →";
 
 
     /*
-       Automatically focus the input
-       so the student can type immediately.
+       Focus input automatically.
     */
 
     setTimeout(
@@ -1551,13 +1581,15 @@ function checkAnswer(){
 
 
     /*
-       Do not allow an empty answer.
+       Empty answer is not counted.
     */
 
     if(userAnswer === ""){
 
         resultEl.innerHTML = `
-            ⚠️ Please type an answer.
+            <span style="color:#d9536f;">
+                ⚠️ Please type an answer.
+            </span>
         `;
 
         return;
@@ -1581,7 +1613,7 @@ function checkAnswer(){
 
 
     /*
-       Lock the answer immediately.
+       Lock answer immediately.
     */
 
     answerInput.disabled =
@@ -1607,7 +1639,7 @@ function checkAnswer(){
 
         resultEl.innerHTML = `
 
-            <div>
+            <div class="result-correct">
                 ✅ Correct!
             </div>
 
@@ -1629,7 +1661,7 @@ function checkAnswer(){
 
         resultEl.innerHTML = `
 
-            <div>
+            <div class="result-wrong">
                 ❌ Wrong!
             </div>
 
@@ -1744,6 +1776,10 @@ function finishGame(){
         "block";
 
 
+    progressBar.style.width =
+        "100%";
+
+
     const percentage =
         Math.round(
             score /
@@ -1821,14 +1857,20 @@ function restartGame(){
         "block";
 
 
-    updateScore();
-
     startGame();
 
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+startGame();
 
 </script>
 
 </body>
 
 </html>
+```

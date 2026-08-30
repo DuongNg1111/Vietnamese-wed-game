@@ -33,20 +33,25 @@
 >
 
 
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
 
-/* ==========================================================
-   RESET
-========================================================== */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
     box-sizing:border-box;
 }
-
-
-/* ==========================================================
-   BODY
-========================================================== */
 
 body{
 
@@ -54,263 +59,167 @@ body{
 
     min-height:100vh;
 
-    padding:70px 20px 30px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    padding:25px 20px;
 
     font-family:
-        "Segoe UI",
+        Calibri,
         Arial,
-        Helvetica,
         sans-serif;
 
-    background:
-        linear-gradient(
-            135deg,
-            #eef4ff,
-            #fff8e8
-        );
+    background:#f7faff;
 
     color:#26354a;
 
 }
 
 
-/* ==========================================================
-   SCREEN
-========================================================== */
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
-.screen{
+.back-btn-container{
 
-    display:none;
+    width:min(900px,95vw);
+
+    margin:0 auto 15px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:9px 16px;
+
+    background:white;
+
+    color:#2878df;
+
+    border:2px solid #c4daf6;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+.back-btn:hover{
+
+    background:#eaf3ff;
+
+    border-color:#2878df;
+
+    transform:translateY(-2px);
 
 }
 
 
-.screen.active{
-
-    display:block;
-
-}
-
-
-/* ==========================================================
-   CONTAINER
-========================================================== */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .container{
 
     position:relative;
 
-    width:min(850px,96vw);
+    width:min(900px,95vw);
 
     margin:0 auto;
 
     background:white;
 
-    padding:65px 30px 30px;
+    border-radius:22px;
 
-    border-radius:24px;
+    padding:30px 35px 35px;
 
     box-shadow:
-        0 10px 35px rgba(60,80,110,.15);
+        0 8px 28px rgba(40,120,223,.10);
+
+    overflow:hidden;
 
 }
 
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
+/* =========================================================
+   ACCENT LINE
+========================================================= */
 
-.lobby-btn{
+.container::before{
+
+    content:"";
 
     position:absolute;
 
-    top:20px;
+    top:0;
 
-    left:22px;
+    left:0;
 
-    padding:9px 15px;
+    width:100%;
 
-    border:2px solid #dce6f3;
+    height:6px;
 
-    border-radius:10px;
-
-    background:white;
-
-    color:#4779b8;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:.2s;
+    background:#2878df;
 
 }
 
 
-.lobby-btn:hover{
+/* =========================================================
+   GAME
+========================================================= */
 
-    background:#f7faff;
+.game{
 
-    transform:translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
-
-    text-align:center;
-
-    padding:20px 20px 30px;
+    width:100%;
 
 }
 
 
-#intro .emoji{
-
-    font-size:65px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 12px;
-
-    font-size:34px;
-
-}
-
-
-#intro p{
-
-    color:#667085;
-
-    font-size:17px;
-
-    line-height:1.6;
-
-}
-
-
-.how-to-play{
-
-    max-width:520px;
-
-    margin:22px auto;
-
-    padding:16px;
-
-    background:#f7f9fc;
-
-    border-radius:14px;
-
-    color:#475467;
-
-    line-height:1.5;
-
-}
-
-
-.start-btn{
-
-    margin-top:10px;
-
-    padding:13px 30px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#3d6ba5;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   GAME TITLE
-========================================================== */
+/* =========================================================
+   TITLE
+========================================================= */
 
 .title{
 
+    margin:5px 0 4px;
+
     text-align:center;
 
-    margin:0 0 6px;
+    font-family:
+        "Kalam",
+        cursive;
 
-    font-size:30px;
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#2878df;
 
 }
 
+.instruction{
 
-.subtitle{
+    margin:0 auto 20px;
 
     text-align:center;
 
     color:#667085;
 
-    margin:0 0 22px;
+    font-size:25px;
 
-    font-size:16px;
-
-}
-
-
-/* ==========================================================
-   GAME BOX
-========================================================== */
-
-.game-box{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:16px;
-
-    border:1px solid #e8edf3;
-
-    text-align:center;
+    line-height:1.4;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    TOP BAR
-========================================================== */
+========================================================= */
 
 .topbar{
 
@@ -320,14 +229,15 @@ body{
 
     align-items:center;
 
-    margin-bottom:15px;
+    gap:15px;
 
-    font-size:15px;
+    margin-bottom:12px;
+
+    font-size:24px;
 
     font-weight:bold;
 
 }
-
 
 .question-count{
 
@@ -335,27 +245,26 @@ body{
 
 }
 
-
 .score{
 
-    color:#4779b8;
+    color:#2878df;
 
-    font-size:18px;
+    font-size:27px;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    PROGRESS
-========================================================== */
+========================================================= */
 
 .progress-wrap{
 
     width:100%;
 
-    height:9px;
+    height:8px;
 
-    background:#edf0f4;
+    background:#eaf3ff;
 
     border-radius:20px;
 
@@ -363,8 +272,9 @@ body{
 
     margin-bottom:20px;
 
-}
+    border:1px solid #d9e6f2;
 
+}
 
 .progress{
 
@@ -372,26 +282,28 @@ body{
 
     height:100%;
 
-    background:#4779b8;
+    background:#2878df;
 
     transition:.3s;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    WEATHER CARD
-========================================================== */
+========================================================= */
 
 .weather-card{
 
-    background:#eef6ff;
+    position:relative;
 
-    border:2px dashed #8db2dc;
+    background:#eaf3ff;
+
+    border:2px solid #c4daf6;
 
     border-radius:16px;
 
-    padding:30px 20px;
+    padding:25px 20px;
 
     margin:20px 0;
 
@@ -408,31 +320,64 @@ body{
 }
 
 
+/* =========================================================
+   WEATHER CARD ACCENT LINE
+========================================================= */
+
+.weather-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-2px;
+
+    left:20px;
+
+    right:20px;
+
+    height:4px;
+
+    background:#2878df;
+
+    border-radius:0 0 5px 5px;
+
+}
+
+
+/* =========================================================
+   WEATHER ICON
+========================================================= */
+
 .weather-icon{
 
-    font-size:88px;
+    font-size:95px;
 
     line-height:1;
 
-    margin-bottom:17px;
+    margin-bottom:15px;
 
 }
 
+
+/* =========================================================
+   WEATHER PROMPT
+========================================================= */
 
 .weather-prompt{
 
-    color:#667085;
+    color:#52657d;
 
-    font-size:16px;
+    font-size:25px;
 
-    font-weight:600;
+    font-weight:bold;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    OPTIONS
-========================================================== */
+========================================================= */
 
 .options{
 
@@ -443,18 +388,23 @@ body{
 
     gap:12px;
 
-    margin-bottom:18px;
+    margin-bottom:15px;
 
 }
 
 
 .option-btn{
 
-    min-height:60px;
+    min-height:62px;
 
-    padding:14px;
+    padding:13px 15px;
 
-    font-size:18px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:28px;
 
     font-weight:bold;
 
@@ -462,7 +412,7 @@ body{
 
     color:#26354a;
 
-    border:2px solid #dce2ea;
+    border:2px solid #d9e6f2;
 
     border-radius:12px;
 
@@ -473,41 +423,54 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(.disabled){
+
+    background:#eaf3ff;
+
+    border-color:#2878df;
+
+    color:#1e5fba;
 
     transform:translateY(-2px);
 
-    border-color:#89a9d6;
-
-    box-shadow:
-        0 4px 12px rgba(60,80,110,.08);
-
 }
 
+
+/* =========================================================
+   CORRECT
+========================================================= */
 
 .option-btn.correct{
 
-    background:#e8f7ed;
+    background:#eaf3ff;
 
-    border-color:#3da35a;
+    border-color:#2878df;
 
-    color:#27783d;
+    color:#1e5fba;
 
 }
 
 
+/* =========================================================
+   WRONG
+========================================================= */
+
 .option-btn.wrong{
 
-    background:#fdecec;
+    background:#fff0f3;
 
-    border-color:#d95353;
+    border-color:#d9536f;
 
-    color:#b63c3c;
+    color:#d9536f;
 
     animation:shake .3s;
 
 }
 
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .option-btn.disabled{
 
@@ -516,40 +479,40 @@ body{
 }
 
 
-/* ==========================================================
+/* =========================================================
    FEEDBACK
-========================================================== */
+========================================================= */
 
 .result-message{
 
-    min-height:32px;
+    min-height:35px;
 
-    margin:8px 0 15px;
+    margin:8px 0 12px;
 
-    font-size:17px;
+    text-align:center;
+
+    font-size:27px;
 
     font-weight:bold;
 
 }
 
-
 .correct-text{
 
-    color:#2d9b57;
+    color:#2878df;
 
 }
-
 
 .wrong-text{
 
-    color:#d95353;
+    color:#d9536f;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT BUTTON
-========================================================== */
+========================================================= */
 
 .next-btn{
 
@@ -557,17 +520,22 @@ body{
 
     margin:0 auto;
 
-    padding:12px 28px;
+    padding:11px 27px;
 
     border:none;
 
     border-radius:11px;
 
-    background:#4779b8;
+    background:#2878df;
 
     color:white;
 
-    font-size:16px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
 
     font-weight:bold;
 
@@ -580,51 +548,61 @@ body{
 
 .next-btn:hover{
 
-    background:#3d6ba5;
+    background:#1e5fba;
 
     transform:translateY(-2px);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    FINAL SCREEN
-========================================================== */
+========================================================= */
 
 #final{
 
+    display:none;
+
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:25px 10px 10px;
 
 }
 
 
 .finish-icon{
 
-    font-size:62px;
+    font-size:70px;
+
+    margin-bottom:5px;
 
 }
 
 
 #final h2{
 
-    font-size:34px;
+    margin:5px 0 15px;
 
-    margin:10px 0;
+    font-family:
+        "Kalam",
+        cursive;
 
-    color:#4779b8;
+    font-size:42px;
+
+    color:#2878df;
 
 }
 
 
 .final-score{
 
-    font-size:40px;
+    font-size:48px;
 
-    font-weight:800;
+    font-weight:bold;
 
-    margin:22px 0;
+    color:#2878df;
+
+    margin:20px 0;
 
 }
 
@@ -633,7 +611,7 @@ body{
 
     color:#667085;
 
-    font-size:17px;
+    font-size:26px;
 
     line-height:1.5;
 
@@ -642,9 +620,46 @@ body{
 }
 
 
-/* ==========================================================
+.start-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
+
+    color:white;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#1e5fba;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
    ANIMATION
-========================================================== */
+========================================================= */
 
 @keyframes shake{
 
@@ -669,16 +684,15 @@ body{
 }
 
 
-/* ==========================================================
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
 @media(max-width:600px){
 
     body{
 
-        padding:
-            65px 12px 20px;
+        padding:20px 12px;
 
     }
 
@@ -687,58 +701,44 @@ body{
 
         width:100%;
 
-        padding:
-            60px 17px 22px;
+        padding:25px 17px 25px;
 
-        border-radius:20px;
-
-    }
-
-
-    .lobby-btn{
-
-        top:14px;
-
-        left:14px;
-
-        padding:8px 12px;
-
-        font-size:13px;
+        border-radius:19px;
 
     }
 
 
-    #intro h1{
+    .back-btn{
 
-        font-size:28px;
+        font-size:21px;
 
     }
 
 
     .title{
 
-        font-size:26px;
+        font-size:36px;
 
     }
 
 
-    .subtitle{
+    .instruction{
 
-        font-size:14px;
+        font-size:23px;
 
     }
 
 
     .topbar{
 
-        font-size:13px;
+        font-size:22px;
 
     }
 
 
     .score{
 
-        font-size:16px;
+        font-size:25px;
 
     }
 
@@ -754,7 +754,14 @@ body{
 
     .weather-icon{
 
-        font-size:72px;
+        font-size:80px;
+
+    }
+
+
+    .weather-prompt{
+
+        font-size:23px;
 
     }
 
@@ -768,7 +775,7 @@ body{
 
     .option-btn{
 
-        font-size:16px;
+        font-size:26px;
 
     }
 
@@ -776,6 +783,20 @@ body{
     .next-btn{
 
         width:100%;
+
+    }
+
+
+    #final h2{
+
+        font-size:37px;
+
+    }
+
+
+    .final-score{
+
+        font-size:42px;
 
     }
 
@@ -789,94 +810,40 @@ body{
 <body>
 
 
-<div class="container">
-
-
-<!-- ========================================================
-     BACK TO LOBBY
+<!-- =========================================================
+     BACK
 ========================================================= -->
 
-<a
-    href="../../category.html?category=Describe%20things"
-    class="lobby-btn"
->
-    ← Back
-</a>
+<div class="back-btn-container">
 
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-
-    <div class="emoji">
-
-        🌤️
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Weather Challenge
-
-    </h1>
-
-
-    <p>
-
-        Look at the picture and choose
-        the correct Vietnamese weather word.
-
-    </p>
-
-
-    <div class="how-to-play">
-
-        💡 <b>How to play:</b><br>
-
-        Look at the weather picture and
-        choose the correct Vietnamese word.
-
-    </div>
-
-
-    <p>
-
-        🎯 20 questions
-
-    </p>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
+    <a
+        href="../../category.html?category=Describe%20things"
+        class="back-btn"
     >
-
-        Start Game
-
-    </button>
-
+        ← Back
+    </a>
 
 </div>
 
 
+<!-- =========================================================
+     MAIN CONTAINER
+========================================================= -->
 
-<!-- ========================================================
-     GAME
+<div class="container">
+
+
+<!-- =========================================================
+     GAME SCREEN
 ========================================================= -->
 
 <div
     id="game"
-    class="screen"
+    class="game"
 >
 
+
+    <!-- TITLE -->
 
     <h1 class="title">
 
@@ -885,144 +852,124 @@ body{
     </h1>
 
 
-    <p class="subtitle">
+    <!-- SHORT INSTRUCTION -->
 
-        Choose the correct Vietnamese weather word.
+    <p class="instruction">
+
+        Look at the picture and choose the correct Vietnamese word.
 
     </p>
 
 
+    <!-- TOP BAR -->
 
-    <div class="game-box">
-
-
-        <!-- TOP BAR -->
-
-        <div class="topbar">
+    <div class="topbar">
 
 
-            <div class="question-count">
+        <div class="question-count">
 
-                Question
+            Question
 
-                <span id="questionNumber">
+            <span id="questionNumber">
+                1
+            </span>
 
-                    1
+            /
 
-                </span>
-
-                /
-
-                <span id="totalQuestions">
-
-                    20
-
-                </span>
-
-            </div>
-
-
-            <div class="score">
-
-                ⭐ Score:
-
-                <span id="score">
-
-                    0
-
-                </span>
-
-            </div>
-
+            <span id="totalQuestions">
+                20
+            </span>
 
         </div>
 
 
+        <div class="score">
 
-        <!-- PROGRESS -->
+            Score:
 
-        <div class="progress-wrap">
-
-            <div
-                class="progress"
-                id="progress"
-            ></div>
+            <span id="score">
+                0
+            </span>
 
         </div>
-
-
-
-        <!-- WEATHER -->
-
-        <div class="weather-card">
-
-
-            <div
-                class="weather-icon"
-                id="weatherIcon"
-            >
-
-                ☀️
-
-            </div>
-
-
-            <div class="weather-prompt">
-
-                What is the weather?
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- OPTIONS -->
-
-        <div
-            class="options"
-            id="optionsContainer"
-        ></div>
-
-
-
-        <!-- FEEDBACK -->
-
-        <div
-            class="result-message"
-            id="resultText"
-        ></div>
-
-
-
-        <!-- NEXT -->
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-        >
-
-            Next →
-
-        </button>
 
 
     </div>
 
 
+    <!-- PROGRESS -->
+
+    <div class="progress-wrap">
+
+        <div
+            class="progress"
+            id="progress"
+        ></div>
+
+    </div>
+
+
+    <!-- WEATHER -->
+
+    <div class="weather-card">
+
+
+        <div
+            class="weather-icon"
+            id="weatherIcon"
+        >
+            ☀️
+        </div>
+
+
+        <div class="weather-prompt">
+
+            What is the weather?
+
+        </div>
+
+
+    </div>
+
+
+    <!-- OPTIONS -->
+
+    <div
+        class="options"
+        id="optionsContainer"
+    ></div>
+
+
+    <!-- FEEDBACK -->
+
+    <div
+        class="result-message"
+        id="resultText"
+    ></div>
+
+
+    <!-- NEXT -->
+
+    <button
+        class="next-btn"
+        id="nextBtn"
+        onclick="nextQuestion()"
+    >
+
+        Next →
+
+    </button>
+
+
 </div>
 
 
-
-<!-- ========================================================
-     FINAL
+<!-- =========================================================
+     FINAL SCREEN
 ========================================================= -->
 
 <div
     id="final"
-    class="screen"
 >
 
 
@@ -1080,12 +1027,11 @@ body{
 </div>
 
 
-
 <script>
 
-/* ==========================================================
+/* =========================================================
    WEATHER VOCABULARY
-========================================================== */
+========================================================= */
 
 const weatherVocab = [
 
@@ -1101,9 +1047,9 @@ const weatherVocab = [
 ];
 
 
-/* ==========================================================
+/* =========================================================
    QUESTION DATABASE
-========================================================== */
+========================================================= */
 
 const database = [
 
@@ -1210,9 +1156,9 @@ const database = [
 ];
 
 
-/* ==========================================================
+/* =========================================================
    STATE
-========================================================== */
+========================================================= */
 
 let questions = [];
 
@@ -1223,9 +1169,9 @@ let score = 0;
 let answered = false;
 
 
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
 function shuffle(array){
 
@@ -1264,9 +1210,9 @@ function shuffle(array){
 }
 
 
-/* ==========================================================
+/* =========================================================
    CREATE OPTIONS
-========================================================== */
+========================================================= */
 
 function createOptions(correctWord){
 
@@ -1290,9 +1236,9 @@ function createOptions(correctWord){
 }
 
 
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
 function startGame(){
 
@@ -1308,23 +1254,9 @@ function startGame(){
 
 
     document
-        .getElementById("intro")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
-
-
-    document
         .getElementById("score")
-        .textContent = "0";
+        .textContent =
+        "0";
 
 
     document
@@ -1333,14 +1265,26 @@ function startGame(){
         questions.length;
 
 
+    document
+        .getElementById("game")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("final")
+        .style.display =
+        "none";
+
+
     loadQuestion();
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
 function loadQuestion(){
 
@@ -1386,7 +1330,9 @@ function loadQuestion(){
         );
 
 
-    resultText.textContent = "";
+    resultText.textContent =
+        "";
+
 
     resultText.className =
         "result-message";
@@ -1418,7 +1364,8 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     const options =
@@ -1427,47 +1374,50 @@ function loadQuestion(){
         );
 
 
-    options.forEach(option => {
+    options.forEach(
+        option => {
 
-        const button =
-            document.createElement(
-                "button"
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "option-btn";
+
+
+            button.textContent =
+                option;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    handleAnswer(
+                        button,
+                        option
+                    );
+
+                }
             );
 
 
-        button.className =
-            "option-btn";
+            container.appendChild(
+                button
+            );
 
-
-        button.textContent =
-            option;
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                handleAnswer(
-                    button,
-                    option
-                );
-
-            }
-        );
-
-
-        container.appendChild(
-            button
-        );
-
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
 function handleAnswer(
     button,
@@ -1494,16 +1444,18 @@ function handleAnswer(
         );
 
 
-    allButtons.forEach(btn => {
+    allButtons.forEach(
+        btn => {
 
-        btn.classList.add(
-            "disabled"
-        );
+            btn.classList.add(
+                "disabled"
+            );
 
-    });
+        }
+    );
 
 
-    /* ======================================================
+    /* =====================================================
        CORRECT
     ====================================================== */
 
@@ -1537,12 +1489,12 @@ function handleAnswer(
 
 
         resultText.textContent =
-            "🎉 Correct!";
+            "✓ Correct!";
 
     }
 
 
-    /* ======================================================
+    /* =====================================================
        WRONG
     ====================================================== */
 
@@ -1565,26 +1517,48 @@ function handleAnswer(
 
         resultText.textContent =
 
-            `❌ Incorrect. The answer is "${question.word}".`;
+            `✗ Incorrect. The answer is "${question.word}".`;
+
+
+        /*
+           Highlight correct answer.
+        */
+
+        allButtons.forEach(
+            optionButton => {
+
+                if(
+                    optionButton.textContent ===
+                    question.word
+                ){
+
+                    optionButton.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
 
     }
 
 
-    /* ======================================================
+    /* =====================================================
        SHOW NEXT
     ====================================================== */
 
     document
         .getElementById("nextBtn")
         .style.display =
-        "inline-block";
+        "block";
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
 function nextQuestion(){
 
@@ -1609,30 +1583,28 @@ function nextQuestion(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    FINISH GAME
-========================================================== */
+========================================================= */
 
 function finishGame(){
-
-    document
-        .getElementById("game")
-        .classList.remove(
-            "active"
-        );
-
-
-    document
-        .getElementById("final")
-        .classList.add(
-            "active"
-        );
-
 
     document
         .getElementById("progress")
         .style.width =
         "100%";
+
+
+    document
+        .getElementById("game")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("final")
+        .style.display =
+        "block";
 
 
     document
@@ -1692,25 +1664,11 @@ function finishGame(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESTART
-========================================================== */
+========================================================= */
 
 function restartGame(){
-
-    document
-        .getElementById("final")
-        .classList.remove(
-            "active"
-        );
-
-
-    document
-        .getElementById("intro")
-        .classList.add(
-            "active"
-        );
-
 
     currentQuestion = 0;
 
@@ -1718,7 +1676,29 @@ function restartGame(){
 
     answered = false;
 
+
+    document
+        .getElementById("final")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("game")
+        .style.display =
+        "block";
+
+
+    startGame();
+
 }
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+startGame();
 
 </script>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +28,10 @@
     content="🎯"
 >
 
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
 <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -34,36 +39,41 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.googleapis.com"
+    href="https://fonts.gstatic.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
 
 <style>
 
-/* ==========================================================
+/* =========================================================
    DESIGN TOKENS
-========================================================== */
+========================================================= */
 
 :root {
 
+    /* Page */
     --paper:
         #f5f9fd;
 
     --white:
         #ffffff;
 
+
+    /* Text */
     --ink:
         #143a6b;
 
     --ink-soft:
         #66809d;
 
+
+    /* Activities Category Accent */
     --accent:
         #2878df;
 
@@ -73,27 +83,49 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-bg:
+        #f4f8ff;
+
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
 
-    --green-light:
-        #eaf8f0;
+    /* General Border */
+    --border:
+        #d9e6f2;
 
-    --red:
-        #e05252;
 
-    --red-light:
-        #fff0f0;
+    /* Correct */
+    --correct:
+        #2878df;
+
+    --correct-light:
+        #eaf3ff;
+
+
+    /* Wrong */
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+
+    /* Shadow */
+    --shadow:
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESET
-========================================================== */
+========================================================= */
 
 * {
 
@@ -109,9 +141,9 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    BODY
-========================================================== */
+========================================================= */
 
 body {
 
@@ -122,7 +154,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -143,15 +175,15 @@ body {
 }
 
 
-/* ==========================================================
-   PAGE
-========================================================== */
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
 
 .page {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -161,9 +193,9 @@ body {
 }
 
 
-/* ==========================================================
-   BACK TO CATEGORY
-========================================================== */
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
 .back-btn-container {
 
@@ -199,7 +231,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.95
         );
 
     color:
@@ -209,7 +241,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.05rem;
 
     font-weight:
         700;
@@ -220,11 +252,14 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 
 }
 
@@ -246,25 +281,26 @@ body {
 }
 
 
-/* ==========================================================
-   GAME CARD
-========================================================== */
+/* =========================================================
+   MAIN CARD
+========================================================= */
 
 .card {
+
+    position:
+        relative;
 
     width:
         100%;
 
     padding:
-        38px;
+        42px;
+
+    overflow:
+        hidden;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        var(--white);
 
     border:
         1px solid
@@ -275,12 +311,7 @@ body {
 
     box-shadow:
         0 18px 50px
-        rgba(
-            20,
-            58,
-            107,
-            0.10
-        );
+        var(--shadow);
 
     text-align:
         center;
@@ -288,17 +319,51 @@ body {
 }
 
 
-/* ==========================================================
-   HEADER
-========================================================== */
+/* =========================================================
+   HEADER ACCENT LINE
+========================================================= */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #72adf5
+        );
+
+}
+
+
+/* =========================================================
+   GAME ICON
+========================================================= */
 
 .game-icon {
 
     width:
-        58px;
+        62px;
 
     height:
-        58px;
+        62px;
 
     display:
         flex;
@@ -310,23 +375,27 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        2px auto 16px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
-        16px;
+        17px;
 
     background:
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.2rem;
 
 }
 
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 h1 {
 
@@ -336,31 +405,39 @@ h1 {
     color:
         var(--ink);
 
+    font-family:
+        "Kalam",
+        cursive;
+
     font-size:
-        1.9rem;
+        2.55rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
-        1.25;
+        1.2;
 
 }
 
 
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
 .subtitle {
 
     max-width:
-        520px;
+        600px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.9rem;
+        1.12rem;
 
     line-height:
         1.55;
@@ -368,9 +445,9 @@ h1 {
 }
 
 
-/* ==========================================================
-   QUESTION
-========================================================== */
+/* =========================================================
+   QUESTION NUMBER
+========================================================= */
 
 .question-number {
 
@@ -381,13 +458,13 @@ h1 {
         var(--accent);
 
     font-size:
-        0.78rem;
+        0.98rem;
 
     font-weight:
         800;
 
     letter-spacing:
-        0.05em;
+        0.08em;
 
     text-transform:
         uppercase;
@@ -395,16 +472,20 @@ h1 {
 }
 
 
+/* =========================================================
+   CHOOSE TEXT
+========================================================= */
+
 .choose-text {
 
     margin-bottom:
-        8px;
+        10px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.08rem;
 
     font-weight:
         600;
@@ -412,10 +493,14 @@ h1 {
 }
 
 
+/* =========================================================
+   QUESTION BOX
+========================================================= */
+
 .question {
 
     min-height:
-        72px;
+        82px;
 
     display:
         flex;
@@ -426,18 +511,18 @@ h1 {
     justify-content:
         center;
 
-    margin-bottom:
-        28px;
+    margin:
+        0 auto 28px;
 
     padding:
-        18px 22px;
+        18px 24px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
-        16px;
+        18px;
 
     background:
         var(--accent-light);
@@ -446,7 +531,7 @@ h1 {
         var(--ink);
 
     font-size:
-        1.45rem;
+        1.7rem;
 
     font-weight:
         800;
@@ -457,9 +542,9 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    ANSWERS
-========================================================== */
+========================================================= */
 
 .answers {
 
@@ -478,16 +563,23 @@ h1 {
     gap:
         14px;
 
-    margin-bottom:
-        24px;
+    max-width:
+        720px;
+
+    margin:
+        0 auto 24px;
 
 }
 
 
+/* =========================================================
+   ANSWER BUTTON
+========================================================= */
+
 .answer-btn {
 
     min-height:
-        64px;
+        70px;
 
     padding:
         14px 18px;
@@ -497,10 +589,10 @@ h1 {
         var(--border);
 
     border-radius:
-        15px;
+        16px;
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--ink);
@@ -509,13 +601,25 @@ h1 {
         inherit;
 
     font-size:
-        1rem;
+        1.18rem;
 
     font-weight:
         700;
 
+    line-height:
+        1.35;
+
     cursor:
         pointer;
+
+    box-shadow:
+        0 5px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.05
+        );
 
     transition:
         transform 0.2s ease,
@@ -526,27 +630,30 @@ h1 {
 }
 
 
-.answer-btn:hover:not(.disabled) {
+.answer-btn:hover:not(:disabled) {
 
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     border-color:
         var(--accent);
 
+    background:
+        var(--accent-light);
+
     box-shadow:
-        0 7px 18px
+        0 9px 20px
         rgba(
             20,
             58,
             107,
-            0.10
+            0.09
         );
 
 }
 
 
-.answer-btn.disabled {
+.answer-btn:disabled {
 
     cursor:
         default;
@@ -554,37 +661,45 @@ h1 {
 }
 
 
+/* =========================================================
+   CORRECT ANSWER
+========================================================= */
+
 .answer-btn.correct-answer {
 
     border-color:
-        var(--green);
+        var(--correct) !important;
 
     background:
-        var(--green-light);
+        var(--correct-light) !important;
 
     color:
-        var(--green);
+        var(--correct) !important;
 
 }
 
+
+/* =========================================================
+   WRONG ANSWER
+========================================================= */
 
 .answer-btn.wrong-answer {
 
     border-color:
-        var(--red);
+        var(--wrong) !important;
 
     background:
-        var(--red-light);
+        var(--wrong-light) !important;
 
     color:
-        var(--red);
+        var(--wrong) !important;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    FEEDBACK
-========================================================== */
+========================================================= */
 
 .message {
 
@@ -595,7 +710,7 @@ h1 {
         18px;
 
     font-size:
-        0.95rem;
+        1.12rem;
 
     font-weight:
         800;
@@ -606,7 +721,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -614,22 +729,22 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    ACTION BUTTON
-========================================================== */
+========================================================= */
 
 .action-btn {
 
     min-width:
-        170px;
+        175px;
 
     padding:
-        12px 22px;
+        12px 24px;
 
     border:
         none;
@@ -641,13 +756,13 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
     font-family:
         inherit;
 
     font-size:
-        0.86rem;
+        1.05rem;
 
     font-weight:
         800;
@@ -663,7 +778,7 @@ h1 {
             0,
             0.12
         ),
-        0 5px 12px
+        0 6px 14px
         rgba(
             40,
             120,
@@ -672,7 +787,9 @@ h1 {
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -685,6 +802,22 @@ h1 {
     transform:
         translateY(-2px);
 
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 9px 18px
+        rgba(
+            40,
+            120,
+            223,
+            0.22
+        );
+
 }
 
 
@@ -696,17 +829,17 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESULT SCREEN
-========================================================== */
+========================================================= */
 
 .result-icon {
 
     width:
-        64px;
+        68px;
 
     height:
-        64px;
+        68px;
 
     display:
         flex;
@@ -718,11 +851,11 @@ h1 {
         center;
 
     margin:
-        0 auto 18px;
+        2px auto 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -731,7 +864,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.4rem;
 
 }
 
@@ -739,7 +872,7 @@ h1 {
 .result-title {
 
     margin-bottom:
-        10px;
+        8px;
 
 }
 
@@ -747,16 +880,19 @@ h1 {
 .score {
 
     margin:
-        20px 0 8px;
+        18px 0 8px;
 
     color:
         var(--accent);
 
     font-size:
-        2.6rem;
+        3rem;
 
     font-weight:
         800;
+
+    line-height:
+        1.1;
 
 }
 
@@ -770,7 +906,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1rem;
+        1.15rem;
 
     font-weight:
         600;
@@ -778,9 +914,9 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    HIDDEN
-========================================================== */
+========================================================= */
 
 .hidden {
 
@@ -790,12 +926,33 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    margin-top:
+        18px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
 @media (
-    max-width: 600px
+    max-width: 700px
 ) {
 
     body {
@@ -806,10 +963,18 @@ h1 {
     }
 
 
+    .page {
+
+        width:
+            100%;
+
+    }
+
+
     .card {
 
         padding:
-            28px 20px;
+            32px 20px;
 
         border-radius:
             20px;
@@ -820,7 +985,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.15rem;
 
     }
 
@@ -828,21 +993,24 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1rem;
 
         margin-bottom:
-            25px;
+            27px;
 
     }
 
 
     .question {
 
-        font-size:
-            1.2rem;
-
         min-height:
-            64px;
+            68px;
+
+        padding:
+            16px 18px;
+
+        font-size:
+            1.45rem;
 
         margin-bottom:
             22px;
@@ -864,28 +1032,52 @@ h1 {
     .answer-btn {
 
         min-height:
-            58px;
+            62px;
 
         font-size:
-            0.95rem;
+            1.1rem;
+
+    }
+
+
+    .score {
+
+        font-size:
+            2.65rem;
 
     }
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    VERY SMALL SCREENS
-========================================================== */
+========================================================= */
 
 @media (
     max-width: 380px
 ) {
 
+    body {
+
+        padding:
+            14px 10px 28px;
+
+    }
+
+
     .card {
 
         padding:
-            24px 16px;
+            28px 15px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.9rem;
 
     }
 
@@ -893,7 +1085,29 @@ h1 {
     .question {
 
         font-size:
-            1.1rem;
+            1.3rem;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            58px;
+
+        padding:
+            12px 13px;
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .back-btn {
+
+        font-size:
+            0.98rem;
 
     }
 
@@ -910,14 +1124,14 @@ h1 {
 <div class="page">
 
 
-    <!-- ======================================================
+    <!-- =====================================================
          BACK TO CATEGORY
-    ======================================================= -->
+    ====================================================== -->
 
     <div class="back-btn-container">
 
         <a
-            href="../../category.html?category=Activity"
+            href="../../category.html?category=Activities"
             class="back-btn"
         >
             ← Back
@@ -926,16 +1140,16 @@ h1 {
     </div>
 
 
-    <!-- ======================================================
-         GAME CARD
-    ======================================================= -->
+    <!-- =====================================================
+         MAIN GAME CARD
+    ====================================================== -->
 
     <main class="card">
 
 
-        <!-- ==================================================
+        <!-- =================================================
              HEADER
-        =================================================== -->
+        ================================================== -->
 
         <div
             class="game-icon"
@@ -956,9 +1170,9 @@ h1 {
         </p>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              GAME SCREEN
-        =================================================== -->
+        ================================================== -->
 
         <section id="gameScreen">
 
@@ -1008,9 +1222,9 @@ h1 {
         </section>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              RESULT SCREEN
-        =================================================== -->
+        ================================================== -->
 
         <section
             id="resultScreen"
@@ -1059,346 +1273,205 @@ h1 {
 
     </main>
 
+
+    <div class="footer">
+        Vietnamese Activity Practice
+    </div>
+
+
 </div>
 
 
 <script>
 
-/* ==========================================================
-   VOCABULARY
-   Activity Vocabulary
-========================================================== */
+/* =========================================================
+   ACTIVITIES VOCABULARY
+========================================================= */
 
 const ACTIVITIES = [
 
-    /* ------------------------------------------------------
-       WORK & STUDY
-    ------------------------------------------------------ */
+    /* WORK & STUDY */
 
     {
-        vietnamese:
-            "học bài",
-
-        phonetic:
-            "/hok bai/",
-
-        english:
-            "study"
+        vietnamese: "học bài",
+        phonetic: "/hok bai/",
+        english: "study"
     },
 
     {
-        vietnamese:
-            "làm bài",
-
-        phonetic:
-            "/lam bai/",
-
-        english:
-            "do homework / do exercises"
+        vietnamese: "làm bài",
+        phonetic: "/lam bai/",
+        english: "do homework / do exercises"
     },
 
     {
-        vietnamese:
-            "đi học",
-
-        phonetic:
-            "/dee hok/",
-
-        english:
-            "go to school"
+        vietnamese: "đi học",
+        phonetic: "/dee hok/",
+        english: "go to school"
     },
 
     {
-        vietnamese:
-            "học ngoại ngữ",
-
-        phonetic:
-            "/hok ngwai ngư/",
-
-        english:
-            "learn a foreign language"
+        vietnamese: "học ngoại ngữ",
+        phonetic: "/hok ngwai ngư/",
+        english: "learn a foreign language"
     },
 
     {
-        vietnamese:
-            "làm việc",
-
-        phonetic:
-            "/lam viek/",
-
-        english:
-            "work"
+        vietnamese: "làm việc",
+        phonetic: "/lam viek/",
+        english: "work"
     },
 
     {
-        vietnamese:
-            "đi làm",
-
-        phonetic:
-            "/dee lam/",
-
-        english:
-            "go to work"
+        vietnamese: "đi làm",
+        phonetic: "/dee lam/",
+        english: "go to work"
     },
 
     {
-        vietnamese:
-            "họp",
-
-        phonetic:
-            "/hop/",
-
-        english:
-            "have a meeting"
+        vietnamese: "họp",
+        phonetic: "/hop/",
+        english: "have a meeting"
     },
 
     {
-        vietnamese:
-            "thi",
-
-        phonetic:
-            "/thi/",
-
-        english:
-            "take an exam"
+        vietnamese: "thi",
+        phonetic: "/thi/",
+        english: "take an exam"
     },
 
     {
-        vietnamese:
-            "đi công tác",
-
-        phonetic:
-            "/dee kong tak/",
-
-        english:
-            "go on a business trip"
+        vietnamese: "đi công tác",
+        phonetic: "/dee kong tak/",
+        english: "go on a business trip"
     },
 
 
-    /* ------------------------------------------------------
-       FREE TIME
-    ------------------------------------------------------ */
+    /* FREE TIME */
 
     {
-        vietnamese:
-            "ngủ",
-
-        phonetic:
-            "/ngoo/",
-
-        english:
-            "sleep"
+        vietnamese: "ngủ",
+        phonetic: "/ngoo/",
+        english: "sleep"
     },
 
     {
-        vietnamese:
-            "xem phim",
-
-        phonetic:
-            "/sem fim/",
-
-        english:
-            "watch a movie"
+        vietnamese: "xem phim",
+        phonetic: "/sem fim/",
+        english: "watch a movie"
     },
 
     {
-        vietnamese:
-            "nghe nhạc",
-
-        phonetic:
-            "/nge nyak/",
-
-        english:
-            "listen to music"
+        vietnamese: "nghe nhạc",
+        phonetic: "/nge nyak/",
+        english: "listen to music"
     },
 
     {
-        vietnamese:
-            "đọc sách",
-
-        phonetic:
-            "/dok sak/",
-
-        english:
-            "read books"
+        vietnamese: "đọc sách",
+        phonetic: "/dok sak/",
+        english: "read books"
     },
 
     {
-        vietnamese:
-            "chơi game",
-
-        phonetic:
-            "/choi game/",
-
-        english:
-            "play games"
+        vietnamese: "chơi game",
+        phonetic: "/choi game/",
+        english: "play games"
     },
 
     {
-        vietnamese:
-            "đi chơi",
-
-        phonetic:
-            "/dee choi/",
-
-        english:
-            "hang out / go out"
+        vietnamese: "đi chơi",
+        phonetic: "/dee choi/",
+        english: "hang out / go out"
     },
 
     {
-        vietnamese:
-            "đi dạo",
-
-        phonetic:
-            "/dee zao/",
-
-        english:
-            "go for a walk"
+        vietnamese: "đi dạo",
+        phonetic: "/dee zao/",
+        english: "go for a walk"
     },
 
     {
-        vietnamese:
-            "tập thể dục",
-
-        phonetic:
-            "/tap thay zook/",
-
-        english:
-            "exercise / work out"
+        vietnamese: "tập thể dục",
+        phonetic: "/tap thay zook/",
+        english: "exercise / work out"
     },
 
     {
-        vietnamese:
-            "đi biển",
-
-        phonetic:
-            "/dee bien/",
-
-        english:
-            "go to the beach"
+        vietnamese: "đi biển",
+        phonetic: "/dee bien/",
+        english: "go to the beach"
     },
 
     {
-        vietnamese:
-            "du lịch",
-
-        phonetic:
-            "/zoo lik/",
-
-        english:
-            "travel"
+        vietnamese: "du lịch",
+        phonetic: "/zoo lik/",
+        english: "travel"
     },
 
     {
-        vietnamese:
-            "chụp hình",
-
-        phonetic:
-            "/choop hin/",
-
-        english:
-            "take photos"
+        vietnamese: "chụp hình",
+        phonetic: "/choop hin/",
+        english: "take photos"
     },
 
     {
-        vietnamese:
-            "gặp bạn",
-
-        phonetic:
-            "/gap ban/",
-
-        english:
-            "meet friends"
+        vietnamese: "gặp bạn",
+        phonetic: "/gap ban/",
+        english: "meet friends"
     },
 
 
-    /* ------------------------------------------------------
-       DAILY LIFE
-    ------------------------------------------------------ */
+    /* DAILY LIFE */
 
     {
-        vietnamese:
-            "ăn",
-
-        phonetic:
-            "/an/",
-
-        english:
-            "eat"
+        vietnamese: "ăn",
+        phonetic: "/an/",
+        english: "eat"
     },
 
     {
-        vietnamese:
-            "uống",
-
-        phonetic:
-            "/uong/",
-
-        english:
-            "drink"
+        vietnamese: "uống",
+        phonetic: "/uong/",
+        english: "drink"
     },
 
     {
-        vietnamese:
-            "nấu ăn",
-
-        phonetic:
-            "/nəw an/",
-
-        english:
-            "cook"
+        vietnamese: "nấu ăn",
+        phonetic: "/nəw an/",
+        english: "cook"
     },
 
     {
-        vietnamese:
-            "mua sắm",
-
-        phonetic:
-            "/mua sam/",
-
-        english:
-            "go shopping"
+        vietnamese: "mua sắm",
+        phonetic: "/mua sam/",
+        english: "go shopping"
     },
 
     {
-        vietnamese:
-            "gọi điện",
-
-        phonetic:
-            "/goy dien/",
-
-        english:
-            "make a phone call"
+        vietnamese: "gọi điện",
+        phonetic: "/goy dien/",
+        english: "make a phone call"
     },
 
     {
-        vietnamese:
-            "nhắn tin",
-
-        phonetic:
-            "/nyan tin/",
-
-        english:
-            "text / send messages"
+        vietnamese: "nhắn tin",
+        phonetic: "/nyan tin/",
+        english: "text / send messages"
     },
 
     {
-        vietnamese:
-            "nói chuyện",
-
-        phonetic:
-            "/noy chuyen/",
-
-        english:
-            "talk / chat"
+        vietnamese: "nói chuyện",
+        phonetic: "/noy chuyen/",
+        english: "talk / chat"
     }
 
 ];
 
 
-/* ==========================================================
+/* =========================================================
    GAME SETTINGS
-========================================================== */
+========================================================= */
 
 const TOTAL_QUESTIONS =
     20;
@@ -1407,9 +1480,9 @@ const ANSWERS_PER_QUESTION =
     4;
 
 
-/* ==========================================================
+/* =========================================================
    GAME STATE
-========================================================== */
+========================================================= */
 
 let questions =
     [];
@@ -1424,9 +1497,9 @@ let answered =
     false;
 
 
-/* ==========================================================
+/* =========================================================
    DOM ELEMENTS
-========================================================== */
+========================================================= */
 
 const questionNumber =
     document.getElementById(
@@ -1488,22 +1561,9 @@ const playAgain =
     );
 
 
-/* ==========================================================
-   RANDOM INDEX
-========================================================== */
-
-function randomIndex(max) {
-
-    return Math.floor(
-        Math.random() * max
-    );
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
 function shuffle(array) {
 
@@ -1536,13 +1596,11 @@ function shuffle(array) {
 }
 
 
-/* ==========================================================
+/* =========================================================
    GET WRONG ANSWERS
-========================================================== */
+========================================================= */
 
-function getWrongAnswers(
-    correct
-) {
+function getWrongAnswers(correct) {
 
     const available =
         ACTIVITIES.filter(
@@ -1565,14 +1623,11 @@ function getWrongAnswers(
 }
 
 
-/* ==========================================================
+/* =========================================================
    GENERATE QUESTIONS
-========================================================== */
+========================================================= */
 
 function generateQuestions() {
-
-    questions = [];
-
 
     const shuffledActivities =
         shuffle(
@@ -1582,11 +1637,6 @@ function generateQuestions() {
         );
 
 
-    /*
-     * Use 20 different vocabulary items
-     * in every game.
-     */
-
     const selectedActivities =
         shuffledActivities.slice(
             0,
@@ -1594,47 +1644,46 @@ function generateQuestions() {
         );
 
 
-    selectedActivities.forEach(
-        correct => {
+    questions =
+        selectedActivities.map(
+            correct => {
 
-            const wrongAnswers =
-                getWrongAnswers(
-                    correct
+                const wrongAnswers =
+                    getWrongAnswers(
+                        correct
+                    );
+
+
+                const options = [
+                    correct,
+                    ...wrongAnswers
+                ];
+
+
+                shuffle(
+                    options
                 );
 
 
-            const options = [
+                return {
 
-                correct,
-                ...wrongAnswers
+                    correct:
+                        correct,
 
-            ];
+                    options:
+                        options
 
+                };
 
-            shuffle(
-                options
-            );
-
-
-            questions.push({
-
-                correct:
-                    correct,
-
-                options:
-                    options
-
-            });
-
-        }
-    );
+            }
+        );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
 function startGame() {
 
@@ -1664,9 +1713,9 @@ function startGame() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
 function loadQuestion() {
 
@@ -1677,10 +1726,12 @@ function loadQuestion() {
     message.textContent =
         "";
 
-
     message.className =
         "message";
 
+
+    nextBtn.textContent =
+        "";
 
     nextBtn.classList.add(
         "hidden"
@@ -1737,6 +1788,12 @@ function loadQuestion() {
                 );
 
 
+            button.setAttribute(
+                "aria-label",
+                option.vietnamese
+            );
+
+
             button.addEventListener(
                 "click",
                 () =>
@@ -1756,13 +1813,16 @@ function loadQuestion() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
-function handleAnswer(
-    selected
-) {
+function handleAnswer(selected) {
+
+    /*
+     * One answer only.
+     * No retry.
+     */
 
     if (
         answered
@@ -1783,16 +1843,23 @@ function handleAnswer(
         );
 
 
+    /*
+     * Lock all answer buttons.
+     */
+
     buttons.forEach(
         button => {
 
-            button.classList.add(
-                "disabled"
-            );
+            button.disabled =
+                true;
 
         }
     );
 
+
+    /*
+     * Find correct answer.
+     */
 
     const correctButton =
         [
@@ -1803,6 +1870,10 @@ function handleAnswer(
                 "true"
         );
 
+
+    /*
+     * Correct.
+     */
 
     if (
         selected.dataset.correct ===
@@ -1827,6 +1898,11 @@ function handleAnswer(
 
     }
 
+
+    /*
+     * Wrong.
+     */
+
     else {
 
         selected.classList.add(
@@ -1842,7 +1918,7 @@ function handleAnswer(
         message.textContent =
             "✕ Wrong!";
 
-        
+
         message.classList.add(
             "wrong-text"
         );
@@ -1850,10 +1926,18 @@ function handleAnswer(
     }
 
 
+    /*
+     * Show next button.
+     */
+
     nextBtn.classList.remove(
         "hidden"
     );
 
+
+    /*
+     * Last question.
+     */
 
     if (
         currentQuestion ===
@@ -1875,9 +1959,9 @@ function handleAnswer(
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
 nextBtn.addEventListener(
     "click",
@@ -1905,9 +1989,9 @@ nextBtn.addEventListener(
 );
 
 
-/* ==========================================================
+/* =========================================================
    SHOW RESULTS
-========================================================== */
+========================================================= */
 
 function showResults() {
 
@@ -1963,9 +2047,9 @@ function showResults() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    PLAY AGAIN
-========================================================== */
+========================================================= */
 
 playAgain.addEventListener(
     "click",
@@ -1973,9 +2057,9 @@ playAgain.addEventListener(
 );
 
 
-/* ==========================================================
+/* =========================================================
    INITIALIZE
-========================================================== */
+========================================================= */
 
 startGame();
 

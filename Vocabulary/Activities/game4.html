@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,26 +7,34 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Complete the Sentence</title>
 
 <meta
-    name="game-title"
-    content="Complete the Sentence"
+name="game-title"
+content="Complete the Sentence"
+
 >
 
 <meta
-    name="game-description"
-    content="Read the English description and choose the Vietnamese activity that completes the sentence."
+name="game-description"
+content="Read the English description and choose the Vietnamese activity that completes the sentence."
+
 >
 
 <meta
-    name="game-icon"
-    content="✏️"
+name="game-icon"
+content="✏️"
+
 >
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
 
 <link
     rel="preconnect"
@@ -34,21 +43,20 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.googleapis.com"
+    href="https://fonts.gstatic.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
-
 <style>
 
-/* ==========================================================
+/* =========================================================
    DESIGN TOKENS
-========================================================== */
+========================================================= */
 
 :root {
 
@@ -58,11 +66,17 @@
     --white:
         #ffffff;
 
+
+    /* Text */
+
     --ink:
         #143a6b;
 
     --ink-soft:
         #66809d;
+
+
+    /* Activities Category Accent */
 
     --accent:
         #2878df;
@@ -73,27 +87,53 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-bg:
+        #f4f8ff;
+
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
 
-    --green-light:
-        #eaf8f0;
+    /* General Border */
 
-    --red:
-        #e05252;
+    --border:
+        #d9e6f2;
 
-    --red-light:
-        #fff0f0;
+
+    /* Correct */
+
+    --correct:
+        #2878df;
+
+    --correct-light:
+        #eaf3ff;
+
+
+    /* Wrong */
+
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+
+    /* Shadow */
+
+    --shadow:
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESET
-========================================================== */
+========================================================= */
 
 * {
 
@@ -109,9 +149,9 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    BODY
-========================================================== */
+========================================================= */
 
 body {
 
@@ -122,7 +162,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -143,15 +183,15 @@ body {
 }
 
 
-/* ==========================================================
-   PAGE
-========================================================== */
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
 
 .page {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -161,9 +201,9 @@ body {
 }
 
 
-/* ==========================================================
+/* =========================================================
    BACK BUTTON
-========================================================== */
+========================================================= */
 
 .back-btn-container {
 
@@ -199,7 +239,7 @@ body {
             255,
             255,
             255,
-            0.9
+            0.95
         );
 
     color:
@@ -209,7 +249,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.05rem;
 
     font-weight:
         700;
@@ -220,11 +260,14 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 
 }
 
@@ -246,25 +289,26 @@ body {
 }
 
 
-/* ==========================================================
-   GAME CARD
-========================================================== */
+/* =========================================================
+   MAIN CARD
+========================================================= */
 
 .card {
+
+    position:
+        relative;
 
     width:
         100%;
 
     padding:
-        38px;
+        42px;
+
+    overflow:
+        hidden;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        var(--white);
 
     border:
         1px solid
@@ -275,12 +319,7 @@ body {
 
     box-shadow:
         0 18px 50px
-        rgba(
-            20,
-            58,
-            107,
-            0.10
-        );
+        var(--shadow);
 
     text-align:
         center;
@@ -288,17 +327,51 @@ body {
 }
 
 
-/* ==========================================================
-   HEADER
-========================================================== */
+/* =========================================================
+   HEADER ACCENT LINE
+========================================================= */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #72adf5
+        );
+
+}
+
+
+/* =========================================================
+   GAME ICON
+========================================================= */
 
 .game-icon {
 
     width:
-        58px;
+        62px;
 
     height:
-        58px;
+        62px;
 
     display:
         flex;
@@ -310,23 +383,27 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        2px auto 16px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
-        16px;
+        17px;
 
     background:
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.2rem;
 
 }
 
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 h1 {
 
@@ -336,31 +413,39 @@ h1 {
     color:
         var(--ink);
 
+    font-family:
+        "Kalam",
+        cursive;
+
     font-size:
-        1.9rem;
+        2.55rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
-        1.25;
+        1.2;
 
 }
 
 
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
 .subtitle {
 
     max-width:
-        550px;
+        600px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.9rem;
+        1.12rem;
 
     line-height:
         1.55;
@@ -368,26 +453,26 @@ h1 {
 }
 
 
-/* ==========================================================
-   QUESTION
-========================================================== */
+/* =========================================================
+   QUESTION NUMBER
+========================================================= */
 
 .question-number {
 
     margin-bottom:
-        20px;
+        18px;
 
     color:
         var(--accent);
 
     font-size:
-        0.78rem;
+        0.98rem;
 
     font-weight:
         800;
 
     letter-spacing:
-        0.05em;
+        0.08em;
 
     text-transform:
         uppercase;
@@ -395,16 +480,20 @@ h1 {
 }
 
 
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
 .instruction {
 
     margin-bottom:
-        12px;
+        10px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.08rem;
 
     font-weight:
         600;
@@ -412,20 +501,36 @@ h1 {
 }
 
 
+/* =========================================================
+   DESCRIPTION BOX
+========================================================= */
+
 .description {
 
+    min-height:
+        82px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
     max-width:
-        610px;
+        760px;
 
     margin:
-        0 auto 30px;
+        0 auto 28px;
 
     padding:
-        22px 24px;
+        18px 24px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -437,20 +542,20 @@ h1 {
         var(--ink);
 
     font-size:
-        1.15rem;
+        1.7rem;
 
     font-weight:
-        700;
+        800;
 
     line-height:
-        1.55;
+        1.35;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    ANSWERS
-========================================================== */
+========================================================= */
 
 .answers {
 
@@ -467,21 +572,25 @@ h1 {
         );
 
     gap:
-        16px;
+        14px;
 
     max-width:
-        600px;
+        720px;
 
     margin:
-        0 auto 22px;
+        0 auto 24px;
 
 }
 
 
+/* =========================================================
+   ANSWER BUTTON
+========================================================= */
+
 .answer-btn {
 
     min-height:
-        76px;
+        70px;
 
     padding:
         14px 18px;
@@ -494,7 +603,7 @@ h1 {
         16px;
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--ink);
@@ -503,27 +612,39 @@ h1 {
         inherit;
 
     font-size:
-        1.05rem;
+        1.18rem;
 
     font-weight:
-        800;
+        700;
+
+    line-height:
+        1.35;
 
     cursor:
         pointer;
 
+    box-shadow:
+        0 5px 14px
+        rgba(
+            20,
+            58,
+            107,
+            0.05
+        );
+
     transition:
         transform 0.2s ease,
+        box-shadow 0.2s ease,
         border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
+        background 0.2s ease;
 
 }
 
 
-.answer-btn:hover:not(.disabled) {
+.answer-btn:hover:not(:disabled) {
 
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     border-color:
         var(--accent);
@@ -532,18 +653,18 @@ h1 {
         var(--accent-light);
 
     box-shadow:
-        0 8px 18px
+        0 9px 20px
         rgba(
-            40,
-            120,
-            223,
-            0.12
+            20,
+            58,
+            107,
+            0.09
         );
 
 }
 
 
-.answer-btn.disabled {
+.answer-btn:disabled {
 
     cursor:
         default;
@@ -551,52 +672,56 @@ h1 {
 }
 
 
-/* ==========================================================
-   ANSWER STATES
-========================================================== */
+/* =========================================================
+   CORRECT ANSWER
+========================================================= */
 
-.answer-btn.correct {
+.answer-btn.correct-answer {
 
     border-color:
-        var(--green);
+        var(--correct) !important;
 
     background:
-        var(--green-light);
+        var(--correct-light) !important;
 
     color:
-        var(--green);
+        var(--correct) !important;
 
 }
 
 
-.answer-btn.wrong {
+/* =========================================================
+   WRONG ANSWER
+========================================================= */
+
+.answer-btn.wrong-answer {
 
     border-color:
-        var(--red);
+        var(--wrong) !important;
 
     background:
-        var(--red-light);
+        var(--wrong-light) !important;
 
     color:
-        var(--red);
+        var(--wrong) !important;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    FEEDBACK
-========================================================== */
+========================================================= */
 
 .message {
 
     min-height:
-        30px;
+        32px;
 
-    margin:
-        0 auto 8px;
+    margin-bottom:
+        8px;
 
     font-size:
-        0.95rem;
+        1.12rem;
 
     font-weight:
         800;
@@ -607,7 +732,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -615,22 +740,22 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    EXPLANATION
-========================================================== */
+========================================================= */
 
 .explanation {
 
     max-width:
-        600px;
+        720px;
 
     min-height:
-        24px;
+        30px;
 
     margin:
         0 auto 18px;
@@ -639,7 +764,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        0.84rem;
+        1.05rem;
 
     line-height:
         1.5;
@@ -647,17 +772,17 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    ACTION BUTTON
-========================================================== */
+========================================================= */
 
 .action-btn {
 
     min-width:
-        170px;
+        175px;
 
     padding:
-        12px 22px;
+        12px 24px;
 
     border:
         none;
@@ -669,13 +794,13 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
     font-family:
         inherit;
 
     font-size:
-        0.86rem;
+        1.05rem;
 
     font-weight:
         800;
@@ -691,7 +816,7 @@ h1 {
             0,
             0.12
         ),
-        0 5px 12px
+        0 6px 14px
         rgba(
             40,
             120,
@@ -700,7 +825,9 @@ h1 {
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -713,6 +840,22 @@ h1 {
     transform:
         translateY(-2px);
 
+    box-shadow:
+        inset 0 -3px 0
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        ),
+        0 9px 18px
+        rgba(
+            40,
+            120,
+            223,
+            0.22
+        );
+
 }
 
 
@@ -724,17 +867,17 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESULT SCREEN
-========================================================== */
+========================================================= */
 
 .result-icon {
 
     width:
-        64px;
+        68px;
 
     height:
-        64px;
+        68px;
 
     display:
         flex;
@@ -746,11 +889,11 @@ h1 {
         center;
 
     margin:
-        0 auto 18px;
+        2px auto 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -759,7 +902,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.4rem;
 
 }
 
@@ -767,7 +910,7 @@ h1 {
 .result-title {
 
     margin-bottom:
-        10px;
+        8px;
 
 }
 
@@ -775,16 +918,19 @@ h1 {
 .score {
 
     margin:
-        20px 0 8px;
+        18px 0 8px;
 
     color:
         var(--accent);
 
     font-size:
-        2.6rem;
+        3rem;
 
     font-weight:
         800;
+
+    line-height:
+        1.1;
 
 }
 
@@ -798,7 +944,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1rem;
+        1.15rem;
 
     font-weight:
         600;
@@ -806,9 +952,9 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
    HIDDEN
-========================================================== */
+========================================================= */
 
 .hidden {
 
@@ -818,12 +964,33 @@ h1 {
 }
 
 
-/* ==========================================================
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    margin-top:
+        18px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.9rem;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
 @media (
-    max-width: 600px
+    max-width: 700px
 ) {
 
     body {
@@ -834,10 +1001,18 @@ h1 {
     }
 
 
+    .page {
+
+        width:
+            100%;
+
+    }
+
+
     .card {
 
         padding:
-            28px 20px;
+            32px 20px;
 
         border-radius:
             20px;
@@ -848,7 +1023,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.15rem;
 
     }
 
@@ -856,21 +1031,27 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1rem;
 
         margin-bottom:
-            25px;
+            27px;
 
     }
 
 
     .description {
 
+        min-height:
+            68px;
+
         padding:
-            18px 16px;
+            16px 18px;
 
         font-size:
-            1rem;
+            1.45rem;
+
+        margin-bottom:
+            22px;
 
     }
 
@@ -889,36 +1070,90 @@ h1 {
     .answer-btn {
 
         min-height:
-            66px;
+            62px;
 
         font-size:
-            0.98rem;
+            1.1rem;
+
+    }
+
+
+    .explanation {
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .score {
+
+        font-size:
+            2.65rem;
 
     }
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    VERY SMALL SCREENS
-========================================================== */
+========================================================= */
 
 @media (
     max-width: 380px
 ) {
 
+    body {
+
+        padding:
+            14px 10px 28px;
+
+    }
+
+
+    .card {
+
+        padding:
+            28px 15px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.9rem;
+
+    }
+
+
     .description {
 
         font-size:
-            0.94rem;
+            1.3rem;
 
     }
 
 
     .answer-btn {
 
+        min-height:
+            58px;
+
+        padding:
+            12px 13px;
+
         font-size:
-            0.92rem;
+            1rem;
+
+    }
+
+
+    .back-btn {
+
+        font-size:
+            0.98rem;
 
     }
 
@@ -928,179 +1163,180 @@ h1 {
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
+<!-- =====================================================
+     BACK TO CATEGORY
+====================================================== -->
 
-    <!-- ======================================================
-         BACK TO CATEGORY
-    ======================================================= -->
+<div class="back-btn-container">
 
-    <div class="back-btn-container">
-
-        <a
-            href="../../category.html?category=Activity"
-            class="back-btn"
-        >
-            ← Back
-        </a>
-
-    </div>
-
-
-    <!-- ======================================================
-         GAME CARD
-    ======================================================= -->
-
-    <main class="card">
-
-
-        <!-- ==================================================
-             GAME HEADER
-        =================================================== -->
-
-        <div
-            class="game-icon"
-            aria-hidden="true"
-        >
-            ✏️
-        </div>
-
-
-        <h1>
-            Complete the Sentence
-        </h1>
-
-
-        <p class="subtitle">
-            Read the English description and choose the
-            Vietnamese activity that fits best.
-        </p>
-
-
-        <!-- ==================================================
-             GAME SCREEN
-        =================================================== -->
-
-        <section id="gameScreen">
-
-
-            <div
-                id="questionNumber"
-                class="question-number"
-            >
-            </div>
-
-
-            <div class="instruction">
-                Choose the Vietnamese activity:
-            </div>
-
-
-            <div
-                id="description"
-                class="description"
-            >
-            </div>
-
-
-            <div
-                id="answers"
-                class="answers"
-            >
-            </div>
-
-
-            <div
-                id="message"
-                class="message"
-                aria-live="polite"
-            >
-            </div>
-
-
-            <div
-                id="explanation"
-                class="explanation"
-                aria-live="polite"
-            >
-            </div>
-
-
-            <button
-                id="nextBtn"
-                class="action-btn hidden"
-                type="button"
-            >
-            </button>
-
-
-        </section>
-
-
-        <!-- ==================================================
-             RESULT SCREEN
-        =================================================== -->
-
-        <section
-            id="resultScreen"
-            class="hidden"
-        >
-
-
-            <div
-                class="result-icon"
-                aria-hidden="true"
-            >
-                🎉
-            </div>
-
-
-            <h1 class="result-title">
-                Great Job!
-            </h1>
-
-
-            <div
-                id="scoreText"
-                class="score"
-            >
-            </div>
-
-
-            <div
-                id="performance"
-                class="performance"
-            >
-            </div>
-
-
-            <button
-                id="playAgain"
-                class="action-btn"
-                type="button"
-            >
-                Play Again
-            </button>
-
-
-        </section>
-
-
-    </main>
+    <a
+        href="../../category.html?category=Activities"
+        class="back-btn"
+    >
+        ← Back
+    </a>
 
 </div>
 
 
+<!-- =====================================================
+     MAIN GAME CARD
+====================================================== -->
+
+<main class="card">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div
+        class="game-icon"
+        aria-hidden="true"
+    >
+        ✏️
+    </div>
+
+
+    <h1>
+        Complete the Sentence
+    </h1>
+
+
+    <p class="subtitle">
+        Read the English description and choose
+        the Vietnamese activity that fits best.
+    </p>
+
+
+    <!-- =================================================
+         GAME SCREEN
+    ================================================== -->
+
+    <section id="gameScreen">
+
+
+        <div
+            id="questionNumber"
+            class="question-number"
+        >
+        </div>
+
+
+        <div class="instruction">
+            Choose the Vietnamese activity:
+        </div>
+
+
+        <div
+            id="description"
+            class="description"
+        >
+        </div>
+
+
+        <div
+            id="answers"
+            class="answers"
+        >
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+            aria-live="polite"
+        >
+        </div>
+
+
+        <div
+            id="explanation"
+            class="explanation"
+            aria-live="polite"
+        >
+        </div>
+
+
+        <button
+            id="nextBtn"
+            class="action-btn hidden"
+            type="button"
+        >
+        </button>
+
+
+    </section>
+
+
+    <!-- =================================================
+         RESULT SCREEN
+    ================================================== -->
+
+    <section
+        id="resultScreen"
+        class="hidden"
+    >
+
+
+        <div
+            class="result-icon"
+            aria-hidden="true"
+        >
+            🎉
+        </div>
+
+
+        <h1 class="result-title">
+            Great Job!
+        </h1>
+
+
+        <div
+            id="scoreText"
+            class="score"
+        >
+        </div>
+
+
+        <div
+            id="performance"
+            class="performance"
+        >
+        </div>
+
+
+        <button
+            id="playAgain"
+            class="action-btn"
+            type="button"
+        >
+            Play Again
+        </button>
+
+
+    </section>
+
+
+</main>
+
+
+<div class="footer">
+    Vietnamese Activity Practice
+</div>
+
+</div>
+
 <script>
 
-/* ==========================================================
+/* =========================================================
    VOCABULARY
    Activity / Free Time / Daily Life
-========================================================== */
+========================================================= */
 
 const ACTIVITIES = [
 
@@ -1331,10 +1567,10 @@ const ACTIVITIES = [
 ];
 
 
-/* ==========================================================
+/* =========================================================
    QUESTIONS
    English description → Vietnamese activity
-========================================================== */
+========================================================= */
 
 const QUESTION_BANK = [
 
@@ -1621,17 +1857,17 @@ const QUESTION_BANK = [
 ];
 
 
-/* ==========================================================
+/* =========================================================
    GAME SETTINGS
-========================================================== */
+========================================================= */
 
 const TOTAL_QUESTIONS =
     20;
 
 
-/* ==========================================================
+/* =========================================================
    GAME STATE
-========================================================== */
+========================================================= */
 
 let questions =
     [];
@@ -1646,9 +1882,9 @@ let answered =
     false;
 
 
-/* ==========================================================
+/* =========================================================
    DOM ELEMENTS
-========================================================== */
+========================================================= */
 
 const questionNumber =
     document.getElementById(
@@ -1716,9 +1952,9 @@ const playAgain =
     );
 
 
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
 function shuffle(array) {
 
@@ -1751,15 +1987,17 @@ function shuffle(array) {
 }
 
 
-/* ==========================================================
+/* =========================================================
    GENERATE QUESTIONS
-========================================================== */
+========================================================= */
 
 function generateQuestions() {
 
     const shuffled =
         shuffle(
-            [...QUESTION_BANK]
+            [
+                ...QUESTION_BANK
+            ]
         );
 
 
@@ -1772,9 +2010,9 @@ function generateQuestions() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
 function startGame() {
 
@@ -1804,9 +2042,9 @@ function startGame() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
 function loadQuestion() {
 
@@ -1816,7 +2054,6 @@ function loadQuestion() {
 
     message.textContent =
         "";
-
 
     message.className =
         "message";
@@ -1829,6 +2066,10 @@ function loadQuestion() {
     nextBtn.classList.add(
         "hidden"
     );
+
+
+    nextBtn.textContent =
+        "";
 
 
     const question =
@@ -1904,6 +2145,12 @@ function loadQuestion() {
                 option.correct;
 
 
+            button.setAttribute(
+                "aria-label",
+                option.text
+            );
+
+
             button.addEventListener(
                 "click",
                 () =>
@@ -1924,14 +2171,19 @@ function loadQuestion() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
 function handleAnswer(
     selected,
     question
 ) {
+
+    /*
+     * One answer only.
+     * No retry.
+     */
 
     if (
         answered
@@ -1952,12 +2204,12 @@ function handleAnswer(
         );
 
 
+    /*
+     * Lock all answers.
+     */
+
     buttons.forEach(
         button => {
-
-            button.classList.add(
-                "disabled"
-            );
 
             button.disabled =
                 true;
@@ -1965,6 +2217,10 @@ function handleAnswer(
         }
     );
 
+
+    /*
+     * Find correct answer.
+     */
 
     const correctButton =
         [
@@ -1976,6 +2232,10 @@ function handleAnswer(
         );
 
 
+    /*
+     * Correct answer.
+     */
+
     if (
         selected.dataset.correct ===
         "true"
@@ -1985,7 +2245,7 @@ function handleAnswer(
 
 
         selected.classList.add(
-            "correct"
+            "correct-answer"
         );
 
 
@@ -1999,15 +2259,20 @@ function handleAnswer(
 
     }
 
+
+    /*
+     * Wrong answer.
+     */
+
     else {
 
         selected.classList.add(
-            "wrong"
+            "wrong-answer"
         );
 
 
         correctButton.classList.add(
-            "correct"
+            "correct-answer"
         );
 
 
@@ -2022,14 +2287,27 @@ function handleAnswer(
     }
 
 
+    /*
+     * KEEP EXPLANATION
+     */
+
     explanation.textContent =
         `${question.correct} — ${getEnglishMeaning(question.correct)}. ${question.explanation}`;
 
+
+    /*
+     * Show next button.
+     */
 
     nextBtn.classList.remove(
         "hidden"
     );
 
+
+    /*
+     * Last question.
+
+     */
 
     if (
         currentQuestion ===
@@ -2051,9 +2329,9 @@ function handleAnswer(
 }
 
 
-/* ==========================================================
+/* =========================================================
    GET ENGLISH MEANING
-========================================================== */
+========================================================= */
 
 function getEnglishMeaning(
     vietnamese
@@ -2074,9 +2352,9 @@ function getEnglishMeaning(
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
 nextBtn.addEventListener(
     "click",
@@ -2104,9 +2382,9 @@ nextBtn.addEventListener(
 );
 
 
-/* ==========================================================
+/* =========================================================
    SHOW RESULTS
-========================================================== */
+========================================================= */
 
 function showResults() {
 
@@ -2162,9 +2440,9 @@ function showResults() {
 }
 
 
-/* ==========================================================
+/* =========================================================
    PLAY AGAIN
-========================================================== */
+========================================================= */
 
 playAgain.addEventListener(
     "click",
@@ -2172,14 +2450,13 @@ playAgain.addEventListener(
 );
 
 
-/* ==========================================================
+/* =========================================================
    INITIALIZE
-========================================================== */
+========================================================= */
 
 startGame();
 
 </script>
-
 
 </body>
 

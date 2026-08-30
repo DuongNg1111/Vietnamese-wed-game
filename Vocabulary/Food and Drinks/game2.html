@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,25 +10,48 @@
 <title>Find The Same Meaning</title>
 
 <meta
-    name="game-title"
-    content="Find The Same Meaning"
+name="game-title"
+content="Find The Same Meaning"
+
 >
 
 <meta
-    name="game-description"
-    content="Match English words with Vietnamese food and drink words that have the same meaning."
+name="game-description"
+content="Match English words with Vietnamese food and drink words that have the same meaning."
+
 >
 
 <meta
-    name="game-icon"
-    content="🔎"
+name="game-icon"
+content="🔎"
+
 >
 
 <meta
-    name="game-explanation"
-    content="true"
+name="game-explanation"
+content="true"
+
 >
 
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
@@ -43,209 +67,117 @@ body{
 
     margin:0;
 
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:#f5f7fa;
-
     min-height:100vh;
 
-    display:flex;
+    padding:25px 20px;
 
-    flex-direction:column;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    justify-content:center;
+    background:#f7faff;
 
-    align-items:center;
+    color:#26354a;
 
-    padding:20px;
-
-    color:#333;
 }
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
 
-    width:100%;
-
-    max-width:1100px;
+    width:min(900px,95vw);
 
     margin:0 auto 15px;
 
-    text-align:left;
 }
+
 
 .back-btn{
 
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 16px;
 
     background:white;
 
-    color:#555;
+    color:#2878df;
 
-    border:2px solid #ddd;
+    border:2px solid #c4daf6;
 
     border-radius:10px;
 
     text-decoration:none;
 
+    font-size:22px;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
+
 
 .back-btn:hover{
 
-    background:#f0f0f0;
+    background:#eaf3ff;
+
+    border-color:#2878df;
 
     transform:translateY(-2px);
+
 }
 
 
 /* =========================================================
-   GAME CONTAINER
+   MAIN CONTAINER
 ========================================================= */
 
 .game-box{
 
-    width:100%;
+    position:relative;
 
-    max-width:1100px;
+    width:min(900px,95vw);
+
+    margin:0 auto;
 
     background:white;
 
-    border-radius:24px;
+    border-radius:22px;
 
-    padding:35px;
+    padding:30px 35px 35px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.10);
+        0 8px 28px rgba(40,120,223,.10);
 
-    text-align:center;
+    overflow:hidden;
+
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   ACCENT LINE
 ========================================================= */
 
-#introScreen{
+.game-box::before{
 
-    padding:15px 10px 10px;
-}
+    content:"";
 
-.game-icon{
+    position:absolute;
 
-    font-size:70px;
+    top:0;
 
-    margin-bottom:10px;
-}
+    left:0;
 
-#introScreen h1{
+    width:100%;
 
-    font-size:34px;
+    height:6px;
 
-    margin:10px 0 15px;
+    background:#2878df;
 
-    color:#2c3e50;
-}
-
-.intro-description{
-
-    max-width:650px;
-
-    margin:0 auto 25px;
-
-    font-size:18px;
-
-    line-height:1.6;
-
-    color:#666;
-}
-
-
-/* =========================================================
-   HOW TO PLAY
-========================================================= */
-
-.how-to-play{
-
-    max-width:700px;
-
-    margin:0 auto 25px;
-
-    padding:20px 25px;
-
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
-
-    border-radius:14px;
-
-    text-align:left;
-}
-
-.how-to-play h2{
-
-    margin:0 0 12px;
-
-    color:#4779b8;
-
-    font-size:22px;
-}
-
-.how-to-play p{
-
-    margin:7px 0;
-
-    font-size:16px;
-
-    line-height:1.5;
-
-    color:#3d5066;
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-button{
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-#startBtn{
-
-    margin-top:5px;
-
-    padding:14px 35px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:19px;
-}
-
-#startBtn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
 }
 
 
@@ -253,22 +185,56 @@ button{
    GAME SCREEN
 ========================================================= */
 
+#gameScreen{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
 #gameScreen h1{
 
-    margin:0 0 10px;
+    margin:5px 0 4px;
 
-    color:#2c3e50;
+    text-align:center;
 
-    font-size:32px;
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    color:#2878df;
+
 }
+
+
+/* =========================================================
+   SHORT DESCRIPTION
+========================================================= */
 
 .instruction{
 
-    color:#555;
+    margin:0 auto 22px;
 
-    font-size:17px;
+    text-align:center;
 
-    margin:0 0 25px;
+    color:#667085;
+
+    font-size:24px;
+
+    line-height:1.4;
+
 }
 
 
@@ -284,22 +250,66 @@ button{
 
     align-items:center;
 
-    margin-bottom:25px;
+    gap:15px;
 
-    padding:12px 16px;
+    margin-bottom:12px;
 
-    background:#f4f8fb;
-
-    border-radius:12px;
+    font-size:23px;
 
     font-weight:bold;
 
-    color:#555;
 }
 
-.score{
 
-    font-size:18px;
+#roundText{
+
+    color:#667085;
+
+}
+
+
+#scoreText{
+
+    color:#2878df;
+
+    font-size:26px;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-wrap{
+
+    width:100%;
+
+    height:8px;
+
+    background:#eaf3ff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:22px;
+
+    border:1px solid #c4daf6;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:#2878df;
+
+    transition:.3s ease;
+
 }
 
 
@@ -313,25 +323,40 @@ button{
 
     grid-template-columns:1fr 1fr;
 
-    gap:25px;
+    gap:22px;
 
     width:100%;
+
 }
 
 
 /* =========================================================
-   COLUMN TITLES
+   COLUMN
+========================================================= */
+
+.column{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
+   COLUMN TITLE
 ========================================================= */
 
 .column-title{
 
-    font-size:17px;
+    font-size:26px;
 
     font-weight:bold;
 
-    color:#666;
+    color:#52657d;
 
-    margin-bottom:12px;
+    text-align:center;
+
+    margin-bottom:11px;
+
 }
 
 
@@ -343,20 +368,22 @@ button{
 
     display:grid;
 
-    gap:15px;
+    gap:12px;
 
     width:100%;
+
 }
+
 
 .target{
 
-    min-height:95px;
+    min-height:92px;
 
-    border-radius:16px;
+    border-radius:14px;
 
-    border:3px dashed #6b8fc4;
+    border:2px dashed #c4daf6;
 
-    background:#eaf2ff;
+    background:#eaf3ff;
 
     display:flex;
 
@@ -364,51 +391,65 @@ button{
 
     justify-content:center;
 
-    padding:15px;
+    padding:14px;
 
-    font-size:22px;
+    font-size:29px;
 
     font-weight:bold;
+
+    color:#2878df;
 
     transition:.2s;
 
     user-select:none;
+
+    text-align:center;
+
 }
+
 
 .target.over{
 
-    transform:scale(1.03);
+    transform:scale(1.02);
 
-    background:#dcecff;
+    background:#eaf3ff;
+
+    border-color:#2878df;
+
 }
 
-.target.correct{
 
-    background:#dff5e5;
+.target.filled{
 
     border-style:solid;
 
-    border-color:#4caf70;
+    border-color:#2878df;
 
-    color:#3b7650;
+    background:#eaf3ff;
 
-    cursor:default;
+    color:#2878df;
+
 }
+
+
+.target.correct{
+
+    background:#eaf3ff;
+
+    border:2px solid #2878df;
+
+    color:#2878df;
+
+}
+
 
 .target.wrong{
 
-    animation:shake .3s;
-}
+    background:#fff0f3;
 
-@keyframes shake{
+    border:2px solid #d9536f;
 
-    25%{
-        transform:translateX(-7px);
-    }
-
-    75%{
-        transform:translateX(7px);
-    }
+    color:#d9536f;
 
 }
 
@@ -421,20 +462,22 @@ button{
 
     display:grid;
 
-    gap:15px;
+    gap:12px;
 
     width:100%;
+
 }
+
 
 .word{
 
-    min-height:95px;
+    min-height:92px;
 
-    border-radius:16px;
+    border-radius:14px;
 
-    background:#fff3d6;
+    background:white;
 
-    border:3px solid #d8ad50;
+    border:2px solid #d9e6f2;
 
     display:flex;
 
@@ -442,41 +485,60 @@ button{
 
     justify-content:center;
 
-    padding:15px;
+    padding:14px;
 
-    font-size:21px;
+    font-size:28px;
 
     font-weight:bold;
+
+    color:#26354a;
 
     cursor:grab;
 
     user-select:none;
 
     transition:.2s;
+
+    text-align:center;
+
 }
+
 
 .word:hover{
 
-    transform:translateY(-3px);
+    transform:translateY(-2px);
 
-    background:#ffe8b5;
+    background:#eaf3ff;
+
+    border-color:#c4daf6;
+
+    color:#2878df;
+
 }
+
 
 .word:active{
 
     cursor:grabbing;
+
 }
+
 
 .word.dragging{
 
     opacity:.45;
+
 }
+
 
 .word.used{
 
-    visibility:hidden;
+    opacity:.35;
+
+    cursor:default;
 
     pointer-events:none;
+
 }
 
 
@@ -486,13 +548,16 @@ button{
 
 .message{
 
-    min-height:35px;
+    min-height:36px;
 
-    margin:20px 0 10px;
+    margin:17px 0 7px;
 
-    font-size:19px;
+    text-align:center;
+
+    font-size:26px;
 
     font-weight:bold;
+
 }
 
 
@@ -502,67 +567,124 @@ button{
 
 .explanation{
 
-    margin:15px auto 20px;
+    display:none;
 
-    padding:16px 20px;
+    margin:14px auto 17px;
 
-    max-width:750px;
+    padding:15px 18px;
 
-    background:#f0f7ff;
+    max-width:800px;
 
-    border-left:5px solid #4779b8;
+    background:#eaf3ff;
+
+    border:1px solid #c4daf6;
 
     border-radius:12px;
 
-    color:#3d5066;
+    color:#26354a;
 
-    font-size:16px;
+    font-size:23px;
 
     line-height:1.5;
 
     text-align:left;
+
 }
+
+
+.explanation.show{
+
+    display:block;
+
+}
+
 
 .explanation strong{
 
-    color:#4779b8;
-}
+    color:#2878df;
 
-.hidden{
-
-    display:none;
 }
 
 
 /* =========================================================
-   NEXT BUTTON
+   BUTTON AREA
 ========================================================= */
 
-#nextBtn{
+.button-area{
 
-    padding:13px 30px;
+    display:flex;
 
-    background:#4779b8;
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:14px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+#checkBtn,
+#nextBtn,
+.restart-btn{
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#2878df;
 
     color:white;
 
-    font-size:17px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
-#nextBtn:hover{
 
-    background:#38689f;
+#checkBtn:hover,
+#nextBtn:hover,
+.restart-btn:hover{
+
+    background:#1e5fba;
 
     transform:translateY(-2px);
+
 }
 
-#nextBtn:disabled{
+
+#checkBtn:disabled{
 
     opacity:.45;
 
     cursor:default;
 
     transform:none;
+
+}
+
+
+#nextBtn{
+
+    display:none;
+
 }
 
 
@@ -574,54 +696,55 @@ button{
 
     display:none;
 
-    padding:20px;
+    text-align:center;
+
+    padding:25px 10px 10px;
+
 }
+
 
 #finalScreen h2{
 
-    font-size:32px;
+    margin:5px 0 15px;
 
-    color:#4779b8;
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
 
-    margin:0 0 20px;
+    font-size:44px;
+
+    line-height:1.2;
+
+    color:#2878df;
+
 }
+
 
 .final-score{
 
-    font-size:26px;
+    font-size:46px;
 
     font-weight:bold;
 
+    color:#2878df;
+
     margin:20px 0;
 
-    color:#444;
 }
+
 
 .final-message{
 
-    font-size:20px;
+    color:#667085;
 
-    color:#666;
+    font-size:26px;
+
+    line-height:1.5;
 
     margin-bottom:25px;
-}
 
-.restart-btn{
-
-    padding:14px 30px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:18px;
-}
-
-.restart-btn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
 }
 
 
@@ -633,82 +756,183 @@ button{
 
     body{
 
-        padding:15px;
+        padding:20px 12px;
+
     }
+
 
     .game-box{
 
-        padding:25px 15px;
+        width:100%;
 
-        border-radius:20px;
+        padding:25px 17px 25px;
+
+        border-radius:19px;
+
     }
 
-    #introScreen h1{
 
-        font-size:29px;
+    .back-btn{
+
+        font-size:21px;
+
     }
 
-    .game-icon{
-
-        font-size:55px;
-    }
-
-    .intro-description{
-
-        font-size:16px;
-    }
-
-    .how-to-play{
-
-        padding:18px;
-    }
 
     #gameScreen h1{
 
-        font-size:27px;
+        font-size:38px;
+
+        line-height:1.2;
+
     }
+
 
     .instruction{
 
-        font-size:15px;
+        font-size:22px;
+
     }
+
 
     .game-status{
 
-        font-size:14px;
+        font-size:21px;
+
     }
+
+
+    #scoreText{
+
+        font-size:23px;
+
+    }
+
 
     .matching-area{
 
         grid-template-columns:1fr;
 
         gap:20px;
+
     }
+
+
+    .column-title{
+
+        font-size:24px;
+
+    }
+
 
     .target{
 
-        min-height:75px;
+        min-height:82px;
 
-        font-size:20px;
+        font-size:27px;
+
     }
+
 
     .word{
 
-        min-height:75px;
+        min-height:82px;
 
-        font-size:18px;
+        font-size:26px;
+
     }
+
+
+    .message{
+
+        font-size:24px;
+
+    }
+
 
     .explanation{
 
-        font-size:15px;
+        font-size:21px;
+
     }
 
-    .back-btn{
 
-        padding:9px 15px;
+    .button-area{
 
-        font-size:14px;
+        flex-direction:column;
+
+    }
+
+
+    #checkBtn,
+    #nextBtn{
+
+        width:100%;
+
+    }
+
+
+    #finalScreen h2{
+
+        font-size:38px;
+
+    }
+
+
+    .final-score{
+
+        font-size:40px;
+
+    }
+
+
+    .final-message{
+
+        font-size:22px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:400px){
+
+    .game-box{
+
+        padding:22px 12px 24px;
+
+    }
+
+
+    #gameScreen h1{
+
+        font-size:34px;
+
+    }
+
+
+    .instruction{
+
+        font-size:21px;
+
+    }
+
+
+    .target{
+
+        font-size:25px;
+
+    }
+
+
+    .word{
+
+        font-size:24px;
+
     }
 
 }
@@ -717,157 +941,170 @@ button{
 
 </head>
 
-
 <body>
 
-
 <!-- =======================================================
-     BACK TO LOBBY
+     BACK
 ======================================================= -->
 
 <div class="back-btn-container">
 
-    <a
-        href="../../category.html?category=Food%20and%20Drinks"
-        class="back-btn"
-    >
-        ⬅ Back
-    </a>
+```
+<a
+    href="../../category.html?category=Food%20and%20Drinks"
+    class="back-btn"
+>
+    ← Back
+</a>
+```
 
 </div>
-
-
-<div class="game-box">
-
 
 <!-- =======================================================
-     INTRO SCREEN
+     GAME CONTAINER
 ======================================================= -->
 
-<div id="introScreen">
-
-    <div class="game-icon">
-        🔎
-    </div>
-
-
-    <h1>
-        Find The Same Meaning
-    </h1>
-
-
-    <p class="intro-description">
-        Match English words with Vietnamese food and drink words that have the same meaning.
-    </p>
-
-    <button
-        id="startBtn"
-        onclick="startGame()"
-    >
-        Start Game →
-    </button>
-
-</div>
+<div class="game-box">
 
 <!-- =======================================================
      GAME SCREEN
 ======================================================= -->
 
-<div
-    id="gameScreen"
-    style="display:none;"
->
+<div id="gameScreen">
+
+```
+<h1>
+    Find The Same Meaning
+</h1>
 
 
-    <h1>
-        🔎 Find The Same Meaning
-    </h1>
+<p class="instruction">
+    Match each English word with its Vietnamese meaning.
+</p>
 
 
-    <p class="instruction">
-        Drag each English word to the Vietnamese word
-        with the same meaning.
-    </p>
+<!-- =====================================================
+     STATUS
+====================================================== -->
+
+<div class="game-status">
+
+    <div id="roundText">
+        Round 1 / 20
+    </div>
+
+    <div id="scoreText">
+        Score: 0
+    </div>
+
+</div>
 
 
-    <div class="game-status">
+<!-- =====================================================
+     PROGRESS
+====================================================== -->
 
-        <div id="roundText">
-            Round 1 / 20
+<div class="progress-wrap">
+
+    <div
+        class="progress"
+        id="progress"
+    ></div>
+
+</div>
+
+
+<!-- =====================================================
+     MATCHING AREA
+====================================================== -->
+
+<div class="matching-area">
+
+
+    <!-- =================================================
+         VIETNAMESE
+    ================================================== -->
+
+    <div class="column">
+
+        <div class="column-title">
+            Vietnamese
         </div>
 
-        <div id="scoreText">
-            Score: 0
-        </div>
+        <div
+            class="labels"
+            id="targets"
+        ></div>
 
     </div>
 
 
-    <div class="matching-area">
+    <!-- =================================================
+         ENGLISH
+    ================================================== -->
 
+    <div class="column">
 
-        <!-- =================================================
-             VIETNAMESE
-        ================================================== -->
-
-        <div>
-
-            <div class="column-title">
-                🇻🇳 Vietnamese
-            </div>
-
-            <div
-                class="labels"
-                id="targets"
-            ></div>
-
+        <div class="column-title">
+            English
         </div>
 
-
-        <!-- =================================================
-             ENGLISH
-        ================================================== -->
-
-        <div>
-
-            <div class="column-title">
-                🇬🇧 English
-            </div>
-
-            <div
-                class="words"
-                id="words"
-            ></div>
-
-        </div>
-
+        <div
+            class="words"
+            id="words"
+        ></div>
 
     </div>
-
-
-    <div
-        class="message"
-        id="message"
-    ></div>
-
-
-    <div
-        id="explanation"
-        class="explanation hidden"
-    ></div>
-
-
-    <button
-        id="nextBtn"
-        disabled
-    >
-        Next Round →
-    </button>
 
 
 </div>
 
 
+<!-- =====================================================
+     MESSAGE
+====================================================== -->
+
+<div
+    class="message"
+    id="message"
+></div>
+
+
+<!-- =====================================================
+     EXPLANATION
+====================================================== -->
+
+<div
+    class="explanation"
+    id="explanation"
+></div>
+
+
+<!-- =====================================================
+     BUTTONS
+====================================================== -->
+
+<div class="button-area">
+
+    <button
+        id="checkBtn"
+        onclick="checkAnswers()"
+    >
+        Check
+    </button>
+
+
+    <button
+        id="nextBtn"
+        onclick="nextRound()"
+    >
+        Next Round →
+    </button>
+
+</div>
+```
+
+</div>
 
 <!-- =======================================================
      FINAL SCREEN
@@ -875,38 +1112,37 @@ button{
 
 <div id="finalScreen">
 
-
-    <h2>
-        🎉 Great Job!
-    </h2>
-
-
-    <div
-        class="final-score"
-        id="finalScore"
-    ></div>
+```
+<h2>
+    🎉 Game Complete!
+</h2>
 
 
-    <div
-        class="final-message"
-        id="finalMessage"
-    ></div>
-
-
-    <button
-        class="restart-btn"
-        onclick="restartGame()"
-    >
-        Play Again
-    </button>
-
-
+<div
+    class="final-score"
+    id="finalScore"
+>
+    Score: 0 / 64
 </div>
 
 
+<div
+    class="final-message"
+    id="finalMessage"
+></div>
+
+
+<button
+    class="restart-btn"
+    onclick="restartGame()"
+>
+    Play Again
+</button>
+```
+
 </div>
 
-
+</div>
 
 <script>
 
@@ -1181,13 +1417,6 @@ const vocabulary = [
 
 /* =========================================================
    ROUND STRUCTURE
-
-   4 rounds  × 2 pairs
-   6 rounds  × 3 pairs
-   8 rounds  × 4 pairs
-   2 rounds  × 5 pairs
-
-   TOTAL = 20 rounds / 64 matches
 ========================================================= */
 
 const roundSizes = [
@@ -1220,6 +1449,18 @@ const roundSizes = [
 
 
 /* =========================================================
+   TOTAL PAIRS
+========================================================= */
+
+const totalPairs =
+    roundSizes.reduce(
+        (total, size) =>
+            total + size,
+        0
+    );
+
+
+/* =========================================================
    SHUFFLE
 ========================================================= */
 
@@ -1235,7 +1476,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
         [
@@ -1256,12 +1498,6 @@ function shuffle(array){
 
 /* =========================================================
    CREATE ROUNDS
-
-   The vocabulary is shuffled first.
-
-   Each round contains unique vocabulary items.
-   When all 37 words have been used, the pool
-   is shuffled again so words can be reused.
 ========================================================= */
 
 function createRounds(){
@@ -1336,31 +1572,25 @@ function createRounds(){
 }
 
 
-let rounds =
-    createRounds();
-
-
 /* =========================================================
    GAME STATE
 ========================================================= */
 
-let current = 0;
+let rounds =
+    createRounds();
+
+let currentRound = 0;
 
 let score = 0;
 
-let matched = 0;
-
 let draggedWord = null;
+
+let roundChecked = false;
 
 
 /* =========================================================
    DOM
 ========================================================= */
-
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
 
 const gameScreen =
     document.getElementById(
@@ -1392,6 +1622,11 @@ const explanationEl =
         "explanation"
     );
 
+const checkBtn =
+    document.getElementById(
+        "checkBtn"
+    );
+
 const nextBtn =
     document.getElementById(
         "nextBtn"
@@ -1407,50 +1642,10 @@ const scoreText =
         "scoreText"
     );
 
-
-/* =========================================================
-   TOTAL MATCHES
-========================================================= */
-
-const totalPairs =
-    roundSizes.reduce(
-        (total, size) =>
-            total + size,
-        0
+const progress =
+    document.getElementById(
+        "progress"
     );
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-function startGame(){
-
-    current = 0;
-
-    score = 0;
-
-    matched = 0;
-
-    draggedWord = null;
-
-    rounds =
-        createRounds();
-
-
-    introScreen.style.display =
-        "none";
-
-    finalScreen.style.display =
-        "none";
-
-    gameScreen.style.display =
-        "block";
-
-
-    loadRound();
-
-}
 
 
 /* =========================================================
@@ -1459,9 +1654,9 @@ function startGame(){
 
 function loadRound(){
 
-    matched = 0;
-
     draggedWord = null;
+
+    roundChecked = false;
 
 
     messageEl.textContent =
@@ -1471,34 +1666,40 @@ function loadRound(){
         "";
 
 
-    nextBtn.disabled =
-        true;
-
-
-    explanationEl.classList.add(
-        "hidden"
-    );
-
     explanationEl.innerHTML =
         "";
 
+    explanationEl.classList.remove(
+        "show"
+    );
+
+
+    checkBtn.disabled =
+        false;
+
+
+    nextBtn.style.display =
+        "none";
+
 
     const round =
-        rounds[current];
+        rounds[currentRound];
+
 
     const pairs =
         round.pairs;
 
-    const count =
-        pairs.length;
-
 
     roundText.textContent =
-        `Round ${current + 1} / ${rounds.length}`;
+        `Round ${currentRound + 1} / ${rounds.length}`;
 
 
     scoreText.textContent =
         `Score: ${score}`;
+
+
+    progress.style.width =
+        `${currentRound / rounds.length * 100}%`;
 
 
     targetsEl.innerHTML =
@@ -1509,66 +1710,58 @@ function loadRound(){
 
 
     /* =====================================================
-       VIETNAMESE TARGETS
-    ===================================================== */
+       CREATE VIETNAMESE TARGETS
+    ====================================================== */
 
     shuffle(pairs).forEach(
         item => {
 
-            const box =
+            const target =
                 document.createElement(
                     "div"
                 );
 
 
-            box.className =
+            target.className =
                 "target";
 
 
-            box.textContent =
+            target.textContent =
                 item.vi;
 
 
-            box.dataset.vi =
+            target.dataset.vi =
                 item.vi;
 
 
-            /* =============================================
-               DRAG OVER
-            ============================================== */
+            target.dataset.selected =
+                "";
 
-            box.addEventListener(
+
+            target.addEventListener(
                 "dragover",
                 event => {
+
+                    if(roundChecked){
+
+                        return;
+
+                    }
+
+
+                    if(
+                        target.dataset.selected !== ""
+                    ){
+
+                        return;
+
+                    }
+
 
                     event.preventDefault();
 
 
-                    if(
-                        !box.classList.contains(
-                            "correct"
-                        )
-                    ){
-
-                        box.classList.add(
-                            "over"
-                        );
-
-                    }
-
-                }
-            );
-
-
-            /* =============================================
-               DRAG LEAVE
-            ============================================== */
-
-            box.addEventListener(
-                "dragleave",
-                () => {
-
-                    box.classList.remove(
+                    target.classList.add(
                         "over"
                     );
 
@@ -1576,27 +1769,46 @@ function loadRound(){
             );
 
 
-            /* =============================================
-               DROP
-            ============================================== */
+            target.addEventListener(
+                "dragleave",
+                () => {
 
-            box.addEventListener(
+                    target.classList.remove(
+                        "over"
+                    );
+
+                }
+            );
+
+
+            target.addEventListener(
                 "drop",
                 event => {
 
                     event.preventDefault();
 
 
-                    box.classList.remove(
+                    target.classList.remove(
                         "over"
                     );
 
 
+                    if(roundChecked){
+
+                        return;
+
+                    }
+
+
+                    if(!draggedWord){
+
+                        return;
+
+                    }
+
+
                     if(
-                        !draggedWord ||
-                        box.classList.contains(
-                            "correct"
-                        )
+                        target.dataset.selected !== ""
                     ){
 
                         return;
@@ -1608,109 +1820,43 @@ function loadRound(){
                         draggedWord.dataset.word;
 
 
-                    const correctVietnamese =
+                    const vietnamese =
                         draggedWord.dataset.vi;
 
 
-                    /* =====================================
-                       CORRECT
-                    ====================================== */
-
-                    if(
-                        correctVietnamese ===
-                        box.dataset.vi
-                    ){
-
-                        box.classList.add(
-                            "correct"
-                        );
+                    target.dataset.selected =
+                        vietnamese;
 
 
-                        draggedWord.classList.add(
-                            "used"
-                        );
+                    target.dataset.english =
+                        english;
 
 
-                        matched++;
-
-                        score++;
-
-
-                        messageEl.textContent =
-                            "✅ Correct!";
+                    target.textContent =
+                        `${target.dataset.vi}`;
 
 
-                        messageEl.style.color =
-                            "#3b8b58";
+                    target.classList.add(
+                        "filled"
+                    );
 
 
-                        scoreText.textContent =
-                            `Score: ${score}`;
-
-
-                        showExplanation(
-                            english,
-                            box.dataset.vi
-                        );
-
-
-                        if(
-                            matched === count
-                        ){
-
-                            messageEl.textContent =
-                                "🎉 Perfect!";
-
-
-                            nextBtn.disabled =
-                                false;
-
-                        }
-
-                    }
-
-
-                    /* =====================================
-                       WRONG
-                    ====================================== */
-
-                    else{
-
-                        box.classList.add(
-                            "wrong"
-                        );
-
-
-                        setTimeout(
-                            () => {
-
-                                box.classList.remove(
-                                    "wrong"
-                                );
-
-                            },
-                            300
-                        );
-
-
-                        messageEl.textContent =
-                            "❌ Try again!";
-
-
-                        messageEl.style.color =
-                            "#c54d4d";
-
-                    }
+                    draggedWord.classList.add(
+                        "used"
+                    );
 
 
                     draggedWord = null;
+
+
+                    updateCheckButton();
 
                 }
             );
 
 
             targetsEl.appendChild(
-                box
+                target
             );
 
         }
@@ -1718,51 +1864,61 @@ function loadRound(){
 
 
     /* =====================================================
-       ENGLISH WORDS
-    ===================================================== */
+       CREATE ENGLISH WORDS
+    ====================================================== */
 
     shuffle(pairs).forEach(
         item => {
 
-            const card =
+            const word =
                 document.createElement(
                     "div"
                 );
 
 
-            card.className =
+            word.className =
                 "word";
 
 
-            card.draggable =
+            word.textContent =
+                item.en;
+
+
+            word.draggable =
                 true;
 
 
-            card.dataset.word =
+            word.dataset.word =
                 item.en;
 
 
-            card.dataset.vi =
+            word.dataset.vi =
                 item.vi;
 
 
-            card.textContent =
-                item.en;
-
-
-            /* =============================================
-               DRAG START
-            ============================================== */
-
-            card.addEventListener(
+            word.addEventListener(
                 "dragstart",
-                () => {
+                event => {
+
+                    if(
+                        roundChecked ||
+                        word.classList.contains(
+                            "used"
+                        )
+                    ){
+
+                        event.preventDefault();
+
+                        return;
+
+                    }
+
 
                     draggedWord =
-                        card;
+                        word;
 
 
-                    card.classList.add(
+                    word.classList.add(
                         "dragging"
                     );
 
@@ -1770,15 +1926,11 @@ function loadRound(){
             );
 
 
-            /* =============================================
-               DRAG END
-            ============================================== */
-
-            card.addEventListener(
+            word.addEventListener(
                 "dragend",
                 () => {
 
-                    card.classList.remove(
+                    word.classList.remove(
                         "dragging"
                     );
 
@@ -1787,57 +1939,273 @@ function loadRound(){
 
 
             wordsEl.appendChild(
-                card
+                word
             );
 
         }
     );
 
+
+    updateCheckButton();
+
 }
 
 
 /* =========================================================
-   SHOW EXPLANATION
+   CHECK BUTTON STATE
 ========================================================= */
 
-function showExplanation(
-    english,
-    vietnamese
-){
+function updateCheckButton(){
 
-    const item =
-        vocabulary.find(
-            word =>
-                word.vi === vietnamese &&
-                word.en === english
+    const targets =
+        document.querySelectorAll(
+            ".target"
         );
 
 
-    if(!item){
+    const allFilled =
+        targets.length > 0 &&
+        [...targets].every(
+            target =>
+                target.dataset.selected !== ""
+        );
+
+
+    checkBtn.disabled =
+        !allFilled ||
+        roundChecked;
+
+}
+
+
+/* =========================================================
+   CHECK ANSWERS
+========================================================= */
+
+function checkAnswers(){
+
+    if(roundChecked){
 
         return;
 
     }
 
 
-    explanationEl.innerHTML = `
-
-        <strong>💡 Learn:</strong>
-
-        <strong>${english}</strong>
-        →
-        <strong>${vietnamese}</strong>
-
-        <br><br>
-
-        ${item.explanation}
-
-    `;
+    const targets =
+        document.querySelectorAll(
+            ".target"
+        );
 
 
-    explanationEl.classList.remove(
-        "hidden"
+    const unanswered =
+        [...targets].some(
+            target =>
+                target.dataset.selected === ""
+        );
+
+
+    if(unanswered){
+
+        messageEl.textContent =
+            "Please match all words first.";
+
+        messageEl.style.color =
+            "#d9536f";
+
+        return;
+
+    }
+
+
+    roundChecked = true;
+
+    checkBtn.disabled = true;
+
+
+    let correctCount = 0;
+
+    const explanationList = [];
+
+
+    targets.forEach(
+        target => {
+
+            const targetVietnamese =
+                target.dataset.vi;
+
+
+            const selectedVietnamese =
+                target.dataset.selected;
+
+
+            const selectedEnglish =
+                target.dataset.english;
+
+
+            const item =
+                vocabulary.find(
+                    word =>
+                        word.vi ===
+                        selectedVietnamese &&
+                        word.en ===
+                        selectedEnglish
+                );
+
+
+            /* =============================================
+               CORRECT
+            ============================================= */
+
+            if(
+                selectedVietnamese ===
+                targetVietnamese
+            ){
+
+                target.classList.remove(
+                    "filled"
+                );
+
+
+                target.classList.add(
+                    "correct"
+                );
+
+
+                correctCount++;
+
+
+                explanationList.push(
+
+                    item
+
+                        ? `<strong>${item.en}</strong> → <strong>${item.vi}</strong><br>${item.explanation}`
+
+                        : `<strong>${selectedEnglish}</strong> → <strong>${selectedVietnamese}</strong>`
+
+                );
+
+            }
+
+
+            /* =============================================
+               WRONG
+            ============================================= */
+
+            else{
+
+                target.classList.remove(
+                    "filled"
+                );
+
+
+                target.classList.add(
+                    "wrong"
+                );
+
+
+                const correctItem =
+                    vocabulary.find(
+                        word =>
+                            word.vi ===
+                            targetVietnamese
+                    );
+
+
+                if(correctItem){
+
+                    target.textContent =
+                        `${targetVietnamese} — ${correctItem.en}`;
+
+
+                    explanationList.push(
+
+                        `<strong>${correctItem.en}</strong> → <strong>${correctItem.vi}</strong><br>${correctItem.explanation}`
+
+                    );
+
+                }
+
+            }
+
+        }
     );
+
+
+    score +=
+        correctCount;
+
+
+    scoreText.textContent =
+        `Score: ${score}`;
+
+
+    /* =====================================================
+       RESULT MESSAGE
+    ====================================================== */
+
+    if(
+        correctCount ===
+        targets.length
+    ){
+
+        messageEl.textContent =
+            "✓ Perfect!";
+
+        messageEl.style.color =
+            "#2878df";
+
+    }
+
+    else{
+
+        messageEl.textContent =
+            `${correctCount} / ${targets.length} correct.`;
+
+        messageEl.style.color =
+            "#d9536f";
+
+    }
+
+
+    /* =====================================================
+       EXPLANATION
+    ====================================================== */
+
+    explanationEl.innerHTML =
+        explanationList.join(
+            "<br><br>"
+        );
+
+
+    explanationEl.classList.add(
+        "show"
+    );
+
+
+    /* =====================================================
+       LOCK WORDS
+    ====================================================== */
+
+    document
+        .querySelectorAll(
+            ".word"
+        )
+        .forEach(
+            word => {
+
+                word.draggable =
+                    false;
+
+            }
+        );
+
+
+    /* =====================================================
+       SHOW NEXT
+    ====================================================== */
+
+    nextBtn.style.display =
+        "block";
 
 }
 
@@ -1846,29 +2214,33 @@ function showExplanation(
    NEXT ROUND
 ========================================================= */
 
-nextBtn.addEventListener(
-    "click",
-    () => {
+function nextRound(){
 
-        current++;
+    if(!roundChecked){
 
-
-        if(
-            current < rounds.length
-        ){
-
-            loadRound();
-
-        }
-
-        else{
-
-            finishGame();
-
-        }
+        return;
 
     }
-);
+
+
+    currentRound++;
+
+
+    if(
+        currentRound >=
+        rounds.length
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    loadRound();
+
+}
 
 
 /* =========================================================
@@ -1877,18 +2249,16 @@ nextBtn.addEventListener(
 
 function finishGame(){
 
+    progress.style.width =
+        "100%";
+
+
     gameScreen.style.display =
         "none";
 
 
     finalScreen.style.display =
         "block";
-
-
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        `Your score: ${score} / ${totalPairs}`;
 
 
     const percentage =
@@ -1899,40 +2269,46 @@ function finishGame(){
         );
 
 
-    let message;
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        `Score: ${score} / ${totalPairs}`;
+
+
+    let result;
 
 
     if(
-        percentage >= 90
+        percentage === 100
     ){
 
-        message =
-            "🏆 Excellent!";
+        result =
+            "🏆 Perfect! You know your Vietnamese food and drink vocabulary.";
 
     }
 
     else if(
-        percentage >= 70
+        percentage >= 80
     ){
 
-        message =
-            "🎉 Great Job!";
+        result =
+            "🎉 Excellent! Keep practicing your Vietnamese.";
 
     }
 
     else if(
-        percentage >= 50
+        percentage >= 60
     ){
 
-        message =
-            "👍 Good Work!";
+        result =
+            "👍 Good job! You're getting better.";
 
     }
 
     else{
 
-        message =
-            "📚 Keep Practicing!";
+        result =
+            "📚 Keep practicing your Vietnamese food and drink vocabulary.";
 
     }
 
@@ -1940,7 +2316,7 @@ function finishGame(){
     document.getElementById(
         "finalMessage"
     ).textContent =
-        `${percentage}% — ${message}`;
+        `${percentage}% — ${result}`;
 
 }
 
@@ -1951,27 +2327,37 @@ function finishGame(){
 
 function restartGame(){
 
-    current = 0;
+    currentRound = 0;
 
     score = 0;
 
-    matched = 0;
-
     draggedWord = null;
+
+    roundChecked = false;
+
+
+    rounds =
+        createRounds();
 
 
     finalScreen.style.display =
         "none";
 
 
-    introScreen.style.display =
+    gameScreen.style.display =
         "block";
 
 
-    gameScreen.style.display =
-        "none";
+    loadRound();
 
 }
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+loadRound();
 
 </script>
 

@@ -34,12 +34,12 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.gstatic.com"
+    href="https://fonts.googleapis.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
@@ -64,6 +64,8 @@
     --ink-soft:
         #66809d;
 
+    /* Activities category color */
+
     --accent:
         #2878df;
 
@@ -73,20 +75,20 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-bg:
+        #f4f8ff;
+
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
+    --border:
+        #d9e6f2;
 
-    --green-light:
-        #eaf8f0;
+    --wrong:
+        #d9536f;
 
-    --red:
-        #e05252;
-
-    --red-light:
-        #fff0f0;
+    --wrong-bg:
+        #fff0f3;
 
 }
 
@@ -122,7 +124,7 @@ body {
         28px 20px 45px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -151,7 +153,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -162,7 +164,7 @@ body {
 
 
 /* ==========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================== */
 
 .back-btn-container {
@@ -195,12 +197,7 @@ body {
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.9
-        );
+        var(--white);
 
     color:
         var(--accent-dark);
@@ -209,7 +206,7 @@ body {
         none;
 
     font-size:
-        0.82rem;
+        1.1rem;
 
     font-weight:
         700;
@@ -220,11 +217,14 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 
 }
 
@@ -241,30 +241,31 @@ body {
         var(--accent);
 
     color:
-        white;
+        var(--white);
 
 }
 
 
 /* ==========================================================
-   GAME CARD
+   MAIN CARD
 ========================================================== */
 
 .card {
+
+    position:
+        relative;
 
     width:
         100%;
 
     padding:
-        38px;
+        42px 46px 46px;
+
+    overflow:
+        hidden;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        var(--white);
 
     border:
         1px solid
@@ -274,12 +275,12 @@ body {
         24px;
 
     box-shadow:
-        0 18px 50px
+        0 16px 42px
         rgba(
             20,
             58,
             107,
-            0.10
+            0.08
         );
 
     text-align:
@@ -289,16 +290,50 @@ body {
 
 
 /* ==========================================================
-   HEADER
+   HEADER ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-light)
+        );
+
+}
+
+
+/* ==========================================================
+   GAME HEADER
 ========================================================== */
 
 .game-icon {
 
     width:
-        58px;
+        62px;
 
     height:
-        58px;
+        62px;
 
     display:
         flex;
@@ -310,11 +345,11 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        2px auto 16px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -323,7 +358,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.25rem;
 
 }
 
@@ -331,19 +366,23 @@ body {
 h1 {
 
     margin:
-        0 0 9px;
+        0 0 8px;
 
     color:
         var(--ink);
 
+    font-family:
+        "Kalam",
+        cursive;
+
     font-size:
-        1.9rem;
+        2.55rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
-        1.25;
+        1.2;
 
 }
 
@@ -351,16 +390,16 @@ h1 {
 .subtitle {
 
     max-width:
-        520px;
+        620px;
 
     margin:
-        0 auto 30px;
+        0 auto 34px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.9rem;
+        1.18rem;
 
     line-height:
         1.55;
@@ -369,31 +408,54 @@ h1 {
 
 
 /* ==========================================================
-   GAME SCREEN
+   QUESTION NUMBER
 ========================================================== */
 
 .question-number {
 
-    margin-bottom:
-        18px;
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 auto 20px;
+
+    padding:
+        7px 15px;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent-bg);
 
     color:
-        var(--accent);
+        var(--accent-dark);
 
     font-size:
-        0.78rem;
+        1rem;
 
     font-weight:
         800;
 
     letter-spacing:
-        0.05em;
-
-    text-transform:
-        uppercase;
+        0.04em;
 
 }
 
+
+/* ==========================================================
+   QUESTION PROMPT
+========================================================== */
 
 .choose-text {
 
@@ -404,7 +466,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.15rem;
 
     font-weight:
         600;
@@ -421,7 +483,7 @@ h1 {
         var(--accent);
 
     font-size:
-        2.35rem;
+        2.7rem;
 
     font-weight:
         800;
@@ -453,8 +515,11 @@ h1 {
     gap:
         14px;
 
-    max-width:
-        600px;
+    width:
+        min(
+            700px,
+            100%
+        );
 
     margin:
         0 auto 24px;
@@ -462,13 +527,17 @@ h1 {
 }
 
 
+/* ==========================================================
+   ANSWER BUTTON
+========================================================== */
+
 .answer-btn {
 
     min-height:
         76px;
 
     padding:
-        14px 18px;
+        15px 20px;
 
     border:
         2px solid
@@ -487,7 +556,7 @@ h1 {
         inherit;
 
     font-size:
-        0.92rem;
+        1.2rem;
 
     font-weight:
         700;
@@ -504,7 +573,7 @@ h1 {
             20,
             58,
             107,
-            0.07
+            0.05
         );
 
     transition:
@@ -516,10 +585,10 @@ h1 {
 }
 
 
-.answer-btn:hover:not(.disabled) {
+.answer-btn:hover:not(:disabled) {
 
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     border-color:
         var(--accent);
@@ -528,21 +597,66 @@ h1 {
         var(--accent-light);
 
     box-shadow:
-        0 9px 20px
+        0 8px 18px
         rgba(
             20,
             58,
             107,
-            0.12
+            0.08
         );
 
 }
 
 
-.answer-btn.disabled {
+.answer-btn:disabled {
 
     cursor:
         default;
+
+}
+
+
+/* ==========================================================
+   CORRECT ANSWER
+========================================================== */
+
+.correct-answer {
+
+    border-color:
+        var(--accent) !important;
+
+    background:
+        var(--accent-light) !important;
+
+    color:
+        var(--accent-dark) !important;
+
+    box-shadow:
+        0 5px 16px
+        rgba(
+            40,
+            120,
+            223,
+            0.12
+        ) !important;
+
+}
+
+
+/* ==========================================================
+   WRONG ANSWER
+========================================================== */
+
+.wrong-answer {
+
+    border-color:
+        var(--wrong) !important;
+
+    background:
+        var(--wrong-bg) !important;
+
+    color:
+        var(--wrong) !important;
 
 }
 
@@ -554,13 +668,13 @@ h1 {
 .message {
 
     min-height:
-        32px;
+        30px;
 
     margin-bottom:
         18px;
 
     font-size:
-        0.95rem;
+        1.2rem;
 
     font-weight:
         800;
@@ -571,7 +685,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--accent-dark);
 
 }
 
@@ -579,50 +693,22 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
-
-}
-
-
-.correct-answer {
-
-    border-color:
-        var(--green) !important;
-
-    background:
-        var(--green-light) !important;
-
-    color:
-        var(--green) !important;
-
-}
-
-
-.wrong-answer {
-
-    border-color:
-        var(--red) !important;
-
-    background:
-        var(--red-light) !important;
-
-    color:
-        var(--red) !important;
+        var(--wrong);
 
 }
 
 
 /* ==========================================================
-   BUTTON
+   ACTION BUTTON
 ========================================================== */
 
 .action-btn {
 
     min-width:
-        170px;
+        175px;
 
     padding:
-        12px 22px;
+        12px 24px;
 
     border:
         none;
@@ -634,13 +720,13 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        var(--white);
 
     font-family:
         inherit;
 
     font-size:
-        0.86rem;
+        1.1rem;
 
     font-weight:
         800;
@@ -649,34 +735,38 @@ h1 {
         pointer;
 
     box-shadow:
-        inset 0 -3px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.12
-        ),
-        0 5px 12px
+        0 5px 14px
         rgba(
             40,
             120,
             223,
-            0.20
+            0.18
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
 
 .action-btn:hover {
 
+    transform:
+        translateY(-2px);
+
     background:
         var(--accent-dark);
 
-    transform:
-        translateY(-2px);
+    box-shadow:
+        0 8px 18px
+        rgba(
+            40,
+            120,
+            223,
+            0.22
+        );
 
 }
 
@@ -696,10 +786,10 @@ h1 {
 .result-icon {
 
     width:
-        64px;
+        68px;
 
     height:
-        64px;
+        68px;
 
     display:
         flex;
@@ -711,11 +801,11 @@ h1 {
         center;
 
     margin:
-        0 auto 18px;
+        2px auto 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -724,7 +814,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.45rem;
 
 }
 
@@ -732,7 +822,7 @@ h1 {
 .result-title {
 
     margin-bottom:
-        10px;
+        8px;
 
 }
 
@@ -740,13 +830,13 @@ h1 {
 .score {
 
     margin:
-        20px 0 8px;
+        18px 0 8px;
 
     color:
         var(--accent);
 
     font-size:
-        2.6rem;
+        3rem;
 
     font-weight:
         800;
@@ -763,7 +853,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1rem;
+        1.25rem;
 
     font-weight:
         600;
@@ -784,11 +874,32 @@ h1 {
 
 
 /* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer {
+
+    margin-top:
+        18px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        0.95rem;
+
+    text-align:
+        center;
+
+}
+
+
+/* ==========================================================
    MOBILE
 ========================================================== */
 
 @media (
-    max-width: 600px
+    max-width: 700px
 ) {
 
     body {
@@ -802,7 +913,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            34px 20px 30px;
 
         border-radius:
             20px;
@@ -813,7 +924,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.1rem;
 
     }
 
@@ -821,10 +932,10 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.08rem;
 
         margin-bottom:
-            25px;
+            28px;
 
     }
 
@@ -832,7 +943,7 @@ h1 {
     .word {
 
         font-size:
-            2rem;
+            2.35rem;
 
         margin-bottom:
             24px;
@@ -857,7 +968,7 @@ h1 {
             68px;
 
         font-size:
-            0.88rem;
+            1.12rem;
 
     }
 
@@ -872,6 +983,30 @@ h1 {
     max-width: 380px
 ) {
 
+    .card {
+
+        padding:
+            30px 16px 26px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            1.9rem;
+
+    }
+
+
+    .word {
+
+        font-size:
+            2.1rem;
+
+    }
+
+
     .answer-btn {
 
         min-height:
@@ -879,6 +1014,9 @@ h1 {
 
         padding:
             12px 14px;
+
+        font-size:
+            1.05rem;
 
     }
 
@@ -919,7 +1057,7 @@ h1 {
 
 
         <!-- ==================================================
-             GAME HEADER
+             HEADER
         =================================================== -->
 
         <div
@@ -1044,14 +1182,19 @@ h1 {
 
     </main>
 
+
+    <div class="footer">
+        Keep practicing your Vietnamese vocabulary!
+    </div>
+
+
 </div>
 
 
 <script>
 
 /* ==========================================================
-   VOCABULARY
-   Activities Vocabulary
+   ACTIVITIES VOCABULARY
 ========================================================== */
 
 const ACTIVITIES = [
@@ -1059,9 +1202,6 @@ const ACTIVITIES = [
     {
         text:
             "học bài",
-
-        phonetic:
-            "/hok bai/",
 
         english:
             "study"
@@ -1071,9 +1211,6 @@ const ACTIVITIES = [
         text:
             "làm bài",
 
-        phonetic:
-            "/lam bai/",
-
         english:
             "do homework / do exercises"
     },
@@ -1081,9 +1218,6 @@ const ACTIVITIES = [
     {
         text:
             "đi học",
-
-        phonetic:
-            "/dee hok/",
 
         english:
             "go to school"
@@ -1093,9 +1227,6 @@ const ACTIVITIES = [
         text:
             "học ngoại ngữ",
 
-        phonetic:
-            "/hok ngwai ngư/",
-
         english:
             "learn a foreign language"
     },
@@ -1103,9 +1234,6 @@ const ACTIVITIES = [
     {
         text:
             "làm việc",
-
-        phonetic:
-            "/lam viek/",
 
         english:
             "work"
@@ -1115,9 +1243,6 @@ const ACTIVITIES = [
         text:
             "đi làm",
 
-        phonetic:
-            "/dee lam/",
-
         english:
             "go to work"
     },
@@ -1125,9 +1250,6 @@ const ACTIVITIES = [
     {
         text:
             "họp",
-
-        phonetic:
-            "/hop/",
 
         english:
             "have a meeting"
@@ -1137,9 +1259,6 @@ const ACTIVITIES = [
         text:
             "thi",
 
-        phonetic:
-            "/thi/",
-
         english:
             "take an exam"
     },
@@ -1147,9 +1266,6 @@ const ACTIVITIES = [
     {
         text:
             "đi công tác",
-
-        phonetic:
-            "/dee kong tak/",
 
         english:
             "go on a business trip"
@@ -1159,9 +1275,6 @@ const ACTIVITIES = [
         text:
             "ngủ",
 
-        phonetic:
-            "/ngoo/",
-
         english:
             "sleep"
     },
@@ -1169,9 +1282,6 @@ const ACTIVITIES = [
     {
         text:
             "xem phim",
-
-        phonetic:
-            "/sem fim/",
 
         english:
             "watch a movie"
@@ -1181,9 +1291,6 @@ const ACTIVITIES = [
         text:
             "nghe nhạc",
 
-        phonetic:
-            "/nge nyak/",
-
         english:
             "listen to music"
     },
@@ -1191,9 +1298,6 @@ const ACTIVITIES = [
     {
         text:
             "đọc sách",
-
-        phonetic:
-            "/dok sak/",
 
         english:
             "read books"
@@ -1203,9 +1307,6 @@ const ACTIVITIES = [
         text:
             "chơi game",
 
-        phonetic:
-            "/choi game/",
-
         english:
             "play games"
     },
@@ -1213,9 +1314,6 @@ const ACTIVITIES = [
     {
         text:
             "đi chơi",
-
-        phonetic:
-            "/dee choi/",
 
         english:
             "hang out / go out"
@@ -1225,9 +1323,6 @@ const ACTIVITIES = [
         text:
             "đi dạo",
 
-        phonetic:
-            "/dee zao/",
-
         english:
             "go for a walk"
     },
@@ -1235,9 +1330,6 @@ const ACTIVITIES = [
     {
         text:
             "tập thể dục",
-
-        phonetic:
-            "/tap thay zook/",
 
         english:
             "exercise / work out"
@@ -1247,9 +1339,6 @@ const ACTIVITIES = [
         text:
             "đi biển",
 
-        phonetic:
-            "/dee bien/",
-
         english:
             "go to the beach"
     },
@@ -1257,9 +1346,6 @@ const ACTIVITIES = [
     {
         text:
             "du lịch",
-
-        phonetic:
-            "/zoo lik/",
 
         english:
             "travel"
@@ -1269,9 +1355,6 @@ const ACTIVITIES = [
         text:
             "chụp hình",
 
-        phonetic:
-            "/choop hin/",
-
         english:
             "take photos"
     },
@@ -1279,9 +1362,6 @@ const ACTIVITIES = [
     {
         text:
             "gặp bạn",
-
-        phonetic:
-            "/gap ban/",
 
         english:
             "meet friends"
@@ -1291,9 +1371,6 @@ const ACTIVITIES = [
         text:
             "ăn",
 
-        phonetic:
-            "/an/",
-
         english:
             "eat"
     },
@@ -1301,9 +1378,6 @@ const ACTIVITIES = [
     {
         text:
             "uống",
-
-        phonetic:
-            "/uong/",
 
         english:
             "drink"
@@ -1313,9 +1387,6 @@ const ACTIVITIES = [
         text:
             "nấu ăn",
 
-        phonetic:
-            "/nəw an/",
-
         english:
             "cook"
     },
@@ -1323,9 +1394,6 @@ const ACTIVITIES = [
     {
         text:
             "mua sắm",
-
-        phonetic:
-            "/mua sam/",
 
         english:
             "go shopping"
@@ -1335,9 +1403,6 @@ const ACTIVITIES = [
         text:
             "gọi điện",
 
-        phonetic:
-            "/goy dien/",
-
         english:
             "make a phone call"
     },
@@ -1346,9 +1411,6 @@ const ACTIVITIES = [
         text:
             "nhắn tin",
 
-        phonetic:
-            "/nyan tin/",
-
         english:
             "text / send messages"
     },
@@ -1356,9 +1418,6 @@ const ACTIVITIES = [
     {
         text:
             "nói chuyện",
-
-        phonetic:
-            "/noy chuyen/",
 
         english:
             "talk / chat"
@@ -1460,19 +1519,6 @@ const playAgain =
 
 
 /* ==========================================================
-   RANDOM
-========================================================== */
-
-function randomIndex(max) {
-
-    return Math.floor(
-        Math.random() * max
-    );
-
-}
-
-
-/* ==========================================================
    SHUFFLE
 ========================================================== */
 
@@ -1486,7 +1532,8 @@ function shuffle(array) {
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
@@ -1508,31 +1555,29 @@ function shuffle(array) {
 
 
 /* ==========================================================
-   GET UNIQUE RANDOM ITEMS
+   GET RANDOM WRONG ANSWERS
 ========================================================== */
 
-function getRandomItems(
-    array,
-    count,
-    excludedText
+function getWrongAnswers(
+    correct
 ) {
 
-    const available =
-        array.filter(
-            item =>
-                item.text !==
-                excludedText
+    const candidates =
+        ACTIVITIES.filter(
+            activity =>
+                activity.text !==
+                correct.text
         );
 
 
     shuffle(
-        available
+        candidates
     );
 
 
-    return available.slice(
+    return candidates.slice(
         0,
-        count
+        OPTIONS_PER_QUESTION - 1
     );
 
 }
@@ -1544,57 +1589,62 @@ function getRandomItems(
 
 function generateQuestions() {
 
+    /*
+     * Shuffle the complete vocabulary
+     * and select 20 different activities.
+     */
+
     const pool =
-        [...ACTIVITIES];
+        shuffle(
+            [
+                ...ACTIVITIES
+            ]
+        );
 
 
-    shuffle(
-        pool
-    );
+    const selectedActivities =
+        pool.slice(
+            0,
+            TOTAL_QUESTIONS
+        );
 
 
     questions =
-        pool
-            .slice(
-                0,
-                TOTAL_QUESTIONS
-            )
-            .map(
-                correct => {
+        selectedActivities.map(
+            correct => {
 
-                    const wrongAnswers =
-                        getRandomItems(
-                            ACTIVITIES,
-                            OPTIONS_PER_QUESTION - 1,
-                            correct.text
-                        );
-
-
-                    const options = [
-
-                        correct,
-                        ...wrongAnswers
-
-                    ];
-
-
-                    shuffle(
-                        options
+                const wrongAnswers =
+                    getWrongAnswers(
+                        correct
                     );
 
 
-                    return {
+                const options = [
 
-                        correct:
-                            correct,
+                    correct,
 
-                        options:
-                            options
+                    ...wrongAnswers
 
-                    };
+                ];
 
-                }
-            );
+
+                shuffle(
+                    options
+                );
+
+
+                return {
+
+                    correct:
+                        correct,
+
+                    options:
+                        options
+
+                };
+
+            }
+        );
 
 }
 
@@ -1649,6 +1699,10 @@ function loadQuestion() {
         "message";
 
 
+    nextBtn.textContent =
+        "";
+
+
     nextBtn.classList.add(
         "hidden"
     );
@@ -1693,15 +1747,15 @@ function loadQuestion() {
                 "answer-btn";
 
 
+            button.textContent =
+                option.english;
+
+
             button.dataset.correct =
                 (
                     option.text ===
                     question.correct.text
                 );
-
-
-            button.textContent =
-                option.english;
 
 
             button.setAttribute(
@@ -1737,6 +1791,10 @@ function handleAnswer(
     selected
 ) {
 
+    /*
+     * A question can only be answered once.
+     */
+
     if (
         answered
     ) {
@@ -1756,16 +1814,23 @@ function handleAnswer(
         );
 
 
+    /*
+     * Lock every answer button.
+     */
+
     buttons.forEach(
         button => {
 
-            button.classList.add(
-                "disabled"
-            );
+            button.disabled =
+                true;
 
         }
     );
 
+
+    /*
+     * Find the correct answer.
+     */
 
     const correctButton =
         [
@@ -1776,6 +1841,10 @@ function handleAnswer(
                 "true"
         );
 
+
+    /*
+     * Correct answer.
+     */
 
     if (
         selected.dataset.correct ===
@@ -1800,6 +1869,11 @@ function handleAnswer(
 
     }
 
+
+    /*
+     * Wrong answer.
+     */
+
     else {
 
         selected.classList.add(
@@ -1822,6 +1896,10 @@ function handleAnswer(
 
     }
 
+
+    /*
+     * Show Next button.
+     */
 
     nextBtn.classList.remove(
         "hidden"

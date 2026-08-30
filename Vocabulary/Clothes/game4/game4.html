@@ -34,12 +34,12 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.googleapis.com"
+    href="https://fonts.gstatic.com"
     crossorigin
 >
 
 <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
 
@@ -52,18 +52,6 @@
 
 :root {
 
-    --paper:
-        #f5f9fd;
-
-    --white:
-        #ffffff;
-
-    --ink:
-        #143a6b;
-
-    --ink-soft:
-        #66809d;
-
     --accent:
         #2878df;
 
@@ -73,20 +61,35 @@
     --accent-light:
         #eaf3ff;
 
-    --border:
+    --accent-border:
         #c4daf6;
 
-    --green:
-        #27ae60;
+    --general-border:
+        #d9e6f2;
 
-    --green-light:
-        #eaf8f0;
+    --correct:
+        #2878df;
 
-    --red:
-        #e05252;
+    --correct-light:
+        #eaf3ff;
 
-    --red-light:
-        #fff0f0;
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --white:
+        #ffffff;
+
+    --paper:
+        #f5f9fd;
 
 }
 
@@ -119,10 +122,10 @@ body {
         100vh;
 
     padding:
-        28px 20px 45px;
+        30px 20px 50px;
 
     font-family:
-        'Be Vietnam Pro',
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
@@ -136,7 +139,7 @@ body {
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
+            #f5f9fd 50%,
             #edf5fc 100%
         );
 
@@ -151,7 +154,7 @@ body {
 
     width:
         min(
-            760px,
+            900px,
             100%
         );
 
@@ -185,22 +188,17 @@ body {
         7px;
 
     padding:
-        9px 16px;
+        9px 17px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.9
-        );
+        var(--white);
 
     color:
         var(--accent-dark);
@@ -208,8 +206,13 @@ body {
     text-decoration:
         none;
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:
-        0.82rem;
+        1.05rem;
 
     font-weight:
         700;
@@ -220,7 +223,7 @@ body {
             20,
             58,
             107,
-            0.07
+            0.06
         );
 
     transition:
@@ -234,14 +237,14 @@ body {
     transform:
         translateY(-2px);
 
-    background:
-        var(--accent);
-
     border-color:
         var(--accent);
 
+    background:
+        var(--accent-light);
+
     color:
-        white;
+        var(--accent-dark);
 
 }
 
@@ -252,23 +255,21 @@ body {
 
 .card {
 
+    position:
+        relative;
+
     width:
         100%;
 
     padding:
-        38px;
+        42px 48px 45px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        var(--white);
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         24px;
@@ -279,11 +280,44 @@ body {
             20,
             58,
             107,
-            0.10
+            0.09
         );
 
     text-align:
         center;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
 
 }
 
@@ -295,10 +329,10 @@ body {
 .game-icon {
 
     width:
-        58px;
+        60px;
 
     height:
-        58px;
+        60px;
 
     display:
         flex;
@@ -310,11 +344,11 @@ body {
         center;
 
     margin:
-        0 auto 16px;
+        0 auto 15px;
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         16px;
@@ -323,7 +357,7 @@ body {
         var(--accent-light);
 
     font-size:
-        1.8rem;
+        2.15rem;
 
 }
 
@@ -331,19 +365,23 @@ body {
 h1 {
 
     margin:
-        0 0 9px;
+        0 0 8px;
 
     color:
         var(--ink);
 
+    font-family:
+        Kalam,
+        cursive;
+
     font-size:
-        1.9rem;
+        2.65rem;
 
     font-weight:
-        800;
+        700;
 
     line-height:
-        1.25;
+        1.2;
 
 }
 
@@ -351,16 +389,21 @@ h1 {
 .subtitle {
 
     max-width:
-        540px;
+        620px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     color:
         var(--ink-soft);
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:
-        0.9rem;
+        1.18rem;
 
     line-height:
         1.55;
@@ -369,25 +412,30 @@ h1 {
 
 
 /* ==========================================================
-   QUESTION
+   QUESTION NUMBER
 ========================================================== */
 
 .question-number {
 
     margin-bottom:
-        18px;
+        17px;
 
     color:
         var(--accent);
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:
-        0.78rem;
+        1.05rem;
 
     font-weight:
         800;
 
     letter-spacing:
-        0.05em;
+        0.06em;
 
     text-transform:
         uppercase;
@@ -395,16 +443,20 @@ h1 {
 }
 
 
+/* ==========================================================
+   INSTRUCTION
+========================================================== */
+
 .instruction {
 
     margin-bottom:
-        16px;
+        15px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        0.88rem;
+        1.15rem;
 
     font-weight:
         600;
@@ -420,12 +472,12 @@ h1 {
 
     width:
         min(
-            320px,
+            340px,
             100%
         );
 
     height:
-        260px;
+        270px;
 
     display:
         flex;
@@ -444,7 +496,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         20px;
@@ -502,8 +554,11 @@ h1 {
     gap:
         14px;
 
-    margin-bottom:
-        20px;
+    max-width:
+        700px;
+
+    margin:
+        0 auto 22px;
 
 }
 
@@ -511,29 +566,31 @@ h1 {
 .answer-btn {
 
     min-height:
-        62px;
+        66px;
 
     padding:
-        13px 16px;
+        14px 18px;
 
     border:
         2px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         15px;
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--ink);
 
     font-family:
-        inherit;
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        0.98rem;
+        1.28rem;
 
     font-weight:
         700;
@@ -558,6 +615,15 @@ h1 {
     background:
         var(--accent-light);
 
+    box-shadow:
+        0 7px 18px
+        rgba(
+            40,
+            120,
+            223,
+            0.10
+        );
+
 }
 
 
@@ -569,16 +635,20 @@ h1 {
 }
 
 
+/* ==========================================================
+   CORRECT / WRONG
+========================================================== */
+
 .answer-btn.correct {
 
     border-color:
-        var(--green);
+        var(--correct);
 
     background:
-        var(--green-light);
+        var(--correct-light);
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -586,13 +656,13 @@ h1 {
 .answer-btn.wrong {
 
     border-color:
-        var(--red);
+        var(--wrong);
 
     background:
-        var(--red-light);
+        var(--wrong-light);
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -607,10 +677,15 @@ h1 {
         28px;
 
     margin-bottom:
-        14px;
+        13px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        0.95rem;
+        1.22rem;
 
     font-weight:
         800;
@@ -621,7 +696,7 @@ h1 {
 .correct-text {
 
     color:
-        var(--green);
+        var(--correct);
 
 }
 
@@ -629,7 +704,7 @@ h1 {
 .wrong-text {
 
     color:
-        var(--red);
+        var(--wrong);
 
 }
 
@@ -641,17 +716,17 @@ h1 {
 .explanation {
 
     max-width:
-        620px;
+        700px;
 
     margin:
-        0 auto 20px;
+        0 auto 21px;
 
     padding:
         15px 18px;
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         14px;
@@ -662,8 +737,13 @@ h1 {
     color:
         var(--ink-soft);
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:
-        0.88rem;
+        1.12rem;
 
     line-height:
         1.6;
@@ -689,10 +769,10 @@ h1 {
 .action-btn {
 
     min-width:
-        175px;
+        180px;
 
     padding:
-        12px 22px;
+        12px 24px;
 
     border:
         none;
@@ -704,13 +784,15 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        var(--white);
 
     font-family:
-        inherit;
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:
-        0.86rem;
+        1.12rem;
 
     font-weight:
         800;
@@ -719,14 +801,7 @@ h1 {
         pointer;
 
     box-shadow:
-        inset 0 -3px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.12
-        ),
-        0 5px 12px
+        0 5px 13px
         rgba(
             40,
             120,
@@ -766,10 +841,10 @@ h1 {
 .result-icon {
 
     width:
-        64px;
+        66px;
 
     height:
-        64px;
+        66px;
 
     display:
         flex;
@@ -785,7 +860,7 @@ h1 {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         18px;
@@ -794,7 +869,7 @@ h1 {
         var(--accent-light);
 
     font-size:
-        2rem;
+        2.3rem;
 
 }
 
@@ -815,11 +890,15 @@ h1 {
     color:
         var(--accent);
 
+    font-family:
+        Kalam,
+        cursive;
+
     font-size:
-        2.6rem;
+        3.15rem;
 
     font-weight:
-        800;
+        700;
 
 }
 
@@ -832,8 +911,13 @@ h1 {
     color:
         var(--ink-soft);
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:
-        1rem;
+        1.25rem;
 
     font-weight:
         600;
@@ -858,13 +942,13 @@ h1 {
 ========================================================== */
 
 @media (
-    max-width: 600px
+    max-width: 700px
 ) {
 
     body {
 
         padding:
-            18px 14px 35px;
+            20px 14px 35px;
 
     }
 
@@ -872,7 +956,7 @@ h1 {
     .card {
 
         padding:
-            28px 20px;
+            35px 20px 32px;
 
         border-radius:
             20px;
@@ -883,7 +967,7 @@ h1 {
     h1 {
 
         font-size:
-            1.55rem;
+            2.25rem;
 
     }
 
@@ -891,10 +975,10 @@ h1 {
     .subtitle {
 
         font-size:
-            0.84rem;
+            1.08rem;
 
         margin-bottom:
-            25px;
+            27px;
 
     }
 
@@ -902,7 +986,7 @@ h1 {
     .image-box {
 
         height:
-            220px;
+            230px;
 
         margin-bottom:
             24px;
@@ -921,7 +1005,49 @@ h1 {
     .answer-btn {
 
         min-height:
-            56px;
+            60px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+========================================================== */
+
+@media (
+    max-width: 380px
+) {
+
+    .card {
+
+        padding:
+            32px 16px 28px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            2.05rem;
+
+    }
+
+
+    .image-box {
+
+        height:
+            210px;
+
+    }
+
+
+    .answer-btn {
+
+        font-size:
+            1.18rem;
 
     }
 

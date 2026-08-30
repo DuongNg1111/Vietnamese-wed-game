@@ -1,10 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Vietnamese Food & Drinks Matching</title>
 
@@ -29,276 +33,224 @@
 >
 
 
+<!-- =========================================================
+     FONTS
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
+
+/* =========================================================
+   COLOR SYSTEM
+========================================================= */
+
+:root{
+
+    --accent:#2878df;
+
+    --accent-dark:#1e5fba;
+
+    --accent-light:#eaf3ff;
+
+    --accent-border:#c4daf6;
+
+    --general-border:#d9e6f2;
+
+    --correct:#2878df;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
+    --text:#222;
+
+    --muted:#666;
+
+    --white:#ffffff;
+
+}
+
 
 /* =========================================================
    GLOBAL
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 body{
 
     margin:0;
 
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:#f7f9fc;
+    padding:20px;
 
     min-height:100vh;
 
-    color:#222;
+    background:#f7f9fc;
 
-    padding:20px;
+    color:var(--text);
+
+    font-family:Calibri, Arial, sans-serif;
+
 }
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK BUTTON
 ========================================================= */
 
 .back-btn-container{
 
     width:100%;
 
-    max-width:750px;
+    max-width:900px;
 
     margin:0 auto 15px;
 
-    text-align:left;
 }
 
 .back-btn{
 
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 17px;
 
-    background:white;
+    background:var(--white);
 
     color:#555;
 
-    border:2px solid #ddd;
+    border:2px solid var(--general-border);
 
     border-radius:10px;
 
     text-decoration:none;
 
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:20px;
+
     font-weight:bold;
 
     transition:.2s;
+
 }
 
 .back-btn:hover{
 
-    background:#f0f0f0;
+    background:var(--accent-light);
+
+    border-color:var(--accent-border);
+
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
+
 }
 
 
 /* =========================================================
-   GAME CONTAINER
+   MAIN CARD
 ========================================================= */
 
 .game{
 
+    position:relative;
+
     width:100%;
 
-    max-width:750px;
+    max-width:900px;
 
     margin:0 auto;
 
-    background:white;
+    padding:35px 45px 40px;
+
+    background:var(--white);
+
+    border:1px solid var(--general-border);
 
     border-radius:24px;
 
-    padding:30px 40px 35px;
-
     box-shadow:
-        0 10px 35px rgba(0,0,0,.12);
+        0 10px 35px rgba(40,120,223,.10);
 
     text-align:center;
+
+    overflow:hidden;
+
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   ACCENT LINE ON CARD
 ========================================================= */
 
-#introScreen{
+.game::before{
 
-    padding:15px 10px 10px;
-}
+    content:"";
 
-.game-icon{
+    position:absolute;
 
-    font-size:64px;
+    top:0;
 
-    margin-bottom:8px;
-}
+    left:0;
 
-#introScreen h1{
+    right:0;
 
-    margin:0 0 12px;
+    height:6px;
 
-    font-size:34px;
+    background:var(--accent);
 
-    color:#2c3e50;
-}
-
-.intro-description{
-
-    max-width:650px;
-
-    margin:0 auto 25px;
-
-    font-size:17px;
-
-    line-height:1.6;
-
-    color:#666;
 }
 
 
 /* =========================================================
-   HOW TO PLAY
+   GAME HEADER
 ========================================================= */
 
-.how-to-play{
+.game-header{
 
-    max-width:700px;
+    margin-bottom:28px;
 
-    margin:0 auto 25px;
-
-    padding:20px 25px;
-
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
-
-    border-radius:14px;
-
-    text-align:left;
 }
 
-.how-to-play h2{
+.game-header h1{
 
-    margin:0 0 12px;
+    margin:0 0 8px;
 
-    color:#4779b8;
+    color:var(--accent-dark);
 
-    font-size:22px;
+    font-family:"Kalam", cursive;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    line-height:1.25;
+
 }
 
-.how-to-play p{
+.game-description{
 
-    margin:7px 0;
+    margin:0;
 
-    font-size:16px;
+    color:var(--muted);
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:23px;
 
     line-height:1.5;
 
-    color:#3d5066;
-}
-
-
-/* =========================================================
-   GAME INFO
-========================================================= */
-
-.game-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:20px 0 25px;
-}
-
-.game-info div{
-
-    background:#f4f8fb;
-
-    border:1px solid #e1e8ee;
-
-    border-radius:12px;
-
-    padding:12px 20px;
-
-    color:#555;
-
-    font-size:16px;
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-button{
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-#startBtn{
-
-    padding:14px 35px;
-
-    background:#4779b8;
-
-    color:white;
-
-    font-size:19px;
-}
-
-#startBtn:hover{
-
-    background:#38689f;
-
-    transform:translateY(-2px);
-}
-
-
-/* =========================================================
-   GAME SCREEN
-========================================================= */
-
-#gameScreen{
-
-    display:none;
-}
-
-#gameScreen h1{
-
-    margin:0 0 10px;
-
-    font-size:32px;
-
-    color:#2c3e50;
-}
-
-.instruction{
-
-    color:#555;
-
-    font-size:17px;
-
-    margin:0 0 20px;
 }
 
 
@@ -314,21 +266,69 @@ button{
 
     align-items:center;
 
-    margin-bottom:25px;
+    gap:20px;
 
-    font-weight:bold;
+    margin-bottom:12px;
+
+    font-family:Calibri, Arial, sans-serif;
+
 }
 
 .round{
 
     color:#666;
+
+    font-size:22px;
+
+    font-weight:bold;
+
 }
 
 .score{
 
-    font-size:18px;
-
     color:#333;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-container{
+
+    width:100%;
+
+    height:10px;
+
+    margin:0 0 28px;
+
+    background:var(--accent-light);
+
+    border:1px solid var(--accent-border);
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--accent);
+
+    border-radius:999px;
+
+    transition:width .3s ease;
+
 }
 
 
@@ -338,13 +338,18 @@ button{
 
 .question{
 
-    font-size:25px;
-
-    font-weight:bold;
+    margin:25px 0;
 
     color:#333;
 
-    margin:25px 0;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    line-height:1.4;
+
 }
 
 
@@ -359,51 +364,85 @@ button{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:15px;
+    gap:16px;
 
     margin-top:20px;
+
 }
 
 .option-btn{
 
-    padding:17px 10px;
+    min-height:70px;
 
-    background:#4779b8;
+    padding:15px 12px;
 
-    color:white;
+    background:var(--white);
 
-    font-size:18px;
+    color:var(--accent-dark);
+
+    border:2px solid var(--accent-border);
+
+    border-radius:14px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 .option-btn:hover{
 
-    background:#38689f;
+    background:var(--accent-light);
+
+    border-color:var(--accent);
 
     transform:translateY(-2px);
+
 }
 
 .option-btn.selected{
 
-    background:#315f91 !important;
+    background:var(--accent-light);
+
+    color:var(--accent-dark);
+
+    border-color:var(--accent);
+
+    box-shadow:
+        0 0 0 3px rgba(40,120,223,.12);
 
     transform:translateY(-2px);
 
-    box-shadow:
-        0 0 0 3px rgba(71,121,184,.2);
 }
 
 .option-btn.correct{
 
-    background:#4caf70 !important;
+    background:var(--correct-light) !important;
+
+    color:var(--correct) !important;
+
+    border-color:var(--correct) !important;
 
     cursor:default;
+
 }
 
 .option-btn.wrong{
 
-    background:#e74c3c !important;
+    background:var(--wrong-light) !important;
+
+    color:var(--wrong) !important;
+
+    border-color:var(--wrong) !important;
 
     cursor:default;
+
 }
 
 .option-btn:disabled{
@@ -411,33 +450,55 @@ button{
     cursor:default;
 
     transform:none;
+
 }
 
 
 /* =========================================================
-   CHECK BUTTON
+   BUTTONS
 ========================================================= */
+
+button{
+
+    font-family:Calibri, Arial, sans-serif;
+
+}
+
+
+/* Check */
 
 #checkBtn{
 
-    margin-top:20px;
+    display:inline-block;
 
-    padding:13px 30px;
+    margin-top:22px;
 
-    background:#4779b8;
+    padding:12px 28px;
+
+    background:var(--accent);
 
     color:white;
 
-    font-size:17px;
+    border:none;
 
-    display:inline-block;
+    border-radius:12px;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 #checkBtn:hover{
 
-    background:#38689f;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
+
 }
 
 #checkBtn:disabled{
@@ -447,66 +508,11 @@ button{
     cursor:default;
 
     transform:none;
+
 }
 
 
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-.message{
-
-    min-height:40px;
-
-    margin:20px 0 10px;
-
-    font-size:18px;
-
-    font-weight:bold;
-}
-
-
-/* =========================================================
-   EXPLANATION
-========================================================= */
-
-.explanation{
-
-    margin:15px auto 20px;
-
-    padding:14px 18px;
-
-    max-width:700px;
-
-    background:#f0f7ff;
-
-    border-left:5px solid #4779b8;
-
-    border-radius:12px;
-
-    color:#3d5066;
-
-    font-size:15px;
-
-    line-height:1.5;
-
-    text-align:left;
-}
-
-.explanation strong{
-
-    color:#4779b8;
-}
-
-.hidden{
-
-    display:none;
-}
-
-
-/* =========================================================
-   NEXT BUTTON
-========================================================= */
+/* Next */
 
 #nextBtn{
 
@@ -516,18 +522,96 @@ button{
 
     padding:12px 30px;
 
-    background:#4779b8;
+    background:var(--accent);
 
     color:white;
 
-    font-size:17px;
+    border:none;
+
+    border-radius:12px;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 #nextBtn:hover{
 
-    background:#38689f;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message{
+
+    min-height:38px;
+
+    margin:20px 0 10px;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    line-height:1.4;
+
+}
+
+
+/* =========================================================
+   EXPLANATION
+========================================================= */
+
+.explanation{
+
+    width:100%;
+
+    margin:16px auto 22px;
+
+    padding:16px 20px;
+
+    background:var(--accent-light);
+
+    border:1px solid var(--accent-border);
+
+    border-left:5px solid var(--accent);
+
+    border-radius:12px;
+
+    color:#3d5066;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:22px;
+
+    line-height:1.55;
+
+    text-align:left;
+
+}
+
+.explanation strong{
+
+    color:var(--accent-dark);
+
+}
+
+.hidden{
+
+    display:none;
+
 }
 
 
@@ -539,70 +623,102 @@ button{
 
     display:none;
 
-    padding:20px;
+    padding:20px 10px 10px;
+
 }
 
 .final-icon{
 
-    font-size:65px;
+    font-size:68px;
 
-    margin-bottom:10px;
+    margin-bottom:8px;
+
 }
 
 .final h2{
 
-    font-size:32px;
+    margin:5px 0 20px;
 
-    color:#4779b8;
+    color:var(--accent-dark);
 
-    margin:10px 0 20px;
+    font-family:"Kalam", cursive;
+
+    font-size:44px;
+
+    font-weight:700;
+
 }
 
 .final-score{
 
-    font-size:26px;
+    margin:18px 0;
+
+    color:#333;
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:32px;
 
     font-weight:bold;
 
-    margin:20px 0;
 }
 
 .final-percent{
 
-    font-size:20px;
+    margin:10px 0;
 
     color:#555;
 
-    margin:10px 0;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:27px;
+
 }
 
 .final-message{
 
-    font-size:22px;
+    margin:20px 0;
+
+    color:var(--accent-dark);
+
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:30px;
 
     font-weight:bold;
 
-    margin:20px 0;
 }
 
 .restart-btn{
 
     margin-top:10px;
 
-    padding:14px 30px;
+    padding:13px 30px;
 
-    background:#4779b8;
+    background:var(--accent);
 
     color:white;
 
-    font-size:18px;
+    border:none;
+
+    border-radius:12px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 .restart-btn:hover{
 
-    background:#38689f;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
+
 }
 
 
@@ -615,77 +731,77 @@ button{
     body{
 
         padding:15px;
+
     }
 
     .game{
 
-        width:100%;
-
-        padding:25px 15px 30px;
+        padding:30px 18px 30px;
 
         border-radius:20px;
+
     }
 
-    #introScreen h1,
-    #gameScreen h1{
+    .game-header h1{
 
-        font-size:29px;
+        font-size:38px;
+
     }
 
-    .game-icon{
+    .game-description{
 
-        font-size:55px;
-    }
+        font-size:21px;
 
-    .intro-description{
-
-        font-size:16px;
-    }
-
-    .how-to-play{
-
-        padding:18px;
-    }
-
-    .how-to-play p{
-
-        font-size:15px;
-    }
-
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .game-info div{
-
-        width:100%;
     }
 
     .topbar{
 
-        font-size:15px;
+        gap:10px;
+
+    }
+
+    .round{
+
+        font-size:20px;
+
+    }
+
+    .score{
+
+        font-size:22px;
+
     }
 
     .question{
 
-        font-size:21px;
+        font-size:30px;
 
-        line-height:1.5;
     }
 
     .options{
 
         grid-template-columns:1fr;
+
     }
 
     .option-btn{
 
-        font-size:17px;
+        min-height:60px;
 
-        padding:15px;
+        font-size:23px;
+
+    }
+
+    .explanation{
+
+        font-size:21px;
+
+    }
+
+    .back-btn{
+
+        font-size:19px;
+
     }
 
 }
@@ -699,25 +815,34 @@ button{
 
     .game{
 
-        padding:22px 12px 25px;
+        padding:28px 14px;
+
     }
 
-    .back-btn{
+    .game-header h1{
 
-        font-size:14px;
+        font-size:34px;
 
-        padding:9px 14px;
     }
 
-    #introScreen h1,
-    #gameScreen h1{
+    .game-description{
 
-        font-size:25px;
+        font-size:20px;
+
     }
 
     .question{
 
-        font-size:20px;
+        font-size:28px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
     }
 
 }
@@ -731,7 +856,7 @@ button{
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -747,61 +872,25 @@ button{
 
 
 <!-- =========================================================
-     GAME CONTAINER
+     GAME CARD
 ========================================================= -->
 
 <div class="game">
 
 
 <!-- =========================================================
-     INTRO SCREEN
+     TITLE + SHORT DESCRIPTION
 ========================================================= -->
 
-<div id="introScreen">
-
-    <div class="game-icon">
-        🍜
-    </div>
-
+<div class="game-header">
 
     <h1>
         Vietnamese Food & Drinks Matching
     </h1>
 
-
-    <p class="intro-description">
-
-        Match Vietnamese food and drink words
-        with their correct English meanings.
-
+    <p class="game-description">
+        Choose the correct English meaning.
     </p>
-
-
-    <!-- =====================================================
-         HOW TO PLAY
-    ===================================================== -->
-
-    <div class="how-to-play">
-
-        <h2>🎮 How to Play</h2>
-
-        <p>👀 Read the Vietnamese word and choose the correct English meaning.</p>
-
-    </div>
-
-
-    <!-- =====================================================
-         GAME INFO
-    ===================================================== -->
-
-    <button
-        id="startBtn"
-        onclick="startGame()"
-    >
-
-        Start Game →
-
-    </button>
 
 </div>
 
@@ -813,17 +902,9 @@ button{
 <div id="gameScreen">
 
 
-    <h1>
-        🍜 Food & Drinks Matching
-    </h1>
-
-
-    <p class="instruction">
-
-        Choose the English meaning, then check your answer.
-
-    </p>
-
+    <!-- =====================================================
+         SCORE + PROGRESS
+    ====================================================== -->
 
     <div class="topbar">
 
@@ -853,11 +934,33 @@ button{
     </div>
 
 
+    <!-- =====================================================
+         PROGRESS BAR
+    ====================================================== -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         QUESTION
+    ====================================================== -->
+
     <div
         class="question"
         id="question"
     ></div>
 
+
+    <!-- =====================================================
+         OPTIONS
+    ====================================================== -->
 
     <div
         class="options"
@@ -865,16 +968,22 @@ button{
     ></div>
 
 
+    <!-- =====================================================
+         CHECK
+    ====================================================== -->
+
     <button
         id="checkBtn"
         onclick="checkAnswer()"
         disabled
     >
-
         Check Answer
-
     </button>
 
+
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
 
     <div
         class="message"
@@ -884,7 +993,7 @@ button{
 
     <!-- =====================================================
          EXPLANATION
-    ===================================================== -->
+    ====================================================== -->
 
     <div
         id="explanation"
@@ -892,26 +1001,30 @@ button{
     ></div>
 
 
+    <!-- =====================================================
+         NEXT
+    ====================================================== -->
+
     <button
         id="nextBtn"
         onclick="nextQuestion()"
     >
-
         Next →
-
     </button>
+
 
 </div>
 
 
 <!-- =========================================================
-     FINAL SCREEN
+     FINAL RESULTS
 ========================================================= -->
 
 <div
     class="final"
     id="finalScreen"
 >
+
 
     <div class="final-icon">
         🎉
@@ -957,6 +1070,7 @@ button{
         Play Again
 
     </button>
+
 
 </div>
 
@@ -1204,6 +1318,11 @@ const nextBtn =
         "nextBtn"
     );
 
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
 
 /* =========================================================
    SHUFFLE
@@ -1320,12 +1439,6 @@ function startGame(){
 
 
     document.getElementById(
-        "introScreen"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
         "finalScreen"
     ).style.display =
         "none";
@@ -1369,16 +1482,39 @@ function loadQuestion(){
         score;
 
 
+    /* =====================================================
+       PROGRESS
+    ===================================================== */
+
+    const progress =
+        (
+            currentQuestion /
+            TOTAL_QUESTIONS
+        ) * 100;
+
+
+    progressBar.style.width =
+        `${progress}%`;
+
+
+    /* =====================================================
+       QUESTION
+    ===================================================== */
+
     questionEl.innerHTML = `
 
         What is the meaning of
 
         "<span style="
-            color:#4779b8;
+            color:var(--accent);
         ">${q.vn}</span>"?
 
     `;
 
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     messageEl.textContent =
         "";
@@ -1613,7 +1749,7 @@ function checkAnswer(){
 
 
         messageEl.style.color =
-            "#3b8b58";
+            "var(--correct)";
 
 
         buttons.forEach(
@@ -1651,7 +1787,7 @@ function checkAnswer(){
 
 
         messageEl.style.color =
-            "#c54d4d";
+            "var(--wrong)";
 
 
         buttons.forEach(
@@ -1694,6 +1830,25 @@ function checkAnswer(){
         question
     );
 
+
+    /* =====================================================
+       UPDATE PROGRESS AFTER ANSWER
+    ===================================================== */
+
+    const progress =
+        (
+            (currentQuestion + 1) /
+            TOTAL_QUESTIONS
+        ) * 100;
+
+
+    progressBar.style.width =
+        `${progress}%`;
+
+
+    /* =====================================================
+       NEXT BUTTON
+    ===================================================== */
 
     if(
         currentQuestion ===
@@ -1745,7 +1900,7 @@ function showExplanation(
         <strong>💡 Learn:</strong>
 
         <strong>${question.vn}</strong>
-        → 
+        →
         <strong>${question.en}</strong>
 
         <br>
@@ -1816,6 +1971,10 @@ function finishGame(){
         "finalScreen"
     ).style.display =
         "block";
+
+
+    progressBar.style.width =
+        "100%";
 
 
     const percentage =
@@ -1908,21 +2067,27 @@ function restartGame(){
     document.getElementById(
         "gameScreen"
     ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "introScreen"
-    ).style.display =
         "block";
 
 
     updateScore();
 
+    createQuestionSet();
+
+    loadQuestion();
+
 }
+
+
+/* =========================================================
+   START AUTOMATICALLY
+========================================================= */
+
+startGame();
 
 </script>
 
 </body>
 
 </html>
+```
