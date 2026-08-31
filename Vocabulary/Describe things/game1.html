@@ -57,67 +57,114 @@
 <style>
 
 /* =========================================================
-   COLOR SYSTEM
+   DESIGN TOKENS
 ========================================================= */
 
-:root{
+:root {
 
-    --accent:#2878df;
+    --accent:
+        #548C9F;
 
-    --accent-dark:#1e5fba;
+    --accent-dark:
+        #3B6370;
 
-    --accent-light:#eaf3ff;
+    --accent-light:
+        #e9f3f7;
 
-    --accent-border:#c4daf6;
+    --accent-bg:
+        #F2F8FA;
 
-    --general-border:#d9e6f2;
+    --accent-border:
+        #bcdae5;
 
-    --correct:#2878df;
+    --general-border:
+        #d9e6f2;
 
-    --correct-light:#eaf3ff;
+    --correct:
+        #019b3f;
 
-    --wrong:#d9536f;
+    --correct-light:
+        #eaf3ff;
 
-    --wrong-light:#fff0f3;
+    --wrong:
+        #d9536f;
 
-    --text:#263238;
+    --wrong-light:
+        #fff0f3;
 
-    --muted:#667788;
+    --ink:
+        #143a6b;
 
-    --background:#f6f9fc;
+    --ink-soft:
+        #66809d;
 
-    --white:#ffffff;
+    --white:
+        #ffffff;
 
 }
 
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
-*{
+* {
 
-    box-sizing:border-box;
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
 
 }
 
 
-body{
+/* =========================================================
+   BODY
+========================================================= */
 
-    margin:0;
+body {
 
-    padding:20px;
+    min-height: 100vh;
 
-    background:var(--background);
+    padding: 28px 20px 45px;
 
-    min-height:100vh;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    color:var(--text);
+    color: var(--ink);
 
-    font-family:
-        Calibri,
-        Arial,
-        sans-serif;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width:
+        min(
+            900px,
+            100%
+        );
+
+    margin:
+        0 auto;
 
 }
 
@@ -126,84 +173,126 @@ body{
    BACK BUTTON
 ========================================================= */
 
-.back-btn-container{
+.back-btn-container {
 
-    width:min(900px,95vw);
-
-    margin:0 auto 15px;
+    margin-bottom:
+        18px;
 
 }
 
 
-.back-btn{
+.back-btn {
 
-    display:inline-block;
+    display:
+        inline-flex;
 
-    padding:9px 17px;
+    align-items:
+        center;
 
-    background:white;
+    gap:
+        7px;
 
-    color:var(--accent);
+    padding:
+        9px 17px;
 
-    border:2px solid var(--accent-border);
+    border:
+        1px solid
+        var(--accent-border);
 
-    border-radius:10px;
+    border-radius:
+        999px;
 
-    text-decoration:none;
+    background:
+        var(--white);
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
         sans-serif;
 
-    font-size:21px;
+    font-size:
+        1.05rem;
 
-    font-weight:bold;
+    font-weight:
+        700;
 
-    transition:.2s;
+    box-shadow:
+        0 4px 14px
+        rgba(
+            59,
+            99,
+            112,
+            0.08
+        );
+
+    transition:
+        0.2s ease;
 
 }
 
 
-.back-btn:hover{
+.back-btn:hover {
 
-    background:var(--accent-light);
+    transform:
+        translateY(-2px);
 
-    border-color:var(--accent);
+    border-color:
+        var(--accent);
 
-    color:var(--accent-dark);
+    background:
+        var(--accent-light);
 
-    transform:translateY(-2px);
+    color:
+        var(--accent-dark);
 
 }
 
 
 /* =========================================================
-   MAIN CARD
+   GAME CARD
 ========================================================= */
 
-.game{
+.game {
 
-    position:relative;
+    position:
+        relative;
 
-    width:min(900px,95vw);
+    width:
+        100%;
 
-    margin:0 auto;
+    padding:
+        42px 48px 45px;
 
-    padding:32px 38px 35px;
+    background:
+        var(--white);
 
-    background:var(--white);
+    border:
+        1px solid
+        var(--general-border);
 
-    border:1px solid var(--general-border);
-
-    border-radius:22px;
+    border-radius:
+        24px;
 
     box-shadow:
-        0 8px 28px rgba(40,120,223,.08);
+        0 18px 50px
+        rgba(
+            59,
+            99,
+            112,
+            0.12
+        );
 
-    text-align:center;
+    text-align:
+        center;
 
-    overflow:hidden;
+    overflow:
+        hidden;
 
 }
 
@@ -212,32 +301,28 @@ body{
    ACCENT LINE
 ========================================================= */
 
-.game::before{
+.game::before {
 
-    content:"";
+    content:
+        "";
 
-    position:absolute;
+    position:
+        absolute;
 
-    top:0;
+    top:
+        0;
 
-    left:0;
+    left:
+        0;
 
-    width:100%;
+    right:
+        0;
 
-    height:6px;
+    height:
+        5px;
 
-    background:var(--accent);
-
-}
-
-
-/* =========================================================
-   GAME SCREEN
-========================================================= */
-
-#gameScreen{
-
-    display:block;
+    background:
+        var(--accent);
 
 }
 
@@ -246,35 +331,55 @@ body{
    TITLE
 ========================================================= */
 
-h1{
+h1 {
 
-    margin:0 0 7px;
+    margin:
+        0 0 8px;
 
-    font-family:"Kalam", cursive;
+    color:
+        var(--ink);
 
-    font-size:43px;
+    font-family:
+        Kalam,
+        cursive;
 
-    font-weight:700;
+    font-size:
+        2.65rem;
 
-    color:var(--accent-dark);
+    font-weight:
+        700;
+
+    line-height:
+        1.2;
 
 }
 
 
-.instruction{
+/* =========================================================
+   INSTRUCTION
+========================================================= */
 
-    margin:0 auto 24px;
+.instruction {
 
-    color:var(--muted);
+    max-width:
+        680px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--ink-soft);
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
         sans-serif;
 
-    font-size:24px;
+    font-size:
+        1.18rem;
 
-    line-height:1.4;
+    line-height:
+        1.55;
 
 }
 
@@ -283,45 +388,65 @@ h1{
    TOP BAR
 ========================================================= */
 
-.topbar{
+.topbar {
 
-    display:flex;
+    display:
+        flex;
 
-    justify-content:space-between;
+    justify-content:
+        space-between;
 
-    align-items:center;
+    align-items:
+        center;
 
-    gap:15px;
+    gap:
+        15px;
 
-    margin-bottom:18px;
+    margin-bottom:
+        20px;
 
-    padding:11px 15px;
+    padding:
+        11px 16px;
 
-    background:#f8fbff;
+    background:
+        var(--accent-bg);
 
-    border:1px solid var(--general-border);
+    border:
+        1px solid
+        var(--general-border);
 
-    border-radius:12px;
+    border-radius:
+        13px;
 
-    font-size:22px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-weight:bold;
+    font-size:
+        1.15rem;
+
+    font-weight:
+        700;
 
 }
 
 
-.round-text{
+.round-text {
 
-    color:var(--muted);
+    color:
+        var(--ink-soft);
 
 }
 
 
-.score-text{
+.score-text {
 
-    color:var(--accent);
+    color:
+        var(--accent-dark);
 
-    font-size:24px;
+    font-size:
+        1.2rem;
 
 }
 
@@ -330,20 +455,24 @@ h1{
    SECTION TITLE
 ========================================================= */
 
-.section-title{
+.section-title {
 
-    margin:18px 0 10px;
+    margin:
+        20px 0 11px;
 
-    color:var(--accent-dark);
+    color:
+        var(--ink);
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
         sans-serif;
 
-    font-size:22px;
+    font-size:
+        1.15rem;
 
-    font-weight:bold;
+    font-weight:
+        700;
 
 }
 
@@ -352,131 +481,181 @@ h1{
    TARGETS
 ========================================================= */
 
-.targets{
+.targets {
 
-    display:grid;
+    display:
+        grid;
 
-    gap:13px;
-
-}
-
-
-.target{
-
-    min-height:105px;
-
-    padding:12px;
-
-    background:var(--accent-light);
-
-    border:2px dashed var(--accent-border);
-
-    border-radius:14px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    color:var(--text);
-
-    transition:.2s;
-
-    user-select:none;
+    gap:
+        13px;
 
 }
 
 
-.target.over{
+.target {
 
-    transform:scale(1.02);
+    min-height:
+        105px;
 
-    background:#deedff;
+    padding:
+        12px;
 
-    border-color:var(--accent);
+    background:
+        var(--accent-light);
 
-}
+    border:
+        2px dashed
+        var(--accent-border);
 
+    border-radius:
+        14px;
 
-.target.has-word{
+    display:
+        flex;
 
-    border-style:solid;
+    flex-direction:
+        column;
 
-    border-color:var(--accent-border);
+    align-items:
+        center;
 
-}
+    justify-content:
+        center;
 
+    color:
+        var(--ink);
 
-.target.correct{
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    background:var(--correct-light);
+    font-size:
+        1.55rem;
 
-    border-style:solid;
+    font-weight:
+        700;
 
-    border-color:var(--correct);
+    transition:
+        0.2s ease;
 
-    color:var(--accent-dark);
-
-}
-
-
-.target.incorrect{
-
-    background:var(--wrong-light);
-
-    border-style:solid;
-
-    border-color:var(--wrong);
-
-    color:#b53f58;
-
-}
-
-
-.target-label{
-
-    margin-bottom:7px;
-
-}
-
-
-.target-word{
-
-    min-height:30px;
-
-    padding:5px 11px;
-
-    border-radius:8px;
-
-    background:white;
-
-    border:2px solid var(--accent-border);
-
-    color:var(--accent-dark);
-
-    font-size:23px;
-
-    font-weight:bold;
+    user-select:
+        none;
 
 }
 
 
-.target-word.empty{
+.target.over {
 
-    background:transparent;
+    transform:
+        scale(1.02);
 
-    border:2px dashed #b9cce2;
+    background:
+        #dcecf1;
 
-    color:#91a2b5;
+    border-color:
+        var(--accent);
 
-    font-weight:normal;
+}
+
+
+.target.has-word {
+
+    border-style:
+        solid;
+
+    border-color:
+        var(--accent-border);
+
+}
+
+
+.target.correct {
+
+    background:
+        var(--correct-light);
+
+    border-style:
+        solid;
+
+    border-color:
+        var(--correct);
+
+    color:
+        var(--correct);
+
+}
+
+
+.target.incorrect {
+
+    background:
+        var(--wrong-light);
+
+    border-style:
+        solid;
+
+    border-color:
+        var(--wrong);
+
+    color:
+        var(--wrong);
+
+}
+
+
+.target-label {
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.target-word {
+
+    min-height:
+        30px;
+
+    padding:
+        5px 11px;
+
+    border:
+        2px solid
+        var(--accent-border);
+
+    border-radius:
+        8px;
+
+    background:
+        var(--white);
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        1.12rem;
+
+    font-weight:
+        700;
+
+}
+
+
+.target-word.empty {
+
+    background:
+        transparent;
+
+    border:
+        2px dashed
+        var(--accent-border);
+
+    color:
+        #91a2a8;
+
+    font-weight:
+        400;
 
 }
 
@@ -485,99 +664,136 @@ h1{
    ENGLISH WORDS
 ========================================================= */
 
-.words{
+.words {
 
-    display:grid;
+    display:
+        grid;
 
-    gap:13px;
+    gap:
+        13px;
 
-    margin-top:17px;
-
-}
-
-
-.word{
-
-    min-height:70px;
-
-    padding:13px;
-
-    background:white;
-
-    border:2px solid var(--accent-border);
-
-    border-radius:14px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--accent-dark);
-
-    font-size:27px;
-
-    font-weight:bold;
-
-    cursor:grab;
-
-    user-select:none;
-
-    touch-action:none;
-
-    transition:.2s;
+    margin-top:
+        17px;
 
 }
 
 
-.word:hover{
+.word {
 
-    background:var(--accent-light);
+    min-height:
+        70px;
 
-    border-color:var(--accent);
+    padding:
+        13px;
 
-    transform:translateY(-2px);
+    background:
+        var(--white);
+
+    border:
+        2px solid
+        var(--accent-border);
+
+    border-radius:
+        14px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--accent-dark);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:
+        1.4rem;
+
+    font-weight:
+        700;
+
+    cursor:
+        grab;
+
+    user-select:
+        none;
+
+    touch-action:
+        none;
+
+    transition:
+        0.2s ease;
 
 }
 
 
-.word.dragging{
+.word:hover {
 
-    opacity:.45;
+    background:
+        var(--accent-light);
 
-}
+    border-color:
+        var(--accent);
 
-
-.word.placed{
-
-    background:#f5f8fb;
-
-    border-color:#cbd9e6;
-
-    color:#6d7d8c;
+    transform:
+        translateY(-2px);
 
 }
 
 
-.word.checked-correct{
+.word.dragging {
 
-    background:var(--correct-light);
-
-    border-color:var(--correct);
-
-    color:var(--accent-dark);
+    opacity:
+        0.45;
 
 }
 
 
-.word.checked-incorrect{
+.word.placed {
 
-    background:var(--wrong-light);
+    background:
+        #f5f8fa;
 
-    border-color:var(--wrong);
+    border-color:
+        #cbd9de;
 
-    color:#b53f58;
+    color:
+        #71828a;
+
+}
+
+
+.word.checked-correct {
+
+    background:
+        var(--correct-light);
+
+    border-color:
+        var(--correct);
+
+    color:
+        var(--correct);
+
+}
+
+
+.word.checked-incorrect {
+
+    background:
+        var(--wrong-light);
+
+    border-color:
+        var(--wrong);
+
+    color:
+        var(--wrong);
 
 }
 
@@ -586,15 +802,24 @@ h1{
    MESSAGE
 ========================================================= */
 
-.message{
+.message {
 
-    min-height:35px;
+    min-height:
+        35px;
 
-    margin:19px 0 10px;
+    margin:
+        19px 0 10px;
 
-    font-size:26px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-weight:bold;
+    font-size:
+        1.22rem;
+
+    font-weight:
+        700;
 
 }
 
@@ -603,56 +828,84 @@ h1{
    EXPLANATION
 ========================================================= */
 
-.explanation{
+.explanation {
 
-    margin:15px auto 20px;
+    max-width:
+        760px;
 
-    padding:15px 18px;
+    margin:
+        15px auto 20px;
 
-    max-width:760px;
+    padding:
+        15px 18px;
 
-    background:#f8fbff;
+    background:
+        var(--accent-bg);
 
-    border:1px solid var(--accent-border);
+    border:
+        1px solid
+        var(--accent-border);
 
-    border-left:5px solid var(--accent);
+    border-left:
+        4px solid
+        var(--accent);
 
-    border-radius:11px;
+    border-radius:
+        11px;
 
-    color:#4e6072;
+    color:
+        var(--ink-soft);
 
-    font-size:22px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    line-height:1.5;
+    font-size:
+        1.08rem;
 
-    text-align:left;
+    line-height:
+        1.55;
 
-}
-
-
-.explanation strong{
-
-    color:var(--accent-dark);
-
-}
-
-
-.explanation .related{
-
-    display:block;
-
-    margin-top:4px;
-
-    font-size:20px;
-
-    color:#718293;
+    text-align:
+        left;
 
 }
 
 
-.hidden{
+.explanation strong {
 
-    display:none !important;
+    color:
+        var(--accent-dark);
+
+}
+
+
+.explanation .related {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        var(--ink-soft);
+
+    font-size:
+        1rem;
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+
+    display:
+        none !important;
 
 }
 
@@ -661,57 +914,92 @@ h1{
    BUTTONS
 ========================================================= */
 
-button{
+button {
 
-    border:none;
+    min-width:
+        180px;
 
-    border-radius:10px;
+    padding:
+        12px 24px;
 
-    padding:11px 25px;
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--accent);
+
+    color:
+        var(--white);
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
         sans-serif;
 
-    font-size:23px;
+    font-size:
+        1.1rem;
 
-    font-weight:bold;
+    font-weight:
+        700;
 
-    cursor:pointer;
+    cursor:
+        pointer;
 
-    background:var(--accent);
+    transition:
+        0.2s ease;
 
-    color:white;
-
-    transition:.2s;
-
-}
-
-
-button:hover{
-
-    background:var(--accent-dark);
-
-    transform:translateY(-2px);
-
-}
-
-
-button:disabled{
-
-    opacity:.45;
-
-    cursor:default;
-
-    transform:none;
+    box-shadow:
+        0 5px 13px
+        rgba(
+            84,
+            140,
+            159,
+            0.20
+        );
 
 }
 
 
-#nextBtn{
+button:hover:not(:disabled) {
 
-    background:var(--accent);
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+button:disabled {
+
+    opacity:
+        0.5;
+
+    cursor:
+        default;
+
+    transform:
+        none;
+
+}
+
+
+#nextBtn {
+
+    background:
+        var(--accent);
 
 }
 
@@ -720,46 +1008,74 @@ button:disabled{
    FINAL SCREEN
 ========================================================= */
 
-.final{
+.final {
 
-    display:none;
+    display:
+        none;
 
-    padding:20px 10px;
-
-}
-
-
-.final h2{
-
-    margin:0 0 15px;
-
-    font-family:"Kalam", cursive;
-
-    font-size:43px;
-
-    color:var(--accent-dark);
+    padding:
+        20px 10px;
 
 }
 
 
-.final-score{
+.final h2 {
 
-    font-size:32px;
+    margin:
+        0 0 15px;
 
-    margin:15px 0;
+    color:
+        var(--accent-dark);
 
-    color:var(--text);
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        2.65rem;
+
+    font-weight:
+        700;
 
 }
 
 
-.final-message{
+.final-score {
 
-    font-size:25px;
+    margin:
+        15px 0;
 
-    margin:15px 0 25px;
+    color:
+        var(--accent-dark);
 
-    color:var(--muted);
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        2.25rem;
+
+    font-weight:
+        700;
+
+}
+
+
+.final-message {
+
+    margin:
+        15px 0 28px;
+
+    color:
+        var(--ink-soft);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:
+        1.2rem;
 
 }
 
@@ -768,75 +1084,90 @@ button:disabled{
    MOBILE
 ========================================================= */
 
-@media(max-width:700px){
+@media (
+    max-width: 700px
+) {
 
-    body{
+    body {
 
-        padding:14px;
-
-    }
-
-
-    .game{
-
-        width:100%;
-
-        padding:28px 18px 30px;
-
-        border-radius:18px;
+        padding:
+            20px 14px 35px;
 
     }
 
 
-    h1{
+    .game {
 
-        font-size:37px;
+        padding:
+            35px 20px 32px;
 
-    }
-
-
-    .instruction{
-
-        font-size:22px;
+        border-radius:
+            20px;
 
     }
 
 
-    .topbar{
+    h1 {
 
-        font-size:20px;
-
-    }
-
-
-    .score-text{
-
-        font-size:22px;
+        font-size:
+            2.25rem;
 
     }
 
 
-    .target{
+    .instruction {
 
-        min-height:90px;
+        font-size:
+            1.08rem;
 
-        font-size:26px;
-
-    }
-
-
-    .word{
-
-        min-height:65px;
-
-        font-size:25px;
+        margin-bottom:
+            27px;
 
     }
 
 
-    .explanation{
+    .topbar {
 
-        font-size:21px;
+        font-size:
+            1.05rem;
+
+    }
+
+
+    .score-text {
+
+        font-size:
+            1.1rem;
+
+    }
+
+
+    .target {
+
+        min-height:
+            90px;
+
+        font-size:
+            1.4rem;
+
+    }
+
+
+    .word {
+
+        min-height:
+            65px;
+
+        font-size:
+            1.3rem;
+
+    }
+
+
+    .explanation {
+
+        font-size:
+            1.02rem;
 
     }
 
@@ -847,36 +1178,44 @@ button:disabled{
    SMALL MOBILE
 ========================================================= */
 
-@media(max-width:480px){
+@media (
+    max-width: 480px
+) {
 
-    .topbar{
+    .topbar {
 
-        flex-direction:column;
+        flex-direction:
+            column;
 
-        gap:5px;
+        gap:
+            5px;
 
-        margin-bottom:18px;
-
-    }
-
-
-    .target{
-
-        font-size:25px;
+        margin-bottom:
+            18px;
 
     }
 
 
-    .word{
+    .target {
 
-        font-size:24px;
+        font-size:
+            1.32rem;
 
     }
 
 
-    button{
+    .word {
 
-        width:100%;
+        font-size:
+            1.25rem;
+
+    }
+
+
+    button {
+
+        width:
+            100%;
 
     }
 
@@ -890,6 +1229,9 @@ button:disabled{
 <body>
 
 
+<div class="page">
+
+
 <!-- =========================================================
      BACK
 ========================================================= -->
@@ -900,7 +1242,7 @@ button:disabled{
         href="../../category.html?category=Describe%20things"
         class="back-btn"
     >
-        ⬅ Back
+        ← Back
     </a>
 
 </div>
@@ -910,167 +1252,171 @@ button:disabled{
      MAIN GAME CARD
 ========================================================= -->
 
-<div class="game">
+<main class="game">
 
 
-    <!-- =====================================================
-         GAME SCREEN
-    ====================================================== -->
+<!-- =========================================================
+     GAME SCREEN
+========================================================= -->
 
-    <div id="gameScreen">
-
-
-        <h1>
-            🔎 Find The Same Meaning
-        </h1>
+<div id="gameScreen">
 
 
-        <p class="instruction">
-            Drag each English word to its Vietnamese meaning, then check your answers.
-        </p>
+<h1>
+    🔎 Find The Same Meaning
+</h1>
 
 
-        <!-- =================================================
-             TOP BAR
-        ================================================== -->
-
-        <div class="topbar">
-
-            <div
-                class="round-text"
-                id="roundText"
-            >
-                Round 1 / 20
-            </div>
+<p class="instruction">
+    Drag each English word to its Vietnamese meaning, then check your answers.
+</p>
 
 
-            <div
-                class="score-text"
-                id="scoreText"
-            >
-                Score: 0
-            </div>
+<!-- =======================================================
+     TOP BAR
+======================================================= -->
 
-        </div>
-
-
-        <!-- =================================================
-             VIETNAMESE
-        ================================================== -->
-
-        <div class="section-title">
-            🇻🇳 Vietnamese
-        </div>
-
-
-        <div
-            class="targets"
-            id="targets"
-        ></div>
-
-
-        <!-- =================================================
-             ENGLISH
-        ================================================== -->
-
-        <div class="section-title">
-            🇬🇧 English
-        </div>
-
-
-        <div
-            class="words"
-            id="words"
-        ></div>
-
-
-        <!-- =================================================
-             MESSAGE
-        ================================================== -->
-
-        <div
-            class="message"
-            id="message"
-        ></div>
-
-
-        <!-- =================================================
-             EXPLANATION
-        ================================================== -->
-
-        <div
-            class="explanation hidden"
-            id="explanation"
-        ></div>
-
-
-        <!-- =================================================
-             CHECK
-        ================================================== -->
-
-        <button
-            id="checkBtn"
-            disabled
-        >
-            Check Answers ✓
-        </button>
-
-
-        <!-- =================================================
-             NEXT
-        ================================================== -->
-
-        <button
-            id="nextBtn"
-            class="hidden"
-        >
-            Next Round →
-        </button>
-
-
-    </div>
-
-
-    <!-- =====================================================
-         FINAL SCREEN
-    ====================================================== -->
+<div class="topbar">
 
     <div
-        class="final"
-        id="finalScreen"
+        class="round-text"
+        id="roundText"
     >
-
-        <h2>
-            🎉 Game Finished!
-        </h2>
-
-
-        <div
-            class="final-score"
-            id="finalScore"
-        ></div>
-
-
-        <div
-            class="final-message"
-            id="finalMessage"
-        ></div>
-
-
-        <button
-            onclick="restartGame()"
-        >
-            Play Again
-        </button>
-
+        Round 1 / 20
     </div>
+
+
+    <div
+        class="score-text"
+        id="scoreText"
+    >
+        Score: 0
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     VIETNAMESE
+======================================================= -->
+
+<div class="section-title">
+    🇻🇳 Vietnamese
+</div>
+
+
+<div
+    class="targets"
+    id="targets"
+></div>
+
+
+<!-- =======================================================
+     ENGLISH
+======================================================= -->
+
+<div class="section-title">
+    🇬🇧 English
+</div>
+
+
+<div
+    class="words"
+    id="words"
+></div>
+
+
+<!-- =======================================================
+     MESSAGE
+======================================================= -->
+
+<div
+    class="message"
+    id="message"
+></div>
+
+
+<!-- =======================================================
+     EXPLANATION
+======================================================= -->
+
+<div
+    class="explanation hidden"
+    id="explanation"
+></div>
+
+
+<!-- =======================================================
+     CHECK
+======================================================= -->
+
+<button
+    id="checkBtn"
+    type="button"
+    disabled
+>
+    Check Answers ✓
+</button>
+
+
+<!-- =======================================================
+     NEXT
+======================================================= -->
+
+<button
+    id="nextBtn"
+    class="hidden"
+    type="button"
+>
+    Next Round →
+</button>
 
 
 </div>
 
 
-<script>
+<!-- =========================================================
+     FINAL SCREEN
+========================================================= -->
 
+<div
+    class="final"
+    id="finalScreen"
+>
+
+    <h2>
+        🎉 Game Finished!
+    </h2>
+
+
+    <div
+        class="final-score"
+        id="finalScore"
+    ></div>
+
+
+    <div
+        class="final-message"
+        id="finalMessage"
+    ></div>
+
+
+    <button
+        id="restartBtn"
+        type="button"
+    >
+        Play Again
+    </button>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
 
 /* =========================================================
    GAME DATA
@@ -1080,169 +1426,169 @@ button:disabled{
 const rounds = [
 
     {
-        pairs:[
-            ["to","big"],
-            ["nhỏ","small"],
-            ["dài","long"]
+        pairs: [
+            ["to", "big"],
+            ["nhỏ", "small"],
+            ["dài", "long"]
         ]
     },
 
     {
-        pairs:[
-            ["cao","tall"],
-            ["thấp","short"],
-            ["rộng","wide"]
+        pairs: [
+            ["cao", "tall"],
+            ["thấp", "short"],
+            ["rộng", "wide"]
         ]
     },
 
     {
-        pairs:[
-            ["chật","tight"],
-            ["nặng","heavy"],
-            ["nhẹ","light"]
+        pairs: [
+            ["chật", "tight"],
+            ["nặng", "heavy"],
+            ["nhẹ", "light"]
         ]
     },
 
     {
-        pairs:[
-            ["to","large"],
-            ["nhỏ","tiny"],
-            ["cao","high"]
+        pairs: [
+            ["to", "large"],
+            ["nhỏ", "tiny"],
+            ["cao", "high"]
         ]
     },
 
     {
-        pairs:[
-            ["dài","long"],
-            ["ngắn","short"],
-            ["rộng","spacious"]
+        pairs: [
+            ["dài", "long"],
+            ["ngắn", "short"],
+            ["rộng", "spacious"]
         ]
     },
 
     {
-        pairs:[
-            ["nặng","heavy"],
-            ["nhẹ","light"],
-            ["chật","cramped"]
+        pairs: [
+            ["nặng", "heavy"],
+            ["nhẹ", "light"],
+            ["chật", "cramped"]
         ]
     },
 
     {
-        pairs:[
-            ["to","big"],
-            ["bự","huge"],
-            ["nhỏ","small"]
+        pairs: [
+            ["to", "big"],
+            ["bự", "huge"],
+            ["nhỏ", "small"]
         ]
     },
 
     {
-        pairs:[
-            ["cao","tall"],
-            ["thấp","low"],
-            ["dài","long"]
+        pairs: [
+            ["cao", "tall"],
+            ["thấp", "low"],
+            ["dài", "long"]
         ]
     },
 
     {
-        pairs:[
-            ["rộng","wide"],
-            ["chật","tight"],
-            ["nhẹ","light"]
+        pairs: [
+            ["rộng", "wide"],
+            ["chật", "tight"],
+            ["nhẹ", "light"]
         ]
     },
 
     {
-        pairs:[
-            ["bự","big"],
-            ["nặng","heavy"],
-            ["ngắn","short"]
+        pairs: [
+            ["bự", "big"],
+            ["nặng", "heavy"],
+            ["ngắn", "short"]
         ]
     },
 
     {
-        pairs:[
-            ["to","large"],
-            ["cao","high"],
-            ["rộng","spacious"]
+        pairs: [
+            ["to", "large"],
+            ["cao", "high"],
+            ["rộng", "spacious"]
         ]
     },
 
     {
-        pairs:[
-            ["nhỏ","tiny"],
-            ["thấp","short"],
-            ["nhẹ","light"]
+        pairs: [
+            ["nhỏ", "tiny"],
+            ["thấp", "short"],
+            ["nhẹ", "light"]
         ]
     },
 
     {
-        pairs:[
-            ["dài","long"],
-            ["ngắn","short"],
-            ["nặng","heavy"]
+        pairs: [
+            ["dài", "long"],
+            ["ngắn", "short"],
+            ["nặng", "heavy"]
         ]
     },
 
     {
-        pairs:[
-            ["bự","huge"],
-            ["chật","cramped"],
-            ["rộng","wide"]
+        pairs: [
+            ["bự", "huge"],
+            ["chật", "cramped"],
+            ["rộng", "wide"]
         ]
     },
 
     {
-        pairs:[
-            ["to","big"],
-            ["nhỏ","small"],
-            ["nặng","heavy"],
-            ["nhẹ","light"]
+        pairs: [
+            ["to", "big"],
+            ["nhỏ", "small"],
+            ["nặng", "heavy"],
+            ["nhẹ", "light"]
         ]
     },
 
     {
-        pairs:[
-            ["cao","tall"],
-            ["thấp","low"],
-            ["dài","long"],
-            ["ngắn","short"]
+        pairs: [
+            ["cao", "tall"],
+            ["thấp", "low"],
+            ["dài", "long"],
+            ["ngắn", "short"]
         ]
     },
 
     {
-        pairs:[
-            ["rộng","wide"],
-            ["chật","tight"],
-            ["to","large"],
-            ["nhỏ","tiny"]
+        pairs: [
+            ["rộng", "wide"],
+            ["chật", "tight"],
+            ["to", "large"],
+            ["nhỏ", "tiny"]
         ]
     },
 
     {
-        pairs:[
-            ["bự","huge"],
-            ["cao","high"],
-            ["nặng","heavy"],
-            ["nhẹ","light"]
+        pairs: [
+            ["bự", "huge"],
+            ["cao", "high"],
+            ["nặng", "heavy"],
+            ["nhẹ", "light"]
         ]
     },
 
     {
-        pairs:[
-            ["dài","long"],
-            ["rộng","spacious"],
-            ["chật","cramped"],
-            ["thấp","low"]
+        pairs: [
+            ["dài", "long"],
+            ["rộng", "spacious"],
+            ["chật", "cramped"],
+            ["thấp", "low"]
         ]
     },
 
     {
-        pairs:[
-            ["to","big"],
-            ["bự","huge"],
-            ["nhỏ","tiny"],
-            ["cao","tall"],
-            ["thấp","short"]
+        pairs: [
+            ["to", "big"],
+            ["bự", "huge"],
+            ["nhỏ", "tiny"],
+            ["cao", "tall"],
+            ["thấp", "short"]
         ]
     }
 
@@ -1255,77 +1601,77 @@ const rounds = [
 
 const explanations = {
 
-    "to":{
+    "to": {
         meaning:
-            "to means big or large in Vietnamese.",
+            "TO means big or large in Vietnamese.",
         related:
             "big, large"
     },
 
-    "nhỏ":{
+    "nhỏ": {
         meaning:
             "NHỎ means small or little in Vietnamese.",
         related:
             "small, tiny"
     },
 
-    "bự":{
+    "bự": {
         meaning:
             "BỰ means big or huge. It is commonly used in casual Vietnamese.",
         related:
             "big, huge"
     },
 
-    "dài":{
+    "dài": {
         meaning:
             "DÀI means long in Vietnamese.",
         related:
             "long"
     },
 
-    "ngắn":{
+    "ngắn": {
         meaning:
             "NGẮN means short when talking about length.",
         related:
             "short"
     },
 
-    "cao":{
+    "cao": {
         meaning:
             "CAO means tall when describing a person, or high when describing a level or position.",
         related:
             "tall, high"
     },
 
-    "thấp":{
+    "thấp": {
         meaning:
             "THẤP means short when describing height, or low when describing a level or position.",
         related:
             "short, low"
     },
 
-    "rộng":{
+    "rộng": {
         meaning:
             "RỘNG means wide, spacious, or having a lot of space.",
         related:
             "wide, spacious"
     },
 
-    "chật":{
+    "chật": {
         meaning:
             "CHẬT means tight or cramped when there is not enough space.",
         related:
             "tight, cramped"
     },
 
-    "nặng":{
+    "nặng": {
         meaning:
             "NẶNG means heavy in Vietnamese.",
         related:
             "heavy"
     },
 
-    "nhẹ":{
+    "nhẹ": {
         meaning:
             "NHẸ means light when something does not weigh much.",
         related:
@@ -1339,15 +1685,20 @@ const explanations = {
    GAME STATE
 ========================================================= */
 
-let current = 0;
+let current =
+    0;
 
-let score = 0;
+let score =
+    0;
 
-let draggedWord = null;
+let draggedWord =
+    null;
 
-let placements = {};
+let placements =
+    {};
 
-let checked = false;
+let checked =
+    false;
 
 
 /* =========================================================
@@ -1355,43 +1706,89 @@ let checked = false;
 ========================================================= */
 
 const targetsEl =
-    document.getElementById("targets");
+    document.getElementById(
+        "targets"
+    );
+
 
 const wordsEl =
-    document.getElementById("words");
+    document.getElementById(
+        "words"
+    );
+
 
 const messageEl =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
+
 
 const explanationEl =
-    document.getElementById("explanation");
+    document.getElementById(
+        "explanation"
+    );
+
 
 const checkBtn =
-    document.getElementById("checkBtn");
+    document.getElementById(
+        "checkBtn"
+    );
+
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
+
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
+
 
 const finalScreen =
-    document.getElementById("finalScreen");
+    document.getElementById(
+        "finalScreen"
+    );
+
+
+const restartBtn =
+    document.getElementById(
+        "restartBtn"
+    );
+
+
+const roundText =
+    document.getElementById(
+        "roundText"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
 
 
 /* =========================================================
    SHUFFLE
 ========================================================= */
 
-function shuffle(array){
+function shuffle(array) {
 
-    const newArray = [...array];
+    const newArray =
+        [...array];
 
-    for(
-        let i = newArray.length - 1;
+
+    for (
+        let i =
+            newArray.length - 1;
+
         i > 0;
+
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
@@ -1399,15 +1796,18 @@ function shuffle(array){
                 (i + 1)
             );
 
+
         [
             newArray[i],
             newArray[j]
-        ] = [
+        ] =
+        [
             newArray[j],
             newArray[i]
         ];
 
     }
+
 
     return newArray;
 
@@ -1418,28 +1818,35 @@ function shuffle(array){
    LOAD ROUND
 ========================================================= */
 
-function loadRound(){
+function loadRound() {
 
-    placements = {};
+    placements =
+        {};
 
-    draggedWord = null;
+    draggedWord =
+        null;
 
-    checked = false;
+    checked =
+        false;
 
 
-    messageEl.textContent = "";
+    messageEl.textContent =
+        "";
 
-    messageEl.style.color = "";
+    messageEl.style.color =
+        "";
 
 
     explanationEl.classList.add(
         "hidden"
     );
 
-    explanationEl.innerHTML = "";
+    explanationEl.innerHTML =
+        "";
 
 
-    checkBtn.disabled = true;
+    checkBtn.disabled =
+        true;
 
     checkBtn.classList.remove(
         "hidden"
@@ -1463,353 +1870,368 @@ function loadRound(){
         pairs.length;
 
 
-    document.getElementById(
-        "roundText"
-    ).textContent =
+    roundText.textContent =
         `Round ${current + 1} / ${rounds.length}`;
 
 
-    document.getElementById(
-        "scoreText"
-    ).textContent =
+    scoreText.textContent =
         `Score: ${score}`;
 
 
     targetsEl.style.gridTemplateColumns =
-        `repeat(${count}, 1fr)`;
+        `repeat(${count}, minmax(0, 1fr))`;
 
 
     wordsEl.style.gridTemplateColumns =
-        `repeat(${count}, 1fr)`;
+        `repeat(${count}, minmax(0, 1fr))`;
 
 
-    targetsEl.innerHTML = "";
+    targetsEl.innerHTML =
+        "";
 
-    wordsEl.innerHTML = "";
+    wordsEl.innerHTML =
+        "";
 
 
     /* =====================================================
        CREATE VIETNAMESE TARGETS
-    ====================================================== */
+    ===================================================== */
 
-    shuffle(pairs).forEach(pair => {
+    shuffle(pairs).forEach(
+        pair => {
 
-        const vietnamese =
-            pair[0];
-
-
-        const box =
-            document.createElement("div");
+            const vietnamese =
+                pair[0];
 
 
-        box.className =
-            "target";
+            const box =
+                document.createElement(
+                    "div"
+                );
 
 
-        box.dataset.vi =
-            vietnamese;
+            box.className =
+                "target";
 
 
-        const label =
-            document.createElement("div");
+            box.dataset.vi =
+                vietnamese;
 
 
-        label.className =
-            "target-label";
+            const label =
+                document.createElement(
+                    "div"
+                );
 
 
-        label.textContent =
-            vietnamese;
+            label.className =
+                "target-label";
 
 
-        const placed =
-            document.createElement("div");
+            label.textContent =
+                vietnamese;
 
 
-        placed.className =
-            "target-word empty";
+            const placed =
+                document.createElement(
+                    "div"
+                );
 
 
-        placed.textContent =
-            "Drop here";
+            placed.className =
+                "target-word empty";
 
 
-        box.appendChild(label);
+            placed.textContent =
+                "Drop here";
 
-        box.appendChild(placed);
+
+            box.appendChild(
+                label
+            );
 
 
-        /* =========================================
-           DRAG OVER
-        ========================================= */
+            box.appendChild(
+                placed
+            );
 
-        box.addEventListener(
-            "dragover",
-            event => {
 
-                if(checked){
+            /* =========================================
+               DRAG OVER
+            ========================================= */
 
-                    return;
+            box.addEventListener(
+                "dragover",
+                event => {
+
+                    if (checked) {
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    box.classList.add(
+                        "over"
+                    );
 
                 }
+            );
 
 
-                event.preventDefault();
+            /* =========================================
+               DRAG LEAVE
+            ========================================= */
 
+            box.addEventListener(
+                "dragleave",
+                () => {
 
-                box.classList.add(
-                    "over"
-                );
-
-            }
-        );
-
-
-        /* =========================================
-           DRAG LEAVE
-        ========================================= */
-
-        box.addEventListener(
-            "dragleave",
-            () => {
-
-                box.classList.remove(
-                    "over"
-                );
-
-            }
-        );
-
-
-        /* =========================================
-           DROP
-        ========================================= */
-
-        box.addEventListener(
-            "drop",
-            event => {
-
-                event.preventDefault();
-
-                box.classList.remove(
-                    "over"
-                );
-
-
-                if(
-                    checked ||
-                    !draggedWord
-                ){
-
-                    return;
+                    box.classList.remove(
+                        "over"
+                    );
 
                 }
+            );
 
 
-                const english =
-                    draggedWord.dataset.word;
+            /* =========================================
+               DROP
+            ========================================= */
+
+            box.addEventListener(
+                "drop",
+                event => {
+
+                    event.preventDefault();
 
 
-                /* =====================================
-                   REMOVE WORD FROM PREVIOUS TARGET
-                ===================================== */
-
-                Object.keys(placements).forEach(
-                    vi => {
-
-                        if(
-                            placements[vi] ===
-                            english
-                        ){
-
-                            delete placements[vi];
+                    box.classList.remove(
+                        "over"
+                    );
 
 
-                            const oldTarget =
-                                document.querySelector(
-                                    `.target[data-vi="${CSS.escape(vi)}"]`
-                                );
+                    if (
+                        checked ||
+                        !draggedWord
+                    ) {
+
+                        return;
+
+                    }
 
 
-                            if(oldTarget){
+                    const english =
+                        draggedWord.dataset.word;
 
-                                const oldPlaced =
-                                    oldTarget.querySelector(
-                                        ".target-word"
+
+                    /* =================================
+                       REMOVE FROM OLD TARGET
+                    ================================= */
+
+                    Object.keys(
+                        placements
+                    ).forEach(
+                        vi => {
+
+                            if (
+                                placements[vi] ===
+                                english
+                            ) {
+
+                                delete placements[vi];
+
+
+                                const oldTarget =
+                                    document.querySelector(
+                                        `.target[data-vi="${CSS.escape(vi)}"]`
                                     );
 
 
-                                oldPlaced.textContent =
-                                    "Drop here";
+                                if (oldTarget) {
+
+                                    const oldPlaced =
+                                        oldTarget.querySelector(
+                                            ".target-word"
+                                        );
 
 
-                                oldPlaced.classList.add(
-                                    "empty"
-                                );
+                                    oldPlaced.textContent =
+                                        "Drop here";
 
 
-                                oldTarget.classList.remove(
-                                    "has-word"
-                                );
+                                    oldPlaced.classList.add(
+                                        "empty"
+                                    );
+
+
+                                    oldTarget.classList.remove(
+                                        "has-word"
+                                    );
+
+                                }
 
                             }
 
                         }
+                    );
+
+
+                    /* =================================
+                       REMOVE EXISTING WORD
+                    ================================= */
+
+                    if (
+                        placements[vietnamese]
+                    ) {
+
+                        const oldEnglish =
+                            placements[vietnamese];
+
+
+                        const oldCard =
+                            document.querySelector(
+                                `.word[data-word="${CSS.escape(oldEnglish)}"]`
+                            );
+
+
+                        if (oldCard) {
+
+                            oldCard.classList.remove(
+                                "placed"
+                            );
+
+                        }
 
                     }
-                );
 
 
-                /* =====================================
-                   REMOVE EXISTING WORD FROM TARGET
-                ===================================== */
+                    /* =================================
+                       SAVE PLACEMENT
+                    ================================= */
 
-                if(
-                    placements[vietnamese]
-                ){
-
-                    const oldEnglish =
-                        placements[vietnamese];
+                    placements[vietnamese] =
+                        english;
 
 
-                    const oldCard =
-                        document.querySelector(
-                            `.word[data-word="${CSS.escape(oldEnglish)}"]`
-                        );
+                    placed.textContent =
+                        english;
 
 
-                    if(oldCard){
+                    placed.classList.remove(
+                        "empty"
+                    );
 
-                        oldCard.classList.remove(
-                            "placed"
-                        );
 
-                    }
+                    box.classList.add(
+                        "has-word"
+                    );
+
+
+                    draggedWord.classList.add(
+                        "placed"
+                    );
+
+
+                    draggedWord =
+                        null;
+
+
+                    updateCheckButton();
 
                 }
+            );
 
 
-                /* =====================================
-                   SAVE PLACEMENT
-                ===================================== */
+            targetsEl.appendChild(
+                box
+            );
 
-                placements[vietnamese] =
-                    english;
-
-
-                placed.textContent =
-                    english;
-
-
-                placed.classList.remove(
-                    "empty"
-                );
-
-
-                box.classList.add(
-                    "has-word"
-                );
-
-
-                draggedWord.classList.add(
-                    "placed"
-                );
-
-
-                draggedWord = null;
-
-
-                updateCheckButton();
-
-            }
-        );
-
-
-        targetsEl.appendChild(
-            box
-        );
-
-    });
+        }
+    );
 
 
     /* =====================================================
        CREATE ENGLISH WORDS
-    ====================================================== */
+    ===================================================== */
 
-    shuffle(pairs).forEach(pair => {
+    shuffle(pairs).forEach(
+        pair => {
 
-        const english =
-            pair[1];
-
-
-        const card =
-            document.createElement("div");
+            const english =
+                pair[1];
 
 
-        card.className =
-            "word";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        card.draggable =
-            true;
+            card.className =
+                "word";
 
 
-        card.dataset.word =
-            english;
+            card.draggable =
+                true;
 
 
-        card.textContent =
-            english;
+            card.dataset.word =
+                english;
 
 
-        /* =========================================
-           DRAG START
-        ========================================= */
+            card.textContent =
+                english;
 
-        card.addEventListener(
-            "dragstart",
-            () => {
 
-                if(checked){
+            /* =========================================
+               DRAG START
+            ========================================= */
 
-                    return;
+            card.addEventListener(
+                "dragstart",
+                () => {
+
+                    if (checked) {
+                        return;
+                    }
+
+
+                    draggedWord =
+                        card;
+
+
+                    card.classList.add(
+                        "dragging"
+                    );
 
                 }
+            );
 
 
-                draggedWord =
-                    card;
+            /* =========================================
+               DRAG END
+            ========================================= */
+
+            card.addEventListener(
+                "dragend",
+                () => {
+
+                    card.classList.remove(
+                        "dragging"
+                    );
+
+                }
+            );
 
 
-                card.classList.add(
-                    "dragging"
-                );
+            wordsEl.appendChild(
+                card
+            );
 
-            }
-        );
-
-
-        /* =========================================
-           DRAG END
-        ========================================= */
-
-        card.addEventListener(
-            "dragend",
-            () => {
-
-                card.classList.remove(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        wordsEl.appendChild(
-            card
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -1818,14 +2240,16 @@ function loadRound(){
    UPDATE CHECK BUTTON
 ========================================================= */
 
-function updateCheckButton(){
+function updateCheckButton() {
 
     const total =
         rounds[current].pairs.length;
 
 
     const placed =
-        Object.keys(placements).length;
+        Object.keys(
+            placements
+        ).length;
 
 
     checkBtn.disabled =
@@ -1838,12 +2262,10 @@ function updateCheckButton(){
    CHECK ANSWERS
 ========================================================= */
 
-function checkAnswers(){
+function checkAnswers() {
 
-    if(checked){
-
+    if (checked) {
         return;
-
     }
 
 
@@ -1859,118 +2281,122 @@ function checkAnswers(){
         0;
 
 
-    /* =====================================================
-       CHECK EVERY PAIR
-    ====================================================== */
+    round.pairs.forEach(
+        pair => {
 
-    round.pairs.forEach(pair => {
-
-        const vietnamese =
-            pair[0];
+            const vietnamese =
+                pair[0];
 
 
-        const correctEnglish =
-            pair[1];
+            const correctEnglish =
+                pair[1];
 
 
-        const selectedEnglish =
-            placements[vietnamese];
+            const selectedEnglish =
+                placements[vietnamese];
 
 
-        const target =
-            document.querySelector(
-                `.target[data-vi="${CSS.escape(vietnamese)}"]`
-            );
-
-
-        const card =
-            document.querySelector(
-                `.word[data-word="${CSS.escape(selectedEnglish)}"]`
-            );
-
-
-        if(
-            selectedEnglish ===
-            correctEnglish
-        ){
-
-            correctCount++;
-
-
-            target.classList.add(
-                "correct"
-            );
-
-
-            if(card){
-
-                card.classList.add(
-                    "checked-correct"
+            const target =
+                document.querySelector(
+                    `.target[data-vi="${CSS.escape(vietnamese)}"]`
                 );
+
+
+            const card =
+                document.querySelector(
+                    `.word[data-word="${CSS.escape(selectedEnglish)}"]`
+                );
+
+
+            if (
+                selectedEnglish ===
+                correctEnglish
+            ) {
+
+                correctCount++;
+
+
+                target.classList.add(
+                    "correct"
+                );
+
+
+                if (card) {
+
+                    card.classList.add(
+                        "checked-correct"
+                    );
+
+                }
+
+            }
+
+            else {
+
+                target.classList.add(
+                    "incorrect"
+                );
+
+
+                if (card) {
+
+                    card.classList.add(
+                        "checked-incorrect"
+                    );
+
+                }
 
             }
 
         }
-
-        else{
-
-            target.classList.add(
-                "incorrect"
-            );
-
-
-            if(card){
-
-                card.classList.add(
-                    "checked-incorrect"
-                );
-
-            }
-
-        }
-
-    });
+    );
 
 
     /* =====================================================
        UPDATE SCORE
-    ====================================================== */
+    ===================================================== */
 
-    score += correctCount;
+    score +=
+        correctCount;
 
 
-    document.getElementById(
-        "scoreText"
-    ).textContent =
+    scoreText.textContent =
         `Score: ${score}`;
 
 
     /* =====================================================
        LOCK ROUND
-    ====================================================== */
+    ===================================================== */
 
-    checked = true;
+    checked =
+        true;
 
 
     document
-        .querySelectorAll(".word")
-        .forEach(word => {
+        .querySelectorAll(
+            ".word"
+        )
+        .forEach(
+            word => {
 
-            word.draggable = false;
+                word.draggable =
+                    false;
 
-            word.style.cursor =
-                "default";
+                word.style.cursor =
+                    "default";
 
-        });
+            }
+        );
 
 
     /* =====================================================
-       RESULT MESSAGE
-    ====================================================== */
+       MESSAGE
+    ===================================================== */
 
-    if(
-        correctCount === total
-    ){
+    if (
+        correctCount ===
+        total
+    ) {
 
         messageEl.textContent =
             "🎉 Perfect! All answers are correct.";
@@ -1980,7 +2406,7 @@ function checkAnswers(){
 
     }
 
-    else{
+    else {
 
         messageEl.textContent =
             `You got ${correctCount} / ${total} correct.`;
@@ -1992,15 +2418,15 @@ function checkAnswers(){
 
 
     /* =====================================================
-       SHOW EXPLANATION
-    ====================================================== */
+       EXPLANATION
+    ===================================================== */
 
     showRoundExplanation();
 
 
     /* =====================================================
        CHECK → NEXT
-    ====================================================== */
+    ===================================================== */
 
     checkBtn.classList.add(
         "hidden"
@@ -2018,71 +2444,75 @@ function checkAnswers(){
    SHOW EXPLANATION
 ========================================================= */
 
-function showRoundExplanation(){
+function showRoundExplanation() {
 
     const round =
         rounds[current];
 
 
     const lines =
-        round.pairs.map(pair => {
+        round.pairs.map(
+            pair => {
 
-            const vietnamese =
-                pair[0];
-
-
-            const english =
-                pair[1];
+                const vietnamese =
+                    pair[0];
 
 
-            const data =
-                explanations[vietnamese];
+                const english =
+                    pair[1];
 
 
-            return `
+                const data =
+                    explanations[
+                        vietnamese
+                    ];
 
-                <div style="margin-bottom:12px;">
 
-                    <strong>
-                        ${english}
-                    </strong>
+                return `
 
-                    →
+                    <div style="margin-bottom:12px;">
 
-                    <strong>
-                        ${vietnamese}
-                    </strong>
+                        <strong>
+                            ${english}
+                        </strong>
 
-                    <br>
+                        →
 
-                    ${
-                        data
-                        ?
-                        data.meaning
-                        :
-                        ""
-                    }
+                        <strong>
+                            ${vietnamese}
+                        </strong>
 
-                    ${
-                        data
-                        ?
-                        `
-                        <span class="related">
+                        <br>
 
-                            Related English words:
-                            ${data.related}
+                        ${
+                            data
+                            ?
+                            data.meaning
+                            :
+                            ""
+                        }
 
-                        </span>
-                        `
-                        :
-                        ""
-                    }
+                        ${
+                            data
+                            ?
+                            `
+                            <span class="related">
 
-                </div>
+                                Related English words:
+                                ${data.related}
 
-            `;
+                            </span>
+                            `
+                            :
+                            ""
+                        }
 
-        }).join("");
+                    </div>
+
+                `;
+
+            }
+        ).join("");
 
 
     explanationEl.innerHTML = `
@@ -2113,11 +2543,7 @@ function showRoundExplanation(){
 
 checkBtn.addEventListener(
     "click",
-    () => {
-
-        checkAnswers();
-
-    }
+    checkAnswers
 );
 
 
@@ -2132,16 +2558,16 @@ nextBtn.addEventListener(
         current++;
 
 
-        if(
+        if (
             current <
             rounds.length
-        ){
+        ) {
 
             loadRound();
 
         }
 
-        else{
+        else {
 
             finishGame();
 
@@ -2155,7 +2581,7 @@ nextBtn.addEventListener(
    FINISH GAME
 ========================================================= */
 
-function finishGame(){
+function finishGame() {
 
     gameScreen.style.display =
         "none";
@@ -2183,28 +2609,29 @@ function finishGame(){
         );
 
 
-    let message = "";
+    let message =
+        "";
 
 
-    if(
+    if (
         percentage >= 85
-    ){
+    ) {
 
         message =
             "🏆 Excellent! You really know these words.";
 
     }
 
-    else if(
+    else if (
         percentage >= 60
-    ){
+    ) {
 
         message =
             "🎉 Good job! Keep practicing.";
 
     }
 
-    else{
+    else {
 
         message =
             "📚 Keep practicing. You'll get better.";
@@ -2224,17 +2651,18 @@ function finishGame(){
    TOTAL PAIRS
 ========================================================= */
 
-function getTotalPairs(){
+function getTotalPairs() {
 
     return rounds.reduce(
         (
             total,
             round
-        ) =>
+        ) => {
 
-            total +
-            round.pairs.length,
+            return total +
+                round.pairs.length;
 
+        },
         0
     );
 
@@ -2245,17 +2673,22 @@ function getTotalPairs(){
    RESTART
 ========================================================= */
 
-function restartGame(){
+function restartGame() {
 
-    current = 0;
+    current =
+        0;
 
-    score = 0;
+    score =
+        0;
 
-    draggedWord = null;
+    draggedWord =
+        null;
 
-    placements = {};
+    placements =
+        {};
 
-    checked = false;
+    checked =
+        false;
 
 
     finalScreen.style.display =
@@ -2272,7 +2705,17 @@ function restartGame(){
 
 
 /* =========================================================
-   START
+   RESTART BUTTON
+========================================================= */
+
+restartBtn.addEventListener(
+    "click",
+    restartGame
+);
+
+
+/* =========================================================
+   START GAME
 ========================================================= */
 
 loadRound();

@@ -27,52 +27,97 @@
     content="🔎"
 >
 
+
+<!-- =========================================================
+     FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
 
-/* ==========================================================
-   RESET
-========================================================== */
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
 
-*{
-    box-sizing:border-box;
+:root{
+
+    --accent:#9669AA;
+
+    --accent-dark:#714A82;
+
+    --accent-light:#f6eef9;
+
+    --accent-bg:#FAF5FB;
+
+    --accent-border:#dfc9ec;
+
+    --ink:#333333;
+
+    --muted:#5d7187;
+
+    --correct:#019b3f;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
 }
 
 
-/* ==========================================================
-   BODY
-========================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-body{
+*{
 
     margin:0;
 
-    font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    padding:0;
 
-    background:#f4f7f6;
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    color:#2c3e50;
+    box-sizing:border-box;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   BODY
+========================================================= */
+
+body{
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    background:
+         linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+
+    min-height:100vh;
+
+    padding:20px;
+
+    color:var(--ink);
+
+}
+
+
+/* =========================================================
    SCREEN
-========================================================== */
+========================================================= */
 
 .screen{
 
@@ -88,59 +133,51 @@ body{
 }
 
 
-/* ==========================================================
-   CONTAINER
-========================================================== */
+/* =========================================================
+   BACK TO LOBBY
+========================================================= */
 
-.container{
+.lobby-btn-container{
 
-    position:relative;
+    width:100%;
 
-    width:min(850px,96vw);
+    max-width:900px;
 
-    margin:0 auto;
+    margin:
+        0 auto 15px;
 
-    background:white;
-
-    padding:
-        65px
-        30px
-        30px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
+    text-align:left;
 
 }
 
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
-
 .lobby-btn{
 
-    position:absolute;
+    display:inline-flex;
 
-    top:20px;
+    align-items:center;
 
-    left:22px;
+    justify-content:center;
 
     padding:
-        8px
-        14px;
+        8px 15px;
 
-    border:none;
+    background:#ffffff;
 
-    border-radius:8px;
+    color:var(--accent-dark);
 
-    background:#eef5fc;
+    border:
+        1px solid
+        var(--accent-border);
 
-    color:#34495e;
+    border-radius:999px;
 
-    font-size:24px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:17px;
 
     font-weight:bold;
 
@@ -153,109 +190,101 @@ body{
 
 .lobby-btn:hover{
 
-    background:#dcecff;
+    background:var(--accent-light);
 
-    transform:translateX(-2px);
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
-
-    text-align:center;
-
-    padding:
-        20px
-        20px
-        30px;
-
-}
-
-
-#intro .emoji{
-
-    font-size:70px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:
-        0
-        0
-        10px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.6;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:
-        14px
-        35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    background:#ffffff;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:18px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(113,74,130,.08);
+
+    padding:30px;
+
+}
+
+
+.container::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:var(--accent);
+
+    border-radius:
+        18px 18px 0 0;
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game{
+
+    display:block;
+
+}
+
+
+/* =========================================================
    GAME TITLE
-========================================================== */
+========================================================= */
 
 .title{
 
     text-align:center;
 
+    font-family:
+        Kalam,
+        cursive;
+
+    color:var(--ink);
+
     margin:
-        0
-        0
-        5px;
+        0 0 5px;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    line-height:1.2;
 
 }
 
@@ -264,35 +293,70 @@ body{
 
     text-align:center;
 
-    color:#7f8c8d;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    color:var(--muted);
+
+    font-size:20px;
 
     margin-bottom:25px;
+
+    line-height:1.5;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    GAME BOX
-========================================================== */
+========================================================= */
 
 .game-box{
 
-    background:#fff;
+    position:relative;
+
+    background:#ffffff;
 
     padding:25px;
 
-    border-radius:15px;
+    border:
+        1px solid
+        var(--accent-border);
 
-    border:1px solid #eee;
+    border-radius:15px;
 
     text-align:center;
 
 }
 
 
-/* ==========================================================
+.game-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:var(--accent);
+
+    border-radius:
+        15px 15px 0 0;
+
+}
+
+
+/* =========================================================
    TOP BAR
-========================================================== */
+========================================================= */
 
 .topbar{
 
@@ -304,6 +368,11 @@ body{
 
     margin-bottom:15px;
 
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
     font-weight:bold;
 
 }
@@ -311,37 +380,43 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:var(--muted);
+
+    font-size:20px;
 
 }
 
 
 .score{
 
-    color:#27ae60;
+    color:var(--accent);
 
-    font-size:28px;
+    font-size:24px;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    PROGRESS
-========================================================== */
+========================================================= */
 
 .progress-wrap{
 
     width:100%;
 
-    height:9px;
+    height:10px;
 
-    background:#eee;
+    background:var(--accent-light);
+
+    border:
+        1px solid
+        var(--accent-border);
 
     border-radius:20px;
 
     overflow:hidden;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 
 }
 
@@ -352,36 +427,37 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:var(--accent);
+
+    border-radius:20px;
 
     transition:.3s;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    DETECTIVE CARD
-========================================================== */
+========================================================= */
 
 .card{
 
-    background:#fffde7;
+    background:var(--accent-light);
 
     border:
-        2px dashed
-        #f1c40f;
+        1px dashed
+        var(--accent-border);
 
     border-radius:12px;
 
     padding:
-        30px
-        25px;
+        25px
+        20px;
 
     margin:
-        20px
-        0;
+        20px 0;
 
-    min-height:230px;
+    min-height:220px;
 
     display:flex;
 
@@ -394,26 +470,9 @@ body{
 }
 
 
-/* ==========================================================
-   CARD TITLE
-========================================================== */
-
-.card-title{
-
-    font-size:26px;
-
-    color:#7f8c8d;
-
-    font-weight:bold;
-
-    margin-bottom:18px;
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    CLUES
-========================================================== */
+========================================================= */
 
 .clues{
 
@@ -430,7 +489,7 @@ body{
 
 .clue{
 
-    background:white;
+    background:#ffffff;
 
     border-radius:9px;
 
@@ -438,18 +497,27 @@ body{
         12px
         15px;
 
-    font-size:28px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:21px;
 
     font-weight:600;
 
-    border:1px solid #eee;
+    color:var(--ink);
+
+    border:
+        1px solid
+        var(--accent-border);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    OPTIONS
-========================================================== */
+========================================================= */
 
 .options{
 
@@ -465,19 +533,28 @@ body{
 
 .option-btn{
 
+    min-height:75px;
+
     padding:17px;
 
-    font-size:28px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
-    background:#34495e;
+    background:#ffffff;
 
-    color:white;
+    color:var(--accent-dark);
 
-    border:none;
+    border:
+        2px solid
+        var(--accent);
 
-    border-radius:9px;
+    border-radius:10px;
 
     cursor:pointer;
 
@@ -486,49 +563,62 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(:disabled){
 
-    background:#2c3e50;
+    background:var(--accent-light);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
 }
 
 
+.option-btn:disabled{
+
+    cursor:default;
+
+}
+
+
 .option-btn.correct{
 
-    background:#27ae60;
+    background:var(--correct-light);
+
+    color:var(--correct);
+
+    border-color:var(--correct);
 
 }
 
 
 .option-btn.wrong{
 
-    background:#e74c3c;
+    background:var(--wrong-light);
+
+    color:var(--wrong);
+
+    border-color:var(--wrong);
 
 }
 
 
-.option-btn.disabled{
-
-    pointer-events:none;
-
-    opacity:.75;
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    RESULT
-========================================================== */
+========================================================= */
 
 .result-message{
 
-    min-height:55px;
+    min-height:65px;
 
     margin-top:20px;
 
-    font-size:27px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
 
     font-weight:bold;
 
@@ -539,14 +629,14 @@ body{
 
 .correct-text{
 
-    color:#27ae60;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:var(--wrong);
 
 }
 
@@ -557,58 +647,89 @@ body{
 
     margin-top:6px;
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:24px;
+    font-size:19px;
 
-    font-weight:normal;
+    font-weight:500;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT BUTTON
-========================================================== */
+   ALWAYS CENTERED
+========================================================= */
 
 .next-btn{
 
+    display:none;
+
+    width:max-content;
+
+    margin:
+        24px auto 0;
+
     padding:
-        12px
-        28px;
+        12px 28px;
 
-    border:none;
+    background:var(--accent);
 
-    border-radius:10px;
+    color:#ffffff;
 
-    background:#34495e;
+    border:
+        2px solid
+        var(--accent);
 
-    color:white;
+    border-radius:999px;
 
-    font-size:27px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    font-weight:bold;
+    font-size:22px;
+
+    font-weight:700;
 
     cursor:pointer;
 
-    margin-top:5px;
-
-    transition:.2s;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 
 }
 
 
 .next-btn:hover{
 
-    background:#2c3e50;
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
 }
 
 
-/* ==========================================================
+/*
+   IMPORTANT:
+   JavaScript changes display to "block",
+   so the button remains centered because
+   margin-left/right are auto.
+*/
+
+.next-btn.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
    FINAL
-========================================================== */
+========================================================= */
 
 #final{
 
@@ -624,46 +745,117 @@ body{
 
 #final h2{
 
-    font-size:45px;
+    font-family:
+        Kalam,
+        cursive;
 
-    color:#27ae60;
+    font-size:42px;
+
+    color:var(--accent);
+
+    margin-bottom:15px;
 
 }
 
 
 .final-score{
 
-    font-size:40px;
+    font-family:
+        Kalam,
+        cursive;
 
-    margin:25px 0;
+    font-size:38px;
+
+    margin:
+        25px 0 10px;
 
     font-weight:bold;
 
-    color:#1976d2;
+    color:var(--accent-dark);
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:28px;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:21px;
 
     line-height:1.5;
 
 }
 
 
-/* ==========================================================
+.final-score + .final-message{
+
+    margin-top:10px;
+
+}
+
+
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
+
+.start-btn{
+
+    margin-top:20px;
+
+    padding:
+        13px 28px;
+
+    border:
+        2px solid
+        var(--accent);
+
+    border-radius:999px;
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
 @media(max-width:600px){
 
     body{
 
-        padding:10px;
+        padding:15px;
 
     }
 
@@ -671,9 +863,47 @@ body{
     .container{
 
         padding:
-            60px
-            15px
+            25px
             20px;
+
+    }
+
+
+    .lobby-btn-container{
+
+        margin-bottom:12px;
+
+    }
+
+
+    .title{
+
+        font-size:37px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:18px;
+
+        margin-bottom:20px;
+
+    }
+
+
+    .game-box{
+
+        padding:18px;
+
+    }
+
+
+    .topbar{
+
+        flex-direction:column;
+
+        gap:8px;
 
     }
 
@@ -687,7 +917,99 @@ body{
 
     .card{
 
-        min-height:240px;
+        min-height:220px;
+
+        margin:
+            15px 0;
+
+        padding:
+            22px
+            15px;
+
+    }
+
+
+    .clue{
+
+        font-size:19px;
+
+        padding:
+            11px
+            13px;
+
+    }
+
+
+    .option-btn{
+
+        min-height:70px;
+
+        font-size:26px;
+
+    }
+
+
+    .result-message{
+
+        font-size:20px;
+
+    }
+
+
+    .explanation{
+
+        font-size:18px;
+
+    }
+
+
+    .next-btn{
+
+        margin:
+            24px auto 0;
+
+        font-size:21px;
+
+    }
+
+
+    #final h2{
+
+        font-size:38px;
+
+    }
+
+
+    .final-score{
+
+        font-size:34px;
+
+    }
+
+
+    .final-message{
+
+        font-size:19px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:380px){
+
+    body{
+
+        padding:12px 10px 25px;
+
+    }
+
+
+    .container{
 
         padding:
             25px
@@ -696,38 +1018,40 @@ body{
     }
 
 
-    .clue{
+    .title{
 
-        font-size:26px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:38px;
+        font-size:32px;
 
     }
 
 
-    #final h2{
+    .subtitle{
 
-        font-size:40px;
+        font-size:17px;
 
     }
 
 
-    .lobby-btn{
+    .game-box{
 
-        top:16px;
+        padding:15px;
 
-        left:16px;
+    }
+
+
+    .option-btn{
 
         font-size:23px;
 
+    }
+
+
+    .next-btn{
+
         padding:
-            7px
-            12px;
+            11px 24px;
+
+        font-size:20px;
 
     }
 
@@ -741,68 +1065,18 @@ body{
 <body>
 
 
-<div class="container">
-
-
 <!-- ========================================================
      BACK TO LOBBY
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
->
-
-    ← Back
-
-</button>
-
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        🔎
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Health Word Detective
-
-    </h1>
-
-
-    <p>
-
-        Read the clues and find the correct
-        Vietnamese health word.
-
-    </p>
-
-
-    <p>
-
-        🎯 20 questions
-
-    </p>
-
+<div class="lobby-btn-container">
 
     <button
-        class="start-btn"
-        onclick="startGame()"
+        class="lobby-btn"
+        onclick="backToLobby()"
     >
 
-        Start Game
+        ← Back
 
     </button>
 
@@ -811,12 +1085,19 @@ body{
 
 
 <!-- ========================================================
+     MAIN CONTAINER
+========================================================= -->
+
+<div class="container">
+
+
+<!-- ========================================================
      GAME
 ========================================================= -->
 
 <div
     id="game"
-    class="screen"
+    class="screen active"
 >
 
 
@@ -829,7 +1110,7 @@ body{
 
     <p class="subtitle">
 
-        Read the clues and choose the correct word.
+        Read the clues and choose the correct Vietnamese word.
 
     </p>
 
@@ -838,10 +1119,11 @@ body{
     <div class="game-box">
 
 
-        <!-- TOP BAR -->
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
 
         <div class="topbar">
-
 
             <div class="question-count">
 
@@ -870,12 +1152,13 @@ body{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- PROGRESS -->
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
 
         <div class="progress-wrap">
 
@@ -888,29 +1171,24 @@ body{
 
 
 
-        <!-- CLUE CARD -->
+        <!-- =================================================
+             CLUE CARD
+        ================================================== -->
 
         <div class="card">
-
-
-            <div class="card-title">
-
-                🔎 Find the Vietnamese word
-
-            </div>
-
 
             <div
                 class="clues"
                 id="cluesContainer"
             ></div>
 
-
         </div>
 
 
 
-        <!-- OPTIONS -->
+        <!-- =================================================
+             OPTIONS
+        ================================================== -->
 
         <div
             class="options"
@@ -919,7 +1197,9 @@ body{
 
 
 
-        <!-- RESULT -->
+        <!-- =================================================
+             RESULT
+        ================================================== -->
 
         <div
             class="result-message"
@@ -928,13 +1208,14 @@ body{
 
 
 
-        <!-- NEXT -->
+        <!-- =================================================
+             NEXT
+        ================================================== -->
 
         <button
             class="next-btn"
             id="nextBtn"
             onclick="nextQuestion()"
-            style="display:none;"
         >
 
             Next →
@@ -994,7 +1275,7 @@ body{
         onclick="restartGame()"
     >
 
-        Play Again
+        Play Again →
 
     </button>
 
@@ -1008,10 +1289,8 @@ body{
 
 <script>
 
-
 /* ==========================================================
-   VOCABULARY
-   ONLY APPROVED 16 WORDS
+   APPROVED VOCABULARY
 ========================================================== */
 
 const vocabulary = [
@@ -1101,7 +1380,6 @@ const vocabulary = [
 
 /* ==========================================================
    QUESTION DATABASE
-   ONLY USE THE 16 APPROVED VOCABULARY WORDS
 ========================================================== */
 
 const database = [
@@ -1349,6 +1627,13 @@ const database = [
 
 
 /* ==========================================================
+   GAME SETTINGS
+========================================================== */
+
+const TOTAL_QUESTIONS = 20;
+
+
+/* ==========================================================
    STATE
 ========================================================== */
 
@@ -1378,7 +1663,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
@@ -1400,7 +1686,6 @@ function shuffle(array){
 
 /* ==========================================================
    CREATE QUESTIONS
-   20 QUESTIONS FROM 16 APPROVED WORDS
 ========================================================== */
 
 function createQuestions(){
@@ -1412,18 +1697,21 @@ function createQuestions(){
 
 
     /*
-       First use every vocabulary item once.
+       Use every vocabulary item once.
     */
 
     result.push(...shuffled);
 
 
     /*
-       Add 4 more random questions
-       to reach exactly 20.
+       Add extra questions until
+       there are exactly 20.
     */
 
-    while(result.length < 20){
+    while(
+        result.length <
+        TOTAL_QUESTIONS
+    ){
 
         const randomQuestion =
             database[
@@ -1433,7 +1721,10 @@ function createQuestions(){
                 )
             ];
 
-        result.push(randomQuestion);
+
+        result.push(
+            randomQuestion
+        );
 
     }
 
@@ -1459,8 +1750,8 @@ function startGame(){
 
 
     document
-        .getElementById("intro")
-        .classList.remove(
+        .getElementById("game")
+        .classList.add(
             "active"
         );
 
@@ -1468,13 +1759,6 @@ function startGame(){
     document
         .getElementById("final")
         .classList.remove(
-            "active"
-        );
-
-
-    document
-        .getElementById("game")
-        .classList.add(
             "active"
         );
 
@@ -1519,7 +1803,7 @@ function loadQuestion(){
         .getElementById("progress")
         .style.width =
         (
-            currentQuestion /
+            (currentQuestion + 1) /
             questions.length *
             100
         ) + "%";
@@ -1562,7 +1846,7 @@ function loadQuestion(){
 
     document
         .getElementById("resultText")
-        .textContent =
+        .innerHTML =
         "";
 
 
@@ -1572,10 +1856,24 @@ function loadQuestion(){
         "result-message";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
-        "none";
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.classList.remove(
+        "show"
+    );
+
+
+    nextBtn.textContent =
+        currentQuestion ===
+        questions.length - 1
+
+            ? "Finish 🎉"
+
+            : "Next →";
 
 
     const container =
@@ -1589,8 +1887,8 @@ function loadQuestion(){
 
 
     /*
-       Create wrong answers from
-       the approved vocabulary only.
+       Wrong answers come only
+       from approved vocabulary.
     */
 
     const wrongAnswers =
@@ -1665,6 +1963,10 @@ function handleAnswer(
     selected
 ){
 
+    /*
+       One attempt only.
+    */
+
     if(answered){
 
         return;
@@ -1686,7 +1988,7 @@ function handleAnswer(
 
 
     /*
-       Lock ALL answers immediately.
+       Lock every answer.
     */
 
     document
@@ -1697,10 +1999,6 @@ function handleAnswer(
             function(btn){
 
                 btn.disabled = true;
-
-                btn.classList.add(
-                    "disabled"
-                );
 
             }
         );
@@ -1730,10 +2028,13 @@ function handleAnswer(
 
 
         resultText.innerHTML =
-            `🎉 Correct!
+            `
+            🎉 Correct!
+
             <span class="explanation">
                 ${question.explanation}
-            </span>`;
+            </span>
+            `;
 
 
         resultText.className =
@@ -1754,7 +2055,7 @@ function handleAnswer(
 
 
         /*
-           Highlight the correct answer.
+           Highlight correct answer.
         */
 
         document
@@ -1780,13 +2081,18 @@ function handleAnswer(
 
 
         resultText.innerHTML =
-            `❌ Wrong!
+            `
+            ❌ Wrong!
+
             <span class="explanation">
-                Correct answer: <strong>
+                Correct answer:
+                <strong>
                     ${question.answer}
-                </strong><br>
+                </strong>
+                <br>
                 ${question.explanation}
-            </span>`;
+            </span>
+            `;
 
 
         resultText.className =
@@ -1797,32 +2103,17 @@ function handleAnswer(
 
     /*
        Show Next button.
+
+       Use the .show class instead of
+       inline-block so the CSS can keep
+       the button centered.
     */
 
     document
         .getElementById("nextBtn")
-        .style.display =
-        "inline-block";
-
-
-    if(
-        currentQuestion ===
-        questions.length - 1
-    ){
-
-        document
-            .getElementById("nextBtn")
-            .textContent =
-            "Finish 🎉";
-
-    }else{
-
-        document
-            .getElementById("nextBtn")
-            .textContent =
-            "Next →";
-
-    }
+        .classList.add(
+            "show"
+        );
 
 }
 
@@ -1832,6 +2123,13 @@ function handleAnswer(
 ========================================================== */
 
 function nextQuestion(){
+
+    if(!answered){
+
+        return;
+
+    }
+
 
     currentQuestion++;
 
@@ -1843,7 +2141,9 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+
+    else{
 
         finishGame();
 
@@ -1896,12 +2196,16 @@ function finishGame(){
         message =
             "🏆 Excellent! You are a great health word detective.";
 
-    }else if(percent >= 70){
+    }
+
+    else if(percent >= 70){
 
         message =
             "🎉 Good job! Keep practicing your Vietnamese.";
 
-    }else{
+    }
+
+    else{
 
         message =
             "📚 Keep practicing these useful health words.";
@@ -1938,6 +2242,13 @@ function backToLobby(){
         "../../category.html?category=Health";
 
 }
+
+
+/* ==========================================================
+   START GAME
+========================================================== */
+
+startGame();
 
 </script>
 

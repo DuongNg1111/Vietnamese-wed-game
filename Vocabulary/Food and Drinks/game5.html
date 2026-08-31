@@ -35,7 +35,7 @@
 
 
 <!-- =========================================================
-     GOOGLE FONTS
+     GOOGLE FONT
 ========================================================= -->
 
 <link
@@ -52,17 +52,19 @@
 
 :root{
 
-    --accent:#2878df;
+    --accent:#A99959;
 
-    --accent-dark:#1e5fba;
+    --accent-dark:#7B6F40;
 
-    --accent-light:#eaf3ff;
+    --accent-light:#f9f6e6;
 
-    --accent-border:#c4daf6;
+    --accent-bg:#FBFAF0;
 
-    --general-border:#d9e6f2;
+    --accent-border:#e8dfb2;
 
-    --correct:#2878df;
+    --heading-color:var(--ink);
+
+    --correct:#019b3f;
 
     --correct-bg:#eaf3ff;
 
@@ -70,11 +72,15 @@
 
     --wrong-bg:#fff0f3;
 
-    --text:#222;
+    --ink:#2f302b;
 
-    --muted:#666;
+    --text:#333;
 
-    --white:#ffffff;
+    --muted:#6f706b;
+
+    --card:#ffffff;
+
+    --general-border:#deddd5;
 
 }
 
@@ -90,34 +96,71 @@
 }
 
 
+html{
+
+    width:100%;
+
+}
+
+
 body{
 
     margin:0;
 
-    padding:24px;
-
     min-height:100vh;
 
-    background:#f7f9fc;
+    padding:28px 20px 45px;
 
-    color:var(--text);
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-    font-family:Calibri, Arial, sans-serif;
+    color:var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page{
+
+    width:100%;
+
+    max-width:900px;
 
 }
 
 
 /* =========================================================
    BACK BUTTON
+   OUTSIDE GAME CARD
 ========================================================= */
 
 .back-btn-container{
 
     width:100%;
 
-    max-width:900px;
-
-    margin:0 auto 16px;
+    margin:0 auto 14px;
 
     text-align:left;
 
@@ -128,25 +171,31 @@ body{
 
     display:inline-block;
 
-    padding:9px 17px;
+    padding:8px 16px;
 
-    background:var(--white);
+    background:#ffffff;
 
-    color:#555;
+    color:var(--accent-dark);
 
-    border:2px solid var(--general-border);
+    border:1.5px solid var(--accent-border);
 
     border-radius:10px;
 
     text-decoration:none;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:18px;
 
     font-weight:bold;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 
 }
 
@@ -155,9 +204,7 @@ body{
 
     background:var(--accent-light);
 
-    color:var(--accent-dark);
-
-    border-color:var(--accent-border);
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 
@@ -165,7 +212,7 @@ body{
 
 
 /* =========================================================
-   MAIN CARD
+   MAIN GAME CARD
 ========================================================= */
 
 .game-box{
@@ -178,18 +225,16 @@ body{
 
     margin:0 auto;
 
-    padding:38px 48px 42px;
+    padding:34px 44px 40px;
 
-    background:var(--white);
+    background:var(--card);
 
-    border-radius:24px;
+    border:1px solid var(--accent-border);
 
-    border:1px solid var(--general-border);
+    border-radius:22px;
 
     box-shadow:
-        0 10px 35px rgba(30,95,186,.08);
-
-    text-align:center;
+        0 10px 30px rgba(80,70,30,.08);
 
     overflow:hidden;
 
@@ -197,7 +242,7 @@ body{
 
 
 /* =========================================================
-   ACCENT LINE ON CARD
+   ACCENT LINE
 ========================================================= */
 
 .game-box::before{
@@ -225,33 +270,54 @@ body{
 
 #gameScreen{
 
-    display:block;
+    width:100%;
 
 }
 
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 #gameScreen h1{
 
-    margin:5px 0 4px;
+    margin:4px 0 4px;
 
-    font-family:"Kalam", cursive;
+    text-align:center;
+
+    font-family:
+        Kalam,
+        cursive;
 
     font-size:48px;
 
+    font-weight:700;
+
     line-height:1.2;
 
-    color:var(--accent-dark);
+    color:var(--heading-color);
 
 }
 
 
+/* =========================================================
+   SHORT INTRO
+========================================================= */
+
 .instruction{
 
-    margin:0 0 26px;
+    margin:0 auto 25px;
 
-    font-family:Calibri, Arial, sans-serif;
+    text-align:center;
 
-    font-size:23px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:22px;
+
+    line-height:1.4;
 
     color:var(--muted);
 
@@ -274,7 +340,10 @@ body{
 
     margin:0 0 10px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:20px;
 
@@ -285,7 +354,7 @@ body{
 
 .round{
 
-    color:#666;
+    color:var(--muted);
 
 }
 
@@ -305,11 +374,13 @@ body{
 
     width:100%;
 
-    height:10px;
+    height:9px;
 
-    margin:0 0 30px;
+    margin:0 0 28px;
 
-    background:#edf3f9;
+    background:var(--accent-light);
+
+    border:1px solid var(--accent-border);
 
     border-radius:999px;
 
@@ -328,7 +399,8 @@ body{
 
     border-radius:999px;
 
-    transition:width .3s ease;
+    transition:
+        width .3s ease;
 
 }
 
@@ -339,15 +411,21 @@ body{
 
 .question-title{
 
-    margin:10px 0 25px;
+    margin:8px 0 23px;
 
-    font-family:"Kalam", cursive;
+    text-align:center;
+
+    font-family:
+        Kalam,
+        cursive;
 
     font-size:34px;
 
     font-weight:700;
 
-    color:#333;
+    line-height:1.3;
+
+    color:var(--ink);
 
 }
 
@@ -366,11 +444,11 @@ body{
 
     flex-wrap:wrap;
 
-    gap:12px;
+    gap:11px;
 
     max-width:750px;
 
-    margin:0 auto 32px;
+    margin:0 auto 30px;
 
 }
 
@@ -379,21 +457,26 @@ body{
 
     min-width:140px;
 
-    padding:18px 22px;
+    padding:17px 21px;
 
-    background:#f7faff;
+    background:#fcfcf9;
 
-    border:2px solid var(--general-border);
+    border:1.5px solid var(--general-border);
 
     border-radius:14px;
 
-    font-family:Calibri, Arial, sans-serif;
+    text-align:center;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:28px;
 
     font-weight:bold;
 
-    color:#34495e;
+    color:var(--ink);
 
 }
 
@@ -404,7 +487,7 @@ body{
 
     border:2px dashed var(--accent);
 
-    color:var(--accent);
+    color:var(--accent-dark);
 
 }
 
@@ -417,9 +500,10 @@ body{
 
     display:grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
-    gap:16px;
+    gap:14px;
 
     max-width:750px;
 
@@ -430,27 +514,33 @@ body{
 
 .option{
 
-    min-height:72px;
+    min-height:70px;
 
-    padding:14px 16px;
+    padding:13px 15px;
 
-    background:var(--white);
+    background:#ffffff;
 
-    color:#333;
+    color:var(--ink);
 
-    border:2px solid var(--general-border);
+    border:1.5px solid var(--general-border);
 
     border-radius:14px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:25px;
+    font-size:24px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 
 }
 
@@ -468,11 +558,15 @@ body{
 }
 
 
+/* =========================================================
+   CORRECT
+========================================================= */
+
 .option.correct{
 
     background:var(--correct-bg) !important;
 
-    border-color:var(--correct) !important;
+    border:2px solid var(--correct) !important;
 
     color:var(--correct) !important;
 
@@ -481,11 +575,15 @@ body{
 }
 
 
+/* =========================================================
+   WRONG
+========================================================= */
+
 .option.wrong{
 
     background:var(--wrong-bg) !important;
 
-    border-color:var(--wrong) !important;
+    border:2px solid var(--wrong) !important;
 
     color:var(--wrong) !important;
 
@@ -493,6 +591,10 @@ body{
 
 }
 
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .option.disabled{
 
@@ -511,9 +613,14 @@ body{
 
     min-height:55px;
 
-    margin-top:25px;
+    margin-top:23px;
 
-    font-family:Calibri, Arial, sans-serif;
+    text-align:center;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:25px;
 
@@ -532,7 +639,7 @@ body{
 
     font-weight:normal;
 
-    color:#555;
+    color:var(--muted);
 
 }
 
@@ -545,9 +652,9 @@ body{
 
     max-width:750px;
 
-    margin:20px auto 0;
+    margin:18px auto 0;
 
-    padding:17px 20px;
+    padding:16px 19px;
 
     background:var(--accent-light);
 
@@ -557,13 +664,16 @@ body{
 
     border-radius:12px;
 
-    color:#36516d;
+    color:#55564f;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:21px;
 
-    line-height:1.6;
+    line-height:1.55;
 
     text-align:left;
 
@@ -590,7 +700,11 @@ body{
 
 .next-area{
 
-    margin-top:24px;
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:22px;
 
 }
 
@@ -599,22 +713,20 @@ body{
 
     display:none;
 
-}
-
-
-.next-btn{
-
-    padding:12px 27px;
+    padding:11px 27px;
 
     background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:21px;
 
@@ -622,12 +734,14 @@ body{
 
     cursor:pointer;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        transform .2s ease;
 
 }
 
 
-.next-btn:hover{
+#nextBtn:hover{
 
     background:var(--accent-dark);
 
@@ -644,29 +758,33 @@ body{
 
     display:none;
 
-    padding:25px 10px 15px;
+    padding:22px 10px 10px;
+
+    text-align:center;
 
 }
 
 
 .final-icon{
 
-    font-size:70px;
+    font-size:64px;
 
-    margin-bottom:5px;
+    margin-bottom:3px;
 
 }
 
 
 #finalScreen h1{
 
-    margin:5px 0 20px;
+    margin:4px 0 18px;
 
-    font-family:"Kalam", cursive;
+    font-family:
+        Kalam,
+        cursive;
 
     font-size:48px;
 
-    color:var(--accent-dark);
+    color:var(--heading-color);
 
 }
 
@@ -675,24 +793,32 @@ body{
 
     margin:15px 0;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:32px;
 
     font-weight:bold;
+
+    color:var(--accent-dark);
 
 }
 
 
 .final-percent{
 
-    margin:10px 0;
+    margin:9px 0;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:27px;
 
-    color:#555;
+    color:var(--muted);
 
 }
 
@@ -701,15 +827,18 @@ body{
 
     max-width:650px;
 
-    margin:20px auto 28px;
+    margin:19px auto 27px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:25px;
+    font-size:24px;
 
     font-weight:bold;
 
-    color:#555;
+    color:var(--muted);
 
     line-height:1.5;
 
@@ -718,25 +847,30 @@ body{
 
 .play-again-btn{
 
-    padding:13px 30px;
+    padding:12px 29px;
 
     background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:22px;
+    font-size:21px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        transform .2s ease;
 
 }
 
@@ -758,16 +892,34 @@ body{
 
     body{
 
-        padding:15px;
+        padding:20px 14px 35px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .page{
+
+        max-width:100%;
 
     }
 
 
     .game-box{
 
-        padding:32px 22px 35px;
+        padding:31px 21px 34px;
 
-        border-radius:20px;
+        border-radius:19px;
+
+    }
+
+
+    .back-btn{
+
+        font-size:17px;
+
+        padding:8px 14px;
 
     }
 
@@ -783,6 +935,8 @@ body{
 
         font-size:21px;
 
+        margin-bottom:23px;
+
     }
 
 
@@ -797,12 +951,16 @@ body{
 
         font-size:30px;
 
+        margin-bottom:21px;
+
     }
 
 
     .group{
 
         gap:8px;
+
+        margin-bottom:27px;
 
     }
 
@@ -811,7 +969,7 @@ body{
 
         min-width:105px;
 
-        padding:15px 12px;
+        padding:14px 12px;
 
         font-size:25px;
 
@@ -822,7 +980,7 @@ body{
 
         grid-template-columns:1fr;
 
-        gap:12px;
+        gap:11px;
 
     }
 
@@ -831,7 +989,7 @@ body{
 
         min-height:62px;
 
-        font-size:24px;
+        font-size:23px;
 
     }
 
@@ -854,12 +1012,14 @@ body{
 
         font-size:20px;
 
-        padding:15px;
+        padding:14px 15px;
 
     }
 
 
-    .next-btn{
+    #nextBtn{
+
+        width:100%;
 
         font-size:20px;
 
@@ -880,9 +1040,23 @@ body{
     }
 
 
+    .final-percent{
+
+        font-size:25px;
+
+    }
+
+
     .final-message{
 
         font-size:22px;
+
+    }
+
+
+    .play-again-btn{
+
+        width:100%;
 
     }
 
@@ -895,18 +1069,16 @@ body{
 
 @media(max-width:400px){
 
-    .game-box{
+    body{
 
-        padding:28px 16px 32px;
+        padding:16px 10px 30px;
 
     }
 
 
-    .back-btn{
+    .game-box{
 
-        font-size:17px;
-
-        padding:8px 13px;
+        padding:28px 15px 31px;
 
     }
 
@@ -941,7 +1113,7 @@ body{
 
     .group-word{
 
-        min-width:95px;
+        min-width:92px;
 
         font-size:23px;
 
@@ -950,7 +1122,7 @@ body{
 
     .option{
 
-        font-size:23px;
+        font-size:22px;
 
     }
 
@@ -964,8 +1136,11 @@ body{
 <body>
 
 
+<div class="page">
+
+
 <!-- =========================================================
-     BACK TO CATEGORY
+     BACK
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -1000,13 +1175,13 @@ body{
 
 
     <p class="instruction">
-        Which Vietnamese word completes the group?
+        Choose the Vietnamese word that completes the group.
     </p>
 
 
     <!-- =====================================================
          TOP BAR
-    ===================================================== -->
+    ====================================================== -->
 
     <div class="topbar">
 
@@ -1029,8 +1204,8 @@ body{
 
 
     <!-- =====================================================
-         PROGRESS BAR
-    ===================================================== -->
+         PROGRESS
+    ====================================================== -->
 
     <div class="progress-container">
 
@@ -1044,7 +1219,7 @@ body{
 
     <!-- =====================================================
          QUESTION
-    ===================================================== -->
+    ====================================================== -->
 
     <div class="question-title">
 
@@ -1055,7 +1230,7 @@ body{
 
     <!-- =====================================================
          GROUP
-    ===================================================== -->
+    ====================================================== -->
 
     <div
         class="group"
@@ -1066,7 +1241,7 @@ body{
 
     <!-- =====================================================
          OPTIONS
-    ===================================================== -->
+    ====================================================== -->
 
     <div
         class="options"
@@ -1077,7 +1252,7 @@ body{
 
     <!-- =====================================================
          RESULT
-    ===================================================== -->
+    ====================================================== -->
 
     <div id="result">
     </div>
@@ -1085,7 +1260,7 @@ body{
 
     <!-- =====================================================
          EXPLANATION
-    ===================================================== -->
+    ====================================================== -->
 
     <div
         id="explanation"
@@ -1095,14 +1270,13 @@ body{
 
 
     <!-- =====================================================
-         NEXT BUTTON
-    ===================================================== -->
+         NEXT
+    ====================================================== -->
 
     <div class="next-area">
 
         <button
             id="nextBtn"
-            class="next-btn"
             onclick="nextQuestion()"
         >
             Next Question →
@@ -1165,6 +1339,8 @@ body{
 
 </div>
 
+</div>
+
 
 <script>
 
@@ -1190,7 +1366,6 @@ const questions = [
             "Cơm, bún, mì, and bánh mì are all foods."
     },
 
-
     {
         group:[
             "Cà phê",
@@ -1205,7 +1380,6 @@ const questions = [
         explanation:
             "Cà phê, trà, sữa, and nước cam are all drinks."
     },
-
 
     {
         group:[
@@ -1222,7 +1396,6 @@ const questions = [
             "Cam, xoài, chuối, and táo are all fruits."
     },
 
-
     {
         group:[
             "Cà rốt",
@@ -1237,7 +1410,6 @@ const questions = [
         explanation:
             "Cà rốt, cà chua, dưa leo, and khoai tây are vegetables."
     },
-
 
     {
         group:[
@@ -1254,7 +1426,6 @@ const questions = [
             "Bò, gà, heo, and cá are animal-based foods."
     },
 
-
     {
         group:[
             "Cam",
@@ -1269,7 +1440,6 @@ const questions = [
         explanation:
             "Cam, chanh, chuối, and xoài are all fruits."
     },
-
 
     {
         group:[
@@ -1286,7 +1456,6 @@ const questions = [
             "Nước lọc, nước cam, nước chanh, and trà are all drinks."
     },
 
-
     {
         group:[
             "Bánh mì",
@@ -1301,7 +1470,6 @@ const questions = [
         explanation:
             "Bánh mì, cơm, bún, and mì are all foods."
     },
-
 
     {
         group:[
@@ -1318,7 +1486,6 @@ const questions = [
             "Dừa, chuối, bơ, and xoài are all fruits."
     },
 
-
     {
         group:[
             "Bắp",
@@ -1333,7 +1500,6 @@ const questions = [
         explanation:
             "Bắp, xà lách, khoai tây, and cà rốt are vegetables."
     },
-
 
     {
         group:[
@@ -1350,7 +1516,6 @@ const questions = [
             "Đắng, ngọt, chua, and mặn are taste words."
     },
 
-
     {
         group:[
             "Trứng",
@@ -1365,7 +1530,6 @@ const questions = [
         explanation:
             "Trứng, bò, gà, and cá are animal-based foods."
     },
-
 
     {
         group:[
@@ -1382,7 +1546,6 @@ const questions = [
             "Nước cam, nước chanh, trà, and cà phê are all drinks."
     },
 
-
     {
         group:[
             "Táo",
@@ -1397,7 +1560,6 @@ const questions = [
         explanation:
             "Táo, chuối, dừa, and cam are all fruits."
     },
-
 
     {
         group:[
@@ -1414,7 +1576,6 @@ const questions = [
             "Cà chua, cà rốt, bắp, and xà lách are vegetables."
     },
 
-
     {
         group:[
             "Cơm",
@@ -1429,7 +1590,6 @@ const questions = [
         explanation:
             "Cơm, mì, bánh mì, and bún are all foods."
     },
-
 
     {
         group:[
@@ -1446,7 +1606,6 @@ const questions = [
             "Sữa, trà, cà phê, and nước chanh are all drinks."
     },
 
-
     {
         group:[
             "Mặn",
@@ -1462,7 +1621,6 @@ const questions = [
             "Mặn, cay, ngọt, and chua are taste words."
     },
 
-
     {
         group:[
             "Khoai tây",
@@ -1477,7 +1635,6 @@ const questions = [
         explanation:
             "Khoai tây, cà rốt, dưa leo, and cà chua are vegetables."
     },
-
 
     {
         group:[
@@ -1696,7 +1853,7 @@ function loadQuestion(){
 
     /* =====================================================
        GROUP WORDS
-    ===================================================== */
+    ====================================================== */
 
     question.group.forEach(
         word => {
@@ -1725,7 +1882,7 @@ function loadQuestion(){
 
     /* =====================================================
        MISSING WORD
-    ===================================================== */
+    ====================================================== */
 
     const missingElement =
         document.createElement(
@@ -1748,7 +1905,7 @@ function loadQuestion(){
 
     /* =====================================================
        ANSWER OPTIONS
-    ===================================================== */
+    ====================================================== */
 
     const choices =
         shuffle([
@@ -1831,7 +1988,7 @@ function checkAnswer(
 
     /* =====================================================
        CORRECT
-    ===================================================== */
+    ====================================================== */
 
     if(
         selectedChoice ===
@@ -1851,7 +2008,7 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            <div>
+            <div style="color:var(--correct);">
                 ✓ Correct!
             </div>
 
@@ -1869,7 +2026,7 @@ function checkAnswer(
 
     /* =====================================================
        WRONG
-    ===================================================== */
+    ====================================================== */
 
     else{
 
@@ -1899,7 +2056,7 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            <div>
+            <div style="color:var(--wrong);">
                 ✕ Wrong!
             </div>
 
@@ -1917,7 +2074,7 @@ function checkAnswer(
 
     /* =====================================================
        LOCK OPTIONS
-    ===================================================== */
+    ====================================================== */
 
     allButtons.forEach(
         button => {
@@ -1932,7 +2089,7 @@ function checkAnswer(
 
     /* =====================================================
        EXPLANATION
-    ===================================================== */
+    ====================================================== */
 
     explanationEl.innerHTML = `
 
@@ -1952,7 +2109,7 @@ function checkAnswer(
 
     /* =====================================================
        NEXT BUTTON
-    ===================================================== */
+    ====================================================== */
 
     nextBtn.style.display =
         "inline-block";
@@ -2099,7 +2256,7 @@ function restartGame(){
 
 
 /* =========================================================
-   INITIALIZE GAME
+   INITIALIZE
 ========================================================= */
 
 loadQuestion();

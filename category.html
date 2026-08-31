@@ -49,7 +49,7 @@
 :root {
 
     --paper: #f7f9fc;
-    --white: #ffffff;
+    --f5f5f5: #ffffff;
 
     --ink: #173b68;
     --ink-soft: #70849b;
@@ -2250,19 +2250,25 @@ const defaultTheme = {
     border: "#c4daf6"
 };
 
+/* ------------------------------------------------------
+   Màu đã được giảm độ chói (desaturate + cân lightness)
+   nhưng vẫn giữ đúng tông màu (hue) của từng category
+   bên lobby, để nhìn hài hòa và dịu mắt hơn.
+------------------------------------------------------ */
+
 const categoryThemes = {
-    "Activities": { accent: "#D25F52", light: "#e0897e", background: "#fdeeeb", border: "#f0cec6" },
-    "Clothes": { accent: "#CC8B4F", light: "#dba876", background: "#fbf1e6", border: "#ecdab6" },
-    "Food and Drinks": { accent: "#B8A24A", light: "#cbb96e", background: "#f9f6e6", border: "#e8dfb2" },
-    "Numbers": { accent: "#7CAE4F", light: "#9dc379", background: "#f0f7e8", border: "#d5e6b8" },
-    "Places, Directions & Transportation": { accent: "#4FAE68", light: "#79c48c", background: "#eaf6ee", border: "#c1e0cc" },
-    "Sentences": { accent: "#111111", light: "#333333", background: "#f5f5f5", border: "#d0d0d0" },
-    "Describe Things": { accent: "#4593AE", light: "#71acc0", background: "#e9f3f7", border: "#bcdae5" },
-    "People & Pronouns": { accent: "#4F73C4", light: "#7f97d4", background: "#eaf0fa", border: "#c3d4ef" },
-    "Colors": { accent: "#6F5FB8", light: "#9186c9", background: "#efedf9", border: "#d0c9ec" },
-    "Health": { accent: "#9C5FB8", light: "#b686c9", background: "#f6eef9", border: "#dfc9ec" },
-    "Useful Phrases": { accent: "#B85088", light: "#c97ba3", background: "#f9eaf1", border: "#ecc4dc" },
-    "Dictionary": { accent: "#b7791f", light: "#c9954f", background: "#fff8e7", border: "#efdca8" }
+    "Activities": { accent: "#BB6258", light: "#D3A29C", background: "#fdeeeb", border: "#f0cec6" },
+    "Clothes": { accent: "#B8885B", light: "#D1B79E", background: "#fbf1e6", border: "#ecdab6" },
+    "Food and Drinks": { accent: "#A99959", light: "#C6BD98", background: "#f9f6e6", border: "#e8dfb2" },
+    "Numbers": { accent: "#7DA15C", light: "#ACC198", background: "#f0f7e8", border: "#d5e6b8" },
+    "Places, Directions & Transportation": { accent: "#5CA16E", light: "#98C1A3", background: "#eaf6ee", border: "#c1e0cc" },
+    "Sentences": { accent: "#2E2E2E", light: "#4A4A4A", background: "#f5f5f5", border: "#d0d0d0" },
+    "Describe Things": { accent: "#548C9F", light: "#8FB3C0", background: "#e9f3f7", border: "#bcdae5" },
+    "People & Pronouns": { accent: "#5F79B4", light: "#A0AECF", background: "#eaf0fa", border: "#c3d4ef" },
+    "Colors": { accent: "#7569AA", light: "#ACA6C9", background: "#efedf9", border: "#d0c9ec" },
+    "Health": { accent: "#9669AA", light: "#BEA6C9", background: "#f6eef9", border: "#dfc9ec" },
+    "Useful Phrases": { accent: "#A95F87", light: "#C79DB4", background: "#f9eaf1", border: "#ecc4dc" },
+    "Dictionary": { accent: "#A27534", light: "#C8A16A", background: "#fff8e7", border: "#efdca8" }
 };
 
 function applyCategoryTheme(category, categoryKey) {

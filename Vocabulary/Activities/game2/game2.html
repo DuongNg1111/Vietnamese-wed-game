@@ -52,58 +52,58 @@
 
 :root {
 
-    /* Activities category color */
+    /* Activity Accent */
 
     --accent:
-        #2878df;
+        #BB6258;
 
     --accent-dark:
-        #1e5fba;
+        #91443B;
 
     --accent-light:
-        #eaf3ff;
+        #FDEEEB;
 
     --accent-bg:
-        #f5f9fd;
+        #FEF5F3;
 
     --accent-border:
-        #c4daf6;
+        #F0CEC6;
 
 
     /* General */
 
     --main-text:
-        #143a6b;
+        #143A6B;
 
     --secondary-text:
-        #66809d;
+        #66809D;
 
     --general-border:
-        #d9e6f2;
+        #D9E6F2;
 
 
     /* Correct */
 
     --correct:
-        #2878df;
+        #019B3F;
 
     --correct-bg:
-        #eaf3ff;
+        #EAF3FF;
 
 
     /* Wrong */
 
     --wrong:
-        #d9536f;
+        #D9536F;
 
     --wrong-bg:
-        #fff0f3;
+        #FFF0F3;
 
 
-    /* Page */
+    /* White */
 
-    --white:
-        #ffffff;
+    --f5f5f5:
+        #FFFFFF;
 
 }
 
@@ -129,32 +129,28 @@
 /* ==========================================================
    BODY
 ========================================================== */
-
 body {
 
-    min-height:
-        100vh;
+    min-height: 100vh;
 
-    padding:
-        28px 20px 45px;
+    padding: 28px 20px 45px;
 
-    font-family:
-        Calibri,
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    color:
-        var(--main-text);
+    color: var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
-            #edf5fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
@@ -212,12 +208,7 @@ body {
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+        var(--f5f5f5);
 
     color:
         var(--accent-dark);
@@ -234,14 +225,17 @@ body {
     box-shadow:
         0 4px 14px
         rgba(
-            20,
-            58,
-            107,
+            0,
+            0,
+            0,
             0.06
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 
 }
 
@@ -258,7 +252,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        var(--f5f5f5);
 
 }
 
@@ -282,7 +276,7 @@ body {
         hidden;
 
     background:
-        var(--white);
+        var(--f5f5f5);
 
     border:
         1px solid
@@ -292,12 +286,12 @@ body {
         24px;
 
     box-shadow:
-        0 18px 50px
+        0 16px 42px
         rgba(
-            20,
-            58,
-            107,
-            0.08
+            0,
+            0,
+            0,
+            0.10
         );
 
     text-align:
@@ -386,10 +380,10 @@ h1 {
         0 0 8px;
 
     color:
-        var(--main-text);
+        var(--ink);
 
     font-family:
-        Kalam,
+        "Kalam",
         cursive;
 
     font-size:
@@ -451,23 +445,6 @@ h1 {
 }
 
 
-.choose-text {
-
-    margin-bottom:
-        18px;
-
-    color:
-        var(--secondary-text);
-
-    font-size:
-        1.2rem;
-
-    font-weight:
-        600;
-
-}
-
-
 /* ==========================================================
    IMAGE
 ========================================================== */
@@ -511,9 +488,9 @@ h1 {
     box-shadow:
         0 8px 24px
         rgba(
-            20,
-            58,
-            107,
+            0,
+            0,
+            0,
             0.06
         );
 
@@ -590,7 +567,7 @@ h1 {
         15px;
 
     background:
-        var(--white);
+        var(--f5f5f5);
 
     color:
         var(--main-text);
@@ -633,9 +610,9 @@ h1 {
     box-shadow:
         0 7px 16px
         rgba(
-            40,
-            120,
-            223,
+            145,
+            68,
+            59,
             0.10
         );
 
@@ -769,7 +746,7 @@ h1 {
 .explanation strong {
 
     color:
-        var(--main-text);
+        var(--accent-dark);
 
 }
 
@@ -796,7 +773,7 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        var(--f5f5f5);
 
     font-family:
         inherit;
@@ -813,14 +790,16 @@ h1 {
     box-shadow:
         0 5px 12px
         rgba(
-            40,
-            120,
-            223,
+            145,
+            68,
+            59,
             0.18
         );
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -832,6 +811,15 @@ h1 {
 
     transform:
         translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            145,
+            68,
+            59,
+            0.22
+        );
 
 }
 
@@ -1131,11 +1119,6 @@ h1 {
                 id="questionNumber"
                 class="question-number"
             >
-            </div>
-
-
-            <div class="choose-text">
-                What are they doing?
             </div>
 
 
@@ -1903,12 +1886,6 @@ function loadQuestion() {
             TOTAL_QUESTIONS
         }`;
 
-
-    /*
-     * IMPORTANT:
-     * Keep the image path exactly as:
-     * images/filename.png
-     */
 
     activityImage.src =
         question.correct.image;

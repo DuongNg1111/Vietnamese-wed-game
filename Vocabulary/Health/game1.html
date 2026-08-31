@@ -4,47 +4,305 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Vietnamese Health Vocabulary Match</title>
 
-<meta name="game-title" content="Vietnamese Health Vocabulary Match">
-<meta name="game-description" content="Choose the correct Vietnamese meaning for health vocabulary.">
-<meta name="game-icon" content="❤️">
-<meta name="game-explanation" content="true">
+<meta
+    name="game-title"
+    content="Vietnamese Health Vocabulary Match"
+>
+
+<meta
+    name="game-description"
+    content="Choose the correct Vietnamese meaning for health vocabulary."
+>
+
+<meta
+    name="game-icon"
+    content="❤️"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
+
+/* =========================================================
+   THEME
+========================================================= */
+
+:root{
+
+    --accent:#9669AA;
+
+    --accent-dark:#714A82;
+
+    --accent-light:#f6eef9;
+
+    --accent-bg:#FAF5FB;
+
+    --accent-border:#dfc9ec;
+
+    --heading-color:var(--ink);
+
+    --correct:#019b3f;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
+    --ink:#333333;
+
+    --text:#333333;
+
+    --muted:#6b7280;
+
+    --general-border:#dfdfdf;
+
+}
+
 
 /* =========================================================
    GLOBAL
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
+
+
+html{
+
+    min-height:100%;
+
+}
+
 
 body{
 
     margin:0;
 
+    min-height:100vh;
+
+    padding:28px 20px 45px;
+
     font-family:
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
         Verdana,
         sans-serif;
 
-    background:#f4f7f6;
-
-    min-height:100vh;
+    color:var(--ink);
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    padding:20px;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
-    color:#2c3e50;
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page-wrapper{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn-container{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto 15px;
+
+}
+
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:9px 16px;
+
+    background:#ffffff;
+
+    color:#555555;
+
+    border:1px solid var(--accent-border);
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    transition:.2s ease;
+
+}
+
+
+.back-btn:hover{
+
+    background:var(--accent-light);
+
+    color:var(--accent-dark);
+
+    border-color:var(--accent);
+
+    transform:translateX(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:30px;
+
+    background:#ffffff;
+
+    border:1px solid var(--accent-border);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(113,74,130,.10);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+   CONTAINER ACCENT LINE
+========================================================= */
+
+.container::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:var(--accent);
+
+}
+
+
+/* =========================================================
+   TITLE AREA
+========================================================= */
+
+.title-area{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+
+.title-area h1{
+
+    margin:0 0 8px;
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:46px;
+
+    line-height:1.2;
+
+    font-weight:700;
+
+    color:var(--heading-color);
+
+}
+
+
+.title-area p{
+
+    margin:0;
+
+    color:var(--muted);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:23px;
+
+    line-height:1.4;
 
 }
 
@@ -54,174 +312,15 @@ body{
 ========================================================= */
 
 .screen{
+
     display:none;
+
 }
+
 
 .screen.active{
+
     display:block;
-}
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container{
-
-    position:relative;
-
-    width:min(900px,96vw);
-
-    margin:0 auto;
-
-    background:white;
-
-    padding:65px 30px 35px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
-
-}
-
-
-/* =========================================================
-   BACK TO LOBBY
-========================================================= */
-
-.lobby-btn{
-
-    position:absolute;
-
-    top:20px;
-    left:22px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.lobby-btn:hover{
-
-    background:#dcecff;
-
-    transform:translateX(-2px);
-
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-#intro{
-
-    text-align:center;
-
-    padding:20px 20px 30px;
-
-}
-
-
-#intro .emoji{
-
-    font-size:70px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 10px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.6;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-.title{
-
-    text-align:center;
-
-    margin:0 0 5px;
-
-}
-
-
-.subtitle{
-
-    text-align:center;
-
-    color:#7f8c8d;
-
-    margin-bottom:25px;
 
 }
 
@@ -232,18 +331,22 @@ body{
 
 .game-box{
 
-    background:#fff;
+    width:100%;
 
     padding:25px;
 
-    border-radius:15px;
+    background:white;
 
-    border:1px solid #eee;
+    border:1px solid var(--accent-border);
 
-    text-align:center;
+    border-radius:16px;
 
 }
 
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar{
 
@@ -253,7 +356,16 @@ body{
 
     align-items:center;
 
+    gap:20px;
+
     margin-bottom:15px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:24px;
 
     font-weight:bold;
 
@@ -262,22 +374,20 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:#6b7280;
 
 }
 
 
 .score{
 
-    color:#27ae60;
-
-    font-size:28px;
+    color:var(--accent-dark);
 
 }
 
 
 /* =========================================================
-   PROGRESS
+   PROGRESS BAR
 ========================================================= */
 
 .progress-wrap{
@@ -286,13 +396,13 @@ body{
 
     height:9px;
 
-    background:#eee;
+    margin-bottom:22px;
+
+    background:#eeeaf1;
 
     border-radius:20px;
 
     overflow:hidden;
-
-    margin-bottom:20px;
 
 }
 
@@ -303,30 +413,30 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:var(--accent);
 
-    transition:.3s;
+    border-radius:20px;
+
+    transition:.3s ease;
 
 }
 
 
 /* =========================================================
-   QUESTION
+   QUESTION CARD
 ========================================================= */
 
-.card{
+.question-card{
 
-    background:#fffde7;
+    position:relative;
 
-    border:2px dashed #f1c40f;
-
-    border-radius:12px;
-
-    padding:35px 20px;
+    overflow:hidden;
 
     margin:20px 0;
 
-    min-height:150px;
+    padding:34px 20px;
+
+    min-height:155px;
 
     display:flex;
 
@@ -338,14 +448,52 @@ body{
 
     gap:8px;
 
+    background:var(--accent-light);
+
+    border:1px solid var(--accent-border);
+
+    border-radius:14px;
+
 }
 
 
+/* =========================================================
+   QUESTION CARD ACCENT LINE
+========================================================= */
+
+.question-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:var(--accent);
+
+}
+
+
+/* =========================================================
+   QUESTION TEXT
+========================================================= */
+
 .question-label{
 
-    font-size:24px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    color:#7f8c8d;
+    font-size:22px;
+
+    color:#6b7280;
 
     font-weight:600;
 
@@ -354,11 +502,16 @@ body{
 
 .question-word{
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
     font-size:40px;
 
-    font-weight:800;
+    font-weight:bold;
 
-    color:#34495e;
+    color:var(--heading-color);
 
 }
 
@@ -372,7 +525,7 @@ body{
     display:grid;
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(2,1fr);
 
     gap:12px;
 
@@ -381,88 +534,133 @@ body{
 
 .option-btn{
 
-    padding:17px;
+    min-height:64px;
 
-    font-size:28px;
+    padding:14px 16px;
+
+    background:#ffffff;
+
+    color:var(--ink);
+
+    border:1px solid var(--accent-border);
+
+    border-radius:10px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
-    background:#34495e;
-
-    color:white;
-
-    border:none;
-
-    border-radius:9px;
-
     cursor:pointer;
 
-    transition:.2s;
+    transition:.2s ease;
 
 }
 
 
 .option-btn:hover{
 
-    background:#2c3e50;
+    background:var(--accent-light);
+
+    color:var(--accent-dark);
+
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 
 }
 
 
+/* =========================================================
+   CORRECT
+========================================================= */
+
 .option-btn.correct{
 
-    background:#27ae60;
+    background:var(--correct-light);
 
-}
+    color:var(--correct);
 
-
-.option-btn.wrong{
-
-    background:#e74c3c;
-
-}
-
-
-.option-btn.disabled{
-
-    pointer-events:none;
-
-    opacity:.7;
+    border-color:var(--correct);
 
 }
 
 
 /* =========================================================
-   RESULT
+   WRONG
+========================================================= */
+
+.option-btn.wrong{
+
+    background:var(--wrong-light);
+
+    color:var(--wrong);
+
+    border-color:var(--wrong);
+
+}
+
+
+/* =========================================================
+   DISABLED
+========================================================= */
+
+.option-btn.disabled{
+
+    pointer-events:none;
+
+    cursor:default;
+
+}
+
+
+.option-btn.disabled:not(.correct):not(.wrong){
+
+    opacity:.55;
+
+}
+
+
+/* =========================================================
+   RESULT MESSAGE
 ========================================================= */
 
 .result-message{
 
-    min-height:42px;
+    min-height:48px;
 
     margin-top:20px;
+
+    text-align:center;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:27px;
 
     font-weight:bold;
 
-    line-height:1.5;
+    line-height:1.4;
 
 }
 
 
 .correct-text{
 
-    color:#27ae60;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:var(--wrong);
 
 }
 
@@ -471,49 +669,67 @@ body{
 
     display:block;
 
-    margin-top:6px;
+    margin-top:5px;
 
     color:#607d8b;
 
-    font-size:24px;
+    font-size:23px;
 
-    font-weight:500;
+    font-weight:normal;
 
 }
 
 
 /* =========================================================
-   NEXT BUTTON
+   NEXT
 ========================================================= */
+
+.next-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:16px;
+
+}
+
 
 .next-btn{
 
-    padding:12px 28px;
+    display:none;
 
-    border:none;
+    padding:12px 30px;
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+    border:2px solid var(--accent);
 
     border-radius:10px;
 
-    background:#34495e;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    color:white;
-
-    font-size:27px;
+    font-size:26px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    margin-top:5px;
-
-    transition:.2s;
+    transition:.2s ease;
 
 }
 
 
 .next-btn:hover{
 
-    background:#2c3e50;
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -521,54 +737,126 @@ body{
 
 
 /* =========================================================
-   FINAL
+   FINAL / RESULTS
 ========================================================= */
 
 #final{
 
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:20px 10px 10px;
 
 }
 
 
-#final h2{
+.final-title{
 
-    font-size:45px;
+    margin:0 0 15px;
 
-    color:#27ae60;
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:46px;
+
+    color:var(--heading-color);
 
 }
 
 
 .final-score{
 
-    font-size:40px;
+    margin:20px 0;
 
-    margin:25px 0;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:38px;
 
     font-weight:bold;
 
-    color:#1976d2;
+    color:var(--accent-dark);
+
+}
+
+
+.final-percent{
+
+    margin:10px 0;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:27px;
+
+    color:#666666;
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    margin:15px auto 25px;
 
-    font-size:28px;
+    max-width:650px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:26px;
+
+    color:#666666;
 
     line-height:1.5;
 
 }
 
 
-#final .start-btn{
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
 
-    margin-top:10px;
+.play-again-btn{
+
+    padding:13px 32px;
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+    border:2px solid var(--accent);
+
+    border-radius:10px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.play-again-btn:hover{
+
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
+
+    transform:translateY(-2px);
 
 }
 
@@ -581,14 +869,73 @@ body{
 
     body{
 
-        padding:10px;
+        padding:18px 12px 30px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .back-btn-container{
+
+        width:100%;
+
+        margin-bottom:12px;
+
+    }
+
+
+    .back-btn{
+
+        font-size:20px;
+
+        padding:8px 14px;
 
     }
 
 
     .container{
 
-        padding:60px 15px 20px;
+        width:100%;
+
+        padding:28px 18px;
+
+        border-radius:18px;
+
+    }
+
+
+    .title-area{
+
+        margin-bottom:24px;
+
+    }
+
+
+    .title-area h1{
+
+        font-size:38px;
+
+    }
+
+
+    .title-area p{
+
+        font-size:21px;
+
+    }
+
+
+    .game-box{
+
+        padding:18px;
+
+    }
+
+
+    .topbar{
+
+        font-size:21px;
 
     }
 
@@ -600,45 +947,141 @@ body{
     }
 
 
-    .card{
+    .option-btn{
 
-        min-height:130px;
-
-        padding:25px 15px;
+        font-size:25px;
 
     }
 
 
     .question-word{
 
-        font-size:35px;
+        font-size:34px;
 
     }
 
 
-    #intro h1{
+    .question-label{
 
-        font-size:38px;
+        font-size:21px;
 
     }
 
 
-    #final h2{
+    .result-message{
+
+        font-size:24px;
+
+    }
+
+
+    .explanation{
+
+        font-size:21px;
+
+    }
+
+
+    .final-title{
 
         font-size:40px;
 
     }
 
 
-    .lobby-btn{
+    .final-score{
 
-        top:16px;
+        font-size:34px;
 
-        left:16px;
+    }
+
+
+    .final-message{
 
         font-size:23px;
 
-        padding:7px 12px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:400px){
+
+    body{
+
+        padding:15px 10px 25px;
+
+    }
+
+
+    .container{
+
+        padding:28px 14px;
+
+    }
+
+
+    .title-area h1{
+
+        font-size:34px;
+
+    }
+
+
+    .title-area p{
+
+        font-size:20px;
+
+    }
+
+
+    .game-box{
+
+        padding:15px;
+
+    }
+
+
+    .topbar{
+
+        font-size:19px;
+
+        gap:10px;
+
+    }
+
+
+    .option-btn{
+
+        font-size:23px;
+
+    }
+
+
+    .question-word{
+
+        font-size:31px;
+
+    }
+
+
+    .question-label{
+
+        font-size:20px;
+
+    }
+
+
+    .next-btn,
+    .play-again-btn{
+
+        font-size:23px;
+
+        padding:11px 24px;
 
     }
 
@@ -652,176 +1095,92 @@ body{
 <body>
 
 
+<div class="page-wrapper">
+
+
+<!-- =========================================================
+     BACK
+========================================================= -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../category.html?category=Health"
+        class="back-btn"
+    >
+        ← Back
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN CONTAINER
+========================================================= -->
+
 <div class="container">
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     TITLE
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()">
-
-    ← Back
-
-</button>
-
-
-<!-- =========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active">
-
-    <div class="emoji">
-        ❤️
-    </div>
-
+<div class="title-area">
 
     <h1>
         Vietnamese Health Vocabulary Match
     </h1>
 
-
     <p>
-        Look at the English word<br>
-        and choose the correct Vietnamese word.
+        Choose the correct Vietnamese word for each English word.
     </p>
-
-
-    <p>
-        🎯 20 questions
-    </p>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()">
-
-        Start Game
-
-    </button>
 
 </div>
 
 
 <!-- =========================================================
-     GAME
+     GAME SCREEN
 ========================================================= -->
 
 <div
     id="game"
-    class="screen">
+    class="screen active"
+>
 
 
-    <h1 class="title">
-        ❤️ Vietnamese Health Vocabulary Match
-    </h1>
+<div class="game-box">
 
 
-    <p class="subtitle">
-        Choose the correct Vietnamese word.
-    </p>
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<div class="topbar">
+
+    <div class="question-count">
+
+        Question
+
+        <span id="questionNumber">
+            1
+        </span>
+
+        /
+
+        <span id="totalQuestions">
+            20
+        </span>
+
+    </div>
 
 
-    <div class="game-box">
+    <div class="score">
 
+        Score:
 
-        <!-- TOP BAR -->
-
-        <div class="topbar">
-
-            <div class="question-count">
-
-                Question
-
-                <span id="questionNumber">
-                    1
-                </span>
-
-                /
-
-                <span id="totalQuestions">
-                    20
-                </span>
-
-            </div>
-
-
-            <div class="score">
-
-                Score:
-
-                <span id="score">
-                    0
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- PROGRESS -->
-
-        <div class="progress-wrap">
-
-            <div
-                class="progress"
-                id="progress">
-            </div>
-
-        </div>
-
-
-        <!-- QUESTION -->
-
-        <div
-            class="card"
-            id="questionCard">
-
-            <div class="question-label">
-                What does this mean?
-            </div>
-
-            <div
-                class="question-word"
-                id="questionText">
-            </div>
-
-        </div>
-
-
-        <!-- OPTIONS -->
-
-        <div
-            class="options"
-            id="optionsContainer">
-        </div>
-
-
-        <!-- RESULT -->
-
-        <div
-            class="result-message"
-            id="resultText">
-        </div>
-
-
-        <!-- NEXT -->
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-            style="display:none;">
-
-            Next →
-
-        </button>
-
+        <span id="score">
+            0
+        </span>
 
     </div>
 
@@ -829,24 +1188,103 @@ body{
 
 
 <!-- =========================================================
-     FINAL
+     PROGRESS
+========================================================= -->
+
+<div class="progress-wrap">
+
+    <div
+        class="progress"
+        id="progress"
+    ></div>
+
+</div>
+
+
+<!-- =========================================================
+     QUESTION
+========================================================= -->
+
+<div
+    class="question-card"
+    id="questionCard"
+>
+
+    <div class="question-label">
+
+        What does this mean?
+
+    </div>
+
+
+    <div
+        class="question-word"
+        id="questionText"
+    >
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     OPTIONS
+========================================================= -->
+
+<div
+    class="options"
+    id="optionsContainer"
+>
+</div>
+
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
+
+<div
+    class="result-message"
+    id="resultText"
+>
+</div>
+
+
+<!-- =========================================================
+     NEXT
+========================================================= -->
+
+<div class="next-area">
+
+    <button
+        class="next-btn"
+        id="nextBtn"
+        onclick="nextQuestion()"
+    >
+        Next →
+    </button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     FINAL SCREEN
 ========================================================= -->
 
 <div
     id="final"
-    class="screen">
+    class="screen"
+>
 
 
-    <h2>
+    <h2 class="final-title">
+
         🎉 Game Complete!
+
     </h2>
-
-
-    <p class="final-message">
-
-        You completed the Vietnamese Health Vocabulary Match.
-
-    </p>
 
 
     <div class="final-score">
@@ -859,22 +1297,34 @@ body{
     </div>
 
 
+    <div
+        class="final-percent"
+        id="finalPercent"
+    >
+    </div>
+
+
     <p
         class="final-message"
-        id="finalMessage">
+        id="finalMessage"
+    >
     </p>
 
 
     <button
-        class="start-btn"
-        onclick="restartGame()">
+        class="play-again-btn"
+        onclick="restartGame()"
+    >
 
         Play Again
 
     </button>
 
+
 </div>
 
+
+</div>
 
 </div>
 
@@ -884,14 +1334,9 @@ body{
 
 /* =========================================================
    APPROVED HEALTH VOCABULARY
-   ONLY WORDS FROM THE HEALTH VOCAB LIST
 ========================================================= */
 
 const vocabulary = [
-
-    /* =========================
-       HEALTH SYMPTOMS
-    ========================= */
 
     {
         en:"sick / illness",
@@ -952,11 +1397,6 @@ const vocabulary = [
         en:"stomachache",
         vi:"đau bụng"
     },
-
-
-    /* =========================
-       BODY PARTS
-    ========================= */
 
     {
         en:"head",
@@ -1030,7 +1470,8 @@ function shuffle(array){
         [
             arr[i],
             arr[j]
-        ] = [
+        ] =
+        [
             arr[j],
             arr[i]
         ];
@@ -1049,18 +1490,23 @@ function shuffle(array){
 function createQuestions(){
 
     /*
-       Use every approved vocabulary item first.
-       Then add 3 random approved items to reach 20 questions.
+       There are 17 approved vocabulary items.
+
+       Use all 17 once,
+       then randomly repeat 3 approved items
+       to make exactly 20 questions.
     */
 
     const base =
         shuffle(vocabulary);
+
 
     const extra =
         shuffle(vocabulary).slice(
             0,
             TOTAL_QUESTIONS - base.length
         );
+
 
     questions =
         shuffle([
@@ -1083,22 +1529,18 @@ function startGame(){
 
     answered = false;
 
+
     createQuestions();
-
-
-    document
-        .getElementById("intro")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("final")
-        .classList.remove("active");
 
 
     document
         .getElementById("game")
         .classList.add("active");
+
+
+    document
+        .getElementById("final")
+        .classList.remove("active");
 
 
     document
@@ -1137,15 +1579,23 @@ function loadQuestion(){
         currentQuestion + 1;
 
 
+    /*
+       Progress bar
+    */
+
     document
         .getElementById("progress")
         .style.width =
         (
-            currentQuestion /
+            (currentQuestion + 1) /
             TOTAL_QUESTIONS *
             100
         ) + "%";
 
+
+    /*
+       English question
+    */
 
     document
         .getElementById("questionText")
@@ -1153,23 +1603,50 @@ function loadQuestion(){
         question.en;
 
 
-    document
-        .getElementById("resultText")
-        .textContent =
+    /*
+       Clear result
+    */
+
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    resultText.textContent =
         "";
 
 
-    document
-        .getElementById("resultText")
-        .className =
+    resultText.className =
         "result-message";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    /*
+       Hide Next button
+    */
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
         "none";
 
+
+    nextBtn.textContent =
+        currentQuestion ===
+        TOTAL_QUESTIONS - 1
+
+        ? "Finish 🎉"
+
+        : "Next →";
+
+
+    /*
+       Clear old answers
+    */
 
     const container =
         document.getElementById(
@@ -1182,8 +1659,7 @@ function loadQuestion(){
 
 
     /* =====================================================
-       CREATE WRONG OPTIONS
-       ONLY FROM APPROVED VOCABULARY
+       WRONG OPTIONS
     ===================================================== */
 
     const wrongOptions =
@@ -1202,12 +1678,20 @@ function loadQuestion(){
         );
 
 
+    /*
+       Correct answer + wrong answers
+    */
+
     const options =
         shuffle([
             question.vi,
             ...wrongOptions
         ]);
 
+
+    /*
+       Create answer buttons
+    */
 
     options.forEach(
         option => {
@@ -1226,17 +1710,20 @@ function loadQuestion(){
                 option;
 
 
-            btn.onclick = function(){
+            btn.onclick =
+                function(){
 
-                handleAnswer(
-                    btn,
-                    option
-                );
+                    handleAnswer(
+                        btn,
+                        option
+                    );
 
-            };
+                };
 
 
-            container.appendChild(btn);
+            container.appendChild(
+                btn
+            );
 
         }
     );
@@ -1252,6 +1739,10 @@ function handleAnswer(
     button,
     selected
 ){
+
+    /*
+       Only one answer is allowed.
+    */
 
     if(answered){
 
@@ -1273,11 +1764,19 @@ function handleAnswer(
         );
 
 
+    const resultText =
+        document.getElementById(
+            "resultText"
+        );
+
+
     /* =====================================================
        CORRECT
     ===================================================== */
 
-    if(selected === question.vi){
+    if(
+        selected === question.vi
+    ){
 
         button.classList.add(
             "correct"
@@ -1293,18 +1792,18 @@ function handleAnswer(
             score;
 
 
-        document
-            .getElementById("resultText")
-            .innerHTML =
-            `🎉 Correct!
+        resultText.innerHTML =
+
+            `✓ Correct!
+
             <span class="explanation">
+
                 ${question.en} = ${question.vi}
+
             </span>`;
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
     }
@@ -1321,24 +1820,8 @@ function handleAnswer(
         );
 
 
-        document
-            .getElementById("resultText")
-            .innerHTML =
-            `❌ Incorrect.
-            <span class="explanation">
-                ${question.en} = ${question.vi}
-            </span>`;
-
-
-        document
-            .getElementById("resultText")
-            .className =
-            "result-message wrong-text";
-
-
         /*
-           Show the correct answer,
-           but the question is already locked.
+           Reveal correct answer.
         */
 
         allButtons.forEach(
@@ -1358,11 +1841,27 @@ function handleAnswer(
             }
         );
 
+
+        resultText.innerHTML =
+
+            `✗ Incorrect.
+
+            <span class="explanation">
+
+                Correct answer:
+                ${question.vi}
+
+            </span>`;
+
+
+        resultText.className =
+            "result-message wrong-text";
+
     }
 
 
     /* =====================================================
-       LOCK QUESTION
+       LOCK ALL ANSWERS
     ===================================================== */
 
     allButtons.forEach(
@@ -1377,33 +1876,13 @@ function handleAnswer(
 
 
     /* =====================================================
-       NEXT BUTTON
+       SHOW NEXT
     ===================================================== */
 
     document
         .getElementById("nextBtn")
         .style.display =
         "inline-block";
-
-
-    if(
-        currentQuestion ===
-        TOTAL_QUESTIONS - 1
-    ){
-
-        document
-            .getElementById("nextBtn")
-            .textContent =
-            "Finish 🎉";
-
-    }else{
-
-        document
-            .getElementById("nextBtn")
-            .textContent =
-            "Next →";
-
-    }
 
 }
 
@@ -1413,6 +1892,13 @@ function handleAnswer(
 ========================================================= */
 
 function nextQuestion(){
+
+    if(!answered){
+
+        return;
+
+    }
+
 
     currentQuestion++;
 
@@ -1424,7 +1910,9 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+
+    else{
 
         finishGame();
 
@@ -1456,6 +1944,7 @@ function finishGame(){
     document
         .getElementById("finalScore")
         .textContent =
+
         score +
         " / " +
         TOTAL_QUESTIONS;
@@ -1469,27 +1958,42 @@ function finishGame(){
         );
 
 
+    document
+        .getElementById("finalPercent")
+        .textContent =
+
+        percent +
+        "%";
+
+
     let message;
 
 
     if(percent >= 90){
 
         message =
-            "🏆 Excellent!";
+            "🏆 Excellent! You really know your Vietnamese health vocabulary!";
 
     }
 
     else if(percent >= 70){
 
         message =
-            "🎉 Good job!";
+            "🎉 Great job! Keep practicing!";
+
+    }
+
+    else if(percent >= 50){
+
+        message =
+            "👍 Good work! You're getting better!";
 
     }
 
     else{
 
         message =
-            "📚 Keep practicing!";
+            "📚 Keep practicing. You will improve!";
 
     }
 
@@ -1503,7 +2007,7 @@ function finishGame(){
 
 
 /* =========================================================
-   RESTART
+   PLAY AGAIN
 ========================================================= */
 
 function restartGame(){
@@ -1514,7 +2018,7 @@ function restartGame(){
 
 
 /* =========================================================
-   BACK TO LOBBY
+   BACK TO CATEGORY
 ========================================================= */
 
 function backToLobby(){
@@ -1523,6 +2027,14 @@ function backToLobby(){
         "../../category.html?category=Health";
 
 }
+
+
+/* =========================================================
+   START GAME AUTOMATICALLY
+   No intro screen
+========================================================= */
+
+startGame();
 
 </script>
 

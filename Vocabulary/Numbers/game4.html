@@ -32,15 +32,54 @@
     content="true"
 >
 
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
+
+/* ==========================================================
+   THEME
+========================================================== */
+
+:root{
+
+    --accent:#7DA15C;
+
+    --accent-dark:#5A7442;
+
+    --accent-light:#f0f7e8;
+
+    --accent-bg:#F6FAF1;
+
+    --accent-border:#d5e6b8;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --general-border:#d9e6f2;
+
+        --ink: #143a6b;
+    --ink-soft: #66809d; 
+
+
+}
+
 
 /* ==========================================================
    RESET
 ========================================================== */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
@@ -52,15 +91,42 @@ body{
 
     margin:0;
 
-    padding:20px;
+    padding:30px 20px;
+
+    background:  linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+
+    min-height:100vh;
 
     font-family:
+        Calibri,
         Arial,
+        Helvetica,
         sans-serif;
 
-    background:#f4f6f8;
+    display:flex;
 
-    color:#333;
+    justify-content:center;
+
+    align-items:center;
+
+    color:#222;
+
+}
+
+
+/* ==========================================================
+   PAGE WRAPPER
+========================================================== */
+
+.page{
+
+    width:min(900px, 96vw);
 
 }
 
@@ -69,210 +135,128 @@ body{
    BACK TO LOBBY
 ========================================================== */
 
-.back-btn-container{
+.lobby-btn{
 
-    max-width:900px;
+    display:inline-flex;
 
-    margin:
-        0 auto 20px;
+    align-items:center;
 
-    text-align:left;
+    justify-content:center;
 
-}
-
-
-.back-btn{
-
-    display:inline-block;
+    margin-bottom:12px;
 
     padding:
-        10px 18px;
-
-    background:white;
-
-    color:#555;
-
-    border:
-        2px solid #ddd;
-
-    border-radius:10px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    transition:.2s;
-
-}
-
-
-.back-btn:hover{
-
-    background:#f0f0f0;
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   CONTAINER
-========================================================== */
-
-.container{
-
-    max-width:900px;
-
-    margin:auto;
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-.intro{
-
-    background:white;
-
-    padding:35px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.1);
-
-    text-align:center;
-
-}
-
-
-.intro h1{
-
-    margin:
-        0 0 10px;
-
-    font-size:42px;
-
-}
-
-
-.intro h2{
-
-    margin:
-        25px 0 15px;
-
-    font-size:35px;
-
-}
-
-
-.subtitle{
-
-    color:#666;
-
-    font-size:28px;
-
-}
-
-
-.instructions{
-
-    max-width:650px;
-
-    margin:0 auto;
-
-    text-align:left;
-
-}
-
-
-.instructions p{
-
-    margin:
-        10px 0;
-
-    font-size:27px;
-
-    line-height:1.5;
-
-}
-
-
-/* ==========================================================
-   BUTTONS
-========================================================== */
-
-.start-btn,
-.next-btn,
-.play-again-btn{
-
-    margin-top:20px;
-
-    padding:
-        13px 30px;
+        7px
+        13px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:8px;
 
-    font-size:28px;
+    background:#eef5fc;
 
-    cursor:pointer;
+    color:#34495e;
 
-    background:#2196f3;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    color:white;
+    font-size:22px;
 
     font-weight:bold;
+
+    cursor:pointer;
 
     transition:.2s;
 
 }
 
 
-.start-btn:hover,
-.next-btn:hover,
-.play-again-btn:hover{
+.lobby-btn:hover{
 
-    opacity:.9;
+    background:#dcecff;
 
-    transform:
-        translateY(-1px);
+    transform:translateX(-2px);
 
 }
 
 
 /* ==========================================================
-   GAME CARD
+   GAME CONTAINER
 ========================================================== */
 
-.game-card{
+.game-container{
 
-    background:white;
+    position:relative;
 
-    padding:30px;
+    width:100%;
 
-    border-radius:18px;
+    background:#ffffff;
+
+    padding:
+        30px
+        35px
+        35px;
+
+    border-radius:20px;
 
     box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.1);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
 
-.game-card h1{
+/* ==========================================================
+   TITLE
+========================================================== */
+
+h1{
+
+    margin:
+        0
+        0
+        6px;
 
     text-align:center;
 
-    margin:
-        0 0 20px;
+    font-family:
+        "Kalam",
+        cursive;
 
-    font-size:40px;
+    font-size:44px;
+
+    line-height:1.2;
+
+    color:var(--ink);
+
+}
+
+
+/* ==========================================================
+   INTRODUCTION
+========================================================== */
+
+.instruction{
+
+    margin:
+        0
+        0
+        25px;
+
+    text-align:center;
+
+    color:#666;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
+
+    line-height:1.4;
 
 }
 
@@ -289,54 +273,165 @@ body{
 
     align-items:center;
 
-    margin-bottom:20px;
+    margin-bottom:15px;
+
+    font-size:20px;
 
     font-weight:bold;
 
-    color:#555;
+}
+
+
+.question-count{
+
+    color:#666;
+
+}
+
+
+.score{
+
+    color:var(--accent-dark);
+
+    font-size:22px;
 
 }
 
 
 /* ==========================================================
-   QUESTION
+   PROGRESS
 ========================================================== */
 
-.question-box{
+.progress-wrap{
+
+    width:100%;
+
+    height:9px;
+
+    background:#e5e5e5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:22px;
+
+}
+
+
+.progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--accent);
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+   QUESTION CARD
+========================================================== */
+
+.question-card{
+
+    position:relative;
+
+    background:#fff;
+
+    border:
+        1px solid
+        var(--general-border);
+
+    border-radius:15px;
+
+    padding:
+        28px
+        25px
+        25px;
 
     text-align:center;
 
-    margin:
-        20px 0 30px;
+    overflow:hidden;
 
 }
 
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.question-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:var(--accent);
+
+}
+
+
+/* ==========================================================
+   QUESTION LABEL
+========================================================== */
 
 .question-label{
 
-    color:#78909c;
+    margin-bottom:12px;
 
-    font-size:27px;
+    color:#777;
 
-    margin-bottom:10px;
+    font-size:21px;
+
+    font-weight:bold;
 
 }
 
 
+/* ==========================================================
+   NUMBER DISPLAY
+========================================================== */
+
 .number{
 
-    font-size:
-        clamp(
-            3.875rem,
-            12vw,
-            6.375rem
-        );
+    max-width:600px;
 
-    font-weight:800;
+    margin:
+        0
+        auto
+        25px;
 
-    color:#1976d2;
+    padding:
+        22px
+        20px;
 
-    line-height:1;
+    background:var(--accent-bg);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:13px;
+
+    color:var(--accent-dark);
+
+    font-size:64px;
+
+    font-weight:bold;
+
+    line-height:1.15;
 
 }
 
@@ -355,11 +450,15 @@ body{
             1fr
         );
 
-    gap:15px;
+    gap:12px;
+
+    width:100%;
 
     max-width:700px;
 
-    margin:auto;
+    margin:
+        0
+        auto;
 
 }
 
@@ -368,18 +467,26 @@ body{
 
     min-height:70px;
 
-    padding:15px;
-
-    border:
-        2px solid #dfe6eb;
-
-    border-radius:12px;
+    padding:
+        15px
+        10px;
 
     background:#fff;
 
-    color:#333;
+    border:
+        1px solid
+        #ccc;
 
-    font-size:29px;
+    border-radius:10px;
+
+    color:#222;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:28px;
 
     font-weight:bold;
 
@@ -392,23 +499,22 @@ body{
 
 .answer-btn:hover{
 
-    background:#f1f8ff;
+    transform:translateY(-2px);
 
-    border-color:#90caf9;
+    border-color:var(--accent);
 
-    transform:
-        translateY(-2px);
+    background:var(--accent-light);
 
 }
 
 
 .answer-btn.correct{
 
-    background:#c8e6c9;
+    background:var(--correct-bg);
 
-    border-color:#66bb6a;
+    border-color:var(--correct);
 
-    color:#256029;
+    color:var(--correct);
 
     cursor:default;
 
@@ -417,11 +523,11 @@ body{
 
 .answer-btn.wrong{
 
-    background:#ffcdd2;
+    background:var(--wrong-bg);
 
-    border-color:#ef5350;
+    border-color:var(--wrong);
 
-    color:#8e2020;
+    color:var(--wrong);
 
     cursor:default;
 
@@ -443,37 +549,30 @@ body{
 
 .result{
 
+    min-height:40px;
+
     margin:
-        20px auto 0;
+        15px
+        0
+        4px;
 
-    padding:
-        15px 20px;
-
-    border-radius:12px;
+    font-size:38px;
 
     text-align:center;
-
-    font-size:28px;
-
-    font-weight:bold;
 
 }
 
 
 .result.correct{
 
-    background:#e8f5e9;
-
-    color:#2e7d32;
+    color:var(--correct);
 
 }
 
 
 .result.wrong{
 
-    background:#ffebee;
-
-    color:#c62828;
+    color:var(--wrong);
 
 }
 
@@ -484,48 +583,75 @@ body{
 
 .explanation{
 
-    margin:
-        20px auto 0;
+    display:block;
 
-    padding:
-        18px 20px;
+    margin-top:4px;
 
-    max-width:750px;
+    color:#666;
 
-    background:#f0f7ff;
+    font-size:20px;
 
-    border-left:
-        5px solid #4779b8;
+    font-weight:normal;
 
-    border-radius:12px;
-
-    color:#3d5066;
-
-    font-size:26px;
-
-    line-height:1.6;
-
-    text-align:left;
+    line-height:1.5;
 
 }
 
 
 .explanation strong{
 
-    color:#4779b8;
-
-}
-
-
-.hidden{
-
-    display:none;
+    color:inherit;
 
 }
 
 
 /* ==========================================================
-   NEXT
+   NEXT BUTTON
+========================================================== */
+
+.next-btn{
+
+    margin-top:10px;
+
+    padding:
+        11px
+        27px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:var(--accent);
+
+    color:#fff;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.next-btn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   NEXT CONTAINER
 ========================================================== */
 
 .next-container{
@@ -536,44 +662,46 @@ body{
 
 
 /* ==========================================================
-   FINAL
+   FINAL SCREEN
 ========================================================== */
 
-.final{
-
-    display:none;
-
-    background:white;
-
-    padding:
-        40px 30px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.1);
+#finalScreen{
 
     text-align:center;
 
 }
 
 
-.final h2{
+#finalScreen h1{
 
-    font-size:42px;
+    margin-bottom:10px;
 
-    color:#2e7d32;
+}
+
+
+.end-description{
+
+    margin:
+        0
+        0
+        20px;
+
+    color:#666;
+
+    font-size:22px;
 
 }
 
 
 .final-score{
 
-    font-size:40px;
-
     margin:
-        20px 0;
+        20px
+        0;
+
+    color:var(--accent-dark);
+
+    font-size:40px;
 
     font-weight:bold;
 
@@ -582,11 +710,70 @@ body{
 
 .final-message{
 
-    font-size:29px;
+    margin-bottom:25px;
 
     color:#555;
 
-    line-height:1.5;
+    font-size:24px;
+
+    line-height:1.4;
+
+}
+
+
+.play-again-btn{
+
+    padding:
+        11px
+        27px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:var(--accent);
+
+    color:#fff;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.play-again-btn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   SCREEN
+========================================================== */
+
+.screen{
+
+    display:none;
+
+}
+
+
+.screen.active{
+
+    display:block;
 
 }
 
@@ -595,57 +782,152 @@ body{
    MOBILE
 ========================================================== */
 
-@media(max-width:700px){
+@media(max-width:650px){
 
     body{
 
-        padding:15px;
+        padding:
+            20px
+            10px;
+
+        align-items:flex-start;
 
     }
 
 
-    .intro,
-    .game-card,
-    .final{
+    .page{
 
-        padding:20px;
+        width:100%;
 
     }
 
 
-    .intro h1{
+    .game-container{
 
-        font-size:37px;
+        padding:
+            25px
+            15px
+            25px;
+
+        border-radius:16px;
 
     }
 
 
-    .game-card h1{
+    .lobby-btn{
 
-        font-size:35px;
+        font-size:20px;
+
+        margin-bottom:10px;
+
+    }
+
+
+    h1{
+
+        font-size:36px;
+
+    }
+
+
+    .instruction{
+
+        font-size:19px;
+
+        margin-bottom:20px;
 
     }
 
 
     .topbar{
 
-        font-size:25px;
+        font-size:18px;
+
+    }
+
+
+    .score{
+
+        font-size:20px;
+
+    }
+
+
+    .question-card{
+
+        padding:
+            25px
+            15px
+            20px;
+
+    }
+
+
+    .question-label{
+
+        font-size:19px;
+
+    }
+
+
+    .number{
+
+        font-size:52px;
+
+        padding:
+            20px
+            15px;
 
     }
 
 
     .answers{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
+
+        gap:10px;
 
     }
 
 
     .answer-btn{
 
-        min-height:60px;
-
         font-size:27px;
+
+        min-height:auto;
+
+        padding:
+            14px
+            8px;
+
+    }
+
+
+    .result{
+
+        font-size:34px;
+
+    }
+
+
+    .explanation{
+
+        font-size:19px;
+
+    }
+
+
+    .final-score{
+
+        font-size:36px;
+
+    }
+
+
+    .final-message{
+
+        font-size:21px;
 
     }
 
@@ -659,103 +941,106 @@ body{
 <body>
 
 
-<!-- ==========================================================
+<div class="page">
+
+
+<!-- ========================================================
      BACK TO LOBBY
-========================================================== -->
+========================================================= -->
 
-<div class="back-btn-container">
-
-    <a
-        href="../../category.html?category=Numbers"
-        class="back-btn"
-    >
-        ⬅ Back
-    </a>
-
-</div>
-
-
-<div class="container">
-
-
-<!-- ==========================================================
-     INTRO SCREEN
-========================================================== -->
-
-<div
-    class="intro"
-    id="introScreen"
+<button
+    class="lobby-btn"
+    onclick="backToLobby()"
 >
 
+    ← Back
+
+</button>
+
+
+
+<!-- ========================================================
+     GAME CONTAINER
+========================================================= -->
+
+<div class="game-container">
+
+
+<!-- ========================================================
+     GAME
+========================================================= -->
+
+<div
+    id="game"
+    class="screen active"
+>
+
+
     <h1>
-        🔢 Vietnamese Number Challenge
+
+        🔢 Vietnamese Number 1-999
+
     </h1>
 
 
-    <div class="subtitle">
-        Numbers 1–999
-    </div>
+    <p class="instruction">
+
+        Practice reading Vietnamese numbers from 1 to 999.
+
+    </p>
 
 
-    <h2>
-        🎮 How to Play
-    </h2>
 
-
-    <div class="instructions">
-
-        <p>
-            🎯 Choose the correct Vietnamese reading.
-        </p>
-
-
-    </div>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
-        Start Game
-    </button>
-
-</div>
-
-
-<!-- ==========================================================
-     GAME SCREEN
-========================================================== -->
-
-<div
-    class="game-card"
-    id="gameScreen"
-    style="display:none;"
->
-
-    <h1>
-        🔢 Number Challenge
-    </h1>
-
+    <!-- TOP BAR -->
 
     <div class="topbar">
 
-        <div id="questionInfo">
-            Question 1 / 15
+
+        <div class="question-count">
+
+            Question
+
+            <span id="qnum">
+                1
+            </span>
+
+            /15
+
         </div>
 
 
-        <div id="scoreInfo">
-            Score: 0
+        <div class="score">
+
+            Score:
+
+            <span id="score">
+                0
+            </span>
+
         </div>
+
 
     </div>
 
 
-    <div class="question-box">
 
-        <div class="question-label">
-            How do you say this number in Vietnamese?
-        </div>
+    <!-- PROGRESS -->
+
+    <div class="progress-wrap">
+
+        <div
+            class="progress"
+            id="progress"
+        ></div>
+
+    </div>
+
+
+
+    <!-- QUESTION CARD -->
+
+    <div class="question-card">
+
 
 
         <div
@@ -764,85 +1049,117 @@ body{
         >
         </div>
 
+
+
+        <!-- ANSWERS -->
+
+        <div
+            class="answers"
+            id="answers"
+        ></div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            class="result"
+            id="resultIcon"
+        ></div>
+
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            class="explanation"
+            id="explanation"
+        ></div>
+
+
+
+        <!-- NEXT -->
+
+        <div class="next-container">
+
+            <button
+                class="next-btn"
+                id="nextBtn"
+                onclick="nextQuestion()"
+                style="display:none;"
+            >
+
+                Next →
+
+            </button>
+
+        </div>
+
+
     </div>
 
-
-    <div
-        class="answers"
-        id="answers"
-    >
-    </div>
-
-
-    <div
-        id="result"
-        class="result hidden"
-    >
-    </div>
-
-
-    <div
-        id="explanation"
-        class="explanation hidden"
-    >
-    </div>
-
-
-    <div class="next-container">
-
-        <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-            style="display:none;"
-        >
-            Next Question ➜
-        </button>
-
-    </div>
 
 </div>
 
 
-<!-- ==========================================================
-     FINAL SCREEN
-========================================================== -->
+
+<!-- ========================================================
+     END
+========================================================= -->
 
 <div
-    class="final"
     id="finalScreen"
+    class="screen"
 >
 
-    <h2>
-        🎉 Finished!
-    </h2>
+
+    <h1>
+
+        🎉 Game Complete!
+
+    </h1>
+
+
+    <p class="end-description">
+
+        You completed all 15 questions.
+
+    </p>
 
 
     <div
         class="final-score"
         id="finalScore"
     >
+
+        0 / 15
+
     </div>
 
 
     <div
         class="final-message"
         id="finalMessage"
-    >
-    </div>
+    ></div>
 
 
     <button
         class="play-again-btn"
         onclick="restartGame()"
     >
+
         Play Again
+
     </button>
 
+
 </div>
 
 
 </div>
+
+</div>
+
 
 
 <script>
@@ -869,15 +1186,9 @@ let answered = false;
    DOM
 ========================================================== */
 
-const introScreen =
+const game =
     document.getElementById(
-        "introScreen"
-    );
-
-
-const gameScreen =
-    document.getElementById(
-        "gameScreen"
+        "game"
     );
 
 
@@ -899,21 +1210,21 @@ const answers =
     );
 
 
-const questionInfo =
+const qnum =
     document.getElementById(
-        "questionInfo"
+        "qnum"
     );
 
 
-const scoreInfo =
+const scoreDisplay =
     document.getElementById(
-        "scoreInfo"
+        "score"
     );
 
 
-const result =
+const resultIcon =
     document.getElementById(
-        "result"
+        "resultIcon"
     );
 
 
@@ -926,6 +1237,12 @@ const explanation =
 const nextBtn =
     document.getElementById(
         "nextBtn"
+    );
+
+
+const progress =
+    document.getElementById(
+        "progress"
     );
 
 
@@ -1115,7 +1432,7 @@ function numberToVietnameseFull(number){
 
 
     /* ==========================
-       101–109, 201–209, etc.
+       101–109, 201–209...
     ========================== */
 
     if(remainder < 10){
@@ -1130,7 +1447,7 @@ function numberToVietnameseFull(number){
 
 
     /* ==========================
-       110–119, 210–219, etc.
+       110–119, 210–219...
     ========================== */
 
     if(remainder < 20){
@@ -1342,16 +1659,18 @@ function startGame(){
     answered = false;
 
 
-    introScreen.style.display =
-        "none";
+    game.classList.add(
+        "active"
+    );
 
 
-    finalScreen.style.display =
-        "none";
+    finalScreen.classList.remove(
+        "active"
+    );
 
 
-    gameScreen.style.display =
-        "block";
+    scoreDisplay.innerText =
+        "0";
 
 
     loadQuestion();
@@ -1368,16 +1687,12 @@ function loadQuestion(){
     answered = false;
 
 
-    result.className =
-        "result hidden";
-
-
-    result.textContent =
+    resultIcon.innerText =
         "";
 
 
-    explanation.className =
-        "explanation hidden";
+    resultIcon.className =
+        "result";
 
 
     explanation.innerHTML =
@@ -1386,6 +1701,18 @@ function loadQuestion(){
 
     nextBtn.style.display =
         "none";
+
+
+    qnum.innerText =
+        currentQuestion + 1;
+
+
+    progress.style.width =
+        (
+            currentQuestion /
+            TOTAL_QUESTIONS *
+            100
+        ) + "%";
 
 
     const correctNumber =
@@ -1400,18 +1727,8 @@ function loadQuestion(){
         );
 
 
-    numberDisplay.textContent =
+    numberDisplay.innerText =
         correctNumber;
-
-
-    questionInfo.textContent =
-        `Question ${
-            currentQuestion + 1
-        } / ${TOTAL_QUESTIONS}`;
-
-
-    scoreInfo.textContent =
-        `Score: ${score}`;
 
 
     const wrongNumbers =
@@ -1480,12 +1797,15 @@ function loadQuestion(){
 
 
             button.onclick =
-                () =>
+                () => {
+
                     checkAnswer(
                         button,
                         option.correct,
                         correctAnswer
                     );
+
+                };
 
 
             answers.appendChild(
@@ -1508,10 +1828,6 @@ function checkAnswer(
     correctAnswer
 ){
 
-    /*
-       Each question can only be answered once.
-    */
-
     if(answered){
 
         return;
@@ -1528,10 +1844,6 @@ function checkAnswer(
         );
 
 
-    /*
-       Lock every answer immediately.
-    */
-
     buttons.forEach(
         btn => {
 
@@ -1543,10 +1855,6 @@ function checkAnswer(
     );
 
 
-    /*
-       Correct answer
-    */
-
     if(isCorrect){
 
         score++;
@@ -1557,19 +1865,23 @@ function checkAnswer(
         );
 
 
-        result.className =
+        resultIcon.innerText =
+            "✔";
+
+
+        resultIcon.className =
             "result correct";
 
 
-        result.textContent =
-            "✅ Correct! +1 point";
+        explanation.innerHTML =
+
+            `Correct! 🎉
+            <span class="explanation">
+                ${correctAnswer} means
+                ${questions[currentQuestion]}.
+            </span>`;
 
     }
-
-
-    /*
-       Wrong answer
-    */
 
     else{
 
@@ -1577,10 +1889,6 @@ function checkAnswer(
             "wrong"
         );
 
-
-        /*
-           Highlight the correct answer.
-        */
 
         buttons.forEach(
             btn => {
@@ -1600,36 +1908,35 @@ function checkAnswer(
         );
 
 
-        result.className =
+        resultIcon.innerText =
+            "❌";
+
+
+        resultIcon.className =
             "result wrong";
 
 
-        result.textContent =
-            "❌ Wrong! 0 points.";
+        explanation.innerHTML =
+
+            `Wrong!
+            <span class="explanation">
+                The correct answer is
+                <strong>${correctAnswer}</strong>.
+                ${correctAnswer} means
+                ${questions[currentQuestion]}.
+            </span>`;
 
     }
 
 
-    /*
-       Update score.
-    */
+    scoreDisplay.innerText =
+        score;
 
-    scoreInfo.textContent =
-        `Score: ${score}`;
-
-
-    /*
-       Always show explanation.
-    */
 
     showExplanation(
         correctAnswer
     );
 
-
-    /*
-       Show Next button.
-    */
 
     nextBtn.style.display =
         "inline-block";
@@ -1640,13 +1947,13 @@ function checkAnswer(
         TOTAL_QUESTIONS - 1
     ){
 
-        nextBtn.textContent =
+        nextBtn.innerText =
             "Finish 🎉";
 
     }else{
 
-        nextBtn.textContent =
-            "Next Question ➜";
+        nextBtn.innerText =
+            "Next →";
 
     }
 
@@ -1670,10 +1977,7 @@ function showExplanation(
     let tip = "";
 
 
-    /*
-       21, 31, 41...
-       mốt
-    */
+    /* 21, 31, 41... */
 
     if(
         number % 100 >= 20 &&
@@ -1682,23 +1986,21 @@ function showExplanation(
 
         tip = `
 
-            <br><br>
+            <span class="explanation">
 
-            <strong>💡 Tip:</strong>
+                💡 Tip:
+                After <strong>mươi</strong>,
+                1 is often pronounced
+                <strong>mốt</strong>.
 
-            After <strong>mươi</strong>,
-            1 is often pronounced
-            <strong>mốt</strong>.
+            </span>
 
         `;
 
     }
 
 
-    /*
-       25, 35, 45...
-       lăm
-    */
+    /* 25, 35, 45... */
 
     else if(
         number % 100 >= 20 &&
@@ -1707,23 +2009,21 @@ function showExplanation(
 
         tip = `
 
-            <br><br>
+            <span class="explanation">
 
-            <strong>💡 Tip:</strong>
+                💡 Tip:
+                After <strong>mươi</strong>,
+                5 is pronounced
+                <strong>lăm</strong>.
 
-            After <strong>mươi</strong>,
-            5 is pronounced
-            <strong>lăm</strong>.
+            </span>
 
         `;
 
     }
 
 
-    /*
-       101, 102...
-       lẻ
-    */
+    /* 101, 102... */
 
     else if(
         number >= 100 &&
@@ -1733,13 +2033,14 @@ function showExplanation(
 
         tip = `
 
-            <br><br>
+            <span class="explanation">
 
-            <strong>💡 Tip:</strong>
+                💡 Tip:
+                When the tens place is zero,
+                use <strong>lẻ</strong>
+                before the final digit.
 
-            When the tens place is zero,
-            use <strong>lẻ</strong>
-            before the final digit.
+            </span>
 
         `;
 
@@ -1748,20 +2049,18 @@ function showExplanation(
 
     explanation.innerHTML = `
 
-        <strong>💡 Answer:</strong>
+        <span class="explanation">
 
-        ${number}
-        =
-        <strong>${correctAnswer}</strong>
+            <strong>Answer:</strong>
+            ${number}
+            =
+            <strong>${correctAnswer}</strong>
+
+        </span>
 
         ${tip}
 
     `;
-
-
-    explanation.classList.remove(
-        "hidden"
-    );
 
 }
 
@@ -1798,30 +2097,41 @@ function nextQuestion(){
 
 function finishGame(){
 
-    gameScreen.style.display =
-        "none";
+    game.classList.remove(
+        "active"
+    );
 
 
-    finalScreen.style.display =
-        "block";
+    finalScreen.classList.add(
+        "active"
+    );
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        `Score: ${score} / ${TOTAL_QUESTIONS}`;
+    progress.style.width =
+        "100%";
+
+
+    document
+        .getElementById("finalScore")
+        .innerText =
+        score +
+        " / " +
+        TOTAL_QUESTIONS;
 
 
     const percentage =
-        score /
-        TOTAL_QUESTIONS;
+        Math.round(
+            score /
+            TOTAL_QUESTIONS *
+            100
+        );
 
 
     let message;
 
 
     if(
-        percentage === 1
+        percentage === 100
     ){
 
         message =
@@ -1830,7 +2140,7 @@ function finishGame(){
     }
 
     else if(
-        percentage >= 0.8
+        percentage >= 80
     ){
 
         message =
@@ -1839,7 +2149,7 @@ function finishGame(){
     }
 
     else if(
-        percentage >= 0.5
+        percentage >= 50
     ){
 
         message =
@@ -1855,9 +2165,9 @@ function finishGame(){
     }
 
 
-    document.getElementById(
-        "finalMessage"
-    ).textContent =
+    document
+        .getElementById("finalMessage")
+        .innerText =
         message;
 
 }
@@ -1873,8 +2183,27 @@ function restartGame(){
 
 }
 
-</script>
 
+/* ==========================================================
+   BACK TO LOBBY
+========================================================== */
+
+function backToLobby(){
+
+    window.location.href =
+        "../../category.html?category=Numbers";
+
+}
+
+
+/* ==========================================================
+   START
+   No intro screen
+========================================================== */
+
+startGame();
+
+</script>
 
 </body>
 

@@ -39,6 +39,17 @@
 ========================================================= -->
 
 <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
     href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
     rel="stylesheet"
 >
@@ -47,11 +58,48 @@
 <style>
 
 /* =========================================================
+   COLOR SYSTEM
+========================================================= */
+
+:root{
+
+    --accent:#A99959;
+
+    --accent-dark:#7B6F40;
+
+    --accent-light:#f9f6e6;
+
+    --accent-bg:#FBFAF0;
+
+    --accent-border:#e8dfb2;
+
+    --ink:#2f302b;
+
+    --muted:#6f706a;
+
+    --card:#ffffff;
+
+    --general-border:#deddd6;
+
+    --correct:#019b3f;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
+}
+
+
+/* =========================================================
    GLOBAL
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
@@ -61,16 +109,33 @@ body{
 
     min-height:100vh;
 
-    padding:25px 20px;
+    padding:28px 20px 45px;
 
     font-family:
         Calibri,
-        Arial,
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
         sans-serif;
 
-    background:#f7faff;
+    color:var(--ink);
 
-    color:#26354a;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
@@ -81,7 +146,9 @@ body{
 
 .back-btn-container{
 
-    width:min(900px,95vw);
+    width:100%;
+
+    max-width:900px;
 
     margin:0 auto 15px;
 
@@ -92,19 +159,24 @@ body{
 
     display:inline-block;
 
-    padding:9px 16px;
+    padding:9px 17px;
 
-    background:white;
+    background:#ffffff;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
     text-decoration:none;
 
-    font-size:22px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:21px;
 
     font-weight:bold;
 
@@ -115,9 +187,11 @@ body{
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
+
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -125,30 +199,38 @@ body{
 
 
 /* =========================================================
-   MAIN CONTAINER
+   MAIN GAME CONTAINER
 ========================================================= */
 
 .game-box{
 
     position:relative;
 
-    width:min(900px,95vw);
+    width:100%;
+
+    max-width:900px;
 
     margin:0 auto;
 
-    background:white;
+    padding:34px 40px 38px;
 
-    border-radius:22px;
+    background:var(--card);
 
-    padding:30px 35px 35px;
+    border:1px solid var(--general-border);
+
+    border-radius:24px;
 
     box-shadow:
-        0 8px 28px rgba(40,120,223,.10);
+        0 10px 35px rgba(70,60,30,.08);
 
     overflow:hidden;
 
 }
 
+
+/* =========================================================
+   ACCENT LINE
+========================================================= */
 
 .game-box::before{
 
@@ -164,7 +246,7 @@ body{
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
 
 }
 
@@ -186,7 +268,7 @@ body{
 
 #gameScreen h1{
 
-    margin:5px 0 5px;
+    margin:3px 0 5px;
 
     text-align:center;
 
@@ -200,26 +282,31 @@ body{
 
     font-weight:700;
 
-    color:#2878df;
-
     line-height:1.2;
+
+    color:var(--ink);
 
 }
 
 
 /* =========================================================
-   INSTRUCTION
+   SHORT DESCRIPTION
 ========================================================= */
 
 .instruction{
 
-    margin:0 auto 22px;
+    margin:0 auto 24px;
 
     text-align:center;
 
-    color:#667085;
+    color:var(--muted);
 
-    font-size:25px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:24px;
 
     line-height:1.4;
 
@@ -242,7 +329,7 @@ body{
 
     margin-bottom:12px;
 
-    font-size:24px;
+    font-size:23px;
 
     font-weight:bold;
 
@@ -251,16 +338,16 @@ body{
 
 #roundText{
 
-    color:#667085;
+    color:var(--muted);
 
 }
 
 
 #scoreText{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    font-size:27px;
+    font-size:26px;
 
 }
 
@@ -273,17 +360,17 @@ body{
 
     width:100%;
 
-    height:8px;
+    height:9px;
 
-    background:#eaf3ff;
+    margin-bottom:27px;
 
-    border:1px solid #d9e6f2;
+    background:var(--accent-light);
 
-    border-radius:20px;
+    border:1px solid var(--accent-border);
+
+    border-radius:999px;
 
     overflow:hidden;
-
-    margin-bottom:25px;
 
 }
 
@@ -294,9 +381,11 @@ body{
 
     height:100%;
 
-    background:#2878df;
+    background:var(--accent);
 
-    transition:.3s;
+    border-radius:999px;
+
+    transition:.3s ease;
 
 }
 
@@ -311,13 +400,25 @@ body{
 
     text-align:center;
 
-    font-size:35px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:34px;
 
     font-weight:bold;
 
-    color:#26354a;
+    color:var(--ink);
 
     line-height:1.4;
+
+}
+
+
+.question-title strong{
+
+    color:var(--accent-dark);
 
 }
 
@@ -334,6 +435,8 @@ body{
         repeat(2,1fr);
 
     gap:15px;
+
+    width:100%;
 
 }
 
@@ -352,22 +455,22 @@ body{
 
     text-align:center;
 
-    background:white;
+    background:#ffffff;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--general-border);
 
     border-radius:16px;
 
     font-family:
         Calibri,
-        Arial,
+        "Segoe UI",
         sans-serif;
 
-    font-size:31px;
+    font-size:30px;
 
     font-weight:bold;
 
-    color:#26354a;
+    color:var(--ink);
 
     cursor:pointer;
 
@@ -382,9 +485,11 @@ body{
 
     transform:translateY(-3px);
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#c4daf6;
+    border-color:var(--accent-border);
+
+    color:var(--accent-dark);
 
 }
 
@@ -395,11 +500,11 @@ body{
 
 .word.correct{
 
-    background:#eaf3ff !important;
+    background:var(--correct-light) !important;
 
-    border:3px solid #2878df !important;
+    border:3px solid var(--correct) !important;
 
-    color:#2878df;
+    color:var(--correct) !important;
 
     cursor:default;
 
@@ -412,11 +517,11 @@ body{
 
 .word.wrong{
 
-    background:#fff0f3 !important;
+    background:var(--wrong-light) !important;
 
-    border:3px solid #d9536f !important;
+    border:3px solid var(--wrong) !important;
 
-    color:#d9536f;
+    color:var(--wrong) !important;
 
     cursor:default;
 
@@ -448,7 +553,12 @@ body{
 
     text-align:center;
 
-    font-size:29px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:28px;
 
     font-weight:bold;
 
@@ -461,9 +571,11 @@ body{
 
     margin-top:5px;
 
-    font-size:25px;
+    font-size:24px;
 
     font-weight:normal;
+
+    color:var(--ink);
 
 }
 
@@ -476,23 +588,30 @@ body{
 
     display:none;
 
+    width:100%;
+
     margin:16px auto 18px;
 
     padding:16px 20px;
 
-    width:100%;
+    background:var(--accent-light);
 
-    background:#eaf3ff;
+    border:1px solid var(--accent-border);
 
-    border:2px solid #c4daf6;
+    border-left:5px solid var(--accent);
 
     border-radius:12px;
 
-    color:#26354a;
+    color:var(--ink);
 
-    font-size:24px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
 
-    line-height:1.5;
+    font-size:22px;
+
+    line-height:1.55;
 
     text-align:left;
 
@@ -508,7 +627,7 @@ body{
 
 .explanation strong{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -538,16 +657,16 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-family:
         Calibri,
-        Arial,
+        "Segoe UI",
         sans-serif;
 
-    font-size:26px;
+    font-size:25px;
 
     font-weight:bold;
 
@@ -560,7 +679,7 @@ body{
 
 #nextBtn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -577,7 +696,7 @@ body{
 
     text-align:center;
 
-    padding:25px 10px 10px;
+    padding:22px 10px 8px;
 
 }
 
@@ -594,7 +713,9 @@ body{
 
     font-size:44px;
 
-    color:#2878df;
+    font-weight:700;
+
+    color:var(--ink);
 
 }
 
@@ -603,11 +724,16 @@ body{
 
     margin:20px 0;
 
-    font-size:48px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:46px;
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -616,9 +742,14 @@ body{
 
     margin:10px 0;
 
-    font-size:30px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
 
-    color:#667085;
+    font-size:29px;
+
+    color:var(--muted);
 
 }
 
@@ -627,30 +758,35 @@ body{
 
     margin:20px 0 25px;
 
-    font-size:27px;
+    font-family:
+        Calibri,
+        "Segoe UI",
+        sans-serif;
+
+    font-size:26px;
 
     line-height:1.5;
 
-    color:#667085;
+    color:var(--muted);
 
 }
 
 
 .play-again-btn{
 
-    padding:12px 28px;
+    padding:12px 29px;
 
     border:none;
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-family:
         Calibri,
-        Arial,
+        "Segoe UI",
         sans-serif;
 
     font-size:25px;
@@ -666,7 +802,7 @@ body{
 
 .play-again-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -681,7 +817,7 @@ body{
 
     body{
 
-        padding:20px 12px;
+        padding:20px 12px 35px;
 
     }
 
@@ -690,16 +826,16 @@ body{
 
         width:100%;
 
-        padding:25px 17px 28px;
+        padding:28px 18px 30px;
 
-        border-radius:19px;
+        border-radius:20px;
 
     }
 
 
     .back-btn{
 
-        font-size:21px;
+        font-size:20px;
 
     }
 
@@ -713,14 +849,14 @@ body{
 
     .instruction{
 
-        font-size:23px;
+        font-size:22px;
 
     }
 
 
     .game-status{
 
-        font-size:22px;
+        font-size:21px;
 
     }
 
@@ -745,6 +881,8 @@ body{
 
         grid-template-columns:1fr;
 
+        gap:13px;
+
     }
 
 
@@ -754,28 +892,28 @@ body{
 
         padding:17px;
 
-        font-size:29px;
+        font-size:28px;
 
     }
 
 
     #result{
 
-        font-size:27px;
+        font-size:26px;
 
     }
 
 
     .answer{
 
-        font-size:24px;
+        font-size:23px;
 
     }
 
 
     .explanation{
 
-        font-size:22px;
+        font-size:21px;
 
         padding:15px;
 
@@ -786,7 +924,7 @@ body{
 
         width:100%;
 
-        font-size:25px;
+        font-size:24px;
 
     }
 
@@ -836,14 +974,14 @@ body{
 
     .game-box{
 
-        padding:23px 14px 25px;
+        padding:25px 14px 27px;
 
     }
 
 
     .back-btn{
 
-        font-size:20px;
+        font-size:19px;
 
         padding:8px 13px;
 
@@ -859,21 +997,28 @@ body{
 
     .instruction{
 
-        font-size:22px;
+        font-size:21px;
 
     }
 
 
     .question-title{
 
-        font-size:29px;
+        font-size:28px;
 
     }
 
 
     .word{
 
-        font-size:27px;
+        font-size:26px;
+
+    }
+
+
+    #result{
+
+        font-size:25px;
 
     }
 
@@ -888,7 +1033,7 @@ body{
 
 
 <!-- =========================================================
-     BACK
+     BACK BUTTON — OUTSIDE GAME CARD
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -917,10 +1062,18 @@ body{
 <div id="gameScreen">
 
 
+    <!-- =====================================================
+         TITLE
+    ====================================================== -->
+
     <h1>
         Odd One Out
     </h1>
 
+
+    <!-- =====================================================
+         SHORT DESCRIPTION
+    ====================================================== -->
 
     <p class="instruction">
         Find the Vietnamese word that does not belong.
@@ -933,16 +1086,12 @@ body{
 
     <div class="game-status">
 
-        <div
-            id="roundText"
-        >
+        <div id="roundText">
             Question 1 of 20
         </div>
 
 
-        <div
-            id="scoreText"
-        >
+        <div id="scoreText">
             Score: 0
         </div>
 
@@ -983,8 +1132,7 @@ body{
     <div
         class="words"
         id="words"
-    >
-    </div>
+    ></div>
 
 
     <!-- =====================================================
@@ -993,8 +1141,7 @@ body{
 
     <div
         id="result"
-    >
-    </div>
+    ></div>
 
 
     <!-- =====================================================
@@ -1004,8 +1151,7 @@ body{
     <div
         id="explanation"
         class="explanation"
-    >
-    </div>
+    ></div>
 
 
     <!-- =====================================================
@@ -1042,22 +1188,19 @@ body{
     <div
         class="final-score"
         id="finalScore"
-    >
-    </div>
+    ></div>
 
 
     <div
         class="final-percent"
         id="finalPercent"
-    >
-    </div>
+    ></div>
 
 
     <div
         class="final-message"
         id="finalMessage"
-    >
-    </div>
+    ></div>
 
 
     <button
@@ -1578,7 +1721,7 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            <span style="color:#2878df;">
+            <span style="color:var(--correct);">
                 ✓ Correct!
             </span>
 
@@ -1622,7 +1765,7 @@ function checkAnswer(
 
         resultEl.innerHTML = `
 
-            <span style="color:#d9536f;">
+            <span style="color:var(--wrong);">
                 ✕ Wrong!
             </span>
 
@@ -1672,7 +1815,7 @@ function checkAnswer(
 
 
     /* =====================================================
-       NEXT
+       NEXT BUTTON
     ====================================================== */
 
     nextBtn.style.display =
@@ -1697,6 +1840,13 @@ function checkAnswer(
 ========================================================= */
 
 function nextQuestion(){
+
+    if(!locked){
+
+        return;
+
+    }
+
 
     currentQuestion++;
 

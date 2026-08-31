@@ -27,686 +27,1500 @@
     content="🧠"
 >
 
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
 
-/* ==========================================================
-   RESET
-========================================================== */
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
 
-*{
-    box-sizing:border-box;
+:root {
+
+    --accent:
+        #9669AA;
+
+    --accent-dark:
+        #714A82;
+
+    --accent-light:
+        #f6eef9;
+
+    --accent-bg:
+        #FAF5FB;
+
+    --accent-border:
+        #dfc9ec;
+
+    --ink:
+        #333333;
+
+    --muted:
+        #666666;
+
+    --correct:
+        #019b3f;
+
+    --correct-light:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+    --general-border:
+        #dedede;
+
 }
 
 
-body{
+/* =========================================================
+   RESET
+========================================================= */
 
-    margin:0;
+* {
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    box-sizing:
+        border-box;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin:
+        0;
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
 
     font-family:
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
         Verdana,
         sans-serif;
 
-    background:#f4f7f6;
+    color:
+        var(--ink);
 
-    min-height:100vh;
+    display:
+        flex;
 
-    display:flex;
+    justify-content:
+        center;
 
-    justify-content:center;
+    align-items:
+        center;
 
-    align-items:center;
-
-    padding:20px;
-
-    color:#2c3e50;
-
-}
-
-
-/* ==========================================================
-   SCREEN
-========================================================== */
-
-.screen{
-    display:none;
-}
-
-
-.screen.active{
-    display:block;
-}
-
-
-/* ==========================================================
-   CONTAINER
-========================================================== */
-
-.container{
-
-    position:relative;
-
-    width:min(900px,96vw);
-
-    margin:0 auto;
-
-    background:white;
-
-    padding:65px 30px 35px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
+/* =========================================================
+   PAGE
+========================================================= */
 
-.lobby-btn{
+.page {
 
-    position:absolute;
-
-    top:20px;
-
-    left:22px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.lobby-btn:hover{
-
-    background:#dcecff;
-
-    transform:translateX(-2px);
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
-
-    text-align:center;
-
-    padding:
-        20px
-        20px
-        30px;
-
-}
-
-
-#intro .emoji{
-
-    font-size:75px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
+    width:
+        min(
+            900px,
+            100%
+        );
 
     margin:
-        0 0 12px;
-
-    font-size:44px;
+        0 auto;
 
 }
 
 
-#intro p{
+/* =========================================================
+   BACK BUTTON
+   OUTSIDE GAME CONTAINER
+========================================================= */
 
-    color:#7f8c8d;
+.lobby-btn-container {
 
-    font-size:28px;
-
-    line-height:1.6;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:
-        14px
-        35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   TITLE
-========================================================== */
-
-.title{
-
-    text-align:center;
+    width:
+        100%;
 
     margin:
-        0 0 5px;
+        0 0 16px;
+
+    text-align:
+        left;
 
 }
 
 
-.subtitle{
+.lobby-btn {
 
-    text-align:center;
+    display:
+        inline-flex;
 
-    color:#7f8c8d;
+    align-items:
+        center;
 
-    margin-bottom:25px;
+    gap:
+        6px;
 
-}
+    padding:
+        9px 16px;
 
+    background:
+        #ffffff;
 
-/* ==========================================================
-   GAME BOX
-========================================================== */
-
-.game-box{
-
-    background:#fff;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    border:1px solid #eee;
-
-    text-align:center;
-
-}
-
-
-.topbar{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:15px;
-
-    font-weight:bold;
-
-}
-
-
-.question-count{
-
-    color:#7f8c8d;
-
-}
-
-
-.score{
-
-    color:#27ae60;
-
-    font-size:28px;
-
-}
-
-
-/* ==========================================================
-   PROGRESS
-========================================================== */
-
-.progress-wrap{
-
-    width:100%;
-
-    height:9px;
-
-    background:#eee;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:25px;
-
-}
-
-
-.progress{
-
-    width:0%;
-
-    height:100%;
-
-    background:#34495e;
-
-    transition:.3s;
-
-}
-
-
-/* ==========================================================
-   QUESTION
-========================================================== */
-
-.question-card{
-
-    background:#fffde7;
+    color:
+        var(--accent-dark);
 
     border:
-        2px dashed
-        #f1c40f;
+        1px solid
+        var(--accent-border);
 
-    border-radius:12px;
+    border-radius:
+        999px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.lobby-btn:hover {
+
+    background:
+        var(--accent-light);
+
+    border-color:
+        var(--accent);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
 
     padding:
-        25px
+        38px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            113,
+            74,
+            130,
+            0.10
+        );
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON MAIN CARD
+========================================================= */
+
+.container::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game {
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
+   GAME TITLE
+========================================================= */
+
+.title {
+
+    margin:
+        0 0 7px;
+
+    text-align:
+        center;
+
+    color:
+        var(--ink);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:
+        42px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.25;
+
+}
+
+
+.subtitle {
+
+    margin:
+        0 0 28px;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   GAME BOX
+========================================================= */
+
+.game-box {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    padding:
+        25px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        18px;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON GAME BOX
+========================================================= */
+
+.game-box::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
         20px;
 
-    margin-bottom:22px;
+    margin:
+        0 0 15px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-weight:
+        700;
 
 }
 
 
-.question-label{
+.question-count {
 
-    color:#7f8c8d;
+    color:
+        var(--muted);
 
-    font-size:25px;
-
-    font-weight:600;
-
-    margin-bottom:8px;
+    font-size:
+        21px;
 
 }
 
 
-.question-text{
+.score {
 
-    font-size:34px;
+    color:
+        var(--accent);
 
-    font-weight:800;
-
-    color:#34495e;
-
-    line-height:1.4;
+    font-size:
+        25px;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-wrap {
+
+    width:
+        100%;
+
+    height:
+        10px;
+
+    margin:
+        0 0 25px;
+
+    background:
+        var(--accent-light);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.progress {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        var(--accent);
+
+    border-radius:
+        20px;
+
+    transition:
+        width 0.3s ease;
+
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    margin:
+        0 0 22px;
+
+    padding:
+        25px 20px;
+
+    background:
+        var(--accent-light);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        14px;
+
+    text-align:
+        center;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON QUESTION CARD
+========================================================= */
+
+.question-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    background:
+        var(--accent);
+
+}
+
+
+.question-label {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        20px;
+
+    font-weight:
+        600;
+
+}
+
+
+.question-text {
+
+    color:
+        var(--accent-dark);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:
+        32px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.4;
+
+}
+
+
+/* =========================================================
    WORD GRID
-========================================================== */
+========================================================= */
 
-.word-grid{
+.word-grid {
 
-    display:grid;
+    display:
+        grid;
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-    gap:15px;
-
-}
-
-
-.word-btn{
-
-    min-height:90px;
-
-    padding:20px;
-
-    background:#34495e;
-
-    color:white;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-size:32px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
+    gap:
+        15px;
 
 }
 
 
-.word-btn:hover:not(:disabled){
+/* =========================================================
+   WORD BUTTON
+========================================================= */
 
-    background:#2c3e50;
+.word-btn {
 
-    transform:translateY(-3px);
+    position:
+        relative;
 
-}
+    width:
+        100%;
 
-
-.word-btn:disabled{
-
-    cursor:default;
-
-}
-
-
-.word-btn.correct{
-
-    background:#27ae60;
-
-}
-
-
-.word-btn.wrong{
-
-    background:#e74c3c;
-
-}
-
-
-.word-btn.answer-highlight{
-
-    background:#27ae60;
-
-}
-
-
-/* ==========================================================
-   RESULT
-========================================================== */
-
-.result-message{
-
-    min-height:80px;
-
-    margin-top:20px;
-
-    font-size:27px;
-
-    font-weight:bold;
-
-    line-height:1.5;
-
-}
-
-
-.correct-text{
-
-    color:#27ae60;
-
-}
-
-
-.wrong-text{
-
-    color:#e74c3c;
-
-}
-
-
-.correct-answer{
-
-    display:block;
-
-    margin-top:5px;
-
-    color:#34495e;
-
-    font-size:25px;
-
-    font-weight:bold;
-
-}
-
-
-.explanation{
-
-    display:block;
-
-    margin-top:6px;
-
-    color:#607d8b;
-
-    font-size:24px;
-
-    font-weight:500;
-
-}
-
-
-/* ==========================================================
-   NEXT BUTTON
-========================================================== */
-
-.next-btn{
+    min-height:
+        90px;
 
     padding:
-        12px
+        20px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--accent-dark);
+
+    border:
+        2px solid
+        var(--accent);
+
+    border-radius:
+        14px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
         28px;
 
-    border:none;
+    font-weight:
+        700;
 
-    border-radius:10px;
+    cursor:
+        pointer;
 
-    background:#34495e;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 
-    color:white;
-
-    font-size:27px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-top:5px;
-
-    transition:.2s;
+    user-select:
+        none;
 
 }
 
 
-.next-btn:hover{
+.word-btn:hover:not(:disabled) {
 
-    background:#2c3e50;
+    background:
+        var(--accent-light);
 
-    transform:translateY(-2px);
+    border-color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 7px 18px
+        rgba(
+            113,
+            74,
+            130,
+            0.10
+        );
 
 }
 
 
-/* ==========================================================
-   FINAL
-========================================================== */
+.word-btn:disabled {
 
-#final{
+    cursor:
+        default;
 
-    text-align:center;
+}
+
+
+/* =========================================================
+   CORRECT
+========================================================= */
+
+.word-btn.correct {
+
+    background:
+        var(--correct-light);
+
+    color:
+        var(--correct);
+
+    border-color:
+        var(--correct);
+
+    cursor:
+        default;
+
+}
+
+
+/* =========================================================
+   WRONG
+========================================================= */
+
+.word-btn.wrong {
+
+    background:
+        var(--wrong-light);
+
+    color:
+        var(--wrong);
+
+    border-color:
+        var(--wrong);
+
+}
+
+
+/* =========================================================
+   CORRECT ANSWER HIGHLIGHT
+========================================================= */
+
+.word-btn.answer-highlight {
+
+    background:
+        var(--correct-light);
+
+    color:
+        var(--correct);
+
+    border-color:
+        var(--correct);
+
+}
+
+
+/* =========================================================
+   RESULT MESSAGE
+========================================================= */
+
+.result-message {
+
+    text-align:
+        center;
+
+    min-height:
+        82px;
+
+    margin:
+        20px 0 0;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        23px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.5;
+
+}
+
+
+.correct-text {
+
+    color:
+        var(--correct);
+
+}
+
+
+.wrong-text {
+
+    color:
+        var(--wrong);
+
+}
+
+
+.correct-answer {
+
+    display:
+        block;
+
+    margin-top:
+        5px;
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+}
+
+
+.explanation {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        20px;
+
+    font-weight:
+        400;
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+   CENTERED
+========================================================= */
+
+.next-btn {
+
+    display:
+        flex;
+
+    width:
+        fit-content;
+
+    margin:
+        24px auto 0;
 
     padding:
-        30px
-        20px
+        12px 28px;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    border:
+        2px solid
+        var(--accent);
+
+    border-radius:
+        999px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+.next-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    border-color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
+
+#final {
+
+    display:
+        none;
+
+    text-align:
+        center;
+
+    padding:
+        25px 10px 15px;
+
+}
+
+
+#final.active {
+
+    display:
+        block;
+
+}
+
+
+#final .emoji {
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        60px;
+
+}
+
+
+#final h2 {
+
+    margin:
+        0 0 15px;
+
+    color:
+        var(--accent);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:
+        43px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.25;
+
+}
+
+
+.final-message {
+
+    margin:
+        10px auto;
+
+    max-width:
+        680px;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+    line-height:
+        1.5;
+
+}
+
+
+.final-score {
+
+    margin:
+        25px 0 10px;
+
+    color:
+        var(--accent-dark);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:
         40px;
 
-}
-
-
-#final .emoji{
-
-    font-size:75px;
+    font-weight:
+        700;
 
 }
 
 
-#final h2{
+.final-percentage {
 
-    font-size:45px;
+    margin:
+        0 0 15px;
 
-    color:#27ae60;
+    color:
+        var(--correct);
 
-}
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
+    font-size:
+        28px;
 
-.final-score{
-
-    font-size:40px;
-
-    margin:25px 0 10px;
-
-    font-weight:bold;
-
-    color:#1976d2;
-
-}
-
-
-.final-percentage{
-
-    font-size:30px;
-
-    font-weight:bold;
-
-    margin-bottom:15px;
+    font-weight:
+        700;
 
 }
 
 
-.final-message{
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
 
-    color:#7f8c8d;
+.start-btn {
 
-    font-size:28px;
+    min-width:
+        190px;
 
-    line-height:1.5;
+    margin-top:
+        20px;
+
+    padding:
+        13px 30px;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    border:
+        2px solid
+        var(--accent);
+
+    border-radius:
+        999px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        23px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
 
 }
 
 
-/* ==========================================================
+.start-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    border-color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   SCREEN
+========================================================= */
+
+.screen {
+
+    display:
+        none;
+
+}
+
+
+.screen.active {
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
-@media(max-width:600px){
+@media (
+    max-width: 700px
+) {
 
-    body{
+    body {
 
-        padding:10px;
+        padding:
+            18px 14px 35px;
+
+        align-items:
+            flex-start;
 
     }
 
 
-    .container{
+    .page {
+
+        width:
+            100%;
+
+    }
+
+
+    .lobby-btn-container {
+
+        margin-bottom:
+            12px;
+
+    }
+
+
+    .container {
 
         padding:
-            60px
-            15px
+            32px 20px;
+
+        border-radius:
             20px;
 
     }
 
 
-    .word-grid{
+    .title {
 
-        grid-template-columns:1fr;
-
-    }
-
-
-    .word-btn{
-
-        min-height:75px;
-
-        font-size:30px;
+        font-size:
+            36px;
 
     }
 
 
-    .question-text{
+    .subtitle {
 
-        font-size:31px;
+        font-size:
+            19px;
 
-    }
-
-
-    #intro h1{
-
-        font-size:38px;
+        margin-bottom:
+            22px;
 
     }
 
 
-    #final h2{
-
-        font-size:40px;
-
-    }
-
-
-    .lobby-btn{
-
-        top:16px;
-
-        left:16px;
-
-        font-size:23px;
+    .game-box {
 
         padding:
-            7px
+            18px;
+
+        border-radius:
+            16px;
+
+    }
+
+
+    .topbar {
+
+        flex-direction:
+            column;
+
+        gap:
+            7px;
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .question-count {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .score {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .question-card {
+
+        padding:
+            23px 17px;
+
+    }
+
+
+    .question-label {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .question-text {
+
+        font-size:
+            29px;
+
+    }
+
+
+    .word-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
             12px;
+
+    }
+
+
+    .word-btn {
+
+        min-height:
+            76px;
+
+        padding:
+            16px;
+
+        font-size:
+            26px;
+
+    }
+
+
+    .result-message {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .correct-answer {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .explanation {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .next-btn {
+
+        width:
+            fit-content;
+
+        margin:
+            24px auto 0;
+
+    }
+
+
+    #final h2 {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .final-score {
+
+        font-size:
+            35px;
+
+    }
+
+
+    .final-percentage {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .final-message {
+
+        font-size:
+            20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+    max-width: 380px
+) {
+
+    body {
+
+        padding:
+            14px 10px 30px;
+
+    }
+
+
+    .container {
+
+        padding:
+            30px 15px;
+
+    }
+
+
+    .title {
+
+        font-size:
+            32px;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .game-box {
+
+        padding:
+            15px;
+
+    }
+
+
+    .question-text {
+
+        font-size:
+            26px;
+
+    }
+
+
+    .word-btn {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .lobby-btn {
+
+        font-size:
+            17px;
+
+        padding:
+            8px 14px;
 
     }
 
@@ -720,68 +1534,21 @@ body{
 <body>
 
 
-<div class="container">
+<div class="page">
 
 
-<!-- ========================================================
-     BACK TO LOBBY
+<!-- =========================================================
+     BACK
 ========================================================= -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
->
-
-    ← Back
-
-</button>
-
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        🧠
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Health Odd One Out
-
-    </h1>
-
-
-    <p>
-
-        Look at the four Vietnamese words
-        and choose the one that does not belong.
-
-    </p>
-
-
-    <p>
-
-        🎯 20 questions
-
-    </p>
-
+<div class="lobby-btn-container">
 
     <button
-        class="start-btn"
-        onclick="startGame()"
+        class="lobby-btn"
+        onclick="backToLobby()"
     >
 
-        Start Game
+        ← Back
 
     </button>
 
@@ -789,13 +1556,20 @@ body{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
+     MAIN GAME CONTAINER
+========================================================= -->
+
+<div class="container">
+
+
+<!-- =========================================================
      GAME
 ========================================================= -->
 
 <div
     id="game"
-    class="screen"
+    class="screen active"
 >
 
 
@@ -808,7 +1582,7 @@ body{
 
     <p class="subtitle">
 
-        Which word does not belong?
+        Which Vietnamese health word does not belong?
 
     </p>
 
@@ -817,7 +1591,9 @@ body{
     <div class="game-box">
 
 
-        <!-- TOP BAR -->
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
 
         <div class="topbar">
 
@@ -854,7 +1630,9 @@ body{
 
 
 
-        <!-- PROGRESS -->
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
 
         <div class="progress-wrap">
 
@@ -867,7 +1645,9 @@ body{
 
 
 
-        <!-- QUESTION -->
+        <!-- =================================================
+             QUESTION
+        ================================================== -->
 
         <div class="question-card">
 
@@ -890,7 +1670,9 @@ body{
 
 
 
-        <!-- WORDS -->
+        <!-- =================================================
+             WORDS
+        ================================================== -->
 
         <div
             class="word-grid"
@@ -899,7 +1681,9 @@ body{
 
 
 
-        <!-- RESULT -->
+        <!-- =================================================
+             RESULT
+        ================================================== -->
 
         <div
             class="result-message"
@@ -908,7 +1692,9 @@ body{
 
 
 
-        <!-- NEXT -->
+        <!-- =================================================
+             NEXT
+        ================================================== -->
 
         <button
             class="next-btn"
@@ -929,7 +1715,7 @@ body{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      FINAL
 ========================================================= -->
 
@@ -987,9 +1773,12 @@ body{
         onclick="restartGame()"
     >
 
-        Play Again
+        Play Again →
 
     </button>
+
+
+</div>
 
 
 </div>
@@ -1001,37 +1790,50 @@ body{
 
 <script>
 
-
-/* ==========================================================
+/* =========================================================
    APPROVED VOCABULARY
-   ONLY THE ESTABLISHED HEALTH VOCABULARY
-========================================================== */
+========================================================= */
 
 const vocabulary = [
 
     "bệnh",
+
     "sốt",
+
     "mệt",
+
     "cảm",
+
     "ho",
+
     "đau đầu",
+
     "đau",
+
     "đau người",
+
     "đau tay",
+
     "đau chân",
+
     "đau bụng",
+
     "đầu",
+
     "tay",
+
     "chân",
+
     "bụng",
+
     "người"
 
 ];
 
 
-/* ==========================================================
+/* =========================================================
    QUESTION DATABASE
-========================================================== */
+========================================================= */
 
 const database = [
 
@@ -1043,7 +1845,8 @@ const database = [
             "sốt"
         ],
 
-        correct:"sốt",
+        correct:
+            "sốt",
 
         explanation:
             "Sốt is a health symptom. Đầu, tay, and chân are body parts."
@@ -1058,7 +1861,8 @@ const database = [
             "ho"
         ],
 
-        correct:"ho",
+        correct:
+            "ho",
 
         explanation:
             "Ho is a health symptom. Đầu, bụng, and người are body-related words."
@@ -1073,7 +1877,8 @@ const database = [
             "mệt"
         ],
 
-        correct:"mệt",
+        correct:
+            "mệt",
 
         explanation:
             "Mệt describes how you feel. Tay, chân, and bụng are body parts."
@@ -1088,7 +1893,8 @@ const database = [
             "cảm"
         ],
 
-        correct:"cảm",
+        correct:
+            "cảm",
 
         explanation:
             "Cảm is a health condition. Đầu, tay, and bụng are body parts."
@@ -1103,7 +1909,8 @@ const database = [
             "bệnh"
         ],
 
-        correct:"bệnh",
+        correct:
+            "bệnh",
 
         explanation:
             "Bệnh means sick or illness. Đầu, chân, and người are body-related words."
@@ -1118,7 +1925,8 @@ const database = [
             "đau"
         ],
 
-        correct:"đau",
+        correct:
+            "đau",
 
         explanation:
             "Đau means pain or hurt. Đầu, tay, and chân are body parts."
@@ -1133,7 +1941,8 @@ const database = [
             "đau người"
         ],
 
-        correct:"đau người",
+        correct:
+            "đau người",
 
         explanation:
             "Đau người describes body ache. Bụng, tay, and đầu are body parts."
@@ -1148,7 +1957,8 @@ const database = [
             "đau đầu"
         ],
 
-        correct:"đau đầu",
+        correct:
+            "đau đầu",
 
         explanation:
             "Đau đầu means headache. Đầu, tay, and chân are body parts."
@@ -1163,7 +1973,8 @@ const database = [
             "đau tay"
         ],
 
-        correct:"đau tay",
+        correct:
+            "đau tay",
 
         explanation:
             "Đau tay means arm or hand pain. Đầu, tay, and bụng are body parts."
@@ -1178,7 +1989,8 @@ const database = [
             "đau chân"
         ],
 
-        correct:"đau chân",
+        correct:
+            "đau chân",
 
         explanation:
             "Đau chân means leg or foot pain. Đầu, chân, and bụng are body parts."
@@ -1193,7 +2005,8 @@ const database = [
             "đau bụng"
         ],
 
-        correct:"đau bụng",
+        correct:
+            "đau bụng",
 
         explanation:
             "Đau bụng means stomachache. Đầu, tay, and chân are body parts."
@@ -1208,7 +2021,8 @@ const database = [
             "đầu"
         ],
 
-        correct:"đầu",
+        correct:
+            "đầu",
 
         explanation:
             "Đầu is a body part. Bệnh, sốt, and mệt are health-related conditions or symptoms."
@@ -1223,7 +2037,8 @@ const database = [
             "tay"
         ],
 
-        correct:"tay",
+        correct:
+            "tay",
 
         explanation:
             "Tay is a body part. Cảm, ho, and mệt are health-related words."
@@ -1238,7 +2053,8 @@ const database = [
             "chân"
         ],
 
-        correct:"chân",
+        correct:
+            "chân",
 
         explanation:
             "Chân is a body part. Bệnh, sốt, and cảm are health-related conditions."
@@ -1253,7 +2069,8 @@ const database = [
             "bụng"
         ],
 
-        correct:"bụng",
+        correct:
+            "bụng",
 
         explanation:
             "Bụng is a body part. Ho, mệt, and cảm are health-related words."
@@ -1268,7 +2085,8 @@ const database = [
             "người"
         ],
 
-        correct:"người",
+        correct:
+            "người",
 
         explanation:
             "Người can refer to the body or a person. Bệnh, sốt, and ho are health-related words."
@@ -1283,7 +2101,8 @@ const database = [
             "tay"
         ],
 
-        correct:"tay",
+        correct:
+            "tay",
 
         explanation:
             "Tay is a body part by itself. Đau đầu, đau tay, and đau chân are pain expressions."
@@ -1298,7 +2117,8 @@ const database = [
             "bụng"
         ],
 
-        correct:"bụng",
+        correct:
+            "bụng",
 
         explanation:
             "Bụng is a body part by itself. Đau bụng, đau người, and đau đầu are pain expressions."
@@ -1313,7 +2133,8 @@ const database = [
             "đầu"
         ],
 
-        correct:"đầu",
+        correct:
+            "đầu",
 
         explanation:
             "Đầu is a body part. Đau, đau đầu, and đau bụng are pain-related words."
@@ -1328,7 +2149,8 @@ const database = [
             "chân"
         ],
 
-        correct:"chân",
+        correct:
+            "chân",
 
         explanation:
             "Chân is a body part by itself. Đau tay, đau chân, and đau bụng are pain expressions."
@@ -1337,16 +2159,17 @@ const database = [
 ];
 
 
-/* ==========================================================
+/* =========================================================
    GAME SETTINGS
-========================================================== */
+========================================================= */
 
-const TOTAL_QUESTIONS = 20;
+const TOTAL_QUESTIONS =
+    20;
 
 
-/* ==========================================================
-   STATE
-========================================================== */
+/* =========================================================
+   GAME STATE
+========================================================= */
 
 let questions = [];
 
@@ -1357,31 +2180,37 @@ let score = 0;
 let answered = false;
 
 
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
 function shuffle(array){
 
-    const arr = [...array];
+    const arr =
+        [...array];
 
 
     for(
-        let i = arr.length - 1;
+        let i =
+            arr.length - 1;
+
         i > 0;
+
         i--
     ){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
         [
             arr[i],
             arr[j]
-        ] = [
+        ] =
+        [
             arr[j],
             arr[i]
         ];
@@ -1394,34 +2223,22 @@ function shuffle(array){
 }
 
 
-/* ==========================================================
-   START GAME
-========================================================== */
+/* =========================================================
+   INITIALIZE GAME
+========================================================= */
 
-function startGame(){
+function initializeGame(){
 
     questions =
         shuffle(database);
 
 
-    currentQuestion = 0;
-
-    score = 0;
-
-
-    document
-        .getElementById("intro")
-        .classList.remove("active");
+    currentQuestion =
+        0;
 
 
-    document
-        .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
+    score =
+        0;
 
 
     document
@@ -1436,22 +2253,39 @@ function startGame(){
         TOTAL_QUESTIONS;
 
 
+    document
+        .getElementById("game")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("final")
+        .classList.remove(
+            "active"
+        );
+
+
     loadQuestion();
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
 function loadQuestion(){
 
-    answered = false;
+    answered =
+        false;
 
 
     const question =
-        questions[currentQuestion];
+        questions[
+            currentQuestion
+        ];
 
 
     document
@@ -1464,7 +2298,9 @@ function loadQuestion(){
         .getElementById("progress")
         .style.width =
         (
-            currentQuestion /
+            (
+                currentQuestion + 1
+            ) /
             TOTAL_QUESTIONS *
             100
         ) + "%";
@@ -1482,18 +2318,22 @@ function loadQuestion(){
         "result-message";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
         "none";
 
 
-    document
-        .getElementById("nextBtn")
-        .textContent =
+    nextBtn.textContent =
         currentQuestion ===
         TOTAL_QUESTIONS - 1
+
             ? "Finish 🎉"
+
             : "Next →";
 
 
@@ -1508,43 +2348,49 @@ function loadQuestion(){
 
 
     const words =
-        shuffle(question.words);
+        shuffle(
+            question.words
+        );
 
 
-    words.forEach(word => {
+    words.forEach(
+        word => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
 
 
-        const button =
-            document.createElement(
-                "button"
+            button.className =
+                "word-btn";
+
+
+            button.textContent =
+                word;
+
+
+            button.onclick =
+                () =>
+                    handleAnswer(
+                        button,
+                        word
+                    );
+
+
+            grid.appendChild(
+                button
             );
 
-
-        button.className =
-            "word-btn";
-
-
-        button.textContent =
-            word;
-
-
-        button.onclick = () =>
-            handleAnswer(
-                button,
-                word
-            );
-
-
-        grid.appendChild(button);
-
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
 function handleAnswer(
     button,
@@ -1553,8 +2399,6 @@ function handleAnswer(
 
     /*
        One attempt only.
-       After the first selection,
-       the entire question is locked.
     */
 
     if(answered){
@@ -1564,11 +2408,14 @@ function handleAnswer(
     }
 
 
-    answered = true;
+    answered =
+        true;
 
 
     const question =
-        questions[currentQuestion];
+        questions[
+            currentQuestion
+        ];
 
 
     const resultText =
@@ -1584,21 +2431,27 @@ function handleAnswer(
 
 
     /*
-       Lock every answer.
+       Lock all answers.
     */
 
-    allButtons.forEach(btn => {
+    allButtons.forEach(
+        btn => {
 
-        btn.disabled = true;
+            btn.disabled =
+                true;
 
-    });
+        }
+    );
 
 
-    /* ======================================================
+    /* =====================================================
        CORRECT
-    ====================================================== */
+    ===================================================== */
 
-    if(selected === question.correct){
+    if(
+        selected ===
+        question.correct
+    ){
 
         button.classList.add(
             "correct"
@@ -1615,8 +2468,9 @@ function handleAnswer(
 
 
         resultText.innerHTML =
+
             `
-            🎉 Correct!
+            ✓ Correct!
 
             <span class="explanation">
                 ${question.explanation}
@@ -1630,11 +2484,15 @@ function handleAnswer(
     }
 
 
-    /* ======================================================
+    /* =====================================================
        WRONG
-    ====================================================== */
+    ===================================================== */
 
     else{
+
+        /*
+           Selected answer = RED
+        */
 
         button.classList.add(
             "wrong"
@@ -1642,28 +2500,31 @@ function handleAnswer(
 
 
         /*
-           Highlight the correct answer.
+           Correct answer = GREEN
         */
 
-        allButtons.forEach(btn => {
+        allButtons.forEach(
+            btn => {
 
-            if(
-                btn.textContent ===
-                question.correct
-            ){
+                if(
+                    btn.textContent ===
+                    question.correct
+                ){
 
-                btn.classList.add(
-                    "answer-highlight"
-                );
+                    btn.classList.add(
+                        "answer-highlight"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
 
         resultText.innerHTML =
+
             `
-            ❌ Incorrect.
+            ✕ Incorrect.
 
             <span class="correct-answer">
                 Correct answer: ${question.correct}
@@ -1682,21 +2543,20 @@ function handleAnswer(
 
 
     /*
-       Next button appears after
-       either correct or wrong answer.
+       Show Next only after answering.
     */
 
     document
         .getElementById("nextBtn")
         .style.display =
-        "inline-block";
+        "flex";
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
 function nextQuestion(){
 
@@ -1728,9 +2588,9 @@ function nextQuestion(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    FINISH GAME
-========================================================== */
+========================================================= */
 
 function finishGame(){
 
@@ -1751,6 +2611,7 @@ function finishGame(){
     document
         .getElementById("finalScore")
         .textContent =
+
         score +
         " / " +
         TOTAL_QUESTIONS;
@@ -1767,6 +2628,7 @@ function finishGame(){
     document
         .getElementById("finalPercentage")
         .textContent =
+
         percentage +
         "%";
 
@@ -1774,14 +2636,20 @@ function finishGame(){
     let message;
 
 
-    if(percentage >= 90){
+    if(
+        percentage >=
+        90
+    ){
 
         message =
             "🏆 Excellent! You can identify different health words very well.";
 
     }
 
-    else if(percentage >= 70){
+    else if(
+        percentage >=
+        70
+    ){
 
         message =
             "🎉 Good job! Keep practicing.";
@@ -1804,20 +2672,20 @@ function finishGame(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESTART
-========================================================== */
+========================================================= */
 
 function restartGame(){
 
-    startGame();
+    initializeGame();
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    BACK TO LOBBY
-========================================================== */
+========================================================= */
 
 function backToLobby(){
 
@@ -1825,6 +2693,13 @@ function backToLobby(){
         "../../category.html?category=Health";
 
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+initializeGame();
 
 </script>
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,36 +7,36 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Color Matching</title>
 
-<!-- =========================================
-     GAME METADATA
-========================================= -->
-
 <meta
-    name="game-title"
-    content="Color Matching"
+name="game-title"
+content="Color Matching"
+
 >
 
 <meta
-    name="game-description"
-    content="Match Vietnamese color names with the correct colors."
+name="game-description"
+content="Match Vietnamese color names with the correct colors."
+
 >
 
 <meta
-    name="game-icon"
-    content="🎨"
+name="game-icon"
+content="🎨"
+
 >
 
 <meta
-    name="game-explanation"
-    content="Connect each color with its correct Vietnamese name. Complete all matches, then check your answers."
->
+name="game-explanation"
+content="Connect each color with its correct Vietnamese name. Complete all matches, then check your answers."
 
+>
 
 <!-- =========================================
      GOOGLE FONT
@@ -57,56 +58,7 @@
     rel="stylesheet"
 >
 
-
 <style>
-
-/* =========================================================
-   DESIGN TOKENS
-========================================================= */
-
-:root {
-
-    --paper:
-        #f7f8fc;
-
-    --white:
-        #ffffff;
-
-    --ink:
-        #143a6b;
-
-    --ink-soft:
-        #66809d;
-
-    --accent:
-        #2878df;
-
-    --accent-dark:
-        #1e5fba;
-
-    --accent-light:
-        #eaf3ff;
-
-    --accent-border:
-        #c4daf6;
-
-    --general-border:
-        #d9e6f2;
-
-    --correct:
-        #2878df;
-
-    --correct-light:
-        #eaf3ff;
-
-    --wrong:
-        #d9536f;
-
-    --wrong-light:
-        #fff0f3;
-
-}
-
 
 /* =========================================================
    RESET
@@ -127,16 +79,69 @@
 
 
 /* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+
+    --paper:
+        #f7f8fc;
+
+    --f5f5f5:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --accent:
+        #7569AA;
+
+    --accent-dark:
+        #544A82;
+
+    --accent-light:
+        #efedf9;
+
+    --accent-bg:
+        #F5F4FB;
+
+    --accent-border:
+        #d0c9ec;
+
+    --general-border:
+        #dedbea;
+
+    --correct:
+        #019b3f;
+
+    --correct-bg:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-bg:
+        #fff0f3;
+
+}
+
+/* =========================================================
    BODY
 ========================================================= */
 
 body {
 
+    margin:
+        0;
+
     min-height:
         100vh;
 
     padding:
-        30px 20px 50px;
+        28px 20px 45px;
 
     font-family:
         Calibri,
@@ -149,12 +154,21 @@ body {
     color:
         var(--ink);
 
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f8f8fc 48%,
-            #f1f0f8 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
@@ -216,7 +230,7 @@ body {
             255,
             255,
             255,
-            0.92
+            0.94
         );
 
     color:
@@ -234,10 +248,10 @@ body {
     box-shadow:
         0 4px 14px
         rgba(
-            20,
-            58,
-            107,
-            0.07
+            84,
+            74,
+            130,
+            0.08
         );
 
     transition:
@@ -258,7 +272,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
 }
 
@@ -295,12 +309,7 @@ body {
         24px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.98
-        );
+        #ffffff;
 
     text-align:
         center;
@@ -308,10 +317,10 @@ body {
     box-shadow:
         0 18px 50px
         rgba(
-            30,
-            45,
-            80,
-            0.10
+            70,
+            65,
+            95,
+            0.12
         );
 
 }
@@ -543,9 +552,9 @@ h1 {
     box-shadow:
         0 6px 16px
         rgba(
-            20,
-            58,
-            107,
+            84,
+            74,
+            130,
             0.10
         );
 
@@ -560,9 +569,9 @@ h1 {
     box-shadow:
         0 10px 22px
         rgba(
-            20,
-            58,
-            107,
+            84,
+            74,
+            130,
             0.16
         );
 
@@ -615,7 +624,7 @@ h1 {
         center;
 
     color:
-        var(--ink);
+        var(--accent-dark);
 
     font-size:
         1.35rem;
@@ -748,6 +757,10 @@ canvas {
 }
 
 
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
+
 .clear-btn {
 
     background:
@@ -763,9 +776,9 @@ canvas {
     box-shadow:
         0 4px 12px
         rgba(
-            20,
-            58,
-            107,
+            84,
+            74,
+            130,
             0.06
         );
 
@@ -789,6 +802,10 @@ canvas {
 }
 
 
+/* =========================================================
+   PRIMARY BUTTONS
+========================================================= */
+
 .check-btn,
 .next-btn {
 
@@ -796,7 +813,7 @@ canvas {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
     box-shadow:
         inset 0 -3px 0
@@ -808,9 +825,9 @@ canvas {
         ),
         0 6px 14px
         rgba(
-            40,
-            120,
-            223,
+            117,
+            105,
+            170,
             0.22
         );
 
@@ -903,7 +920,7 @@ canvas {
         12px;
 
     color:
-        var(--ink);
+        var(--accent-dark);
 
     font-size:
         1.08rem;
@@ -949,7 +966,7 @@ canvas {
         12px;
 
     color:
-        var(--ink);
+        var(--accent-dark);
 
     font-family:
         Kalam,
@@ -1209,12 +1226,9 @@ canvas {
 
 </head>
 
-
 <body>
 
-
 <div class="page">
-
 
 <!-- =========================================
      BACK
@@ -1222,15 +1236,16 @@ canvas {
 
 <div class="back-btn-container">
 
-    <a
-        href="../../category.html?category=Colors"
-        class="back-btn"
-    >
-        ← Back
-    </a>
+```
+<a
+    href="../../category.html?category=Colors"
+    class="back-btn"
+>
+    ← Back
+</a>
+```
 
 </div>
-
 
 <!-- =========================================
      MAIN CARD
@@ -1238,182 +1253,181 @@ canvas {
 
 <div class="container">
 
+```
+<!-- =====================================
+     GAME SCREEN
+====================================== -->
 
-    <!-- =====================================
-         GAME SCREEN
-    ====================================== -->
-
-    <div id="gameScreen">
-
-
-        <div class="header">
-
-            <h1>
-                Color Matching
-            </h1>
-
-            <div class="subtitle">
-                Connect each color with its Vietnamese name.
-            </div>
-
-        </div>
+<div id="gameScreen">
 
 
-        <div
-            class="question-number"
-            id="questionNumber"
-        >
-        </div>
+    <div class="header">
 
+        <h1>
+            Color Matching
+        </h1>
 
-        <div class="instruction">
-            Match all 4 pairs, then check your answers.
-        </div>
-
-
-        <!-- =================================
-             MATCHING GAME
-        ================================== -->
-
-        <div id="game">
-
-            <div
-                class="column"
-                id="left"
-            >
-            </div>
-
-
-            <canvas
-                id="canvas"
-            >
-            </canvas>
-
-
-            <div
-                class="column"
-                id="right"
-            >
-            </div>
-
-        </div>
-
-
-        <!-- =================================
-             CONTROLS
-        ================================== -->
-
-        <div class="controls">
-
-            <button
-                class="action-btn clear-btn"
-                id="clearBtn"
-                type="button"
-            >
-                Clear
-            </button>
-
-
-            <button
-                class="action-btn check-btn"
-                id="checkBtn"
-                type="button"
-            >
-                Check Answers
-            </button>
-
-
-            <button
-                class="action-btn next-btn hidden"
-                id="nextBtn"
-                type="button"
-            >
-                Next Question →
-            </button>
-
-        </div>
-
-
-        <!-- =================================
-             MESSAGE
-        ================================== -->
-
-        <div
-            id="message"
-            aria-live="polite"
-        >
-        </div>
-
-
-        <!-- =================================
-             EXPLANATION
-        ================================== -->
-
-        <div
-            id="explanation"
-            class="hidden"
-        >
-
-            <div class="explanation-title">
-                Explanation
-            </div>
-
-            <div id="explanationText">
-            </div>
-
+        <div class="subtitle">
+            Connect each color with its Vietnamese name.
         </div>
 
     </div>
 
 
-    <!-- =====================================
-         RESULT SCREEN
-    ====================================== -->
-
     <div
-        id="resultScreen"
-        class="result-screen hidden"
+        class="question-number"
+        id="questionNumber"
     >
-
-        <div class="result-title">
-            Great Job!
-        </div>
+    </div>
 
 
-        <div class="result-label">
-            Your Score
-        </div>
+    <div class="instruction">
+        Match all 4 pairs, then check your answers.
+    </div>
 
+
+    <!-- =================================
+         MATCHING GAME
+    ================================== -->
+
+    <div id="game">
 
         <div
-            class="score"
-            id="scoreText"
+            class="column"
+            id="left"
         >
         </div>
 
 
+        <canvas
+            id="canvas"
+        >
+        </canvas>
+
+
         <div
-            class="performance"
-            id="performance"
+            class="column"
+            id="right"
         >
         </div>
+
+    </div>
+
+
+    <!-- =================================
+         CONTROLS
+    ================================== -->
+
+    <div class="controls">
+
+        <button
+            class="action-btn clear-btn"
+            id="clearBtn"
+            type="button"
+        >
+            Clear
+        </button>
 
 
         <button
-            class="action-btn next-btn"
-            id="playAgain"
+            class="action-btn check-btn"
+            id="checkBtn"
             type="button"
         >
-            Play Again
+            Check Answers
+        </button>
+
+
+        <button
+            class="action-btn next-btn hidden"
+            id="nextBtn"
+            type="button"
+        >
+            Next Question →
         </button>
 
     </div>
 
+
+    <!-- =================================
+         MESSAGE
+    ================================== -->
+
+    <div
+        id="message"
+        aria-live="polite"
+    >
+    </div>
+
+
+    <!-- =================================
+         EXPLANATION
+    ================================== -->
+
+    <div
+        id="explanation"
+        class="hidden"
+    >
+
+        <div class="explanation-title">
+            Explanation
+        </div>
+
+        <div id="explanationText">
+        </div>
+
+    </div>
+
 </div>
 
 
+<!-- =====================================
+     RESULT SCREEN
+====================================== -->
+
+<div
+    id="resultScreen"
+    class="result-screen hidden"
+>
+
+    <div class="result-title">
+        Great Job!
+    </div>
+
+
+    <div class="result-label">
+        Your Score
+    </div>
+
+
+    <div
+        class="score"
+        id="scoreText"
+    >
+    </div>
+
+
+    <div
+        class="performance"
+        id="performance"
+    >
+    </div>
+
+
+    <button
+        class="action-btn next-btn"
+        id="playAgain"
+        type="button"
+    >
+        Play Again
+    </button>
+
+</div>
+```
+
 </div>
 
+</div>
 
 <script>
 
@@ -1842,7 +1856,7 @@ function loadQuestion() {
             ) {
 
                 item.style.border =
-                    "4px solid #c9d4df";
+                    "4px solid #c9c4d8";
 
             }
 
@@ -2218,8 +2232,6 @@ checkBtn.onclick =
         }
 
 
-        /* Must connect all pairs */
-
         if (
             connections.length <
             PAIRS_PER_QUESTION
@@ -2354,6 +2366,28 @@ function showExplanation() {
 
 function highlightAnswers() {
 
+    const rootStyles =
+        getComputedStyle(
+            document.documentElement
+        );
+
+
+    const correctColor =
+        rootStyles
+            .getPropertyValue(
+                "--correct"
+            )
+            .trim();
+
+
+    const wrongColor =
+        rootStyles
+            .getPropertyValue(
+                "--wrong"
+            )
+            .trim();
+
+
     connections.forEach(
         connection => {
 
@@ -2370,25 +2404,35 @@ function highlightAnswers() {
 
 
             if (
+                !colorItem ||
+                !target
+            ) {
+
+                return;
+
+            }
+
+
+            if (
                 connection.colorIndex ===
                 connection.targetIndex
             ) {
 
                 colorItem.style.outline =
-                    `4px solid ${getComputedStyle(document.documentElement).getPropertyValue("--correct")}`;
+                    `4px solid ${correctColor}`;
 
                 target.style.border =
-                    `3px solid ${getComputedStyle(document.documentElement).getPropertyValue("--correct")}`;
+                    `3px solid ${correctColor}`;
 
             }
 
             else {
 
                 colorItem.style.outline =
-                    `4px solid ${getComputedStyle(document.documentElement).getPropertyValue("--wrong")}`;
+                    `4px solid ${wrongColor}`;
 
                 target.style.border =
-                    `3px solid ${getComputedStyle(document.documentElement).getPropertyValue("--wrong")}`;
+                    `3px solid ${wrongColor}`;
 
             }
 
@@ -2457,7 +2501,7 @@ function showResults() {
     ) {
 
         resultText =
-            "Perfect! 🎨";
+            "Perfect!";
 
     }
 
@@ -2545,6 +2589,16 @@ function drawConnections() {
     clearCanvas();
 
 
+    const game =
+        document.getElementById(
+            "game"
+        );
+
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
     connections.forEach(
         connection => {
 
@@ -2568,14 +2622,6 @@ function drawConnections() {
                 return;
 
             }
-
-
-            const gameRect =
-                document
-                    .getElementById(
-                        "game"
-                    )
-                    .getBoundingClientRect();
 
 
             const itemRect =
@@ -2628,7 +2674,7 @@ function drawConnections() {
 
 
             ctx.strokeStyle =
-                "#2878df";
+                "#7569AA";
 
 
             ctx.lineCap =

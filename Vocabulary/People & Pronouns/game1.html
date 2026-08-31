@@ -32,6 +32,22 @@
     content="true"
 >
 
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
 
@@ -44,72 +60,65 @@
 }
 
 
+:root{
+
+    --accent:#5F79B4;
+
+    --accent-dark:#41588B;
+
+    --accent-light:#eaf0fa;
+
+    --accent-bg:#F2F6FC;
+
+    --accent-border:#c3d4ef;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --general-border:#d9e6f2;
+
+    --ink: #143a6b;
+    --ink-soft: #66809d;
+
+    --muted:#6f7b89;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
 body{
 
     margin:0;
 
+    min-height:100vh;
+
+    padding:28px 20px 45px;
+
     font-family:
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
         Verdana,
         sans-serif;
 
-    background:#f4f7f6;
+    color:var(--ink);
 
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    color:#2c3e50;
-
-}
-
-
-/* ==========================================================
-   SCREEN
-========================================================== */
-
-.screen{
-
-    display:none;
-
-}
-
-
-.screen.active{
-
-    display:block;
-
-}
-
-
-/* ==========================================================
-   CONTAINER
-========================================================== */
-
-.container{
-
-    position:relative;
-
-    width:min(750px,96vw);
-
-    margin:0 auto;
-
-    background:white;
-
-    padding:65px 30px 30px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.08);
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
@@ -118,38 +127,49 @@ body{
    BACK TO LOBBY
 ========================================================== */
 
-.lobby-btn{
+.back-btn-container{
 
-    position:absolute;
+    width:min(900px, 100%);
 
-    top:20px;
+    margin:0 auto 18px;
 
-    left:22px;
+}
 
-    padding:8px 14px;
 
-    border:none;
+.back-btn{
 
-    border-radius:8px;
+    display:inline-flex;
 
-    background:#eef5fc;
+    align-items:center;
 
-    color:#34495e;
+    gap:6px;
 
-    font-size:24px;
+    padding:9px 16px;
+
+    background:#ffffff;
+
+    color:var(--accent-dark);
+
+    border:1px solid var(--accent-border);
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-size:20px;
 
     font-weight:bold;
-
-    cursor:pointer;
 
     transition:.2s;
 
 }
 
 
-.lobby-btn:hover{
+.back-btn:hover{
 
-    background:#dcecff;
+    background:var(--accent-light);
+
+    border-color:var(--accent);
 
     transform:translateX(-2px);
 
@@ -157,79 +177,25 @@ body{
 
 
 /* ==========================================================
-   INTRO
+   MAIN CONTAINER
 ========================================================== */
 
-#intro{
+.container{
 
-    text-align:center;
+    position:relative;
 
-    padding:20px 20px 30px;
+    width:min(900px, 100%);
 
-}
+    margin:0 auto;
 
+    background:#ffffff;
 
-#intro .emoji{
+    padding:32px;
 
-    font-size:70px;
+    border-radius:20px;
 
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 15px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:27px;
-
-    line-height:1.6;
-
-    margin:8px 0;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(0,0,0,.08);
 
 }
 
@@ -240,20 +206,33 @@ body{
 
 .title{
 
+    margin:0;
+
     text-align:center;
 
-    margin:0 0 5px;
+    font-family:Kalam, cursive;
+
+    font-size:42px;
+
+    line-height:1.2;
+
+    color:var(--ink);
 
 }
 
 
 .subtitle{
 
+    margin:
+        8px 0 26px;
+
     text-align:center;
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    margin-bottom:25px;
+    font-size:22px;
+
+    line-height:1.5;
 
 }
 
@@ -264,18 +243,28 @@ body{
 
 .game-box{
 
-    background:#fff;
+    position:relative;
+
+    background:#ffffff;
 
     padding:25px;
 
-    border-radius:15px;
+    border:1px solid var(--general-border);
 
-    border:1px solid #eee;
+    border-radius:15px;
 
     text-align:center;
 
+    overflow:hidden;
+
 }
 
+
+
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
 
 .topbar{
 
@@ -285,7 +274,9 @@ body{
 
     align-items:center;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
+
+    font-size:20px;
 
     font-weight:bold;
 
@@ -294,16 +285,16 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
 }
 
 
 .score{
 
-    color:#27ae60;
+    color:var(--accent-dark);
 
-    font-size:28px;
+    font-size:23px;
 
 }
 
@@ -318,13 +309,13 @@ body{
 
     height:9px;
 
-    background:#eee;
+    background:var(--accent-light);
 
     border-radius:20px;
 
     overflow:hidden;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 
 }
 
@@ -335,7 +326,7 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:var(--accent);
 
     transition:.3s;
 
@@ -343,24 +334,28 @@ body{
 
 
 /* ==========================================================
-   QUESTION
+   QUESTION CARD
 ========================================================== */
 
 .card{
 
-    background:#fffde7;
+    position:relative;
 
-    border:2px dashed #f1c40f;
+    background:var(--accent-bg);
+
+    border:1px solid var(--accent-border);
 
     border-radius:12px;
 
-    padding:35px 20px;
+    padding:35px 25px;
 
     margin:20px 0;
 
-    min-height:150px;
+    min-height:190px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
@@ -371,6 +366,32 @@ body{
     font-weight:600;
 
     line-height:1.5;
+
+    gap:12px;
+
+    overflow:hidden;
+
+}
+
+
+
+/* Accent line */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:4px;
+
+    background:var(--accent);
 
 }
 
@@ -384,9 +405,11 @@ body{
     display:grid;
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(2, 1fr);
 
     gap:12px;
+
+    margin-top:22px;
 
 }
 
@@ -395,17 +418,24 @@ body{
 
     padding:17px;
 
-    font-size:30px;
+    min-height:64px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
-    background:#34495e;
+    background:#ffffff;
 
-    color:white;
+    color:var(--accent-dark);
 
-    border:none;
+    border:1px solid var(--general-border);
 
-    border-radius:9px;
+    border-radius:10px;
 
     cursor:pointer;
 
@@ -414,9 +444,11 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(.disabled){
 
-    background:#2c3e50;
+    background:var(--accent-light);
+
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 
@@ -425,14 +457,22 @@ body{
 
 .option-btn.correct{
 
-    background:#27ae60;
+    background:var(--correct-bg);
+
+    border-color:var(--correct);
+
+    color:var(--correct);
 
 }
 
 
 .option-btn.wrong{
 
-    background:#e74c3c;
+    background:var(--wrong-bg);
+
+    border-color:var(--wrong);
+
+    color:var(--wrong);
 
 }
 
@@ -441,7 +481,7 @@ body{
 
     pointer-events:none;
 
-    opacity:.7;
+    cursor:default;
 
 }
 
@@ -456,23 +496,25 @@ body{
 
     margin-top:20px;
 
-    font-size:28px;
+    font-size:25px;
 
     font-weight:bold;
+
+    line-height:1.4;
 
 }
 
 
 .correct-text{
 
-    color:#27ae60;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:var(--wrong);
 
 }
 
@@ -489,15 +531,17 @@ body{
 
     padding:16px 18px;
 
-    background:#f8fbff;
+    background:var(--accent-bg);
 
-    border-left:5px solid #3498db;
+    border:1px solid var(--accent-border);
+
+    border-left:5px solid var(--accent);
 
     border-radius:10px;
 
-    color:#34495e;
+    color:#46556b;
 
-    font-size:26px;
+    font-size:22px;
 
     line-height:1.6;
 
@@ -515,7 +559,7 @@ body{
 
 .explanation strong{
 
-    color:#1976d2;
+    color:var(--accent-dark);
 
 }
 
@@ -532,17 +576,22 @@ body{
 
     border-radius:10px;
 
-    background:#34495e;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
-    font-size:27px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:24px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    margin-top:15px;
+    margin-top:18px;
 
     transition:.2s;
 
@@ -551,7 +600,7 @@ body{
 
 .next-btn:hover{
 
-    background:#2c3e50;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -564,47 +613,88 @@ body{
 
 #final{
 
+    display:none;
+
     text-align:center;
 
-    padding:30px 20px 40px;
+    padding:25px 15px 15px;
 
 }
 
 
 #final h2{
 
-    font-size:45px;
+    margin:
+        0 0 15px;
 
-    color:#27ae60;
+    font-family:Kalam, cursive;
 
-}
+    font-size:42px;
 
-
-.final-score{
-
-    font-size:40px;
-
-    margin:25px 0;
-
-    font-weight:bold;
-
-    color:#1976d2;
+    color:var(--accent-dark);
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:28px;
+    font-size:24px;
+
+    line-height:1.5;
 
 }
 
 
-#final .start-btn{
+.final-score{
+
+    font-size:38px;
+
+    margin:22px 0;
+
+    font-weight:bold;
+
+    color:var(--accent-dark);
+
+}
+
+
+.play-again-btn{
 
     margin-top:10px;
+
+    padding:13px 30px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.play-again-btn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
 
 }
 
@@ -617,7 +707,24 @@ body{
 
     body{
 
-        padding:10px;
+        padding:
+            18px 12px 30px;
+
+    }
+
+
+    .back-btn-container{
+
+        margin-bottom:14px;
+
+    }
+
+
+    .back-btn{
+
+        font-size:18px;
+
+        padding:8px 13px;
 
     }
 
@@ -626,30 +733,25 @@ body{
 
         width:100%;
 
-        padding:
-            60px 15px 20px;
+        padding:24px 16px;
+
+        border-radius:20px;
 
     }
 
 
-    #intro{
+    .title{
 
-        padding:
-            20px 10px 25px;
-
-    }
-
-
-    #intro h1{
-
-        font-size:38px;
+        font-size:36px;
 
     }
 
 
-    #intro p{
+    .subtitle{
 
-        font-size:26px;
+        font-size:20px;
+
+        margin-bottom:20px;
 
     }
 
@@ -661,47 +763,91 @@ body{
     }
 
 
+    .topbar{
+
+        font-size:18px;
+
+    }
+
+
+    .score{
+
+        font-size:21px;
+
+    }
+
+
     .options{
 
         grid-template-columns:1fr;
+
+        gap:10px;
 
     }
 
 
     .card{
 
-        font-size:29px;
+        font-size:28px;
 
         min-height:140px;
 
-        padding:25px 15px;
+        padding:27px 15px;
 
     }
 
 
     .option-btn{
 
-        font-size:28px;
+        font-size:25px;
+
+        padding:15px;
+
+        min-height:60px;
 
     }
 
 
-    .lobby-btn{
-
-        top:16px;
-
-        left:16px;
+    .result-message{
 
         font-size:23px;
 
-        padding:7px 12px;
+    }
+
+
+    .explanation{
+
+        font-size:20px;
+
+    }
+
+
+    .next-btn{
+
+        font-size:22px;
+
+        width:100%;
 
     }
 
 
     #final h2{
 
-        font-size:40px;
+        font-size:38px;
+
+    }
+
+
+    .final-score{
+
+        font-size:34px;
+
+    }
+
+
+    .final-message{
+
+        font-size:22px;
 
     }
 
@@ -715,74 +861,38 @@ body{
 <body>
 
 
-<div class="container">
-
-
-<!-- ========================================================
+<!-- ==========================================================
      BACK TO LOBBY
-========================================================= -->
+========================================================== -->
 
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
->
+<div class="back-btn-container">
 
-    ← Back
-
-</button>
-
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        👨‍👩‍👧‍👦
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Family Vocabulary
-
-    </h1>
-
-
-    <p>
-
-        Read the English word and choose
-        the correct Vietnamese word.
-
-    </p>
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
+    <a
+        href="../../category.html?category=People%20%26%20Pronouns"
+        class="back-btn"
     >
 
-        Start Game
+        ← Back
 
-    </button>
+    </a>
 
 </div>
 
 
 
-<!-- ========================================================
+<!-- ==========================================================
+     MAIN CONTAINER
+========================================================== -->
+
+<div class="container">
+
+
+<!-- ==========================================================
      GAME
-========================================================= -->
+========================================================== -->
 
 <div
     id="game"
-    class="screen"
 >
 
 
@@ -909,13 +1019,12 @@ body{
 
 
 
-<!-- ========================================================
+<!-- ==========================================================
      FINAL
-========================================================= -->
+========================================================== -->
 
 <div
     id="final"
-    class="screen"
 >
 
 
@@ -949,7 +1058,7 @@ body{
 
 
     <button
-        class="start-btn"
+        class="play-again-btn"
         onclick="restartGame()"
     >
 
@@ -1265,7 +1374,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
@@ -1301,18 +1411,15 @@ function startGame(){
 
 
     document
-        .getElementById("intro")
-        .classList.remove("active");
+        .getElementById("game")
+        .style.display =
+        "block";
 
 
     document
         .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
+        .style.display =
+        "none";
 
 
     document
@@ -1355,7 +1462,7 @@ function loadQuestion(){
         .getElementById("progress")
         .style.width =
         (
-            currentQuestion /
+            (currentQuestion + 1) /
             totalQuestions *
             100
         ) + "%";
@@ -1387,7 +1494,9 @@ function loadQuestion(){
 
     document
         .getElementById("explanation")
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 
     const nextBtn =
@@ -1444,7 +1553,9 @@ function loadQuestion(){
             );
 
 
-        container.appendChild(btn);
+        container.appendChild(
+            btn
+        );
 
     });
 
@@ -1647,16 +1758,14 @@ function finishGame(){
 
     document
         .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+        .style.display =
+        "none";
 
 
     document
         .getElementById("final")
-        .classList.add(
-            "active"
-        );
+        .style.display =
+        "block";
 
 
     document
@@ -1739,15 +1848,10 @@ function restartGame(){
 
 
 /* ==========================================================
-   BACK TO LOBBY
+   INITIALIZE
 ========================================================== */
 
-function backToLobby(){
-
-    window.location.href =
-        "../../category.html?category=People%20%26%20Pronouns";
-
-}
+startGame();
 
 </script>
 

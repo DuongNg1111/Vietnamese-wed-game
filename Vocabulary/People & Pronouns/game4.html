@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -27,31 +28,83 @@
 >
 
 
+<!-- ==========================================================
+     GOOGLE FONT
+========================================================== -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
+
+/* ==========================================================
+   ROOT COLORS
+========================================================== */
+
+:root{
+
+    --accent:#5F79B4;
+
+    --accent-dark:#41588B;
+
+    --accent-light:#eaf0fa;
+
+    --accent-bg:#F2F6FC;
+
+    --accent-border:#c3d4ef;
+
+    --correct:#019b3f;
+
+    --correct-light:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-light:#fff0f3;
+
+    --ink: #143a6b;
+    --ink-soft: #66809d;
+
+    --muted:#7b8797;
+
+    --general-border:#d9e0e8;
+
+}
+
 
 /* ==========================================================
    RESET
 ========================================================== */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
-body{
+html{
 
-    margin:0;
+    min-height:100%;
 
-    font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+}
 
-    background:#f4f7f6;
 
-    min-height:100vh;
+/* ==========================================================
+   BODY
+========================================================== */
+
+body {
+
+    min-height: 100vh;
+
+    padding: 28px 20px 45px;
+
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    color: var(--ink);
 
     display:flex;
 
@@ -59,75 +112,58 @@ body{
 
     align-items:center;
 
-    padding:20px;
-
-    color:#2c3e50;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
 
 /* ==========================================================
-   SCREEN
+   PAGE
 ========================================================== */
 
-.screen{
-    display:none;
-}
-
-
-.screen.active{
-    display:block;
-}
-
-
-/* ==========================================================
-   CONTAINER
-========================================================== */
-
-.container{
-
-    position:relative;
+.page{
 
     width:min(900px,96vw);
 
     margin:0 auto;
-
-    background:white;
-
-    padding:65px 30px 30px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
 
 }
 
 
 /* ==========================================================
    BACK TO LOBBY
+   OUTSIDE GAME CONTAINER
 ========================================================== */
 
 .lobby-btn{
 
-    position:absolute;
+    display:inline-flex;
 
-    top:20px;
+    align-items:center;
 
-    left:22px;
+    justify-content:center;
 
-    padding:8px 14px;
+    margin-bottom:12px;
 
-    border:none;
+    padding:7px 13px;
+
+    border:1px solid var(--accent-border);
 
     border-radius:8px;
 
-    background:#eef5fc;
+    background:var(--accent-light);
 
-    color:#34495e;
+    color:var(--accent-dark);
 
-    font-size:24px;
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:20px;
 
     font-weight:bold;
 
@@ -140,7 +176,7 @@ body{
 
 .lobby-btn:hover{
 
-    background:#dcecff;
+    background:#dfe8f7;
 
     transform:translateX(-2px);
 
@@ -148,77 +184,26 @@ body{
 
 
 /* ==========================================================
-   INTRO
+   CONTAINER
 ========================================================== */
 
-#intro{
+.container{
 
-    text-align:center;
+    position:relative;
 
-    padding:20px 20px 30px;
+    width:100%;
 
-}
+    margin:0 auto;
 
+    background:#ffffff;
 
-#intro .emoji{
+    padding:35px 30px 30px;
 
-    font-size:70px;
+    border-radius:20px;
 
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 10px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.6;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
 
 }
 
@@ -229,20 +214,36 @@ body{
 
 .title{
 
+    margin:0 0 6px;
+
     text-align:center;
 
-    margin:0 0 5px;
+    font-family:'Kalam', cursive;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    color:var(--ink);
 
 }
 
 
 .subtitle{
 
+    margin:0 0 25px;
+
     text-align:center;
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    margin-bottom:25px;
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:21px;
+
+    line-height:1.4;
 
 }
 
@@ -253,18 +254,22 @@ body{
 
 .game-box{
 
-    background:#fff;
+    background:#ffffff;
 
     padding:25px;
 
     border-radius:15px;
 
-    border:1px solid #eee;
+    border:1px solid var(--general-border);
 
     text-align:center;
 
 }
 
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
 
 .topbar{
 
@@ -283,16 +288,18 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:var(--muted);
+
+    font-size:20px;
 
 }
 
 
 .score{
 
-    color:#27ae60;
+    color:var(--accent-dark);
 
-    font-size:28px;
+    font-size:24px;
 
 }
 
@@ -307,7 +314,7 @@ body{
 
     height:9px;
 
-    background:#eee;
+    background:#e8edf3;
 
     border-radius:20px;
 
@@ -324,7 +331,7 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:var(--accent);
 
     transition:.3s;
 
@@ -337,9 +344,11 @@ body{
 
 .card{
 
-    background:#f8fbff;
+    position:relative;
 
-    border:2px dashed #3498db;
+    background:var(--accent-bg);
+
+    border:1px solid var(--accent-border);
 
     border-radius:12px;
 
@@ -359,14 +368,39 @@ body{
 
     gap:12px;
 
+    overflow:hidden;
+
+}
+
+
+/* Accent line */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:6px;
+
+    background:var(--accent);
+
 }
 
 
 .question-label{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:25px;
+    font-size:22px;
+
+    line-height:1.4;
 
 }
 
@@ -379,7 +413,7 @@ body{
 
     line-height:1.6;
 
-    color:#2c3e50;
+    color:var(--ink);
 
 }
 
@@ -392,8 +426,7 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:12px;
 
@@ -404,15 +437,19 @@ body{
 
     padding:17px;
 
-    font-size:28px;
+    min-height:62px;
+
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
-    background:#34495e;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
-    border:none;
+    border:1px solid var(--accent);
 
     border-radius:9px;
 
@@ -423,53 +460,69 @@ body{
 }
 
 
-.option-btn:hover{
+.option-btn:hover:not(.disabled){
 
-    background:#2c3e50;
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
 }
 
 
-/* Correct answer */
+/* ==========================================================
+   CORRECT
+========================================================== */
 
 .option-btn.correct{
 
-    background:#27ae60;
+    background:var(--correct);
 
-    color:white;
+    border-color:var(--correct);
+
+    color:#ffffff;
 
 }
 
 
-/* Wrong selected answer */
+/* ==========================================================
+   WRONG
+========================================================== */
 
 .option-btn.wrong{
 
-    background:#e74c3c;
+    background:var(--wrong);
 
-    color:white;
+    border-color:var(--wrong);
+
+    color:#ffffff;
 
 }
 
 
-/* Correct answer revealed after wrong choice */
+/* ==========================================================
+   REVEAL CORRECT
+========================================================== */
 
 .option-btn.reveal{
 
-    background:#27ae60;
+    background:var(--correct);
 
-    color:white;
+    border-color:var(--correct);
+
+    color:#ffffff;
 
     box-shadow:
         0 0 0 3px
-        rgba(39,174,96,.2);
+        rgba(1,155,63,.12);
 
 }
 
 
-/* Locked buttons */
+/* ==========================================================
+   DISABLED
+========================================================== */
 
 .option-btn.disabled{
 
@@ -490,23 +543,27 @@ body{
 
     margin-top:20px;
 
-    font-size:28px;
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
+
+    line-height:1.4;
 
 }
 
 
 .correct-text{
 
-    color:#27ae60;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:var(--wrong);
 
 }
 
@@ -521,9 +578,11 @@ body{
 
     margin-top:0;
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:25px;
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:22px;
 
     line-height:1.5;
 
@@ -538,15 +597,17 @@ body{
 
     padding:12px 28px;
 
-    border:none;
+    border:1px solid var(--accent-dark);
 
     border-radius:10px;
 
-    background:#34495e;
+    background:var(--accent-dark);
 
-    color:white;
+    color:#ffffff;
 
-    font-size:27px;
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:25px;
 
     font-weight:bold;
 
@@ -561,7 +622,9 @@ body{
 
 .next-btn:hover{
 
-    background:#2c3e50;
+    background:#344a78;
+
+    border-color:#344a78;
 
     transform:translateY(-2px);
 
@@ -569,7 +632,7 @@ body{
 
 
 /* ==========================================================
-   FINAL
+   FINAL SCREEN
 ========================================================== */
 
 #final{
@@ -583,9 +646,13 @@ body{
 
 #final h2{
 
+    margin:0 0 15px;
+
+    font-family:'Kalam', cursive;
+
     font-size:45px;
 
-    color:#27ae60;
+    color:var(--accent-dark);
 
 }
 
@@ -598,16 +665,60 @@ body{
 
     font-weight:bold;
 
-    color:#1976d2;
+    color:var(--accent-dark);
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:28px;
+    font-size:24px;
+
+    line-height:1.6;
+
+}
+
+
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+.start-btn{
+
+    margin-top:10px;
+
+    padding:13px 30px;
+
+    border:1px solid var(--accent-dark);
+
+    border-radius:10px;
+
+    background:var(--accent-dark);
+
+    color:#ffffff;
+
+    font-family:Calibri, 'Segoe UI', sans-serif;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#344a78;
+
+    border-color:#344a78;
+
+    transform:translateY(-2px);
 
 }
 
@@ -620,7 +731,27 @@ body{
 
     body{
 
-        padding:10px;
+        padding:18px 10px 30px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .page{
+
+        width:100%;
+
+    }
+
+
+    .lobby-btn{
+
+        margin-bottom:10px;
+
+        font-size:19px;
+
+        padding:7px 11px;
 
     }
 
@@ -629,8 +760,25 @@ body{
 
         width:100%;
 
-        padding:
-            60px 15px 20px;
+        padding:28px 15px 20px;
+
+        border-radius:16px;
+
+    }
+
+
+    .title{
+
+        font-size:36px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:19px;
+
+        margin-bottom:20px;
 
     }
 
@@ -638,6 +786,27 @@ body{
     .game-box{
 
         padding:18px;
+
+    }
+
+
+    .topbar{
+
+        gap:10px;
+
+    }
+
+
+    .question-count{
+
+        font-size:18px;
+
+    }
+
+
+    .score{
+
+        font-size:22px;
 
     }
 
@@ -653,7 +822,14 @@ body{
 
         min-height:160px;
 
-        padding:25px 15px;
+        padding:28px 15px;
+
+    }
+
+
+    .question-label{
+
+        font-size:20px;
 
     }
 
@@ -665,9 +841,25 @@ body{
     }
 
 
-    #intro h1{
+    .option-btn{
 
-        font-size:38px;
+        font-size:25px;
+
+        min-height:58px;
+
+    }
+
+
+    .result-message{
+
+        font-size:24px;
+
+    }
+
+
+    .explanation{
+
+        font-size:20px;
 
     }
 
@@ -679,15 +871,16 @@ body{
     }
 
 
-    .lobby-btn{
+    .final-score{
 
-        top:16px;
+        font-size:36px;
 
-        left:16px;
+    }
 
-        font-size:23px;
 
-        padding:7px 12px;
+    .final-message{
+
+        font-size:22px;
 
     }
 
@@ -701,7 +894,7 @@ body{
 <body>
 
 
-<div class="container">
+<div class="page">
 
 
 <!-- ========================================================
@@ -720,56 +913,17 @@ body{
 
 
 <!-- ========================================================
-     INTRO
+     MAIN CONTAINER
 ========================================================= -->
 
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        👨‍👩‍👧‍👦
-
-    </div>
-
-
-    <h1>
-
-        Who Is This Person?
-
-    </h1>
-
-
-    <p>
-
-        Read the situation and choose
-        the correct Vietnamese word.
-
-    </p>
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
-
-        Start Game
-
-    </button>
-
-</div>
-
+<div class="container">
 
 
 <!-- ========================================================
      GAME
 ========================================================= -->
 
-<div
-    id="game"
-    class="screen"
->
+<div id="game">
 
 
     <h1 class="title">
@@ -790,9 +944,12 @@ body{
     <div class="game-box">
 
 
-        <!-- TOP BAR -->
+        <!-- ==================================================
+             TOP BAR
+        =================================================== -->
 
         <div class="topbar">
+
 
             <div class="question-count">
 
@@ -821,11 +978,14 @@ body{
 
             </div>
 
+
         </div>
 
 
 
-        <!-- PROGRESS -->
+        <!-- ==================================================
+             PROGRESS
+        =================================================== -->
 
         <div class="progress-wrap">
 
@@ -838,7 +998,9 @@ body{
 
 
 
-        <!-- QUESTION -->
+        <!-- ==================================================
+             QUESTION
+        =================================================== -->
 
         <div class="card">
 
@@ -860,7 +1022,9 @@ body{
 
 
 
-        <!-- OPTIONS -->
+        <!-- ==================================================
+             OPTIONS
+        =================================================== -->
 
         <div
             class="options"
@@ -869,7 +1033,9 @@ body{
 
 
 
-        <!-- RESULT -->
+        <!-- ==================================================
+             RESULT
+        =================================================== -->
 
         <div
             class="result-message"
@@ -884,7 +1050,9 @@ body{
 
 
 
-        <!-- NEXT -->
+        <!-- ==================================================
+             NEXT
+        =================================================== -->
 
         <button
             class="next-btn"
@@ -911,7 +1079,7 @@ body{
 
 <div
     id="final"
-    class="screen"
+    style="display:none;"
 >
 
 
@@ -957,6 +1125,8 @@ body{
 
 </div>
 
+
+</div>
 
 </div>
 
@@ -1186,7 +1356,8 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
@@ -1223,18 +1394,15 @@ function startGame(){
 
 
     document
-        .getElementById("intro")
-        .classList.remove("active");
+        .getElementById("game")
+        .style.display =
+        "block";
 
 
     document
         .getElementById("final")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
+        .style.display =
+        "none";
 
 
     document
@@ -1330,6 +1498,7 @@ function loadQuestion(){
 
     options.forEach(option => {
 
+
         const btn =
             document.createElement(
                 "button"
@@ -1389,9 +1558,9 @@ function handleAnswer(
         );
 
 
-    /*
+    /* ======================================================
        CORRECT ANSWER
-    */
+    ======================================================= */
 
     if(selected === question.c){
 
@@ -1446,11 +1615,9 @@ function handleAnswer(
 
 
 
-    /*
+    /* ======================================================
        WRONG ANSWER
-       Lock the question immediately
-       and reveal the correct answer.
-    */
+    ======================================================= */
 
     answered = true;
 
@@ -1499,11 +1666,6 @@ function handleAnswer(
         question.explanation;
 
 
-    /*
-       No point is awarded.
-       The player cannot retry this question.
-    */
-
     showNextButton();
 
 }
@@ -1534,7 +1696,8 @@ function showNextButton(){
         nextBtn.textContent =
             "Finish 🎉";
 
-    }else{
+    }
+    else{
 
         nextBtn.textContent =
             "Next →";
@@ -1561,7 +1724,8 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+    else{
 
         finishGame();
 
@@ -1579,16 +1743,20 @@ function finishGame(){
 
     document
         .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+        .style.display =
+        "none";
 
 
     document
         .getElementById("final")
-        .classList.add(
-            "active"
-        );
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
 
 
     document
@@ -1615,12 +1783,14 @@ function finishGame(){
         message =
             "🏆 Excellent! You know your Vietnamese family vocabulary.";
 
-    }else if(percent >= 70){
+    }
+    else if(percent >= 70){
 
         message =
             "🎉 Good job! Keep practicing.";
 
-    }else{
+    }
+    else{
 
         message =
             "📚 Keep practicing your family vocabulary.";
@@ -1659,6 +1829,15 @@ function backToLobby(){
         "../../category.html?category=People%20%26%20Pronouns";
 
 }
+
+
+
+/* ==========================================================
+   START IMMEDIATELY
+   NO INTRO SCREEN
+========================================================== */
+
+startGame();
 
 </script>
 

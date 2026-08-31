@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +28,6 @@
     content="🎯"
 >
 
-<!-- =========================================================
-     GOOGLE FONTS
-========================================================= -->
 
 <link
     rel="preconnect"
@@ -57,53 +54,29 @@
 
 :root {
 
-    /* Page */
-    --paper:
-        #f5f9fd;
-
-    --white:
-        #ffffff;
-
-
-    /* Text */
-    --ink:
-        #143a6b;
-
-    --ink-soft:
-        #66809d;
-
-
-    /* Activities Category Accent */
     --accent:
-        #2878df;
+        #BB6258;
 
     --accent-dark:
-        #1e5fba;
+        #91443B;
 
     --accent-light:
-        #eaf3ff;
+        #fdeeeb;
 
     --accent-bg:
-        #f4f8ff;
+        #FEF5F3;
 
     --accent-border:
-        #c4daf6;
+        #f0cec6;
 
 
-    /* General Border */
-    --border:
-        #d9e6f2;
-
-
-    /* Correct */
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-light:
         #eaf3ff;
 
 
-    /* Wrong */
     --wrong:
         #d9536f;
 
@@ -111,14 +84,25 @@
         #fff0f3;
 
 
-    /* Shadow */
-    --shadow:
-        rgba(
-            20,
-            58,
-            107,
-            0.08
-        );
+    --ink:
+        #3f302d;
+
+    --ink-soft:
+        #7b6c68;
+
+    --muted:
+        #7b6c68;
+
+
+    --border:
+        #d9d0ce;
+
+    --general-border:
+        #d9d0ce;
+
+
+    --container:
+        900px;
 
 }
 
@@ -151,11 +135,13 @@ body {
         100vh;
 
     padding:
-        28px 20px 45px;
+        28px
+        20px
+        45px;
 
     font-family:
         Calibri,
-        'Segoe UI',
+        "Segoe UI",
         Tahoma,
         Geneva,
         Verdana,
@@ -164,26 +150,36 @@ body {
     color:
         var(--ink);
 
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
-            #edf5fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
+
 
 }
 
 
 /* =========================================================
-   PAGE CONTAINER
+   PAGE
 ========================================================= */
 
 .page {
 
     width:
         min(
-            900px,
+            var(--container),
             100%
         );
 
@@ -217,22 +213,23 @@ body {
         7px;
 
     padding:
-        9px 16px;
+        9px
+        16px;
 
     border:
         1px solid
-        var(--border);
+        rgba(
+            20,
+            20,
+            20,
+            0.12
+        );
 
     border-radius:
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+        #ffffff;
 
     color:
         var(--accent-dark);
@@ -247,12 +244,12 @@ body {
         700;
 
     box-shadow:
-        0 4px 14px
+        0 4px 12px
         rgba(
-            20,
-            58,
-            107,
-            0.06
+            0,
+            0,
+            0,
+            0.08
         );
 
     transition:
@@ -276,7 +273,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
 }
 
@@ -300,18 +297,28 @@ body {
         hidden;
 
     background:
-        var(--white);
+        #ffffff;
 
     border:
         1px solid
-        var(--border);
+        rgba(
+            0,
+            0,
+            0,
+            0.08
+        );
 
     border-radius:
         24px;
 
     box-shadow:
         0 18px 50px
-        var(--shadow);
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        );
 
     text-align:
         center;
@@ -320,7 +327,7 @@ body {
 
 
 /* =========================================================
-   HEADER ACCENT LINE
+   ACCENT LINE
 ========================================================= */
 
 .card::before {
@@ -344,73 +351,29 @@ body {
         5px;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            #72adf5
-        );
+        var(--accent);
 
 }
 
 
 /* =========================================================
-   GAME ICON
-========================================================= */
-
-.game-icon {
-
-    width:
-        62px;
-
-    height:
-        62px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        2px auto 16px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        17px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.2rem;
-
-}
-
-
-/* =========================================================
-   TITLE
+   HEADER
 ========================================================= */
 
 h1 {
 
     margin:
-        0 0 9px;
+        0 0 8px;
 
     color:
         var(--ink);
 
     font-family:
-        "Kalam",
+        Kalam,
         cursive;
 
     font-size:
-        2.55rem;
+        2.6rem;
 
     font-weight:
         700;
@@ -421,26 +384,22 @@ h1 {
 }
 
 
-/* =========================================================
-   SUBTITLE
-========================================================= */
-
 .subtitle {
 
     max-width:
-        600px;
+        620px;
 
     margin:
-        0 auto 32px;
+        0 auto 30px;
 
     color:
         var(--ink-soft);
 
     font-size:
-        1.12rem;
+        1.15rem;
 
     line-height:
-        1.55;
+        1.5;
 
 }
 
@@ -458,37 +417,16 @@ h1 {
         var(--accent);
 
     font-size:
-        0.98rem;
+        1rem;
 
     font-weight:
         800;
 
     letter-spacing:
-        0.08em;
+        0.06em;
 
     text-transform:
         uppercase;
-
-}
-
-
-/* =========================================================
-   CHOOSE TEXT
-========================================================= */
-
-.choose-text {
-
-    margin-bottom:
-        10px;
-
-    color:
-        var(--ink-soft);
-
-    font-size:
-        1.08rem;
-
-    font-weight:
-        600;
 
 }
 
@@ -510,6 +448,12 @@ h1 {
 
     justify-content:
         center;
+
+    width:
+        min(
+            720px,
+            100%
+        );
 
     margin:
         0 auto 28px;
@@ -563,11 +507,14 @@ h1 {
     gap:
         14px;
 
-    max-width:
-        720px;
+    width:
+        min(
+            700px,
+            100%
+        );
 
     margin:
-        0 auto 24px;
+        0 auto 20px;
 
 }
 
@@ -578,8 +525,20 @@ h1 {
 
 .answer-btn {
 
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        100%;
+
     min-height:
-        70px;
+        68px;
 
     padding:
         14px 18px;
@@ -589,10 +548,10 @@ h1 {
         var(--border);
 
     border-radius:
-        16px;
+        15px;
 
     background:
-        var(--white);
+        #ffffff;
 
     color:
         var(--ink);
@@ -612,20 +571,11 @@ h1 {
     cursor:
         pointer;
 
-    box-shadow:
-        0 5px 14px
-        rgba(
-            20,
-            58,
-            107,
-            0.05
-        );
-
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease,
         border-color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -642,12 +592,12 @@ h1 {
         var(--accent-light);
 
     box-shadow:
-        0 9px 20px
+        0 7px 16px
         rgba(
-            20,
-            58,
-            107,
-            0.09
+            187,
+            98,
+            88,
+            0.12
         );
 
 }
@@ -662,7 +612,7 @@ h1 {
 
 
 /* =========================================================
-   CORRECT ANSWER
+   CORRECT
 ========================================================= */
 
 .answer-btn.correct-answer {
@@ -680,7 +630,7 @@ h1 {
 
 
 /* =========================================================
-   WRONG ANSWER
+   WRONG
 ========================================================= */
 
 .answer-btn.wrong-answer {
@@ -704,13 +654,13 @@ h1 {
 .message {
 
     min-height:
-        32px;
+        30px;
 
     margin-bottom:
-        18px;
+        16px;
 
     font-size:
-        1.12rem;
+        1.15rem;
 
     font-weight:
         800;
@@ -762,7 +712,7 @@ h1 {
         inherit;
 
     font-size:
-        1.05rem;
+        1.08rem;
 
     font-weight:
         800;
@@ -771,18 +721,11 @@ h1 {
         pointer;
 
     box-shadow:
-        inset 0 -3px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.12
-        ),
         0 6px 14px
         rgba(
-            40,
-            120,
-            223,
+            187,
+            98,
+            88,
             0.20
         );
 
@@ -803,19 +746,12 @@ h1 {
         translateY(-2px);
 
     box-shadow:
-        inset 0 -3px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.12
-        ),
         0 9px 18px
         rgba(
-            40,
-            120,
-            223,
-            0.22
+            187,
+            98,
+            88,
+            0.24
         );
 
 }
@@ -832,42 +768,6 @@ h1 {
 /* =========================================================
    RESULT SCREEN
 ========================================================= */
-
-.result-icon {
-
-    width:
-        68px;
-
-    height:
-        68px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        2px auto 18px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        18px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.4rem;
-
-}
-
 
 .result-title {
 
@@ -906,7 +806,7 @@ h1 {
         var(--ink-soft);
 
     font-size:
-        1.15rem;
+        1.2rem;
 
     font-weight:
         600;
@@ -927,27 +827,6 @@ h1 {
 
 
 /* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-
-    margin-top:
-        18px;
-
-    color:
-        var(--ink-soft);
-
-    font-size:
-        0.9rem;
-
-    text-align:
-        center;
-
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -958,7 +837,12 @@ h1 {
     body {
 
         padding:
-            18px 14px 35px;
+            18px
+            14px
+            35px;
+
+        align-items:
+            flex-start;
 
     }
 
@@ -974,7 +858,8 @@ h1 {
     .card {
 
         padding:
-            32px 20px;
+            34px
+            20px;
 
         border-radius:
             20px;
@@ -993,10 +878,10 @@ h1 {
     .subtitle {
 
         font-size:
-            1rem;
+            1.05rem;
 
         margin-bottom:
-            27px;
+            26px;
 
     }
 
@@ -1007,7 +892,8 @@ h1 {
             68px;
 
         padding:
-            16px 18px;
+            16px
+            18px;
 
         font-size:
             1.45rem;
@@ -1024,7 +910,7 @@ h1 {
             1fr;
 
         gap:
-            12px;
+            11px;
 
     }
 
@@ -1032,7 +918,7 @@ h1 {
     .answer-btn {
 
         min-height:
-            62px;
+            60px;
 
         font-size:
             1.1rem;
@@ -1061,7 +947,9 @@ h1 {
     body {
 
         padding:
-            14px 10px 28px;
+            14px
+            10px
+            28px;
 
     }
 
@@ -1069,7 +957,8 @@ h1 {
     .card {
 
         padding:
-            28px 15px;
+            30px
+            16px;
 
     }
 
@@ -1093,10 +982,11 @@ h1 {
     .answer-btn {
 
         min-height:
-            58px;
+            57px;
 
         padding:
-            12px 13px;
+            12px
+            13px;
 
         font-size:
             1rem;
@@ -1125,7 +1015,7 @@ h1 {
 
 
     <!-- =====================================================
-         BACK TO CATEGORY
+         BACK
     ====================================================== -->
 
     <div class="back-btn-container">
@@ -1134,40 +1024,40 @@ h1 {
             href="../../category.html?category=Activities"
             class="back-btn"
         >
+
             ← Back
+
         </a>
 
     </div>
 
 
+
     <!-- =====================================================
-         MAIN GAME CARD
+         GAME CARD
     ====================================================== -->
 
     <main class="card">
 
 
         <!-- =================================================
-             HEADER
+             TITLE
         ================================================== -->
 
-        <div
-            class="game-icon"
-            aria-hidden="true"
-        >
-            🎯
-        </div>
-
-
         <h1>
+
             Vietnamese Activity Quiz
+
         </h1>
 
 
         <p class="subtitle">
+
             Look at the English activity and choose
             the correct Vietnamese word or phrase.
+
         </p>
+
 
 
         <!-- =================================================
@@ -1181,11 +1071,6 @@ h1 {
                 id="questionNumber"
                 class="question-number"
             >
-            </div>
-
-
-            <div class="choose-text">
-                Choose the Vietnamese:
             </div>
 
 
@@ -1222,6 +1107,7 @@ h1 {
         </section>
 
 
+
         <!-- =================================================
              RESULT SCREEN
         ================================================== -->
@@ -1231,17 +1117,10 @@ h1 {
             class="hidden"
         >
 
-
-            <div
-                class="result-icon"
-                aria-hidden="true"
-            >
-                🎉
-            </div>
-
-
             <h1 class="result-title">
+
                 Great Job!
+
             </h1>
 
 
@@ -1264,9 +1143,10 @@ h1 {
                 class="action-btn"
                 type="button"
             >
-                Play Again
-            </button>
 
+                Play Again
+
+            </button>
 
         </section>
 
@@ -1274,12 +1154,8 @@ h1 {
     </main>
 
 
-    <div class="footer">
-        Vietnamese Activity Practice
-    </div>
-
-
 </div>
+
 
 
 <script>
@@ -1290,180 +1166,172 @@ h1 {
 
 const ACTIVITIES = [
 
-    /* WORK & STUDY */
-
     {
-        vietnamese: "học bài",
-        phonetic: "/hok bai/",
-        english: "study"
+        vietnamese:"học bài",
+        phonetic:"/hok bai/",
+        english:"study"
     },
 
     {
-        vietnamese: "làm bài",
-        phonetic: "/lam bai/",
-        english: "do homework / do exercises"
+        vietnamese:"làm bài",
+        phonetic:"/lam bai/",
+        english:"do homework / do exercises"
     },
 
     {
-        vietnamese: "đi học",
-        phonetic: "/dee hok/",
-        english: "go to school"
+        vietnamese:"đi học",
+        phonetic:"/dee hok/",
+        english:"go to school"
     },
 
     {
-        vietnamese: "học ngoại ngữ",
-        phonetic: "/hok ngwai ngư/",
-        english: "learn a foreign language"
+        vietnamese:"học ngoại ngữ",
+        phonetic:"/hok ngwai ngư/",
+        english:"learn a foreign language"
     },
 
     {
-        vietnamese: "làm việc",
-        phonetic: "/lam viek/",
-        english: "work"
+        vietnamese:"làm việc",
+        phonetic:"/lam viek/",
+        english:"work"
     },
 
     {
-        vietnamese: "đi làm",
-        phonetic: "/dee lam/",
-        english: "go to work"
+        vietnamese:"đi làm",
+        phonetic:"/dee lam/",
+        english:"go to work"
     },
 
     {
-        vietnamese: "họp",
-        phonetic: "/hop/",
-        english: "have a meeting"
+        vietnamese:"họp",
+        phonetic:"/hop/",
+        english:"have a meeting"
     },
 
     {
-        vietnamese: "thi",
-        phonetic: "/thi/",
-        english: "take an exam"
+        vietnamese:"thi",
+        phonetic:"/thi/",
+        english:"take an exam"
     },
 
     {
-        vietnamese: "đi công tác",
-        phonetic: "/dee kong tak/",
-        english: "go on a business trip"
-    },
-
-
-    /* FREE TIME */
-
-    {
-        vietnamese: "ngủ",
-        phonetic: "/ngoo/",
-        english: "sleep"
+        vietnamese:"đi công tác",
+        phonetic:"/dee cong tak/",
+        english:"go on a business trip"
     },
 
     {
-        vietnamese: "xem phim",
-        phonetic: "/sem fim/",
-        english: "watch a movie"
+        vietnamese:"ngủ",
+        phonetic:"/ngoo/",
+        english:"sleep"
     },
 
     {
-        vietnamese: "nghe nhạc",
-        phonetic: "/nge nyak/",
-        english: "listen to music"
+        vietnamese:"xem phim",
+        phonetic:"/sem fim/",
+        english:"watch a movie"
     },
 
     {
-        vietnamese: "đọc sách",
-        phonetic: "/dok sak/",
-        english: "read books"
+        vietnamese:"nghe nhạc",
+        phonetic:"/nge nyak/",
+        english:"listen to music"
     },
 
     {
-        vietnamese: "chơi game",
-        phonetic: "/choi game/",
-        english: "play games"
+        vietnamese:"đọc sách",
+        phonetic:"/dok sak/",
+        english:"read books"
     },
 
     {
-        vietnamese: "đi chơi",
-        phonetic: "/dee choi/",
-        english: "hang out / go out"
+        vietnamese:"chơi game",
+        phonetic:"/choi game/",
+        english:"play games"
     },
 
     {
-        vietnamese: "đi dạo",
-        phonetic: "/dee zao/",
-        english: "go for a walk"
+        vietnamese:"đi chơi",
+        phonetic:"/dee choi/",
+        english:"hang out / go out"
     },
 
     {
-        vietnamese: "tập thể dục",
-        phonetic: "/tap thay zook/",
-        english: "exercise / work out"
+        vietnamese:"đi dạo",
+        phonetic:"/dee zao/",
+        english:"go for a walk"
     },
 
     {
-        vietnamese: "đi biển",
-        phonetic: "/dee bien/",
-        english: "go to the beach"
+        vietnamese:"tập thể dục",
+        phonetic:"/tap thay zook/",
+        english:"exercise / work out"
     },
 
     {
-        vietnamese: "du lịch",
-        phonetic: "/zoo lik/",
-        english: "travel"
+        vietnamese:"đi biển",
+        phonetic:"/dee bien/",
+        english:"go to the beach"
     },
 
     {
-        vietnamese: "chụp hình",
-        phonetic: "/choop hin/",
-        english: "take photos"
+        vietnamese:"du lịch",
+        phonetic:"/zoo lik/",
+        english:"travel"
     },
 
     {
-        vietnamese: "gặp bạn",
-        phonetic: "/gap ban/",
-        english: "meet friends"
-    },
-
-
-    /* DAILY LIFE */
-
-    {
-        vietnamese: "ăn",
-        phonetic: "/an/",
-        english: "eat"
+        vietnamese:"chụp hình",
+        phonetic:"/choop hin/",
+        english:"take photos"
     },
 
     {
-        vietnamese: "uống",
-        phonetic: "/uong/",
-        english: "drink"
+        vietnamese:"gặp bạn",
+        phonetic:"/gap ban/",
+        english:"meet friends"
     },
 
     {
-        vietnamese: "nấu ăn",
-        phonetic: "/nəw an/",
-        english: "cook"
+        vietnamese:"ăn",
+        phonetic:"/an/",
+        english:"eat"
     },
 
     {
-        vietnamese: "mua sắm",
-        phonetic: "/mua sam/",
-        english: "go shopping"
+        vietnamese:"uống",
+        phonetic:"/uong/",
+        english:"drink"
     },
 
     {
-        vietnamese: "gọi điện",
-        phonetic: "/goy dien/",
-        english: "make a phone call"
+        vietnamese:"nấu ăn",
+        phonetic:"/nəw an/",
+        english:"cook"
     },
 
     {
-        vietnamese: "nhắn tin",
-        phonetic: "/nyan tin/",
-        english: "text / send messages"
+        vietnamese:"mua sắm",
+        phonetic:"/mua sam/",
+        english:"go shopping"
     },
 
     {
-        vietnamese: "nói chuyện",
-        phonetic: "/noy chuyen/",
-        english: "talk / chat"
+        vietnamese:"gọi điện",
+        phonetic:"/goy dien/",
+        english:"make a phone call"
+    },
+
+    {
+        vietnamese:"nhắn tin",
+        phonetic:"/nyan tin/",
+        english:"text / send messages"
+    },
+
+    {
+        vietnamese:"nói chuyện",
+        phonetic:"/noy chuyen/",
+        english:"talk / chat"
     }
 
 ];
@@ -1506,54 +1374,45 @@ const questionNumber =
         "questionNumber"
     );
 
-
 const questionText =
     document.getElementById(
         "questionText"
     );
-
 
 const answers =
     document.getElementById(
         "answers"
     );
 
-
 const message =
     document.getElementById(
         "message"
     );
-
 
 const nextBtn =
     document.getElementById(
         "nextBtn"
     );
 
-
 const gameScreen =
     document.getElementById(
         "gameScreen"
     );
-
 
 const resultScreen =
     document.getElementById(
         "resultScreen"
     );
 
-
 const scoreText =
     document.getElementById(
         "scoreText"
     );
 
-
 const performance =
     document.getElementById(
         "performance"
     );
-
 
 const playAgain =
     document.getElementById(
@@ -1567,31 +1426,36 @@ const playAgain =
 
 function shuffle(array) {
 
+    const arr =
+        [...array];
+
+
     for (
-        let i = array.length - 1;
+        let i = arr.length - 1;
         i > 0;
         i--
     ) {
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
         [
-            array[i],
-            array[j]
+            arr[i],
+            arr[j]
         ] =
         [
-            array[j],
-            array[i]
+            arr[j],
+            arr[i]
         ];
 
     }
 
 
-    return array;
+    return arr;
 
 }
 
@@ -1610,12 +1474,9 @@ function getWrongAnswers(correct) {
         );
 
 
-    shuffle(
+    return shuffle(
         available
-    );
-
-
-    return available.slice(
+    ).slice(
         0,
         ANSWERS_PER_QUESTION - 1
     );
@@ -1631,9 +1492,7 @@ function generateQuestions() {
 
     const shuffledActivities =
         shuffle(
-            [
-                ...ACTIVITIES
-            ]
+            ACTIVITIES
         );
 
 
@@ -1660,18 +1519,15 @@ function generateQuestions() {
                 ];
 
 
-                shuffle(
-                    options
-                );
-
-
                 return {
 
                     correct:
                         correct,
 
                     options:
-                        options
+                        shuffle(
+                            options
+                        )
 
                 };
 
@@ -1692,7 +1548,6 @@ function startGame() {
 
     currentQuestion =
         0;
-
 
     score =
         0;
@@ -1817,12 +1672,9 @@ function loadQuestion() {
    HANDLE ANSWER
 ========================================================= */
 
-function handleAnswer(selected) {
-
-    /*
-     * One answer only.
-     * No retry.
-     */
+function handleAnswer(
+    selected
+) {
 
     if (
         answered
@@ -1843,10 +1695,6 @@ function handleAnswer(selected) {
         );
 
 
-    /*
-     * Lock all answer buttons.
-     */
-
     buttons.forEach(
         button => {
 
@@ -1857,10 +1705,6 @@ function handleAnswer(selected) {
     );
 
 
-    /*
-     * Find correct answer.
-     */
-
     const correctButton =
         [
             ...buttons
@@ -1870,10 +1714,6 @@ function handleAnswer(selected) {
                 "true"
         );
 
-
-    /*
-     * Correct.
-     */
 
     if (
         selected.dataset.correct ===
@@ -1898,11 +1738,6 @@ function handleAnswer(selected) {
 
     }
 
-
-    /*
-     * Wrong.
-     */
-
     else {
 
         selected.classList.add(
@@ -1926,18 +1761,10 @@ function handleAnswer(selected) {
     }
 
 
-    /*
-     * Show next button.
-     */
-
     nextBtn.classList.remove(
         "hidden"
     );
 
-
-    /*
-     * Last question.
-     */
 
     if (
         currentQuestion ===
@@ -1966,6 +1793,13 @@ function handleAnswer(selected) {
 nextBtn.addEventListener(
     "click",
     () => {
+
+        if (!answered) {
+
+            return;
+
+        }
+
 
         currentQuestion++;
 
@@ -2069,3 +1903,4 @@ startGame();
 </body>
 
 </html>
+```

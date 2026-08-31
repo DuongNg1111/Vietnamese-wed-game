@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -7,30 +8,32 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Vietnamese Weather Sentence Scramble</title>
 
 <meta
-name="game-title"
-content="Vietnamese Weather Sentence Scramble"
-
+    name="game-title"
+    content="Vietnamese Weather Sentence Scramble"
 >
 
 <meta
-name="game-description"
-content="Translate English weather sentences by arranging Vietnamese weather words in the correct order."
-
+    name="game-description"
+    content="Translate English weather sentences by arranging Vietnamese weather words in the correct order."
 >
 
 <meta
-name="game-icon"
-content="🌤️"
-
+    name="game-icon"
+    content="🌤️"
 >
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
 
 <!-- =========================================================
      GOOGLE FONTS
@@ -41,6 +44,7 @@ content="🌤️"
     rel="stylesheet"
 >
 
+
 <style>
 
 /* =========================================================
@@ -48,7 +52,26 @@ content="🌤️"
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
+}
+:root {
+
+    --accent: #548C9F;
+    --accent-dark: #3B6370;
+    --accent-light: #e9f3f7;
+    --accent-bg: #F2F8FA;
+    --accent-border: #bcdae5;
+    --general-border: #d9e6f2;
+
+    --white: #ffffff;
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
 }
 
 
@@ -56,26 +79,41 @@ content="🌤️"
    BODY
 ========================================================= */
 
-body{
+body {
 
-    margin:0;
+    margin: 0;
 
-    min-height:100vh;
+    min-height: 100vh;
 
-    padding:25px 20px;
+    padding: 28px 20px 45px;
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
         sans-serif;
 
-    background:#f7faff;
+    color: var(--ink);
 
-    color:#26354a;
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
-
-
 /* =========================================================
    BACK BUTTON
 ========================================================= */
@@ -95,11 +133,11 @@ body{
 
     padding:9px 16px;
 
-    background:white;
+    background:var(--white);
 
-    color:#2878df;
+    color:#3B6370;
 
-    border:2px solid #c4daf6;
+    border:2px solid #bcdae5;
 
     border-radius:10px;
 
@@ -116,9 +154,9 @@ body{
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:#e9f3f7;
 
-    border-color:#2878df;
+    border-color:#548C9F;
 
     transform:translateY(-2px);
 
@@ -137,14 +175,16 @@ body{
 
     margin:0 auto;
 
-    background:white;
+    padding:30px 35px 35px;
+
+    background:var(--white);
+
+    border:1px solid var(--general-border);
 
     border-radius:22px;
 
-    padding:30px 35px 35px;
-
     box-shadow:
-        0 8px 28px rgba(40,120,223,.10);
+        0 8px 28px rgba(60,90,100,.10);
 
     overflow:hidden;
 
@@ -169,7 +209,7 @@ body{
 
     height:6px;
 
-    background:#2878df;
+    background:#548C9F;
 
 }
 
@@ -203,13 +243,13 @@ body{
 
     font-weight:700;
 
-    color:#2878df;
+    color:var(--ink);
 
 }
 
 
 /* =========================================================
-   INTRODUCTION / SHORT DESCRIPTION
+   SHORT INTRODUCTION
 ========================================================= */
 
 .introduction{
@@ -259,7 +299,7 @@ body{
 
 .score{
 
-    color:#2878df;
+    color:#3B6370;
 
     font-size:27px;
 
@@ -276,7 +316,7 @@ body{
 
     height:8px;
 
-    background:#eaf3ff;
+    background:#e9f3f7;
 
     border-radius:20px;
 
@@ -284,7 +324,7 @@ body{
 
     margin-bottom:20px;
 
-    border:1px solid #d9e6f2;
+    border:1px solid #bcdae5;
 
 }
 
@@ -295,7 +335,7 @@ body{
 
     height:100%;
 
-    background:#2878df;
+    background:#548C9F;
 
     transition:.3s;
 
@@ -310,9 +350,9 @@ body{
 
     position:relative;
 
-    background:#eaf3ff;
+    background:#F2F8FA;
 
-    border:2px solid #c4daf6;
+    border:2px solid #bcdae5;
 
     border-radius:16px;
 
@@ -345,7 +385,7 @@ body{
 
     height:4px;
 
-    background:#2878df;
+    background:#548C9F;
 
     border-radius:0 0 5px 5px;
 
@@ -358,7 +398,7 @@ body{
 
 .english-label{
 
-    color:#52657d;
+    color:#3B6370;
 
     font-size:21px;
 
@@ -394,7 +434,7 @@ body{
 
 .word-instruction{
 
-    color:#667085;
+    color: var(--ink);
 
     font-size:25px;
 
@@ -430,13 +470,13 @@ body{
 
     padding:13px 18px;
 
-    border:2px solid #d9e6f2;
+    border:2px solid #bcdae5;
 
     border-radius:10px;
 
-    background:white;
+    background:#f5f5f5;
 
-    color:#2878df;
+    color: var(--ink);
 
     font-family:
         Calibri,
@@ -456,11 +496,11 @@ body{
 
 .word-btn:hover:not(.used){
 
-    background:#eaf3ff;
+    background:#e9f3f7;
 
-    border-color:#2878df;
+    border-color:#548C9F;
 
-    color:#1e5fba;
+    color:#3B6370;
 
     transform:translateY(-2px);
 
@@ -519,9 +559,9 @@ body{
 
     gap:10px;
 
-    background:#f7faff;
+    background:#F2F8FA;
 
-    border:2px dashed #c4daf6;
+    border:2px dashed #bcdae5;
 
     border-radius:12px;
 
@@ -542,9 +582,9 @@ body{
 
     border-radius:9px;
 
-    background:#2878df;
+    background:#548C9F;
 
-    color:white;
+    color:#f5f5f5;
 
     border:none;
 
@@ -566,7 +606,7 @@ body{
 
 .answer-word:hover{
 
-    background:#1e5fba;
+    background:#3B6370;
 
     transform:translateY(-2px);
 
@@ -589,9 +629,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:#548C9F;
 
-    color:white;
+    color:#f5f5f5;
 
     font-family:
         Calibri,
@@ -611,7 +651,7 @@ body{
 
 .check-btn:hover:not(:disabled){
 
-    background:#1e5fba;
+    background:#3B6370;
 
     transform:translateY(-2px);
 
@@ -652,7 +692,7 @@ body{
 
 .correct-text{
 
-    color:#2878df;
+    color:#019b3f;
 
 }
 
@@ -678,9 +718,9 @@ body{
 
     max-width:750px;
 
-    background:#eaf3ff;
+    background:#e9f3f7;
 
-    border:2px solid #c4daf6;
+    border:2px solid #bcdae5;
 
     border-radius:12px;
 
@@ -697,7 +737,7 @@ body{
 
 .explanation strong{
 
-    color:#2878df;
+    color:#3B6370;
 
 }
 
@@ -718,9 +758,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:#548C9F;
 
-    color:white;
+    color:#f5f5f5;
 
     font-family:
         Calibri,
@@ -740,7 +780,7 @@ body{
 
 .next-btn:hover{
 
-    background:#1e5fba;
+    background:#3B6370;
 
     transform:translateY(-2px);
 
@@ -781,7 +821,7 @@ body{
 
     font-size:42px;
 
-    color:#2878df;
+    color:#3B6370;
 
 }
 
@@ -792,7 +832,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:#548C9F;
 
     margin:20px 0;
 
@@ -820,9 +860,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:#548C9F;
 
-    color:white;
+    color:#f5f5f5;
 
     font-family:
         Calibri,
@@ -842,7 +882,7 @@ body{
 
 .start-btn:hover{
 
-    background:#1e5fba;
+    background:#3B6370;
 
     transform:translateY(-2px);
 
@@ -1017,7 +1057,9 @@ body{
 
 </head>
 
+
 <body>
+
 
 <!-- =========================================================
      BACK
@@ -1025,24 +1067,24 @@ body{
 
 <div class="back-btn-container">
 
+    <a
+        href="../../category.html?category=Describe%20things"
+        class="back-btn"
+    >
 
-<a
-    href="../../category.html?category=Describe%20things"
-    class="back-btn"
->
+        ← Back
 
-    ← Back
-
-</a>
-
+    </a>
 
 </div>
+
 
 <!-- =========================================================
      MAIN CONTAINER
 ========================================================= -->
 
 <div class="container">
+
 
 <!-- =========================================================
      GAME SCREEN
@@ -1066,15 +1108,14 @@ body{
 
 
 <!-- =====================================================
-     SHORT INTRODUCTION
+     SHORT DESCRIPTION
 ====================================================== -->
 
 <p class="introduction">
 
-    Translate the English sentence by arranging the Vietnamese words in the correct order.
+    Arrange the Vietnamese words to build the correct sentence.
 
 </p>
-
 
 
 <!-- =====================================================
@@ -1115,7 +1156,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      PROGRESS
 ====================================================== -->
@@ -1128,7 +1168,6 @@ body{
     ></div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1154,7 +1193,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      WORD INSTRUCTION
 ====================================================== -->
@@ -1166,7 +1204,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      SCRAMBLED WORDS
 ====================================================== -->
@@ -1175,7 +1212,6 @@ body{
     class="words-container"
     id="wordsContainer"
 ></div>
-
 
 
 <!-- =====================================================
@@ -1199,7 +1235,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      CHECK
 ====================================================== -->
@@ -1216,7 +1251,6 @@ body{
 </button>
 
 
-
 <!-- =====================================================
      RESULT
 ====================================================== -->
@@ -1227,7 +1261,6 @@ body{
 ></div>
 
 
-
 <!-- =====================================================
      EXPLANATION
 ====================================================== -->
@@ -1236,7 +1269,6 @@ body{
     class="explanation"
     id="explanation"
 ></div>
-
 
 
 <!-- =====================================================
@@ -1256,6 +1288,7 @@ body{
 
 </div>
 
+
 <!-- =========================================================
      FINAL SCREEN
 ========================================================= -->
@@ -1264,59 +1297,62 @@ body{
     id="final"
 >
 
-<div class="finish-icon">
 
-    🎉
+    <div class="finish-icon">
+
+        🎉
+
+    </div>
+
+
+    <h2>
+
+        Game Complete!
+
+    </h2>
+
+
+    <p class="final-message">
+
+        You completed the Vietnamese Weather Scramble.
+
+    </p>
+
+
+    <div class="final-score">
+
+        Score:
+
+        <span id="finalScore">
+
+            0 / 20
+
+        </span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
 
 </div>
 
 
-<h2>
-
-    Game Complete!
-
-</h2>
-
-
-<p class="final-message">
-
-    You completed the Vietnamese Weather Scramble.
-
-</p>
-
-
-<div class="final-score">
-
-    Score:
-
-    <span id="finalScore">
-
-        0 / 20
-
-    </span>
-
 </div>
 
-
-<p
-    class="final-message"
-    id="finalMessage"
-></p>
-
-
-<button
-    class="start-btn"
-    onclick="restartGame()"
->
-
-    Play Again
-
-</button>
-
-
-</div>
-
-</div>
 
 <script>
 
@@ -1636,7 +1672,7 @@ const database = [
 
 
     {
-        english:"It's sunny, warm, cool, and windy.",
+        english:"It's sunny, warm, windy, and cool.",
 
         words:[
             "gió",
@@ -1657,7 +1693,7 @@ const database = [
         ],
 
         explanation:
-            "“Trời nắng, ấm, mát và gió” means “It’s sunny, warm, cool, and windy.”"
+            "“Trời nắng, ấm, mát và gió” means “It’s sunny, warm, windy, and cool.”"
     },
 
 
@@ -2521,3 +2557,4 @@ startGame();
 </body>
 
 </html>
+```

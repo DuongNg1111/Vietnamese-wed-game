@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,11 +26,6 @@
         content="🗂️"
     >
 
-    <meta
-        name="game-category"
-        content="Places, Directions & Transportation"
-    >
-
     <title>
         Classify the Word | Survival Vietnamese with Duong
     </title>
@@ -46,12 +42,12 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.googleapis.com"
+        href="https://fonts.gstatic.com"
         crossorigin
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
         rel="stylesheet"
     >
 
@@ -70,14 +66,14 @@
             --white:
                 #ffffff;
 
-            --ink:
-                #143a6b;
-
-            --ink-soft:
-                #66809d;
+            --ink: #143a6b;
+            --ink-soft: #66809d;
 
             --accent:
                 #2f9a67;
+
+            --accent-dark:
+                #247a51;
 
             --accent-light:
                 #68c493;
@@ -89,22 +85,22 @@
                 #c5e9d5;
 
             --correct:
-                #238b5c;
+                #2f9a67;
 
             --correct-background:
-                #e9f8f0;
+                #eaf8f0;
 
             --correct-border:
-                #a9dfc4;
+                #bfe5d0;
 
             --wrong:
-                #c94f5d;
+                #d9536f;
 
             --wrong-background:
-                #fff0f2;
+                #fff0f3;
 
             --wrong-border:
-                #efc4ca;
+                #f0c5cf;
 
             --line:
                 #d9e6f2;
@@ -143,7 +139,9 @@
             font-family:
                 Calibri,
                 'Segoe UI',
-                Arial,
+                Tahoma,
+                Geneva,
+                Verdana,
                 sans-serif;
 
             color:
@@ -176,12 +174,12 @@
 
             width:
                 min(
-                    1000px,
+                    1100px,
                     92%
                 );
 
             margin:
-                22px auto 0;
+                20px auto 0;
 
         }
 
@@ -238,7 +236,7 @@
                     20,
                     58,
                     107,
-                    0.08
+                    0.07
                 );
 
             transition:
@@ -274,7 +272,7 @@
                 );
 
             margin:
-                30px auto 70px;
+                32px auto 70px;
 
         }
 
@@ -288,14 +286,14 @@
             position:
                 relative;
 
-            padding:
-                32px 34px;
-
-            margin-bottom:
-                22px;
-
             overflow:
                 hidden;
+
+            padding:
+                30px 32px;
+
+            margin-bottom:
+                20px;
 
             border:
                 1px solid
@@ -313,12 +311,12 @@
                 );
 
             box-shadow:
-                0 12px 35px
+                0 12px 32px
                 rgba(
                     20,
                     58,
                     107,
-                    0.08
+                    0.07
                 );
 
         }
@@ -357,13 +355,13 @@
         .game-eyebrow {
 
             margin:
-                0 0 7px;
+                0 0 5px;
 
             color:
                 var(--accent);
 
             font-size:
-                1.095rem;
+                1.075rem;
 
             font-weight:
                 800;
@@ -391,10 +389,13 @@
 
             font-size:
                 clamp(
-                    2.375rem,
+                    2.35rem,
                     5vw,
-                    3.375rem
+                    3.15rem
                 );
+
+            font-weight:
+                700;
 
             line-height:
                 1.05;
@@ -405,16 +406,16 @@
         .game-description {
 
             margin:
-                10px 0 0;
+                8px 0 0;
 
             color:
                 var(--ink-soft);
 
             font-size:
-                1.255rem;
+                1.215rem;
 
             line-height:
-                1.55;
+                1.5;
 
         }
 
@@ -426,7 +427,34 @@
         .progress-area {
 
             margin-bottom:
-                20px;
+                18px;
+
+            padding:
+                17px 20px;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.9
+                );
+
+            box-shadow:
+                0 5px 16px
+                rgba(
+                    20,
+                    58,
+                    107,
+                    0.05
+                );
 
         }
 
@@ -443,16 +471,27 @@
                 space-between;
 
             margin-bottom:
-                8px;
+                9px;
 
             color:
-                var(--ink-soft);
+                var(--ink);
 
             font-size:
-                1.125rem;
+                1.155rem;
 
             font-weight:
-                700;
+                800;
+
+        }
+
+
+        .score-number {
+
+            color:
+                var(--accent);
+
+            font-weight:
+                800;
 
         }
 
@@ -463,7 +502,7 @@
                 100%;
 
             height:
-                9px;
+                8px;
 
             overflow:
                 hidden;
@@ -472,7 +511,7 @@
                 999px;
 
             background:
-                #e4edf5;
+                #e7eef5;
 
         }
 
@@ -486,7 +525,7 @@
                 100%;
 
             border-radius:
-                inherit;
+                999px;
 
             background:
                 linear-gradient(
@@ -508,20 +547,20 @@
         .question-card {
 
             padding:
-                35px;
+                34px;
 
             border:
                 1px solid
-                var(--line);
+                var(--accent-border);
 
             border-radius:
                 24px;
 
             background:
-                var(--white);
+                #ffffff;
 
             box-shadow:
-                0 10px 30px
+                0 10px 28px
                 rgba(
                     20,
                     58,
@@ -541,7 +580,7 @@
                 var(--accent);
 
             font-size:
-                1.105rem;
+                1.095rem;
 
             font-weight:
                 800;
@@ -615,8 +654,9 @@
         .word {
 
             font-family:
-                'Kalam',
-                cursive;
+                Calibri,
+                Arial,
+                sans-serif;
 
             color:
                 var(--ink);
@@ -653,25 +693,28 @@
                 );
 
             gap:
-                15px;
+                13px;
 
         }
 
 
         .category-btn {
 
+            position:
+                relative;
+
             min-height:
-                100px;
+                92px;
 
             padding:
-                18px 12px;
+                14px 18px;
 
             border:
                 2px solid
                 var(--line);
 
             border-radius:
-                18px;
+                16px;
 
             background:
                 #ffffff;
@@ -683,10 +726,7 @@
                 pointer;
 
             transition:
-                transform 0.2s ease,
-                border-color 0.2s ease,
-                background 0.2s ease,
-                box-shadow 0.2s ease;
+                0.2s ease;
 
         }
 
@@ -694,7 +734,7 @@
         .category-btn:hover:not(:disabled) {
 
             transform:
-                translateY(-4px);
+                translateY(-2px);
 
             border-color:
                 var(--accent);
@@ -708,7 +748,7 @@
                     20,
                     58,
                     107,
-                    0.08
+                    0.07
                 );
 
         }
@@ -756,7 +796,7 @@
         .category-btn.correct {
 
             border-color:
-                var(--correct-border);
+                var(--correct);
 
             background:
                 var(--correct-background);
@@ -770,7 +810,7 @@
         .category-btn.wrong {
 
             border-color:
-                var(--wrong-border);
+                var(--wrong);
 
             background:
                 var(--wrong-background);
@@ -794,10 +834,16 @@
                 22px;
 
             padding:
-                18px 20px;
+                16px 18px;
 
             border-radius:
-                16px;
+                15px;
+
+            font-size:
+                1.215rem;
+
+            line-height:
+                1.5;
 
         }
 
@@ -908,7 +954,7 @@
                 flex-end;
 
             margin-top:
-                22px;
+                20px;
 
         }
 
@@ -937,7 +983,7 @@
                 0;
 
             border-radius:
-                999px;
+                13px;
 
             background:
                 var(--accent);
@@ -955,7 +1001,7 @@
                 pointer;
 
             box-shadow:
-                0 7px 16px
+                0 6px 15px
                 rgba(
                     47,
                     154,
@@ -979,11 +1025,11 @@
 
         .next-btn:hover {
 
+            background:
+                var(--accent-dark);
+
             transform:
                 translateY(-2px);
-
-            background:
-                #257f55;
 
         }
 
@@ -1012,17 +1058,6 @@
         }
 
 
-        .score-number {
-
-            color:
-                var(--accent);
-
-            font-weight:
-                800;
-
-        }
-
-
         /* =====================================================
            RESULT SCREEN
         ====================================================== */
@@ -1033,25 +1068,25 @@
                 none;
 
             padding:
-                45px 35px;
+                42px 30px;
 
             border:
                 1px solid
                 var(--accent-border);
 
             border-radius:
-                25px;
+                24px;
 
             background:
-                var(--white);
+                #ffffff;
 
             box-shadow:
-                0 12px 35px
+                0 12px 32px
                 rgba(
                     20,
                     58,
                     107,
-                    0.09
+                    0.08
                 );
 
             text-align:
@@ -1071,10 +1106,10 @@
         .result-icon {
 
             margin-bottom:
-                10px;
+                12px;
 
             font-size:
-                4.375rem;
+                3.775rem;
 
         }
 
@@ -1082,7 +1117,7 @@
         .result-title {
 
             margin:
-                0;
+                0 0 8px;
 
             font-family:
                 'Kalam',
@@ -1092,7 +1127,7 @@
                 var(--ink);
 
             font-size:
-                3.075rem;
+                2.875rem;
 
         }
 
@@ -1100,13 +1135,16 @@
         .result-subtitle {
 
             margin:
-                8px 0 25px;
+                0 0 22px;
 
             color:
                 var(--ink-soft);
 
             font-size:
                 1.275rem;
+
+            line-height:
+                1.55;
 
         }
 
@@ -1120,10 +1158,10 @@
                 baseline;
 
             gap:
-                7px;
+                5px;
 
             margin-bottom:
-                28px;
+                25px;
 
         }
 
@@ -1134,7 +1172,7 @@
                 var(--accent);
 
             font-size:
-                4.675rem;
+                3.975rem;
 
             font-weight:
                 800;
@@ -1165,17 +1203,17 @@
                 600px;
 
             margin:
-                0 auto 28px;
+                0 auto 25px;
 
             padding:
-                17px 20px;
+                16px 18px;
 
             border:
                 1px solid
                 var(--accent-border);
 
             border-radius:
-                16px;
+                15px;
 
             background:
                 var(--accent-background);
@@ -1194,14 +1232,26 @@
 
         .restart-btn {
 
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
             padding:
-                12px 24px;
+                12px 22px;
 
             border:
                 0;
 
             border-radius:
-                999px;
+                13px;
 
             background:
                 var(--accent);
@@ -1226,11 +1276,11 @@
 
         .restart-btn:hover {
 
+            background:
+                var(--accent-dark);
+
             transform:
                 translateY(-2px);
-
-            background:
-                #257f55;
 
         }
 
@@ -1257,7 +1307,7 @@
                 #7c93aa;
 
             font-size:
-                1.155rem;
+                1.135rem;
 
             text-align:
                 center;
@@ -1274,7 +1324,7 @@
                 1px;
 
             margin-bottom:
-                20px;
+                18px;
 
             background:
                 #d8e5f0;
@@ -1290,13 +1340,34 @@
             max-width: 650px
         ) {
 
+            .top-nav {
+
+                margin-top:
+                    14px;
+
+            }
+
+
+            .game-container {
+
+                margin-top:
+                    23px;
+
+            }
+
+
             .game-header {
 
                 padding:
-                    27px 22px;
+                    26px 22px;
 
-                border-radius:
-                    20px;
+            }
+
+
+            .game-title {
+
+                font-size:
+                    2.525rem;
 
             }
 
@@ -1304,10 +1375,7 @@
             .question-card {
 
                 padding:
-                    25px 18px;
-
-                border-radius:
-                    20px;
+                    25px 20px;
 
             }
 
@@ -1323,7 +1391,7 @@
             .category-btn {
 
                 min-height:
-                    75px;
+                    60px;
 
                 display:
                     flex;
@@ -1373,6 +1441,36 @@
 
         }
 
+
+        @media (
+            max-width: 430px
+        ) {
+
+            .progress-area {
+
+                padding:
+                    14px 15px;
+
+            }
+
+
+            .question-instruction {
+
+                font-size:
+                    1.25rem;
+
+            }
+
+
+            .word {
+
+                font-size:
+                    3rem;
+
+            }
+
+        }
+
     </style>
 
 </head>
@@ -1410,10 +1508,6 @@
 
         <header class="game-header">
 
-            <p class="game-eyebrow">
-                Places, Directions & Transportation
-            </p>
-
             <h1 class="game-title">
                 Classify the Word
             </h1>
@@ -1429,7 +1523,7 @@
              PROGRESS
         ================================================== -->
 
-        <div class="progress-area">
+        <section class="progress-area">
 
             <div class="progress-top">
 
@@ -1459,7 +1553,7 @@
 
             </div>
 
-        </div>
+        </section>
 
 
         <!-- =================================================
@@ -1674,7 +1768,6 @@
                 class="result-message"
             >
                 Great job!
-
             </div>
 
 
@@ -1683,7 +1776,7 @@
                 type="button"
                 class="restart-btn"
             >
-                Play Again
+                ↻ Play Again
             </button>
 
         </section>
@@ -1712,19 +1805,11 @@
 
         /* =====================================================
            GAME DATA
-
-           30 approved vocabulary words:
-
-           10 Places
-           10 Directions
-           10 Transportation
         ====================================================== */
 
         const WORD_BANK = [
 
-            /* =============================================
-               PLACES
-            ============================================== */
+            /* PLACES */
 
             {
                 word: "nhà",
@@ -1787,9 +1872,7 @@
             },
 
 
-            /* =============================================
-               DIRECTIONS
-            ============================================== */
+            /* DIRECTIONS */
 
             {
                 word: "bên trái",
@@ -1852,9 +1935,7 @@
             },
 
 
-            /* =============================================
-               TRANSPORTATION
-            ============================================== */
+            /* TRANSPORTATION */
 
             {
                 word: "xe máy",
@@ -2056,7 +2137,7 @@
 
 
         /* =====================================================
-           SHUFFLE ARRAY
+           SHUFFLE
         ====================================================== */
 
         function shuffle(
@@ -2099,12 +2180,6 @@
 
         /* =====================================================
            CREATE QUESTIONS
-
-           Select exactly 20 questions from
-           the 30-word vocabulary bank.
-
-           The selection tries to keep the three
-           categories balanced.
         ====================================================== */
 
         function createQuestions() {
@@ -2237,6 +2312,7 @@
                     button.disabled =
                         false;
 
+
                     button.classList.remove(
                         "correct",
                         "wrong"
@@ -2314,10 +2390,6 @@
             selectedButton
         ) {
 
-            /*
-             * Prevent a second answer.
-             */
-
             if (
                 answered
             ) {
@@ -2342,10 +2414,6 @@
                 question.category;
 
 
-            /*
-             * Lock ALL buttons.
-             */
-
             categoryButtons.forEach(
                 button => {
 
@@ -2355,10 +2423,6 @@
                 }
             );
 
-
-            /*
-             * Mark selected button.
-             */
 
             if (
                 isCorrect
@@ -2371,11 +2435,12 @@
 
                 score++;
 
+
                 updateScore();
 
 
                 feedback.className =
-                    "feedback correct";
+                    "feedback correct show";
 
 
                 feedbackTitle.textContent =
@@ -2393,10 +2458,6 @@
                     "wrong"
                 );
 
-
-                /*
-                 * Reveal correct category.
-                 */
 
                 categoryButtons.forEach(
                     button => {
@@ -2417,7 +2478,7 @@
 
 
                 feedback.className =
-                    "feedback wrong";
+                    "feedback wrong show";
 
 
                 feedbackTitle.textContent =
@@ -2434,13 +2495,16 @@
             }
 
 
-            /*
-             * Show Next button.
-             */
-
             nextButton.classList.add(
                 "show"
             );
+
+
+            nextButton.textContent =
+                currentQuestion ===
+                TOTAL_QUESTIONS - 1
+                    ? "See Results →"
+                    : "Next Question →";
 
         }
 
@@ -2473,7 +2537,8 @@
 
 
             if (
-                score === 20
+                score ===
+                20
             ) {
 
                 resultIcon.textContent =
@@ -2486,7 +2551,8 @@
             }
 
             else if (
-                score >= 16
+                score >=
+                16
             ) {
 
                 resultIcon.textContent =
@@ -2499,7 +2565,8 @@
             }
 
             else if (
-                score >= 12
+                score >=
+                12
             ) {
 
                 resultIcon.textContent =
@@ -2619,6 +2686,7 @@
 
                 startGame();
 
+
                 window.scrollTo(
                     {
                         top:
@@ -2645,3 +2713,4 @@
 </body>
 
 </html>
+```

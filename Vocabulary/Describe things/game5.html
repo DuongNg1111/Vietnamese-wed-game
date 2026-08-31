@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -7,30 +8,32 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Vietnamese Opposite Match</title>
 
 <meta
-name="game-title"
-content="Vietnamese Opposite Match"
-
+    name="game-title"
+    content="Vietnamese Opposite Match"
 >
 
 <meta
-name="game-description"
-content="Match Vietnamese describing words with their opposites and learn what each pair means."
-
+    name="game-description"
+    content="Match Vietnamese describing words with their opposites and learn what each pair means."
 >
 
 <meta
-name="game-icon"
-content="↔️"
-
+    name="game-icon"
+    content="↔️"
 >
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
 
 <!-- =========================================================
      GOOGLE FONT
@@ -41,14 +44,54 @@ content="↔️"
     rel="stylesheet"
 >
 
+
 <style>
+
+/* =========================================================
+   COLOR VARIABLES
+========================================================= */
+
+:root{
+
+    --accent:#548C9F;
+
+    --accent-dark:#3B6370;
+
+    --accent-light:#e9f3f7;
+
+    --accent-bg:#F2F8FA;
+
+    --accent-border:#bcdae5;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --white:#ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+    --muted:#667085;
+
+}
+
 
 /* =========================================================
    RESET
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
@@ -62,16 +105,35 @@ body{
 
     min-height:100vh;
 
-    padding:25px 20px;
+    padding:28px 20px 45px;
 
     font-family:
         Calibri,
         Arial,
         sans-serif;
 
-    background:#f7faff;
+    color:var(--ink);
 
-    color:#26354a;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page{
+
+    width:min(900px,95vw);
+
+    margin:0 auto;
 
 }
 
@@ -82,7 +144,7 @@ body{
 
 .back-btn-container{
 
-    width:min(900px,95vw);
+    width:100%;
 
     margin:0 auto 15px;
 
@@ -95,11 +157,11 @@ body{
 
     padding:9px 16px;
 
-    background:white;
+    background:var(--white);
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
@@ -116,9 +178,9 @@ body{
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 
@@ -133,18 +195,18 @@ body{
 
     position:relative;
 
-    width:min(900px,95vw);
+    width:100%;
 
     margin:0 auto;
 
-    background:white;
+    background:var(--white);
 
     border-radius:22px;
 
     padding:30px 35px 35px;
 
     box-shadow:
-        0 8px 28px rgba(40,120,223,.10);
+        0 8px 28px rgba(59,99,112,.12);
 
     overflow:hidden;
 
@@ -169,7 +231,7 @@ body{
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
 
 }
 
@@ -203,10 +265,14 @@ body{
 
     font-weight:700;
 
-    color:#2878df;
+    color:var(--ink);
 
 }
 
+
+/* =========================================================
+   SHORT INTRODUCTION
+========================================================= */
 
 .instruction{
 
@@ -214,7 +280,7 @@ body{
 
     text-align:center;
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:25px;
 
@@ -248,14 +314,14 @@ body{
 
 .question-count{
 
-    color:#667085;
+    color:var(--muted);
 
 }
 
 
 .score{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     font-size:27px;
 
@@ -272,7 +338,7 @@ body{
 
     height:8px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
     border-radius:20px;
 
@@ -280,7 +346,7 @@ body{
 
     margin-bottom:20px;
 
-    border:1px solid #d9e6f2;
+    border:1px solid var(--accent-border);
 
 }
 
@@ -291,7 +357,7 @@ body{
 
     height:100%;
 
-    background:#2878df;
+    background:var(--accent);
 
     transition:.3s;
 
@@ -306,9 +372,9 @@ body{
 
     position:relative;
 
-    background:#eaf3ff;
+    background:var(--accent-bg);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:16px;
 
@@ -341,7 +407,7 @@ body{
 
     height:4px;
 
-    background:#2878df;
+    background:var(--accent);
 
     border-radius:0 0 5px 5px;
 
@@ -354,7 +420,7 @@ body{
 
 .question-label{
 
-    color:#52657d;
+    color:var(--accent-dark);
 
     font-size:21px;
 
@@ -379,7 +445,7 @@ body{
 
     line-height:1.5;
 
-    color:#26354a;
+    color:var(--ink);
 
 }
 
@@ -406,13 +472,13 @@ body{
 
     padding:15px 18px;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
-    background:white;
+    background:var(--white);
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     font-family:
         Calibri,
@@ -432,11 +498,11 @@ body{
 
 .option-btn:hover:not(.disabled){
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
 
-    color:#1e5fba;
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -445,22 +511,22 @@ body{
 
 .option-btn.correct{
 
-    background:#eaf3ff;
+    background:var(--correct-bg);
 
-    border-color:#2878df;
+    border-color:var(--correct);
 
-    color:#2878df;
+    color:var(--correct);
 
 }
 
 
 .option-btn.wrong{
 
-    background:#fff0f3;
+    background:var(--wrong-bg);
 
-    border-color:#d9536f;
+    border-color:var(--wrong);
 
-    color:#d9536f;
+    color:var(--wrong);
 
 }
 
@@ -495,14 +561,14 @@ body{
 
 .correct-text{
 
-    color:#2878df;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#d9536f;
+    color:var(--wrong);
 
 }
 
@@ -519,9 +585,9 @@ body{
 
     padding:17px 19px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:12px;
 
@@ -543,7 +609,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     margin-bottom:7px;
 
@@ -558,7 +624,7 @@ body{
 
     line-height:1.6;
 
-    color:#26354a;
+    color:var(--ink);
 
 }
 
@@ -567,7 +633,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -588,9 +654,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:var(--white);
 
     font-family:
         Calibri,
@@ -610,7 +676,7 @@ body{
 
 .next-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -651,7 +717,7 @@ body{
 
     font-size:42px;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -662,7 +728,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent);
 
     margin:20px 0;
 
@@ -671,7 +737,7 @@ body{
 
 .final-message{
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:26px;
 
@@ -690,9 +756,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:var(--white);
 
     font-family:
         Calibri,
@@ -712,7 +778,7 @@ body{
 
 .start-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -728,6 +794,13 @@ body{
     body{
 
         padding:20px 12px;
+
+    }
+
+
+    .page{
+
+        width:100%;
 
     }
 
@@ -871,7 +944,12 @@ body{
 
 </head>
 
+
 <body>
+
+
+<div class="page">
+
 
 <!-- =========================================================
      BACK
@@ -879,24 +957,24 @@ body{
 
 <div class="back-btn-container">
 
+    <a
+        href="../../category.html?category=Describe%20things"
+        class="back-btn"
+    >
 
-<a
-    href="../../category.html?category=Describe%20things"
-    class="back-btn"
->
+        ← Back
 
-    ← Back
-
-</a>
-
+    </a>
 
 </div>
+
 
 <!-- =========================================================
      MAIN CONTAINER
 ========================================================= -->
 
 <div class="container">
+
 
 <!-- =========================================================
      GAME SCREEN
@@ -930,13 +1008,11 @@ body{
 </p>
 
 
-
 <!-- =====================================================
      TOP BAR
 ====================================================== -->
 
 <div class="topbar">
-
 
     <div class="question-count">
 
@@ -965,9 +1041,7 @@ body{
 
     </div>
 
-
 </div>
-
 
 
 <!-- =====================================================
@@ -982,7 +1056,6 @@ body{
     ></div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1008,7 +1081,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      OPTIONS
 ====================================================== -->
@@ -1019,7 +1091,6 @@ body{
 ></div>
 
 
-
 <!-- =====================================================
      RESULT
 ====================================================== -->
@@ -1028,7 +1099,6 @@ body{
     class="result-message"
     id="resultText"
 ></div>
-
 
 
 <!-- =====================================================
@@ -1057,7 +1127,6 @@ body{
 </div>
 
 
-
 <!-- =====================================================
      NEXT
 ====================================================== -->
@@ -1075,6 +1144,7 @@ body{
 
 </div>
 
+
 <!-- =========================================================
      FINAL SCREEN
 ========================================================= -->
@@ -1084,59 +1154,63 @@ body{
 >
 
 
-<div class="finish-icon">
+    <div class="finish-icon">
 
-    🎉
+        🎉
+
+    </div>
+
+
+    <h2>
+
+        Game Complete!
+
+    </h2>
+
+
+    <p class="final-message">
+
+        You completed the Vietnamese Opposite Match.
+
+    </p>
+
+
+    <div class="final-score">
+
+        Score:
+
+        <span id="finalScore">
+
+            0 / 20
+
+        </span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
+
+
+</div>
+
 
 </div>
 
-
-<h2>
-
-    Game Complete!
-
-</h2>
-
-
-<p class="final-message">
-
-    You completed the Vietnamese Opposite Match.
-
-</p>
-
-
-<div class="final-score">
-
-    Score:
-
-    <span id="finalScore">
-
-        0 / 20
-
-    </span>
-
 </div>
 
-
-<p
-    class="final-message"
-    id="finalMessage"
-></p>
-
-
-<button
-    class="start-btn"
-    onclick="restartGame()"
->
-
-    Play Again
-
-</button>
-
-
-</div>
-
-</div>
 
 <script>
 
@@ -1220,7 +1294,6 @@ const oppositePairs = [
 ];
 
 
-
 /* =========================================================
    CREATE QUESTION DATABASE
 ========================================================= */
@@ -1252,7 +1325,6 @@ oppositePairs.forEach(pair => {
     });
 
 });
-
 
 
 /* =========================================================
@@ -1309,7 +1381,6 @@ const allWords = [
 ];
 
 
-
 /* =========================================================
    STATE
 ========================================================= */
@@ -1321,7 +1392,6 @@ let currentQuestion = 0;
 let score = 0;
 
 let answered = false;
-
 
 
 /* =========================================================
@@ -1363,7 +1433,6 @@ function shuffle(array){
 }
 
 
-
 /* =========================================================
    CREATE OPTIONS
 ========================================================= */
@@ -1390,7 +1459,6 @@ function createOptions(correctWord){
     ]);
 
 }
-
 
 
 /* =========================================================
@@ -1439,7 +1507,6 @@ function startGame(){
     loadQuestion();
 
 }
-
 
 
 /* =========================================================
@@ -1528,7 +1595,6 @@ function loadQuestion(){
         : "Next →";
 
 
-
     /* =====================================================
        OPTIONS
     ====================================================== */
@@ -1580,7 +1646,6 @@ function loadQuestion(){
     });
 
 }
-
 
 
 /* =========================================================
@@ -1672,11 +1737,6 @@ function handleAnswer(
             "result-message wrong-text";
 
 
-        /*
-         * Show the correct answer.
-         * No retry.
-         */
-
         optionButtons.forEach(btn => {
 
             if(
@@ -1695,7 +1755,6 @@ function handleAnswer(
     }
 
 
-
     /* =====================================================
        DISABLE ALL OPTIONS
     ====================================================== */
@@ -1707,7 +1766,6 @@ function handleAnswer(
         );
 
     });
-
 
 
     /* =====================================================
@@ -1741,7 +1799,6 @@ function handleAnswer(
         );
 
 
-
     /* =====================================================
        SHOW NEXT
     ====================================================== */
@@ -1752,7 +1809,6 @@ function handleAnswer(
         "block";
 
 }
-
 
 
 /* =========================================================
@@ -1787,7 +1843,6 @@ function nextQuestion(){
     }
 
 }
-
 
 
 /* =========================================================
@@ -1871,7 +1926,6 @@ function finishGame(){
 }
 
 
-
 /* =========================================================
    RESTART
 ========================================================= */
@@ -1881,7 +1935,6 @@ function restartGame(){
     startGame();
 
 }
-
 
 
 /* =========================================================
@@ -1896,7 +1949,6 @@ function backToLobby(){
 }
 
 
-
 /* =========================================================
    INITIALIZE
 ========================================================= */
@@ -1908,3 +1960,4 @@ startGame();
 </body>
 
 </html>
+```

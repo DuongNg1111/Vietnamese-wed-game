@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,28 +11,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Color Matching</title>
-
-
-<!-- =========================================================
-     GOOGLE FONTS
-========================================================= -->
-
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
-
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
-    rel="stylesheet"
->
+<title>Colors Matching</title>
 
 
 <!-- =========================================================
@@ -59,46 +39,67 @@
 >
 
 
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-}
-
 
 /* =========================================================
    DESIGN TOKENS
 ========================================================= */
 
-:root{
+:root {
+
+    --paper:
+        #f7f8fc;
+
+    --f5f5f5:
+        #ffffff;
+
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
 
     --accent:
-        #2878df;
+        #7569AA;
 
     --accent-dark:
-        #1e5fba;
+        #544A82;
 
     --accent-light:
-        #eaf3ff;
+        #efedf9;
+
+    --accent-bg:
+        #F5F4FB;
 
     --accent-border:
-        #c4daf6;
+        #d0c9ec;
 
     --general-border:
-        #d9e6f2;
+        #dedbea;
 
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-bg:
         #eaf3ff;
@@ -109,14 +110,24 @@
     --wrong-bg:
         #fff0f3;
 
-    --text:
-        #243b53;
+}
 
-    --text-soft:
-        #66809d;
 
-    --white:
-        #ffffff;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    box-sizing:
+        border-box;
 
 }
 
@@ -125,28 +136,49 @@
    BODY
 ========================================================= */
 
-body{
+body {
 
-    min-height:100vh;
+   margin:0;
 
-    padding:24px 18px;
+    min-height: 100vh;
 
-    font-family:
-        Calibri,
-        Arial,
-        Helvetica,
-        sans-serif;
+    padding: 28px 20px 45px;
 
-    color:
-        var(--text);
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    color: var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f7fbff 50%,
-            #eef6fd 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width:
+        min(
+            900px,
+            100%
+        );
+
+    margin:
+        0 auto;
 
 }
 
@@ -155,43 +187,48 @@ body{
    BACK BUTTON
 ========================================================= */
 
-.back-btn-container{
+.back-btn-container {
 
-    width:
-        900px;
-
-    max-width:
-        100%;
-
-    margin:
-        0 auto 14px;
+    margin-bottom:
+        16px;
 
 }
 
 
-.back-btn{
+.back-btn {
 
     display:
-        inline-block;
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
 
     padding:
-        9px 18px;
+        9px 17px;
 
     border:
         1px solid
         var(--accent-border);
 
     border-radius:
-        12px;
+        999px;
 
     background:
-        var(--accent-light);
+        var(--white);
 
     color:
         var(--accent-dark);
 
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
     font-size:
-        24px;
+        1.15rem;
 
     font-weight:
         700;
@@ -199,13 +236,25 @@ body{
     text-decoration:
         none;
 
+    box-shadow:
+        0 4px 12px
+        rgba(
+            84,
+            74,
+            130,
+            0.08
+        );
+
     transition:
-        .2s ease;
+        0.2s ease;
 
 }
 
 
-.back-btn:hover{
+.back-btn:hover {
+
+    transform:
+        translateY(-2px);
 
     background:
         var(--accent);
@@ -214,10 +263,7 @@ body{
         var(--accent);
 
     color:
-        white;
-
-    transform:
-        translateY(-2px);
+        var(--white);
 
 }
 
@@ -226,22 +272,22 @@ body{
    MAIN CARD
 ========================================================= */
 
-.game-box{
+.game-box {
 
     position:
         relative;
 
     width:
-        900px;
+        100%;
 
     max-width:
-        100%;
+        900px;
 
     margin:
         0 auto;
 
     padding:
-        34px 42px;
+        40px 44px 42px;
 
     overflow:
         hidden;
@@ -258,16 +304,16 @@ body{
             255,
             255,
             255,
-            .98
+            0.98
         );
 
     box-shadow:
         0 18px 45px
         rgba(
-            40,
-            120,
-            223,
-            .10
+            60,
+            55,
+            75,
+            0.10
         );
 
 }
@@ -277,7 +323,7 @@ body{
    ACCENT LINE
 ========================================================= */
 
-.game-box::before{
+.game-box::before {
 
     content:
         "";
@@ -307,48 +353,51 @@ body{
    HEADER
 ========================================================= */
 
-.game-header{
+.game-header {
+
+    margin-bottom:
+        22px;
 
     text-align:
         center;
 
-    margin-bottom:
-        18px;
-
 }
 
 
-.game-header h1{
+.game-header h1 {
 
     margin-bottom:
-        4px;
+        6px;
 
     color:
-        var(--accent-dark);
+        var(--ink);
 
     font-family:
         Kalam,
         cursive;
 
     font-size:
-        42px;
+        2.65rem;
 
     font-weight:
         700;
 
+    line-height:
+        1.2;
+
 }
 
 
-.subtitle{
+.subtitle {
 
     color:
         var(--text-soft);
 
     font-size:
-        22px;
+        1.22rem;
 
     line-height:
-        1.45;
+        1.5;
 
 }
 
@@ -357,13 +406,13 @@ body{
    INFO
 ========================================================= */
 
-#info{
+#info {
 
     margin-bottom:
-        22px;
+        24px;
 
     padding:
-        10px 18px;
+        11px 18px;
 
     border:
         1px solid
@@ -382,7 +431,7 @@ body{
         center;
 
     font-size:
-        22px;
+        1.18rem;
 
     font-weight:
         700;
@@ -391,7 +440,7 @@ body{
 
 
 #round,
-#score{
+#score {
 
     font-weight:
         800;
@@ -403,7 +452,7 @@ body{
    GAME AREA
 ========================================================= */
 
-#game{
+#game {
 
     width:
         100%;
@@ -421,7 +470,7 @@ body{
    ROW
 ========================================================= */
 
-.row{
+.row {
 
     display:
         flex;
@@ -445,7 +494,7 @@ body{
    COLOR BOX
 ========================================================= */
 
-.colorBox{
+.colorBox {
 
     width:
         82px;
@@ -466,10 +515,10 @@ body{
     box-shadow:
         0 3px 8px
         rgba(
-            36,
+            63,
             59,
-            83,
-            .06
+            80,
+            0.08
         );
 
 }
@@ -479,7 +528,7 @@ body{
    SELECT
 ========================================================= */
 
-select{
+select {
 
     width:
         330px;
@@ -501,7 +550,7 @@ select{
         none;
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--text);
@@ -509,21 +558,22 @@ select{
     font-family:
         Calibri,
         Arial,
+        Helvetica,
         sans-serif;
 
     font-size:
-        23px;
+        1.2rem;
 
     cursor:
         pointer;
 
     transition:
-        .2s ease;
+        0.2s ease;
 
 }
 
 
-select:hover{
+select:hover {
 
     border-color:
         var(--accent-border);
@@ -531,7 +581,7 @@ select:hover{
 }
 
 
-select:focus{
+select:focus {
 
     border-color:
         var(--accent);
@@ -543,13 +593,13 @@ select:focus{
 }
 
 
-select:disabled{
+select:disabled {
 
     background:
-        #f5f8fb;
+        #f5f5f7;
 
     color:
-        #6b7f93;
+        #777286;
 
     cursor:
         default;
@@ -561,7 +611,7 @@ select:disabled{
    RESULT STATES
 ========================================================= */
 
-select.correct-answer{
+select.correct-answer {
 
     border-color:
         var(--correct);
@@ -570,12 +620,12 @@ select.correct-answer{
         var(--correct-bg);
 
     color:
-        var(--accent-dark);
+        var(--text);
 
 }
 
 
-select.wrong-answer{
+select.wrong-answer {
 
     border-color:
         var(--wrong);
@@ -590,10 +640,10 @@ select.wrong-answer{
 
 
 /* =========================================================
-   BUTTONS
+   CONTROLS
 ========================================================= */
 
-.controls{
+.controls {
 
     display:
         flex;
@@ -601,33 +651,47 @@ select.wrong-answer{
     justify-content:
         center;
 
+    align-items:
+        center;
+
     gap:
         12px;
 
+    flex-wrap:
+        wrap;
+
     margin-top:
-        22px;
+        24px;
 
 }
 
 
-.action-btn{
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.action-btn {
+
+    min-width:
+        150px;
 
     padding:
-        11px 24px;
+        11px 22px;
 
     border:
         none;
 
     border-radius:
-        12px;
+        999px;
 
     font-family:
         Calibri,
         Arial,
+        Helvetica,
         sans-serif;
 
     font-size:
-        22px;
+        1.15rem;
 
     font-weight:
         700;
@@ -636,37 +700,52 @@ select.wrong-answer{
         pointer;
 
     transition:
-        .2s ease;
+        0.2s ease;
 
 }
 
 
 /* =========================================================
-   CLEAR
+   CLEAR BUTTON
 ========================================================= */
 
-.clear-btn{
+.clear-btn {
 
     border:
         1px solid
         var(--general-border);
 
     background:
-        white;
+        var(--white);
 
     color:
         var(--text-soft);
 
+    box-shadow:
+        0 4px 12px
+        rgba(
+            84,
+            74,
+            130,
+            0.06
+        );
+
 }
 
 
-.clear-btn:hover{
+.clear-btn:hover {
 
     background:
-        #f5f9fd;
+        var(--accent-light);
 
     border-color:
         var(--accent-border);
+
+    color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
 
 }
 
@@ -676,13 +755,13 @@ select.wrong-answer{
 ========================================================= */
 
 .check-btn,
-.next-btn{
+.next-btn {
 
     background:
-        var(--accent);
+        var(--accent-light);
 
     color:
-        white;
+        var(--white);
 
     box-shadow:
         inset 0 -3px 0
@@ -690,14 +769,21 @@ select.wrong-answer{
             0,
             0,
             0,
-            .10
+            0.10
+        ),
+        0 6px 14px
+        rgba(
+            84,
+            74,
+            130,
+            0.18
         );
 
 }
 
 
 .check-btn:hover,
-.next-btn:hover{
+.next-btn:hover {
 
     background:
         var(--accent-dark);
@@ -708,23 +794,33 @@ select.wrong-answer{
 }
 
 
+.check-btn:active,
+.next-btn:active,
+.clear-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
 /* =========================================================
    MESSAGE
 ========================================================= */
 
-#message{
+#message {
 
     min-height:
         34px;
 
     margin-top:
-        16px;
+        17px;
 
     text-align:
         center;
 
     font-size:
-        25px;
+        1.25rem;
 
     font-weight:
         700;
@@ -732,7 +828,7 @@ select.wrong-answer{
 }
 
 
-.correct-message{
+.correct-message {
 
     color:
         var(--correct);
@@ -740,7 +836,7 @@ select.wrong-answer{
 }
 
 
-.wrong-message{
+.wrong-message {
 
     color:
         var(--wrong);
@@ -752,13 +848,13 @@ select.wrong-answer{
    EXPLANATION
 ========================================================= */
 
-#explanation{
+#explanation {
 
     margin-top:
-        16px;
+        18px;
 
     padding:
-        13px 17px;
+        14px 18px;
 
     border:
         1px solid
@@ -769,7 +865,7 @@ select.wrong-answer{
         var(--accent);
 
     border-radius:
-        10px;
+        12px;
 
     background:
         var(--accent-light);
@@ -781,24 +877,24 @@ select.wrong-answer{
         left;
 
     font-size:
-        20px;
+        1.08rem;
 
     line-height:
-        1.55;
+        1.6;
 
 }
 
 
-.explanation-title{
+.explanation-title {
 
     margin-bottom:
-        4px;
+        5px;
 
     color:
         var(--accent-dark);
 
     font-weight:
-        700;
+        800;
 
 }
 
@@ -807,7 +903,10 @@ select.wrong-answer{
    RESULT SCREEN
 ========================================================= */
 
-#resultScreen{
+#resultScreen {
+
+    padding:
+        15px 0 5px;
 
     text-align:
         center;
@@ -815,7 +914,7 @@ select.wrong-answer{
 }
 
 
-.result-title{
+.result-title {
 
     margin-bottom:
         8px;
@@ -828,7 +927,7 @@ select.wrong-answer{
         cursive;
 
     font-size:
-        42px;
+        2.65rem;
 
     font-weight:
         700;
@@ -836,18 +935,18 @@ select.wrong-answer{
 }
 
 
-.result-label{
+.result-label {
 
     color:
         var(--text-soft);
 
     font-size:
-        23px;
+        1.2rem;
 
 }
 
 
-.score{
+.score {
 
     margin:
         8px 0;
@@ -856,7 +955,7 @@ select.wrong-answer{
         var(--accent);
 
     font-size:
-        58px;
+        3.5rem;
 
     font-weight:
         800;
@@ -864,16 +963,16 @@ select.wrong-answer{
 }
 
 
-.performance{
+.performance {
 
     margin-bottom:
-        24px;
+        26px;
 
     color:
         var(--text-soft);
 
     font-size:
-        27px;
+        1.35rem;
 
     font-weight:
         700;
@@ -885,7 +984,7 @@ select.wrong-answer{
    HIDDEN
 ========================================================= */
 
-.hidden{
+.hidden {
 
     display:
         none !important;
@@ -897,22 +996,22 @@ select.wrong-answer{
    MOBILE
 ========================================================= */
 
-@media(
-    max-width:600px
-){
+@media (
+    max-width: 700px
+) {
 
-    body{
+    body {
 
         padding:
-            14px 10px;
+            18px 14px 35px;
 
     }
 
 
-    .game-box{
+    .game-box {
 
         padding:
-            28px 16px;
+            32px 20px 35px;
 
         border-radius:
             20px;
@@ -920,39 +1019,31 @@ select.wrong-answer{
     }
 
 
-    .game-header h1{
+    .game-header h1 {
 
         font-size:
-            36px;
+            2.2rem;
 
     }
 
 
-    .subtitle{
+    .subtitle {
 
         font-size:
-            19px;
+            1.1rem;
 
     }
 
 
-    #info{
+    #info {
 
         font-size:
-            19px;
+            1.05rem;
 
     }
 
 
-    #game{
-
-        width:
-            100%;
-
-    }
-
-
-    .row{
+    .row {
 
         gap:
             10px;
@@ -960,7 +1051,7 @@ select.wrong-answer{
     }
 
 
-    .colorBox{
+    .colorBox {
 
         width:
             62px;
@@ -971,7 +1062,7 @@ select.wrong-answer{
     }
 
 
-    select{
+    select {
 
         width:
             calc(
@@ -982,31 +1073,125 @@ select.wrong-answer{
             48px;
 
         font-size:
-            20px;
+            1.05rem;
 
     }
 
 
-    .controls{
+    .controls {
 
-        flex-wrap:
-            wrap;
+        gap:
+            9px;
 
     }
 
 
-    .action-btn{
+    .action-btn {
+
+        min-width:
+            140px;
+
+        padding:
+            11px 17px;
 
         font-size:
-            20px;
+            1.05rem;
 
     }
 
 
-    #explanation{
+    #explanation {
 
         font-size:
-            18px;
+            1rem;
+
+    }
+
+
+    .result-title {
+
+        font-size:
+            2.2rem;
+
+    }
+
+
+    .score {
+
+        font-size:
+            3rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (
+    max-width: 400px
+) {
+
+    .game-box {
+
+        padding:
+            30px 14px;
+
+    }
+
+
+    .game-header h1 {
+
+        font-size:
+            2rem;
+
+    }
+
+
+    .row {
+
+        gap:
+            8px;
+
+    }
+
+
+    .colorBox {
+
+        width:
+            55px;
+
+        height:
+            46px;
+
+    }
+
+
+    select {
+
+        width:
+            calc(
+                100% - 63px
+            );
+
+        height:
+            46px;
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .action-btn {
+
+        min-width:
+            125px;
+
+        font-size:
+            1rem;
 
     }
 
@@ -1020,6 +1205,9 @@ select.wrong-answer{
 <body>
 
 
+<div class="page">
+
+
 <!-- =========================================================
      BACK
 ========================================================= -->
@@ -1030,9 +1218,7 @@ select.wrong-answer{
         href="../../category.html?category=Colors"
         class="back-btn"
     >
-
         ← Back
-
     </a>
 
 </div>
@@ -1059,13 +1245,11 @@ select.wrong-answer{
     <div class="game-header">
 
         <h1>
-            Color Matching
+            Colors Matching
         </h1>
 
         <div class="subtitle">
-
             Choose the Vietnamese word for each color.
-
         </div>
 
     </div>
@@ -1110,30 +1294,27 @@ select.wrong-answer{
         <button
             class="action-btn clear-btn"
             id="clearBtn"
+            type="button"
         >
-
             Clear
-
         </button>
 
 
         <button
             class="action-btn check-btn"
             id="checkBtn"
+            type="button"
         >
-
             Check Answers
-
         </button>
 
 
         <button
             class="action-btn next-btn hidden"
             id="nextBtn"
+            type="button"
         >
-
             Next Question →
-
         </button>
 
     </div>
@@ -1143,7 +1324,10 @@ select.wrong-answer{
          MESSAGE
     ====================================================== -->
 
-    <div id="message"></div>
+    <div
+        id="message"
+        aria-live="polite"
+    ></div>
 
 
     <!-- =====================================================
@@ -1156,11 +1340,8 @@ select.wrong-answer{
     >
 
         <div class="explanation-title">
-
             Explanation
-
         </div>
-
 
         <div id="explanationText"></div>
 
@@ -1180,16 +1361,12 @@ select.wrong-answer{
 
 
     <div class="result-title">
-
         Game Finished!
-
     </div>
 
 
     <div class="result-label">
-
         Final Score
-
     </div>
 
 
@@ -1197,9 +1374,7 @@ select.wrong-answer{
         class="score"
         id="scoreText"
     >
-
         0 / 20
-
     </div>
 
 
@@ -1212,11 +1387,13 @@ select.wrong-answer{
     <button
         class="action-btn next-btn"
         id="playAgain"
+        type="button"
     >
-
         Play Again
-
     </button>
+
+</div>
+
 
 </div>
 
@@ -1476,25 +1653,30 @@ const nextBtn =
         "nextBtn"
     );
 
+const playAgain =
+    document.getElementById(
+        "playAgain"
+    );
+
 
 /* =========================================================
    SHUFFLE
 ========================================================= */
 
-function shuffle(array){
+function shuffle(array) {
 
     const arr =
         [...array];
 
 
-    for(
+    for (
         let i =
             arr.length - 1;
 
         i > 0;
 
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
@@ -1524,7 +1706,7 @@ function shuffle(array){
    CREATE ROUND
 ========================================================= */
 
-function createRound(){
+function createRound() {
 
     locked =
         false;
@@ -1616,7 +1798,7 @@ function createRound(){
 
 
             /* =============================================
-               COLOR
+               COLOR BOX
             ============================================== */
 
             const colorBox =
@@ -1633,13 +1815,15 @@ function createRound(){
                 item.color;
 
 
-            if(
+            /* Special border for white */
+
+            if (
                 item.color ===
                 "#ffffff"
-            ){
+            ) {
 
                 colorBox.style.border =
-                    "3px solid #b8c7d8";
+                    "3px solid #b8b3c8";
 
             }
 
@@ -1727,11 +1911,11 @@ function createRound(){
 ========================================================= */
 
 clearBtn.onclick =
-    function(){
+    function() {
 
-        if(
+        if (
             locked
-        ){
+        ) {
 
             return;
 
@@ -1771,11 +1955,11 @@ clearBtn.onclick =
 ========================================================= */
 
 checkBtn.onclick =
-    function(){
+    function() {
 
-        if(
+        if (
             locked
-        ){
+        ) {
 
             return;
 
@@ -1801,9 +1985,9 @@ checkBtn.onclick =
             );
 
 
-        if(
+        if (
             incomplete
-        ){
+        ) {
 
             message.textContent =
                 "Please answer all 4 colors first.";
@@ -1817,7 +2001,7 @@ checkBtn.onclick =
 
 
         /* =================================================
-           LOCK
+           LOCK ROUND
         ================================================== */
 
         locked =
@@ -1848,12 +2032,13 @@ checkBtn.onclick =
                     select.value;
 
 
-                if(
+                if (
                     answer ===
                     item.text
-                ){
+                ) {
 
                     correct++;
+
 
                     select.classList.add(
                         "correct-answer"
@@ -1861,7 +2046,7 @@ checkBtn.onclick =
 
                 }
 
-                else{
+                else {
 
                     select.classList.add(
                         "wrong-answer"
@@ -1875,14 +2060,13 @@ checkBtn.onclick =
 
         /* =================================================
            SCORING
-           
            ONLY PERFECT ROUND = +1
         ================================================== */
 
-        if(
+        if (
             correct ===
             COLORS_PER_ROUND
-        ){
+        ) {
 
             score++;
 
@@ -1900,7 +2084,7 @@ checkBtn.onclick =
 
         }
 
-        else{
+        else {
 
             message.textContent =
                 `✕ ${correct}/4 correct — 0 points`;
@@ -1954,7 +2138,7 @@ checkBtn.onclick =
    EXPLANATION
 ========================================================= */
 
-function showExplanation(){
+function showExplanation() {
 
     let html =
         "";
@@ -1964,17 +2148,12 @@ function showExplanation(){
         item => {
 
             html += `
-
                 <strong>
                     ${item.text}
                 </strong>
-
                 /${item.phonetics}/
-
                 — ${item.english}
-
                 <br>
-
             `;
 
         }
@@ -1997,11 +2176,11 @@ function showExplanation(){
 ========================================================= */
 
 nextBtn.onclick =
-    function(){
+    function() {
 
-        if(
+        if (
             !locked
-        ){
+        ) {
 
             return;
 
@@ -2011,10 +2190,10 @@ nextBtn.onclick =
         round++;
 
 
-        if(
+        if (
             round >
             TOTAL_ROUNDS
-        ){
+        ) {
 
             finishGame();
 
@@ -2032,7 +2211,7 @@ nextBtn.onclick =
    FINISH GAME
 ========================================================= */
 
-function finishGame(){
+function finishGame() {
 
     gameScreen.classList.add(
         "hidden"
@@ -2054,47 +2233,47 @@ function finishGame(){
         "";
 
 
-    if(
+    if (
         score ===
         TOTAL_ROUNDS
-    ){
+    ) {
 
         performanceText =
             "Perfect!";
 
     }
 
-    else if(
+    else if (
         score >=
         17
-    ){
+    ) {
 
         performanceText =
             "Excellent!";
 
     }
 
-    else if(
+    else if (
         score >=
         14
-    ){
+    ) {
 
         performanceText =
             "Great Job!";
 
     }
 
-    else if(
+    else if (
         score >=
         10
-    ){
+    ) {
 
         performanceText =
             "Good Job!";
 
     }
 
-    else{
+    else {
 
         performanceText =
             "Keep Practicing!";
@@ -2114,10 +2293,8 @@ function finishGame(){
    PLAY AGAIN
 ========================================================= */
 
-document.getElementById(
-    "playAgain"
-).onclick =
-    function(){
+playAgain.onclick =
+    function() {
 
         round =
             1;
@@ -2157,3 +2334,4 @@ createRound();
 </body>
 
 </html>
+```

@@ -58,34 +58,37 @@
 :root {
 
     --paper:
-        #f5f9fd;
+        #FDF7F0;
 
-    --white:
+    --f5f5f5:
         #ffffff;
 
     --ink:
-        #143a6b;
+        #3f352d;
 
     --ink-soft:
-        #66809d;
+        #756a61;
 
     --accent:
-        #2878df;
+        #B8885B;
 
     --accent-dark:
-        #1e5fba;
+        #8E653E;
 
     --accent-light:
-        #eaf3ff;
+        #fbf1e6;
+
+    --accent-bg:
+        #FDF7F0;
 
     --accent-border:
-        #c4daf6;
+        #ecdab6;
 
-    --border:
-        #d9e6f2;
+    --general-border:
+        #d9d9d9;
 
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-light:
         #eaf3ff;
@@ -123,33 +126,29 @@
 
 body {
 
-    min-height:
-        100vh;
+    min-height: 100vh;
 
-    padding:
-        28px 20px 45px;
+    padding: 28px 20px 45px;
 
-    font-family:
-        Calibri,
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    color:
-        var(--ink);
+    color: var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
-            #edf5fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
-
 
 /* ==========================================================
    PAGE
@@ -197,18 +196,13 @@ body {
 
     border:
         1px solid
-        var(--border);
+        var(--accent-border);
 
     border-radius:
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.92
-        );
+        #ffffff;
 
     color:
         var(--accent-dark);
@@ -225,10 +219,10 @@ body {
     box-shadow:
         0 4px 14px
         rgba(
-            20,
-            58,
-            107,
-            0.07
+            80,
+            60,
+            40,
+            0.08
         );
 
     transition:
@@ -249,7 +243,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
 }
 
@@ -270,16 +264,11 @@ body {
         42px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.97
-        );
+        #ffffff;
 
     border:
         1px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         24px;
@@ -287,10 +276,10 @@ body {
     box-shadow:
         0 18px 50px
         rgba(
-            20,
-            58,
-            107,
-            0.10
+            70,
+            55,
+            40,
+            0.12
         );
 
     text-align:
@@ -338,36 +327,8 @@ body {
 
 .game-icon {
 
-    width:
-        58px;
-
-    height:
-        58px;
-
     display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        0 auto 16px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        16px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.175rem;
+        none;
 
 }
 
@@ -381,7 +342,7 @@ h1 {
         var(--ink);
 
     font-family:
-        "Kalam",
+        Kalam,
         cursive;
 
     font-size:
@@ -548,13 +509,13 @@ h1 {
 
     border:
         2px solid
-        var(--border);
+        var(--general-border);
 
     border-radius:
         16px;
 
     background:
-        var(--white);
+        #ffffff;
 
     color:
         var(--ink);
@@ -594,10 +555,10 @@ h1 {
     box-shadow:
         0 8px 20px
         rgba(
+            80,
+            60,
             40,
-            120,
-            223,
-            0.12
+            0.08
         );
 
 }
@@ -725,7 +686,7 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
     font-family:
         inherit;
@@ -749,10 +710,10 @@ h1 {
         ),
         0 5px 12px
         rgba(
-            40,
             120,
-            223,
-            0.20
+            80,
+            40,
+            0.16
         );
 
     transition:
@@ -786,36 +747,8 @@ h1 {
 
 .result-icon {
 
-    width:
-        64px;
-
-    height:
-        64px;
-
     display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        0 auto 18px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        18px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.375rem;
+        none;
 
 }
 
@@ -1065,12 +998,6 @@ h1 {
                 class="question-number"
             >
             </div>
-
-
-            <div class="choose-text">
-                Choose the best answer:
-            </div>
-
 
             <div
                 id="question"

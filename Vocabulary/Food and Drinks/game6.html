@@ -5,20 +5,37 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Word Scramble - Vietnamese Vocabulary</title>
 
-<meta name="game-title" content="Word Scramble">
+<meta
+    name="game-title"
+    content="Word Scramble"
+>
+
 <meta
     name="game-description"
     content="Unscramble the letters to make the correct Vietnamese word."
 >
-<meta name="game-icon" content="🔤">
-<meta name="game-explanation" content="true">
+
+<meta
+    name="game-icon"
+    content="🔤"
+>
+
+<meta
+    name="game-explanation"
+    content="true"
+>
+
 
 <!-- =========================================================
-     GOOGLE FONT - KALAM
+     GOOGLE FONT
 ========================================================= -->
 
 <link
@@ -30,75 +47,170 @@
 <style>
 
 /* =========================================================
+   DESIGN SYSTEM
+========================================================= */
+
+:root{
+
+    --accent:#A99959;
+
+    --accent-dark:#7B6F40;
+
+    --accent-light:#f9f6e6;
+
+    --accent-bg:#FBFAF0;
+
+    --accent-border:#e8dfb2;
+
+    --heading-color:var(--ink);
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --ink:#2f302b;
+
+    --text:#333;
+
+    --muted:#6f706b;
+
+    --card:#ffffff;
+
+    --general-border:#deddd5;
+
+}
+
+/* =========================================================
    GLOBAL
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
+
+html{
+
+    min-height:100%;
+
+}
+
+
 body{
+
     margin:0;
-    padding:20px;
-
-    font-family:Calibri, Arial, sans-serif;
-
-    background:#f7f9fc;
 
     min-height:100vh;
 
-    color:#222;
+    padding:28px 20px 45px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
 }
 
 
 /* =========================================================
    BACK BUTTON
+   OUTSIDE GAME CARD
 ========================================================= */
 
-.back-btn-container{
+.page-wrap{
+
+    width:100%;
+
     max-width:900px;
+
+}
+
+
+.back-btn-container{
+
+    width:100%;
 
     margin:0 auto 15px;
 
     text-align:left;
+
 }
 
+
 .back-btn{
+
     display:inline-block;
 
-    padding:10px 18px;
+    padding:9px 17px;
 
-    background:white;
+    background:#ffffff;
 
     color:#555;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--general-border);
 
     border-radius:10px;
 
     text-decoration:none;
 
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:19px;
+
     font-weight:bold;
 
-    font-size:20px;
-
     transition:.2s;
+
 }
 
-.back-btn:hover{
-    background:#eaf3ff;
 
-    border-color:#c4daf6;
+.back-btn:hover{
+
+    background:var(--accent-light);
+
+    color:var(--accent-dark);
+
+    border-color:var(--accent-border);
 
     transform:translateY(-2px);
+
 }
 
 
 /* =========================================================
-   GAME CARD
+   MAIN GAME CARD
 ========================================================= */
 
 .game-box{
+
     position:relative;
 
     width:100%;
@@ -107,37 +219,44 @@ body{
 
     margin:0 auto;
 
-    background:white;
+    padding:38px 48px 42px;
+
+    background:var(--card);
+
+    border:1px solid var(--general-border);
 
     border-radius:24px;
 
-    padding:40px;
-
     box-shadow:
-        0 10px 35px rgba(0,0,0,.08);
+        0 10px 35px rgba(90,75,30,.08);
 
     text-align:center;
 
     overflow:hidden;
+
 }
 
 
 /* =========================================================
-   ACCENT LINE
+   ACCENT LINE ON CARD
 ========================================================= */
 
 .game-box::before{
+
     content:"";
 
     position:absolute;
 
     top:0;
+
     left:0;
+
     right:0;
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
+
 }
 
 
@@ -146,32 +265,57 @@ body{
 ========================================================= */
 
 #gameScreen{
+
     display:block;
+
+    width:100%;
+
 }
+
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 #gameScreen h1,
 #finalScreen h1{
-    margin:0 0 10px;
 
-    font-family:"Kalam", cursive;
+    margin:5px 0 5px;
+
+    font-family:
+        "Kalam",
+        cursive;
 
     font-size:48px;
 
     font-weight:700;
 
-    color:#2878df;
+    line-height:1.2;
+
+    color:var(--ink);
+
 }
 
+
+/* =========================================================
+   SHORT INTRO / INSTRUCTION
+========================================================= */
+
 .instruction{
-    margin:0 0 25px;
 
-    font-family:Calibri, Arial, sans-serif;
+    margin:0 auto 26px;
 
-    font-size:25px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    color:#555;
+    font-size:23px;
 
-    line-height:1.5;
+    line-height:1.45;
+
+    color:var(--muted);
+
 }
 
 
@@ -180,6 +324,7 @@ body{
 ========================================================= */
 
 .topbar{
+
     display:flex;
 
     justify-content:space-between;
@@ -188,21 +333,31 @@ body{
 
     gap:20px;
 
-    margin:20px 0 10px;
+    margin:0 0 10px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:22px;
+    font-size:20px;
 
     font-weight:bold;
+
 }
+
 
 .round{
-    color:#555;
+
+    color:#666;
+
 }
 
+
 .score{
-    color:#2878df;
+
+    color:var(--accent-dark);
+
 }
 
 
@@ -211,46 +366,37 @@ body{
 ========================================================= */
 
 .progress-container{
+
     width:100%;
 
-    height:10px;
+    height:9px;
 
-    margin:0 auto 30px;
+    margin:0 0 30px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-radius:20px;
+    border:1px solid var(--accent-border);
+
+    border-radius:999px;
 
     overflow:hidden;
+
 }
 
+
 .progress-bar{
+
     width:0%;
 
     height:100%;
 
-    background:#2878df;
+    background:var(--accent);
 
-    border-radius:20px;
+    border-radius:999px;
 
-    transition:width .3s ease;
-}
+    transition:
+        width .3s ease;
 
-
-/* =========================================================
-   QUESTION
-========================================================= */
-
-.question-title{
-    margin:25px 0 20px;
-
-    font-family:"Kalam", cursive;
-
-    font-size:34px;
-
-    font-weight:700;
-
-    color:#222;
 }
 
 
@@ -259,19 +405,21 @@ body{
 ========================================================= */
 
 .scramble-box{
+
     position:relative;
 
     max-width:700px;
 
-    margin:20px auto 15px;
+    margin:5px auto 18px;
 
     padding:28px 20px;
 
-    background:#f8fbff;
+    background:var(--accent-bg);
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--accent-border);
 
     border-radius:18px;
+
 }
 
 
@@ -280,25 +428,33 @@ body{
 ========================================================= */
 
 .scramble-label{
+
     margin-bottom:12px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:21px;
 
     font-weight:bold;
 
     color:#777;
+
 }
 
 
 /* =========================================================
    SCRAMBLED WORD
-   CALIBRI
 ========================================================= */
 
 .scrambled-word{
-    font-family:Calibri, Arial, sans-serif;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:42px;
 
@@ -306,11 +462,12 @@ body{
 
     letter-spacing:4px;
 
-    color:#2878df;
+    line-height:1.3;
+
+    color:var(--ink);
 
     word-break:break-word;
 
-    line-height:1.3;
 }
 
 
@@ -319,27 +476,35 @@ body{
 ========================================================= */
 
 .hint{
+
     max-width:700px;
 
     margin:0 auto 25px;
 
     padding:12px 18px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border:1px solid #c4daf6;
+    border:1px solid var(--accent-border);
 
     border-radius:12px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:22px;
 
     color:#555;
+
 }
 
+
 .hint strong{
-    color:#2878df;
+
+    color:var(--accent-dark);
+
 }
 
 
@@ -348,91 +513,134 @@ body{
 ========================================================= */
 
 .answer-area{
+
     max-width:600px;
 
     margin:0 auto;
+
 }
 
+
 .answer-input{
+
     width:100%;
 
     padding:16px 18px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:29px;
 
     text-align:center;
 
-    border:2px solid #d9e6f2;
+    color:var(--ink);
+
+    background:#ffffff;
+
+    border:2px solid var(--general-border);
 
     border-radius:12px;
 
     outline:none;
 
     transition:.2s;
+
 }
+
+
+.answer-input::placeholder{
+
+    color:#999;
+
+}
+
 
 .answer-input:focus{
-    border-color:#2878df;
+
+    border-color:var(--accent);
 
     box-shadow:
-        0 0 0 3px rgba(40,120,223,.12);
+        0 0 0 3px rgba(169,153,89,.13);
+
 }
 
+
 .answer-input:disabled{
-    background:#f4f6f8;
+
+    background:#f5f5f5;
 
     color:#555;
 
     cursor:default;
+
 }
 
 
 /* =========================================================
-   BUTTONS
+   BUTTON BASE
 ========================================================= */
 
 button{
+
     border:none;
 
     border-radius:12px;
 
     cursor:pointer;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-weight:bold;
 
     transition:.2s;
+
 }
+
+
+/* =========================================================
+   MAIN BUTTONS
+========================================================= */
 
 .check-btn,
 .next-btn,
 .play-again-btn{
+
     padding:13px 30px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
-    font-size:24px;
+    font-size:23px;
+
 }
+
 
 .check-btn:hover,
 .next-btn:hover,
 .play-again-btn:hover{
-    background:#1e5fba;
+
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
+
 }
 
+
 .check-btn:disabled{
+
     opacity:.65;
 
     cursor:default;
 
     transform:none;
+
 }
 
 
@@ -441,7 +649,9 @@ button{
 ========================================================= */
 
 .check-area{
+
     margin-top:18px;
+
 }
 
 
@@ -450,35 +660,49 @@ button{
 ========================================================= */
 
 #result{
+
     min-height:55px;
 
     margin-top:22px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:28px;
 
     font-weight:bold;
 
     line-height:1.5;
+
 }
+
 
 .result-correct{
-    color:#2878df;
+
+    color:var(--correct);
+
 }
+
 
 .result-wrong{
-    color:#d9536f;
+
+    color:var(--wrong);
+
 }
 
+
 .answer{
+
     margin-top:6px;
 
-    font-size:25px;
+    font-size:24px;
 
     font-weight:normal;
 
     color:#444;
+
 }
 
 
@@ -487,35 +711,48 @@ button{
 ========================================================= */
 
 .explanation{
+
     max-width:700px;
 
     margin:20px auto 0;
 
     padding:17px 20px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-left:5px solid #2878df;
+    border:1px solid var(--accent-border);
+
+    border-left:5px solid var(--accent);
 
     border-radius:12px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:23px;
+    font-size:22px;
 
     line-height:1.6;
 
-    color:#3d5066;
+    color:#514d3c;
 
     text-align:left;
+
 }
+
 
 .explanation strong{
-    color:#2878df;
+
+    color:var(--accent-dark);
+
 }
 
+
 .hidden{
+
     display:none;
+
 }
 
 
@@ -524,11 +761,16 @@ button{
 ========================================================= */
 
 .next-area{
+
     margin-top:22px;
+
 }
 
+
 #nextBtn{
+
     display:none;
+
 }
 
 
@@ -537,59 +779,85 @@ button{
 ========================================================= */
 
 #finalScreen{
+
     display:none;
 
-    padding:20px 10px;
+    padding:20px 10px 10px;
+
 }
+
 
 .final-icon{
-    font-size:70px;
 
-    margin-bottom:10px;
+    font-size:65px;
+
+    margin-bottom:5px;
+
 }
 
-#finalScreen h1{
-    margin:10px 0 20px;
 
-    font-family:"Kalam", cursive;
+#finalScreen h1{
+
+    margin:5px 0 20px;
 
     font-size:48px;
 
-    color:#2878df;
 }
 
+
 .final-score{
+
     margin:15px 0;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:34px;
 
     font-weight:bold;
+
+    color:var(--accent-dark);
+
 }
+
 
 .final-percent{
+
     margin:10px 0;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:30px;
+    font-size:29px;
 
     color:#555;
+
 }
 
+
 .final-message{
-    margin:20px 0 25px;
 
-    font-family:Calibri, Arial, sans-serif;
+    max-width:650px;
 
-    font-size:27px;
+    margin:20px auto 28px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:26px;
 
     font-weight:bold;
 
     color:#555;
 
     line-height:1.5;
+
 }
 
 
@@ -597,85 +865,150 @@ button{
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
     body{
-        padding:15px;
+
+        padding:20px 14px 35px;
+
+        align-items:flex-start;
+
     }
+
+
+    .page-wrap{
+
+        width:100%;
+
+    }
+
 
     .game-box{
-        padding:30px 20px;
+
+        padding:32px 22px 35px;
 
         border-radius:20px;
+
     }
+
+
+    .back-btn{
+
+        font-size:18px;
+
+        padding:8px 14px;
+
+    }
+
 
     #gameScreen h1,
     #finalScreen h1{
+
         font-size:40px;
+
     }
+
 
     .instruction{
-        font-size:23px;
+
+        font-size:21px;
+
     }
+
 
     .topbar{
-        font-size:20px;
+
+        font-size:18px;
+
     }
 
-    .question-title{
-        font-size:31px;
-
-        line-height:1.4;
-    }
 
     .scramble-box{
+
         padding:24px 15px;
+
     }
 
+
     .scrambled-word{
-        font-family:Calibri, Arial, sans-serif;
 
         font-size:35px;
 
         letter-spacing:3px;
+
     }
+
 
     .scramble-label{
+
         font-size:20px;
+
     }
 
+
     .hint{
+
         font-size:21px;
 
         padding:11px 15px;
+
     }
 
+
     .answer-input{
+
         font-size:27px;
 
         padding:14px;
+
     }
+
 
     .check-btn,
     .next-btn,
     .play-again-btn{
+
         font-size:22px;
 
         padding:12px 24px;
+
     }
+
 
     #result{
+
         font-size:26px;
+
     }
+
 
     .answer{
+
         font-size:23px;
+
     }
 
+
     .explanation{
-        font-size:22px;
+
+        font-size:21px;
 
         padding:15px;
+
+    }
+
+
+    #nextBtn{
+
+        width:100%;
+
+    }
+
+
+    .play-again-btn{
+
+        width:100%;
+
     }
 
 }
@@ -687,43 +1020,85 @@ button{
 
 @media(max-width:400px){
 
-    .game-box{
-        padding:25px 15px;
+    body{
+
+        padding:16px 11px 30px;
+
     }
+
+
+    .game-box{
+
+        padding:27px 16px 32px;
+
+    }
+
 
     .back-btn{
-        font-size:19px;
 
-        padding:9px 14px;
+        font-size:17px;
+
+        padding:8px 13px;
+
     }
+
 
     #gameScreen h1,
     #finalScreen h1{
+
         font-size:36px;
+
     }
+
+
+    .instruction{
+
+        font-size:20px;
+
+    }
+
 
     .topbar{
-        font-size:19px;
+
+        font-size:17px;
+
     }
 
-    .question-title{
-        font-size:29px;
-    }
 
     .scrambled-word{
-        font-family:Calibri, Arial, sans-serif;
 
         font-size:31px;
 
         letter-spacing:2px;
+
     }
+
 
     .hint{
+
         font-size:20px;
+
     }
 
-    .option{
+
+    .answer-input{
+
         font-size:25px;
+
+    }
+
+
+    #result{
+
+        font-size:24px;
+
+    }
+
+
+    .answer{
+
+        font-size:21px;
+
     }
 
 }
@@ -735,9 +1110,11 @@ button{
 
 button:focus-visible,
 input:focus-visible{
-    outline:3px solid #c4daf6;
+
+    outline:3px solid var(--accent-border);
 
     outline-offset:2px;
+
 }
 
 </style>
@@ -748,8 +1125,12 @@ input:focus-visible{
 <body>
 
 
+<div class="page-wrap">
+
+
 <!-- =========================================================
-     BACK
+     BACK BUTTON
+     OUTSIDE GAME CARD
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -758,11 +1139,15 @@ input:focus-visible{
         href="../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
-        ⬅ Back
+        ← Back
     </a>
 
 </div>
 
+
+<!-- =========================================================
+     MAIN GAME CARD
+========================================================= -->
 
 <div class="game-box">
 
@@ -773,16 +1158,20 @@ input:focus-visible{
 
 <div id="gameScreen">
 
+
     <h1>
         Word Scramble
     </h1>
+
 
     <p class="instruction">
         Unscramble the letters and type the Vietnamese word.
     </p>
 
 
-    <!-- TOP BAR -->
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
 
     <div class="topbar">
 
@@ -792,6 +1181,7 @@ input:focus-visible{
         >
             Question 1 of 20
         </div>
+
 
         <div
             class="score"
@@ -803,7 +1193,9 @@ input:focus-visible{
     </div>
 
 
-    <!-- PROGRESS -->
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
 
     <div class="progress-container">
 
@@ -815,28 +1207,42 @@ input:focus-visible{
     </div>
 
 
-    <!-- SCRAMBLED WORD -->
+    <!-- =====================================================
+         SCRAMBLED WORD
+    ====================================================== -->
 
     <div class="scramble-box">
+
+        <div
+            class="scramble-label"
+        >
+            Scrambled word
+        </div>
 
 
         <div
             class="scrambled-word"
             id="scrambledWord"
-        ></div>
+        >
+        </div>
 
     </div>
 
 
-    <!-- ENGLISH HINT -->
+    <!-- =====================================================
+         ENGLISH HINT
+    ====================================================== -->
 
     <div
         class="hint"
         id="hint"
-    ></div>
+    >
+    </div>
 
 
-    <!-- ANSWER -->
+    <!-- =====================================================
+         ANSWER
+    ====================================================== -->
 
     <div class="answer-area">
 
@@ -866,20 +1272,28 @@ input:focus-visible{
     </div>
 
 
-    <!-- RESULT -->
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
 
-    <div id="result"></div>
+    <div id="result">
+    </div>
 
 
-    <!-- EXPLANATION -->
+    <!-- =====================================================
+         EXPLANATION
+    ====================================================== -->
 
     <div
         id="explanation"
         class="explanation hidden"
-    ></div>
+    >
+    </div>
 
 
-    <!-- NEXT -->
+    <!-- =====================================================
+         NEXT
+    ====================================================== -->
 
     <div class="next-area">
 
@@ -893,6 +1307,7 @@ input:focus-visible{
 
     </div>
 
+
 </div>
 
 
@@ -902,28 +1317,37 @@ input:focus-visible{
 
 <div id="finalScreen">
 
+
     <div class="final-icon">
         🎉
     </div>
+
 
     <h1>
         Game Finished!
     </h1>
 
+
     <div
         class="final-score"
         id="finalScore"
-    ></div>
+    >
+    </div>
+
 
     <div
         class="final-percent"
         id="finalPercent"
-    ></div>
+    >
+    </div>
+
 
     <div
         class="final-message"
         id="finalMessage"
-    ></div>
+    >
+    </div>
+
 
     <button
         class="play-again-btn"
@@ -932,8 +1356,11 @@ input:focus-visible{
         Play Again
     </button>
 
+
 </div>
 
+
+</div>
 
 </div>
 
@@ -942,7 +1369,7 @@ input:focus-visible{
 
 /* =========================================================
    GAME DATA
-   37 FOOD & DRINKS VOCABULARY WORDS
+   FOOD & DRINKS VOCABULARY
 ========================================================= */
 
 const questions = [
@@ -1275,55 +1702,66 @@ const gameScreen =
         "gameScreen"
     );
 
+
 const finalScreen =
     document.getElementById(
         "finalScreen"
     );
+
 
 const scrambledWordEl =
     document.getElementById(
         "scrambledWord"
     );
 
+
 const hintEl =
     document.getElementById(
         "hint"
     );
+
 
 const answerInput =
     document.getElementById(
         "answerInput"
     );
 
+
 const checkBtn =
     document.getElementById(
         "checkBtn"
     );
+
 
 const nextBtn =
     document.getElementById(
         "nextBtn"
     );
 
+
 const resultEl =
     document.getElementById(
         "result"
     );
+
 
 const explanationEl =
     document.getElementById(
         "explanation"
     );
 
+
 const scoreEl =
     document.getElementById(
         "score"
     );
 
+
 const questionNumberEl =
     document.getElementById(
         "questionNumber"
     );
+
 
 const progressBar =
     document.getElementById(
@@ -1368,7 +1806,9 @@ function normalizeAnswer(text){
 
 function shuffle(array){
 
-    const shuffled = [...array];
+    const shuffled =
+        [...array];
+
 
     for(
         let i = shuffled.length - 1;
@@ -1382,6 +1822,7 @@ function shuffle(array){
                 (i + 1)
             );
 
+
         [
             shuffled[i],
             shuffled[j]
@@ -1392,6 +1833,7 @@ function shuffle(array){
         ];
 
     }
+
 
     return shuffled;
 
@@ -1413,7 +1855,7 @@ function startGame(){
 
     /*
        Select 20 random words
-       from the 37-word vocabulary list.
+       from the vocabulary list.
     */
 
     gameQuestions =
@@ -1426,6 +1868,7 @@ function startGame(){
 
     gameScreen.style.display =
         "block";
+
 
     finalScreen.style.display =
         "none";
@@ -1462,6 +1905,7 @@ function updateProgress(){
             TOTAL_QUESTIONS
         ) * 100;
 
+
     progressBar.style.width =
         `${progress}%`;
 
@@ -1489,6 +1933,8 @@ function loadQuestion(){
         } of ${TOTAL_QUESTIONS}`;
 
 
+    updateScore();
+
     updateProgress();
 
 
@@ -1511,6 +1957,7 @@ function loadQuestion(){
     answerInput.value =
         "";
 
+
     answerInput.disabled =
         false;
 
@@ -1519,6 +1966,7 @@ function loadQuestion(){
 
     checkBtn.disabled =
         false;
+
 
     checkBtn.style.display =
         "inline-block";
@@ -1535,6 +1983,7 @@ function loadQuestion(){
     explanationEl.innerHTML =
         "";
 
+
     explanationEl.classList.add(
         "hidden"
     );
@@ -1544,6 +1993,7 @@ function loadQuestion(){
 
     nextBtn.style.display =
         "none";
+
 
     nextBtn.textContent =
         "Next Question →";
@@ -1587,9 +2037,13 @@ function checkAnswer(){
     if(userAnswer === ""){
 
         resultEl.innerHTML = `
-            <span style="color:#d9536f;">
+
+            <span class="result-wrong">
+
                 ⚠️ Please type an answer.
+
             </span>
+
         `;
 
         return;
@@ -1619,13 +2073,14 @@ function checkAnswer(){
     answerInput.disabled =
         true;
 
+
     checkBtn.disabled =
         true;
 
 
     /* =====================================================
        CORRECT
-    ===================================================== */
+    ====================================================== */
 
     if(
         userAnswer ===
@@ -1640,12 +2095,16 @@ function checkAnswer(){
         resultEl.innerHTML = `
 
             <div class="result-correct">
+
                 ✅ Correct!
+
             </div>
 
             <div class="answer">
+
                 The word is
                 <b>${question.word}</b>.
+
             </div>
 
         `;
@@ -1655,19 +2114,23 @@ function checkAnswer(){
 
     /* =====================================================
        WRONG
-    ===================================================== */
+    ====================================================== */
 
     else{
 
         resultEl.innerHTML = `
 
             <div class="result-wrong">
+
                 ❌ Wrong!
+
             </div>
 
             <div class="answer">
+
                 Correct answer:
                 <b>${question.word}</b>
+
             </div>
 
         `;
@@ -1677,7 +2140,7 @@ function checkAnswer(){
 
     /* =====================================================
        EXPLANATION
-    ===================================================== */
+    ====================================================== */
 
     explanationEl.innerHTML = `
 
@@ -1697,7 +2160,7 @@ function checkAnswer(){
 
     /* =====================================================
        NEXT BUTTON
-    ===================================================== */
+    ====================================================== */
 
     nextBtn.style.display =
         "inline-block";
@@ -1771,6 +2234,7 @@ function finishGame(){
 
     gameScreen.style.display =
         "none";
+
 
     finalScreen.style.display =
         "block";
@@ -1852,6 +2316,7 @@ function restartGame(){
 
     finalScreen.style.display =
         "none";
+
 
     gameScreen.style.display =
         "block";

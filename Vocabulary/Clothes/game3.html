@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,7 +10,6 @@
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
-
 >
 
 <title>Complete the Sentence</title>
@@ -17,25 +17,21 @@ content="width=device-width, initial-scale=1.0"
 <meta
 name="game-title"
 content="Complete the Sentence"
-
 >
 
 <meta
 name="game-description"
 content="Choose the Vietnamese clothing word that best completes each English sentence."
-
 >
 
 <meta
 name="game-icon"
 content="👕"
-
 >
 
 <meta
 name="game-explanation"
 content="Complete each English sentence by choosing the correct Vietnamese clothing word."
-
 >
 
 <link
@@ -62,23 +58,38 @@ content="Complete each English sentence by choosing the correct Vietnamese cloth
 
 :root {
 
+    --paper:
+        #FDF7F0;
+
+    --f5f5f5:
+        #ffffff;
+
+    --ink:
+        #3f352d;
+
+    --ink-soft:
+        #756a61;
+
     --accent:
-        #2878df;
+        #B8885B;
 
     --accent-dark:
-        #1e5fba;
+        #8E653E;
 
     --accent-light:
-        #eaf3ff;
+        #fbf1e6;
+
+    --accent-bg:
+        #FDF7F0;
 
     --accent-border:
-        #c4daf6;
+        #ecdab6;
 
     --general-border:
-        #d9e6f2;
+        #d9d9d9;
 
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-light:
         #eaf3ff;
@@ -88,18 +99,6 @@ content="Complete each English sentence by choosing the correct Vietnamese cloth
 
     --wrong-light:
         #fff0f3;
-
-    --ink:
-        #18324f;
-
-    --ink-soft:
-        #6b8198;
-
-    --white:
-        #ffffff;
-
-    --background:
-        #f7fbff;
 
 }
 
@@ -128,34 +127,29 @@ content="Complete each English sentence by choosing the correct Vietnamese cloth
 
 body {
 
-    min-height:
-        100vh;
+    min-height: 100vh;
 
-    padding:
-        28px 20px 50px;
+    padding: 28px 20px 45px;
 
-    font-family:
-        Calibri,
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    color:
-        var(--ink);
+    color: var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f7fbff 55%,
-            #eef6fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
-
-
 /* ==========================================================
    PAGE
 ========================================================== */
@@ -230,10 +224,10 @@ body {
     box-shadow:
         0 4px 14px
         rgba(
-            24,
-            50,
-            79,
-            0.06
+            80,
+            60,
+            40,
+            0.08
         );
 
     transition:
@@ -254,7 +248,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
 }
 
@@ -295,10 +289,10 @@ body {
     box-shadow:
         0 18px 50px
         rgba(
-            24,
-            50,
-            79,
-            0.08
+            80,
+            60,
+            40,
+            0.10
         );
 
     text-align:
@@ -431,7 +425,7 @@ h1 {
         18px;
 
     color:
-        var(--accent);
+        var(--accent-dark);
 
     font-size:
         1.05rem;
@@ -559,7 +553,7 @@ h1 {
         16px;
 
     background:
-        var(--white);
+        var(--f5f5f5);
 
     color:
         var(--ink);
@@ -577,7 +571,10 @@ h1 {
         pointer;
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
@@ -596,9 +593,9 @@ h1 {
     box-shadow:
         0 8px 20px
         rgba(
-            40,
-            120,
-            223,
+            184,
+            136,
+            91,
             0.12
         );
 
@@ -727,7 +724,7 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
     font-family:
         inherit;
@@ -751,10 +748,10 @@ h1 {
         ),
         0 5px 12px
         rgba(
-            40,
-            120,
-            223,
-            0.18
+            184,
+            136,
+            91,
+            0.20
         );
 
     transition:
@@ -836,7 +833,7 @@ h1 {
         20px 0 8px;
 
     color:
-        var(--accent);
+        var(--accent-dark);
 
     font-size:
         2.8rem;
@@ -1060,11 +1057,6 @@ h1 {
             id="questionNumber"
             class="question-number"
         >
-        </div>
-
-
-        <div class="choose-text">
-            Choose the best answer:
         </div>
 
 
@@ -1997,3 +1989,4 @@ startGame();
 </body>
 
 </html>
+```

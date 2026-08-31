@@ -41,11 +41,53 @@
 <style>
 
 /* =========================================================
+   COLOR VARIABLES
+========================================================= */
+
+:root{
+
+    --accent:#548C9F;
+
+    --accent-dark:#3B6370;
+
+    --accent-light:#e9f3f7;
+
+    --accent-bg:#F2F8FA;
+
+    --accent-border:#bcdae5;
+
+    --general-border:#d9e6f2;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --container-bg:#F5F5F5;
+
+    --text:#26354a;
+
+    --muted:#667085;
+    --ink:
+        #143a6b;
+
+    --ink-soft:
+        #66809d;
+
+}
+
+
+/* =========================================================
    RESET
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
@@ -66,9 +108,15 @@ body{
         Arial,
         sans-serif;
 
-    background:#f7faff;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
-    color:#26354a;
+    color:var(--text);
 
 }
 
@@ -92,11 +140,11 @@ body{
 
     padding:9px 16px;
 
-    background:white;
+    background:#f5f5f5;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
@@ -113,9 +161,11 @@ body{
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
+
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -134,14 +184,14 @@ body{
 
     margin:0 auto;
 
-    background:white;
+    background:#ffffff;
 
     border-radius:22px;
 
     padding:30px 35px 35px;
 
     box-shadow:
-        0 8px 28px rgba(40,120,223,.10);
+        0 8px 28px rgba(59,99,112,.12);
 
     overflow:hidden;
 
@@ -166,7 +216,7 @@ body{
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
 
 }
 
@@ -200,10 +250,14 @@ body{
 
     font-weight:700;
 
-    color:#2878df;
+    color:var(--ink);
 
 }
 
+
+/* =========================================================
+   SHORT INTRODUCTION
+========================================================= */
 
 .instruction{
 
@@ -211,7 +265,7 @@ body{
 
     text-align:center;
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:25px;
 
@@ -245,14 +299,14 @@ body{
 
 .question-count{
 
-    color:#667085;
+    color:var(--muted);
 
 }
 
 
 .score{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     font-size:27px;
 
@@ -269,7 +323,7 @@ body{
 
     height:8px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
     border-radius:20px;
 
@@ -277,7 +331,7 @@ body{
 
     margin-bottom:20px;
 
-    border:1px solid #d9e6f2;
+    border:1px solid var(--accent-border);
 
 }
 
@@ -288,7 +342,7 @@ body{
 
     height:100%;
 
-    background:#2878df;
+    background:var(--accent);
 
     transition:.3s;
 
@@ -303,9 +357,9 @@ body{
 
     position:relative;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:16px;
 
@@ -338,7 +392,7 @@ body{
 
     height:4px;
 
-    background:#2878df;
+    background:var(--accent);
 
     border-radius:0 0 5px 5px;
 
@@ -351,7 +405,7 @@ body{
 
 .question-label{
 
-    color:#52657d;
+    color:var(--accent-dark);
 
     font-size:21px;
 
@@ -376,7 +430,7 @@ body{
 
     line-height:1.5;
 
-    color:#26354a;
+    color:var(--text);
 
 }
 
@@ -403,13 +457,13 @@ body{
 
     padding:15px 18px;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--general-border);
 
     border-radius:10px;
 
-    background:white;
+    background:#f5f5f5;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     font-family:
         Calibri,
@@ -429,38 +483,50 @@ body{
 
 .option-btn:hover:not(.disabled){
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
 
-    color:#1e5fba;
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
 
 }
 
 
+/* =========================================================
+   CORRECT ANSWER
+========================================================= */
+
 .option-btn.correct{
 
-    background:#eaf3ff;
+    background:var(--correct-bg);
 
-    border-color:#2878df;
+    border-color:var(--correct-bg);
 
-    color:#2878df;
+    color:var(--correct);
 
 }
 
+
+/* =========================================================
+   WRONG ANSWER
+========================================================= */
 
 .option-btn.wrong{
 
-    background:#fff0f3;
+    background:var(--wrong-bg);
 
-    border-color:#d9536f;
+    border-color:var(--wrong);
 
-    color:#d9536f;
+    color:var(--wrong);
 
 }
 
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .option-btn.disabled{
 
@@ -492,14 +558,14 @@ body{
 
 .correct-text{
 
-    color:#2878df;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#d9536f;
+    color:var(--wrong);
 
 }
 
@@ -516,9 +582,9 @@ body{
 
     padding:17px 19px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:12px;
 
@@ -540,7 +606,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     margin-bottom:7px;
 
@@ -555,7 +621,7 @@ body{
 
     line-height:1.6;
 
-    color:#26354a;
+    color:var(--text);
 
 }
 
@@ -564,7 +630,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -585,9 +651,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-family:
         Calibri,
@@ -607,7 +673,7 @@ body{
 
 .next-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -648,7 +714,7 @@ body{
 
     font-size:42px;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -659,7 +725,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     margin:20px 0;
 
@@ -668,7 +734,7 @@ body{
 
 .final-message{
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:26px;
 
@@ -687,9 +753,9 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-family:
         Calibri,
@@ -709,7 +775,7 @@ body{
 
 .start-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -873,7 +939,7 @@ body{
 
 
 <!-- =========================================================
-     BACK
+     BACK BUTTON — OUTSIDE GAME CONTAINER
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -1086,54 +1152,54 @@ body{
 >
 
 
-<div class="finish-icon">
+    <div class="finish-icon">
 
-    🎉
+        🎉
 
-</div>
-
-
-<h2>
-
-    Game Complete!
-
-</h2>
+    </div>
 
 
-<p class="final-message">
+    <h2>
 
-    You completed the Vietnamese Describe Things Challenge.
+        Game Complete!
 
-</p>
-
-
-<div class="final-score">
-
-    Score:
-
-    <span id="finalScore">
-
-        0 / 20
-
-    </span>
-
-</div>
+    </h2>
 
 
-<p
-    class="final-message"
-    id="finalMessage"
-></p>
+    <p class="final-message">
+
+        You completed the Vietnamese Describe Things Challenge.
+
+    </p>
 
 
-<button
-    class="start-btn"
-    onclick="restartGame()"
->
+    <div class="final-score">
 
-    Play Again
+        Score:
 
-</button>
+        <span id="finalScore">
+
+            0 / 20
+
+        </span>
+
+    </div>
+
+
+    <p
+        class="final-message"
+        id="finalMessage"
+    ></p>
+
+
+    <button
+        class="start-btn"
+        onclick="restartGame()"
+    >
+
+        Play Again
+
+    </button>
 
 
 </div>
@@ -1421,6 +1487,61 @@ const database = [
 
 
 /* =========================================================
+   ALL VOCABULARY
+========================================================= */
+
+const allWords = [
+
+    "to",
+    "nhỏ",
+    "bự",
+    "dài",
+    "ngắn",
+    "cao",
+    "thấp",
+    "rộng",
+    "chật",
+    "nặng",
+    "nhẹ",
+
+    "cứng",
+    "mềm",
+    "nóng",
+    "lạnh",
+    "khô",
+    "ướt",
+
+    "mới",
+    "cũ",
+    "sạch",
+    "dơ",
+
+    "tròn",
+    "vuông",
+    "thẳng",
+    "cong",
+    "nhọn",
+    "xoăn",
+
+    "đẹp",
+    "xấu",
+    "dễ thương",
+    "xinh",
+    "dữ",
+    "nghiêm túc",
+    "trẻ",
+    "già",
+    "ốm",
+    "mập",
+
+    "nhiều",
+    "ít"
+
+];
+
+
+
+/* =========================================================
    STATE
 ========================================================= */
 
@@ -1479,56 +1600,6 @@ function shuffle(array){
 ========================================================= */
 
 function createOptions(correctWord){
-
-    const allWords = [
-
-        "to",
-        "nhỏ",
-        "bự",
-        "dài",
-        "ngắn",
-        "cao",
-        "thấp",
-        "rộng",
-        "chật",
-        "nặng",
-        "nhẹ",
-
-        "cứng",
-        "mềm",
-        "nóng",
-        "lạnh",
-        "khô",
-        "ướt",
-
-        "mới",
-        "cũ",
-        "sạch",
-        "dơ",
-
-        "tròn",
-        "vuông",
-        "thẳng",
-        "cong",
-        "nhọn",
-        "xoăn",
-
-        "đẹp",
-        "xấu",
-        "dễ thương",
-        "xinh",
-        "dữ",
-        "nghiêm túc",
-        "trẻ",
-        "già",
-        "ốm",
-        "mập",
-
-        "nhiều",
-        "ít"
-
-    ];
-
 
     const wrongWords =
 
@@ -1831,11 +1902,6 @@ function handleAnswer(
             .className =
             "result-message wrong-text";
 
-
-        /*
-         * Show the correct answer.
-         * No retry.
-         */
 
         optionButtons.forEach(btn => {
 

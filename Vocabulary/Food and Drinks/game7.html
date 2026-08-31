@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -12,13 +11,13 @@
 <meta name="game-title" content="Flip Card">
 <meta
     name="game-description"
-    content="Match English words with their Vietnamese vocabulary."
+    content="Match English words with their correct Vietnamese vocabulary."
 >
 <meta name="game-icon" content="🃏">
 <meta name="game-explanation" content="true">
 
 <!-- =========================================================
-     FONTS
+     FONT
 ========================================================= -->
 
 <link
@@ -29,6 +28,45 @@
 <style>
 
 /* =========================================================
+   THEME
+========================================================= */
+
+:root{
+
+    --accent:#A99959;
+
+    --accent-dark:#7B6F40;
+
+    --accent-light:#f9f6e6;
+
+    --accent-bg:#FBFAF0;
+
+    --accent-border:#e8dfb2;
+
+    --heading-color:var(--ink);
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --ink:#2f302b;
+
+    --text:#333;
+
+    --muted:#6f706b;
+
+    --card:#ffffff;
+
+    --general-border:#deddd5;
+
+}
+
+
+/* =========================================================
    GLOBAL
 ========================================================= */
 
@@ -36,31 +74,66 @@
     box-sizing:border-box;
 }
 
+html{
+    min-height:100%;
+}
+
 body{
 
     margin:0;
 
-    padding:20px;
-
-    background:#f7f9fc;
-
-    color:#222;
-
-    font-family:Calibri, Arial, sans-serif;
-
     min-height:100vh;
+
+    padding:28px 20px 45px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color:var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page-wrapper{
+
+    width:100%;
+
+    max-width:900px;
 }
 
 
 /* =========================================================
    BACK BUTTON
+   OUTSIDE GAME CONTAINER
 ========================================================= */
 
 .back-btn-container{
 
-    max-width:900px;
+    width:100%;
 
-    margin:0 auto 15px;
+    margin:0 0 15px;
 
     text-align:left;
 }
@@ -71,30 +144,39 @@ body{
 
     padding:10px 18px;
 
-    background:white;
+    background:#f5f5f5;
 
-    color:#333;
+    color:#555;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
     text-decoration:none;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:20px;
 
     font-weight:bold;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 }
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#c4daf6;
+    border-color:var(--accent);
 
     transform:translateY(-2px);
 }
@@ -114,11 +196,11 @@ body{
 
     margin:0 auto;
 
-    padding:35px 45px;
+    padding:38px 45px 42px;
 
-    background:white;
+    background:#ffffff;
 
-    border:1px solid #d9e6f2;
+    border:1px solid var(--accent-border);
 
     border-radius:24px;
 
@@ -132,7 +214,7 @@ body{
 
 
 /* =========================================================
-   ACCENT LINE
+   MAIN ACCENT LINE
 ========================================================= */
 
 .game-box::before{
@@ -145,39 +227,65 @@ body{
 
     left:0;
 
-    width:100%;
+    right:0;
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
 }
 
 
 /* =========================================================
-   TITLES
+   GAME SCREEN
 ========================================================= */
 
-h1{
+#gameScreen{
+
+    display:block;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+#gameScreen h1,
+#finalScreen h1{
+
+    margin:0;
 
     font-family:"Kalam", cursive;
 
-    color:#2878df;
-
     font-weight:700;
+
+    color:var(--ink);
 }
 
 #gameScreen h1{
 
-    margin:0 0 8px;
+    margin-bottom:8px;
 
     font-size:46px;
+
+    line-height:1.2;
 }
+
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
 
 .instruction{
 
     margin:0 0 20px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     color:#555;
 
@@ -203,9 +311,15 @@ h1{
 
     margin:20px 0 15px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-    font-size:24px;
+    font-size:23px;
 
     font-weight:bold;
 }
@@ -217,7 +331,7 @@ h1{
 
 .score{
 
-    color:#2878df;
+    color:var(--accent-dark);
 }
 
 
@@ -233,7 +347,9 @@ h1{
 
     margin-bottom:25px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
+
+    border:1px solid var(--accent-border);
 
     border-radius:20px;
 
@@ -246,11 +362,12 @@ h1{
 
     width:0%;
 
-    background:#2878df;
+    background:var(--accent);
 
     border-radius:20px;
 
-    transition:.3s ease;
+    transition:
+        width .3s ease;
 }
 
 
@@ -262,11 +379,17 @@ h1{
 
     margin-bottom:22px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     color:#555;
 
-    font-size:24px;
+    font-size:23px;
 
     font-weight:bold;
 }
@@ -284,6 +407,8 @@ h1{
         repeat(3, 1fr);
 
     gap:18px;
+
+    width:100%;
 
     max-width:720px;
 
@@ -306,6 +431,11 @@ h1{
     cursor:pointer;
 }
 
+
+/* =========================================================
+   CARD ACCENT LINE
+========================================================= */
+
 .card::before{
 
     content:"";
@@ -320,14 +450,22 @@ h1{
 
     height:5px;
 
-    background:#2878df;
+    background:var(--accent);
 
     border-radius:16px 16px 0 0;
 
     z-index:10;
 
     pointer-events:none;
+
+    transition:
+        background .2s ease;
 }
+
+
+/* =========================================================
+   CARD INNER
+========================================================= */
 
 .card-inner{
 
@@ -380,7 +518,13 @@ h1{
 
     padding:15px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:27px;
 
@@ -396,14 +540,14 @@ h1{
 
 .card-front{
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
-    border:2px solid #1e5fba;
+    border:2px solid var(--accent-dark);
 
     box-shadow:
-        0 5px 14px rgba(40,120,223,.18);
+        0 5px 14px rgba(169,153,89,.18);
 }
 
 
@@ -413,11 +557,11 @@ h1{
 
 .card-back{
 
-    background:white;
+    background:#ffffff;
 
-    color:#222;
+    color:var(--ink);
 
-    border:2px solid #2878df;
+    border:2px solid var(--accent-border);
 
     transform:rotateY(180deg);
 
@@ -436,19 +580,19 @@ h1{
 
 .card.matched .card-back{
 
-    background:#eaf8ee;
+    background:var(--correct-bg);
 
-    color:#2e7d32;
+    color:var(--correct);
 
-    border-color:#4caf70;
+    border-color:var(--correct);
 
     box-shadow:
-        0 4px 12px rgba(76,175,112,.15);
+        0 4px 12px rgba(1,155,63,.12);
 }
 
 .card.matched::before{
 
-    background:#4caf70;
+    background:var(--correct);
 }
 
 
@@ -463,19 +607,19 @@ h1{
 
 .card.wrong .card-back{
 
-    background:#fff0f3;
+    background:var(--wrong-bg);
 
-    color:#c62828;
+    color:var(--wrong);
 
-    border-color:#d9536f;
+    border-color:var(--wrong);
 
     box-shadow:
-        0 4px 12px rgba(217,83,111,.15);
+        0 4px 12px rgba(217,83,111,.12);
 }
 
 .card.wrong::before{
 
-    background:#d9536f;
+    background:var(--wrong);
 }
 
 
@@ -499,7 +643,13 @@ h1{
 
     margin-top:22px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:25px;
 
@@ -515,21 +665,29 @@ h1{
 
 .explanation{
 
+    width:100%;
+
     max-width:720px;
 
     margin:18px auto 0;
 
     padding:15px 20px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-left:5px solid #2878df;
+    border-left:5px solid var(--accent);
 
     border-radius:12px;
 
-    color:#3d5066;
+    color:#555;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:22px;
 
@@ -540,7 +698,7 @@ h1{
 
 .explanation strong{
 
-    color:#2878df;
+    color:var(--accent-dark);
 }
 
 
@@ -571,11 +729,19 @@ button{
 
     cursor:pointer;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-weight:bold;
 
-    transition:.2s;
+    transition:
+        background .2s ease,
+        transform .2s ease;
 }
 
 .next-btn,
@@ -583,20 +749,20 @@ button{
 
     padding:13px 30px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-size:24px;
 
     box-shadow:
-        0 4px 10px rgba(40,120,223,.15);
+        0 4px 10px rgba(169,153,89,.15);
 }
 
 .next-btn:hover,
 .play-again-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 }
@@ -625,15 +791,23 @@ button{
     margin:5px 0 20px;
 
     font-size:48px;
+
+    line-height:1.2;
 }
 
 .final-score{
 
     margin:15px 0;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:34px;
 
@@ -646,7 +820,13 @@ button{
 
     color:#555;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:28px;
 }
@@ -657,7 +837,13 @@ button{
 
     color:#555;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
     font-size:25px;
 
@@ -675,12 +861,19 @@ button{
 
     body{
 
-        padding:15px;
+        padding:20px 15px 35px;
+
+        align-items:flex-start;
+    }
+
+    .page-wrapper{
+
+        margin-top:10px;
     }
 
     .game-box{
 
-        padding:30px 20px;
+        padding:30px 20px 35px;
 
         border-radius:20px;
     }
@@ -734,6 +927,8 @@ button{
     .explanation{
 
         font-size:21px;
+
+        padding:15px;
     }
 
 }
@@ -745,9 +940,9 @@ button{
 
 @media(max-width:400px){
 
-    .game-box{
+    body{
 
-        padding:28px 15px;
+        padding:18px 12px 30px;
     }
 
     .back-btn{
@@ -757,9 +952,19 @@ button{
         padding:9px 14px;
     }
 
+    .game-box{
+
+        padding:28px 15px;
+    }
+
     #gameScreen h1{
 
         font-size:36px;
+    }
+
+    .instruction{
+
+        font-size:21px;
     }
 
     .topbar{
@@ -792,30 +997,52 @@ button{
 
 }
 
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible{
+
+    outline:3px solid var(--accent-border);
+
+    outline-offset:2px;
+}
+
 </style>
 
 </head>
 
+
 <body>
 
+
+<div class="page-wrapper">
+
+
 <!-- =========================================================
-     BACK
+     BACK BUTTON
 ========================================================= -->
 
 <div class="back-btn-container">
 
-```
-<a
-    href="../../category.html?category=Food%20and%20Drinks"
-    class="back-btn"
->
-    ⬅ Back
-</a>
-```
+    <a
+        href="../../category.html?category=Food%20and%20Drinks"
+        class="back-btn"
+    >
+        ⬅ Back
+    </a>
 
 </div>
 
+
+<!-- =========================================================
+     GAME CONTAINER
+========================================================= -->
+
 <div class="game-box">
+
 
 <!-- =========================================================
      GAME SCREEN
@@ -823,111 +1050,110 @@ button{
 
 <div id="gameScreen">
 
-```
-<h1>
-    Flip Card
-</h1>
+    <h1>
+        Flip Card
+    </h1>
 
-<p class="instruction">
-    Match each English word with its correct Vietnamese word.
-</p>
+    <p class="instruction">
+        Match each English word with its correct Vietnamese word.
+    </p>
 
 
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
+    <!-- =====================================================
+         TOP BAR
+    ===================================================== -->
 
-<div class="topbar">
+    <div class="topbar">
 
-    <div
-        class="round"
-        id="roundNumber"
-    >
-        Round 1 of 12
+        <div
+            class="round"
+            id="roundNumber"
+        >
+            Round 1 of 12
+        </div>
+
+        <div
+            class="score"
+            id="score"
+        >
+            Score: 0 / 36
+        </div>
+
     </div>
 
-    <div
-        class="score"
-        id="score"
-    >
-        Score: 0 / 36
+
+    <!-- =====================================================
+         PROGRESS
+    ===================================================== -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
     </div>
 
-</div>
 
-
-<!-- =====================================================
-     PROGRESS
-===================================================== -->
-
-<div class="progress-container">
+    <!-- =====================================================
+         MATCH INFO
+    ===================================================== -->
 
     <div
-        class="progress-bar"
-        id="progressBar"
+        class="match-info"
+        id="matchInfo"
+    >
+        Matches: 0 / 3
+    </div>
+
+
+    <!-- =====================================================
+         CARDS
+    ===================================================== -->
+
+    <div
+        class="card-grid"
+        id="cardGrid"
     ></div>
 
-</div>
+
+    <!-- =====================================================
+         MESSAGE
+    ===================================================== -->
+
+    <div id="message"></div>
 
 
-<!-- =====================================================
-     MATCH INFO
-===================================================== -->
+    <!-- =====================================================
+         EXPLANATION
+    ===================================================== -->
 
-<div
-    class="match-info"
-    id="matchInfo"
->
-    Matches: 0 / 3
-</div>
-
-
-<!-- =====================================================
-     CARDS
-===================================================== -->
-
-<div
-    class="card-grid"
-    id="cardGrid"
-></div>
+    <div
+        id="explanation"
+        class="explanation"
+        style="display:none;"
+    ></div>
 
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
+    <!-- =====================================================
+         NEXT
+    ===================================================== -->
 
-<div id="message"></div>
+    <div class="next-area">
 
+        <button
+            id="nextBtn"
+            class="next-btn"
+            onclick="nextRound()"
+        >
+            Next Round →
+        </button>
 
-<!-- =====================================================
-     EXPLANATION
-===================================================== -->
-
-<div
-    id="explanation"
-    class="explanation"
-    style="display:none;"
-></div>
-
-
-<!-- =====================================================
-     NEXT
-===================================================== -->
-
-<div class="next-area">
-
-    <button
-        id="nextBtn"
-        class="next-btn"
-        onclick="nextRound()"
-    >
-        Next Round →
-    </button>
+    </div>
 
 </div>
-```
 
-</div>
 
 <!-- =========================================================
      FINAL SCREEN
@@ -935,41 +1161,43 @@ button{
 
 <div id="finalScreen">
 
-```
-<div class="final-icon">
-    🎉
-</div>
+    <div class="final-icon">
+        🎉
+    </div>
 
-<h1>
-    Game Finished!
-</h1>
+    <h1>
+        Game Finished!
+    </h1>
 
-<div
-    class="final-score"
-    id="finalScore"
-></div>
+    <div
+        class="final-score"
+        id="finalScore"
+    ></div>
 
-<div
-    class="final-percent"
-    id="finalPercent"
-></div>
+    <div
+        class="final-percent"
+        id="finalPercent"
+    ></div>
 
-<div
-    class="final-message"
-    id="finalMessage"
-></div>
+    <div
+        class="final-message"
+        id="finalMessage"
+    ></div>
 
-<button
-    class="play-again-btn"
-    onclick="restartGame()"
->
-    Play Again
-</button>
-```
+    <button
+        class="play-again-btn"
+        onclick="restartGame()"
+    >
+        Play Again
+    </button>
 
 </div>
 
+
 </div>
+
+</div>
+
 
 <script>
 
@@ -1258,17 +1486,20 @@ const explanationEl =
 
 function shuffle(array){
 
-    const shuffled = [...array];
+    const shuffled =
+        [...array];
 
     for(
-        let i = shuffled.length - 1;
+        let i =
+            shuffled.length - 1;
         i > 0;
         i--
     ){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
         [
@@ -1309,9 +1540,10 @@ function getRoundPairs(){
 
         usedVocabulary = [];
 
-        available = [
-            ...vocabulary
-        ];
+        available =
+            [
+                ...vocabulary
+            ];
 
     }
 
@@ -1411,7 +1643,7 @@ function loadRound(){
         "";
 
     messageEl.style.color =
-        "#222";
+        "#333";
 
 
     explanationEl.style.display =
@@ -1441,7 +1673,8 @@ function loadRound(){
 
                 text:pair.english,
 
-                vietnamese:pair.vietnamese,
+                vietnamese:
+                    pair.vietnamese,
 
                 id:index
 
@@ -1454,7 +1687,8 @@ function loadRound(){
 
                 text:pair.vietnamese,
 
-                english:pair.english,
+                english:
+                    pair.english,
 
                 id:index
 
@@ -1677,7 +1911,7 @@ function handleCorrectMatch(){
 
 
     messageEl.style.color =
-        "#2e7d32";
+        "var(--correct)";
 
 
     messageEl.textContent =
@@ -1720,7 +1954,7 @@ function handleWrongMatch(){
 
 
     messageEl.style.color =
-        "#d9536f";
+        "var(--wrong)";
 
 
     messageEl.textContent =
@@ -1728,8 +1962,9 @@ function handleWrongMatch(){
 
 
     /*
-       Keep the cards red briefly,
-       then flip them back.
+       Briefly show the wrong state,
+       then return the cards to their
+       hidden state.
     */
 
     setTimeout(
@@ -1779,7 +2014,7 @@ function finishRound(){
     ){
 
         messageEl.style.color =
-            "#2e7d32";
+            "var(--correct)";
 
 
         messageEl.textContent =
@@ -1802,7 +2037,7 @@ function finishRound(){
 
 
     messageEl.style.color =
-        "#2e7d32";
+        "var(--correct)";
 
 
     messageEl.textContent =
@@ -1948,14 +2183,13 @@ function restartGame(){
         "0%";
 
 
-    loadRound();
+    startGame();
 
 }
 
 
 /* =========================================================
    AUTO START
-   No intro screen
 ========================================================= */
 
 startGame();

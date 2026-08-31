@@ -59,7 +59,7 @@ content="🎨"
     --paper:
         #f7f8fc;
 
-    --white:
+    --f5f5f5:
         #ffffff;
 
     --ink:
@@ -68,23 +68,28 @@ content="🎨"
     --ink-soft:
         #66809d;
 
+    /* Colors category theme */
+
     --accent:
-        #2878df;
+        #7569AA;
 
     --accent-dark:
-        #1e5fba;
+        #544A82;
 
     --accent-light:
-        #eaf3ff;
+        #efedf9;
+
+    --accent-bg:
+        #F5F4FB;
 
     --accent-border:
-        #c4daf6;
+        #d0c9ec;
 
     --general-border:
         #d9e6f2;
 
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-light:
         #eaf3ff;
@@ -143,8 +148,8 @@ body {
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f8fbff 48%,
-            #f1f6fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
@@ -248,7 +253,7 @@ body {
         var(--accent);
 
     color:
-        white;
+        var(--f5f5f5);
 
 }
 
@@ -667,7 +672,7 @@ h1 {
         var(--accent);
 
     color:
-        white;
+        var(--f5f5f5);
 
     font-family:
         inherit;
@@ -1239,7 +1244,7 @@ const COLORS = [
             "white",
 
         color:
-            "white"
+            "#ffffff"
     },
 
     {
@@ -1603,7 +1608,7 @@ function loadQuestion() {
 
             if (
                 option.color ===
-                "white"
+                "#ffffff"
             ) {
 
                 button.style.borderColor =

@@ -1,36 +1,36 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Find The Same Meaning</title>
 
 <meta
-name="game-title"
-content="Find The Same Meaning"
-
+    name="game-title"
+    content="Find The Same Meaning"
 >
 
 <meta
-name="game-description"
-content="Match English words with Vietnamese food and drink words that have the same meaning."
-
+    name="game-description"
+    content="Match English words with Vietnamese food and drink words that have the same meaning."
 >
 
 <meta
-name="game-icon"
-content="🔎"
-
+    name="game-icon"
+    content="🔎"
 >
 
 <meta
-name="game-explanation"
-content="true"
-
+    name="game-explanation"
+    content="true"
 >
 
 <!-- =========================================================
@@ -53,15 +53,54 @@ content="true"
     rel="stylesheet"
 >
 
+
 <style>
 
 /* =========================================================
-   GLOBAL
+   THEME
+========================================================= */
+
+:root{
+
+    --accent:#A99959;
+
+    --accent-dark:#7B6F40;
+
+    --accent-light:#f9f6e6;
+
+    --accent-bg:#FBFAF0;
+
+    --accent-border:#e8dfb2;
+
+    --ink:#3f3d36;
+
+    --muted:#706f68;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+}
+
+
+/* =========================================================
+   RESET
 ========================================================= */
 
 *{
+
     box-sizing:border-box;
+
 }
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body{
 
@@ -69,16 +108,44 @@ body{
 
     min-height:100vh;
 
-    padding:25px 20px;
+    padding:28px 20px 45px;
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
         sans-serif;
 
-    background:#f7faff;
+    color:var(--ink);
 
-    color:#26354a;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page{
+
+    width:min(900px,95vw);
+
+    margin:0 auto;
 
 }
 
@@ -89,9 +156,9 @@ body{
 
 .back-btn-container{
 
-    width:min(900px,95vw);
+    width:100%;
 
-    margin:0 auto 15px;
+    margin:0 0 14px;
 
 }
 
@@ -102,11 +169,11 @@ body{
 
     padding:9px 16px;
 
-    background:white;
+    background:#ffffff;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
-    border:2px solid #c4daf6;
+    border:2px solid var(--accent-border);
 
     border-radius:10px;
 
@@ -123,9 +190,11 @@ body{
 
 .back-btn:hover{
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
+
+    color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -133,25 +202,25 @@ body{
 
 
 /* =========================================================
-   MAIN CONTAINER
+   MAIN GAME CONTAINER
 ========================================================= */
 
 .game-box{
 
     position:relative;
 
-    width:min(900px,95vw);
+    width:100%;
 
     margin:0 auto;
 
-    background:white;
+    background:#ffffff;
 
     border-radius:22px;
 
     padding:30px 35px 35px;
 
     box-shadow:
-        0 8px 28px rgba(40,120,223,.10);
+        0 8px 28px rgba(90,78,35,.10);
 
     overflow:hidden;
 
@@ -159,7 +228,7 @@ body{
 
 
 /* =========================================================
-   ACCENT LINE
+   MAIN ACCENT LINE
 ========================================================= */
 
 .game-box::before{
@@ -176,7 +245,7 @@ body{
 
     height:6px;
 
-    background:#2878df;
+    background:var(--accent);
 
 }
 
@@ -203,10 +272,8 @@ body{
     text-align:center;
 
     font-family:
-        Kalam,
-        Calibri,
-        Arial,
-        sans-serif;
+        "Kalam",
+        cursive;
 
     font-size:44px;
 
@@ -214,7 +281,7 @@ body{
 
     line-height:1.2;
 
-    color:#2878df;
+    color:var(--ink);
 
 }
 
@@ -229,7 +296,7 @@ body{
 
     text-align:center;
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:24px;
 
@@ -263,14 +330,14 @@ body{
 
 #roundText{
 
-    color:#667085;
+    color:var(--muted);
 
 }
 
 
 #scoreText{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     font-size:26px;
 
@@ -287,7 +354,7 @@ body{
 
     height:8px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
     border-radius:20px;
 
@@ -295,7 +362,7 @@ body{
 
     margin-bottom:22px;
 
-    border:1px solid #c4daf6;
+    border:1px solid var(--accent-border);
 
 }
 
@@ -306,7 +373,7 @@ body{
 
     height:100%;
 
-    background:#2878df;
+    background:var(--accent);
 
     transition:.3s ease;
 
@@ -351,7 +418,7 @@ body{
 
     font-weight:bold;
 
-    color:#52657d;
+    color:var(--accent-dark);
 
     text-align:center;
 
@@ -381,9 +448,9 @@ body{
 
     border-radius:14px;
 
-    border:2px dashed #c4daf6;
+    border:2px dashed var(--accent-border);
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
     display:flex;
 
@@ -397,7 +464,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     transition:.2s;
 
@@ -408,48 +475,64 @@ body{
 }
 
 
+/* =========================================================
+   TARGET HOVER
+========================================================= */
+
 .target.over{
 
     transform:scale(1.02);
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#2878df;
+    border-color:var(--accent);
 
 }
 
+
+/* =========================================================
+   TARGET FILLED
+========================================================= */
 
 .target.filled{
 
     border-style:solid;
 
-    border-color:#2878df;
+    border-color:var(--accent);
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
+
+/* =========================================================
+   TARGET CORRECT
+========================================================= */
 
 .target.correct{
 
-    background:#eaf3ff;
+    background:var(--correct-bg);
 
-    border:2px solid #2878df;
+    border:2px solid var(--correct);
 
-    color:#2878df;
+    color:var(--correct);
 
 }
 
 
+/* =========================================================
+   TARGET WRONG
+========================================================= */
+
 .target.wrong{
 
-    background:#fff0f3;
+    background:var(--wrong-bg);
 
-    border:2px solid #d9536f;
+    border:2px solid var(--wrong);
 
-    color:#d9536f;
+    color:var(--wrong);
 
 }
 
@@ -475,9 +558,9 @@ body{
 
     border-radius:14px;
 
-    background:white;
+    background:#ffffff;
 
-    border:2px solid #d9e6f2;
+    border:2px solid var(--accent-border);
 
     display:flex;
 
@@ -491,7 +574,7 @@ body{
 
     font-weight:bold;
 
-    color:#26354a;
+    color:var(--ink);
 
     cursor:grab;
 
@@ -504,15 +587,19 @@ body{
 }
 
 
+/* =========================================================
+   WORD HOVER
+========================================================= */
+
 .word:hover{
 
     transform:translateY(-2px);
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border-color:#c4daf6;
+    border-color:var(--accent);
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -561,6 +648,20 @@ body{
 }
 
 
+.correct-text{
+
+    color:var(--correct);
+
+}
+
+
+.wrong-text{
+
+    color:var(--wrong);
+
+}
+
+
 /* =========================================================
    EXPLANATION
 ========================================================= */
@@ -575,13 +676,13 @@ body{
 
     max-width:800px;
 
-    background:#eaf3ff;
+    background:var(--accent-light);
 
-    border:1px solid #c4daf6;
+    border:1px solid var(--accent-border);
 
     border-radius:12px;
 
-    color:#26354a;
+    color:var(--ink);
 
     font-size:23px;
 
@@ -601,7 +702,7 @@ body{
 
 .explanation strong{
 
-    color:#2878df;
+    color:var(--accent-dark);
 
 }
 
@@ -639,13 +740,16 @@ body{
 
     border-radius:11px;
 
-    background:#2878df;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
 
     font-family:
         Calibri,
-        Arial,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
         sans-serif;
 
     font-size:25px;
@@ -663,7 +767,7 @@ body{
 #nextBtn:hover,
 .restart-btn:hover{
 
-    background:#1e5fba;
+    background:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -708,16 +812,14 @@ body{
     margin:5px 0 15px;
 
     font-family:
-        Kalam,
-        Calibri,
-        Arial,
-        sans-serif;
+        "Kalam",
+        cursive;
 
     font-size:44px;
 
     line-height:1.2;
 
-    color:#2878df;
+    color:var(--ink);
 
 }
 
@@ -728,7 +830,7 @@ body{
 
     font-weight:bold;
 
-    color:#2878df;
+    color:var(--accent-dark);
 
     margin:20px 0;
 
@@ -737,7 +839,7 @@ body{
 
 .final-message{
 
-    color:#667085;
+    color:var(--muted);
 
     font-size:26px;
 
@@ -756,7 +858,23 @@ body{
 
     body{
 
-        padding:20px 12px;
+        padding:20px 12px 30px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .page{
+
+        width:100%;
+
+    }
+
+
+    .back-btn-container{
+
+        margin-bottom:12px;
 
     }
 
@@ -941,24 +1059,28 @@ body{
 
 </head>
 
+
 <body>
 
+
+<div class="page">
+
+
 <!-- =======================================================
-     BACK
+     BACK BUTTON
 ======================================================= -->
 
 <div class="back-btn-container">
 
-```
-<a
-    href="../../category.html?category=Food%20and%20Drinks"
-    class="back-btn"
->
-    ← Back
-</a>
-```
+    <a
+        href="../../category.html?category=Food%20and%20Drinks"
+        class="back-btn"
+    >
+        ← Back
+    </a>
 
 </div>
+
 
 <!-- =======================================================
      GAME CONTAINER
@@ -966,13 +1088,14 @@ body{
 
 <div class="game-box">
 
+
 <!-- =======================================================
      GAME SCREEN
 ======================================================= -->
 
 <div id="gameScreen">
 
-```
+
 <h1>
     Find The Same Meaning
 </h1>
@@ -984,7 +1107,7 @@ body{
 
 
 <!-- =====================================================
-     STATUS
+     GAME STATUS
 ====================================================== -->
 
 <div class="game-status">
@@ -992,6 +1115,7 @@ body{
     <div id="roundText">
         Round 1 / 20
     </div>
+
 
     <div id="scoreText">
         Score: 0
@@ -1021,40 +1145,42 @@ body{
 <div class="matching-area">
 
 
-    <!-- =================================================
-         VIETNAMESE
-    ================================================== -->
+<!-- =================================================
+     VIETNAMESE
+================================================== -->
 
-    <div class="column">
+<div class="column">
 
-        <div class="column-title">
-            Vietnamese
-        </div>
-
-        <div
-            class="labels"
-            id="targets"
-        ></div>
-
+    <div class="column-title">
+        Vietnamese
     </div>
 
 
-    <!-- =================================================
-         ENGLISH
-    ================================================== -->
+    <div
+        class="labels"
+        id="targets"
+    ></div>
 
-    <div class="column">
+</div>
 
-        <div class="column-title">
-            English
-        </div>
 
-        <div
-            class="words"
-            id="words"
-        ></div>
+<!-- =================================================
+     ENGLISH
+================================================== -->
 
+<div class="column">
+
+    <div class="column-title">
+        English
     </div>
+
+
+    <div
+        class="words"
+        id="words"
+    ></div>
+
+</div>
 
 
 </div>
@@ -1102,9 +1228,10 @@ body{
     </button>
 
 </div>
-```
+
 
 </div>
+
 
 <!-- =======================================================
      FINAL SCREEN
@@ -1112,7 +1239,7 @@ body{
 
 <div id="finalScreen">
 
-```
+
 <h2>
     🎉 Game Complete!
 </h2>
@@ -1138,11 +1265,16 @@ body{
 >
     Play Again
 </button>
-```
+
 
 </div>
 
+
 </div>
+
+
+</div>
+
 
 <script>
 
@@ -1597,50 +1729,60 @@ const gameScreen =
         "gameScreen"
     );
 
+
 const finalScreen =
     document.getElementById(
         "finalScreen"
     );
+
 
 const targetsEl =
     document.getElementById(
         "targets"
     );
 
+
 const wordsEl =
     document.getElementById(
         "words"
     );
+
 
 const messageEl =
     document.getElementById(
         "message"
     );
 
+
 const explanationEl =
     document.getElementById(
         "explanation"
     );
+
 
 const checkBtn =
     document.getElementById(
         "checkBtn"
     );
 
+
 const nextBtn =
     document.getElementById(
         "nextBtn"
     );
+
 
 const roundText =
     document.getElementById(
         "roundText"
     );
 
+
 const scoreText =
     document.getElementById(
         "scoreText"
     );
+
 
 const progress =
     document.getElementById(
@@ -1662,8 +1804,8 @@ function loadRound(){
     messageEl.textContent =
         "";
 
-    messageEl.style.color =
-        "";
+    messageEl.className =
+        "message";
 
 
     explanationEl.innerHTML =
@@ -1738,6 +1880,14 @@ function loadRound(){
                 "";
 
 
+            target.dataset.english =
+                "";
+
+
+            /* =============================================
+               DRAG OVER
+            ============================================== */
+
             target.addEventListener(
                 "dragover",
                 event => {
@@ -1769,6 +1919,10 @@ function loadRound(){
             );
 
 
+            /* =============================================
+               DRAG LEAVE
+            ============================================== */
+
             target.addEventListener(
                 "dragleave",
                 () => {
@@ -1780,6 +1934,10 @@ function loadRound(){
                 }
             );
 
+
+            /* =============================================
+               DROP
+            ============================================== */
 
             target.addEventListener(
                 "drop",
@@ -1833,7 +1991,7 @@ function loadRound(){
 
 
                     target.textContent =
-                        `${target.dataset.vi}`;
+                        target.dataset.vi;
 
 
                     target.classList.add(
@@ -1896,6 +2054,10 @@ function loadRound(){
                 item.vi;
 
 
+            /* =========================================
+               DRAG START
+            ========================================== */
+
             word.addEventListener(
                 "dragstart",
                 event => {
@@ -1925,6 +2087,10 @@ function loadRound(){
                 }
             );
 
+
+            /* =========================================
+               DRAG END
+            ========================================== */
 
             word.addEventListener(
                 "dragend",
@@ -2009,8 +2175,8 @@ function checkAnswers(){
         messageEl.textContent =
             "Please match all words first.";
 
-        messageEl.style.color =
-            "#d9536f";
+        messageEl.className =
+            "message wrong-text";
 
         return;
 
@@ -2054,7 +2220,7 @@ function checkAnswers(){
 
             /* =============================================
                CORRECT
-            ============================================= */
+            ============================================== */
 
             if(
                 selectedVietnamese ===
@@ -2089,7 +2255,7 @@ function checkAnswers(){
 
             /* =============================================
                WRONG
-            ============================================= */
+            ============================================== */
 
             else{
 
@@ -2131,6 +2297,10 @@ function checkAnswers(){
     );
 
 
+    /* =====================================================
+       UPDATE SCORE
+    ====================================================== */
+
     score +=
         correctCount;
 
@@ -2149,10 +2319,10 @@ function checkAnswers(){
     ){
 
         messageEl.textContent =
-            "✓ Perfect!";
+            "✓ Correct!";
 
-        messageEl.style.color =
-            "#2878df";
+        messageEl.className =
+            "message correct-text";
 
     }
 
@@ -2161,8 +2331,8 @@ function checkAnswers(){
         messageEl.textContent =
             `${correctCount} / ${targets.length} correct.`;
 
-        messageEl.style.color =
-            "#d9536f";
+        messageEl.className =
+            "message wrong-text";
 
     }
 
@@ -2361,6 +2531,8 @@ loadRound();
 
 </script>
 
+
 </body>
 
 </html>
+```

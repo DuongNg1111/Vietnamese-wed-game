@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,81 +26,118 @@
 
 <style>
 
-*{
-    box-sizing:border-box;
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+:root{
+
+    --accent:#7DA15C;
+
+    --accent-dark:#5A7442;
+
+    --accent-light:#f0f7e8;
+
+    --accent-bg:#F6FAF1;
+
+    --accent-border:#d5e6b8;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+    --general-border:#d9e6f2;
+
+    --ink: #143a6b;
+
+    --ink-soft: #66809d; 
+
 }
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
 
 body{
 
+    margin:0;
+
+    padding:30px 20px;
+
+    background:linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+
+    min-height:100vh;
+
     font-family:
+        Calibri,
         Arial,
         Helvetica,
         sans-serif;
 
-    text-align:center;
+    display:flex;
 
-    background:#eef6ff;
+    justify-content:center;
 
-    margin:0;
-
-    padding:20px;
+    align-items:center;
 
     color:#222;
 
 }
 
 
-.screen{
-    display:none;
-}
+/* ==========================================================
+   PAGE WRAPPER
+========================================================== */
 
+.page{
 
-.active{
-    display:block;
-}
+    width:min(900px,100%);
 
-
-.container{
-
-    position:relative;
-
-    width:100%;
-
-    max-width:850px;
-
-    margin:40px auto;
-
-    background:white;
-
-    padding:
-        65px
-        35px
-        35px;
-
-    border-radius:24px;
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.12);
+    margin:0 auto;
 
 }
 
 
-/* =========================
-   BACK TO LOBBY
-========================= */
+/* ==========================================================
+   BACK BUTTON
+   OUTSIDE GAME CONTAINER
+========================================================== */
 
 .lobby-btn{
 
-    position:absolute;
+    display:inline-block;
 
-    top:20px;
-
-    left:22px;
+    margin:
+        0
+        0
+        12px
+        2px;
 
     padding:
-        8px
-        14px;
+        7px
+        13px;
 
     border:none;
 
@@ -107,9 +145,11 @@ body{
 
     background:#eef5fc;
 
-    color:#1976d2;
+    color:#333;
 
-    font-size:24px;
+    font-family:Calibri, Arial, sans-serif;
+
+    font-size:22px;
 
     font-weight:bold;
 
@@ -122,390 +162,715 @@ body{
 
 .lobby-btn:hover{
 
-    background:#dcecff;
+    color:var(--accent-dark);
 
-    transform:translateX(-2px);
+    transform:translateX(-3px);
 
 }
 
 
-/* =========================
-   HEADINGS
-========================= */
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.container{
+
+    width:100%;
+
+    background:#ffffff;
+
+    padding:
+        32px
+        35px
+        35px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* ==========================================================
+   GAME
+========================================================== */
+
+#game{
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
 
 h1{
 
-    margin-top:0;
+    margin:
+        0
+        0
+        6px;
 
-    margin-bottom:12px;
+    text-align:center;
 
-    color:#1976d2;
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:var(--ink);
 
 }
 
 
 .subtitle{
 
-    color:#666;
-
-    font-size:28px;
-
-    margin-bottom:25px;
-
-    line-height:1.5;
-
-}
-
-
-/* =========================
-   QUESTION
-========================= */
-
-.question-info{
-
-    font-size:30px;
-
-    font-weight:bold;
-
-    color:#555;
-
-    margin-bottom:20px;
-
-}
-
-
-.number-words{
-
-    background:#f5f9ff;
-
-    border:
-        2px solid
-        #d9e8ff;
-
-    border-radius:16px;
-
-    padding:
-        25px
-        20px;
-
     margin:
-        25px auto;
-
-    max-width:650px;
-
-    font-size:38px;
-
-    font-weight:bold;
-
-    color:#1976d2;
-
-}
-
-
-.instruction{
-
-    color:#666;
-
-    font-size:26px;
-
-    margin-bottom:20px;
-
-}
-
-
-/* =========================
-   ANSWERS
-========================= */
-
-.answers{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,280px);
-
-    gap:15px;
-
-    justify-content:center;
-
-    margin:
-        30px 0
-        20px;
-
-}
-
-
-.answer{
-
-    padding:18px;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    background:white;
-
-    border:
-        3px solid
-        #d9e8ff;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.answer:hover{
-
-    transform:translateY(-3px);
-
-    background:#f1f8ff;
-
-}
-
-
-.answer.correct{
-
-    background:#c8e6c9;
-
-    border-color:#4caf50;
-
-    color:#256b2b;
-
-    cursor:default;
-
-}
-
-
-.answer.wrong{
-
-    background:#ffcdd2;
-
-    border-color:#f44336;
-
-    color:#b71c1c;
-
-    cursor:default;
-
-}
-
-
-.answer.disabled{
-
-    cursor:default;
-
-    pointer-events:none;
-
-}
-
-
-/* =========================
-   RESULT
-========================= */
-
-.result{
-
-    min-height:45px;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    margin:
-        15px 0;
-
-}
-
-
-.correct-text{
-
-    color:#2e7d32;
-
-}
-
-
-.wrong-text{
-
-    color:#c62828;
-
-}
-
-
-.correct-answer{
-
-    font-size:28px;
-
-    color:#555;
-
-    min-height:28px;
-
-    margin-bottom:15px;
-
-}
-
-
-/* =========================
-   EXPLANATION
-========================= */
-
-.explanation{
-
-    font-size:26px;
-
-    color:#666;
-
-    line-height:1.5;
-
-    min-height:25px;
-
-    margin-bottom:15px;
-
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.next-btn,
-.restart-btn,
-.start-btn{
-
-    padding:
-        12px
+        0
+        0
         25px;
 
-    border-radius:12px;
+    text-align:center;
 
-    border:none;
+    color:#666;
 
-    background:#4caf50;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    color:white;
+    font-size:22px;
 
-    cursor:pointer;
+    line-height:1.45;
 
-    font-size:27px;
+}
+
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+    font-size:20px;
 
     font-weight:bold;
 
-    transition:.2s;
+    color:#555;
 
 }
 
-
-.next-btn:hover,
-.restart-btn:hover,
-.start-btn:hover{
-
-    background:#388e3c;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* =========================
-   SCORE
-========================= */
 
 .score{
 
-    margin-top:20px;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    color:#555;
+    color:var(--accent-dark);
 
 }
 
 
-/* =========================
+/* ==========================================================
    PROGRESS
-========================= */
+========================================================== */
 
 .progress-wrap{
 
     width:100%;
 
-    height:10px;
+    height:8px;
 
-    background:#e0e0e0;
+    background:#e6e6e6;
 
     border-radius:20px;
 
     overflow:hidden;
 
     margin:
-        20px 0
-        25px;
+        0
+        0
+        22px;
 
 }
 
 
 .progress{
 
-    height:100%;
-
     width:0%;
 
-    background:#2196f3;
+    height:100%;
+
+    background:var(--accent);
+
+    border-radius:20px;
 
     transition:.3s;
 
 }
 
 
-/* =========================
-   END
-========================= */
+/* ==========================================================
+   GAME CARD
+========================================================== */
 
-.final-score{
+.game-card{
 
-    font-size:44px;
+    position:relative;
+
+    background:#fff;
+
+    border:
+        1px solid
+        var(--general-border);
+
+    border-radius:15px;
+
+    padding:
+        25px
+        25px
+        28px;
+
+    overflow:hidden;
+
+}
+
+
+/* ==========================================================
+   ACCENT LINE
+========================================================== */
+
+.game-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:var(--accent);
+
+}
+
+
+/* ==========================================================
+   QUESTION LABEL
+========================================================== */
+
+.instruction{
+
+    margin:
+        0
+        0
+        12px;
+
+    text-align:center;
+
+    color:#555;
+
+    font-size:23px;
 
     font-weight:bold;
 
-    color:#1976d2;
+}
+
+
+/* ==========================================================
+   NUMBER WORDS CARD
+========================================================== */
+
+.number-words{
+
+    width:100%;
+
+    max-width:680px;
 
     margin:
-        25px 0
-        10px;
+        0
+        auto
+        25px;
+
+    padding:
+        25px
+        20px;
+
+    background:var(--accent-bg);
+
+    border:
+        2px solid
+        var(--accent-border);
+
+    border-radius:14px;
+
+    text-align:center;
+
+    font-size:38px;
+
+    font-weight:bold;
+
+    color:var(--accent-dark);
+
+}
+
+
+/* ==========================================================
+   ANSWERS
+========================================================== */
+
+.answers{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:14px;
+
+    width:100%;
+
+    max-width:680px;
+
+    margin:
+        0
+        auto
+        22px;
+
+}
+
+
+/* ==========================================================
+   ANSWER BUTTON
+========================================================== */
+
+.answer{
+
+    min-height:68px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        14px
+        18px;
+
+    background:#fff;
+
+    border:
+        2px solid
+        var(--general-border);
+
+    border-radius:12px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#333;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        border-color .2s,
+        transform .2s;
+
+}
+
+
+.answer:hover{
+
+    background:var(--accent-light);
+
+    border-color:var(--accent);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   CORRECT
+========================================================== */
+
+.answer.correct{
+
+    background:var(--correct-bg);
+
+    border-color:var(--correct);
+
+    color:var(--correct);
+
+    cursor:default;
+
+}
+
+
+/* ==========================================================
+   WRONG
+========================================================== */
+
+.answer.wrong{
+
+    background:var(--wrong-bg);
+
+    border-color:var(--wrong);
+
+    color:var(--wrong);
+
+    cursor:default;
+
+}
+
+
+/* ==========================================================
+   DISABLED
+========================================================== */
+
+.answer.disabled{
+
+    pointer-events:none;
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.result{
+
+    min-height:38px;
+
+    margin:
+        8px
+        0
+        5px;
+
+    text-align:center;
+
+    font-size:29px;
+
+    font-weight:bold;
+
+}
+
+
+.correct-text{
+
+    color:var(--correct);
+
+}
+
+
+.wrong-text{
+
+    color:var(--wrong);
+
+}
+
+
+/* ==========================================================
+   CORRECT ANSWER
+========================================================== */
+
+.correct-answer{
+
+    min-height:30px;
+
+    margin:
+        4px
+        0
+        6px;
+
+    text-align:center;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    color:#555;
+
+}
+
+
+/* ==========================================================
+   EXPLANATION
+========================================================== */
+
+.explanation{
+
+    min-height:28px;
+
+    margin:
+        0
+        0
+        14px;
+
+    text-align:center;
+
+    font-size:20px;
+
+    line-height:1.45;
+
+    color:#666;
+
+}
+
+
+/* ==========================================================
+   NEXT BUTTON
+========================================================== */
+
+.next-btn{
+
+    display:block;
+
+    margin:
+        5px
+        auto
+        0;
+
+    padding:
+        11px
+        25px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--accent);
+
+    color:#fff;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.next-btn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   END SCREEN
+========================================================== */
+
+#end{
+
+    display:none;
+
+    text-align:center;
+
+}
+
+
+#end h1{
+
+    margin-bottom:10px;
+
+}
+
+
+.end-description{
+
+    margin:
+        0
+        0
+        20px;
+
+    font-size:22px;
+
+    color:#666;
+
+}
+
+
+.final-score{
+
+    margin:
+        20px
+        0
+        12px;
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    color:var(--accent-dark);
 
 }
 
 
 .performance{
 
-    font-size:32px;
+    margin-bottom:25px;
+
+    font-size:24px;
 
     color:#555;
 
-    margin-bottom:25px;
+    line-height:1.5;
 
 }
 
 
-/* =========================
+/* ==========================================================
+   PLAY AGAIN
+========================================================== */
+
+.restart-btn{
+
+    padding:
+        12px
+        26px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--accent);
+
+    color:#fff;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.restart-btn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
    MOBILE
-========================= */
+========================================================== */
 
 @media(max-width:650px){
+
+    body{
+
+        padding:
+            20px
+            10px;
+
+    }
+
 
     .container{
 
         padding:
-            60px
+            28px
             15px
-            25px;
+            20px;
 
-        margin:
-            20px auto;
+        border-radius:16px;
+
+    }
+
+
+    h1{
+
+        font-size:35px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:20px;
+
+    }
+
+
+    .topbar{
+
+        font-size:18px;
+
+    }
+
+
+    .game-card{
+
+        padding:
+            23px
+            14px
+            22px;
+
+    }
+
+
+    .instruction{
+
+        font-size:21px;
+
+    }
+
+
+    .number-words{
+
+        padding:
+            22px
+            12px;
+
+        font-size:31px;
 
     }
 
@@ -514,7 +879,7 @@ h1{
 
         grid-template-columns:1fr;
 
-        width:100%;
+        gap:11px;
 
     }
 
@@ -523,27 +888,39 @@ h1{
 
         width:100%;
 
+        min-height:62px;
+
+        font-size:27px;
+
     }
 
 
-    .number-words{
+    .result{
 
-        font-size:33px;
+        font-size:27px;
+
+    }
+
+
+    .correct-answer{
+
+        font-size:21px;
+
+    }
+
+
+    .explanation{
+
+        font-size:19px;
 
     }
 
 
     .lobby-btn{
 
-        top:16px;
+        margin-left:0;
 
-        left:16px;
-
-        font-size:23px;
-
-        padding:
-            7px
-            12px;
+        font-size:21px;
 
     }
 
@@ -551,16 +928,28 @@ h1{
 
 </style>
 
+
+<!-- ==========================================================
+     GOOGLE FONT
+========================================================== -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 </head>
 
 
 <body>
 
 
-<div class="container">
+<div class="page">
 
 
-<!-- ================= BACK TO LOBBY ================= -->
+<!-- ========================================================
+     BACK TO LOBBY
+========================================================= -->
 
 <button
     class="lobby-btn"
@@ -572,13 +961,21 @@ h1{
 </button>
 
 
+<!-- ========================================================
+     GAME CONTAINER
+========================================================= -->
 
-<!-- ================= INTRO ================= -->
+<div class="container">
 
-<div
-    id="intro"
-    class="screen active"
->
+
+<!-- ========================================================
+     GAME
+========================================================= -->
+
+<div id="game">
+
+
+    <!-- TITLE -->
 
     <h1>
 
@@ -586,6 +983,8 @@ h1{
 
     </h1>
 
+
+    <!-- SHORT INTRO -->
 
     <p class="subtitle">
 
@@ -595,54 +994,45 @@ h1{
     </p>
 
 
-    <p>
+    <!-- TOP BAR -->
 
-        15 questions • 3 numbers each
-
-    </p>
+    <div class="topbar">
 
 
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
+        <div>
 
-        Start Game
+            Question
 
-    </button>
+            <span id="qnum">
 
-</div>
+                1
 
+            </span>
 
+            / 15
 
-<!-- ================= GAME ================= -->
-
-<div
-    id="game"
-    class="screen"
->
+        </div>
 
 
-    <h1>
+        <div class="score">
 
-        🔢 Number Challenge
+            Score:
 
-    </h1>
+            <span id="score">
 
+                0
 
-    <div class="question-info">
+            </span>
 
-        Question
+            / 15
 
-        <span id="qnum">
-            1
-        </span>
+        </div>
 
-        / 15
 
     </div>
 
 
+    <!-- PROGRESS -->
 
     <div class="progress-wrap">
 
@@ -654,77 +1044,84 @@ h1{
     </div>
 
 
+    <!-- ====================================================
+         CARD
+    ===================================================== -->
 
-    <div class="instruction">
-
-        What numbers do these Vietnamese
-        words represent?
-
-    </div>
+    <div class="game-card">
 
 
+        <!-- INSTRUCTION -->
 
-    <div
-        class="number-words"
-        id="numberWords"
-    >
+        <div class="instruction">
 
-        một - năm - tám
+            What numbers do these Vietnamese
+            words represent?
 
-    </div>
-
+        </div>
 
 
-    <div
-        class="answers"
-        id="answers"
-    ></div>
+        <!-- VIETNAMESE WORDS -->
+
+        <div
+            class="number-words"
+            id="numberWords"
+        >
+
+            một - năm - tám
+
+        </div>
 
 
+        <!-- ANSWERS -->
 
-    <div
-        class="result"
-        id="resultIcon"
-    ></div>
+        <div
+            class="answers"
+            id="answers"
+        >
 
+            <!-- JavaScript inserts 4 answers here -->
 
-
-    <div
-        class="correct-answer"
-        id="correctAnswer"
-    ></div>
+        </div>
 
 
+        <!-- RESULT -->
 
-    <div
-        class="explanation"
-        id="explanation"
-    ></div>
-
-
-
-    <button
-        class="next-btn"
-        id="nextBtn"
-        onclick="nextQuestion()"
-        style="display:none;"
-    >
-
-        Next Question →
-
-    </button>
+        <div
+            class="result"
+            id="resultIcon"
+        ></div>
 
 
+        <!-- CORRECT ANSWER -->
 
-    <div class="score">
+        <div
+            class="correct-answer"
+            id="correctAnswer"
+        ></div>
 
-        Score:
 
-        <span id="score">
-            0
-        </span>
+        <!-- EXPLANATION -->
 
-        / 15
+        <div
+            class="explanation"
+            id="explanation"
+        ></div>
+
+
+        <!-- NEXT -->
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+            style="display:none;"
+        >
+
+            Next Question →
+
+        </button>
+
 
     </div>
 
@@ -732,13 +1129,11 @@ h1{
 </div>
 
 
+<!-- ========================================================
+     END
+========================================================= -->
 
-<!-- ================= END ================= -->
-
-<div
-    id="end"
-    class="screen"
->
+<div id="end">
 
 
     <h1>
@@ -748,7 +1143,7 @@ h1{
     </h1>
 
 
-    <p>
+    <p class="end-description">
 
         You completed all 15 questions.
 
@@ -786,13 +1181,14 @@ h1{
 
 </div>
 
+</div>
 
 
 <script>
 
+
 /* ==========================================================
    NUMBER DATA
-
    ONLY USE APPROVED VOCABULARY
 ========================================================== */
 
@@ -935,7 +1331,9 @@ function generateQuestions(){
             sequenceKey(sequence);
 
 
-        if(!used.has(key)){
+        if(
+            !used.has(key)
+        ){
 
             used.add(key);
 
@@ -984,7 +1382,9 @@ function generateOptions(correct){
             sequenceKey(sequence);
 
 
-        if(!used.has(key)){
+        if(
+            !used.has(key)
+        ){
 
             used.add(key);
 
@@ -1007,18 +1407,15 @@ function generateOptions(correct){
 function startGame(){
 
     document
-        .getElementById("intro")
-        .classList.remove("active");
+        .getElementById("game")
+        .style.display =
+        "block";
 
 
     document
         .getElementById("end")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("game")
-        .classList.add("active");
+        .style.display =
+        "none";
 
 
     questions =
@@ -1106,11 +1503,19 @@ function loadQuestion(){
     }
 
 
+    /* ======================================================
+       QUESTION NUMBER
+    ====================================================== */
+
     document
         .getElementById("qnum")
         .innerText =
         current + 1;
 
+
+    /* ======================================================
+       PROGRESS
+    ====================================================== */
 
     document
         .getElementById("progress")
@@ -1122,25 +1527,32 @@ function loadQuestion(){
         ) + "%";
 
 
+    /* ======================================================
+       CURRENT QUESTION
+    ====================================================== */
+
     const correct =
         questions[current];
 
 
-    /*
-        Show Vietnamese number words.
-    */
+    /* ======================================================
+       SHOW VIETNAMESE WORDS
+    ====================================================== */
 
     document
         .getElementById("numberWords")
         .innerText =
         correct
-            .map(index => numbers[index])
+            .map(
+                index =>
+                    numbers[index]
+            )
             .join(" - ");
 
 
-    /*
-        Create answer choices.
-    */
+    /* ======================================================
+       CREATE ANSWERS
+    ====================================================== */
 
     const options =
         generateOptions(correct);
@@ -1152,45 +1564,56 @@ function loadQuestion(){
         );
 
 
+    /*
+       IMPORTANT:
+       Clear previous answers before creating
+       the new 4 answer choices.
+    */
+
     container.innerHTML =
         "";
 
 
-    options.forEach(sequence => {
+    options.forEach(
+        sequence => {
 
-        const div =
-            document.createElement(
-                "div"
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "answer";
+
+
+            div.innerText =
+                sequence.join(" - ");
+
+
+            div.dataset.sequence =
+                sequenceKey(sequence);
+
+
+            div.onclick =
+                function(){
+
+                    chooseAnswer(
+                        div,
+                        sequenceKey(sequence)
+                        ===
+                        sequenceKey(correct)
+                    );
+
+                };
+
+
+            container.appendChild(
+                div
             );
 
-
-        div.className =
-            "answer";
-
-
-        div.innerText =
-            sequence.join(" - ");
-
-
-        div.dataset.sequence =
-            sequenceKey(sequence);
-
-
-        div.onclick = () => {
-
-            chooseAnswer(
-                div,
-                sequenceKey(sequence)
-                ===
-                sequenceKey(correct)
-            );
-
-        };
-
-
-        container.appendChild(div);
-
-    });
+        }
+    );
 
 }
 
@@ -1198,14 +1621,13 @@ function loadQuestion(){
 /* ==========================================================
    CHOOSE ANSWER
 
-   NEW RULE:
-   - Correct = +1 point
-   - Wrong = 0 point
-   - Wrong answer is shown immediately
-   - Correct answer is shown immediately
-   - Explanation is shown immediately
-   - No Try Again
-   - Question is locked after one answer
+   RULE:
+   - Correct = +1
+   - Wrong = 0
+   - One attempt only
+   - Lock all answers
+   - Show correct answer
+   - No retry
 ========================================================== */
 
 function chooseAnswer(
@@ -1237,39 +1659,43 @@ function chooseAnswer(
         );
 
 
-    /*
-        Lock all choices.
-    */
+    /* ======================================================
+       LOCK ALL ANSWERS
+    ====================================================== */
 
-    allAnswers.forEach(answer => {
+    allAnswers.forEach(
+        answer => {
 
-        answer.classList.add(
-            "disabled"
-        );
+            answer.classList.add(
+                "disabled"
+            );
 
-    });
+        }
+    );
 
 
-    /*
-        Find correct answer.
-    */
+    /* ======================================================
+       FIND CORRECT ANSWER
+    ====================================================== */
 
     let correctElement = null;
 
 
-    allAnswers.forEach(answer => {
+    allAnswers.forEach(
+        answer => {
 
-        if(
-            answer.dataset.sequence ===
-            correctKey
-        ){
+            if(
+                answer.dataset.sequence ===
+                correctKey
+            ){
 
-            correctElement =
-                answer;
+                correctElement =
+                    answer;
+
+            }
 
         }
-
-    });
+    );
 
 
     const resultIcon =
@@ -1290,9 +1716,9 @@ function chooseAnswer(
         );
 
 
-    /*
-        CORRECT
-    */
+    /* ======================================================
+       CORRECT
+    ====================================================== */
 
     if(isCorrect){
 
@@ -1315,12 +1741,14 @@ function chooseAnswer(
         explanation.innerText =
             "The number sequence is correct.";
 
+    }
 
-    /*
-        WRONG
-    */
 
-    }else{
+    /* ======================================================
+       WRONG
+    ====================================================== */
+
+    else{
 
         element.classList.add(
             "wrong"
@@ -1344,10 +1772,6 @@ function chooseAnswer(
             "result wrong-text";
 
 
-        /*
-            Show correct sequence.
-        */
-
         correctAnswer.innerText =
             "Correct answer: " +
             correctKey.replaceAll(
@@ -1356,19 +1780,15 @@ function chooseAnswer(
             );
 
 
-        /*
-            Explanation.
-        */
-
         explanation.innerText =
             "The correct answer is the sequence shown in green.";
 
     }
 
 
-    /*
-        Update score.
-    */
+    /* ======================================================
+       UPDATE SCORE
+    ====================================================== */
 
     document
         .getElementById("score")
@@ -1376,9 +1796,9 @@ function chooseAnswer(
         score;
 
 
-    /*
-        Show next button.
-    */
+    /* ======================================================
+       NEXT BUTTON
+    ====================================================== */
 
     const nextBtn =
         document.getElementById(
@@ -1387,7 +1807,7 @@ function chooseAnswer(
 
 
     nextBtn.style.display =
-        "inline-block";
+        "block";
 
 
     if(
@@ -1398,7 +1818,9 @@ function chooseAnswer(
         nextBtn.innerText =
             "Finish 🎉";
 
-    }else{
+    }
+
+    else{
 
         nextBtn.innerText =
             "Next Question →";
@@ -1429,16 +1851,14 @@ function endGame(){
 
     document
         .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+        .style.display =
+        "none";
 
 
     document
         .getElementById("end")
-        .classList.add(
-            "active"
-        );
+        .style.display =
+        "block";
 
 
     document
@@ -1473,21 +1893,27 @@ function endGame(){
         text =
             "🏆 Perfect! Excellent number recognition!";
 
-    }else if(
+    }
+
+    else if(
         percentage >= 80
     ){
 
         text =
             "🎉 Excellent job!";
 
-    }else if(
+    }
+
+    else if(
         percentage >= 60
     ){
 
         text =
             "👍 Good job! Keep practicing!";
 
-    }else{
+    }
+
+    else{
 
         text =
             "📚 Keep practicing your Vietnamese numbers!";
@@ -1525,8 +1951,19 @@ function backToLobby(){
 
 }
 
+
+/* ==========================================================
+   START IMMEDIATELY
+   NO INTRO SCREEN
+========================================================== */
+
+startGame();
+
+
 </script>
+
 
 </body>
 
 </html>
+```

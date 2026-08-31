@@ -27,75 +27,187 @@
     content="👤"
 >
 
+<meta
+    name="game-explanation"
+    content="true"
+>
+
+
+<!-- ==========================================================
+     GOOGLE FONT
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
+
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+:root{
+
+    --accent:#5F79B4;
+
+    --accent-dark:#41588B;
+
+    --accent-light:#eaf0fa;
+
+    --accent-bg:#F2F6FC;
+
+    --accent-border:#c3d4ef;
+
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
+
+
+    --wrong:#d9536f;
+
+    --wrong-bg:#fff0f3;
+
+
+    --ink: #143a6b;
+    --ink-soft: #66809d;
+
+    --muted:#7f8c8d;
+
+    --general-border:#d9e6f2;
+
+}
+
 
 /* ==========================================================
    RESET
 ========================================================== */
 
 *{
+
     box-sizing:border-box;
+
 }
 
 
-body{
+/* ==========================================================
+   BODY
+========================================================== */
 
-    margin:0;
+body {
 
-    font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    min-height: 100vh;
 
-    background:#f4f7f6;
+    padding: 28px 20px 45px;
 
-    min-height:100vh;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    display:flex;
+    color: var(--ink);
 
-    justify-content:center;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page{
+
+    width:min(900px,96vw);
+
+    margin:0 auto;
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.lobby-btn{
+
+    display:inline-flex;
 
     align-items:center;
 
-    padding:20px;
+    justify-content:center;
 
-    color:#2c3e50;
+    margin-bottom:14px;
+
+    padding:8px 14px;
+
+    border:1px solid var(--accent-border);
+
+    border-radius:8px;
+
+    background:#ffffff;
+
+    color:var(--accent-dark);
+
+    font-family:Calibri, sans-serif;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        transform .2s;
+
+}
+
+
+.lobby-btn:hover{
+
+    background:var(--accent-light);
+
+    transform:translateX(-2px);
 
 }
 
 
 /* ==========================================================
-   SCREEN
-========================================================== */
-
-.screen{
-    display:none;
-}
-
-
-.screen.active{
-    display:block;
-}
-
-
-/* ==========================================================
-   CONTAINER
+   GAME CONTAINER
 ========================================================== */
 
 .container{
 
     position:relative;
 
-    width:min(900px,96vw);
+    width:100%;
 
     margin:0 auto;
 
-    background:white;
+    padding:32px 30px 30px;
 
-    padding:65px 30px 30px;
+    background:#ffffff;
+
+    border:1px solid var(--general-border);
 
     border-radius:20px;
 
@@ -107,145 +219,44 @@ body{
 
 
 /* ==========================================================
-   BACK TO LOBBY
+   TITLE AREA
 ========================================================== */
 
-.lobby-btn{
-
-    position:absolute;
-
-    top:20px;
-
-    left:22px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.lobby-btn:hover{
-
-    background:#dcecff;
-
-    transform:translateX(-2px);
-
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
+.title-area{
 
     text-align:center;
 
-    padding:20px 20px 30px;
+    margin-bottom:24px;
 
 }
 
-
-#intro .emoji{
-
-    font-size:70px;
-
-    margin-bottom:10px;
-
-}
-
-
-#intro h1{
-
-    margin:0 0 10px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.6;
-
-    margin:8px 0;
-
-}
-
-
-.start-btn{
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.start-btn:hover{
-
-    background:#2c3e50;
-
-    transform:translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   TITLE
-========================================================== */
 
 .title{
 
-    text-align:center;
+    margin:0;
 
-    margin:0 0 5px;
+    font-family:'Kalam', cursive;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    line-height:1.25;
+
+    color:var(--ink);
 
 }
 
 
 .subtitle{
 
-    text-align:center;
+    margin:8px 0 0;
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    margin-bottom:25px;
+    font-size:20px;
+
+    line-height:1.5;
 
 }
 
@@ -256,18 +267,22 @@ body{
 
 .game-box{
 
-    background:#fff;
+    background:#ffffff;
 
     padding:25px;
 
-    border-radius:15px;
+    border:1px solid var(--general-border);
 
-    border:1px solid #eee;
+    border-radius:15px;
 
     text-align:center;
 
 }
 
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
 
 .topbar{
 
@@ -286,16 +301,18 @@ body{
 
 .question-count{
 
-    color:#7f8c8d;
+    color:var(--muted);
+
+    font-size:20px;
 
 }
 
 
 .score{
 
-    color:#27ae60;
+    color:var(--accent-dark);
 
-    font-size:28px;
+    font-size:27px;
 
 }
 
@@ -310,7 +327,7 @@ body{
 
     height:9px;
 
-    background:#eee;
+    background:var(--accent-light);
 
     border-radius:20px;
 
@@ -327,7 +344,7 @@ body{
 
     height:100%;
 
-    background:#34495e;
+    background:var(--accent);
 
     transition:.3s;
 
@@ -340,9 +357,13 @@ body{
 
 .card{
 
-    background:#fffde7;
+    position:relative;
 
-    border:2px dashed #f1c40f;
+    overflow:hidden;
+
+    background:var(--accent-bg);
+
+    border:1px solid var(--accent-border);
 
     border-radius:12px;
 
@@ -365,11 +386,32 @@ body{
 }
 
 
+/* Accent line */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:var(--accent);
+
+}
+
+
 .scenario{
 
-    color:#7f8c8d;
+    color:var(--muted);
 
-    font-size:26px;
+    font-size:24px;
 
     line-height:1.5;
 
@@ -378,13 +420,13 @@ body{
 
 .statement{
 
-    font-size:37px;
+    font-size:34px;
 
     font-weight:700;
 
-    color:#2c3e50;
+    color:var(--ink);
 
-    line-height:1.4;
+    line-height:1.45;
 
 }
 
@@ -400,22 +442,31 @@ body{
     grid-template-columns:
         1fr 1fr;
 
-    gap:15px;
+    gap:12px;
 
 }
 
 
 .option-btn{
 
-    padding:18px;
+    padding:17px;
 
-    font-size:30px;
+    min-height:64px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:27px;
 
     font-weight:bold;
 
-    color:white;
+    background:#ffffff;
 
-    border:none;
+    color:var(--accent-dark);
+
+    border:1px solid var(--general-border);
 
     border-radius:10px;
 
@@ -425,33 +476,24 @@ body{
 
 }
 
-
-.true-btn{
-
-    background:#27ae60;
-
-}
-
-
-.true-btn:hover:not(.disabled){
-
-    background:#219653;
-
-    transform:translateY(-2px);
-
-}
-
-
+.true-btn,
 .false-btn{
 
-    background:#e74c3c;
+    background:var(--accent);
+
+    color:#ffffff;
+
+    border-color:var(--accent);
 
 }
 
 
-.false-btn:hover:not(.disabled){
+.true-btn:hover:not(:disabled),
+.false-btn:hover:not(:disabled){
 
-    background:#c0392b;
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -460,23 +502,29 @@ body{
 
 .option-btn.correct{
 
-    background:#27ae60;
+    background:var(--correct-bg);
+
+    color:var(--correct);
+
+    border-color:var(--correct);
 
 }
 
 
 .option-btn.wrong{
 
-    background:#e74c3c;
+    background:var(--wrong-bg);
+
+    color:var(--wrong);
+
+    border-color:var(--wrong);
 
 }
 
 
-.option-btn.disabled{
+.option-btn:disabled{
 
-    pointer-events:none;
-
-    opacity:.7;
+    cursor:default;
 
 }
 
@@ -495,19 +543,21 @@ body{
 
     font-weight:bold;
 
+    line-height:1.5;
+
 }
 
 
 .correct-text{
 
-    color:#27ae60;
+    color:var(--correct);
 
 }
 
 
 .wrong-text{
 
-    color:#e74c3c;
+    color:var(--wrong);
 
 }
 
@@ -518,15 +568,30 @@ body{
 
 .explanation{
 
-    min-height:30px;
+    margin-top:18px;
 
-    margin-top:5px;
+    padding:16px 18px;
 
-    color:#7f8c8d;
+    background:var(--accent-light);
 
-    font-size:25px;
+    border-left:5px solid var(--accent);
+
+    border-radius:10px;
+
+    color:#3d5066;
+
+    text-align:left;
+
+    font-size:24px;
 
     line-height:1.6;
+
+}
+
+
+.explanation strong{
+
+    color:var(--accent-dark);
 
 }
 
@@ -539,13 +604,15 @@ body{
 
     padding:12px 28px;
 
-    border:none;
+    border:1px solid var(--accent);
 
     border-radius:10px;
 
-    background:#34495e;
+    background:var(--accent);
 
-    color:white;
+    color:#ffffff;
+
+    font-family:Calibri, sans-serif;
 
     font-size:27px;
 
@@ -553,7 +620,7 @@ body{
 
     cursor:pointer;
 
-    margin-top:10px;
+    margin-top:18px;
 
     transition:.2s;
 
@@ -562,7 +629,9 @@ body{
 
 .next-btn:hover{
 
-    background:#2c3e50;
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
 
     transform:translateY(-2px);
 
@@ -570,7 +639,7 @@ body{
 
 
 /* ==========================================================
-   FINAL
+   FINAL SCREEN
 ========================================================== */
 
 #final{
@@ -584,9 +653,13 @@ body{
 
 #final h2{
 
+    margin:0 0 15px;
+
+    font-family:'Kalam', cursive;
+
     font-size:45px;
 
-    color:#27ae60;
+    color:var(--accent-dark);
 
 }
 
@@ -599,18 +672,56 @@ body{
 
     font-weight:bold;
 
-    color:#1976d2;
+    color:var(--accent);
 
 }
 
 
 .final-message{
 
-    color:#7f8c8d;
+    color:var(--muted);
+
+    font-size:26px;
+
+    line-height:1.6;
+
+}
+
+
+.play-again-btn{
+
+    margin-top:10px;
+
+    padding:14px 35px;
+
+    border:1px solid var(--accent);
+
+    border-radius:12px;
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+    font-family:Calibri, sans-serif;
 
     font-size:28px;
 
-    line-height:1.6;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.play-again-btn:hover{
+
+    background:var(--accent-dark);
+
+    border-color:var(--accent-dark);
+
+    transform:translateY(-2px);
 
 }
 
@@ -623,17 +734,57 @@ body{
 
     body{
 
-        padding:10px;
+        padding:
+            18px 10px 30px;
+
+    }
+
+
+    .page{
+
+        width:100%;
 
     }
 
 
     .container{
 
-        width:100%;
-
         padding:
-            60px 15px 20px;
+            25px 15px 20px;
+
+        border-radius:16px;
+
+    }
+
+
+    .lobby-btn{
+
+        font-size:21px;
+
+        padding:7px 12px;
+
+        margin-bottom:12px;
+
+    }
+
+
+    .title-area{
+
+        margin-bottom:20px;
+
+    }
+
+
+    .title{
+
+        font-size:36px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:18px;
 
     }
 
@@ -641,6 +792,27 @@ body{
     .game-box{
 
         padding:18px;
+
+    }
+
+
+    .topbar{
+
+        margin-bottom:14px;
+
+    }
+
+
+    .question-count{
+
+        font-size:18px;
+
+    }
+
+
+    .score{
+
+        font-size:25px;
 
     }
 
@@ -654,30 +826,55 @@ body{
 
     .card{
 
-        min-height:160px;
+        min-height:170px;
 
-        padding:25px 15px;
+        padding:
+            30px 15px 25px;
+
+    }
+
+
+    .scenario{
+
+        font-size:22px;
 
     }
 
 
     .statement{
 
-        font-size:33px;
+        font-size:29px;
 
     }
 
 
-    #intro h1{
-
-        font-size:38px;
-
-    }
-
-
-    #intro p{
+    .option-btn{
 
         font-size:26px;
+
+        min-height:58px;
+
+    }
+
+
+    .result-message{
+
+        font-size:25px;
+
+    }
+
+
+    .explanation{
+
+        font-size:22px;
+
+    }
+
+
+    #final{
+
+        padding:
+            25px 10px 35px;
 
     }
 
@@ -689,15 +886,16 @@ body{
     }
 
 
-    .lobby-btn{
+    .final-score{
 
-        top:16px;
+        font-size:36px;
 
-        left:16px;
+    }
+
+
+    .final-message{
 
         font-size:23px;
-
-        padding:7px 12px;
 
     }
 
@@ -711,7 +909,7 @@ body{
 <body>
 
 
-<div class="container">
+<div class="page">
 
 
 <!-- ========================================================
@@ -730,49 +928,10 @@ body{
 
 
 <!-- ========================================================
-     INTRO
+     GAME CONTAINER
 ========================================================= -->
 
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        👤
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese People & Pronouns
-        <br>
-        True or False
-
-    </h1>
-
-
-    <p>
-
-        Read each situation and statement.
-        <br>
-        Decide if the statement is correct.
-
-    </p>
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
-    >
-
-        Start Game
-
-    </button>
-
-</div>
-
+<div class="container">
 
 
 <!-- ========================================================
@@ -781,24 +940,31 @@ body{
 
 <div
     id="game"
-    class="screen"
 >
 
 
-    <h1 class="title">
+    <!-- TITLE -->
 
-        👤 People & Pronouns: True or False
+    <div class="title-area">
 
-    </h1>
+        <h1 class="title">
 
+            👤 People & Pronouns: True or False
 
-    <p class="subtitle">
-
-        Is the Vietnamese word or pronoun correct?
-
-    </p>
+        </h1>
 
 
+        <p class="subtitle">
+
+            Decide whether each Vietnamese word or statement is correct.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- GAME BOX -->
 
     <div class="game-box">
 
@@ -806,6 +972,7 @@ body{
         <!-- TOP BAR -->
 
         <div class="topbar">
+
 
             <div class="question-count">
 
@@ -834,6 +1001,7 @@ body{
 
             </div>
 
+
         </div>
 
 
@@ -851,12 +1019,13 @@ body{
 
 
 
-        <!-- QUESTION -->
+        <!-- QUESTION CARD -->
 
         <div
             class="card"
             id="questionCard"
         >
+
 
             <div
                 class="scenario"
@@ -868,6 +1037,7 @@ body{
                 class="statement"
                 id="statement"
             ></div>
+
 
         </div>
 
@@ -884,7 +1054,7 @@ body{
                 onclick="handleAnswer(true)"
             >
 
-                ✅ TRUE
+                TRUE
 
             </button>
 
@@ -895,7 +1065,7 @@ body{
                 onclick="handleAnswer(false)"
             >
 
-                ❌ FALSE
+                FALSE
 
             </button>
 
@@ -912,9 +1082,13 @@ body{
         ></div>
 
 
+
+        <!-- EXPLANATION -->
+
         <div
             class="explanation"
             id="explanation"
+            style="display:none;"
         ></div>
 
 
@@ -946,7 +1120,7 @@ body{
 
 <div
     id="final"
-    class="screen"
+    style="display:none;"
 >
 
 
@@ -981,13 +1155,16 @@ body{
 
 
     <button
-        class="start-btn"
+        class="play-again-btn"
         onclick="restartGame()"
     >
 
         Play Again
 
     </button>
+
+
+</div>
 
 
 </div>
@@ -1302,12 +1479,77 @@ let answered = false;
 
 
 /* ==========================================================
+   DOM
+========================================================== */
+
+const game =
+    document.getElementById("game");
+
+
+const final =
+    document.getElementById("final");
+
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+
+const totalQuestions =
+    document.getElementById("totalQuestions");
+
+
+const scoreElement =
+    document.getElementById("score");
+
+
+const progress =
+    document.getElementById("progress");
+
+
+const scenarioElement =
+    document.getElementById("scenario");
+
+
+const statementElement =
+    document.getElementById("statement");
+
+
+const trueBtn =
+    document.getElementById("trueBtn");
+
+
+const falseBtn =
+    document.getElementById("falseBtn");
+
+
+const resultText =
+    document.getElementById("resultText");
+
+
+const explanation =
+    document.getElementById("explanation");
+
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+
+const finalScore =
+    document.getElementById("finalScore");
+
+
+const finalMessage =
+    document.getElementById("finalMessage");
+
+
+/* ==========================================================
    SHUFFLE
 ========================================================== */
 
 function shuffle(array){
 
     const arr = [...array];
+
 
     for(
         let i = arr.length - 1;
@@ -1317,8 +1559,10 @@ function shuffle(array){
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
+
 
         [
             arr[i],
@@ -1329,6 +1573,7 @@ function shuffle(array){
         ];
 
     }
+
 
     return arr;
 
@@ -1344,31 +1589,27 @@ function startGame(){
     questions =
         shuffle(database);
 
+
     currentQuestion = 0;
 
     score = 0;
 
-    document
-        .getElementById("intro")
-        .classList.remove("active");
 
-    document
-        .getElementById("final")
-        .classList.remove("active");
+    game.style.display =
+        "block";
 
-    document
-        .getElementById("game")
-        .classList.add("active");
 
-    document
-        .getElementById("score")
-        .textContent =
+    final.style.display =
+        "none";
+
+
+    scoreElement.textContent =
         "0";
 
-    document
-        .getElementById("totalQuestions")
-        .textContent =
+
+    totalQuestions.textContent =
         questions.length;
+
 
     loadQuestion();
 
@@ -1383,19 +1624,16 @@ function loadQuestion(){
 
     answered = false;
 
+
     const question =
         questions[currentQuestion];
 
 
-    document
-        .getElementById("questionNumber")
-        .textContent =
+    questionNumber.textContent =
         currentQuestion + 1;
 
 
-    document
-        .getElementById("progress")
-        .style.width =
+    progress.style.width =
         (
             currentQuestion /
             questions.length *
@@ -1403,52 +1641,36 @@ function loadQuestion(){
         ) + "%";
 
 
-    document
-        .getElementById("scenario")
-        .textContent =
+    scenarioElement.textContent =
         question.scenario;
 
 
-    document
-        .getElementById("statement")
-        .textContent =
+    statementElement.textContent =
         question.statement;
 
 
-    document
-        .getElementById("resultText")
-        .textContent =
+    resultText.textContent =
         "";
 
 
-    document
-        .getElementById("resultText")
-        .className =
+    resultText.className =
         "result-message";
 
 
-    document
-        .getElementById("explanation")
-        .textContent =
+    explanation.innerHTML =
         "";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    explanation.style.display =
         "none";
 
 
-    const trueBtn =
-        document.getElementById(
-            "trueBtn"
-        );
+    nextBtn.style.display =
+        "none";
 
 
-    const falseBtn =
-        document.getElementById(
-            "falseBtn"
-        );
+    nextBtn.textContent =
+        "Next →";
 
 
     trueBtn.className =
@@ -1457,6 +1679,14 @@ function loadQuestion(){
 
     falseBtn.className =
         "option-btn false-btn";
+
+
+    trueBtn.disabled =
+        false;
+
+
+    falseBtn.disabled =
+        false;
 
 }
 
@@ -1474,11 +1704,6 @@ function handleAnswer(selected){
     }
 
 
-    /*
-       Lock the question immediately after
-       the first answer.
-    */
-
     answered = true;
 
 
@@ -1486,20 +1711,14 @@ function handleAnswer(selected){
         questions[currentQuestion];
 
 
-    const trueBtn =
-        document.getElementById(
-            "trueBtn"
-        );
-
-
-    const falseBtn =
-        document.getElementById(
-            "falseBtn"
-        );
-
-
     const selectedButton =
         selected
+            ? trueBtn
+            : falseBtn;
+
+
+    const correctButton =
+        question.answer
             ? trueBtn
             : falseBtn;
 
@@ -1509,22 +1728,20 @@ function handleAnswer(selected){
 
 
     /*
-       Lock both buttons.
-    */
+     * Lock both buttons immediately.
+     */
 
-    trueBtn.classList.add(
-        "disabled"
-    );
+    trueBtn.disabled =
+        true;
 
 
-    falseBtn.classList.add(
-        "disabled"
-    );
+    falseBtn.disabled =
+        true;
 
 
     /*
-       CORRECT
-    */
+     * CORRECT
+     */
 
     if(isCorrect){
 
@@ -1536,29 +1753,23 @@ function handleAnswer(selected){
         );
 
 
-        document
-            .getElementById("score")
-            .textContent =
+        scoreElement.textContent =
             score;
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
+        resultText.textContent =
             "🎉 Correct!";
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message correct-text";
 
     }
 
 
     /*
-       WRONG
-    */
+     * WRONG
+     */
 
     else{
 
@@ -1567,39 +1778,43 @@ function handleAnswer(selected){
         );
 
 
-        document
-            .getElementById("resultText")
-            .textContent =
+        correctButton.classList.add(
+            "correct"
+        );
+
+
+        resultText.textContent =
             "❌ Incorrect";
 
 
-        document
-            .getElementById("resultText")
-            .className =
+        resultText.className =
             "result-message wrong-text";
 
     }
 
 
     /*
-       Show explanation after grading.
-    */
+     * Show explanation.
+     */
 
-    document
-        .getElementById("explanation")
-        .textContent =
-        question.explanation;
+    explanation.innerHTML = `
+
+        <strong>💡 Learn:</strong>
+
+        <br><br>
+
+        ${question.explanation}
+
+    `;
+
+
+    explanation.style.display =
+        "block";
 
 
     /*
-       Show next button.
-    */
-
-    const nextBtn =
-        document.getElementById(
-            "nextBtn"
-        );
-
+     * Show next button.
+     */
 
     nextBtn.style.display =
         "inline-block";
@@ -1613,7 +1828,8 @@ function handleAnswer(selected){
         nextBtn.textContent =
             "Finish 🎉";
 
-    }else{
+    }
+    else{
 
         nextBtn.textContent =
             "Next →";
@@ -1639,7 +1855,8 @@ function nextQuestion(){
 
         loadQuestion();
 
-    }else{
+    }
+    else{
 
         finishGame();
 
@@ -1654,23 +1871,19 @@ function nextQuestion(){
 
 function finishGame(){
 
-    document
-        .getElementById("game")
-        .classList.remove(
-            "active"
-        );
+    game.style.display =
+        "none";
 
 
-    document
-        .getElementById("final")
-        .classList.add(
-            "active"
-        );
+    final.style.display =
+        "block";
 
 
-    document
-        .getElementById("finalScore")
-        .textContent =
+    progress.style.width =
+        "100%";
+
+
+    finalScore.textContent =
         score +
         " / " +
         questions.length;
@@ -1687,27 +1900,51 @@ function finishGame(){
     let message;
 
 
-    if(percent >= 90){
+    if(
+        percent === 100
+    ){
 
         message =
-            "🏆 Excellent! You really understand Vietnamese people and pronouns.";
+            "🏆 Perfect! You really understand Vietnamese people and pronouns.";
 
-    }else if(percent >= 70){
+    }
+
+    else if(
+        percent >= 90
+    ){
 
         message =
-            "🎉 Good job! Keep practicing Vietnamese.";
+            "🌟 Excellent! You have a strong understanding of Vietnamese people and pronouns.";
 
-    }else{
+    }
+
+    else if(
+        percent >= 70
+    ){
 
         message =
-            "📚 Keep practicing Vietnamese people and family vocabulary.";
+            "👏 Good job! Keep practicing Vietnamese people and family vocabulary.";
+
+    }
+
+    else if(
+        percent >= 50
+    ){
+
+        message =
+            "📚 Nice effort! Review the people and pronoun vocabulary and try again.";
+
+    }
+
+    else{
+
+        message =
+            "💪 Keep practicing! Vietnamese people and pronouns take time to become natural.";
 
     }
 
 
-    document
-        .getElementById("finalMessage")
-        .textContent =
+    finalMessage.textContent =
         message;
 
 }
@@ -1734,6 +1971,13 @@ function backToLobby(){
         "../../category.html?category=People%20%26%20Pronouns";
 
 }
+
+
+/* ==========================================================
+   START IMMEDIATELY
+========================================================== */
+
+startGame();
 
 </script>
 

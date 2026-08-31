@@ -4,7 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Match English with Vietnamese - Health</title>
 
@@ -28,219 +32,523 @@
     content="true"
 />
 
+
+<!-- =========================================================
+     FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
 
 /* =========================================================
-   GLOBAL
+   DESIGN TOKENS
 ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+
+    --accent:
+        #9669AA;
+
+    --accent-dark:
+        #714A82;
+
+    --accent-light:
+        #f6eef9;
+
+    --accent-bg:
+        #FAF5FB;
+
+    --accent-border:
+        #dfc9ec;
+
+    --ink:
+        #333333;
+
+    --correct:
+        #019b3f;
+
+    --correct-light:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-light:
+        #fff0f3;
+
+    --general-border:
+        #dedede;
+
 }
 
-body{
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    box-sizing:
+        border-box;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin:
+        0;
+
+    min-height:
+        100vh;
+
+    padding:
+        28px 20px 45px;
 
     font-family:
-        Arial,
-        Helvetica,
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
         sans-serif;
+
+    color:
+        var(--ink);
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
 
     background:
         linear-gradient(
-            135deg,
-            #e8f3ff,
-            #f7fbff
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
-    min-height:100vh;
-
-    padding:20px;
-
-    color:#333;
 }
 
 
 /* =========================================================
-   CONTAINER
+   PAGE
 ========================================================= */
 
-.container{
+.page {
 
-    width:100%;
-    max-width:950px;
+    width:
+        100%;
 
-    margin:0 auto;
+    max-width:
+        900px;
 
-    background:white;
+}
 
-    border-radius:22px;
+
+/* =========================================================
+   BACK BUTTON
+   OUTSIDE GAME CONTAINER
+========================================================= */
+
+.back-btn-container {
+
+    width:
+        100%;
+
+    margin:
+        0 auto 14px;
+
+    text-align:
+        left;
+
+}
+
+
+.back-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    padding:
+        9px 16px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--accent-dark);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        999px;
+
+    text-decoration:
+        none;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    background:
+        var(--accent-light);
+
+    border-color:
+        var(--accent);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        36px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        22px;
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,.12);
+        0 18px 50px
+        rgba(
+            150,
+            105,
+            170,
+            0.12
+        );
 
-    padding:30px;
-
-}
-
-
-/* =========================================================
-   BACK TO LOBBY
-========================================================= */
-
-.back-btn-container{
-
-    text-align:left;
-
-    margin-bottom:20px;
-
-}
-
-.back-btn{
-
-    display:inline-block;
-
-    padding:9px 16px;
-
-    background:white;
-
-    color:#555;
-
-    border:2px solid #ddd;
-
-    border-radius:10px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    transition:.2s;
-
-}
-
-.back-btn:hover{
-
-    background:#f0f0f0;
-
-    transform:translateY(-2px);
+    overflow:
+        hidden;
 
 }
 
 
 /* =========================================================
-   INTRO
+   CONTAINER ACCENT LINE
 ========================================================= */
 
-#introScreen{
+.container::before {
 
-    text-align:center;
+    content:
+        "";
 
-    padding:10px;
+    position:
+        absolute;
 
-}
+    top:
+        0;
 
-.game-icon{
+    left:
+        0;
 
-    font-size:80px;
+    width:
+        100%;
 
-    margin-bottom:10px;
+    height:
+        5px;
 
-}
-
-#introScreen h1{
-
-    color:#1976d2;
-
-    font-size:44px;
-
-    margin-bottom:15px;
-
-}
-
-.intro-description{
-
-    max-width:620px;
-
-    margin:0 auto 25px;
-
-    font-size:28px;
-
-    line-height:1.6;
-
-    color:#666;
+    background:
+        var(--accent);
 
 }
 
 
 /* =========================================================
-   GAME INFO
+   INTRO SCREEN
 ========================================================= */
 
-.game-info{
+.intro-screen {
 
-    display:flex;
+    text-align:
+        center;
 
-    justify-content:center;
+    padding:
+        25px 10px 10px;
 
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin:25px 0;
+    animation:
+        fade 0.5s;
 
 }
 
-.game-info div{
 
-    background:#f5f9ff;
+.intro-icon {
 
-    border:1px solid #d9e8ff;
+    font-size:
+        48px;
 
-    border-radius:12px;
+    margin-bottom:
+        10px;
 
-    padding:13px 18px;
+}
 
-    color:#555;
 
-    font-size:26px;
+.intro-screen h1 {
+
+    color:
+        var(--ink);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        42px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.2;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.intro-description {
+
+    max-width:
+        680px;
+
+    margin:
+        0 auto 26px;
+
+    color:
+        #66809d;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        21px;
+
+    line-height:
+        1.5;
 
 }
 
 
 /* =========================================================
-   BUTTON
+   INTRO INFO
 ========================================================= */
 
-.main-btn{
+.intro-info {
 
-    margin-top:10px;
+    display:
+        grid;
 
-    padding:14px 35px;
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
 
-    border:none;
+    gap:
+        15px;
 
-    background:#2196f3;
+    max-width:
+        650px;
 
-    color:white;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:29px;
-
-    font-weight:bold;
-
-    transition:.25s;
+    margin:
+        0 auto 28px;
 
 }
 
-.main-btn:hover{
 
-    background:#1976d2;
+.intro-info-box {
 
-    transform:translateY(-2px);
+    position:
+        relative;
+
+    background:
+        var(--accent-bg);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        14px;
+
+    padding:
+        15px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--accent-dark);
+
+    overflow:
+        hidden;
+
+}
+
+
+.intro-info-box span {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    color:
+        var(--accent);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    font-size:
+        28px;
+
+}
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+.start-game-btn {
+
+    padding:
+        13px 28px;
+
+    border:
+        2px solid
+        var(--accent);
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.start-game-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    border-color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
 
 }
 
@@ -249,56 +557,142 @@ body{
    GAME AREA
 ========================================================= */
 
-#gameArea{
+#gameArea {
 
-    display:none;
-
-}
-
-.game-title{
-
-    text-align:center;
-
-    color:#1976d2;
-
-    margin-bottom:20px;
-
-    font-size:40px;
+    display:
+        block;
 
 }
 
 
 /* =========================================================
-   INFO
+   GAME HEADER
 ========================================================= */
 
-.info{
+.game-header {
 
-    display:grid;
+    text-align:
+        center;
 
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    margin-bottom:18px;
+    margin-bottom:
+        25px;
 
 }
 
-.infoBox{
 
-    background:#f5f9ff;
+.game-title {
 
-    border-radius:15px;
+    color:
+        var(--ink);
 
-    padding:14px;
+    font-family:
+        Kalam,
+        cursive;
 
-    text-align:center;
+    margin-bottom:
+        6px;
 
-    font-weight:bold;
+    font-size:
+        42px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.2;
+
+}
+
+
+.game-description {
+
+    color:
+        #66809d;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        21px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   INFO BOXES
+========================================================= */
+
+.info {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        15px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.infoBox {
+
+    position:
+        relative;
+
+    background:
+        var(--accent-bg);
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        14px;
+
+    padding:
+        14px;
+
+    text-align:
+        center;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--accent-dark);
 
     box-shadow:
-        0 5px 15px rgba(0,0,0,.06);
+        0 4px 12px
+        rgba(
+            150,
+            105,
+            170,
+            0.06
+        );
+
+    overflow:
+        hidden;
 
 }
 
@@ -307,42 +701,57 @@ body{
    PROGRESS
 ========================================================= */
 
-.progressWrap{
+.progressWrap {
 
-    width:100%;
+    width:
+        100%;
 
-    height:14px;
-
-    background:#ddd;
-
-    border-radius:30px;
-
-    overflow:hidden;
-
-    margin-bottom:25px;
-
-}
-
-.progressBar{
-
-    height:100%;
-
-    width:100%;
+    height:
+        11px;
 
     background:
-        linear-gradient(
-            90deg,
-            #2196f3,
-            #64b5f6
-        );
+        var(--accent-light);
 
-    transition:width 1s linear;
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        30px;
+
+    overflow:
+        hidden;
+
+    margin-bottom:
+        27px;
 
 }
 
-.progressBar.timeout{
 
-    background:#f44336;
+.progressBar {
+
+    height:
+        100%;
+
+    width:
+        100%;
+
+    background:
+        var(--accent);
+
+    border-radius:
+        30px;
+
+    transition:
+        width 1s linear;
+
+}
+
+
+.progressBar.timeout {
+
+    background:
+        var(--wrong);
 
 }
 
@@ -351,163 +760,354 @@ body{
    COLUMNS
 ========================================================= */
 
-.columns{
+.columns {
 
-    display:grid;
+    display:
+        grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:25px;
+    gap:
+        25px;
 
 }
 
-.column h2{
 
-    text-align:center;
+.column {
 
-    margin-bottom:15px;
+    min-width:
+        0;
 
-    color:#1976d2;
+}
+
+
+.column h2 {
+
+    color:
+        var(--ink);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    text-align:
+        center;
+
+    margin-bottom:
+        15px;
+
+    font-size:
+        30px;
+
+    font-weight:
+        700;
 
 }
 
 
 /* =========================================================
-   CARDS
+   MATCHING CARDS
 ========================================================= */
 
-.card{
+.card {
 
-    background:white;
+    position:
+        relative;
 
-    border:2px solid #d9e8ff;
+    background:
+        #ffffff;
 
-    border-radius:15px;
+    border:
+        2px solid
+        var(--accent-border);
 
-    padding:18px;
+    border-radius:
+        14px;
 
-    margin-bottom:12px;
+    padding:
+        17px;
 
-    text-align:center;
+    margin-bottom:
+        12px;
 
-    cursor:pointer;
+    text-align:
+        center;
 
-    font-size:1.525rem;
+    cursor:
+        pointer;
 
-    transition:.25s;
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
 
-    user-select:none;
+    font-size:
+        1.525rem;
+
+    font-weight:
+        700;
+
+    color:
+        var(--ink);
+
+    transition:
+        0.2s ease;
+
+    user-select:
+        none;
 
     box-shadow:
-        0 5px 15px rgba(0,0,0,.06);
+        0 4px 12px
+        rgba(
+            150,
+            105,
+            170,
+            0.06
+        );
+
+    overflow:
+        hidden;
 
 }
 
-.card:hover{
 
-    transform:translateY(-3px);
 
-    background:#eef6ff;
+/* =========================================================
+   HOVER
+========================================================= */
 
-}
+.card:hover {
 
-.card.selected{
+    transform:
+        translateY(-2px);
 
-    border-color:#2196f3;
+    background:
+        var(--accent-light);
 
-    background:#d8ecff;
+    border-color:
+        var(--accent);
 
-}
-
-.card.correct{
-
-    background:#4caf50 !important;
-
-    color:white;
-
-    border-color:#4caf50;
-
-    cursor:default;
-
-    pointer-events:none;
-
-}
-
-.card.wrong{
-
-    background:#f44336 !important;
-
-    color:white;
+    box-shadow:
+        0 7px 18px
+        rgba(
+            150,
+            105,
+            170,
+            0.10
+        );
 
 }
 
 
 /* =========================================================
-   FINISH
+   SELECTED
 ========================================================= */
 
-.finished{
+.card.selected {
 
-    text-align:center;
+    border-color:
+        var(--accent);
 
-    display:none;
-
-    animation:fade .5s;
-
-}
-
-.finished h2{
-
-    color:#1976d2;
-
-    margin-bottom:15px;
-
-    font-size:42px;
+    background:
+        var(--accent-light);
 
 }
 
-.finished p{
 
-    font-size:1.675rem;
+/* =========================================================
+   CORRECT
+========================================================= */
 
-    margin:10px 0;
+.card.correct {
 
-}
+    background:
+        var(--correct-light)
+        !important;
 
-.finish-buttons{
+    color:
+        var(--correct);
 
-    margin-top:20px;
+    border-color:
+        var(--correct);
 
-    display:flex;
+    cursor:
+        default;
 
-    justify-content:center;
-
-}
-
-.play-again{
-
-    padding:14px 30px;
-
-    border:none;
-
-    background:#2196f3;
-
-    color:white;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:28px;
-
-    font-weight:bold;
+    pointer-events:
+        none;
 
 }
 
-.play-again:hover{
 
-    background:#1976d2;
+/* =========================================================
+   WRONG
+========================================================= */
+
+.card.wrong {
+
+    background:
+        var(--wrong-light)
+        !important;
+
+    color:
+        var(--wrong);
+
+    border-color:
+        var(--wrong);
+
+}
+
+
+/* =========================================================
+   FINISH SCREEN
+========================================================= */
+
+.finished {
+
+    text-align:
+        center;
+
+    display:
+        none;
+
+    animation:
+        fade 0.5s;
+
+    padding:
+        20px 0 10px;
+
+}
+
+
+.finished .game-icon {
+
+    font-size:
+        48px;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.finished h2 {
+
+    color:
+        var(--ink);
+
+    font-family:
+        Kalam,
+        cursive;
+
+    margin-bottom:
+        15px;
+
+    font-size:
+        42px;
+
+    line-height:
+        1.2;
+
+}
+
+
+.finished p {
+
+    color:
+        var(--ink);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        1.675rem;
+
+    margin:
+        10px 0;
+
+}
+
+
+#message {
+
+    color:
+        var(--accent-dark);
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   FINISH BUTTON
+========================================================= */
+
+.finish-buttons {
+
+    margin-top:
+        24px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+}
+
+
+.play-again {
+
+    padding:
+        13px 28px;
+
+    border:
+        2px solid
+        var(--accent);
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.play-again:hover {
+
+    background:
+        var(--accent-dark);
+
+    border-color:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
 
 }
 
@@ -516,21 +1116,25 @@ body{
    ANIMATION
 ========================================================= */
 
-@keyframes fade{
+@keyframes fade {
 
-    from{
+    from {
 
-        opacity:0;
+        opacity:
+            0;
 
-        transform:translateY(15px);
+        transform:
+            translateY(15px);
 
     }
 
-    to{
+    to {
 
-        opacity:1;
+        opacity:
+            1;
 
-        transform:translateY(0);
+        transform:
+            translateY(0);
 
     }
 
@@ -541,61 +1145,210 @@ body{
    MOBILE
 ========================================================= */
 
-@media(max-width:700px){
+@media (
+    max-width:700px
+) {
 
-    body{
+    body {
 
-        padding:15px;
+        padding:
+            18px 14px 35px;
 
-    }
-
-    .container{
-
-        padding:25px 20px;
-
-    }
-
-    #introScreen h1{
-
-        font-size:39px;
+        align-items:
+            flex-start;
 
     }
 
-    .intro-description{
 
-        font-size:26px;
+    .page {
 
-    }
-
-    .game-info{
-
-        flex-direction:column;
-
-        align-items:center;
+        width:
+            100%;
 
     }
 
-    .game-info div{
 
-        width:100%;
+    .back-btn-container {
 
-    }
-
-    .info{
-
-        grid-template-columns:1fr;
+        margin-bottom:
+            12px;
 
     }
 
-    .columns{
 
-        grid-template-columns:1fr;
+    .container {
+
+        padding:
+            30px 20px;
+
+        border-radius:
+            20px;
 
     }
 
-    .card{
 
-        font-size:1.425rem;
+    .intro-screen {
+
+        padding:
+            20px 5px 5px;
+
+    }
+
+
+    .intro-screen h1 {
+
+        font-size:
+            36px;
+
+    }
+
+
+    .intro-description {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .intro-info {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            300px;
+
+    }
+
+
+    .game-title {
+
+        font-size:
+            36px;
+
+    }
+
+
+    .game-description {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .info {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .columns {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
+    }
+
+
+    .column h2 {
+
+        font-size:
+            28px;
+
+        margin-top:
+            8px;
+
+    }
+
+
+    .card {
+
+        font-size:
+            1.425rem;
+
+    }
+
+
+    .finished h2 {
+
+        font-size:
+            37px;
+
+    }
+
+
+    .finished p {
+
+        font-size:
+            1.4rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+    max-width:380px
+) {
+
+    body {
+
+        padding:
+            14px 10px 30px;
+
+    }
+
+
+    .container {
+
+        padding:
+            27px 15px;
+
+    }
+
+
+    .intro-screen h1 {
+
+        font-size:
+            32px;
+
+    }
+
+
+    .game-title {
+
+        font-size:
+            32px;
+
+    }
+
+
+    .game-description {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .card {
+
+        padding:
+            15px 12px;
+
+        font-size:
+            1.3rem;
 
     }
 
@@ -609,11 +1362,11 @@ body{
 <body>
 
 
-<div class="container">
+<div class="page">
 
 
 <!-- =========================================================
-     BACK TO LOBBY
+     BACK TO CATEGORY
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -622,25 +1375,37 @@ body{
         href="../../category.html?category=Health"
         class="back-btn"
     >
-        ⬅ Back
+        ← Back
     </a>
 
 </div>
 
 
 <!-- =========================================================
-     INTRO
+     MAIN GAME CONTAINER
 ========================================================= -->
 
-<div id="introScreen">
+<div class="container">
 
-    <div class="game-icon">
+
+<!-- =========================================================
+     INTRO SCREEN
+========================================================= -->
+
+<div
+    class="intro-screen"
+    id="introScreen"
+>
+
+    <div class="intro-icon">
         🔤
     </div>
+
 
     <h1>
         Match English with Vietnamese
     </h1>
+
 
     <p class="intro-description">
 
@@ -650,28 +1415,58 @@ body{
     </p>
 
 
-    <div class="game-info">
+    <div class="intro-info">
 
-        <div>
-            📝 <strong>9 Rounds</strong>
+
+        <div class="intro-info-box">
+
+            Time
+
+            <span>
+                10s
+            </span>
+
+            per round
+
         </div>
 
-        <div>
-            🔤 <strong>3 Pairs / Round</strong>
+
+        <div class="intro-info-box">
+
+            Rounds
+
+            <span>
+                9
+            </span>
+
+            total
+
         </div>
 
-        <div>
-            ⏱️ <strong>10 Seconds</strong>
+
+        <div class="intro-info-box">
+
+            Pairs
+
+            <span>
+                3
+            </span>
+
+            per round
+
         </div>
+
 
     </div>
 
 
     <button
-        class="main-btn"
-        id="startBtn"
+        class="start-game-btn"
+        id="startGameBtn"
     >
+
         Start Game →
+
     </button>
 
 </div>
@@ -681,109 +1476,143 @@ body{
      GAME AREA
 ========================================================= -->
 
-<div id="gameArea">
+<div
+    id="gameArea"
+>
+
+
+<!-- =========================================================
+     GAME HEADER
+========================================================= -->
+
+<div class="game-header">
 
     <h1 class="game-title">
 
-        🔤 Match English with Vietnamese
+        Match English with Vietnamese
 
     </h1>
 
 
-    <div class="info">
+    <p class="game-description">
+
+        Match each English health word
+        with its correct Vietnamese meaning.
+
+    </p>
+
+</div>
 
 
-        <div class="infoBox">
+<!-- =========================================================
+     INFO
+========================================================= -->
 
-            Round
-
-            <br>
-
-            <span id="round">
-                1
-            </span>
-
-            / 9
-
-        </div>
+<div class="info">
 
 
-        <div class="infoBox">
+    <div class="infoBox">
 
-            Score
+        Round
 
-            <br>
+        <br>
 
-            <span id="score">
-                0
-            </span>
+        <span id="round">
+            1
+        </span>
 
-            / 27
-
-        </div>
-
-
-        <div class="infoBox">
-
-            Time Left
-
-            <br>
-
-            <span id="time">
-                10
-            </span>
-
-            s
-
-        </div>
+        / 9
 
     </div>
 
 
-    <div class="progressWrap">
+    <div class="infoBox">
 
-        <div
-            class="progressBar"
-            id="progress"
-        ></div>
+        Score
+
+        <br>
+
+        <span id="score">
+            0
+        </span>
+
+        / 27
+
+    </div>
+
+
+    <div class="infoBox">
+
+        Time Left
+
+        <br>
+
+        <span id="time">
+            10
+        </span>
+
+        s
 
     </div>
 
 
-    <div class="columns">
+</div>
 
 
-        <!-- =================================================
-             ENGLISH
-        ================================================== -->
+<!-- =========================================================
+     PROGRESS
+========================================================= -->
 
-        <div class="column">
+<div class="progressWrap">
 
-            <h2>
-                English
-            </h2>
+    <div
+        class="progressBar"
+        id="progress"
+    ></div>
 
-            <div id="englishList"></div>
-
-        </div>
-
-
-        <!-- =================================================
-             VIETNAMESE
-        ================================================== -->
-
-        <div class="column">
-
-            <h2>
-                Vietnamese
-            </h2>
-
-            <div id="vietnameseList"></div>
-
-        </div>
+</div>
 
 
-    </div>
+<!-- =========================================================
+     COLUMNS
+========================================================= -->
+
+<div class="columns">
+
+
+<!-- =======================================================
+     ENGLISH
+======================================================= -->
+
+<div class="column">
+
+    <h2>
+        English
+    </h2>
+
+
+    <div id="englishList"></div>
+
+</div>
+
+
+<!-- =======================================================
+     VIETNAMESE
+======================================================= -->
+
+<div class="column">
+
+    <h2>
+        Vietnamese
+    </h2>
+
+
+    <div id="vietnameseList"></div>
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -797,12 +1626,18 @@ body{
     id="finishScreen"
 >
 
+
     <div class="game-icon">
+
         🎉
+
     </div>
 
+
     <h2>
+
         Game Finished!
+
     </h2>
 
 
@@ -833,10 +1668,16 @@ body{
             class="play-again"
             id="playAgainBtn"
         >
+
             Play Again →
+
         </button>
 
     </div>
+
+
+</div>
+
 
 </div>
 
@@ -858,87 +1699,87 @@ const vocabulary = [
     ===================================================== */
 
     {
-        id: 1,
-        category: "symptoms",
-        en: "sick / illness",
-        vi: "bệnh"
+        id:1,
+        category:"symptoms",
+        en:"sick / illness",
+        vi:"bệnh"
     },
 
     {
-        id: 2,
-        category: "symptoms",
-        en: "fever",
-        vi: "sốt"
+        id:2,
+        category:"symptoms",
+        en:"fever",
+        vi:"sốt"
     },
 
     {
-        id: 3,
-        category: "symptoms",
-        en: "tired",
-        vi: "mệt"
+        id:3,
+        category:"symptoms",
+        en:"tired",
+        vi:"mệt"
     },
 
     {
-        id: 4,
-        category: "symptoms",
-        en: "flu / cold",
-        vi: "cảm"
+        id:4,
+        category:"symptoms",
+        en:"flu / cold",
+        vi:"cảm"
     },
 
     {
-        id: 5,
-        category: "symptoms",
-        en: "cough",
-        vi: "ho"
+        id:5,
+        category:"symptoms",
+        en:"cough",
+        vi:"ho"
     },
 
     {
-        id: 6,
-        category: "symptoms",
-        en: "headache",
-        vi: "nhức đầu"
+        id:6,
+        category:"symptoms",
+        en:"headache",
+        vi:"nhức đầu"
     },
 
     {
-        id: 7,
-        category: "symptoms",
-        en: "pain / hurt",
-        vi: "đau"
+        id:7,
+        category:"symptoms",
+        en:"pain / hurt",
+        vi:"đau"
     },
 
     {
-        id: 8,
-        category: "symptoms",
-        en: "body ache",
-        vi: "đau người"
+        id:8,
+        category:"symptoms",
+        en:"body ache",
+        vi:"đau người"
     },
 
     {
-        id: 9,
-        category: "symptoms",
-        en: "headache",
-        vi: "đau đầu"
+        id:9,
+        category:"symptoms",
+        en:"headache",
+        vi:"đau đầu"
     },
 
     {
-        id: 10,
-        category: "symptoms",
-        en: "arm / hand pain",
-        vi: "đau tay"
+        id:10,
+        category:"symptoms",
+        en:"arm / hand pain",
+        vi:"đau tay"
     },
 
     {
-        id: 11,
-        category: "symptoms",
-        en: "leg / foot pain",
-        vi: "đau chân"
+        id:11,
+        category:"symptoms",
+        en:"leg / foot pain",
+        vi:"đau chân"
     },
 
     {
-        id: 12,
-        category: "symptoms",
-        en: "stomachache",
-        vi: "đau bụng"
+        id:12,
+        category:"symptoms",
+        en:"stomachache",
+        vi:"đau bụng"
     },
 
 
@@ -947,38 +1788,38 @@ const vocabulary = [
     ===================================================== */
 
     {
-        id: 13,
-        category: "body parts",
-        en: "head",
-        vi: "đầu"
+        id:13,
+        category:"body parts",
+        en:"head",
+        vi:"đầu"
     },
 
     {
-        id: 14,
-        category: "body parts",
-        en: "hand / arm",
-        vi: "tay"
+        id:14,
+        category:"body parts",
+        en:"hand / arm",
+        vi:"tay"
     },
 
     {
-        id: 15,
-        category: "body parts",
-        en: "leg / foot",
-        vi: "chân"
+        id:15,
+        category:"body parts",
+        en:"leg / foot",
+        vi:"chân"
     },
 
     {
-        id: 16,
-        category: "body parts",
-        en: "stomach / belly",
-        vi: "bụng"
+        id:16,
+        category:"body parts",
+        en:"stomach / belly",
+        vi:"bụng"
     },
 
     {
-        id: 17,
-        category: "body parts",
-        en: "body / person",
-        vi: "người"
+        id:17,
+        category:"body parts",
+        en:"body / person",
+        vi:"người"
     }
 
 ];
@@ -988,11 +1829,14 @@ const vocabulary = [
    GAME SETTINGS
 ========================================================= */
 
-const TOTAL_ROUNDS = 9;
+const TOTAL_ROUNDS =
+    9;
 
-const PAIRS_PER_ROUND = 3;
+const PAIRS_PER_ROUND =
+    3;
 
-const TIME_PER_ROUND = 10;
+const TIME_PER_ROUND =
+    10;
 
 const TOTAL_POINTS =
     TOTAL_ROUNDS *
@@ -1003,24 +1847,32 @@ const TOTAL_POINTS =
    GAME STATE
 ========================================================= */
 
-let round = 1;
+let round =
+    1;
 
-let score = 0;
+let score =
+    0;
 
-let timer = null;
+let timer =
+    null;
 
 let timeLeft =
     TIME_PER_ROUND;
 
-let currentPairs = [];
+let currentPairs =
+    [];
 
-let selectedEnglish = null;
+let selectedEnglish =
+    null;
 
-let selectedVietnamese = null;
+let selectedVietnamese =
+    null;
 
-let matchedCount = 0;
+let matchedCount =
+    0;
 
-let roundFinished = false;
+let roundFinished =
+    false;
 
 
 /* =========================================================
@@ -1032,65 +1884,78 @@ const introScreen =
         "introScreen"
     );
 
+
+const startGameBtn =
+    document.getElementById(
+        "startGameBtn"
+    );
+
+
 const gameArea =
     document.getElementById(
         "gameArea"
     );
+
 
 const finishScreen =
     document.getElementById(
         "finishScreen"
     );
 
-const startBtn =
-    document.getElementById(
-        "startBtn"
-    );
 
 const playAgainBtn =
     document.getElementById(
         "playAgainBtn"
     );
 
+
 const roundEl =
     document.getElementById(
         "round"
     );
+
 
 const scoreEl =
     document.getElementById(
         "score"
     );
 
+
 const timeEl =
     document.getElementById(
         "time"
     );
+
 
 const progressEl =
     document.getElementById(
         "progress"
     );
 
+
 const englishList =
     document.getElementById(
         "englishList"
     );
+
 
 const vietnameseList =
     document.getElementById(
         "vietnameseList"
     );
 
+
 const finalScoreEl =
     document.getElementById(
         "finalScore"
     );
 
+
 const percentEl =
     document.getElementById(
         "percent"
     );
+
 
 const messageEl =
     document.getElementById(
@@ -1107,9 +1972,13 @@ function shuffle(array){
     const result =
         [...array];
 
+
     for(
-        let i = result.length - 1;
+        let i =
+            result.length - 1;
+
         i > 0;
+
         i--
     ){
 
@@ -1118,6 +1987,7 @@ function shuffle(array){
                 Math.random() *
                 (i + 1)
             );
+
 
         [
             result[i],
@@ -1130,6 +2000,7 @@ function shuffle(array){
 
     }
 
+
     return result;
 
 }
@@ -1141,33 +2012,52 @@ function shuffle(array){
 
 function startGame(){
 
+    introScreen.style.display =
+        "none";
+
+
     clearInterval(timer);
 
-    round = 1;
 
-    score = 0;
+    round =
+        1;
 
-    currentPairs = [];
 
-    selectedEnglish = null;
+    score =
+        0;
 
-    selectedVietnamese = null;
 
-    matchedCount = 0;
+    currentPairs =
+        [];
 
-    roundFinished = false;
+
+    selectedEnglish =
+        null;
+
+
+    selectedVietnamese =
+        null;
+
+
+    matchedCount =
+        0;
+
+
+    roundFinished =
+        false;
+
 
     scoreEl.textContent =
         "0";
 
-    introScreen.style.display =
-        "none";
 
     finishScreen.style.display =
         "none";
 
+
     gameArea.style.display =
         "block";
+
 
     loadRound();
 
@@ -1182,13 +2072,21 @@ function loadRound(){
 
     clearInterval(timer);
 
-    roundFinished = false;
 
-    matchedCount = 0;
+    roundFinished =
+        false;
 
-    selectedEnglish = null;
 
-    selectedVietnamese = null;
+    matchedCount =
+        0;
+
+
+    selectedEnglish =
+        null;
+
+
+    selectedVietnamese =
+        null;
 
 
     roundEl.textContent =
@@ -1198,12 +2096,14 @@ function loadRound(){
     timeLeft =
         TIME_PER_ROUND;
 
+
     timeEl.textContent =
         timeLeft;
 
 
     progressEl.style.width =
         "100%";
+
 
     progressEl.classList.remove(
         "timeout"
@@ -1215,7 +2115,9 @@ function loadRound(){
     ===================================================== */
 
     currentPairs =
-        shuffle(vocabulary)
+        shuffle(
+            vocabulary
+        )
         .slice(
             0,
             PAIRS_PER_ROUND
@@ -1227,14 +2129,20 @@ function loadRound(){
     ===================================================== */
 
     const english =
-        shuffle(currentPairs);
+        shuffle(
+            currentPairs
+        );
+
 
     const vietnamese =
-        shuffle(currentPairs);
+        shuffle(
+            currentPairs
+        );
 
 
     englishList.innerHTML =
         "";
+
 
     vietnameseList.innerHTML =
         "";
@@ -1244,81 +2152,90 @@ function loadRound(){
        ENGLISH CARDS
     ===================================================== */
 
-    english.forEach(pair => {
+    english.forEach(
+        pair => {
 
-        const card =
-            document.createElement(
-                "div"
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.textContent =
+                pair.en;
+
+
+            card.dataset.id =
+                pair.id;
+
+
+            card.addEventListener(
+                "click",
+                function(){
+
+                    selectEnglish(
+                        card
+                    );
+
+                }
             );
 
-        card.className =
-            "card";
 
-        card.textContent =
-            pair.en;
+            englishList.appendChild(
+                card
+            );
 
-        /*
-            Use unique ID instead of
-            English text.
-
-            This prevents the two
-            "headache" entries from
-            being confused.
-        */
-
-        card.dataset.id =
-            pair.id;
-
-        card.addEventListener(
-            "click",
-            function(){
-
-                selectEnglish(card);
-
-            }
-        );
-
-        englishList.appendChild(
-            card
-        );
-
-    });
+        }
+    );
 
 
     /* =====================================================
        VIETNAMESE CARDS
     ===================================================== */
 
-    vietnamese.forEach(pair => {
+    vietnamese.forEach(
+        pair => {
 
-        const card =
-            document.createElement(
-                "div"
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.textContent =
+                pair.vi;
+
+
+            card.dataset.id =
+                pair.id;
+
+
+            card.addEventListener(
+                "click",
+                function(){
+
+                    selectVietnamese(
+                        card
+                    );
+
+                }
             );
 
-        card.className =
-            "card";
 
-        card.textContent =
-            pair.vi;
+            vietnameseList.appendChild(
+                card
+            );
 
-        card.dataset.id =
-            pair.id;
-
-        card.addEventListener(
-            "click",
-            function(){
-
-                selectVietnamese(card);
-
-            }
-        );
-
-        vietnameseList.appendChild(
-            card
-        );
-
-    });
+        }
+    );
 
 
     /* =====================================================
@@ -1351,6 +2268,7 @@ function loadRound(){
                         timer
                     );
 
+
                     handleTimeout();
 
                 }
@@ -1368,8 +2286,13 @@ function loadRound(){
 
 function selectEnglish(card){
 
-    if(roundFinished)
+    if(
+        roundFinished
+    ){
+
         return;
+
+    }
 
 
     if(
@@ -1382,11 +2305,6 @@ function selectEnglish(card){
 
     }
 
-
-    /*
-       Remove selection from
-       other unmatched English cards.
-    */
 
     document
         .querySelectorAll(
@@ -1414,6 +2332,7 @@ function selectEnglish(card){
     selectedEnglish =
         card;
 
+
     card.classList.add(
         "selected"
     );
@@ -1430,8 +2349,13 @@ function selectEnglish(card){
 
 function selectVietnamese(card){
 
-    if(roundFinished)
+    if(
+        roundFinished
+    ){
+
         return;
+
+    }
 
 
     if(
@@ -1444,11 +2368,6 @@ function selectVietnamese(card){
 
     }
 
-
-    /*
-       Remove selection from
-       other unmatched Vietnamese cards.
-    */
 
     document
         .querySelectorAll(
@@ -1476,6 +2395,7 @@ function selectVietnamese(card){
     selectedVietnamese =
         card;
 
+
     card.classList.add(
         "selected"
     );
@@ -1502,24 +2422,11 @@ function checkMatch(){
     }
 
 
-    /*
-       IMPORTANT:
-
-       Match using ID, not English text.
-
-       This allows:
-
-       headache → nhức đầu
-
-       headache → đau đầu
-
-       to exist without confusion.
-    */
-
     const englishId =
         Number(
             selectedEnglish.dataset.id
         );
+
 
     const vietnameseId =
         Number(
@@ -1532,12 +2439,14 @@ function checkMatch(){
     ===================================================== */
 
     if(
-        englishId === vietnameseId
+        englishId ===
+        vietnameseId
     ){
 
         selectedEnglish.classList.remove(
             "selected"
         );
+
 
         selectedVietnamese.classList.remove(
             "selected"
@@ -1548,12 +2457,14 @@ function checkMatch(){
             "correct"
         );
 
+
         selectedVietnamese.classList.add(
             "correct"
         );
 
 
         score++;
+
 
         matchedCount++;
 
@@ -1565,20 +2476,20 @@ function checkMatch(){
         selectedEnglish =
             null;
 
+
         selectedVietnamese =
             null;
 
-
-        /*
-           All 3 pairs matched.
-        */
 
         if(
             matchedCount ===
             PAIRS_PER_ROUND
         ){
 
-            clearInterval(timer);
+            clearInterval(
+                timer
+            );
+
 
             endRound();
 
@@ -1596,6 +2507,7 @@ function checkMatch(){
         const englishCard =
             selectedEnglish;
 
+
         const vietnameseCard =
             selectedVietnamese;
 
@@ -1604,20 +2516,15 @@ function checkMatch(){
             "wrong"
         );
 
+
         vietnameseCard.classList.add(
             "wrong"
         );
 
 
-        /*
-           Reset selections immediately
-           so the player cannot use the
-           same wrong pair again while
-           the animation is running.
-        */
-
         selectedEnglish =
             null;
+
 
         selectedVietnamese =
             null;
@@ -1630,6 +2537,7 @@ function checkMatch(){
                     "wrong",
                     "selected"
                 );
+
 
                 vietnameseCard.classList.remove(
                     "wrong",
@@ -1651,15 +2559,22 @@ function checkMatch(){
 
 function handleTimeout(){
 
-    if(roundFinished)
+    if(
+        roundFinished
+    ){
+
         return;
 
+    }
 
-    roundFinished = true;
+
+    roundFinished =
+        true;
 
 
     progressEl.style.width =
         "0%";
+
 
     progressEl.classList.add(
         "timeout"
@@ -1669,13 +2584,6 @@ function handleTimeout(){
     timeEl.textContent =
         "Time Out!";
 
-
-    /*
-       Lock all unmatched cards.
-
-       Already matched cards remain
-       green and keep their points.
-    */
 
     document
         .querySelectorAll(
@@ -1717,13 +2625,22 @@ function handleTimeout(){
 
 function endRound(){
 
-    if(roundFinished)
+    if(
+        roundFinished
+    ){
+
         return;
 
+    }
 
-    roundFinished = true;
 
-    clearInterval(timer);
+    roundFinished =
+        true;
+
+
+    clearInterval(
+        timer
+    );
 
 
     setTimeout(
@@ -1771,11 +2688,14 @@ function nextRound(){
 
 function finishGame(){
 
-    clearInterval(timer);
+    clearInterval(
+        timer
+    );
 
 
     gameArea.style.display =
         "none";
+
 
     finishScreen.style.display =
         "block";
@@ -1839,8 +2759,13 @@ function finishGame(){
    INITIAL STATE
 ========================================================= */
 
+introScreen.style.display =
+    "block";
+
+
 gameArea.style.display =
     "none";
+
 
 finishScreen.style.display =
     "none";
@@ -1850,7 +2775,7 @@ finishScreen.style.display =
    BUTTON EVENTS
 ========================================================= */
 
-startBtn.addEventListener(
+startGameBtn.addEventListener(
     "click",
     startGame
 );
@@ -1862,6 +2787,7 @@ playAgainBtn.addEventListener(
 );
 
 </script>
+
 
 </body>
 

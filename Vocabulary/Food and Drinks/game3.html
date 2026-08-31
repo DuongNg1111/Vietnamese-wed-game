@@ -1,10 +1,10 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -34,8 +34,19 @@
 
 
 <!-- =========================================================
-     FONTS
+     FONT
 ========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
 <link
     href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
@@ -51,29 +62,27 @@
 
 :root{
 
-    --accent:#2878df;
+    --accent:#A99959;
 
-    --accent-dark:#1e5fba;
+    --accent-dark:#7B6F40;
 
-    --accent-light:#eaf3ff;
+    --accent-light:#f9f6e6;
 
-    --accent-border:#c4daf6;
+    --accent-bg:#FBFAF0;
 
-    --general-border:#d9e6f2;
+    --accent-border:#e8dfb2;
 
-    --correct:#2878df;
+    --ink:#3f3d36;
 
-    --correct-light:#eaf3ff;
+    --muted:#706f68;
+
+    --correct:#019b3f;
+
+    --correct-bg:#eaf3ff;
 
     --wrong:#d9536f;
 
-    --wrong-light:#fff0f3;
-
-    --text:#222;
-
-    --muted:#666;
-
-    --white:#ffffff;
+    --wrong-bg:#fff0f3;
 
 }
 
@@ -88,19 +97,51 @@
 
 }
 
+
 body{
 
     margin:0;
 
-    padding:20px;
-
     min-height:100vh;
 
-    background:#f7f9fc;
+    padding:28px 20px 45px;
 
-    color:var(--text);
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-    font-family:Calibri, Arial, sans-serif;
+    color:var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page{
+
+    width:100%;
+
+    max-width:900px;
 
 }
 
@@ -113,11 +154,10 @@ body{
 
     width:100%;
 
-    max-width:900px;
-
     margin:0 auto 15px;
 
 }
+
 
 .back-btn{
 
@@ -125,7 +165,7 @@ body{
 
     padding:9px 17px;
 
-    background:var(--white);
+    background:#f5f5f5;
 
     color:#555;
 
@@ -135,15 +175,19 @@ body{
 
     text-decoration:none;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:20px;
+    font-size:21px;
 
     font-weight:bold;
 
     transition:.2s;
 
 }
+
 
 .back-btn:hover{
 
@@ -159,7 +203,7 @@ body{
 
 
 /* =========================================================
-   MAIN CARD
+   MAIN GAME CARD
 ========================================================= */
 
 .game{
@@ -172,16 +216,16 @@ body{
 
     margin:0 auto;
 
-    padding:35px 45px 40px;
+    padding:32px 38px 38px;
 
-    background:var(--white);
+    background: #ffffff;
 
     border:1px solid var(--general-border);
 
-    border-radius:24px;
+    border-radius:22px;
 
     box-shadow:
-        0 10px 35px rgba(40,120,223,.10);
+        0 8px 25px rgba(0,0,0,.08);
 
     text-align:center;
 
@@ -191,7 +235,7 @@ body{
 
 
 /* =========================================================
-   ACCENT LINE ON CARD
+   ACCENT LINE
 ========================================================= */
 
 .game::before{
@@ -219,25 +263,31 @@ body{
 
 .game-header{
 
-    margin-bottom:28px;
+    margin-bottom:25px;
 
 }
 
+
 .game-header h1{
 
-    margin:0 0 8px;
+    margin:3px 0 6px;
 
-    color:var(--accent-dark);
+    color:var(--ink);
 
-    font-family:"Kalam", cursive;
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
 
     font-size:44px;
 
     font-weight:700;
 
-    line-height:1.25;
+    line-height:1.2;
 
 }
+
 
 .game-description{
 
@@ -245,11 +295,25 @@ body{
 
     color:var(--muted);
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:23px;
 
-    line-height:1.5;
+    line-height:1.45;
+
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+#gameScreen{
+
+    width:100%;
 
 }
 
@@ -266,13 +330,12 @@ body{
 
     align-items:center;
 
-    gap:20px;
+    gap:15px;
 
-    margin-bottom:12px;
-
-    font-family:Calibri, Arial, sans-serif;
+    margin-bottom:11px;
 
 }
+
 
 .round{
 
@@ -284,9 +347,10 @@ body{
 
 }
 
+
 .score{
 
-    color:#333;
+    color:var(--accent-dark);
 
     font-size:25px;
 
@@ -303,9 +367,9 @@ body{
 
     width:100%;
 
-    height:10px;
+    height:8px;
 
-    margin:0 0 28px;
+    margin-bottom:25px;
 
     background:var(--accent-light);
 
@@ -317,6 +381,7 @@ body{
 
 }
 
+
 .progress-bar{
 
     width:0%;
@@ -327,7 +392,8 @@ body{
 
     border-radius:999px;
 
-    transition:width .3s ease;
+    transition:
+        width .3s ease;
 
 }
 
@@ -338,17 +404,27 @@ body{
 
 .question{
 
-    margin:25px 0;
+    margin:22px 0 24px;
 
-    color:#333;
+    color:var(--ink);
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:34px;
 
     font-weight:bold;
 
     line-height:1.4;
+
+}
+
+
+.question-word{
+
+    color:var(--accent-dark);
 
 }
 
@@ -364,27 +440,31 @@ body{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:16px;
+    gap:14px;
 
-    margin-top:20px;
+    margin-top:15px;
 
 }
+
 
 .option-btn{
 
     min-height:70px;
 
-    padding:15px 12px;
+    padding:14px 12px;
 
-    background:var(--white);
+    background:#ffffff;
 
     color:var(--accent-dark);
 
     border:2px solid var(--accent-border);
 
-    border-radius:14px;
+    border-radius:13px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:24px;
 
@@ -396,6 +476,7 @@ body{
 
 }
 
+
 .option-btn:hover{
 
     background:var(--accent-light);
@@ -406,6 +487,7 @@ body{
 
 }
 
+
 .option-btn.selected{
 
     background:var(--accent-light);
@@ -415,11 +497,12 @@ body{
     border-color:var(--accent);
 
     box-shadow:
-        0 0 0 3px rgba(40,120,223,.12);
+        0 0 0 3px rgba(169,153,89,.12);
 
     transform:translateY(-2px);
 
 }
+
 
 .option-btn.correct{
 
@@ -433,6 +516,7 @@ body{
 
 }
 
+
 .option-btn.wrong{
 
     background:var(--wrong-light) !important;
@@ -445,6 +529,7 @@ body{
 
 }
 
+
 .option-btn:disabled{
 
     cursor:default;
@@ -455,17 +540,8 @@ body{
 
 
 /* =========================================================
-   BUTTONS
+   CHECK BUTTON
 ========================================================= */
-
-button{
-
-    font-family:Calibri, Arial, sans-serif;
-
-}
-
-
-/* Check */
 
 #checkBtn{
 
@@ -473,15 +549,20 @@ button{
 
     margin-top:22px;
 
-    padding:12px 28px;
+    padding:11px 27px;
 
     background:var(--accent);
 
-    color:white;
+    color:#f5f5f5;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:23px;
 
@@ -493,6 +574,7 @@ button{
 
 }
 
+
 #checkBtn:hover{
 
     background:var(--accent-dark);
@@ -500,6 +582,7 @@ button{
     transform:translateY(-2px);
 
 }
+
 
 #checkBtn:disabled{
 
@@ -512,54 +595,20 @@ button{
 }
 
 
-/* Next */
-
-#nextBtn{
-
-    display:none;
-
-    margin-top:5px;
-
-    padding:12px 30px;
-
-    background:var(--accent);
-
-    color:white;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-size:23px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-#nextBtn:hover{
-
-    background:var(--accent-dark);
-
-    transform:translateY(-2px);
-
-}
-
-
 /* =========================================================
    MESSAGE
 ========================================================= */
 
 .message{
 
-    min-height:38px;
+    min-height:36px;
 
-    margin:20px 0 10px;
+    margin:17px 0 8px;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:25px;
 
@@ -578,11 +627,11 @@ button{
 
     width:100%;
 
-    margin:16px auto 22px;
+    margin:14px auto 18px;
 
-    padding:16px 20px;
+    padding:15px 18px;
 
-    background:var(--accent-light);
+    background:var(--accent-bg);
 
     border:1px solid var(--accent-border);
 
@@ -590,17 +639,21 @@ button{
 
     border-radius:12px;
 
-    color:#3d5066;
+    color:#4a4a4a;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:22px;
 
-    line-height:1.55;
+    line-height:1.5;
 
     text-align:left;
 
 }
+
 
 .explanation strong{
 
@@ -608,9 +661,55 @@ button{
 
 }
 
+
 .hidden{
 
     display:none;
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+#nextBtn{
+
+    display:none;
+
+    margin-top:4px;
+
+    padding:11px 28px;
+
+    background:var(--accent);
+
+    color:#f5f5f5;
+
+    border:none;
+
+    border-radius:11px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+#nextBtn:hover{
+
+    background:var(--accent-dark);
+
+    transform:translateY(-2px);
 
 }
 
@@ -623,39 +722,51 @@ button{
 
     display:none;
 
-    padding:20px 10px 10px;
+    padding:22px 10px 8px;
 
 }
+
 
 .final-icon{
 
-    font-size:68px;
+    font-size:62px;
 
-    margin-bottom:8px;
+    margin-bottom:6px;
 
 }
 
+
 .final h2{
 
-    margin:5px 0 20px;
+    margin:4px 0 17px;
 
-    color:var(--accent-dark);
+    color:var(--ink);
 
-    font-family:"Kalam", cursive;
+    font-family:
+        Kalam,
+        Calibri,
+        Arial,
+        sans-serif;
 
     font-size:44px;
 
     font-weight:700;
 
+    line-height:1.2;
+
 }
+
 
 .final-score{
 
-    margin:18px 0;
+    margin:17px 0;
 
-    color:#333;
+    color:var(--ink);
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:32px;
 
@@ -663,45 +774,59 @@ button{
 
 }
 
+
 .final-percent{
 
-    margin:10px 0;
+    margin:9px 0;
 
-    color:#555;
+    color:#666;
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:27px;
 
 }
 
+
 .final-message{
 
-    margin:20px 0;
+    margin:18px 0 22px;
 
     color:var(--accent-dark);
 
-    font-family:Calibri, Arial, sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    font-size:30px;
+    font-size:29px;
 
     font-weight:bold;
 
 }
 
+
 .restart-btn{
 
-    margin-top:10px;
+    margin-top:5px;
 
-    padding:13px 30px;
+    padding:12px 29px;
 
     background:var(--accent);
 
-    color:white;
+    color:#f5f5f5;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
     font-size:24px;
 
@@ -712,6 +837,7 @@ button{
     transition:.2s;
 
 }
+
 
 .restart-btn:hover{
 
@@ -730,17 +856,37 @@ button{
 
     body{
 
-        padding:15px;
+        padding:20px 12px 35px;
+
+        align-items:flex-start;
 
     }
 
+
+    .page{
+
+        width:100%;
+
+    }
+
+
     .game{
 
-        padding:30px 18px 30px;
+        width:100%;
+
+        padding:29px 18px 30px;
 
         border-radius:20px;
 
     }
+
+
+    .back-btn{
+
+        font-size:20px;
+
+    }
+
 
     .game-header h1{
 
@@ -748,11 +894,13 @@ button{
 
     }
 
+
     .game-description{
 
         font-size:21px;
 
     }
+
 
     .topbar{
 
@@ -760,11 +908,13 @@ button{
 
     }
 
+
     .round{
 
         font-size:20px;
 
     }
+
 
     .score{
 
@@ -772,25 +922,38 @@ button{
 
     }
 
+
     .question{
 
         font-size:30px;
 
     }
 
+
     .options{
 
         grid-template-columns:1fr;
 
+        gap:12px;
+
     }
+
 
     .option-btn{
 
-        min-height:60px;
+        min-height:62px;
 
         font-size:23px;
 
     }
+
+
+    .message{
+
+        font-size:24px;
+
+    }
+
 
     .explanation{
 
@@ -798,9 +961,39 @@ button{
 
     }
 
-    .back-btn{
 
-        font-size:19px;
+    #checkBtn,
+    #nextBtn{
+
+        font-size:22px;
+
+    }
+
+
+    .final h2{
+
+        font-size:38px;
+
+    }
+
+
+    .final-score{
+
+        font-size:30px;
+
+    }
+
+
+    .final-percent{
+
+        font-size:25px;
+
+    }
+
+
+    .final-message{
+
+        font-size:26px;
 
     }
 
@@ -813,11 +1006,19 @@ button{
 
 @media(max-width:400px){
 
-    .game{
+    body{
 
-        padding:28px 14px;
+        padding:17px 10px 30px;
 
     }
+
+
+    .game{
+
+        padding:27px 13px 28px;
+
+    }
+
 
     .game-header h1{
 
@@ -825,11 +1026,24 @@ button{
 
     }
 
+
     .game-description{
 
         font-size:20px;
 
     }
+
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:5px;
+
+    }
+
 
     .question{
 
@@ -837,11 +1051,17 @@ button{
 
     }
 
-    .topbar{
 
-        flex-direction:column;
+    .option-btn{
 
-        align-items:flex-start;
+        font-size:22px;
+
+    }
+
+
+    .explanation{
+
+        font-size:20px;
 
     }
 
@@ -855,8 +1075,11 @@ button{
 <body>
 
 
+<div class="page">
+
+
 <!-- =========================================================
-     BACK
+     BACK BUTTON
 ========================================================= -->
 
 <div class="back-btn-container">
@@ -865,7 +1088,7 @@ button{
         href="../../category.html?category=Food%20and%20Drinks"
         class="back-btn"
     >
-        ⬅ Back
+        ← Back
     </a>
 
 </div>
@@ -902,129 +1125,128 @@ button{
 <div id="gameScreen">
 
 
-    <!-- =====================================================
-         SCORE + PROGRESS
-    ====================================================== -->
+<!-- =========================================================
+     SCORE + PROGRESS
+========================================================= -->
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div class="round">
+    <div class="round">
 
-            Question:
+        Question:
 
-            <span id="questionNumber">
-                1
-            </span>
+        <span id="questionNumber">
+            1
+        </span>
 
-            / 20
-
-        </div>
-
-
-        <div class="score">
-
-            Score:
-
-            <span id="score">
-                0
-            </span>
-
-        </div>
+        / 20
 
     </div>
 
 
-    <!-- =====================================================
-         PROGRESS BAR
-    ====================================================== -->
+    <div class="score">
 
-    <div class="progress-container">
+        Score:
 
-        <div
-            class="progress-bar"
-            id="progressBar"
-        ></div>
+        <span id="score">
+            0
+        </span>
 
     </div>
 
-
-    <!-- =====================================================
-         QUESTION
-    ====================================================== -->
-
-    <div
-        class="question"
-        id="question"
-    ></div>
+</div>
 
 
-    <!-- =====================================================
-         OPTIONS
-    ====================================================== -->
+<!-- =========================================================
+     PROGRESS
+========================================================= -->
+
+<div class="progress-container">
 
     <div
-        class="options"
-        id="options"
+        class="progress-bar"
+        id="progressBar"
     ></div>
 
-
-    <!-- =====================================================
-         CHECK
-    ====================================================== -->
-
-    <button
-        id="checkBtn"
-        onclick="checkAnswer()"
-        disabled
-    >
-        Check Answer
-    </button>
+</div>
 
 
-    <!-- =====================================================
-         MESSAGE
-    ====================================================== -->
+<!-- =========================================================
+     QUESTION
+========================================================= -->
 
-    <div
-        class="message"
-        id="message"
-    ></div>
-
-
-    <!-- =====================================================
-         EXPLANATION
-    ====================================================== -->
-
-    <div
-        id="explanation"
-        class="explanation hidden"
-    ></div>
+<div
+    class="question"
+    id="question"
+></div>
 
 
-    <!-- =====================================================
-         NEXT
-    ====================================================== -->
+<!-- =========================================================
+     OPTIONS
+========================================================= -->
 
-    <button
-        id="nextBtn"
-        onclick="nextQuestion()"
-    >
-        Next →
-    </button>
+<div
+    class="options"
+    id="options"
+></div>
+
+
+<!-- =========================================================
+     CHECK
+========================================================= -->
+
+<button
+    id="checkBtn"
+    onclick="checkAnswer()"
+    disabled
+>
+    Check Answer
+</button>
+
+
+<!-- =========================================================
+     MESSAGE
+========================================================= -->
+
+<div
+    class="message"
+    id="message"
+></div>
+
+
+<!-- =========================================================
+     EXPLANATION
+========================================================= -->
+
+<div
+    id="explanation"
+    class="explanation hidden"
+></div>
+
+
+<!-- =========================================================
+     NEXT
+========================================================= -->
+
+<button
+    id="nextBtn"
+    onclick="nextQuestion()"
+>
+    Next →
+</button>
 
 
 </div>
 
 
 <!-- =========================================================
-     FINAL RESULTS
+     FINAL SCREEN
 ========================================================= -->
 
 <div
     class="final"
     id="finalScreen"
 >
-
 
     <div class="final-icon">
         🎉
@@ -1066,14 +1288,13 @@ button{
         class="restart-btn"
         onclick="restartGame()"
     >
-
         Play Again
-
     </button>
-
 
 </div>
 
+
+</div>
 
 </div>
 
@@ -1332,6 +1553,7 @@ function shuffle(array){
 
     const copy = [...array];
 
+
     for(
         let i = copy.length - 1;
         i > 0;
@@ -1344,6 +1566,7 @@ function shuffle(array){
                 (i + 1)
             );
 
+
         [
             copy[i],
             copy[j]
@@ -1354,6 +1577,7 @@ function shuffle(array){
         ];
 
     }
+
 
     return copy;
 
@@ -1484,7 +1708,7 @@ function loadQuestion(){
 
     /* =====================================================
        PROGRESS
-    ===================================================== */
+    ====================================================== */
 
     const progress =
         (
@@ -1499,22 +1723,22 @@ function loadQuestion(){
 
     /* =====================================================
        QUESTION
-    ===================================================== */
+    ====================================================== */
 
     questionEl.innerHTML = `
 
         What is the meaning of
 
-        "<span style="
-            color:var(--accent);
-        ">${q.vn}</span>"?
+        "<span class="question-word">
+            ${q.vn}
+        </span>"?
 
     `;
 
 
     /* =====================================================
        RESET
-    ===================================================== */
+    ====================================================== */
 
     messageEl.textContent =
         "";
@@ -1555,7 +1779,9 @@ function loadQuestion(){
 function createOptions(q){
 
     let options = [
+
         q.en
+
     ];
 
 
@@ -1656,7 +1882,9 @@ function selectAnswer(
 
 
     document
-        .querySelectorAll(".option-btn")
+        .querySelectorAll(
+            ".option-btn"
+        )
         .forEach(
             option => {
 
@@ -1730,7 +1958,7 @@ function checkAnswer(){
 
     /* =====================================================
        CORRECT
-    ===================================================== */
+    ====================================================== */
 
     if(
         selectedAnswer ===
@@ -1745,7 +1973,7 @@ function checkAnswer(){
 
 
         messageEl.textContent =
-            "✅ Correct!";
+            "✓ Correct!";
 
 
         messageEl.style.color =
@@ -1778,12 +2006,12 @@ function checkAnswer(){
 
     /* =====================================================
        WRONG
-    ===================================================== */
+    ====================================================== */
 
     else{
 
         messageEl.innerHTML =
-            `❌ Incorrect. The answer is <strong>${question.en}</strong>.`;
+            `✕ Incorrect. The answer is <strong>${question.en}</strong>.`;
 
 
         messageEl.style.color =
@@ -1832,8 +2060,8 @@ function checkAnswer(){
 
 
     /* =====================================================
-       UPDATE PROGRESS AFTER ANSWER
-    ===================================================== */
+       UPDATE PROGRESS
+    ====================================================== */
 
     const progress =
         (
@@ -1848,7 +2076,7 @@ function checkAnswer(){
 
     /* =====================================================
        NEXT BUTTON
-    ===================================================== */
+    ====================================================== */
 
     if(
         currentQuestion ===
@@ -2090,4 +2318,3 @@ startGame();
 </body>
 
 </html>
-```

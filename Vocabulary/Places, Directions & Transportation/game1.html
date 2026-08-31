@@ -4,268 +4,371 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Vietnamese Directions Memory Match</title>
 
-<meta name="game-title" content="Vietnamese Directions Memory Match">
-<meta name="game-description" content="Match common Vietnamese direction words with their English meanings.">
-<meta name="game-icon" content="🧭">
-<meta name="game-category" content="Places, Directions & Transportation">
+<meta
+    name="game-title"
+    content="Vietnamese Directions Memory Match"
+>
+
+<meta
+    name="game-description"
+    content="Match common Vietnamese direction words with their English meanings."
+>
+
+<meta
+    name="game-icon"
+    content="🧭"
+>
+
+<meta
+    name="game-category"
+    content="Places, Directions & Transportation"
+>
+
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
 
 /* =========================================================
    RESET
 ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
 }
 
 
-body{
+/* =========================================================
+   VARIABLES
+========================================================= */
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+:root {
 
-    background:linear-gradient(
-        135deg,
-        #73c8ff,
-        #b6f3ff,
-        #f8f9ff
-    );
+    --accent:
+        #5CA16E;
 
-    min-height:100vh;
+    --accent-dark:
+        #42744F;
+
+    --accent-light:
+        #eaf6ee;
+
+    --accent-bg:
+        #F2FAF5;
+
+    --accent-border:
+        #c1e0cc;
+
+
+    --correct:
+        #019b3f;
+
+    --correct-background:
+        #eaf3ff;
+
+    --wrong:
+        #d9536f;
+
+    --wrong-background:
+        #fff0f3;
+
+
+    --ink: #143a6b;
+    --ink-soft: #66809d;
+
+    --muted:
+        #6f7d74;
+
+    --general-border:
+        #d9e6f2;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    min-height: 100vh;
+
+    padding: 28px 20px 45px;
+
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    color: var(--ink);
 
     display:flex;
+
     justify-content:center;
-    align-items:center;
-
-    padding:20px;
-
-    color:#234;
-
-}
-
-
-.hidden{
-    display:none !important;
-}
-
-
-/* =========================================================
-   MAIN WRAPPER
-========================================================= */
-
-.container{
-
-    width:min(960px,95vw);
-
-    position:relative;
-
-}
-
-
-/* =========================================================
-   BACK TO LOBBY
-========================================================= */
-
-.back-lobby{
-
-    display:inline-flex;
 
     align-items:center;
 
-    gap:6px;
-
-    margin-bottom:12px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:white;
-
-    color:#555;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,.12);
-
-    transition:.2s;
-
-}
-
-
-.back-lobby:hover{
-
-    background:#f3f8ff;
-
-    color:#1976d2;
-
-    transform:translateX(-2px);
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
 
 /* =========================================================
-   SCREEN
+   MAIN CONTAINER
 ========================================================= */
 
-.screen{
+.container {
 
-    background:white;
-
-    border-radius:24px;
-
-    padding:30px;
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.18);
-
-}
-
-
-h1{
-
-    text-align:center;
-
-    font-size:2.575rem;
-
-    margin-bottom:10px;
-
-}
-
-
-h2{
-
-    text-align:center;
-
-    margin-bottom:18px;
-
-    color:#1976d2;
+    width:
+        min(
+            900px,
+            100%
+        );
 
 }
 
 
 /* =========================================================
-   INTRO
+   BACK BUTTON
+   OUTSIDE GAME CONTAINER
 ========================================================= */
 
-#instructionScreen{
+.back-area {
 
-    text-align:center;
-
-}
-
-
-#instructionScreen h1{
-
-    margin-bottom:18px;
+    margin-bottom:
+        14px;
 
 }
 
 
-.instructions{
+.back-btn {
 
-    line-height:1.7;
+    display:
+        inline-flex;
 
-    font-size:1.425rem;
+    align-items:
+        center;
 
-    margin:15px auto;
+    gap:
+        7px;
 
-    max-width:650px;
+    padding:
+        9px 16px;
 
-    color:#555;
+    border:
+        1px solid
+        var(--general-border);
 
-}
+    border-radius:
+        10px;
 
+    background:
+        #ffffff;
 
-.example{
+    color:
+        var(--ink);
 
-    margin:20px auto 0;
+    text-decoration:
+        none;
 
-    background:#f7fbff;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    border-radius:16px;
+    font-size:
+        20px;
 
-    padding:16px;
+    font-weight:
+        700;
 
-    max-width:600px;
+    box-shadow:
+        0 4px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.07
+        );
 
-}
-
-
-.example h3{
-
-    margin-bottom:10px;
-
-}
-
-
-.example-line{
-
-    font-size:1.425rem;
-
-    margin:7px 0;
-
-}
-
-
-.correct-example{
-
-    color:#2e7d32;
-
-    font-weight:bold;
-
-}
-
-
-.start-btn,
-.play-btn{
-
-    display:block;
-
-    margin:25px auto 0;
-
-    padding:14px 32px;
-
-    font-size:1.525rem;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    background:#4caf50;
-
-    color:white;
-
-    font-weight:bold;
-
-    transition:.2s;
+    transition:
+        0.2s ease;
 
 }
 
 
-.start-btn:hover,
-.play-btn:hover{
+.back-btn:hover {
 
-    background:#388e3c;
+    background:
+        var(--accent-light);
 
-    transform:translateY(-2px);
+    color:
+        var(--accent-dark);
+
+    border-color:
+        var(--accent-border);
+
+    transform:
+        translateX(-2px);
+
+}
+
+
+/* =========================================================
+   GAME SCREEN
+========================================================= */
+
+.screen {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    padding:
+        30px;
+
+    border:
+        1px solid
+        var(--general-border);
+
+    border-radius:
+        20px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            0,
+            0,
+            0,
+            0.10
+        );
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON GAME CARD
+========================================================= */
+
+#gameScreen::before,
+#endScreen::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+h1 {
+
+    font-family:
+        'Kalam',
+        cursive;
+
+    text-align:
+        center;
+
+    font-size:
+        40px;
+
+    line-height:
+        1.25;
+
+    margin:
+        0 0 5px;
+
+    color:
+        var(--title);
+
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.subtitle {
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-size:
+        19px;
+
+    line-height:
+        1.5;
+
+    margin:
+        0 0 24px;
 
 }
 
@@ -274,38 +377,72 @@ h2{
    HUD
 ========================================================= */
 
-#hud{
+#hud {
 
-    display:flex;
+    display:
+        flex;
 
-    justify-content:space-between;
+    justify-content:
+        space-between;
 
-    flex-wrap:wrap;
+    flex-wrap:
+        wrap;
 
-    gap:10px;
+    gap:
+        10px;
 
-    margin-bottom:20px;
+    margin-bottom:
+        20px;
 
 }
 
 
-.hud-box{
+.hud-box {
 
-    flex:1;
+    flex:
+        1;
 
-    min-width:130px;
+    min-width:
+        130px;
 
-    background:#f7fbff;
+    padding:
+        10px;
 
-    border-radius:12px;
+    border:
+        1px solid
+        var(--accent-border);
 
-    padding:12px;
+    border-radius:
+        11px;
 
-    text-align:center;
+    background:
+        var(--accent-bg);
 
-    font-weight:bold;
+    text-align:
+        center;
 
-    border:1px solid #e1edf8;
+    color:
+        var(--accent-dark);
+
+    font-size:
+        17px;
+
+    line-height:
+        1.35;
+
+    font-weight:
+        700;
+
+}
+
+
+.hud-box span {
+
+    font-size:
+        20px;
+
+    color:
+        var(--ink);
 
 }
 
@@ -314,14 +451,19 @@ h2{
    BOARD
 ========================================================= */
 
-#board{
+#board {
 
-    display:grid;
+    display:
+        grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(
+            3,
+            1fr
+        );
 
-    gap:18px;
+    gap:
+        16px;
 
 }
 
@@ -330,156 +472,265 @@ h2{
    CARD
 ========================================================= */
 
-.card{
+.card {
 
-    height:140px;
+    height:
+        140px;
 
-    perspective:1000px;
+    perspective:
+        1000px;
 
-    cursor:pointer;
-
-}
-
-
-.card-inner{
-
-    width:100%;
-
-    height:100%;
-
-    position:relative;
-
-    transform-style:preserve-3d;
-
-    transition:.6s;
+    cursor:
+        pointer;
 
 }
 
 
-.card.flipped .card-inner{
+.card-inner {
 
-    transform:rotateY(180deg);
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 0.55s ease;
 
 }
 
 
-.face{
+.card.flipped .card-inner {
 
-    position:absolute;
+    transform:
+        rotateY(180deg);
 
-    width:100%;
+}
 
-    height:100%;
 
-    backface-visibility:hidden;
+.card.matched {
 
-    border-radius:18px;
+    cursor:
+        default;
 
-    display:flex;
+}
 
-    align-items:center;
 
-    justify-content:center;
+/* =========================================================
+   CARD FACE
+========================================================= */
 
-    font-size:1.725rem;
+.face {
 
-    font-weight:bold;
+    position:
+        absolute;
 
-    user-select:none;
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        12px;
+
+    border-radius:
+        15px;
+
+    backface-visibility:
+        hidden;
+
+    -webkit-backface-visibility:
+        hidden;
+
+    text-align:
+        center;
+
+    user-select:
+        none;
 
     box-shadow:
-        0 10px 22px rgba(0,0,0,.16);
-
-}
-
-
-/* FRONT */
-
-.front{
-
-    background:
-        linear-gradient(
-            135deg,
-            #1976d2,
-            #42a5f5
+        0 5px 14px
+        rgba(
+            0,
+            0,
+            0,
+            0.07
         );
 
-    color:white;
+}
+
+
+/* =========================================================
+   FRONT
+========================================================= */
+
+.front {
+
+    background:
+        var(--accent);
+
+    border:
+        1px solid
+        var(--accent-dark);
+
+    color:
+        #ffffff;
+
+    font-size:
+        0;
 
 }
 
 
-/* BACK */
+.front::after {
 
-.back{
+    content:
+        "?";
 
-    transform:rotateY(180deg);
+    font-family:
+        'Kalam',
+        cursive;
 
-    background:white;
+    font-size:
+        42px;
 
-    padding:10px;
+    font-weight:
+        700;
 
-    text-align:center;
-
-    color:#234;
-
-}
-
-
-/* HOVER */
-
-.card:hover .front{
-
-    filter:brightness(1.08);
+    opacity:
+        0.95;
 
 }
 
 
-/* MATCHED */
+/* =========================================================
+   FRONT HOVER
+========================================================= */
 
-.card.matched{
+.card:hover:not(.matched) .front {
 
-    cursor:default;
-
-}
-
-
-.card.matched .back{
-
-    background:#81c784;
-
-    color:white;
-
-    animation:success .5s;
+    background:
+        var(--accent-dark);
 
 }
 
 
-@keyframes success{
+/* =========================================================
+   BACK
+========================================================= */
 
-    0%{
+.back {
 
-        transform:
-            rotateY(180deg)
-            scale(.9);
+    transform:
+        rotateY(180deg);
 
-    }
+    position:
+        relative;
 
-    50%{
+    overflow:
+        hidden;
 
-        transform:
-            rotateY(180deg)
-            scale(1.08);
+    padding:
+        15px;
 
-    }
+    background:
+        #ffffff;
 
-    100%{
+    border:
+        1px solid
+        var(--accent-border);
 
-        transform:
-            rotateY(180deg)
-            scale(1);
+    color:
+        var(--ink);
 
-    }
+    font-size:
+        clamp(
+            19px,
+            2.4vw,
+            24px
+        );
+
+    font-weight:
+        700;
+
+    line-height:
+        1.3;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON EACH CARD
+========================================================= */
+
+.back::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* =========================================================
+   MATCHED CARD
+========================================================= */
+
+.card.matched .back {
+
+    background:
+        var(--accent-light);
+
+    border:
+        2px solid
+        var(--accent-border);
+
+    color:
+        var(--accent-dark);
+
+}
+
+
+.card.matched .back::before {
+
+    background:
+        var(--accent-dark);
 
 }
 
@@ -488,62 +739,161 @@ h2{
    ROUND MESSAGE
 ========================================================= */
 
-#roundMessage{
+#roundMessage {
 
-    position:fixed;
+    min-height:
+        30px;
 
-    inset:0;
+    margin:
+        18px 0 0;
 
-    display:flex;
+    text-align:
+        center;
 
-    align-items:center;
+    color:
+        var(--accent-dark);
 
-    justify-content:center;
+    font-family:
+        'Kalam',
+        cursive;
 
-    background:rgba(255,255,255,.75);
+    font-size:
+        28px;
 
-    font-size:3.375rem;
-
-    font-weight:bold;
-
-    color:#2e7d32;
-
-    z-index:20;
+    font-weight:
+        700;
 
 }
 
 
 /* =========================================================
-   FINAL SCREEN
+   END SCREEN
 ========================================================= */
 
-#endScreen{
+#endScreen {
 
-    text-align:center;
+    position:
+        relative;
 
-}
-
-
-.final-score{
-
-    font-size:44px;
-
-    margin:25px 0 10px;
-
-    color:#1976d2;
-
-    font-weight:bold;
+    text-align:
+        center;
 
 }
 
 
-.performance{
+#endScreen h1 {
 
-    font-size:30px;
+    margin-bottom:
+        8px;
 
-    color:#555;
+}
 
-    margin-bottom:25px;
+
+.final-intro {
+
+    color:
+        var(--muted);
+
+    font-size:
+        19px;
+
+    line-height:
+        1.5;
+
+}
+
+
+.final-score {
+
+    margin:
+        22px 0 8px;
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        42px;
+
+    font-weight:
+        800;
+
+}
+
+
+.performance {
+
+    margin-bottom:
+        24px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        21px;
+
+}
+
+
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
+
+.play-btn {
+
+    padding:
+        11px 26px;
+
+    border:
+        0;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size:
+        20px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.play-btn:hover {
+
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+
+    display:
+        none !important;
 
 }
 
@@ -552,27 +902,32 @@ h2{
    CONFETTI
 ========================================================= */
 
-.confetti{
+.confetti {
 
-    position:fixed;
+    position:
+        fixed;
 
-    width:12px;
+    width:
+        9px;
 
-    height:12px;
+    height:
+        9px;
 
-    top:-20px;
+    top:
+        -20px;
+
+    z-index:
+        999;
 
     animation:
         fall linear forwards;
 
-    z-index:999;
-
 }
 
 
-@keyframes fall{
+@keyframes fall {
 
-    to{
+    to {
 
         transform:
             translateY(110vh)
@@ -587,93 +942,199 @@ h2{
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:700px){
+@media (
+    max-width: 700px
+) {
 
-    #board{
+    body {
+
+        padding:
+            20px 12px 30px;
+
+    }
+
+
+    .screen {
+
+        padding:
+            25px 18px;
+
+        border-radius:
+            18px;
+
+    }
+
+
+    h1 {
+
+        font-size:
+            34px;
+
+    }
+
+
+    .subtitle {
+
+        font-size:
+            18px;
+
+    }
+
+
+    #board {
 
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(
+                2,
+                1fr
+            );
+
+        gap:
+            12px;
 
     }
 
 
-    .card{
+    .card {
 
-        height:120px;
-
-    }
-
-
-    h1{
-
-        font-size:2.175rem;
+        height:
+            120px;
 
     }
 
 
-    .face{
+    .face {
 
-        font-size:1.475rem;
+        border-radius:
+            13px;
+
+    }
+
+
+    .back {
+
+        font-size:
+            20px;
 
     }
 
 }
 
 
-@media(max-width:500px){
+@media (
+    max-width: 500px
+) {
 
-    body{
+    body {
 
-        padding:10px;
-
-    }
-
-
-    .screen{
-
-        padding:20px 15px;
+        padding:
+            14px 10px 25px;
 
     }
 
 
-    #board{
+    .screen {
 
-        grid-template-columns:
-            repeat(2,1fr);
+        padding:
+            22px 14px;
 
-        gap:10px;
-
-    }
-
-
-    .card{
-
-        height:110px;
+        border-radius:
+            16px;
 
     }
 
 
-    .face{
+    h1 {
 
-        font-size:1.375rem;
-
-    }
-
-
-    #hud{
-
-        gap:7px;
+        font-size:
+            30px;
 
     }
 
 
-    .hud-box{
+    .subtitle {
 
-        min-width:100px;
+        font-size:
+            17px;
 
-        font-size:23px;
+        margin-bottom:
+            20px;
 
-        padding:9px;
+    }
+
+
+    #board {
+
+        gap:
+            9px;
+
+    }
+
+
+    .card {
+
+        height:
+            105px;
+
+    }
+
+
+    .front::after {
+
+        font-size:
+            34px;
+
+    }
+
+
+    .back {
+
+        padding:
+            9px;
+
+        font-size:
+            17px;
+
+    }
+
+
+    .hud-box {
+
+        min-width:
+            80px;
+
+        padding:
+            8px 5px;
+
+        font-size:
+            15px;
+
+    }
+
+
+    .hud-box span {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .back-btn {
+
+        font-size:
+            18px;
+
+        padding:
+            7px 12px;
+
+    }
+
+
+    #roundMessage {
+
+        font-size:
+            25px;
 
     }
 
@@ -691,88 +1152,48 @@ h2{
 
 
 <!-- =====================================================
-     BACK TO LOBBY
+     BACK
 ===================================================== -->
 
-<button
-    class="back-lobby"
-    onclick="backToLobby()"
->
+<div class="back-area">
 
-    ← Back
-
-</button>
-
-
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
-<div
-    id="instructionScreen"
-    class="screen"
->
-
-
-    <h1>
-        🧭 Vietnamese Directions Memory Match
-    </h1>
-
-
-    <p class="instructions">
-
-        Match each Vietnamese direction word
-        with its English meaning.
-
-    </p>
-
-
-    <p class="instructions">
-
-        🎯 8 rounds • 3 pairs per round
-
-    </p>
-
-
-    <div class="example">
-
-        <h3>Example</h3>
-
-        <div class="example-line correct-example">
-            bên trái ↔ Left ✅
-        </div>
-
-        <div class="example-line">
-            trên ↔ Right ❌
-        </div>
-
-    </div>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
+    <a
+        href="../../category.html?category=Places%2C%20Directions%20%26%20Transportation"
+        class="back-btn"
     >
-
-        Start Game
-
-    </button>
-
+        ← Back
+    </a>
 
 </div>
 
 
-
 <!-- =====================================================
-     GAME
+     GAME SCREEN
 ===================================================== -->
 
 <div
     id="gameScreen"
-    class="screen hidden"
+    class="screen"
 >
 
+
+    <!-- =================================================
+         TITLE
+    ================================================== -->
+
+    <h1>
+        Vietnamese Directions Memory Match
+    </h1>
+
+
+    <p class="subtitle">
+        Match each Vietnamese direction word with its English meaning.
+    </p>
+
+
+    <!-- =================================================
+         HUD
+    ================================================== -->
 
     <div id="hud">
 
@@ -820,19 +1241,33 @@ h2{
 
         </div>
 
-
     </div>
 
 
+    <!-- =================================================
+         BOARD
+    ================================================== -->
+
     <div id="board"></div>
+
+
+    <!-- =================================================
+         ROUND MESSAGE
+    ================================================== -->
+
+    <div
+        id="roundMessage"
+        class="hidden"
+    >
+        🎉 Great!
+    </div>
 
 
 </div>
 
 
-
 <!-- =====================================================
-     END
+     END SCREEN
 ===================================================== -->
 
 <div
@@ -846,7 +1281,7 @@ h2{
     </h1>
 
 
-    <p>
+    <p class="final-intro">
         You completed all 8 rounds.
     </p>
 
@@ -855,27 +1290,21 @@ h2{
         class="final-score"
         id="finalScore"
     >
-
         0 / 24
-
     </div>
 
 
     <div
         class="performance"
         id="performance"
-    >
-
-    </div>
+    ></div>
 
 
     <button
         class="play-btn"
         onclick="playAgain()"
     >
-
         Play Again
-
     </button>
 
 
@@ -883,22 +1312,6 @@ h2{
 
 
 </div>
-
-
-
-<!-- =====================================================
-     ROUND MESSAGE
-===================================================== -->
-
-<div
-    id="roundMessage"
-    class="hidden"
->
-
-    🎉 Great!
-
-</div>
-
 
 
 <script>
@@ -910,13 +1323,21 @@ h2{
 const vocabulary = [
 
     ["bên trái", "Left"],
+
     ["bên phải", "Right"],
+
     ["trên", "Above"],
+
     ["dưới", "Below"],
+
     ["bên cạnh", "Next to"],
+
     ["trong", "Inside"],
+
     ["giữa", "Between"],
+
     ["phía trước", "In front"],
+
     ["phía sau", "Behind"]
 
 ];
@@ -926,46 +1347,62 @@ const vocabulary = [
    SETTINGS
 ========================================================= */
 
-const TOTAL_ROUNDS = 8;
+const TOTAL_ROUNDS =
+    8;
 
-const PAIRS_PER_ROUND = 3;
+
+const PAIRS_PER_ROUND =
+    3;
+
 
 const TOTAL_PAIRS =
-    TOTAL_ROUNDS * PAIRS_PER_ROUND;
+    TOTAL_ROUNDS *
+    PAIRS_PER_ROUND;
 
 
 /* =========================================================
    STATE
 ========================================================= */
 
-let round = 1;
+let round =
+    1;
 
-let score = 0;
 
-let moves = 0;
+let score =
+    0;
 
-let timer = 0;
 
-let timerInterval = null;
+let moves =
+    0;
 
-let firstCard = null;
 
-let secondCard = null;
+let timer =
+    0;
 
-let lock = false;
 
-let matchedPairs = 0;
+let timerInterval =
+    null;
+
+
+let firstCard =
+    null;
+
+
+let secondCard =
+    null;
+
+
+let lock =
+    false;
+
+
+let matchedPairs =
+    0;
 
 
 /* =========================================================
    DOM
 ========================================================= */
-
-const instructionScreen =
-    document.getElementById(
-        "instructionScreen"
-    );
-
 
 const gameScreen =
     document.getElementById(
@@ -1031,31 +1468,38 @@ const performance =
    SHUFFLE
 ========================================================= */
 
-function shuffle(array){
+function shuffle(
+    array
+) {
 
-    const arr = [...array];
+    const arr =
+        [...array];
 
-    for(
+
+    for (
         let i = arr.length - 1;
         i > 0;
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
 
         [
             arr[i],
             arr[j]
-        ] = [
+        ] =
+        [
             arr[j],
             arr[i]
         ];
 
     }
+
 
     return arr;
 
@@ -1066,30 +1510,36 @@ function shuffle(array){
    START GAME
 ========================================================= */
 
-function startGame(){
-
-    instructionScreen
-        .classList
-        .add("hidden");
-
+function startGame() {
 
     endScreen
         .classList
-        .add("hidden");
+        .add(
+            "hidden"
+        );
 
 
     gameScreen
         .classList
-        .remove("hidden");
+        .remove(
+            "hidden"
+        );
 
 
-    round = 1;
+    round =
+        1;
 
-    score = 0;
 
-    moves = 0;
+    score =
+        0;
 
-    timer = 0;
+
+    moves =
+        0;
+
+
+    timer =
+        0;
 
 
     clearInterval(
@@ -1121,52 +1571,78 @@ function startGame(){
    LOAD ROUND
 ========================================================= */
 
-function loadRound(){
+function loadRound() {
 
-    board.innerHTML = "";
+    board.innerHTML =
+        "";
 
-    matchedPairs = 0;
 
-    firstCard = null;
+    matchedPairs =
+        0;
 
-    secondCard = null;
 
-    lock = false;
+    firstCard =
+        null;
+
+
+    secondCard =
+        null;
+
+
+    lock =
+        false;
+
+
+    roundMessage
+        .classList
+        .add(
+            "hidden"
+        );
 
 
     const selectedPairs =
-        shuffle(vocabulary)
-        .slice(
+        shuffle(
+            vocabulary
+        ).slice(
             0,
             PAIRS_PER_ROUND
         );
 
 
-    let cards = [];
+    let cards =
+        [];
 
 
     selectedPairs.forEach(
-        (pair, pairIndex) => {
-
+        (
+            pair,
+            pairIndex
+        ) => {
 
             cards.push({
 
-                pair:pairIndex,
+                pair:
+                    pairIndex,
 
-                text:pair[0],
+                text:
+                    pair[0],
 
-                type:"vietnamese"
+                type:
+                    "vietnamese"
 
             });
 
 
             cards.push({
 
-                pair:pairIndex,
+                pair:
+                    pairIndex,
 
-                text:pair[1],
+                text:
+                    pair[1],
 
-                type:"english"
+                type:
+                    "english"
 
             });
 
@@ -1175,12 +1651,13 @@ function loadRound(){
 
 
     cards =
-        shuffle(cards);
+        shuffle(
+            cards
+        );
 
 
     cards.forEach(
-        (item,index) => {
-
+        item => {
 
             const card =
                 document.createElement(
@@ -1205,11 +1682,11 @@ function loadRound(){
                 <div class="card-inner">
 
                     <div class="face front">
-                        ${index + 1}
+                        ?
                     </div>
 
                     <div class="face back">
-                        ${item.text}
+                        ${escapeHtml(item.text)}
                     </div>
 
                 </div>
@@ -1219,11 +1696,19 @@ function loadRound(){
 
             card.addEventListener(
                 "click",
-                () => flipCard(card)
+                () => {
+
+                    flipCard(
+                        card
+                    );
+
+                }
             );
 
 
-            board.appendChild(card);
+            board.appendChild(
+                card
+            );
 
         }
     );
@@ -1235,21 +1720,61 @@ function loadRound(){
 
 
 /* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(
+            value ?? ""
+        );
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
    FLIP CARD
 ========================================================= */
 
-function flipCard(card){
+function flipCard(
+    card
+) {
 
-    if(lock) return;
+    if (
+        lock
+    ) {
 
-    if(card === firstCard) return;
+        return;
+
+    }
 
 
-    if(
+    if (
+        card === firstCard
+    ) {
+
+        return;
+
+    }
+
+
+    if (
         card.classList.contains(
             "matched"
         )
-    ){
+    ) {
 
         return;
 
@@ -1261,18 +1786,25 @@ function flipCard(card){
     );
 
 
-    if(!firstCard){
+    if (
+        !firstCard
+    ) {
 
-        firstCard = card;
+        firstCard =
+            card;
 
         return;
 
     }
 
 
-    secondCard = card;
+    secondCard =
+        card;
 
-    lock = true;
+
+    lock =
+        true;
+
 
     moves++;
 
@@ -1294,11 +1826,13 @@ function flipCard(card){
         differentType;
 
 
-    /* =========================
+    /* =====================================================
        CORRECT
-    ========================= */
+    ====================================================== */
 
-    if(isMatch){
+    if (
+        isMatch
+    ) {
 
         firstCard.classList.add(
             "matched"
@@ -1314,32 +1848,55 @@ function flipCard(card){
 
         matchedPairs++;
 
-
         updateHUD();
+
+
+        roundMessage.textContent =
+            "✓ Match!";
+
+
+        roundMessage
+            .classList
+            .remove(
+                "hidden"
+            );
+
 
         resetTurn();
 
 
-        if(
+        if (
             matchedPairs ===
             PAIRS_PER_ROUND
-        ){
+        ) {
 
             setTimeout(
                 nextRound,
-                600
+                700
             );
 
         }
+
 
         return;
 
     }
 
 
-    /* =========================
+    /* =====================================================
        WRONG
-    ========================= */
+    ====================================================== */
+
+    roundMessage.textContent =
+        "✕ Not a match";
+
+
+    roundMessage
+        .classList
+        .remove(
+            "hidden"
+        );
+
 
     setTimeout(
         () => {
@@ -1352,6 +1909,13 @@ function flipCard(card){
             secondCard.classList.remove(
                 "flipped"
             );
+
+
+            roundMessage
+                .classList
+                .add(
+                    "hidden"
+                );
 
 
             resetTurn();
@@ -1367,13 +1931,18 @@ function flipCard(card){
    RESET TURN
 ========================================================= */
 
-function resetTurn(){
+function resetTurn() {
 
-    firstCard = null;
+    firstCard =
+        null;
 
-    secondCard = null;
 
-    lock = false;
+    secondCard =
+        null;
+
+
+    lock =
+        false;
 
 }
 
@@ -1382,7 +1951,7 @@ function resetTurn(){
    HUD
 ========================================================= */
 
-function updateHUD(){
+function updateHUD() {
 
     roundDisplay.textContent =
         `${round} / ${TOTAL_ROUNDS}`;
@@ -1397,7 +1966,7 @@ function updateHUD(){
 
 
     timerDisplay.textContent =
-        timer + "s";
+        `${timer}s`;
 
 }
 
@@ -1406,39 +1975,42 @@ function updateHUD(){
    NEXT ROUND
 ========================================================= */
 
-function nextRound(){
+function nextRound() {
+
+    roundMessage.textContent =
+        "🎉 Round complete!";
+
 
     roundMessage
         .classList
-        .remove("hidden");
+        .remove(
+            "hidden"
+        );
 
 
     setTimeout(
         () => {
 
-            roundMessage
-                .classList
-                .add("hidden");
-
-
             round++;
 
 
-            if(
+            if (
                 round >
                 TOTAL_ROUNDS
-            ){
+            ) {
 
                 finishGame();
 
-            }else{
+            }
+
+            else {
 
                 loadRound();
 
             }
 
         },
-        900
+        700
     );
 
 }
@@ -1448,7 +2020,7 @@ function nextRound(){
    FINISH GAME
 ========================================================= */
 
-function finishGame(){
+function finishGame() {
 
     clearInterval(
         timerInterval
@@ -1457,12 +2029,16 @@ function finishGame(){
 
     gameScreen
         .classList
-        .add("hidden");
+        .add(
+            "hidden"
+        );
 
 
     endScreen
         .classList
-        .remove("hidden");
+        .remove(
+            "hidden"
+        );
 
 
     finalScore.textContent =
@@ -1480,25 +2056,34 @@ function finishGame(){
     let message;
 
 
-    if(percentage === 100){
+    if (
+        percentage === 100
+    ) {
 
         message =
             "🏆 Perfect! Excellent memory!";
 
+    }
 
-    }else if(percentage >= 80){
+    else if (
+        percentage >= 80
+    ) {
 
         message =
             "🎉 Excellent job!";
 
+    }
 
-    }else if(percentage >= 60){
+    else if (
+        percentage >= 60
+    ) {
 
         message =
             "👍 Good job! Keep practicing!";
 
+    }
 
-    }else{
+    else {
 
         message =
             "📚 Keep practicing your Vietnamese directions!";
@@ -1519,7 +2104,7 @@ function finishGame(){
    PLAY AGAIN
 ========================================================= */
 
-function playAgain(){
+function playAgain() {
 
     removeConfetti();
 
@@ -1529,48 +2114,33 @@ function playAgain(){
 
 
 /* =========================================================
-   BACK TO LOBBY
-========================================================= */
-
-function backToLobby(){
-
-    clearInterval(
-        timerInterval
-    );
-
-
-    removeConfetti();
-
-
-    window.location.href =
-        "../../index.html";
-
-}
-
-
-/* =========================================================
    CONFETTI
 ========================================================= */
 
-function createConfetti(){
+function createConfetti() {
 
     const colors = [
 
-        "#ff5252",
-        "#ff9800",
-        "#ffeb3b",
-        "#4caf50",
-        "#2196f3",
-        "#9c27b0"
+        "#5CA16E",
+
+        "#42744F",
+
+        "#019b3f",
+
+        "#8fc7a0",
+
+        "#c1e0cc",
+
+        "#d9536f"
 
     ];
 
 
-    for(
+    for (
         let i = 0;
-        i < 150;
+        i < 120;
         i++
-    ){
+    ) {
 
         const piece =
             document.createElement(
@@ -1583,7 +2153,8 @@ function createConfetti(){
 
 
         piece.style.left =
-            Math.random() * 100 +
+            Math.random() *
+            100 +
             "vw";
 
 
@@ -1598,13 +2169,15 @@ function createConfetti(){
 
         piece.style.animationDuration =
             3 +
-            Math.random() * 3 +
+            Math.random() *
+            3 +
             "s";
 
 
         piece.style.opacity =
-            .5 +
-            Math.random() * .5;
+            0.5 +
+            Math.random() *
+            0.5;
 
 
         document.body.appendChild(
@@ -1620,20 +2193,32 @@ function createConfetti(){
    REMOVE CONFETTI
 ========================================================= */
 
-function removeConfetti(){
+function removeConfetti() {
 
     document
         .querySelectorAll(
             ".confetti"
         )
         .forEach(
-            element =>
-                element.remove()
+            element => {
+
+                element.remove();
+
+            }
         );
 
 }
 
+
+/* =========================================================
+   START IMMEDIATELY
+   NO INTRO
+========================================================= */
+
+startGame();
+
 </script>
 
 </body>
+
 </html>

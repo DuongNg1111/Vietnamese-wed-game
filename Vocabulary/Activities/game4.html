@@ -7,29 +7,25 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Complete the Sentence</title>
 
 <meta
-name="game-title"
-content="Complete the Sentence"
-
+    name="game-title"
+    content="Complete the Sentence"
 >
 
 <meta
-name="game-description"
-content="Read the English description and choose the Vietnamese activity that completes the sentence."
-
+    name="game-description"
+    content="Read the English description and choose the Vietnamese activity that fits best."
 >
 
 <meta
-name="game-icon"
-content="✏️"
-
+    name="game-icon"
+    content="✏️"
 >
 
 <!-- =========================================================
@@ -52,6 +48,7 @@ content="✏️"
     rel="stylesheet"
 >
 
+
 <style>
 
 /* =========================================================
@@ -60,10 +57,12 @@ content="✏️"
 
 :root {
 
-    --paper:
-        #f5f9fd;
+    /* Page */
 
-    --white:
+    --paper:
+        rgb(207, 204, 204);
+
+    --card:
         #ffffff;
 
 
@@ -76,22 +75,22 @@ content="✏️"
         #66809d;
 
 
-    /* Activities Category Accent */
+    /* Accent */
 
     --accent:
-        #2878df;
+        #BB6258;
 
     --accent-dark:
-        #1e5fba;
+        #91443B;
 
     --accent-light:
-        #eaf3ff;
+        #fdeeeb;
 
     --accent-bg:
-        #f4f8ff;
+        #FEF5F3;
 
     --accent-border:
-        #c4daf6;
+        #f0cec6;
 
 
     /* General Border */
@@ -103,7 +102,7 @@ content="✏️"
     /* Correct */
 
     --correct:
-        #2878df;
+        #019b3f;
 
     --correct-light:
         #eaf3ff;
@@ -125,7 +124,7 @@ content="✏️"
             20,
             58,
             107,
-            0.08
+            0.10
         );
 
 }
@@ -155,34 +154,29 @@ content="✏️"
 
 body {
 
-    min-height:
-        100vh;
+    min-height: 100vh;
 
-    padding:
-        28px 20px 45px;
+    padding: 28px 20px 45px;
 
-    font-family:
-        Calibri,
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    color:
-        var(--ink);
+    color: var(--ink);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f5f9fd 48%,
-            #edf5fc 100%
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
         );
 
 }
-
-
 /* =========================================================
    PAGE CONTAINER
 ========================================================= */
@@ -208,7 +202,7 @@ body {
 .back-btn-container {
 
     margin-bottom:
-        18px;
+        16px;
 
 }
 
@@ -235,12 +229,7 @@ body {
         999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+        #ffffff;
 
     color:
         var(--accent-dark);
@@ -255,12 +244,12 @@ body {
         700;
 
     box-shadow:
-        0 4px 14px
+        0 4px 12px
         rgba(
             20,
             58,
             107,
-            0.06
+            0.08
         );
 
     transition:
@@ -284,13 +273,13 @@ body {
         var(--accent);
 
     color:
-        white;
+        #ffffff;
 
 }
 
 
 /* =========================================================
-   MAIN CARD
+   MAIN GAME CARD
 ========================================================= */
 
 .card {
@@ -302,13 +291,13 @@ body {
         100%;
 
     padding:
-        42px;
+        38px 42px 42px;
 
     overflow:
         hidden;
 
     background:
-        var(--white);
+        var(--card);
 
     border:
         1px solid
@@ -328,7 +317,7 @@ body {
 
 
 /* =========================================================
-   HEADER ACCENT LINE
+   ACCENT LINE
 ========================================================= */
 
 .card::before {
@@ -352,51 +341,7 @@ body {
         5px;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            #72adf5
-        );
-
-}
-
-
-/* =========================================================
-   GAME ICON
-========================================================= */
-
-.game-icon {
-
-    width:
-        62px;
-
-    height:
-        62px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        2px auto 16px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        17px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.2rem;
+        var(--accent);
 
 }
 
@@ -408,7 +353,7 @@ body {
 h1 {
 
     margin:
-        0 0 9px;
+        0 0 8px;
 
     color:
         var(--ink);
@@ -430,16 +375,16 @@ h1 {
 
 
 /* =========================================================
-   SUBTITLE
+   SHORT INTRO / GAME DESCRIPTION
 ========================================================= */
 
 .subtitle {
 
     max-width:
-        600px;
+        650px;
 
     margin:
-        0 auto 32px;
+        0 auto 28px;
 
     color:
         var(--ink-soft);
@@ -448,7 +393,7 @@ h1 {
         1.12rem;
 
     line-height:
-        1.55;
+        1.5;
 
 }
 
@@ -460,7 +405,7 @@ h1 {
 .question-number {
 
     margin-bottom:
-        18px;
+        16px;
 
     color:
         var(--accent);
@@ -476,27 +421,6 @@ h1 {
 
     text-transform:
         uppercase;
-
-}
-
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
-.instruction {
-
-    margin-bottom:
-        10px;
-
-    color:
-        var(--ink-soft);
-
-    font-size:
-        1.08rem;
-
-    font-weight:
-        600;
 
 }
 
@@ -523,7 +447,7 @@ h1 {
         760px;
 
     margin:
-        0 auto 28px;
+        0 auto 26px;
 
     padding:
         18px 24px;
@@ -578,7 +502,7 @@ h1 {
         720px;
 
     margin:
-        0 auto 24px;
+        0 auto 20px;
 
 }
 
@@ -603,7 +527,7 @@ h1 {
         16px;
 
     background:
-        var(--white);
+        #ffffff;
 
     color:
         var(--ink);
@@ -715,10 +639,10 @@ h1 {
 .message {
 
     min-height:
-        32px;
+        30px;
 
     margin-bottom:
-        8px;
+        5px;
 
     font-size:
         1.12rem;
@@ -758,7 +682,7 @@ h1 {
         30px;
 
     margin:
-        0 auto 18px;
+        0 auto 17px;
 
     color:
         var(--ink-soft);
@@ -818,9 +742,9 @@ h1 {
         ),
         0 6px 14px
         rgba(
-            40,
-            120,
-            223,
+            145,
+            68,
+            59,
             0.20
         );
 
@@ -850,10 +774,10 @@ h1 {
         ),
         0 9px 18px
         rgba(
-            40,
-            120,
-            223,
-            0.22
+            145,
+            68,
+            59,
+            0.24
         );
 
 }
@@ -870,42 +794,6 @@ h1 {
 /* =========================================================
    RESULT SCREEN
 ========================================================= */
-
-.result-icon {
-
-    width:
-        68px;
-
-    height:
-        68px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        2px auto 18px;
-
-    border:
-        1px solid
-        var(--accent-border);
-
-    border-radius:
-        18px;
-
-    background:
-        var(--accent-light);
-
-    font-size:
-        2.4rem;
-
-}
-
 
 .result-title {
 
@@ -965,27 +853,6 @@ h1 {
 
 
 /* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-
-    margin-top:
-        18px;
-
-    color:
-        var(--ink-soft);
-
-    font-size:
-        0.9rem;
-
-    text-align:
-        center;
-
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -997,6 +864,9 @@ h1 {
 
         padding:
             18px 14px 35px;
+
+        align-items:
+            flex-start;
 
     }
 
@@ -1034,7 +904,15 @@ h1 {
             1rem;
 
         margin-bottom:
-            27px;
+            24px;
+
+    }
+
+
+    .question-number {
+
+        margin-bottom:
+            14px;
 
     }
 
@@ -1163,179 +1041,157 @@ h1 {
 
 </head>
 
+
 <body>
+
 
 <div class="page">
 
-<!-- =====================================================
-     BACK TO CATEGORY
-====================================================== -->
 
-<div class="back-btn-container">
+    <!-- =====================================================
+         BACK TO CATEGORY
+    ====================================================== -->
 
-    <a
-        href="../../category.html?category=Activities"
-        class="back-btn"
-    >
-        ← Back
-    </a>
+    <div class="back-btn-container">
 
-</div>
+        <a
+            href="../../category.html?category=Activities"
+            class="back-btn"
+        >
+            ← Back
+        </a>
 
-
-<!-- =====================================================
-     MAIN GAME CARD
-====================================================== -->
-
-<main class="card">
-
-
-    <!-- =================================================
-         HEADER
-    ================================================== -->
-
-    <div
-        class="game-icon"
-        aria-hidden="true"
-    >
-        ✏️
     </div>
 
 
-    <h1>
-        Complete the Sentence
-    </h1>
+    <!-- =====================================================
+         MAIN GAME CARD
+    ====================================================== -->
+
+    <main class="card">
 
 
-    <p class="subtitle">
-        Read the English description and choose
-        the Vietnamese activity that fits best.
-    </p>
+        <!-- =================================================
+             TITLE
+        ================================================== -->
 
-
-    <!-- =================================================
-         GAME SCREEN
-    ================================================== -->
-
-    <section id="gameScreen">
-
-
-        <div
-            id="questionNumber"
-            class="question-number"
-        >
-        </div>
-
-
-        <div class="instruction">
-            Choose the Vietnamese activity:
-        </div>
-
-
-        <div
-            id="description"
-            class="description"
-        >
-        </div>
-
-
-        <div
-            id="answers"
-            class="answers"
-        >
-        </div>
-
-
-        <div
-            id="message"
-            class="message"
-            aria-live="polite"
-        >
-        </div>
-
-
-        <div
-            id="explanation"
-            class="explanation"
-            aria-live="polite"
-        >
-        </div>
-
-
-        <button
-            id="nextBtn"
-            class="action-btn hidden"
-            type="button"
-        >
-        </button>
-
-
-    </section>
-
-
-    <!-- =================================================
-         RESULT SCREEN
-    ================================================== -->
-
-    <section
-        id="resultScreen"
-        class="hidden"
-    >
-
-
-        <div
-            class="result-icon"
-            aria-hidden="true"
-        >
-            🎉
-        </div>
-
-
-        <h1 class="result-title">
-            Great Job!
+        <h1>
+            Complete the Sentence
         </h1>
 
 
-        <div
-            id="scoreText"
-            class="score"
+        <p class="subtitle">
+            Read the English description and choose
+            the Vietnamese activity that fits best.
+        </p>
+
+
+        <!-- =================================================
+             GAME SCREEN
+        ================================================== -->
+
+        <section id="gameScreen">
+
+
+            <div
+                id="questionNumber"
+                class="question-number"
+            >
+            </div>
+
+
+            <div
+                id="description"
+                class="description"
+            >
+            </div>
+
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <div
+                id="explanation"
+                class="explanation"
+                aria-live="polite"
+            >
+            </div>
+
+
+            <button
+                id="nextBtn"
+                class="action-btn hidden"
+                type="button"
+            >
+            </button>
+
+
+        </section>
+
+
+        <!-- =================================================
+             RESULT SCREEN
+        ================================================== -->
+
+        <section
+            id="resultScreen"
+            class="hidden"
         >
-        </div>
 
 
-        <div
-            id="performance"
-            class="performance"
-        >
-        </div>
+            <h1 class="result-title">
+                Great Job!
+            </h1>
 
 
-        <button
-            id="playAgain"
-            class="action-btn"
-            type="button"
-        >
-            Play Again
-        </button>
+            <div
+                id="scoreText"
+                class="score"
+            >
+            </div>
 
 
-    </section>
+            <div
+                id="performance"
+                class="performance"
+            >
+            </div>
 
 
-</main>
+            <button
+                id="playAgain"
+                class="action-btn"
+                type="button"
+            >
+                Play Again
+            </button>
 
 
-<div class="footer">
-    Vietnamese Activity Practice
+        </section>
+
+
+    </main>
+
+
 </div>
 
-</div>
 
 <script>
 
 /* =========================================================
    VOCABULARY
-   Activity / Free Time / Daily Life
 ========================================================= */
 
 const ACTIVITIES = [
@@ -1568,8 +1424,7 @@ const ACTIVITIES = [
 
 
 /* =========================================================
-   QUESTIONS
-   English description → Vietnamese activity
+   QUESTION BANK
 ========================================================= */
 
 const QUESTION_BANK = [
@@ -2288,7 +2143,7 @@ function handleAnswer(
 
 
     /*
-     * KEEP EXPLANATION
+     * Explanation.
      */
 
     explanation.textContent =
@@ -2306,7 +2161,6 @@ function handleAnswer(
 
     /*
      * Last question.
-
      */
 
     if (
@@ -2457,6 +2311,7 @@ playAgain.addEventListener(
 startGame();
 
 </script>
+
 
 </body>
 

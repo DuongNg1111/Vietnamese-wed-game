@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,690 +7,1131 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Vietnamese Health Situation Challenge</title>
 
 <meta
-    name="game-title"
-    content="Vietnamese Health Situation Challenge"
+name="game-title"
+content="Vietnamese Health Situation Challenge"
+
 >
 
 <meta
-    name="game-description"
-    content="Choose the correct Vietnamese health word for each simple situation."
+name="game-description"
+content="Choose the correct Vietnamese health word for each simple situation."
+
 >
 
 <meta
-    name="game-icon"
-    content="❤️"
+name="game-icon"
+content="❤️"
+
 >
 
+<meta
+name="game-explanation"
+content="true"
+
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
-/* ==========================================================
-   RESET
-========================================================== */
+/* =========================================================
+   THEME
+========================================================= */
 
-*{
-    box-sizing:border-box;
+:root {
+
+    --accent: #9669AA;
+
+    --accent-dark: #714A82;
+
+    --accent-light: #f6eef9;
+
+    --accent-bg: #FAF5FB;
+
+    --accent-border: #dfc9ec;
+
+    --general-border: #ded7e2;
+
+    --ink: #333333;
+
+    --muted: #6b7280;
+
+    --correct: #019b3f;
+
+    --correct-light: #eaf3ff;
+
+    --wrong: #d9536f;
+
+    --wrong-light: #fff0f3;
+
+    --white: #ffffff;
+
 }
 
 
-body{
+/* =========================================================
+   RESET
+========================================================= */
 
-    margin:0;
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    padding: 28px 20px 45px;
 
     font-family:
+        Calibri,
         'Segoe UI',
         Tahoma,
         Geneva,
         Verdana,
         sans-serif;
 
-    background:#f4f7f6;
+    color: var(--ink);
 
-    min-height:100vh;
+    display: flex;
 
-    display:flex;
+    justify-content: center;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
-
-    padding:20px;
-
-    color:#2c3e50;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
 }
 
 
-/* ==========================================================
-   SCREEN
-========================================================== */
+/* =========================================================
+   PAGE
+========================================================= */
 
-.screen{
-    display:none;
+.page {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
 }
 
 
-.screen.active{
-    display:block;
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn-container {
+
+    width: 100%;
+
+    margin-bottom: 15px;
+
 }
 
 
-/* ==========================================================
-   CONTAINER
-========================================================== */
+.back-btn {
 
-.container{
+    display: inline-flex;
 
-    position:relative;
+    align-items: center;
 
-    width:min(850px,96vw);
+    gap: 7px;
 
-    margin:0 auto;
+    padding: 9px 16px;
 
-    background:white;
+    background: var(--white);
 
-    padding:65px 30px 30px;
+    color: #555555;
 
-    border-radius:20px;
+    border: 1px solid var(--general-border);
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    background: var(--accent-light);
+
+    color: var(--accent-dark);
+
+    border-color: var(--accent-border);
+
+    transform: translateX(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.card {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 38px;
+
+    background: var(--white);
+
+    border: 1px solid var(--general-border);
+
+    border-radius: 20px;
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
+        0 14px 40px
+        rgba(113, 74, 130, 0.10);
+
+    overflow: hidden;
 
 }
 
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
+/* =========================================================
+   ACCENT LINE ON CARD
+========================================================= */
 
-.lobby-btn{
+.card::before {
 
-    position:absolute;
+    content: "";
 
-    top:20px;
+    position: absolute;
 
-    left:22px;
+    top: 0;
 
-    padding:8px 14px;
+    left: 0;
 
-    border:none;
+    width: 100%;
 
-    border-radius:8px;
+    height: 5px;
 
-    background:#eef5fc;
-
-    color:#34495e;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
+    background: var(--accent);
 
 }
 
 
-.lobby-btn:hover{
+/* =========================================================
+   TITLE AREA
+========================================================= */
 
-    background:#dcecff;
+.title-area {
 
-    transform:translateX(-2px);
+    text-align: center;
 
-}
-
-
-/* ==========================================================
-   INTRO
-========================================================== */
-
-#intro{
-
-    text-align:center;
-
-    padding:
-        20px
-        20px
-        30px;
+    margin-bottom: 28px;
 
 }
 
 
-#intro .emoji{
+.title-area h1 {
 
-    font-size:70px;
+    margin: 0 0 8px;
 
-    margin-bottom:10px;
+    font-family:
+        "Kalam",
+        cursive;
 
-}
+    font-size: 44px;
 
+    font-weight: 700;
 
-#intro h1{
+    line-height: 1.2;
 
-    margin:
-        0 0 10px;
-
-    font-size:44px;
-
-}
-
-
-#intro p{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.6;
+    color: var(--ink);
 
 }
 
 
-.start-btn{
+.title-area p {
 
-    margin-top:20px;
+    max-width: 720px;
 
-    padding:
-        14px
-        35px;
+    margin: 0 auto;
 
-    border:none;
+    color: var(--muted);
 
-    border-radius:12px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-    background:#34495e;
+    font-size: 23px;
 
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
+    line-height: 1.45;
 
 }
 
 
-.start-btn:hover{
+/* =========================================================
+   SCREEN
+========================================================= */
 
-    background:#2c3e50;
+.screen {
 
-    transform:translateY(-2px);
-
-}
-
-
-/* ==========================================================
-   TITLE
-========================================================== */
-
-.title{
-
-    text-align:center;
-
-    margin:
-        0 0 5px;
+    display: none;
 
 }
 
 
-.subtitle{
+.screen.active {
 
-    text-align:center;
-
-    color:#7f8c8d;
-
-    margin-bottom:25px;
+    display: block;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    GAME BOX
-========================================================== */
+========================================================= */
 
-.game-box{
+.game-box {
 
-    background:#fff;
+    width: 100%;
 
-    padding:25px;
+    padding: 25px;
 
-    border-radius:15px;
+    background: white;
 
-    border:1px solid #eee;
+    border: 1px solid var(--accent-border);
 
-    text-align:center;
-
-}
-
-
-.topbar{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:15px;
-
-    font-weight:bold;
+    border-radius: 16px;
 
 }
 
 
-.question-count{
+/* =========================================================
+   TOP BAR
+========================================================= */
 
-    color:#7f8c8d;
+.topbar {
 
-}
+    display: flex;
 
+    justify-content: space-between;
 
-.score{
+    align-items: center;
 
-    color:#27ae60;
+    gap: 20px;
 
-    font-size:28px;
+    margin-bottom: 15px;
 
-}
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
+    font-size: 24px;
 
-/* ==========================================================
-   PROGRESS
-========================================================== */
-
-.progress-wrap{
-
-    width:100%;
-
-    height:9px;
-
-    background:#eee;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:20px;
+    font-weight: 700;
 
 }
 
 
-.progress{
+.question-count {
 
-    width:0%;
-
-    height:100%;
-
-    background:#34495e;
-
-    transition:.3s;
+    color: var(--muted);
 
 }
 
 
-/* ==========================================================
-   SITUATION CARD
-========================================================== */
+.score {
 
-.card{
+    color: var(--accent);
 
-    background:#fffde7;
-
-    border:
-        2px dashed
-        #f1c40f;
-
-    border-radius:12px;
-
-    padding:
-        30px
-        20px;
-
-    margin:
-        20px 0;
-
-    min-height:150px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:31px;
-
-    font-weight:600;
-
-    line-height:1.5;
+    font-size: 25px;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-wrap {
+
+    width: 100%;
+
+    height: 9px;
+
+    margin-bottom: 22px;
+
+    background: #eee9f1;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: var(--accent);
+
+    border-radius: 20px;
+
+    transition: width 0.3s ease;
+
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    min-height: 155px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 20px 0;
+
+    padding: 34px 25px;
+
+    background: var(--white);
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 16px;
+
+    color: var(--ink);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE ON QUESTION CARD
+========================================================= */
+
+.question-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: var(--accent);
+
+}
+
+
+/* =========================================================
    OPTIONS
-========================================================== */
+========================================================= */
 
-.options{
+.options {
 
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
 
-    gap:12px;
-
-}
-
-
-.option-btn{
-
-    padding:17px;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    background:#34495e;
-
-    color:white;
-
-    border:none;
-
-    border-radius:9px;
-
-    cursor:pointer;
-
-    transition:.2s;
+    gap: 14px;
 
 }
 
 
-.option-btn:hover:not(:disabled){
+.option-btn {
 
-    background:#2c3e50;
+    min-height: 68px;
 
-    transform:translateY(-2px);
+    padding: 14px 18px;
 
-}
+    background: var(--white);
 
+    color: var(--accent-dark);
 
-.option-btn:disabled{
+    border: 2px solid var(--accent-border);
 
-    cursor:default;
+    border-radius: 12px;
 
-}
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
+    font-size: 26px;
 
-.option-btn.correct{
+    font-weight: 700;
 
-    background:#27ae60;
+    cursor: pointer;
 
-}
-
-
-.option-btn.wrong{
-
-    background:#e74c3c;
-
-}
-
-
-/* ==========================================================
-   SHOW CORRECT ANSWER AFTER WRONG
-========================================================== */
-
-.option-btn.answer-highlight{
-
-    background:#27ae60;
-
-    color:white;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
 
-/* ==========================================================
-   RESULT
-========================================================== */
+.option-btn:hover:not(:disabled) {
 
-.result-message{
+    transform: translateY(-2px);
 
-    min-height:70px;
+    border-color: var(--accent);
 
-    margin-top:20px;
+    background: var(--accent-light);
 
-    font-size:27px;
-
-    font-weight:bold;
-
-    line-height:1.5;
+    box-shadow:
+        0 6px 16px
+        rgba(150, 105, 170, 0.12);
 
 }
 
 
-.correct-text{
+.option-btn:disabled {
 
-    color:#27ae60;
-
-}
-
-
-.wrong-text{
-
-    color:#e74c3c;
+    cursor: default;
 
 }
 
 
-.explanation{
+/* =========================================================
+   CORRECT
+========================================================= */
 
-    display:block;
+.option-btn.correct {
 
-    margin-top:6px;
+    background: var(--correct-light);
 
-    color:#607d8b;
+    color: var(--correct);
 
-    font-size:24px;
-
-    font-weight:500;
-
-}
-
-
-.correct-answer{
-
-    display:block;
-
-    margin-top:5px;
-
-    color:#34495e;
-
-    font-size:25px;
-
-    font-weight:bold;
+    border-color: var(--correct);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
+   WRONG
+========================================================= */
+
+.option-btn.wrong {
+
+    background: var(--wrong-light);
+
+    color: var(--wrong);
+
+    border-color: var(--wrong);
+
+}
+
+
+/* =========================================================
+   RESULT MESSAGE
+========================================================= */
+
+.result-message {
+
+    min-height: 70px;
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+}
+
+
+.correct-text {
+
+    color: var(--correct);
+
+}
+
+
+.wrong-text {
+
+    color: var(--wrong);
+
+}
+
+
+.explanation {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 23px;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+
+}
+
+
+.correct-answer {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--accent-dark);
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
    NEXT BUTTON
-========================================================== */
+========================================================= */
 
-.next-btn{
+.next-area {
 
-    padding:
-        12px
-        28px;
+    display: flex;
 
-    border:none;
+    justify-content: center;
 
-    border-radius:10px;
-
-    background:#34495e;
-
-    color:white;
-
-    font-size:27px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-top:5px;
-
-    transition:.2s;
+    margin-top: 5px;
 
 }
 
 
-.next-btn:hover{
+.next-btn {
 
-    background:#2c3e50;
+    display: none;
 
-    transform:translateY(-2px);
+    min-width: 180px;
 
-}
+    padding: 12px 28px;
 
+    background: var(--accent);
 
-/* ==========================================================
-   FINAL
-========================================================== */
+    color: var(--white);
 
-#final{
+    border: 2px solid var(--accent);
 
-    text-align:center;
+    border-radius: 999px;
 
-    padding:
-        30px
-        20px
-        40px;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
 
-}
+    font-size: 25px;
 
+    font-weight: 700;
 
-#final h2{
+    cursor: pointer;
 
-    font-size:45px;
-
-    color:#27ae60;
+    transition: 0.2s ease;
 
 }
 
 
-.final-score{
+.next-btn:hover {
 
-    font-size:40px;
+    background: var(--accent-dark);
 
-    margin:25px 0;
+    border-color: var(--accent-dark);
 
-    font-weight:bold;
-
-    color:#1976d2;
+    transform: translateY(-2px);
 
 }
 
 
-.final-percentage{
+/* =========================================================
+   FINAL / RESULTS
+========================================================= */
 
-    font-size:30px;
+#final {
 
-    font-weight:bold;
+    text-align: center;
 
-    margin-bottom:15px;
-
-}
-
-
-.final-message{
-
-    color:#7f8c8d;
-
-    font-size:28px;
-
-    line-height:1.5;
+    padding: 20px 10px 10px;
 
 }
 
 
-/* ==========================================================
+.final-title {
+
+    margin: 0 0 15px;
+
+    color: var(--ink);
+
+    font-family:
+        "Kalam",
+        cursive;
+
+    font-size: 43px;
+
+    line-height: 1.25;
+
+}
+
+
+.final-message {
+
+    max-width: 650px;
+
+    margin: 0 auto 20px;
+
+    color: var(--muted);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 24px;
+
+    line-height: 1.5;
+
+}
+
+
+.final-score {
+
+    margin: 20px 0 10px;
+
+    color: var(--accent);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 40px;
+
+    font-weight: 700;
+
+}
+
+
+.final-percentage {
+
+    margin-bottom: 20px;
+
+    color: var(--muted);
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   PLAY AGAIN
+========================================================= */
+
+.play-again-btn {
+
+    min-width: 180px;
+
+    padding: 13px 30px;
+
+    background: var(--accent);
+
+    color: var(--white);
+
+    border: 2px solid var(--accent);
+
+    border-radius: 999px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.play-again-btn:hover {
+
+    background: var(--accent-dark);
+
+    border-color: var(--accent-dark);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
    MOBILE
-========================================================== */
+========================================================= */
 
-@media(max-width:600px){
+@media (max-width: 600px) {
 
-    body{
+    body {
 
-        padding:10px;
+        padding:
+            18px 14px 35px;
+
+        align-items:
+            flex-start;
 
     }
 
 
-    .container{
+    .page {
+
+        width: 100%;
+
+    }
+
+
+    .back-btn-container {
+
+        margin-bottom: 13px;
+
+    }
+
+
+    .back-btn {
+
+        font-size: 20px;
 
         padding:
-            60px
-            15px
+            8px 14px;
+
+    }
+
+
+    .card {
+
+        padding:
+            32px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .title-area {
+
+        margin-bottom:
+            24px;
+
+    }
+
+
+    .title-area h1 {
+
+        font-size:
+            35px;
+
+    }
+
+
+    .title-area p {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .game-box {
+
+        padding:
+            18px;
+
+    }
+
+
+    .topbar {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .score {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .options {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .option-btn {
+
+        min-height:
+            64px;
+
+        font-size:
+            24px;
+
+    }
+
+
+    .question-card {
+
+        min-height:
+            140px;
+
+        padding:
+            25px 18px;
+
+        font-size:
+            26px;
+
+    }
+
+
+    .result-message {
+
+        font-size:
+            24px;
+
+    }
+
+
+    .explanation {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .correct-answer {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .final-title {
+
+        font-size:
+            37px;
+
+    }
+
+
+    .final-score {
+
+        font-size:
+            34px;
+
+    }
+
+
+    .final-percentage {
+
+        font-size:
+            25px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .card {
+
+        padding:
+            28px 15px;
+
+    }
+
+
+    .title-area h1 {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .title-area p {
+
+        font-size:
             20px;
 
     }
 
 
-    .options{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .card{
-
-        font-size:28px;
-
-        min-height:140px;
+    .game-box {
 
         padding:
-            25px
             15px;
 
     }
 
 
-    #intro h1{
+    .topbar {
 
-        font-size:38px;
-
-    }
-
-
-    #final h2{
-
-        font-size:40px;
+        font-size:
+            19px;
 
     }
 
 
-    .lobby-btn{
+    .score {
 
-        top:16px;
+        font-size:
+            20px;
 
-        left:16px;
+    }
 
-        font-size:23px;
 
-        padding:
-            7px
-            12px;
+    .option-btn {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .question-card {
+
+        font-size:
+            24px;
+
+    }
+
+
+    .result-message {
+
+        font-size:
+            22px;
 
     }
 
@@ -699,605 +1141,574 @@ body{
 
 </head>
 
-
 <body>
 
+<div class="page">
 
-<div class="container">
+```
+<!-- =====================================================
+     BACK
+====================================================== -->
 
+<div class="back-btn-container">
 
-<!-- ========================================================
-     BACK TO LOBBY
-========================================================= -->
-
-<button
-    class="lobby-btn"
-    onclick="backToLobby()"
->
-
-    ← Back
-
-</button>
-
-
-
-<!-- ========================================================
-     INTRO
-========================================================= -->
-
-<div
-    id="intro"
-    class="screen active"
->
-
-    <div class="emoji">
-
-        ❤️
-
-    </div>
-
-
-    <h1>
-
-        Vietnamese Health Situation Challenge
-
-    </h1>
-
-
-    <p>
-
-        Read the situation and choose
-        the correct Vietnamese word.
-
-    </p>
-
-
-    <p>
-
-        🎯 20 questions
-
-    </p>
-
-
-    <button
-        class="start-btn"
-        onclick="startGame()"
+    <a
+        href="../../category.html?category=Health"
+        class="back-btn"
     >
-
-        Start Game
-
-    </button>
+        ← Back
+    </a>
 
 </div>
 
 
+<!-- =====================================================
+     MAIN CARD
+====================================================== -->
 
-<!-- ========================================================
-     GAME
-========================================================= -->
-
-<div
-    id="game"
-    class="screen"
->
+<main class="card">
 
 
-    <h1 class="title">
+    <!-- =================================================
+         TITLE
+    ================================================== -->
 
-        ❤️ Health Situation Challenge
+    <div class="title-area">
 
-    </h1>
+        <h1>
+            Vietnamese Health Situation Challenge
+        </h1>
 
+        <p>
+            Choose the correct Vietnamese health word
+            for each simple situation.
+        </p>
 
-    <p class="subtitle">
-
-        What Vietnamese word fits the situation?
-
-    </p>
-
-
-
-    <div class="game-box">
-
-
-        <!-- TOP BAR -->
-
-        <div class="topbar">
+    </div>
 
 
-            <div class="question-count">
+    <!-- =================================================
+         GAME SCREEN
+    ================================================== -->
 
-                Question
+    <section
+        id="game"
+        class="screen active"
+    >
 
-                <span id="questionNumber">
-                    1
-                </span>
 
-                /
+        <div class="game-box">
 
-                <span id="totalQuestions">
-                    20
-                </span>
+
+            <!-- =========================================
+                 TOP BAR
+            ========================================== -->
+
+            <div class="topbar">
+
+
+                <div class="question-count">
+
+                    Question
+
+                    <span id="questionNumber">
+                        1
+                    </span>
+
+                    /
+
+                    <span id="totalQuestions">
+                        20
+                    </span>
+
+                </div>
+
+
+                <div class="score">
+
+                    Score:
+
+                    <span id="score">
+                        0
+                    </span>
+
+                </div>
+
 
             </div>
 
 
-            <div class="score">
+            <!-- =========================================
+                 PROGRESS
+            ========================================== -->
 
-                Score:
+            <div class="progress-wrap">
 
-                <span id="score">
-                    0
-                </span>
+                <div
+                    class="progress"
+                    id="progress"
+                ></div>
 
             </div>
 
 
-        </div>
-
-
-
-        <!-- PROGRESS -->
-
-        <div class="progress-wrap">
+            <!-- =========================================
+                 QUESTION
+            ========================================== -->
 
             <div
-                class="progress"
-                id="progress"
-            ></div>
+                class="question-card"
+                id="questionText"
+            >
+            </div>
+
+
+            <!-- =========================================
+                 OPTIONS
+            ========================================== -->
+
+            <div
+                class="options"
+                id="optionsContainer"
+            >
+            </div>
+
+
+            <!-- =========================================
+                 RESULT
+            ========================================== -->
+
+            <div
+                class="result-message"
+                id="resultText"
+            >
+            </div>
+
+
+            <!-- =========================================
+                 NEXT
+            ========================================== -->
+
+            <div class="next-area">
+
+                <button
+                    class="next-btn"
+                    id="nextBtn"
+                    onclick="nextQuestion()"
+                >
+                    Next →
+                </button>
+
+            </div>
+
 
         </div>
 
 
+    </section>
 
-        <!-- QUESTION -->
+
+    <!-- =================================================
+         RESULTS
+    ================================================== -->
+
+    <section
+        id="final"
+        class="screen"
+    >
+
+
+        <h2 class="final-title">
+
+            🎉 Game Complete!
+
+        </h2>
+
+
+        <p class="final-message">
+
+            You completed the Vietnamese Health
+            Situation Challenge.
+
+        </p>
+
+
+        <div class="final-score">
+
+            Score:
+
+            <span id="finalScore">
+            </span>
+
+        </div>
+
 
         <div
-            class="card"
-            id="questionText"
-        ></div>
+            class="final-percentage"
+            id="finalPercentage"
+        >
+        </div>
 
 
+        <p
+            class="final-message"
+            id="finalMessage"
+        >
+        </p>
 
-        <!-- OPTIONS -->
-
-        <div
-            class="options"
-            id="optionsContainer"
-        ></div>
-
-
-
-        <!-- RESULT -->
-
-        <div
-            class="result-message"
-            id="resultText"
-        ></div>
-
-
-
-        <!-- NEXT -->
 
         <button
-            class="next-btn"
-            id="nextBtn"
-            onclick="nextQuestion()"
-            style="display:none;"
+            class="play-again-btn"
+            onclick="restartGame()"
         >
 
-            Next →
+            Play Again
 
         </button>
 
 
-    </div>
+    </section>
 
 
-</div>
-
-
-
-<!-- ========================================================
-     FINAL
-========================================================= -->
-
-<div
-    id="final"
-    class="screen"
->
-
-
-    <h2>
-
-        🎉 Game Complete!
-
-    </h2>
-
-
-    <p class="final-message">
-
-        You completed the Vietnamese Health
-        Situation Challenge.
-
-    </p>
-
-
-    <div class="final-score">
-
-        Score:
-
-        <span id="finalScore"></span>
-
-    </div>
-
-
-    <div
-        class="final-percentage"
-        id="finalPercentage"
-    ></div>
-
-
-    <p
-        class="final-message"
-        id="finalMessage"
-    ></p>
-
-
-    <button
-        class="start-btn"
-        onclick="restartGame()"
-    >
-
-        Play Again
-
-    </button>
-
+</main>
+```
 
 </div>
-
-
-</div>
-
-
 
 <script>
 
-
-/* ==========================================================
+/* =========================================================
    APPROVED HEALTH VOCABULARY
-   ONLY WORDS FROM THE ESTABLISHED VOCAB LIST
-========================================================== */
+========================================================= */
 
 const vocabulary = [
 
     {
-        en:"sick / illness",
-        vi:"bệnh"
+        en: "sick / illness",
+        vi: "bệnh"
     },
 
     {
-        en:"fever",
-        vi:"sốt"
+        en: "fever",
+        vi: "sốt"
     },
 
     {
-        en:"tired",
-        vi:"mệt"
+        en: "tired",
+        vi: "mệt"
     },
 
     {
-        en:"flu / cold",
-        vi:"cảm"
+        en: "flu / cold",
+        vi: "cảm"
     },
 
     {
-        en:"cough",
-        vi:"ho"
+        en: "cough",
+        vi: "ho"
     },
 
     {
-        en:"headache",
-        vi:"đau đầu"
+        en: "headache",
+        vi: "đau đầu"
     },
 
     {
-        en:"pain / hurt",
-        vi:"đau"
+        en: "pain / hurt",
+        vi: "đau"
     },
 
     {
-        en:"body ache",
-        vi:"đau người"
+        en: "body ache",
+        vi: "đau người"
     },
 
     {
-        en:"headache",
-        vi:"đau đầu"
+        en: "headache",
+        vi: "đau đầu"
     },
 
     {
-        en:"arm / hand pain",
-        vi:"đau tay"
+        en: "arm / hand pain",
+        vi: "đau tay"
     },
 
     {
-        en:"leg / foot pain",
-        vi:"đau chân"
+        en: "leg / foot pain",
+        vi: "đau chân"
     },
 
     {
-        en:"stomachache",
-        vi:"đau bụng"
+        en: "stomachache",
+        vi: "đau bụng"
     },
 
     {
-        en:"head",
-        vi:"đầu"
+        en: "head",
+        vi: "đầu"
     },
 
     {
-        en:"hand / arm",
-        vi:"tay"
+        en: "hand / arm",
+        vi: "tay"
     },
 
     {
-        en:"leg / foot",
-        vi:"chân"
+        en: "leg / foot",
+        vi: "chân"
     },
 
     {
-        en:"stomach / belly",
-        vi:"bụng"
+        en: "stomach / belly",
+        vi: "bụng"
     },
 
     {
-        en:"body / person",
-        vi:"người"
+        en: "body / person",
+        vi: "người"
     }
 
 ];
 
 
-/* ==========================================================
+/* =========================================================
    QUESTION DATABASE
-   TARGET ANSWERS ONLY USE APPROVED VOCABULARY
-========================================================== */
+========================================================= */
 
 const database = [
 
     {
         q:
-        "You are not feeling well. You are ______.",
+            "You are not feeling well. You are ______.",
 
-        c:"bệnh",
+        c: "bệnh",
 
         e:
-        "Bệnh means sick or illness."
+            "Bệnh means sick or illness."
     },
 
 
     {
         q:
-        "Your body temperature is high. You have ______.",
+            "Your body temperature is high. You have ______.",
 
-        c:"sốt",
+        c: "sốt",
 
         e:
-        "Sốt means fever."
+            "Sốt means fever."
     },
 
 
     {
         q:
-        "You have very little energy. You feel ______.",
+            "You have very little energy. You feel ______.",
 
-        c:"mệt",
+        c: "mệt",
 
         e:
-        "Mệt means tired."
+            "Mệt means tired."
     },
 
 
     {
         q:
-        "You have a flu or cold. You have ______.",
+            "You have a flu or cold. You have ______.",
 
-        c:"cảm",
+        c: "cảm",
 
         e:
-        "Cảm means flu or cold."
+            "Cảm means flu or cold."
     },
 
 
     {
         q:
-        "You make a sound from your throat because you are sick. You have a ______.",
+            "You make a sound from your throat because you are sick. You have a ______.",
 
-        c:"ho",
+        c: "ho",
 
         e:
-        "Ho means cough."
+            "Ho means cough."
     },
 
 
     {
         q:
-        "Your head hurts. You have a ______.",
+            "Your head hurts. You have a ______.",
 
-        c:"đau đầu",
+        c: "đau đầu",
 
         e:
-        "Đau đầu means headache."
+            "Đau đầu means headache."
     },
 
 
     {
         q:
-        "Something hurts. You have ______.",
+            "Something hurts. You have ______.",
 
-        c:"đau",
+        c: "đau",
 
         e:
-        "Đau means pain or hurt."
+            "Đau means pain or hurt."
     },
 
 
     {
         q:
-        "Your whole body hurts. You have ______.",
+            "Your whole body hurts. You have ______.",
 
-        c:"đau người",
+        c: "đau người",
 
         e:
-        "Đau người means body ache."
+            "Đau người means body ache."
     },
 
 
     {
         q:
-        "You have pain in your head. You have ______.",
+            "You have pain in your head. You have ______.",
 
-        c:"đau đầu",
+        c: "đau đầu",
 
         e:
-        "Đau đầu means headache."
+            "Đau đầu means headache."
     },
 
 
     {
         q:
-        "Your arm or hand hurts. You have ______.",
+            "Your arm or hand hurts. You have ______.",
 
-        c:"đau tay",
+        c: "đau tay",
 
         e:
-        "Đau tay means arm or hand pain."
+            "Đau tay means arm or hand pain."
     },
 
 
     {
         q:
-        "Your leg or foot hurts. You have ______.",
+            "Your leg or foot hurts. You have ______.",
 
-        c:"đau chân",
+        c: "đau chân",
 
         e:
-        "Đau chân means leg or foot pain."
+            "Đau chân means leg or foot pain."
     },
 
 
     {
         q:
-        "Your stomach hurts. You have ______.",
+            "Your stomach hurts. You have ______.",
 
-        c:"đau bụng",
+        c: "đau bụng",
 
         e:
-        "Đau bụng means stomachache."
+            "Đau bụng means stomachache."
     },
 
 
     {
         q:
-        "The part of your body above your neck is your ______.",
+            "The part of your body above your neck is your ______.",
 
-        c:"đầu",
+        c: "đầu",
 
         e:
-        "Đầu means head."
+            "Đầu means head."
     },
 
 
     {
         q:
-        "You use your ______ to hold things.",
+            "You use your ______ to hold things.",
 
-        c:"tay",
+        c: "tay",
 
         e:
-        "Tay means hand or arm."
+            "Tay means hand or arm."
     },
 
 
     {
         q:
-        "You use your ______ to walk.",
+            "You use your ______ to walk.",
 
-        c:"chân",
+        c: "chân",
 
         e:
-        "Chân means leg or foot."
+            "Chân means leg or foot."
     },
 
 
     {
         q:
-        "The part of your body where your stomach is is your ______.",
+            "The part of your body where your stomach is is your ______.",
 
-        c:"bụng",
+        c: "bụng",
 
         e:
-        "Bụng means stomach or belly."
+            "Bụng means stomach or belly."
     },
 
 
     {
         q:
-        "Your head, arms, legs, and stomach are parts of your ______.",
+            "Your head, arms, legs, and stomach are parts of your ______.",
 
-        c:"người",
+        c: "người",
 
         e:
-        "Người can mean body or person."
+            "Người can mean body or person."
     },
 
 
     {
         q:
-        "You are sick and your whole body hurts. You have ______.",
+            "You are sick and your whole body hurts. You have ______.",
 
-        c:"đau người",
+        c: "đau người",
 
         e:
-        "Đau người means body ache."
+            "Đau người means body ache."
     },
 
 
     {
         q:
-        "You are sick and the pain is in your stomach. You have ______.",
+            "You are sick and the pain is in your stomach. You have ______.",
 
-        c:"đau bụng",
+        c: "đau bụng",
 
         e:
-        "Đau bụng means stomachache."
+            "Đau bụng means stomachache."
     },
 
 
     {
         q:
-        "You are sick and the pain is in your arm or hand. You have ______.",
+            "You are sick and the pain is in your arm or hand. You have ______.",
 
-        c:"đau tay",
+        c: "đau tay",
 
         e:
-        "Đau tay means arm or hand pain."
+            "Đau tay means arm or hand pain."
     }
 
 ];
 
 
-/* ==========================================================
+/* =========================================================
    GAME SETTINGS
-========================================================== */
+========================================================= */
 
 const TOTAL_QUESTIONS = 20;
 
 
-/* ==========================================================
+/* =========================================================
    STATE
-========================================================== */
+========================================================= */
 
 let questions = [];
 
@@ -1308,26 +1719,24 @@ let score = 0;
 let answered = false;
 
 
-/* ==========================================================
+/* =========================================================
    SHUFFLE
-========================================================== */
+========================================================= */
 
-function shuffle(array){
+function shuffle(array) {
 
     const arr = [...array];
 
-
-    for(
+    for (
         let i = arr.length - 1;
         i > 0;
         i--
-    ){
+    ) {
 
         const j =
             Math.floor(
                 Math.random() * (i + 1)
             );
-
 
         [
             arr[i],
@@ -1339,22 +1748,22 @@ function shuffle(array){
 
     }
 
-
     return arr;
 
 }
 
 
-/* ==========================================================
-   GET DISTRACTORS
-   ONLY FROM APPROVED VOCABULARY
-========================================================== */
+/* =========================================================
+   GET OPTIONS
+========================================================= */
 
-function getOptions(correctAnswer){
+function getOptions(correctAnswer) {
 
     const otherWords =
         vocabulary
-            .map(item => item.vi)
+            .map(
+                item => item.vi
+            )
             .filter(
                 word =>
                     word !== correctAnswer
@@ -1363,40 +1772,39 @@ function getOptions(correctAnswer){
 
     const distractors =
         shuffle(otherWords)
-            .slice(0,3);
+            .slice(0, 3);
 
 
     return shuffle([
+
         correctAnswer,
+
         ...distractors
+
     ]);
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    START GAME
-========================================================== */
+========================================================= */
 
-function startGame(){
+function startGame() {
 
     questions =
-        shuffle(database);
+        shuffle(database)
+            .slice(
+                0,
+                TOTAL_QUESTIONS
+            );
 
 
     currentQuestion = 0;
 
     score = 0;
 
-
-    document
-        .getElementById("intro")
-        .classList.remove("active");
-
-
-    document
-        .getElementById("final")
-        .classList.remove("active");
+    answered = false;
 
 
     document
@@ -1405,9 +1813,13 @@ function startGame(){
 
 
     document
+        .getElementById("final")
+        .classList.remove("active");
+
+
+    document
         .getElementById("score")
-        .textContent =
-        "0";
+        .textContent = "0";
 
 
     document
@@ -1421,16 +1833,16 @@ function startGame(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    LOAD QUESTION
-========================================================== */
+========================================================= */
 
-function loadQuestion(){
+function loadQuestion() {
 
     answered = false;
 
 
-    const question =
+    const current =
         questions[currentQuestion];
 
 
@@ -1440,20 +1852,32 @@ function loadQuestion(){
         currentQuestion + 1;
 
 
+    /*
+       Progress:
+       Question 1 = 0%
+       Final question = 100%
+    */
+
+    const progress =
+        (
+            currentQuestion /
+            (TOTAL_QUESTIONS - 1)
+        ) * 100;
+
+
     document
         .getElementById("progress")
         .style.width =
-        (
-            currentQuestion /
-            TOTAL_QUESTIONS *
-            100
+        Math.max(
+            0,
+            progress
         ) + "%";
 
 
     document
         .getElementById("questionText")
         .textContent =
-        question.q;
+        current.q;
 
 
     const resultText =
@@ -1462,26 +1886,28 @@ function loadQuestion(){
         );
 
 
-    resultText.innerHTML =
-        "";
-
+    resultText.innerHTML = "";
 
     resultText.className =
         "result-message";
 
 
-    document
-        .getElementById("nextBtn")
-        .style.display =
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
         "none";
 
 
-    document
-        .getElementById("nextBtn")
-        .textContent =
+    nextBtn.textContent =
         currentQuestion ===
         TOTAL_QUESTIONS - 1
+
             ? "Finish 🎉"
+
             : "Next →";
 
 
@@ -1491,63 +1917,64 @@ function loadQuestion(){
         );
 
 
-    container.innerHTML =
-        "";
+    container.innerHTML = "";
 
 
     const options =
         getOptions(
-            question.c
+            current.c
         );
 
 
-    options.forEach(option => {
+    options.forEach(
+        option => {
+
+            const btn =
+                document.createElement(
+                    "button"
+                );
 
 
-        const btn =
-            document.createElement(
-                "button"
+            btn.className =
+                "option-btn";
+
+
+            btn.textContent =
+                option;
+
+
+            btn.onclick =
+                () =>
+                    handleAnswer(
+                        btn,
+                        option
+                    );
+
+
+            container.appendChild(
+                btn
             );
 
-
-        btn.className =
-            "option-btn";
-
-
-        btn.textContent =
-            option;
-
-
-        btn.onclick = () =>
-            handleAnswer(
-                btn,
-                option
-            );
-
-
-        container.appendChild(btn);
-
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    HANDLE ANSWER
-========================================================== */
+========================================================= */
 
 function handleAnswer(
     button,
     selected
-){
+) {
 
     /*
        One attempt only.
-       Once an answer is selected,
-       the whole question is locked.
     */
 
-    if(answered){
+    if (answered) {
 
         return;
 
@@ -1557,7 +1984,7 @@ function handleAnswer(
     answered = true;
 
 
-    const question =
+    const current =
         questions[currentQuestion];
 
 
@@ -1574,21 +2001,25 @@ function handleAnswer(
 
 
     /*
-       Lock every option immediately.
+       Lock every answer.
     */
 
-    allButtons.forEach(btn => {
+    allButtons.forEach(
+        btn => {
 
-        btn.disabled = true;
+            btn.disabled = true;
 
-    });
+        }
+    );
 
 
-    /* ======================================================
+    /* =====================================================
        CORRECT
     ====================================================== */
 
-    if(selected === question.c){
+    if (
+        selected === current.c
+    ) {
 
         button.classList.add(
             "correct"
@@ -1604,13 +2035,17 @@ function handleAnswer(
             score;
 
 
-        resultText.innerHTML =
-            `
-            🎉 Correct!
+        resultText.innerHTML = `
+
+            ✓ Correct!
+
             <span class="explanation">
-                ${question.e}
+
+                ${current.e}
+
             </span>
-            `;
+
+        `;
 
 
         resultText.className =
@@ -1619,11 +2054,15 @@ function handleAnswer(
     }
 
 
-    /* ======================================================
+    /* =====================================================
        WRONG
     ====================================================== */
 
-    else{
+    else {
+
+        /*
+           Selected answer = RED
+        */
 
         button.classList.add(
             "wrong"
@@ -1631,37 +2070,45 @@ function handleAnswer(
 
 
         /*
-           Highlight the correct answer
-           so the player immediately sees it.
+           Correct answer = GREEN
         */
 
-        allButtons.forEach(btn => {
+        allButtons.forEach(
+            btn => {
 
-            if(
-                btn.textContent ===
-                question.c
-            ){
+                if (
+                    btn.textContent ===
+                    current.c
+                ) {
 
-                btn.classList.add(
-                    "answer-highlight"
-                );
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
 
             }
+        );
 
-        });
 
+        resultText.innerHTML = `
 
-        resultText.innerHTML =
-            `
-            ❌ Incorrect.
+            ✕ Incorrect.
+
             <span class="correct-answer">
-                Correct answer: ${question.c}
+
+                Correct answer:
+                ${current.c}
+
             </span>
 
             <span class="explanation">
-                ${question.e}
+
+                ${current.e}
+
             </span>
-            `;
+
+        `;
 
 
         resultText.className =
@@ -1671,8 +2118,7 @@ function handleAnswer(
 
 
     /*
-       Show Next button after either
-       correct or incorrect answer.
+       Show Next only after answering.
     */
 
     document
@@ -1683,13 +2129,13 @@ function handleAnswer(
 }
 
 
-/* ==========================================================
+/* =========================================================
    NEXT QUESTION
-========================================================== */
+========================================================= */
 
-function nextQuestion(){
+function nextQuestion() {
 
-    if(!answered){
+    if (!answered) {
 
         return;
 
@@ -1699,16 +2145,16 @@ function nextQuestion(){
     currentQuestion++;
 
 
-    if(
+    if (
         currentQuestion <
         TOTAL_QUESTIONS
-    ){
+    ) {
 
         loadQuestion();
 
     }
 
-    else{
+    else {
 
         finishGame();
 
@@ -1717,11 +2163,11 @@ function nextQuestion(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    FINISH GAME
-========================================================== */
+========================================================= */
 
-function finishGame(){
+function finishGame() {
 
     document
         .getElementById("game")
@@ -1735,6 +2181,12 @@ function finishGame(){
         .classList.add(
             "active"
         );
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        "100%";
 
 
     document
@@ -1763,21 +2215,34 @@ function finishGame(){
     let message;
 
 
-    if(percentage >= 90){
+    if (
+        percentage >= 90
+    ) {
 
         message =
             "🏆 Excellent! You know these health words very well.";
 
     }
 
-    else if(percentage >= 70){
+    else if (
+        percentage >= 70
+    ) {
 
         message =
             "🎉 Good job! Keep practicing.";
 
     }
 
-    else{
+    else if (
+        percentage >= 50
+    ) {
+
+        message =
+            "👍 Good work! You're getting better.";
+
+    }
+
+    else {
 
         message =
             "📚 Keep practicing these useful health words.";
@@ -1793,30 +2258,24 @@ function finishGame(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    RESTART
-========================================================== */
+========================================================= */
 
-function restartGame(){
+function restartGame() {
 
     startGame();
 
 }
 
 
-/* ==========================================================
-   BACK TO LOBBY
-========================================================== */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-function backToLobby(){
-
-    window.location.href =
-        "../../category.html?category=Health";
-
-}
+startGame();
 
 </script>
-
 
 </body>
 

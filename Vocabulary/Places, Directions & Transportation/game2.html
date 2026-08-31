@@ -3,1408 +3,1553 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="description"
-        content="Practice Vietnamese places, directions, and transportation vocabulary."
-    >
+<meta
+    name="description"
+    content="Practice Vietnamese places, directions, and transportation vocabulary."
+>
 
-    <!-- GAME METADATA -->
+<!-- =====================================================
+     GAME METADATA
+====================================================== -->
 
-    <meta
-        name="game-title"
-        content="Vocabulary Recognition"
-    >
+<meta
+    name="game-title"
+    content="Vocabulary Recognition"
+>
 
-    <meta
-        name="game-description"
-        content="Choose the Vietnamese word that matches the English meaning."
-    >
+<meta
+    name="game-description"
+    content="Choose the Vietnamese word that matches the English meaning."
+>
 
-    <meta
-        name="game-icon"
-        content="🧭"
-    >
+<meta
+    name="game-icon"
+    content="🧭"
+>
 
-    <meta
-        name="game-category"
-        content="Places, Directions & Transportation"
-    >
+<meta
+    name="game-category"
+    content="Places, Directions & Transportation"
+>
 
-    <title>
-        Vocabulary Recognition | Survival Vietnamese with Duong
-    </title>
+<title>
+    Vocabulary Recognition | Survival Vietnamese with Duong
+</title>
 
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+<!-- =====================================================
+     GOOGLE FONTS
+====================================================== -->
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
 
 
-    <style>
+<style>
 
-        /* =====================================================
-           DESIGN TOKENS
-        ====================================================== */
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
 
-        :root {
+:root {
 
-            --paper:
-                #f5f9fd;
+    --accent:
+        #5CA16E;
 
-            --white:
-                #ffffff;
+    --accent-dark:
+        #42744F;
 
-            --ink:
-                #143a6b;
+    --accent-light:
+        #eaf6ee;
 
-            --ink-soft:
-                #66809d;
+    --accent-bg:
+        #F2FAF5;
 
-            --blue:
-                #2f9a67;
+    --accent-border:
+        #c1e0cc;
 
-            --blue-dark:
-                #247a51;
+    --ink:
+        #143a6b;
 
-            --line:
-                #d9e6f2;
+    --ink-soft:
+        #66809d;
 
-            --accent:
-                #2f9a67;
+    --general-border:
+        #d9e6f2;
 
-            --accent-light:
-                #68c493;
+    --correct:
+        #019b3f;
 
-            --accent-background:
-                #eaf8f0;
+    --correct-background:
+        #eaf3ff;
 
-            --accent-border:
-                #c5e9d5;
+    --wrong:
+        #d9536f;
 
-            --correct:
-                #2f9a67;
+    --wrong-background:
+        #fff0f3;
 
-            --correct-background:
-                #eaf8f0;
+    --ink: #143a6b;
+    --ink-soft: #66809d;
 
-            --wrong:
-                #d9536f;
+}
 
-            --wrong-background:
-                #fff0f3;
 
-        }
+/* =========================================================
+   RESET
+========================================================= */
 
+* {
 
-        /* =====================================================
-           RESET
-        ====================================================== */
+    margin:
+        0;
 
-        * {
+    padding:
+        0;
 
-            box-sizing:
-                border-box;
+    box-sizing:
+        border-box;
 
-        }
+}
 
 
-        html {
+html {
 
-            scroll-behavior:
-                smooth;
+    scroll-behavior:
+        smooth;
 
-        }
+}
 
 
-        body {
+body {
 
-            margin:
-                0;
+    min-height: 100vh;
 
-            min-height:
-                100vh;
+    padding: 28px 20px 45px;
 
-            font-family:
-                Calibri,
-                'Segoe UI',
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 
-            color:
-                var(--ink);
+    color:
+        var(--ink);
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f5f9fd 48%,
-                    #edf5fc 100%
-                );
+    display:
+        flex;
 
-        }
+    justify-content:
+        center;
 
+    align-items:
+        center;
 
-        button {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
 
-            font-family:
-                inherit;
+}
 
-        }
 
+button {
 
-        /* =====================================================
-           TOP NAV
-        ====================================================== */
+    font-family:
+        inherit;
 
-        .top-nav {
+}
 
-            width:
-                min(
-                    1100px,
-                    92%
-                );
 
-            margin:
-                20px auto 0;
+/* =========================================================
+   MAIN WRAPPER
+========================================================= */
 
-            display:
-                flex;
+.page-wrapper {
 
-            align-items:
-                center;
+    width:
+        min(
+            900px,
+            100%
+        );
 
-            justify-content:
-                space-between;
+}
 
-        }
 
+/* =========================================================
+   BACK BUTTON
+   OUTSIDE GAME CARD
+========================================================= */
 
-        .back-btn {
+.back-area {
 
-            display:
-                inline-flex;
+    margin-bottom:
+        14px;
 
-            align-items:
-                center;
+}
 
-            gap:
-                8px;
 
-            padding:
-                10px 17px;
+.back-btn {
 
-            border:
-                1px solid
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.14
-                );
+    display:
+        inline-flex;
 
-            border-radius:
-                999px;
+    align-items:
+        center;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.92
-                );
+    gap:
+        7px;
 
-            color:
-                var(--ink);
+    padding:
+        9px 15px;
 
-            text-decoration:
-                none;
+    border:
+        1px solid
+        var(--general-border);
 
-            font-size:
-                1.195rem;
+    border-radius:
+        12px;
 
-            font-weight:
-                700;
+    background:
+        #ffffff;
 
-            box-shadow:
-                0 4px 14px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.07
-                );
+    color:
+        #555;
 
-            transition:
-                0.2s ease;
+    text-decoration:
+        none;
 
-        }
+    font-size:
+        1.05rem;
 
+    font-weight:
+        700;
 
-        .back-btn:hover {
+    box-shadow:
+        0 4px 12px
+        rgba(
+            20,
+            58,
+            107,
+            0.07
+        );
 
-            transform:
-                translateX(-3px);
+    transition:
+        0.2s ease;
 
-            color:
-                var(--accent);
+}
 
-            border-color:
-                var(--accent);
 
-        }
+.back-btn:hover {
 
+    transform:
+        translateX(-3px);
 
-        /* =====================================================
-           MAIN
-        ====================================================== */
+    color:
+        var(--accent-dark);
 
-        .game-container {
+    border-color:
+        var(--accent-border);
 
-            width:
-                min(
-                    900px,
-                    92%
-                );
+    background:
+        var(--accent-bg);
 
-            margin:
-                32px auto 70px;
+}
 
-        }
 
+/* =========================================================
+   GAME CONTAINER
+========================================================= */
 
-        /* =====================================================
-           GAME HEADER
-        ====================================================== */
+.game-container {
 
-        .game-header {
+    width:
+        100%;
 
-            position:
-                relative;
+}
 
-            overflow:
-                hidden;
 
-            padding:
-                30px 32px;
+/* =========================================================
+   GAME HEADER
+========================================================= */
 
-            margin-bottom:
-                20px;
+.game-header {
 
-            border:
-                1px solid
-                var(--accent-border);
+    position:
+        relative;
 
-            border-radius:
-                24px;
+    overflow:
+        hidden;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.97
-                );
+    padding:
+        30px 32px;
 
-            box-shadow:
-                0 12px 32px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.07
-                );
+    margin-bottom:
+        18px;
 
-        }
+    border:
+        1px solid
+        var(--accent-border);
 
+    border-radius:
+        22px;
 
-        .game-header::before {
+    background:
+        #ffffff;
 
-            content:
-                "";
+    box-shadow:
+        0 12px 30px
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
 
-            position:
-                absolute;
+}
 
-            top:
-                0;
 
-            left:
-                0;
+/* ACCENT LINE */
 
-            width:
-                100%;
+.game-header::before {
 
-            height:
-                6px;
+    content:
+        "";
 
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--accent),
-                    var(--accent-light)
-                );
+    position:
+        absolute;
 
-        }
+    top:
+        0;
 
+    left:
+        0;
 
-        .game-header-content {
+    width:
+        100%;
 
-            display:
-                flex;
+    height:
+        6px;
 
-            align-items:
-                center;
+    background:
+        var(--accent);
 
-            gap:
-                20px;
+}
 
-        }
 
+.game-header-content {
 
-        .game-icon {
+    display:
+        flex;
 
-            width:
-                68px;
+    align-items:
+        center;
 
-            height:
-                68px;
+    gap:
+        18px;
 
-            flex-shrink:
-                0;
+}
 
-            display:
-                flex;
 
-            align-items:
-                center;
+.game-icon {
 
-            justify-content:
-                center;
+    width:
+        62px;
 
-            border:
-                1px solid
-                var(--accent-border);
+    height:
+        62px;
 
-            border-radius:
-                19px;
+    flex-shrink:
+        0;
 
-            background:
-                var(--accent-background);
+    display:
+        flex;
 
-            font-size:
-                2.575rem;
+    align-items:
+        center;
 
-        }
+    justify-content:
+        center;
 
+    border:
+        1px solid
+        var(--accent-border);
 
-        .game-eyebrow {
+    border-radius:
+        17px;
 
-            margin:
-                0 0 5px;
+    background:
+        var(--accent-bg);
 
-            color:
-                var(--accent);
+    font-size:
+        2.25rem;
 
-            font-size:
-                1.075rem;
+}
 
-            font-weight:
-                800;
 
-            letter-spacing:
-                0.1em;
+.game-title {
 
-            text-transform:
-                uppercase;
+    margin:
+        0;
 
-        }
+    font-family:
+        'Kalam',
+        cursive;
 
+    color:
+        var(--ink);
 
-        .game-title {
+    font-size:
+        clamp(
+            2.35rem,
+            5vw,
+            3.15rem
+        );
 
-            margin:
-                0;
+    font-weight:
+        700;
 
-            font-family:
-                'Kalam',
-                cursive;
+    line-height:
+        1.05;
 
-            font-size:
-                clamp(
-                    2.375rem,
-                    5vw,
-                    3.175rem
-                );
+}
 
-            line-height:
-                1.05;
 
-        }
+.game-description {
 
+    margin:
+        7px 0 0;
 
-        .game-description {
+    color:
+        var(--ink-soft);
 
-            margin:
-                8px 0 0;
+    font-size:
+        1.2rem;
 
-            color:
-                var(--ink-soft);
+    line-height:
+        1.5;
 
-            font-size:
-                1.215rem;
+}
 
-            line-height:
-                1.5;
 
-        }
+/* =========================================================
+   PROGRESS
+========================================================= */
 
+.progress-area {
 
-        /* =====================================================
-           PROGRESS
-        ====================================================== */
+    margin-bottom:
+        18px;
 
-        .progress-area {
+    padding:
+        16px 19px;
 
-            margin-bottom:
-                18px;
+    border:
+        1px solid
+        var(--general-border);
 
-            padding:
-                17px 20px;
+    border-radius:
+        17px;
 
-            border:
-                1px solid
-                var(--line);
+    background:
+        #ffffff;
 
-            border-radius:
-                18px;
+    box-shadow:
+        0 5px 15px
+        rgba(
+            20,
+            58,
+            107,
+            0.05
+        );
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.9
-                );
+}
 
-            box-shadow:
-                0 5px 16px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.05
-                );
 
-        }
+.progress-top {
 
+    display:
+        flex;
 
-        .progress-top {
+    align-items:
+        center;
 
-            display:
-                flex;
+    justify-content:
+        space-between;
 
-            align-items:
-                center;
+    margin-bottom:
+        9px;
 
-            justify-content:
-                space-between;
+}
 
-            margin-bottom:
-                9px;
 
-        }
+.question-number {
 
+    color:
+        var(--ink);
 
-        .question-number {
+    font-size:
+        1.1rem;
 
-            color:
-                var(--ink);
+    font-weight:
+        800;
 
-            font-size:
-                1.155rem;
+}
 
-            font-weight:
-                800;
 
-        }
+.score-display {
 
+    color:
+        var(--accent-dark);
 
-        .score-display {
+    font-size:
+        1.1rem;
 
-            color:
-                var(--accent);
+    font-weight:
+        800;
 
-            font-size:
-                1.155rem;
+}
 
-            font-weight:
-                800;
 
-        }
+.progress-track {
 
+    width:
+        100%;
 
-        .progress-track {
+    height:
+        8px;
 
-            width:
-                100%;
+    overflow:
+        hidden;
 
-            height:
-                8px;
+    border-radius:
+        999px;
 
-            overflow:
-                hidden;
+    background:
+        #e7eef5;
 
-            border-radius:
-                999px;
+}
 
-            background:
-                #e7eef5;
 
-        }
+.progress-bar {
 
+    width:
+        0%;
 
-        .progress-bar {
+    height:
+        100%;
 
-            width:
-                0%;
+    border-radius:
+        999px;
 
-            height:
-                100%;
+    background:
+        var(--accent);
 
-            border-radius:
-                999px;
+    transition:
+        width 0.3s ease;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--accent),
-                    var(--accent-light)
-                );
+}
 
-            transition:
-                width 0.3s ease;
 
-        }
+/* =========================================================
+   QUESTION CARD
+========================================================= */
 
+.question-card {
 
-        /* =====================================================
-           QUESTION CARD
-        ====================================================== */
+    position:
+        relative;
 
-        .question-card {
+    overflow:
+        hidden;
 
-            padding:
-                34px;
+    padding:
+        32px;
 
-            border:
-                1px solid
-                var(--accent-border);
+    border:
+        1px solid
+        var(--accent-border);
 
-            border-radius:
-                24px;
+    border-radius:
+        22px;
 
-            background:
-                #ffffff;
+    background:
+        #ffffff;
 
-            box-shadow:
-                0 10px 28px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.08
-                );
+    box-shadow:
+        0 10px 28px
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
 
-        }
+}
 
 
-        .question-label {
+/* ACCENT LINE */
 
-            margin:
-                0 0 12px;
+.question-card::before {
 
-            color:
-                var(--accent);
+    content:
+        "";
 
-            font-size:
-                1.095rem;
+    position:
+        absolute;
 
-            font-weight:
-                800;
+    top:
+        0;
 
-            letter-spacing:
-                0.08em;
+    left:
+        0;
 
-            text-transform:
-                uppercase;
+    width:
+        100%;
 
-        }
+    height:
+        5px;
 
+    background:
+        var(--accent);
 
-        .question-text {
+}
 
-            margin:
-                0 0 28px;
 
-            color:
-                var(--ink);
+.question-label {
 
-            font-size:
-                clamp(
-                    1.725rem,
-                    3vw,
-                    2.125rem
-                );
+    margin:
+        0 0 11px;
 
-            font-weight:
-                800;
+    color:
+        var(--accent-dark);
 
-            line-height:
-                1.35;
+    font-size:
+        1.05rem;
 
-        }
+    font-weight:
+        800;
 
+    letter-spacing:
+        0.06em;
 
-        .question-text strong {
+    text-transform:
+        uppercase;
 
-            color:
-                var(--accent);
+}
 
-        }
 
+.question-text {
 
-        /* =====================================================
-           ANSWERS
-        ====================================================== */
+    margin:
+        0 0 26px;
 
-        .answers {
+    color:
+        var(--ink);
 
-            display:
-                grid;
+    font-size:
+        clamp(
+            1.7rem,
+            3vw,
+            2.1rem
+        );
 
-            grid-template-columns:
-                1fr 1fr;
+    font-weight:
+        800;
 
-            gap:
-                13px;
+    line-height:
+        1.35;
 
-        }
+}
 
 
-        .answer-btn {
+.question-text strong {
 
-            position:
-                relative;
+    color:
+        var(--accent-dark);
 
-            min-height:
-                66px;
+}
 
-            padding:
-                14px 18px;
 
-            border:
-                2px solid
-                var(--line);
+/* =========================================================
+   ANSWERS
+========================================================= */
 
-            border-radius:
-                16px;
+.answers {
 
-            background:
-                #ffffff;
+    display:
+        grid;
 
-            color:
-                var(--ink);
+    grid-template-columns:
+        1fr 1fr;
 
-            font-size:
-                1.315rem;
+    gap:
+        13px;
 
-            font-weight:
-                700;
+}
 
-            text-align:
-                left;
 
-            cursor:
-                pointer;
+.answer-btn {
 
-            transition:
-                0.2s ease;
+    position:
+        relative;
 
-        }
+    min-height:
+        64px;
 
+    padding:
+        13px 17px;
 
-        .answer-btn:hover:not(:disabled) {
+    border:
+        2px solid
+        var(--general-border);
 
-            transform:
-                translateY(-2px);
+    border-radius:
+        15px;
 
-            border-color:
-                var(--accent);
+    background:
+        #ffffff;
 
-            background:
-                var(--accent-background);
+    color:
+        var(--ink);
 
-        }
+    font-size:
+        1.3rem;
 
+    font-weight:
+        700;
 
-        .answer-btn:disabled {
+    text-align:
+        left;
 
-            cursor:
-                default;
+    cursor:
+        pointer;
 
-        }
+    transition:
+        0.2s ease;
 
+}
 
-        .answer-btn.correct {
 
-            border-color:
-                var(--correct);
+.answer-btn:hover:not(:disabled) {
 
-            background:
-                var(--correct-background);
+    transform:
+        translateY(-2px);
 
-            color:
-                var(--correct);
+    border-color:
+        var(--accent);
 
-        }
+    background:
+        var(--accent-bg);
 
+}
 
-        .answer-btn.wrong {
 
-            border-color:
-                var(--wrong);
+.answer-btn:disabled {
 
-            background:
-                var(--wrong-background);
+    cursor:
+        default;
 
-            color:
-                var(--wrong);
+}
 
-        }
 
+.answer-btn.correct {
 
-        .answer-btn.revealed {
+    border-color:
+        var(--correct);
 
-            border-color:
-                var(--correct);
+    background:
+        var(--correct-background);
 
-            background:
-                var(--correct-background);
+    color:
+        var(--correct);
 
-            color:
-                var(--correct);
+}
 
-        }
 
+.answer-btn.wrong {
 
-        .answer-letter {
+    border-color:
+        var(--wrong);
 
-            display:
-                inline-flex;
+    background:
+        var(--wrong-background);
 
-            align-items:
-                center;
+    color:
+        var(--wrong);
 
-            justify-content:
-                center;
+}
 
-            width:
-                30px;
 
-            height:
-                30px;
+.answer-btn.revealed {
 
-            margin-right:
-                10px;
+    border-color:
+        var(--correct);
 
-            border:
-                1px solid
-                currentColor;
+    background:
+        var(--correct-background);
 
-            border-radius:
-                50%;
+    color:
+        var(--correct);
 
-            font-size:
-                1.095rem;
+}
 
-            font-weight:
-                800;
 
-            vertical-align:
-                middle;
+.answer-letter {
 
-        }
+    display:
+        inline-flex;
 
+    align-items:
+        center;
 
-        /* =====================================================
-           FEEDBACK
-        ====================================================== */
+    justify-content:
+        center;
 
-        .feedback {
+    width:
+        29px;
 
-            display:
-                none;
+    height:
+        29px;
 
-            margin-top:
-                22px;
+    margin-right:
+        9px;
 
-            padding:
-                16px 18px;
+    border:
+        1px solid
+        currentColor;
 
-            border-radius:
-                15px;
+    border-radius:
+        50%;
 
-            font-size:
-                1.215rem;
+    font-size:
+        1rem;
 
-            line-height:
-                1.5;
+    font-weight:
+        800;
 
-        }
+    vertical-align:
+        middle;
 
+}
 
-        .feedback.show {
 
-            display:
-                block;
+/* =========================================================
+   FEEDBACK
+========================================================= */
 
-        }
+.feedback {
 
+    display:
+        none;
 
-        .feedback.correct {
+    margin-top:
+        20px;
 
-            border:
-                1px solid
-                #bfe5d0;
+    padding:
+        15px 17px;
 
-            background:
-                var(--correct-background);
+    border-radius:
+        14px;
 
-            color:
-                #26794f;
+    font-size:
+        1.17rem;
 
-        }
+    line-height:
+        1.5;
 
+}
 
-        .feedback.wrong {
 
-            border:
-                1px solid
-                #f0c5cf;
+.feedback.show {
 
-            background:
-                var(--wrong-background);
+    display:
+        block;
 
-            color:
-                #b33d59;
+}
 
-        }
 
+.feedback.correct {
 
-        .feedback strong {
+    border:
+        1px solid
+        var(--accent-border);
 
-            font-weight:
-                800;
+    background:
+        var(--correct-background);
 
-        }
+    color:
+        var(--correct);
 
+}
 
-        /* =====================================================
-           NEXT BUTTON
-        ====================================================== */
 
-        .next-area {
+.feedback.wrong {
 
-            display:
-                flex;
+    border:
+        1px solid
+        #f0c5cf;
 
-            justify-content:
-                flex-end;
+    background:
+        var(--wrong-background);
 
-            margin-top:
-                20px;
+    color:
+        #b33d59;
 
-        }
+}
 
 
-        .next-btn {
+.feedback strong {
 
-            display:
-                none;
+    font-weight:
+        800;
 
-            align-items:
-                center;
+}
 
-            justify-content:
-                center;
 
-            gap:
-                8px;
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
 
-            min-width:
-                145px;
+.next-area {
 
-            padding:
-                12px 20px;
+    display:
+        flex;
 
-            border:
-                0;
+    justify-content:
+        flex-end;
 
-            border-radius:
-                13px;
+    margin-top:
+        19px;
 
-            background:
-                var(--accent);
+}
 
-            color:
-                #ffffff;
 
-            font-size:
-                1.195rem;
+.next-btn {
 
-            font-weight:
-                800;
+    display:
+        none;
 
-            cursor:
-                pointer;
+    align-items:
+        center;
 
-            box-shadow:
-                0 6px 15px
-                rgba(
-                    47,
-                    154,
-                    103,
-                    0.22
-                );
+    justify-content:
+        center;
 
-            transition:
-                0.2s ease;
+    gap:
+        8px;
 
-        }
+    min-width:
+        145px;
 
+    padding:
+        11px 19px;
 
-        .next-btn.show {
+    border:
+        0;
 
-            display:
-                inline-flex;
+    border-radius:
+        12px;
 
-        }
+    background:
+        var(--accent);
 
+    color:
+        #ffffff;
 
-        .next-btn:hover {
+    font-size:
+        1.15rem;
 
-            background:
-                var(--blue-dark);
+    font-weight:
+        800;
 
-            transform:
-                translateY(-2px);
+    cursor:
+        pointer;
 
-        }
+    box-shadow:
+        0 6px 15px
+        rgba(
+            66,
+            116,
+            79,
+            0.2
+        );
 
+    transition:
+        0.2s ease;
 
-        /* =====================================================
-           RESULTS
-        ====================================================== */
+}
 
-        .results {
 
-            display:
-                none;
+.next-btn.show {
 
-            padding:
-                42px 30px;
+    display:
+        inline-flex;
 
-            border:
-                1px solid
-                var(--accent-border);
+}
 
-            border-radius:
-                24px;
 
-            background:
-                #ffffff;
+.next-btn:hover {
 
-            text-align:
-                center;
+    background:
+        var(--accent-dark);
 
-            box-shadow:
-                0 12px 32px
-                rgba(
-                    20,
-                    58,
-                    107,
-                    0.08
-                );
+    transform:
+        translateY(-2px);
 
-        }
+}
 
 
-        .results.show {
+/* =========================================================
+   RESULTS
+========================================================= */
 
-            display:
-                block;
+.results {
 
-        }
+    position:
+        relative;
 
+    overflow:
+        hidden;
 
-        .results-icon {
+    display:
+        none;
 
-            margin-bottom:
-                12px;
+    padding:
+        42px 30px;
 
-            font-size:
-                3.775rem;
+    border:
+        1px solid
+        var(--accent-border);
 
-        }
+    border-radius:
+        22px;
 
+    background:
+        #ffffff;
 
-        .results-title {
+    text-align:
+        center;
 
-            margin:
-                0 0 8px;
+    box-shadow:
+        0 12px 32px
+        rgba(
+            20,
+            58,
+            107,
+            0.08
+        );
 
-            font-family:
-                'Kalam',
-                cursive;
+}
 
-            font-size:
-                2.875rem;
 
-        }
+.results::before {
 
+    content:
+        "";
 
-        .results-message {
+    position:
+        absolute;
 
-            margin:
-                0 auto 22px;
+    top:
+        0;
 
-            max-width:
-                520px;
+    left:
+        0;
 
-            color:
-                var(--ink-soft);
+    width:
+        100%;
 
-            font-size:
-                1.275rem;
+    height:
+        5px;
 
-            line-height:
-                1.55;
+    background:
+        var(--accent);
 
-        }
+}
 
 
-        .final-score {
+.results.show {
 
-            display:
-                inline-flex;
+    display:
+        block;
 
-            align-items:
-                baseline;
+}
 
-            gap:
-                5px;
 
-            margin-bottom:
-                25px;
+.results-icon {
 
-            color:
-                var(--accent);
+    margin-bottom:
+        11px;
 
-        }
+    font-size:
+        3.5rem;
 
+}
 
-        .final-score-number {
 
-            font-size:
-                3.975rem;
+.results-title {
 
-            font-weight:
-                800;
+    margin:
+        0 0 8px;
 
-        }
+    font-family:
+        'Kalam',
+        cursive;
 
+    color:
+        var(--ink);
 
-        .final-score-total {
+    font-size:
+        2.8rem;
 
-            color:
-                var(--ink-soft);
+}
 
-            font-size:
-                1.375rem;
 
-            font-weight:
-                700;
+.results-message {
 
-        }
+    margin:
+        0 auto 22px;
 
+    max-width:
+        520px;
 
-        .restart-btn {
+    color:
+        var(--ink-soft);
 
-            display:
-                inline-flex;
+    font-size:
+        1.2rem;
 
-            align-items:
-                center;
+    line-height:
+        1.55;
 
-            justify-content:
-                center;
+}
 
-            gap:
-                8px;
 
-            padding:
-                12px 22px;
+.final-score {
 
-            border:
-                0;
+    display:
+        inline-flex;
 
-            border-radius:
-                13px;
+    align-items:
+        baseline;
 
-            background:
-                var(--accent);
+    gap:
+        5px;
 
-            color:
-                #ffffff;
+    margin-bottom:
+        24px;
 
-            font-size:
-                1.195rem;
+    color:
+        var(--accent-dark);
 
-            font-weight:
-                800;
+}
 
-            cursor:
-                pointer;
 
-            transition:
-                0.2s ease;
+.final-score-number {
 
-        }
+    font-size:
+        3.8rem;
 
+    font-weight:
+        800;
 
-        .restart-btn:hover {
+}
 
-            background:
-                var(--blue-dark);
 
-            transform:
-                translateY(-2px);
+.final-score-total {
 
-        }
+    color:
+        var(--ink-soft);
 
+    font-size:
+        1.3rem;
 
-        /* =====================================================
-           FOOTER
-        ====================================================== */
+    font-weight:
+        700;
 
-        footer {
+}
 
-            width:
-                min(
-                    900px,
-                    92%
-                );
 
-            margin:
-                0 auto;
+.restart-btn {
 
-            padding:
-                15px 0 35px;
+    display:
+        inline-flex;
 
-            color:
-                #7c93aa;
+    align-items:
+        center;
 
-            font-size:
-                1.135rem;
+    justify-content:
+        center;
 
-            text-align:
-                center;
+    gap:
+        8px;
 
-        }
+    padding:
+        11px 21px;
 
+    border:
+        0;
 
-        .footer-line {
+    border-radius:
+        12px;
 
-            width:
-                100%;
+    background:
+        var(--accent);
 
-            height:
-                1px;
+    color:
+        #ffffff;
 
-            margin-bottom:
-                18px;
+    font-size:
+        1.15rem;
 
-            background:
-                #d8e5f0;
+    font-weight:
+        800;
 
-        }
+    cursor:
+        pointer;
 
+    transition:
+        0.2s ease;
 
-        /* =====================================================
-           MOBILE
-        ====================================================== */
+}
 
-        @media (
-            max-width: 650px
-        ) {
 
-            .top-nav {
+.restart-btn:hover {
 
-                margin-top:
-                    14px;
+    background:
+        var(--accent-dark);
 
-            }
+    transform:
+        translateY(-2px);
 
+}
 
-            .game-container {
 
-                margin-top:
-                    23px;
+/* =========================================================
+   FOOTER
+========================================================= */
 
-            }
+footer {
 
+    width:
+        100%;
 
-            .game-header {
+    margin-top:
+        25px;
 
-                padding:
-                    26px 22px;
+    padding:
+        15px 0 0;
 
-            }
+    color:
+        #7c93aa;
 
+    font-size:
+        1.05rem;
 
-            .game-header-content {
+    text-align:
+        center;
 
-                align-items:
-                    flex-start;
+}
 
-                gap:
-                    15px;
 
-            }
+.footer-line {
 
+    width:
+        100%;
 
-            .game-icon {
+    height:
+        1px;
 
-                width:
-                    57px;
+    margin-bottom:
+        15px;
 
-                height:
-                    57px;
+    background:
+        var(--general-border);
 
-                border-radius:
-                    16px;
+}
 
-                font-size:
-                    2.175rem;
 
-            }
+/* =========================================================
+   CONFETTI
+========================================================= */
 
+.confetti {
 
-            .game-title {
+    position:
+        fixed;
 
-                font-size:
-                    2.525rem;
+    width:
+        11px;
 
-            }
+    height:
+        11px;
 
+    top:
+        -20px;
 
-            .question-card {
+    animation:
+        fall linear forwards;
 
-                padding:
-                    25px 20px;
+    z-index:
+        999;
 
-            }
+}
 
 
-            .answers {
+@keyframes fall {
 
-                grid-template-columns:
-                    1fr;
+    to {
 
-            }
+        transform:
+            translateY(110vh)
+            rotate(720deg);
 
+    }
 
-            .answer-btn {
+}
 
-                min-height:
-                    60px;
 
-            }
+/* =========================================================
+   MOBILE
+========================================================= */
 
+@media (
+    max-width: 650px
+) {
 
-            .next-area {
+    body {
 
-                justify-content:
-                    stretch;
+        padding:
+            18px 14px 30px;
 
-            }
+        align-items:
+            flex-start;
 
+    }
 
-            .next-btn {
 
-                width:
-                    100%;
+    .page-wrapper {
 
-            }
+        width:
+            100%;
 
-        }
+    }
 
 
-        @media (
-            max-width: 430px
-        ) {
+    .back-area {
 
-            .game-header-content {
+        margin-bottom:
+            11px;
 
-                flex-direction:
-                    column;
+    }
 
-            }
 
+    .game-header {
 
-            .progress-area {
+        padding:
+            27px 22px;
 
-                padding:
-                    14px 15px;
+    }
 
-            }
 
+    .game-header-content {
 
-            .question-text {
+        align-items:
+            flex-start;
 
-                font-size:
-                    1.625rem;
+        gap:
+            14px;
 
-            }
+    }
 
-        }
 
-    </style>
+    .game-icon {
+
+        width:
+            56px;
+
+        height:
+            56px;
+
+        border-radius:
+            15px;
+
+        font-size:
+            2rem;
+
+    }
+
+
+    .game-title {
+
+        font-size:
+            2.45rem;
+
+    }
+
+
+    .game-description {
+
+        font-size:
+            1.08rem;
+
+    }
+
+
+    .question-card {
+
+        padding:
+            28px 20px;
+
+    }
+
+
+    .answers {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .answer-btn {
+
+        min-height:
+            60px;
+
+    }
+
+
+    .next-area {
+
+        justify-content:
+            stretch;
+
+    }
+
+
+    .next-btn {
+
+        width:
+            100%;
+
+    }
+
+}
+
+
+@media (
+    max-width: 430px
+) {
+
+    body {
+
+        padding:
+            14px 10px 25px;
+
+    }
+
+
+    .game-header {
+
+        padding:
+            25px 18px;
+
+    }
+
+
+    .game-header-content {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .game-title {
+
+        font-size:
+            2.25rem;
+
+    }
+
+
+    .progress-area {
+
+        padding:
+            14px 15px;
+
+    }
+
+
+    .question-card {
+
+        padding:
+            27px 17px;
+
+    }
+
+
+    .question-text {
+
+        font-size:
+            1.6rem;
+
+    }
+
+
+    .answer-btn {
+
+        font-size:
+            1.2rem;
+
+    }
+
+
+    .results {
+
+        padding:
+            38px 20px;
+
+    }
+
+
+    .results-title {
+
+        font-size:
+            2.5rem;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -1412,1141 +1557,1249 @@
 <body>
 
 
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
+<div class="page-wrapper">
 
-    <nav class="top-nav">
 
-        <a
-            href="../../category.html?category=Places%2C%20Directions%20%26%20Transportation"
-            class="back-btn"
+<!-- =====================================================
+     BACK
+====================================================== -->
+
+<div class="back-area">
+
+    <a
+        href="../../category.html?category=Places%2C%20Directions%20%26%20Transportation"
+        class="back-btn"
+    >
+        ← Back
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN GAME
+====================================================== -->
+
+<main class="game-container">
+
+
+<!-- =====================================================
+     GAME HEADER
+====================================================== -->
+
+<section class="game-header">
+
+    <div class="game-header-content">
+
+        <div
+            class="game-icon"
+            aria-hidden="true"
         >
-            ← Back
-        </a>
-
-    </nav>
+            🧭
+        </div>
 
 
-    <!-- =====================================================
-         MAIN GAME
-    ====================================================== -->
+        <div>
 
-    <main class="game-container">
-
-
-        <!-- =================================================
-             GAME HEADER
-        ================================================== -->
-
-        <section class="game-header">
-
-            <div class="game-header-content">
-
-                <div
-                    class="game-icon"
-                    aria-hidden="true"
-                >
-                    🧭
-                </div>
+            <h1 class="game-title">
+                Vocabulary Recognition
+            </h1>
 
 
-                <div>
-
-                    <p class="game-title">
-                        Vocabulary Recognition
-                    </p>
-
-
-                    <p class="game-description">
-                        Choose the Vietnamese word that matches the English meaning.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             PROGRESS
-        ================================================== -->
-
-        <section
-            id="progress-area"
-            class="progress-area"
-        >
-
-            <div class="progress-top">
-
-                <span
-                    id="question-number"
-                    class="question-number"
-                >
-                    Question 1 of 20
-                </span>
-
-
-                <span
-                    id="score-display"
-                    class="score-display"
-                >
-                    Score: 0
-                </span>
-
-            </div>
-
-
-            <div class="progress-track">
-
-                <div
-                    id="progress-bar"
-                    class="progress-bar"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             QUESTION
-        ================================================== -->
-
-        <section
-            id="question-card"
-            class="question-card"
-        >
-
-            <p class="question-label">
-                Choose the Vietnamese word
+            <p class="game-description">
+                Choose the Vietnamese word that matches the English meaning.
             </p>
 
+        </div>
 
-            <h2
-                id="question-text"
-                class="question-text"
-            >
-                Loading...
-            </h2>
+    </div>
+
+</section>
 
 
-            <div
-                id="answers"
-                class="answers"
-            ></div>
+<!-- =====================================================
+     PROGRESS
+====================================================== -->
 
+<section
+    id="progress-area"
+    class="progress-area"
+>
 
-            <div
-                id="feedback"
-                class="feedback"
-            ></div>
+    <div class="progress-top">
 
-
-            <div class="next-area">
-
-                <button
-                    id="next-btn"
-                    class="next-btn"
-                    type="button"
-                >
-                    Next Question →
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             RESULTS
-        ================================================== -->
-
-        <section
-            id="results"
-            class="results"
+        <span
+            id="question-number"
+            class="question-number"
         >
-
-            <div
-                id="results-icon"
-                class="results-icon"
-            >
-                🎉
-            </div>
+            Question 1 of 20
+        </span>
 
 
-            <h2 class="results-title">
-                Great job!
-            </h2>
+        <span
+            id="score-display"
+            class="score-display"
+        >
+            Score: 0
+        </span>
+
+    </div>
 
 
-            <p
-                id="results-message"
-                class="results-message"
-            >
-                You completed the vocabulary recognition game.
-            </p>
+    <div class="progress-track">
+
+        <div
+            id="progress-bar"
+            class="progress-bar"
+        ></div>
+
+    </div>
+
+</section>
 
 
-            <div class="final-score">
+<!-- =====================================================
+     QUESTION CARD
+====================================================== -->
 
-                <span
-                    id="final-score-number"
-                    class="final-score-number"
-                >
-                    0
-                </span>
+<section
+    id="question-card"
+    class="question-card"
+>
 
-                <span class="final-score-total">
-                    / 20
-                </span>
-
-            </div>
+    <p class="question-label">
+        Choose the Vietnamese word
+    </p>
 
 
-            <br>
+    <h2
+        id="question-text"
+        class="question-text"
+    >
+        Loading...
+    </h2>
 
 
-            <button
-                id="restart-btn"
-                class="restart-btn"
-                type="button"
-            >
-                ↻ Play Again
-            </button>
-
-        </section>
-
-    </main>
+    <div
+        id="answers"
+        class="answers"
+    ></div>
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <div class="footer-line"></div>
-
-        © 2026 Survival Vietnamese with Duong
-
-    </footer>
+    <div
+        id="feedback"
+        class="feedback"
+    ></div>
 
 
-    <!-- =====================================================
-         SCRIPT
-    ====================================================== -->
+    <div class="next-area">
 
-    <script>
+        <button
+            id="next-btn"
+            class="next-btn"
+            type="button"
+        >
+            Next Question →
+        </button>
 
-        /* =====================================================
-           GAME DATA
-        ====================================================== */
+    </div>
 
-        const vocabulary = [
+</section>
 
-            {
-                vietnamese: "nhà",
-                english: "House / Home",
-                phonetics: "nya"
-            },
 
-            {
-                vietnamese: "trường học",
-                english: "School",
-                phonetics: "chuong hawk"
-            },
+<!-- =====================================================
+     RESULTS
+====================================================== -->
 
-            {
-                vietnamese: "bệnh viện",
-                english: "Hospital",
-                phonetics: "benh vien"
-            },
+<section
+    id="results"
+    class="results"
+>
 
-            {
-                vietnamese: "chợ",
-                english: "Market",
-                phonetics: "chaw"
-            },
+    <div
+        id="results-icon"
+        class="results-icon"
+    >
+        🎉
+    </div>
 
-            {
-                vietnamese: "siêu thị",
-                english: "Supermarket",
-                phonetics: "siu thi"
-            },
 
-            {
-                vietnamese: "nhà hàng",
-                english: "Restaurant",
-                phonetics: "nya hang"
-            },
+    <h2 class="results-title">
+        Great job!
+    </h2>
 
-            {
-                vietnamese: "khách sạn",
-                english: "Hotel",
-                phonetics: "khak san"
-            },
 
-            {
-                vietnamese: "ngân hàng",
-                english: "Bank",
-                phonetics: "ngan hang"
-            },
+    <p
+        id="results-message"
+        class="results-message"
+    >
+        You completed the vocabulary recognition game.
+    </p>
 
-            {
-                vietnamese: "sân bay",
-                english: "Airport",
-                phonetics: "sən bai"
-            },
 
-            {
-                vietnamese: "bến xe",
-                english: "Bus station",
-                phonetics: "ben seh"
-            },
+    <div class="final-score">
 
-            {
-                vietnamese: "bên trái",
-                english: "Left",
-                phonetics: "ben chai"
-            },
+        <span
+            id="final-score-number"
+            class="final-score-number"
+        >
+            0
+        </span>
 
-            {
-                vietnamese: "bên phải",
-                english: "Right",
-                phonetics: "ben fai"
-            },
+        <span class="final-score-total">
+            / 20
+        </span>
 
-            {
-                vietnamese: "trên",
-                english: "Above",
-                phonetics: "chen"
-            },
+    </div>
 
-            {
-                vietnamese: "dưới",
-                english: "Below",
-                phonetics: "zưới"
-            },
 
-            {
-                vietnamese: "bên cạnh",
-                english: "Next to",
-                phonetics: "ben kanh"
-            },
+    <br>
 
-            {
-                vietnamese: "trong",
-                english: "Inside",
-                phonetics: "chong"
-            },
 
-            {
-                vietnamese: "giữa",
-                english: "Between",
-                phonetics: "zữa"
-            },
+    <button
+        id="restart-btn"
+        class="restart-btn"
+        type="button"
+    >
+        ↻ Play Again
+    </button>
 
-            {
-                vietnamese: "phía trước",
-                english: "In front",
-                phonetics: "fia chước"
-            },
+</section>
 
-            {
-                vietnamese: "phía sau",
-                english: "Behind",
-                phonetics: "fia sau"
-            },
 
-            {
-                vietnamese: "ở",
-                english: "At / In / On / Live in / Live at",
-                phonetics: "ơ"
-            },
+</main>
 
-            {
-                vietnamese: "rẽ",
-                english: "To turn",
-                phonetics: "zeh"
-            },
 
-            {
-                vietnamese: "đi thẳng",
-                english: "Go straight",
-                phonetics: "dee tang"
-            },
+<!-- =====================================================
+     FOOTER
+====================================================== -->
 
-            {
-                vietnamese: "xe máy",
-                english: "Motorbike",
-                phonetics: "seh mai"
-            },
+<footer>
 
-            {
-                vietnamese: "xe đạp",
-                english: "Bicycle",
-                phonetics: "seh dap"
-            },
+    <div class="footer-line"></div>
 
-            {
-                vietnamese: "xe buýt",
-                english: "Bus",
-                phonetics: "seh bwit"
-            },
+    © 2026 Survival Vietnamese with Duong
 
-            {
-                vietnamese: "xe hơi",
-                english: "Car",
-                phonetics: "seh hoy"
-            },
+</footer>
 
-            {
-                vietnamese: "taxi",
-                english: "Taxi",
-                phonetics: "tak-see"
-            },
 
-            {
-                vietnamese: "xe lửa",
-                english: "Train",
-                phonetics: "sh lu-ah"
-            },
+</div>
 
-            {
-                vietnamese: "máy bay",
-                english: "Airplane",
-                phonetics: "mai bai"
-            },
 
-            {
-                vietnamese: "tàu",
-                english: "Boat / Ship",
-                phonetics: "tao"
-            },
+<!-- =====================================================
+     SCRIPT
+====================================================== -->
 
-            {
-                vietnamese: "xe ôm",
-                english: "Motorbike taxi",
-                phonetics: "seh om"
-            },
+<script>
 
-            {
-                vietnamese: "đi bộ",
-                english: "Walk / On foot",
-                phonetics: "dee boh"
-            }
+/* =========================================================
+   GAME DATA
+========================================================= */
 
+const vocabulary = [
+
+    {
+        vietnamese: "nhà",
+        english: "House / Home",
+        phonetics: "nya"
+    },
+
+    {
+        vietnamese: "trường học",
+        english: "School",
+        phonetics: "chuong hawk"
+    },
+
+    {
+        vietnamese: "bệnh viện",
+        english: "Hospital",
+        phonetics: "benh vien"
+    },
+
+    {
+        vietnamese: "chợ",
+        english: "Market",
+        phonetics: "chaw"
+    },
+
+    {
+        vietnamese: "siêu thị",
+        english: "Supermarket",
+        phonetics: "siu thi"
+    },
+
+    {
+        vietnamese: "nhà hàng",
+        english: "Restaurant",
+        phonetics: "nya hang"
+    },
+
+    {
+        vietnamese: "khách sạn",
+        english: "Hotel",
+        phonetics: "khak san"
+    },
+
+    {
+        vietnamese: "ngân hàng",
+        english: "Bank",
+        phonetics: "ngan hang"
+    },
+
+    {
+        vietnamese: "sân bay",
+        english: "Airport",
+        phonetics: "sən bai"
+    },
+
+    {
+        vietnamese: "bến xe",
+        english: "Bus station",
+        phonetics: "ben seh"
+    },
+
+    {
+        vietnamese: "bên trái",
+        english: "Left",
+        phonetics: "ben chai"
+    },
+
+    {
+        vietnamese: "bên phải",
+        english: "Right",
+        phonetics: "ben fai"
+    },
+
+    {
+        vietnamese: "trên",
+        english: "Above",
+        phonetics: "chen"
+    },
+
+    {
+        vietnamese: "dưới",
+        english: "Below",
+        phonetics: "zưới"
+    },
+
+    {
+        vietnamese: "bên cạnh",
+        english: "Next to",
+        phonetics: "ben kanh"
+    },
+
+    {
+        vietnamese: "trong",
+        english: "Inside",
+        phonetics: "chong"
+    },
+
+    {
+        vietnamese: "giữa",
+        english: "Between",
+        phonetics: "zữa"
+    },
+
+    {
+        vietnamese: "phía trước",
+        english: "In front",
+        phonetics: "fia chước"
+    },
+
+    {
+        vietnamese: "phía sau",
+        english: "Behind",
+        phonetics: "fia sau"
+    },
+
+    {
+        vietnamese: "ở",
+        english: "At / In / On / Live in / Live at",
+        phonetics: "ơ"
+    },
+
+    {
+        vietnamese: "rẽ",
+        english: "To turn",
+        phonetics: "zeh"
+    },
+
+    {
+        vietnamese: "đi thẳng",
+        english: "Go straight",
+        phonetics: "dee tang"
+    },
+
+    {
+        vietnamese: "xe máy",
+        english: "Motorbike",
+        phonetics: "seh mai"
+    },
+
+    {
+        vietnamese: "xe đạp",
+        english: "Bicycle",
+        phonetics: "seh dap"
+    },
+
+    {
+        vietnamese: "xe buýt",
+        english: "Bus",
+        phonetics: "seh bwit"
+    },
+
+    {
+        vietnamese: "xe hơi",
+        english: "Car",
+        phonetics: "seh hoy"
+    },
+
+    {
+        vietnamese: "taxi",
+        english: "Taxi",
+        phonetics: "tak-see"
+    },
+
+    {
+        vietnamese: "xe lửa",
+        english: "Train",
+        phonetics: "sh lu-ah"
+    },
+
+    {
+        vietnamese: "máy bay",
+        english: "Airplane",
+        phonetics: "mai bai"
+    },
+
+    {
+        vietnamese: "tàu",
+        english: "Boat / Ship",
+        phonetics: "tao"
+    },
+
+    {
+        vietnamese: "xe ôm",
+        english: "Motorbike taxi",
+        phonetics: "seh om"
+    },
+
+    {
+        vietnamese: "đi bộ",
+        english: "Walk / On foot",
+        phonetics: "dee boh"
+    }
+
+];
+
+
+/* =========================================================
+   GAME SETTINGS
+========================================================= */
+
+const TOTAL_QUESTIONS =
+    20;
+
+
+const ANSWERS_PER_QUESTION =
+    4;
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let questions =
+    [];
+
+
+let currentQuestionIndex =
+    0;
+
+
+let score =
+    0;
+
+
+let questionAnswered =
+    false;
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const questionNumber =
+    document.getElementById(
+        "question-number"
+    );
+
+
+const scoreDisplay =
+    document.getElementById(
+        "score-display"
+    );
+
+
+const progressBar =
+    document.getElementById(
+        "progress-bar"
+    );
+
+
+const questionCard =
+    document.getElementById(
+        "question-card"
+    );
+
+
+const questionText =
+    document.getElementById(
+        "question-text"
+    );
+
+
+const answersContainer =
+    document.getElementById(
+        "answers"
+    );
+
+
+const feedback =
+    document.getElementById(
+        "feedback"
+    );
+
+
+const nextButton =
+    document.getElementById(
+        "next-btn"
+    );
+
+
+const results =
+    document.getElementById(
+        "results"
+    );
+
+
+const finalScoreNumber =
+    document.getElementById(
+        "final-score-number"
+    );
+
+
+const resultsMessage =
+    document.getElementById(
+        "results-message"
+    );
+
+
+const resultsIcon =
+    document.getElementById(
+        "results-icon"
+    );
+
+
+const restartButton =
+    document.getElementById(
+        "restart-btn"
+    );
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array) {
+
+    const copy =
+        [...array];
+
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
         ];
 
-
-        /* =====================================================
-           GAME SETTINGS
-        ====================================================== */
-
-        const TOTAL_QUESTIONS =
-            20;
+    }
 
 
-        const ANSWERS_PER_QUESTION =
-            4;
+    return copy;
+
+}
 
 
-        /* =====================================================
-           GAME STATE
-        ====================================================== */
+/* =========================================================
+   CREATE QUESTIONS
+========================================================= */
 
-        let questions =
-            [];
+function createQuestions() {
 
-
-        let currentQuestionIndex =
-            0;
-
-
-        let score =
-            0;
-
-
-        let questionAnswered =
-            false;
+    const selected =
+        shuffle(
+            vocabulary
+        )
+        .slice(
+            0,
+            TOTAL_QUESTIONS
+        );
 
 
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
+    return selected.map(
+        word => {
 
-        const questionNumber =
-            document.getElementById(
-                "question-number"
-            );
-
-
-        const scoreDisplay =
-            document.getElementById(
-                "score-display"
-            );
-
-
-        const progressBar =
-            document.getElementById(
-                "progress-bar"
-            );
-
-
-        const questionCard =
-            document.getElementById(
-                "question-card"
-            );
-
-
-        const questionText =
-            document.getElementById(
-                "question-text"
-            );
-
-
-        const answersContainer =
-            document.getElementById(
-                "answers"
-            );
-
-
-        const feedback =
-            document.getElementById(
-                "feedback"
-            );
-
-
-        const nextButton =
-            document.getElementById(
-                "next-btn"
-            );
-
-
-        const results =
-            document.getElementById(
-                "results"
-            );
-
-
-        const finalScoreNumber =
-            document.getElementById(
-                "final-score-number"
-            );
-
-
-        const resultsMessage =
-            document.getElementById(
-                "results-message"
-            );
-
-
-        const resultsIcon =
-            document.getElementById(
-                "results-icon"
-            );
-
-
-        const restartButton =
-            document.getElementById(
-                "restart-btn"
-            );
-
-
-        /* =====================================================
-           SHUFFLE
-        ====================================================== */
-
-        function shuffle(
-            array
-        ) {
-
-            const copy =
-                [...array];
-
-
-            for (
-                let i = copy.length - 1;
-                i > 0;
-                i--
-            ) {
-
-                const j =
-                    Math.floor(
-                        Math.random() *
-                        (
-                            i + 1
-                        )
-                    );
-
-
-                [
-                    copy[i],
-                    copy[j]
-                ] =
-                [
-                    copy[j],
-                    copy[i]
-                ];
-
-            }
-
-
-            return copy;
-
-        }
-
-
-        /* =====================================================
-           CREATE QUESTIONS
-        ====================================================== */
-
-        function createQuestions() {
-
-            const selected =
+            const distractors =
                 shuffle(
-                    vocabulary
+                    vocabulary.filter(
+                        item =>
+                            item.vietnamese !==
+                            word.vietnamese
+                    )
                 )
                 .slice(
                     0,
-                    TOTAL_QUESTIONS
+                    ANSWERS_PER_QUESTION - 1
                 );
 
 
-            return selected.map(
-                word => {
+            return {
 
-                    const distractors =
-                        shuffle(
-                            vocabulary.filter(
-                                item =>
-                                    item.vietnamese !==
-                                    word.vietnamese
-                            )
-                        )
-                        .slice(
-                            0,
-                            ANSWERS_PER_QUESTION - 1
-                        );
+                correct:
+                    word,
 
-
-                    return {
-
-                        correct:
+                options:
+                    shuffle(
+                        [
                             word,
-
-                        options:
-                            shuffle(
-                                [
-                                    word,
-                                    ...distractors
-                                ]
-                            )
-
-                    };
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           RENDER QUESTION
-        ====================================================== */
-
-        function renderQuestion() {
-
-            questionAnswered =
-                false;
-
-
-            const question =
-                questions[
-                    currentQuestionIndex
-                ];
-
-
-            questionNumber.textContent =
-                `Question ${
-                    currentQuestionIndex + 1
-                } of ${
-                    TOTAL_QUESTIONS
-                }`;
-
-
-            scoreDisplay.textContent =
-                `Score: ${
-                    score
-                }`;
-
-
-            progressBar.style.width =
-                `${
-                    (
-                        currentQuestionIndex /
-                        TOTAL_QUESTIONS
-                    ) *
-                    100
-                }%`;
-
-
-            questionText.innerHTML =
-                `Which Vietnamese word means <strong>"${
-                    escapeHtml(
-                        question.correct.english
+                            ...distractors
+                        ]
                     )
-                }"</strong>?`;
+
+            };
+
+        }
+    );
+
+}
 
 
-            answersContainer.innerHTML =
-                "";
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion() {
+
+    questionAnswered =
+        false;
 
 
-            feedback.className =
-                "feedback";
+    const question =
+        questions[
+            currentQuestionIndex
+        ];
 
 
-            feedback.innerHTML =
-                "";
+    questionNumber.textContent =
+        `Question ${
+            currentQuestionIndex + 1
+        } of ${
+            TOTAL_QUESTIONS
+        }`;
 
 
-            nextButton.className =
-                "next-btn";
+    scoreDisplay.textContent =
+        `Score: ${
+            score
+        }`;
 
 
-            const letters =
-                [
-                    "A",
-                    "B",
-                    "C",
-                    "D"
-                ];
+    progressBar.style.width =
+        `${
+            (
+                currentQuestionIndex /
+                TOTAL_QUESTIONS
+            ) *
+            100
+        }%`;
 
 
-            question.options.forEach(
-                (
-                    option,
-                    index
-                ) => {
-
-                    const button =
-                        document.createElement(
-                            "button"
-                        );
+    questionText.innerHTML =
+        `Which Vietnamese word means <strong>"${
+            escapeHtml(
+                question.correct.english
+            )
+        }"</strong>?`;
 
 
-                    button.type =
-                        "button";
+    answersContainer.innerHTML =
+        "";
 
 
-                    button.className =
-                        "answer-btn";
+    feedback.className =
+        "feedback";
 
 
-                    button.dataset.answer =
-                        option.vietnamese;
+    feedback.innerHTML =
+        "";
 
 
-                    button.innerHTML = `
-
-                        <span class="answer-letter">
-                            ${
-                                letters[index]
-                            }
-                        </span>
-
-                        ${
-                            escapeHtml(
-                                option.vietnamese
-                            )
-                        }
-
-                    `;
+    nextButton.className =
+        "next-btn";
 
 
-                    button.addEventListener(
-                        "click",
-                        () => {
-
-                            handleAnswer(
-                                button,
-                                option,
-                                question.correct
-                            );
-
-                        }
-                    );
+    const letters =
+        [
+            "A",
+            "B",
+            "C",
+            "D"
+        ];
 
 
-                    answersContainer.appendChild(
-                        button
+    question.options.forEach(
+        (
+            option,
+            index
+        ) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.dataset.answer =
+                option.vietnamese;
+
+
+            button.innerHTML = `
+
+                <span class="answer-letter">
+                    ${
+                        letters[index]
+                    }
+                </span>
+
+                ${
+                    escapeHtml(
+                        option.vietnamese
+                    )
+                }
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    handleAnswer(
+                        button,
+                        option,
+                        question.correct
                     );
 
                 }
             );
 
+
+            answersContainer.appendChild(
+                button
+            );
+
         }
+    );
+
+}
 
 
-        /* =====================================================
-           HANDLE ANSWER
-        ====================================================== */
+/* =========================================================
+   HANDLE ANSWER
+========================================================= */
 
-        function handleAnswer(
-            selectedButton,
-            selectedOption,
-            correctOption
-        ) {
+function handleAnswer(
+    selectedButton,
+    selectedOption,
+    correctOption
+) {
 
-            if (
-                questionAnswered
-            ) {
+    if (
+        questionAnswered
+    ) {
 
-                return;
+        return;
 
-            }
+    }
 
 
-            questionAnswered =
+    questionAnswered =
+        true;
+
+
+    const answerButtons =
+        answersContainer.querySelectorAll(
+            ".answer-btn"
+        );
+
+
+    answerButtons.forEach(
+        button => {
+
+            button.disabled =
                 true;
 
-
-            const answerButtons =
-                answersContainer.querySelectorAll(
-                    ".answer-btn"
-                );
+        }
+    );
 
 
-            answerButtons.forEach(
-                button => {
+    const isCorrect =
+        selectedOption.vietnamese ===
+        correctOption.vietnamese;
 
-                    button.disabled =
-                        true;
+
+    /* =====================================================
+       CORRECT
+    ====================================================== */
+
+    if (
+        isCorrect
+    ) {
+
+        score +=
+            1;
+
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        feedback.className =
+            "feedback correct show";
+
+
+        feedback.innerHTML = `
+            <strong>✓ Correct!</strong>
+            Great job.
+            <strong>${
+                escapeHtml(
+                    correctOption.vietnamese
+                )
+            }</strong>
+            means
+            <strong>${
+                escapeHtml(
+                    correctOption.english
+                )
+            }</strong>.
+        `;
+
+    }
+
+
+    /* =====================================================
+       WRONG
+    ====================================================== */
+
+    else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        answerButtons.forEach(
+            button => {
+
+                if (
+                    button.dataset.answer ===
+                    correctOption.vietnamese
+                ) {
+
+                    button.classList.add(
+                        "revealed"
+                    );
 
                 }
-            );
-
-
-            const isCorrect =
-                selectedOption.vietnamese ===
-                correctOption.vietnamese;
-
-
-            if (
-                isCorrect
-            ) {
-
-                score +=
-                    1;
-
-
-                selectedButton.classList.add(
-                    "correct"
-                );
-
-
-                feedback.className =
-                    "feedback correct show";
-
-
-                feedback.innerHTML = `
-                    <strong>✓ Correct!</strong>
-                    Great job. <strong>${
-                        escapeHtml(
-                            correctOption.vietnamese
-                        )
-                    }</strong>
-                    means
-                    <strong>${
-                        escapeHtml(
-                            correctOption.english
-                        )
-                    }</strong>.
-                `;
 
             }
-
-            else {
-
-                selectedButton.classList.add(
-                    "wrong"
-                );
-
-
-                answerButtons.forEach(
-                    button => {
-
-                        if (
-                            button.dataset.answer ===
-                            correctOption.vietnamese
-                        ) {
-
-                            button.classList.add(
-                                "revealed"
-                            );
-
-                        }
-
-                    }
-                );
-
-
-                feedback.className =
-                    "feedback wrong show";
-
-
-                feedback.innerHTML = `
-                    <strong>✗ Not quite.</strong>
-                    The correct answer is
-                    <strong>${
-                        escapeHtml(
-                            correctOption.vietnamese
-                        )
-                    }</strong>
-                    —
-                    <strong>${
-                        escapeHtml(
-                            correctOption.english
-                        )
-                    }</strong>.
-                `;
-
-            }
-
-
-            scoreDisplay.textContent =
-                `Score: ${
-                    score
-                }`;
-
-
-            nextButton.className =
-                "next-btn show";
-
-
-            nextButton.textContent =
-                currentQuestionIndex ===
-                TOTAL_QUESTIONS - 1
-                    ? "See Results →"
-                    : "Next Question →";
-
-        }
-
-
-        /* =====================================================
-           NEXT QUESTION
-        ====================================================== */
-
-        function nextQuestion() {
-
-            if (
-                !questionAnswered
-            ) {
-
-                return;
-
-            }
-
-
-            currentQuestionIndex +=
-                1;
-
-
-            if (
-                currentQuestionIndex >=
-                TOTAL_QUESTIONS
-            ) {
-
-                showResults();
-
-                return;
-
-            }
-
-
-            renderQuestion();
-
-        }
-
-
-        /* =====================================================
-           SHOW RESULTS
-        ====================================================== */
-
-        function showResults() {
-
-            questionCard.style.display =
-                "none";
-
-
-            document.getElementById(
-                "progress-area"
-            ).style.display =
-                "none";
-
-
-            results.classList.add(
-                "show"
-            );
-
-
-            finalScoreNumber.textContent =
-                score;
-
-
-            progressBar.style.width =
-                "100%";
-
-
-            if (
-                score ===
-                TOTAL_QUESTIONS
-            ) {
-
-                resultsIcon.textContent =
-                    "🏆";
-
-
-                resultsMessage.textContent =
-                    "Perfect score! You know these Vietnamese vocabulary words very well.";
-
-            }
-
-            else if (
-                score >=
-                16
-            ) {
-
-                resultsIcon.textContent =
-                    "🎉";
-
-
-                resultsMessage.textContent =
-                    "Excellent work! You have a strong understanding of these vocabulary words.";
-
-            }
-
-            else if (
-                score >=
-                12
-            ) {
-
-                resultsIcon.textContent =
-                    "👏";
-
-
-                resultsMessage.textContent =
-                    "Good job! Keep practicing and these words will become easier to remember.";
-
-            }
-
-            else {
-
-                resultsIcon.textContent =
-                    "💪";
-
-
-                resultsMessage.textContent =
-                    "Keep practicing! Review the vocabulary and try the game again.";
-
-            }
-
-        }
-
-
-        /* =====================================================
-           RESTART
-        ====================================================== */
-
-        function restartGame() {
-
-            score =
-                0;
-
-
-            currentQuestionIndex =
-                0;
-
-
-            questionAnswered =
-                false;
-
-
-            questions =
-                createQuestions();
-
-
-            questionCard.style.display =
-                "block";
-
-
-            document.getElementById(
-                "progress-area"
-            ).style.display =
-                "block";
-
-
-            results.classList.remove(
-                "show"
-            );
-
-
-            renderQuestion();
-
-        }
-
-
-        /* =====================================================
-           ESCAPE HTML
-        ====================================================== */
-
-        function escapeHtml(
-            value
-        ) {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.textContent =
-                String(
-                    value ?? ""
-                );
-
-
-            return div.innerHTML;
-
-        }
-
-
-        /* =====================================================
-           EVENTS
-        ====================================================== */
-
-        nextButton.addEventListener(
-            "click",
-            nextQuestion
         );
 
 
-        restartButton.addEventListener(
-            "click",
-            restartGame
+        feedback.className =
+            "feedback wrong show";
+
+
+        feedback.innerHTML = `
+            <strong>✗ Not quite.</strong>
+            The correct answer is
+            <strong>${
+                escapeHtml(
+                    correctOption.vietnamese
+                )
+            }</strong>
+            —
+            <strong>${
+                escapeHtml(
+                    correctOption.english
+                )
+            }</strong>.
+        `;
+
+    }
+
+
+    scoreDisplay.textContent =
+        `Score: ${
+            score
+        }`;
+
+
+    nextButton.className =
+        "next-btn show";
+
+
+    nextButton.textContent =
+        currentQuestionIndex ===
+        TOTAL_QUESTIONS - 1
+            ? "See Results →"
+            : "Next Question →";
+
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion() {
+
+    if (
+        !questionAnswered
+    ) {
+
+        return;
+
+    }
+
+
+    currentQuestionIndex +=
+        1;
+
+
+    if (
+        currentQuestionIndex >=
+        TOTAL_QUESTIONS
+    ) {
+
+        showResults();
+
+        return;
+
+    }
+
+
+    renderQuestion();
+
+}
+
+
+/* =========================================================
+   SHOW RESULTS
+========================================================= */
+
+function showResults() {
+
+    questionCard.style.display =
+        "none";
+
+
+    document.getElementById(
+        "progress-area"
+    ).style.display =
+        "none";
+
+
+    results.classList.add(
+        "show"
+    );
+
+
+    finalScoreNumber.textContent =
+        score;
+
+
+    progressBar.style.width =
+        "100%";
+
+
+    if (
+        score ===
+        TOTAL_QUESTIONS
+    ) {
+
+        resultsIcon.textContent =
+            "🏆";
+
+
+        resultsMessage.textContent =
+            "Perfect score! You know these Vietnamese vocabulary words very well.";
+
+    }
+
+
+    else if (
+        score >=
+        16
+    ) {
+
+        resultsIcon.textContent =
+            "🎉";
+
+
+        resultsMessage.textContent =
+            "Excellent work! You have a strong understanding of these vocabulary words.";
+
+    }
+
+
+    else if (
+        score >=
+        12
+    ) {
+
+        resultsIcon.textContent =
+            "👏";
+
+
+        resultsMessage.textContent =
+            "Good job! Keep practicing and these words will become easier to remember.";
+
+    }
+
+
+    else {
+
+        resultsIcon.textContent =
+            "💪";
+
+
+        resultsMessage.textContent =
+            "Keep practicing! Review the vocabulary and try the game again.";
+
+    }
+
+
+    createConfetti();
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartGame() {
+
+    removeConfetti();
+
+
+    score =
+        0;
+
+
+    currentQuestionIndex =
+        0;
+
+
+    questionAnswered =
+        false;
+
+
+    questions =
+        createQuestions();
+
+
+    questionCard.style.display =
+        "block";
+
+
+    document.getElementById(
+        "progress-area"
+    ).style.display =
+        "block";
+
+
+    results.classList.remove(
+        "show"
+    );
+
+
+    renderQuestion();
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
         );
 
 
-        /* =====================================================
-           START GAME
-        ====================================================== */
+    div.textContent =
+        String(
+            value ?? ""
+        );
 
-        restartGame();
 
-    </script>
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti() {
+
+    const colors = [
+
+        "#5CA16E",
+        "#42744F",
+        "#c1e0cc",
+        "#019b3f",
+        "#d9536f",
+        "#f4c95d"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() * 100 +
+            "vw";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        piece.style.animationDuration =
+            3 +
+            Math.random() * 3 +
+            "s";
+
+
+        piece.style.opacity =
+            0.5 +
+            Math.random() * 0.5;
+
+
+        document.body.appendChild(
+            piece
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REMOVE CONFETTI
+========================================================= */
+
+function removeConfetti() {
+
+    document
+        .querySelectorAll(
+            ".confetti"
+        )
+        .forEach(
+            element =>
+                element.remove()
+        );
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    nextQuestion
+);
+
+
+restartButton.addEventListener(
+    "click",
+    restartGame
+);
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+restartGame();
+
+</script>
 
 </body>
 
