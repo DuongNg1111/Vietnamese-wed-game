@@ -1,1043 +1,326 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<meta
-    name="description"
-    content="Learn useful Vietnamese phrases for everyday communication and travel."
->
-
-<title>Useful Vietnamese Phrases</title>
-
-
-<style>
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-
-    :root {
-
-        --background: #ffffff;
-
-        --surface: #f7f7f5;
-
-        --text: #171717;
-
-        --secondary: #4a4a4a;
-
-        --border: #d5d5d0;
-
-        --accent: #a86f00;
-
-        --accent-soft: #fff4d8;
-
-        --phonetic: #2563eb;
-
-    }
-
-
-    body {
-
-        font-family:
-            Calibri,
-            Arial,
-            sans-serif;
-
-        background:
-            var(--background);
-
-        color:
-            var(--text);
-
-        min-height:
-            100vh;
-
-    }
-
-
-    /* =========================
-       PAGE
-    ========================= */
-
-    .page {
-
-        width:
-            min(920px, 92%);
-
-        margin:
-            0 auto;
-
-        padding:
-            30px 0 70px;
-
-    }
-
-
-    /* =========================
-       BACK
-    ========================= */
-
-    .back-button {
-
-        display:
-            inline-flex;
-
-        align-items:
-            center;
-
-        color:
-            var(--text);
-
-        text-decoration:
-            none;
-
-        font-size:
-            25px;
-
-        font-weight:
-            700;
-
-        margin-bottom:
-            55px;
-
-        transition:
-            transform 0.2s ease;
-
-    }
-
-
-    .back-button:hover {
-
-        transform:
-            translateX(-4px);
-
-    }
-
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-
-        padding-bottom:
-            42px;
-
-        border-bottom:
-            2px solid var(--text);
-
-        margin-bottom:
-            55px;
-
-    }
-
-
-    .header h1 {
-
-        font-size:
-            clamp(38px, 5vw, 52px);
-
-        line-height:
-            1.15;
-
-        font-weight:
-            800;
-
-        letter-spacing:
-            -1px;
-
-        margin-bottom:
-            13px;
-
-    }
-
-
-    .header p {
-
-        font-size:
-            26px;
-
-        color:
-            var(--secondary);
-
-        line-height:
-            1.6;
-
-    }
-
-
-    .phonetic {
-
-        color:
-            var(--phonetic);
-
-        font-style:
-            italic;
-
-    }
-
-
-    /* =========================
-       SECTION
-    ========================= */
-
-    .section {
-
-        margin-bottom:
-            65px;
-
-    }
-
-
-    .section-title {
-
-        font-size:
-            24px;
-
-        font-weight:
-            800;
-
-        letter-spacing:
-            1.4px;
-
-        color:
-            var(--text);
-
-        margin-bottom:
-            18px;
-
-    }
-
-
-    /* =========================
-       INTRO
-    ========================= */
-
-    .intro {
-
-        font-size:
-            26px;
-
-        color:
-            var(--secondary);
-
-        line-height:
-            1.6;
-
-        margin-bottom:
-            28px;
-
-    }
-
-
-    /* =========================
-       PHRASE LIST
-    ========================= */
-
-    .phrase-list {
-
-        border-top:
-            2px solid var(--text);
-
-    }
-
-
-    .phrase {
-
-        display:
-            grid;
-
-        grid-template-columns:
-            45px 1fr 1fr;
-
-        gap:
-            25px;
-
-        align-items:
-            center;
-
-        padding:
-            22px 8px;
-
-        border-bottom:
-            1px solid var(--border);
-
-    }
-
-
-    /* =========================
-       NUMBER
-    ========================= */
-
-    .phrase-number {
-
-        font-size:
-            23px;
-
-        font-weight:
-            800;
-
-        color:
-            var(--secondary);
-
-    }
-
-
-    /* =========================
-       VIETNAMESE
-    ========================= */
-
-    .phrase-vietnamese {
-
-        font-size:
-            29px;
-
-        font-weight:
-            800;
-
-        line-height:
-            1.45;
-
-    }
-
-
-    /* =========================
-       PHONETICS
-    ========================= */
-
-    .phrase-phonetic {
-
-        margin-top:
-            5px;
-
-        font-size:
-            25px;
-
-        color:
-            var(--phonetic);
-
-        font-style:
-            italic;
-
-        font-weight:
-            500;
-
-        line-height:
-            1.45;
-
-    }
-
-
-    /* =========================
-       ENGLISH
-    ========================= */
-
-    .phrase-english {
-
-        font-size:
-            26px;
-
-        color:
-            var(--secondary);
-
-        font-weight:
-            500;
-
-        line-height:
-            1.5;
-
-    }
-
-
-    /* =========================
-       NOTE
-    ========================= */
-
-    .note-box {
-
-        margin-top:
-            25px;
-
-        padding:
-            20px 22px;
-
-        border:
-            1px solid var(--border);
-
-        border-radius:
-            10px;
-
-        background:
-            var(--surface);
-
-    }
-
-
-    .note-title {
-
-        font-size:
-            23px;
-
-        font-weight:
-            800;
-
-        letter-spacing:
-            1.2px;
-
-        margin-bottom:
-            10px;
-
-    }
-
-
-    .note-text {
-
-        font-size:
-            25px;
-
-        color:
-            var(--secondary);
-
-        line-height:
-            1.6;
-
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 650px) {
-
-        .page {
-
-            width:
-                90%;
-
-            padding-top:
-                25px;
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn useful Vietnamese phrases for everyday communication and travel.">
+    <title>Useful Vietnamese Phrases</title>
+    
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --accent: #2563eb;
+            --phonetic: #0284c7;
+            --border: #e2e8f0;
         }
 
-
-        .back-button {
-
-            margin-bottom:
-                40px;
-
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --text-main: #f8fafc;
+                --text-sub: #94a3b8;
+                --accent: #60a5fa;
+                --phonetic: #38bdf8;
+                --border: #334155;
+            }
         }
 
-
-        .header {
-
-            margin-bottom:
-                45px;
-
-            padding-bottom:
-                30px;
-
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-
-        .section {
-
-            margin-bottom:
-                50px;
-
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 24px 16px;
         }
 
-
-        .phrase {
-
-            grid-template-columns:
-                35px 1fr;
-
-            gap:
-                15px;
-
-            padding:
-                20px 5px;
-
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-
-        .phrase-number {
-
-            grid-row:
-                span 1;
-
-            align-self:
-                start;
-
-            padding-top:
-                3px;
-
+        /* Navigation */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            transition: transform 0.2s ease;
         }
 
-
-        .phrase-english {
-
-            grid-column:
-                2;
-
-            margin-top:
-                4px;
-
+        .back-link:hover {
+            transform: translateX(-4px);
         }
 
-
-        .phrase-vietnamese {
-
-            font-size:
-                28px;
-
+        /* Header */
+        header {
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
         }
 
-
-        .phrase-english {
-
-            font-size:
-                25px;
-
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
         }
 
-
-        .phrase-phonetic {
-
-            font-size:
-                24px;
-
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 1rem;
+            margin-top: 6px;
+            font-style: italic;
         }
 
-    }
+        /* Phrase List */
+        .phrase-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-</style>
+        .phrase-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr;
+            align-items: center;
+            gap: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
 
+        .phrase-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .num {
+            font-weight: 700;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            background: var(--bg);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vi-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vi-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .phonetic {
+            font-size: 0.875rem;
+            color: var(--phonetic);
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .en-text {
+            font-size: 1rem;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        /* Responsive Layout for Mobile */
+        @media (max-width: 640px) {
+            .phrase-card {
+                grid-template-columns: 36px 1fr;
+                gap: 8px 12px;
+                padding: 14px 16px;
+            }
+
+            .num {
+                grid-row: span 2;
+                align-self: start;
+            }
+
+            .en-text {
+                grid-column: 2;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="page">
+<div class="container">
 
-<!-- =========================
-     BACK
-========================= -->
+    <a href="../../phrases-and-sentences.html?category=Useful%20Phrases" class="back-link">
+        ← Back
+    </a>
 
-<a
-    href="../../phrases-and-sentences.html?category=Useful%20Phrases"
-    class="back-button"
->
-    ← Back
-</a>
+    <header>
+        <h1>15 Useful Vietnamese Phrases</h1>
+        <p class="subtitle">Learn practical Vietnamese phrases for everyday communication and travel.</p>
+    </header>
 
+    <main class="phrase-grid">
 
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="header">
-
-    <h1>
-        15 USEFUL VIETNAMESE PHRASES
-    </h1>
-
-    <p class="question-note">
-
-        <em>
-            Learn practical Vietnamese phrases for
-            everyday communication and travel.
-        </em>
-
-    </p>
-
-</header>
-
-
-        <!-- =========================
-             PHRASE 01
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                01
+        <div class="phrase-card">
+            <div class="num">01</div>
+            <div class="vi-group">
+                <span class="vi-text">Xin chào</span>
+                <span class="phonetic">/sin chao/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Xin chào
-                </div>
-
-                <div class="phrase-phonetic">
-                    /sin chao/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Hello
-            </div>
-
+            <div class="en-text">Hello</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 02
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                02
+        <div class="phrase-card">
+            <div class="num">02</div>
+            <div class="vi-group">
+                <span class="vi-text">Cảm ơn</span>
+                <span class="phonetic">/kam ən/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Cảm ơn
-                </div>
-
-                <div class="phrase-phonetic">
-                    /kam ən/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Thank you
-            </div>
-
+            <div class="en-text">Thank you</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 03
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                03
+        <div class="phrase-card">
+            <div class="num">03</div>
+            <div class="vi-group">
+                <span class="vi-text">Xin lỗi</span>
+                <span class="phonetic">/sin loy/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Xin lỗi
-                </div>
-
-                <div class="phrase-phonetic">
-                    /sin loy/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Sorry / Excuse me
-            </div>
-
+            <div class="en-text">Sorry / Excuse me</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 04
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                04
+        <div class="phrase-card">
+            <div class="num">04</div>
+            <div class="vi-group">
+                <span class="vi-text">Không sao / Không có gì</span>
+                <span class="phonetic">/khong sao/ /khong kaw zee/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Không sao / Không có gì
-                </div>
-
-                <div class="phrase-phonetic">
-                    /khong sao/ /khong kaw zee/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                It’s okay / No problem / You're welcome
-            </div>
-
+            <div class="en-text">It’s okay / No problem / You're welcome</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 05
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                05
+        <div class="phrase-card">
+            <div class="num">05</div>
+            <div class="vi-group">
+                <span class="vi-text">Hẹn gặp lại</span>
+                <span class="phonetic">/hen gap lai/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Hẹn gặp lại
-                </div>
-
-                <div class="phrase-phonetic">
-                    /hen gap lai/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                See you again
-            </div>
-
+            <div class="en-text">See you again</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 06
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                06
+        <div class="phrase-card">
+            <div class="num">06</div>
+            <div class="vi-group">
+                <span class="vi-text">Tạm biệt</span>
+                <span class="phonetic">/tam bee-et/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tạm biệt
-                </div>
-
-                <div class="phrase-phonetic">
-                    /tam bee-et/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Goodbye
-            </div>
-
+            <div class="en-text">Goodbye</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 07
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                07
+        <div class="phrase-card">
+            <div class="num">07</div>
+            <div class="vi-group">
+                <span class="vi-text">Bạn nói tiếng Anh không?</span>
+                <span class="phonetic">/ban noy tieng Anh khong?/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Bạn nói tiếng Anh không?
-                </div>
-
-                <div class="phrase-phonetic">
-                    /ban noy tieng Anh khong?/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Do you speak English?
-            </div>
-
+            <div class="en-text">Do you speak English?</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 08
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                08
+        <div class="phrase-card">
+            <div class="num">08</div>
+            <div class="vi-group">
+                <span class="vi-text">Tôi biết một chút tiếng Việt</span>
+                <span class="phonetic">/toy bee-et mot choot tieng Viet/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tôi biết một chút tiếng Việt
-                </div>
-
-                <div class="phrase-phonetic">
-                    /toy bee-et mot choot tieng Viet/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                I know a little Vietnamese
-            </div>
-
+            <div class="en-text">I know a little Vietnamese</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 09
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                09
+        <div class="phrase-card">
+            <div class="num">09</div>
+            <div class="vi-group">
+                <span class="vi-text">Tôi không hiểu</span>
+                <span class="phonetic">/toy khong hyeu/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tôi không hiểu
-                </div>
-
-                <div class="phrase-phonetic">
-                    /toy khong hyeu/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                I don’t understand
-            </div>
-
+            <div class="en-text">I don’t understand</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 10
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                10
+        <div class="phrase-card">
+            <div class="num">10</div>
+            <div class="vi-group">
+                <span class="vi-text">Xin nói chậm lại</span>
+                <span class="phonetic">/sin noy cham lai/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Xin nói chậm lại
-                </div>
-
-                <div class="phrase-phonetic">
-                    /sin noy cham lai/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Please speak more slowly
-            </div>
-
+            <div class="en-text">Please speak more slowly</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 11
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                11
+        <div class="phrase-card">
+            <div class="num">11</div>
+            <div class="vi-group">
+                <span class="vi-text">Tôi bị dị ứng ______</span>
+                <span class="phonetic">/toy bee zee ưng/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tôi bị dị ứng ______
-                </div>
-
-                <div class="phrase-phonetic">
-                    /toy bee zee ưng/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                I’m allergic to ______ / I have an allergy to ______
-            </div>
-
+            <div class="en-text">I’m allergic to ______ / I have an allergy to ______</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 12
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                12
+        <div class="phrase-card">
+            <div class="num">12</div>
+            <div class="vi-group">
+                <span class="vi-text">Giúp tôi với!</span>
+                <span class="phonetic">/zoop toy voy/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Giúp tôi với!
-                </div>
-
-                <div class="phrase-phonetic">
-                    /zoop toy voy/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Help me, please!
-            </div>
-
+            <div class="en-text">Help me, please!</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 13
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                13
+        <div class="phrase-card">
+            <div class="num">13</div>
+            <div class="vi-group">
+                <span class="vi-text">Chúc ngủ ngon</span>
+                <span class="phonetic">/chook ngoo ngon/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Chúc ngủ ngon
-                </div>
-
-                <div class="phrase-phonetic">
-                    /chook ngoo ngon/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                Good night
-            </div>
-
+            <div class="en-text">Good night</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 14
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                14
+        <div class="phrase-card">
+            <div class="num">14</div>
+            <div class="vi-group">
+                <span class="vi-text">Tôi không có tiền</span>
+                <span class="phonetic">/toy khong kaw tien/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tôi không có tiền
-                </div>
-
-                <div class="phrase-phonetic">
-                    /toy khong kaw tien/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                I don’t have money
-            </div>
-
+            <div class="en-text">I don’t have money</div>
         </div>
 
-
-        <!-- =========================
-             PHRASE 15
-        ========================= -->
-
-        <div class="phrase">
-
-            <div class="phrase-number">
-                15
+        <div class="phrase-card">
+            <div class="num">15</div>
+            <div class="vi-group">
+                <span class="vi-text">Tôi không mua.</span>
+                <span class="phonetic">/toy khong mua/</span>
             </div>
-
-
-            <div>
-
-                <div class="phrase-vietnamese">
-                    Tôi không mua.
-                </div>
-
-                <div class="phrase-phonetic">
-                    /toy khong mua/
-                </div>
-
-            </div>
-
-
-            <div class="phrase-english">
-                I’m not buying it.
-            </div>
-
+            <div class="en-text">I’m not buying it.</div>
         </div>
 
-
-    </div>
-
-</section>
+    </main>
 
 </div>
 
 </body>
-
 </html>

@@ -60,38 +60,35 @@
 
         :root {
 
-            --paper:
-                #f5f9fd;
-
-            --white:
-                #ffffff;
-
-            --ink: #143a6b;
-            --ink-soft: #66809d;
-
             --accent:
-                #2f9a67;
+                #5CA16E;
 
             --accent-dark:
-                #247a51;
+                #42744F;
 
             --accent-light:
-                #68c493;
+                #eaf6ee;
 
-            --accent-background:
-                #eaf8f0;
+            --accent-bg:
+                #F2FAF5;
 
             --accent-border:
-                #c5e9d5;
+                #c1e0cc;
+
+            --ink:
+                #143a6b;
+
+            --ink-soft:
+                #66809d;
+
+            --general-border:
+                #d9e6f2;
 
             --correct:
-                #2f9a67;
+                #019b3f;
 
             --correct-background:
-                #eaf8f0;
-
-            --correct-border:
-                #bfe5d0;
+                #eaf3ff;
 
             --wrong:
                 #d9536f;
@@ -99,11 +96,8 @@
             --wrong-background:
                 #fff0f3;
 
-            --wrong-border:
-                #f0c5cf;
-
-            --line:
-                #d9e6f2;
+            --ink: #143a6b;
+            --ink-soft: #66809d;
 
         }
 
@@ -148,12 +142,13 @@
                 var(--ink);
 
             background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f5f9fd 48%,
-                    #edf5fc 100%
-                );
+                 linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
 
         }
 

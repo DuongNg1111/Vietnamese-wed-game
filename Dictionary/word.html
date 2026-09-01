@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
 
     <meta
         name="description"
-        content="Learn detailed Vietnamese vocabulary with pronunciation, meaning, category, topic, and example sentences."
+        content="Learn detailed Vietnamese vocabulary with pronunciation, meaning, and example sentences."
     >
 
     <title>Vietnamese Dictionary</title>
@@ -29,12 +30,12 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.googleapis.com"
+        href="https://fonts.gstatic.com"
         crossorigin
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
         rel="stylesheet"
     >
 
@@ -47,34 +48,27 @@
 
         :root {
 
-            --bg: #eef8f7;
-            --bg-soft: #f7fcfb;
+            --accent: #2E2E2E;
+            --accent-dark: #1F1F1F;
+            --accent-light: #f5f5f5;
+            --accent-bg: #F9F9F9;
+            --accent-border: #d0d0d0;
 
-            --primary: #2f8f83;
-            --primary-dark: #24756c;
-            --primary-light: #dff3ef;
+            --ink: #143a6b;
+            --ink-soft: #66809d;
 
-            --yellow: #f4c95d;
-            --yellow-soft: #fff6d9;
-            --yellow-dark: #8c6b12;
+            --phonetic: rgb(0, 116, 217);
 
-            --purple: #b9a7e8;
-            --purple-soft: #f1ecfc;
-            --purple-dark: #5d4a99;
+            --white: #ffffff;
 
-            --text: #23413d;
-            --text-soft: #6d8581;
+            --radius: 14px;
 
-            --f5f5f5: #ffffff;
-
-            --border: #dcecea;
-
-            --shadow:
-                0 8px 25px rgba(47, 143, 131, 0.08);
-
-            --radius: 20px;
         }
 
+
+        /* =====================================================
+           RESET
+        ====================================================== */
 
         * {
 
@@ -83,25 +77,35 @@
             margin: 0;
 
             padding: 0;
+
         }
 
 
+        /* =====================================================
+           BODY
+        ====================================================== */
+
         body {
+
+            min-height: 100vh;
+
+            padding:
+                24px 20px 45px;
 
             font-family:
                 Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
                 sans-serif;
 
+            color:
+                var(--ink);
+
             background:
-                linear-gradient(
-                    180deg,
-                    var(--bg) 0%,
-                    var(--bg-soft) 100%
-                );
+                #ffffff;
 
-            color: var(--text);
-
-            min-height: 100vh;
         }
 
 
@@ -113,98 +117,62 @@
 
             width: 100%;
 
-            background:
-                var(--f5f5f5);
+            max-width: 780px;
 
-            border-bottom:
-                1px solid var(--border);
+            margin:
+                0 auto 20px;
 
-            position: sticky;
-
-            top: 0;
-
-            z-index: 100;
         }
 
 
         .header-inner {
 
-            max-width: 1000px;
+            display:
+                flex;
 
-            margin: 0 auto;
+            align-items:
+                center;
 
-            padding:
-                18px 24px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
-        }
-
-
-        .logo {
-
-            text-decoration: none;
-
-            color: var(--primary);
-
-            font-family:
-                "Kalam",
-                cursive;
-
-            font-size: 38px;
-
-            font-weight: 700;
         }
 
 
         .back-button {
 
-            display: inline-flex;
+            display:
+                inline-flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 8px;
-
-            padding:
-                10px 16px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 12px;
-
-            background:
-                var(--f5f5f5);
+            gap:
+                6px;
 
             color:
-                var(--text);
+                var(--accent);
 
-            text-decoration: none;
+            text-decoration:
+                none;
 
-            font-size: 24px;
+            font-size:
+                18px;
 
-            font-weight: 600;
+            font-weight:
+                600;
 
             transition:
                 0.2s ease;
+
         }
 
 
         .back-button:hover {
 
-            border-color:
-                var(--primary);
-
             color:
-                var(--primary);
+                var(--accent-dark);
 
             transform:
-                translateY(-1px);
+                translateX(-2px);
+
         }
 
 
@@ -214,203 +182,225 @@
 
         main {
 
-            max-width: 900px;
+            width: 100%;
 
-            margin: 0 auto;
+            max-width: 780px;
 
-            padding:
-                55px 24px 80px;
+            margin:
+                0 auto;
+
         }
 
 
         /* =====================================================
-           WORD DETAIL CARD
+           DICTIONARY ENTRY
         ====================================================== */
 
         .word-detail {
 
-            background:
-                var(--f5f5f5);
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                24px;
+            width: 100%;
 
             padding:
-                42px;
+                0 0 30px;
 
-            box-shadow:
-                0 12px 35px
-                rgba(47, 143, 131, 0.09);
+            background:
+                var(--white);
+
+            border:
+                1px solid var(--accent-border);
+
+            border-radius:
+                var(--radius);
+
         }
 
 
+        /* =====================================================
+           WORD HEADER
+        ====================================================== */
+
         .word-header {
 
-            text-align: center;
+            padding:
+                28px 32px 25px;
 
-            padding-bottom:
-                32px;
+            background:
+                var(--accent-bg);
 
             border-bottom:
-                1px solid var(--border);
+                1px solid var(--accent-border);
+
+            border-radius:
+                var(--radius)
+                var(--radius)
+                0
+                0;
+
         }
 
 
         .word {
 
             color:
-                var(--primary-dark);
+                var(--accent-dark);
 
             font-size:
-                clamp(44px, 7vw, 64px);
+                clamp(42px, 7vw, 58px);
 
             font-weight:
-                800;
+                700;
 
             line-height:
-                1.2;
+                1.05;
 
             margin-bottom:
-                12px;
+                5px;
+
         }
 
 
         .phonetics {
 
             color:
-                var(--primary);
+                var(--phonetic);
 
             font-size:
-                28px;
+                21px;
 
             font-style:
                 italic;
 
+            line-height:
+                1.4;
+
             margin-bottom:
-                16px;
+                4px;
+
         }
 
 
         .english {
 
+            color:
+                var(--ink-soft);
+
             font-size:
-                30px;
+                23px;
 
             font-weight:
                 600;
 
-            color:
-                var(--text);
+            line-height:
+                1.35;
+
         }
 
 
         /* =====================================================
-           METADATA
+           WORD CLASS
         ====================================================== */
 
-        .metadata {
+        .word-class {
+
+            display:
+                inline-block;
+
+            margin-top:
+                9px;
+
+            color:
+                #777777;
+
+            font-size:
+                15px;
+
+            font-style:
+                italic;
+
+            line-height:
+                1.3;
+
+        }
+
+
+        /* =====================================================
+           CONTENT SECTIONS
+        ====================================================== */
+
+        .section {
+
+            padding:
+                23px 32px 0;
+
+        }
+
+
+        .section + .section {
+
+            margin-top:
+                22px;
+
+            padding-top:
+                22px;
+
+            border-top:
+                1px solid #e4e4e4;
+
+        }
+
+
+        .section-title {
+
+            color:
+                var(--accent-dark);
+
+            font-size:
+                21px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.2;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        /* =====================================================
+           MEANING
+        ====================================================== */
+
+        .meaning-list {
+
+            display:
+                grid;
+
+            gap:
+                7px;
+
+        }
+
+
+        .meaning-item {
 
             display:
                 flex;
 
-            flex-wrap:
-                wrap;
-
-            justify-content:
-                center;
-
-            gap:
-                9px;
-
-            margin-top:
-                24px;
-        }
-
-
-        .tag {
-
-            display:
-                inline-flex;
-
             align-items:
-                center;
-
-            padding:
-                7px 12px;
-
-            border-radius:
-                9px;
-
-            background:
-                var(--primary-light);
+                flex-start;
 
             color:
-                var(--primary-dark);
+                #555555;
 
             font-size:
-                22px;
-
-            font-weight:
-                600;
-        }
-
-
-        .topic-tag {
-
-            background:
-                var(--yellow-soft);
-
-            color:
-                var(--yellow-dark);
-        }
-
-
-        .class-tag {
-
-            background:
-                var(--purple-soft);
-
-            color:
-                var(--purple-dark);
-        }
-
-
-        /* =====================================================
-           EXPLAIN
-        ====================================================== */
-
-        .explain-section {
-
-            padding-top:
-                28px;
-        }
-
-
-        .explain-text {
-
-            color:
-                var(--text-soft);
-
-            font-size:
-                25px;
+                18px;
 
             line-height:
-                1.7;
+                1.55;
 
-            background:
-                var(--bg-soft);
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                16px;
-
-            padding:
-                18px 20px;
         }
 
 
@@ -418,204 +408,178 @@
            EXAMPLES
         ====================================================== */
 
-        .examples-section {
-
-            padding-top:
-                32px;
-        }
-
-
-        .section-title {
-
-            font-family:
-                "Kalam",
-                cursive;
-
-            color:
-                var(--primary-dark);
-
-            font-size:
-                38px;
-
-            margin-bottom:
-                18px;
-        }
-
-
         .example-list {
 
             display:
                 grid;
 
             gap:
-                14px;
+                17px;
+
         }
 
 
-        .example-card {
+        .example {
 
-            border:
-                1px solid var(--border);
+            display:
+                grid;
 
-            border-radius:
-                16px;
+            grid-template-columns:
+                25px 1fr;
 
-            padding:
-                20px 22px;
+            column-gap:
+                7px;
 
-            background:
-                var(--bg-soft);
-
-            transition:
-                0.2s ease;
-        }
-
-
-        .example-card:hover {
-
-            border-color:
-                #c6e2de;
-
-            transform:
-                translateY(-2px);
         }
 
 
         .example-number {
 
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            width:
-                28px;
-
-            height:
-                28px;
-
-            border-radius:
-                50%;
-
-            background:
-                var(--primary-light);
-
             color:
-                var(--primary-dark);
+                var(--accent);
 
             font-size:
-                22px;
+                18px;
 
             font-weight:
                 700;
 
-            margin-bottom:
-                10px;
+            line-height:
+                1.45;
+
+        }
+
+
+        .example-content {
+
+            min-width:
+                0;
+
         }
 
 
         .example-vietnamese {
 
             color:
-                var(--text);
+                var(--ink);
 
             font-size:
-                28px;
+                19px;
 
             font-weight:
                 700;
 
             line-height:
-                1.6;
+                1.45;
 
-            margin-bottom:
-                5px;
         }
 
 
         .example-phonetics {
 
             color:
-                var(--primary);
+                var(--phonetic);
 
             font-size:
-                24px;
+                17px;
 
             font-style:
                 italic;
 
             line-height:
-                1.5;
+                1.4;
 
-            margin-bottom:
-                6px;
+            margin-top:
+                1px;
+
         }
 
 
         .example-english {
 
             color:
-                var(--text-soft);
+                var(--ink-soft);
 
             font-size:
-                24px;
+                17px;
+
+            line-height:
+                1.4;
+
+            margin-top:
+                1px;
+
+        }
+
+
+        .no-examples {
+
+            color:
+                #777777;
+
+            font-size:
+                17px;
 
             line-height:
                 1.5;
+
         }
 
 
         /* =====================================================
-           ERROR / LOADING
+           LOADING / ERROR
         ====================================================== */
 
         .message {
 
+            padding:
+                40px 20px;
+
             text-align:
                 center;
 
-            padding:
-                60px 20px;
         }
 
 
         .message-icon {
 
             font-size:
-                52px;
+                34px;
 
             margin-bottom:
-                14px;
+                8px;
+
         }
 
 
         .message h2 {
 
             color:
-                var(--text);
+                var(--accent-dark);
 
             font-size:
-                32px;
+                25px;
+
+            line-height:
+                1.2;
 
             margin-bottom:
-                9px;
+                6px;
+
         }
 
 
         .message p {
 
             color:
-                var(--text-soft);
+                var(--ink-soft);
 
             font-size:
-                24px;
+                18px;
 
             line-height:
-                1.7;
+                1.5;
+
         }
 
 
@@ -625,28 +589,40 @@
                 inline-block;
 
             margin-top:
-                20px;
+                15px;
 
             padding:
-                11px 17px;
+                8px 13px;
 
             border-radius:
-                12px;
+                8px;
 
             background:
-                var(--primary);
+                var(--accent);
 
             color:
-                f5f5f5;
+                var(--white);
 
             text-decoration:
                 none;
 
             font-size:
-                24px;
+                17px;
 
             font-weight:
                 600;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .message a:hover {
+
+            background:
+                var(--accent-dark);
+
         }
 
 
@@ -656,76 +632,146 @@
 
         @media (max-width: 600px) {
 
-            .header-inner {
+            body {
 
                 padding:
-                    15px 18px;
+                    18px 14px 30px;
+
             }
 
 
-            .logo {
+            header {
 
-                font-size:
-                    34px;
+                margin-bottom:
+                    15px;
+
             }
 
 
             .back-button {
 
-                padding:
-                    9px 12px;
-
                 font-size:
-                    23px;
-            }
+                    17px;
 
-
-            main {
-
-                padding:
-                    30px 18px 50px;
             }
 
 
             .word-detail {
 
+                border-radius:
+                    12px;
+
+            }
+
+
+            .word-header {
+
                 padding:
-                    28px 20px;
+                    23px 20px 21px;
+
             }
 
 
             .word {
 
                 font-size:
-                    52px;
+                    42px;
+
             }
 
 
             .phonetics {
 
                 font-size:
-                    26px;
+                    19px;
+
             }
 
 
             .english {
 
                 font-size:
-                    28px;
+                    21px;
+
+            }
+
+
+            .section {
+
+                padding:
+                    20px 20px 0;
+
+            }
+
+
+            .section + .section {
+
+                margin-top:
+                    19px;
+
+                padding-top:
+                    19px;
+
             }
 
 
             .section-title {
 
                 font-size:
-                    34px;
+                    20px;
+
+            }
+
+
+            .meaning-item {
+
+                font-size:
+                    17px;
+
+            }
+
+
+            .example-list {
+
+                gap:
+                    15px;
+
+            }
+
+
+            .example {
+
+                grid-template-columns:
+                    23px 1fr;
+
+                column-gap:
+                    6px;
+
+            }
+
+
+            .example-number {
+
+                font-size:
+                    17px;
+
             }
 
 
             .example-vietnamese {
 
                 font-size:
-                    26px;
+                    18px;
+
+            }
+
+
+            .example-phonetics,
+            .example-english {
+
+                font-size:
+                    16px;
+
             }
 
         }
@@ -748,23 +794,14 @@
 
             <a
                 href="dictionary.html"
-                class="logo"
-            >
-                Vietnamese
-            </a>
-
-
-            <a
-                href="dictionary.html"
                 class="back-button"
             >
-                ← Back to Dictionary
+                ← Back
             </a>
 
         </div>
 
     </header>
-
 
 
     <!-- =====================================================
@@ -796,7 +833,6 @@
     </main>
 
 
-
     <!-- =====================================================
          SCRIPT
     ====================================================== -->
@@ -821,10 +857,6 @@
             params.get("word");
 
 
-        // Optional (recommended): passed by dictionary.html so we
-        // can find the EXACT entry when the same word appears in
-        // more than one category/topic (e.g. "cam" = orange fruit
-        // vs "cam" = orange color).
         const requestedCategory =
             params.get("cat");
 
@@ -849,21 +881,14 @@
                     );
 
                     return;
+
                 }
 
 
-                /*
-                 * word.html is inside:
-                 *
-                 * Dictionary/
-                 *
-                 * categories.json is one level above:
-                 *
-                 * ../categories.json
-                 */
-
                 const response =
-                    await fetch("../categories.json");
+                    await fetch(
+                        "../categories.json"
+                    );
 
 
                 if (!response.ok) {
@@ -896,10 +921,13 @@
                     );
 
                     return;
+
                 }
 
 
-                renderWord(wordData);
+                renderWord(
+                    wordData
+                );
 
             }
 
@@ -921,17 +949,8 @@
         }
 
 
-
         /* =====================================================
            FIND WORD
-
-           Strategy:
-           1) If cat + topic were provided, try an EXACT match
-              first (vietnamese + category + topic). This
-              correctly disambiguates duplicate words like
-              "cam" (fruit) vs "cam" (color).
-           2) Otherwise (or if no exact match found), fall back
-              to the first word whose "vietnamese" matches.
         ====================================================== */
 
         function findWord(
@@ -942,24 +961,21 @@
         ) {
 
             let exactMatch = null;
+
             let fallbackMatch = null;
 
 
-            Object.entries(categories).forEach(
+            Object.entries(
+                categories
+            ).forEach(
                 ([categoryName, category]) => {
 
-                    /*
-                     * Only search vocabulary categories.
-                     *
-                     * This intentionally excludes:
-                     *
-                     * - Sentences
-                     * - Useful Phrases
-                     */
 
                     if (
                         category.type !== "vocabulary" ||
-                        !Array.isArray(category.vocab)
+                        !Array.isArray(
+                            category.vocab
+                        )
                     ) {
 
                         return;
@@ -969,6 +985,7 @@
 
                     category.vocab.forEach(
                         topic => {
+
 
                             if (
                                 !Array.isArray(
@@ -983,6 +1000,7 @@
 
                             topic.vocabulary.forEach(
                                 word => {
+
 
                                     if (
                                         word.vietnamese !==
@@ -1027,21 +1045,41 @@
                                     };
 
 
-                                    if (!fallbackMatch) {
+                                    /*
+                                     * First match becomes
+                                     * fallback.
+                                     */
 
-                                        fallbackMatch = built;
+                                    if (
+                                        !fallbackMatch
+                                    ) {
+
+                                        fallbackMatch =
+                                            built;
 
                                     }
 
 
+                                    /*
+                                     * Exact category + topic
+                                     * match.
+                                     *
+                                     * Used internally only.
+                                     */
+
                                     if (
                                         targetCategory &&
                                         targetTopic &&
-                                        categoryName === targetCategory &&
-                                        (topic.topic || "") === targetTopic
+                                        categoryName ===
+                                            targetCategory &&
+                                        (
+                                            topic.topic || ""
+                                        ) ===
+                                            targetTopic
                                     ) {
 
-                                        exactMatch = built;
+                                        exactMatch =
+                                            built;
 
                                     }
 
@@ -1055,20 +1093,32 @@
             );
 
 
-            return exactMatch || fallbackMatch;
+            return (
+                exactMatch ||
+                fallbackMatch
+            );
 
         }
-
 
 
         /* =====================================================
            RENDER WORD
         ====================================================== */
 
-        function renderWord(word) {
+        function renderWord(
+            word
+        ) {
+
+
+            /*
+             * Show maximum 2 examples.
+             */
 
             const examples =
-                word.examples.slice(0, 2);
+                word.examples.slice(
+                    0,
+                    2
+                );
 
 
             content.innerHTML = `
@@ -1076,261 +1126,233 @@
                 <article class="word-detail">
 
 
-                    <!-- WORD HEADER -->
+                    <!-- =================================================
+                         WORD HEADER
+                    ================================================== -->
 
                     <section class="word-header">
 
                         <div class="word">
-
                             ${escapeHTML(
                                 word.vietnamese
                             )}
-
                         </div>
 
 
                         ${
                             word.phonetics
                                 ? `
+
                                     <div class="phonetics">
                                         /${escapeHTML(
                                             word.phonetics
                                         )}/
                                     </div>
+
                                   `
                                 : ""
                         }
 
 
                         <div class="english">
-
                             ${escapeHTML(
                                 word.english
                             )}
-
                         </div>
 
 
-                        <div class="metadata">
+                        ${
+                            word.wordClass
+                                ? `
 
-                            ${
-                                word.wordClass
-                                    ? `
-                                        <span class="tag class-tag">
-                                            ${escapeHTML(
-                                                word.wordClass
-                                            )}
-                                        </span>
-                                      `
-                                    : ""
-                            }
+                                    <div class="word-class">
+                                        ${escapeHTML(
+                                            word.wordClass
+                                        )}
+                                    </div>
 
-
-                            ${
-                                word.category
-                                    ? `
-                                        <span class="tag">
-                                            Category:
-                                            ${escapeHTML(
-                                                word.category
-                                            )}
-                                        </span>
-                                      `
-                                    : ""
-                            }
-
-
-                            ${
-                                word.topic
-                                    ? `
-                                        <span class="tag topic-tag">
-                                            Topic:
-                                            ${escapeHTML(
-                                                word.topic
-                                            )}
-                                        </span>
-                                      `
-                                    : ""
-                            }
-
-                        </div>
+                                  `
+                                : ""
+                        }
 
                     </section>
 
 
-
-                    <!-- EXPLAIN -->
+                    <!-- =================================================
+                         MEANING
+                    ================================================== -->
 
                     ${
                         word.explain
                             ? `
-                                <section class="explain-section">
+
+                                <section class="section">
 
                                     <h2 class="section-title">
-                                        What it means
+                                        Meaning
                                     </h2>
 
-                                    <p class="explain-text">
-                                        ${escapeHTML(
-                                            word.explain
-                                        )}
-                                    </p>
+
+                                    <div class="meaning-list">
+
+                                        <div class="meaning-item">
+
+                                            <span>
+                                                ${escapeHTML(
+                                                    word.explain
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                    </div>
 
                                 </section>
+
                               `
                             : ""
                     }
 
 
+                    <!-- =================================================
+                         EXAMPLE SENTENCES
+                    ================================================== -->
 
-                    <!-- EXAMPLES -->
-
-                    <section class="examples-section">
-
-                        <h2 class="section-title">
-                            Example Sentences
-                        </h2>
+                    <section class="section">
 
 
-                        <div class="example-list">
 
-                            ${
-                                examples.length === 0
+                        ${
+                            examples.length === 0
 
-                                    ? `
+                                ? `
 
-                                        <div class="message">
+                                    <p class="no-examples">
+                                        No example sentences available.
+                                    </p>
 
-                                            <div class="message-icon">
-                                                📝
-                                            </div>
+                                  `
 
-                                            <h2>
-                                                No examples available
-                                            </h2>
+                                : `
 
-                                            <p>
-                                                Examples for this word
-                                                have not been added yet.
-                                            </p>
+                                    <div class="example-list">
 
-                                        </div>
+                                        ${
+                                            examples.map(
+                                                (
+                                                    example,
+                                                    index
+                                                ) => {
 
-                                      `
 
-                                    : examples.map(
-                                        (example, index) => {
+                                                    /*
+                                                     * String example.
+                                                     */
 
-                                            /*
-                                             * Supports either:
-                                             *
-                                             * {
-                                             *   "vietnamese": "...",
-                                             *   "phonetics": "...",
-                                             *   "english": "..."
-                                             * }
-                                             *
-                                             * OR a simple string.
-                                             */
+                                                    if (
+                                                        typeof example ===
+                                                        "string"
+                                                    ) {
 
-                                            if (
-                                                typeof example ===
-                                                "string"
-                                            ) {
+                                                        return `
 
-                                                return `
+                                                            <div class="example">
 
-                                                    <article
-                                                        class="example-card"
-                                                    >
+                                                                <div class="example-number">
+                                                                    ${index + 1}.
+                                                                </div>
 
-                                                        <div
-                                                            class="example-number"
-                                                        >
-                                                            ${index + 1}
+
+                                                                <div class="example-content">
+
+                                                                    <div class="example-vietnamese">
+                                                                        ${escapeHTML(
+                                                                            example
+                                                                        )}
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        `;
+
+                                                    }
+
+
+                                                    /*
+                                                     * Object example.
+                                                     */
+
+                                                    return `
+
+                                                        <div class="example">
+
+                                                            <div class="example-number">
+                                                                ${index + 1}.
+                                                            </div>
+
+
+                                                            <div class="example-content">
+
+                                                                ${
+                                                                    example.vietnamese
+                                                                        ? `
+
+                                                                            <div class="example-vietnamese">
+                                                                                ${escapeHTML(
+                                                                                    example.vietnamese
+                                                                                )}
+                                                                            </div>
+
+                                                                          `
+                                                                        : ""
+                                                                }
+
+
+                                                                ${
+                                                                    example.phonetics
+                                                                        ? `
+
+                                                                            <div class="example-phonetics">
+                                                                                /${escapeHTML(
+                                                                                    example.phonetics
+                                                                                )}/
+                                                                            </div>
+
+                                                                          `
+                                                                        : ""
+                                                                }
+
+
+                                                                ${
+                                                                    example.english
+                                                                        ? `
+
+                                                                            <div class="example-english">
+                                                                                ${escapeHTML(
+                                                                                    example.english
+                                                                                )}
+                                                                            </div>
+
+                                                                          `
+                                                                        : ""
+                                                                }
+
+                                                            </div>
+
                                                         </div>
 
-                                                        <div
-                                                            class="example-vietnamese"
-                                                        >
-                                                            ${escapeHTML(
-                                                                example
-                                                            )}
-                                                        </div>
+                                                    `;
 
-                                                    </article>
-
-                                                `;
-
-                                            }
-
-
-                                            return `
-
-                                                <article
-                                                    class="example-card"
-                                                >
-
-                                                    <div
-                                                        class="example-number"
-                                                    >
-                                                        ${index + 1}
-                                                    </div>
-
-
-                                                    ${
-                                                        example.vietnamese
-                                                            ? `
-                                                                <div
-                                                                    class="example-vietnamese"
-                                                                >
-                                                                    ${escapeHTML(
-                                                                        example.vietnamese
-                                                                    )}
-                                                                </div>
-                                                              `
-                                                            : ""
-                                                    }
-
-
-                                                    ${
-                                                        example.phonetics
-                                                            ? `
-                                                                <div
-                                                                    class="example-phonetics"
-                                                                >
-                                                                    /${escapeHTML(
-                                                                        example.phonetics
-                                                                    )}/
-                                                                </div>
-                                                              `
-                                                            : ""
-                                                    }
-
-
-                                                    ${
-                                                        example.english
-                                                            ? `
-                                                                <div
-                                                                    class="example-english"
-                                                                >
-                                                                    ${escapeHTML(
-                                                                        example.english
-                                                                    )}
-                                                                </div>
-                                                              `
-                                                            : ""
-                                                    }
-
-                                                </article>
-
-                                            `;
-
+                                                }
+                                            ).join("")
                                         }
-                                    ).join("")
-                            }
 
-                        </div>
+                                    </div>
+
+                                  `
+                        }
 
                     </section>
 
@@ -1339,15 +1361,14 @@
             `;
 
 
-            /*
-             * Update browser title.
-             */
+            /* =====================================================
+               UPDATE PAGE TITLE
+            ====================================================== */
 
             document.title =
                 `${word.vietnamese} — Vietnamese Dictionary`;
 
         }
-
 
 
         /* =====================================================
@@ -1367,12 +1388,18 @@
                         ⚠️
                     </div>
 
+
                     <h2>
-                        ${escapeHTML(title)}
+                        ${escapeHTML(
+                            title
+                        )}
                     </h2>
 
+
                     <p>
-                        ${escapeHTML(description)}
+                        ${escapeHTML(
+                            description
+                        )}
                     </p>
 
 
@@ -1389,12 +1416,13 @@
         }
 
 
-
         /* =====================================================
            HTML ESCAPE
         ====================================================== */
 
-        function escapeHTML(value) {
+        function escapeHTML(
+            value
+        ) {
 
             return String(value)
 
@@ -1426,7 +1454,6 @@
         }
 
 
-
         /* =====================================================
            START
         ====================================================== */
@@ -1438,3 +1465,4 @@
 </body>
 
 </html>
+```

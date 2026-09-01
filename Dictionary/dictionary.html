@@ -1,785 +1,508 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-    name="description"
-    content="Browse and search Vietnamese vocabulary from all vocabulary categories."
->
+    <meta
+        name="description"
+        content="Browse and search Vietnamese vocabulary from all vocabulary categories."
+    >
 
-<title>Vietnamese Dictionary</title>
+    <title>Vietnamese Dictionary</title>
 
 
-<!-- =====================================================
-     GOOGLE FONTS
-====================================================== -->
+    <!-- =========================================================
+         GOOGLE FONTS
+    ========================================================== -->
 
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap"
-    rel="stylesheet"
->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
 
 
-<!-- =====================================================
-     STYLE
-====================================================== -->
+    <style>
 
-<style>
 
-    :root {
+        /* =========================================================
+           RESET
+        ========================================================== */
 
-        --bg: #eef8f7;
-        --bg-soft: #f7fcfb;
+        * {
 
-        --primary: #2f8f83;
-        --primary-dark: #24756c;
-        --primary-light: #dff3ef;
+            box-sizing:
+                border-box;
 
-        --yellow: #f4c95d;
-        --yellow-soft: #fff6d9;
-        --yellow-dark: #8c6b12;
-
-        --text: #23413d;
-        --text-soft: #6d8581;
-
-        --f5f5f5: #ffffff;
-
-        --border: #dcecea;
-
-        --shadow:
-            0 8px 25px rgba(47, 143, 131, 0.08);
-
-        --radius: 18px;
-    }
-
-
-    * {
-
-        box-sizing: border-box;
-
-        margin: 0;
-
-        padding: 0;
-
-    }
-
-
-    body {
-
-        font-family:
-            Calibri,
-            sans-serif;
-
-        background:
-            linear-gradient(
-                180deg,
-                var(--bg) 0%,
-                var(--bg-soft) 100%
-            );
-
-        color: var(--text);
-
-        min-height: 100vh;
-
-    }
-
-
-    /* =====================================================
-       HEADER
-    ====================================================== */
-
-    header {
-
-        width: 100%;
-
-        background:
-            var(--f5f5f5);
-
-        border-bottom:
-            1px solid var(--border);
-
-        position: sticky;
-
-        top: 0;
-
-        z-index: 100;
-
-    }
-
-
-    .header-inner {
-
-        max-width: 1200px;
-
-        margin: 0 auto;
-
-        padding:
-            18px 24px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 20px;
-
-    }
-
-
-    .logo {
-
-        text-decoration: none;
-
-        color:
-            var(--primary);
-
-        font-family:
-            "Kalam",
-            cursive;
-
-        font-size: 38px;
-
-        font-weight: 700;
-
-    }
-
-
-    .back-button {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        gap: 8px;
-
-        padding:
-            10px 16px;
-
-        border:
-            1px solid var(--border);
-
-        border-radius: 12px;
-
-        background:
-            var(--f5f5f5);
-
-        color:
-            var(--text);
-
-        text-decoration: none;
-
-        font-size: 24px;
-
-        font-weight: 600;
-
-        transition:
-            0.2s ease;
-
-    }
-
-
-    .back-button:hover {
-
-        border-color:
-            var(--primary);
-
-        color:
-            var(--primary);
-
-        transform:
-            translateY(-1px);
-
-    }
-
-
-    /* =====================================================
-       HERO
-    ====================================================== */
-
-    .hero {
-
-        max-width: 1200px;
-
-        margin: 0 auto;
-
-        padding:
-            55px 24px 30px;
-
-        text-align: center;
-
-    }
-
-
-    .hero-icon {
-
-        width: 68px;
-
-        height: 68px;
-
-        margin:
-            0 auto 18px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border-radius: 20px;
-
-        background:
-            var(--primary-light);
-
-        font-size: 44px;
-
-    }
-
-
-    .hero h1 {
-
-        font-family:
-            "Kalam",
-            cursive;
-
-        font-size:
-            clamp(44px, 6vw, 64px);
-
-        line-height: 1.1;
-
-        color:
-            var(--primary-dark);
-
-        margin-bottom: 10px;
-
-    }
-
-
-    .hero p {
-
-        max-width: 650px;
-
-        margin:
-            0 auto;
-
-        color:
-            var(--text-soft);
-
-        font-size: 25px;
-
-        line-height: 1.7;
-
-    }
-
-
-    /* =====================================================
-       SEARCH
-    ====================================================== */
-
-    .controls {
-
-        max-width: 900px;
-
-        margin:
-            10px auto 35px;
-
-        padding:
-            0 24px;
-
-    }
-
-
-    .search-box {
-
-        position: relative;
-
-    }
-
-
-    .search-icon {
-
-        position: absolute;
-
-        left: 18px;
-
-        top: 50%;
-
-        transform:
-            translateY(-50%);
-
-        font-size: 29px;
-
-        pointer-events: none;
-
-    }
-
-
-    #searchInput {
-
-        width: 100%;
-
-        padding:
-            17px 20px 17px 50px;
-
-        border:
-            2px solid var(--border);
-
-        border-radius: 16px;
-
-        background:
-            var(--f5f5f5);
-
-        color:
-            var(--text);
-
-        font-family:
-            Calibri,
-            sans-serif;
-
-        font-size: 26px;
-
-        outline: none;
-
-        box-shadow:
-            var(--shadow);
-
-        transition:
-            0.2s ease;
-
-    }
-
-
-    #searchInput::placeholder {
-
-        color:
-            #9aafac;
-
-    }
-
-
-    #searchInput:focus {
-
-        border-color:
-            var(--primary);
-
-        box-shadow:
-            0 8px 30px
-            rgba(47, 143, 131, 0.13);
-
-    }
-
-
-    .stats {
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-
-        gap: 10px;
-
-        margin-top: 14px;
-
-        color:
-            var(--text-soft);
-
-        font-size: 23px;
-
-    }
-
-
-    .stats strong {
-
-        color:
-            var(--primary-dark);
-
-    }
-
-
-    /* =====================================================
-       DICTIONARY GRID
-    ====================================================== */
-
-    main {
-
-        max-width: 1200px;
-
-        margin:
-            0 auto;
-
-        padding:
-            0 24px 70px;
-
-    }
-
-
-    #dictionaryGrid {
-
-        display: grid;
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-
-        gap: 18px;
-
-    }
-
-
-    /* =====================================================
-       WORD CARD
-    ====================================================== */
-
-    .word-card {
-
-        width: 100%;
-
-        border:
-            1px solid var(--border);
-
-        border-radius:
-            var(--radius);
-
-        padding:
-            22px;
-
-        background:
-            var(--f5f5f5);
-
-        box-shadow:
-            var(--shadow);
-
-        text-align: left;
-
-        cursor: pointer;
-
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            border-color 0.2s ease;
-
-        font-family:
-            Calibri,
-            sans-serif;
-
-        color:
-            var(--text);
-
-        appearance: none;
-
-        -webkit-appearance: none;
-
-    }
-
-
-    .word-card:hover {
-
-        transform:
-            translateY(-4px);
-
-        border-color:
-            #b8dcd6;
-
-        box-shadow:
-            0 14px 35px
-            rgba(47, 143, 131, 0.14);
-
-    }
-
-
-    .word-card:focus {
-
-        outline:
-            3px solid
-            rgba(47, 143, 131, 0.18);
-
-        outline-offset:
-            2px;
-
-    }
-
-
-    .word-card:active {
-
-        transform:
-            translateY(-1px);
-
-    }
-
-
-    .word-top {
-
-        display: flex;
-
-        align-items: flex-start;
-
-        justify-content: space-between;
-
-        gap: 15px;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .vietnamese {
-
-        color:
-            var(--primary-dark);
-
-        font-size: 32px;
-
-        font-weight: 800;
-
-        line-height: 1.3;
-
-    }
-
-
-    .phonetics {
-
-        color:
-            var(--primary);
-
-        font-size: 24px;
-
-        font-style: italic;
-
-        line-height: 1.5;
-
-        margin-bottom: 10px;
-
-    }
-
-
-    .english {
-
-        color:
-            var(--text);
-
-        font-size: 25px;
-
-        font-weight: 500;
-
-        line-height: 1.5;
-
-    }
-
-
-    .metadata {
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 7px;
-
-        margin-top: 16px;
-
-    }
-
-
-    .tag {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        padding:
-            5px 9px;
-
-        border-radius:
-            8px;
-
-        background:
-            var(--primary-light);
-
-        color:
-            var(--primary-dark);
-
-        font-size: 21px;
-
-        font-weight: 600;
-
-    }
-
-
-    .topic-tag {
-
-        background:
-            var(--yellow-soft);
-
-        color:
-            var(--yellow-dark);
-
-    }
-
-
-    .click-hint {
-
-        margin-top: 15px;
-
-        color:
-            #9aafac;
-
-        font-size: 21px;
-
-        font-weight: 500;
-
-    }
-
-
-    /* =====================================================
-       MESSAGE
-    ====================================================== */
-
-    .message {
-
-        grid-column:
-            1 / -1;
-
-        text-align: center;
-
-        padding:
-            60px 20px;
-
-        color:
-            var(--text-soft);
-
-    }
-
-
-    .message-icon {
-
-        font-size: 50px;
-
-        margin-bottom: 12px;
-
-    }
-
-
-    .message h2 {
-
-        color:
-            var(--text);
-
-        margin-bottom: 8px;
-
-        font-size: 30px;
-
-    }
-
-
-    .message p {
-
-        font-size: 24px;
-
-        line-height: 1.6;
-
-    }
-
-
-    /* =====================================================
-       RESPONSIVE
-    ====================================================== */
-
-    @media (max-width: 900px) {
-
-        #dictionaryGrid {
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-        }
-
-    }
-
-
-    @media (max-width: 600px) {
-
-        .header-inner {
+            margin:
+                0;
 
             padding:
-                15px 18px;
+                0;
 
         }
 
 
-        .logo {
+        /* =========================================================
+           THEME
+        ========================================================== */
 
-            font-size:
-                34px;
+        :root {
+
+            --accent: #2E2E2E;
+            --accent-dark: #1F1F1F;
+            --accent-light: #f5f5f5;
+            --accent-bg: #F9F9F9;
+            --accent-border: #d0d0d0;
+
+            --ink: #143a6b;
+            --ink-soft: #66809d;
+
+            --phonetic: rgb(0, 116, 217);
+
+            --white: #ffffff;
+
+            --radius: 14px;
+
+
+            --correct:
+                #019b3f;
+
+            --correct-bg:
+                #eaf3ff;
+
+
+            --wrong:
+                #d9536f;
+
+            --wrong-bg:
+                #fff0f3;
+
+
+            --white:
+                #ffffff;
+
+
+            --line:
+                #e2e6eb;
+
+
+            --shadow:
+                0 8px 25px
+                rgba(20, 58, 107, 0.07);
 
         }
 
+
+        /* =========================================================
+           BODY
+        ========================================================== */
+
+        body {
+
+            margin:
+                0;
+
+            min-height:
+                100vh;
+
+            padding:
+                28px
+                20px
+                45px;
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            color:
+                var(--ink);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    var(--accent-bg) 48%,
+                    var(--accent-light) 100%
+                );
+
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================== */
+
+        .page {
+
+            width:
+                100%;
+
+            max-width:
+                900px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        /* =========================================================
+           BACK BUTTON
+        ========================================================== */
 
         .back-button {
 
-            padding:
-                9px 12px;
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            margin-bottom:
+                18px;
+
+            color:
+                var(--ink-soft);
+
+            text-decoration:
+                none;
 
             font-size:
-                23px;
+                15px;
+
+            font-weight:
+                700;
+
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease;
 
         }
 
 
-        .hero {
+        .back-button:hover {
+
+            color:
+                var(--ink);
+
+            transform:
+                translateX(-3px);
+
+        }
+
+
+        /* =========================================================
+           DICTIONARY CONTAINER
+        ========================================================== */
+
+        .dictionary-container {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+
+        /* =========================================================
+           ACCENT LINE
+        ========================================================== */
+
+        .dictionary-container::before {
+
+            content:
+                "";
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                5px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================== */
+
+        .dictionary-header {
 
             padding:
-                40px 18px 25px;
+                30px
+                32px
+                25px;
+
+            border-bottom:
+                1px solid
+                var(--line);
 
         }
 
 
-        .hero h1 {
+        .dictionary-title {
+
+            font-family:
+                "Kalam",
+                cursive;
+
+            color:
+                var(--ink);
 
             font-size:
-                52px;
+                clamp(42px, 6vw, 56px);
+
+            line-height:
+                1.1;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                8px;
 
         }
 
 
-        .controls {
+        .dictionary-description {
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                17px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================== */
+
+        .dictionary-content {
 
             padding:
-                0 18px;
+                28px
+                32px
+                36px;
 
         }
 
 
-        main {
+        /* =========================================================
+           SEARCH
+        ========================================================== */
+
+        .search-box {
+
+            position:
+                relative;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .search-icon {
+
+            position:
+                absolute;
+
+            left:
+                17px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                white;
+
+            font-size:
+                21px;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        #searchInput {
+
+            width:
+                100%;
+
+            min-height:
+                48px;
 
             padding:
-                0 18px 50px;
+                10px
+                16px
+                10px
+                47px;
+
+            border:
+                1.5px solid
+                var(--accent-border);
+
+            border-radius:
+                10px;
+
+            background:
+                white;
+
+            color:
+                var(--ink);
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            font-size:
+                17px;
+
+            outline:
+                none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
 
         }
 
+
+        #searchInput::placeholder {
+
+            color:
+                #9aa9b8;
+
+        }
+
+
+        #searchInput:focus {
+
+            border-color:
+                var(--accent);
+
+            background:
+                var(--white);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(162, 117, 52, 0.10);
+
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================== */
+
+        .stats {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                flex-start;
+
+            margin-bottom:
+                24px;
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                14px;
+
+        }
+
+
+        .stats strong {
+
+            color:
+                var(--accent-dark);
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =========================================================
+           DICTIONARY GRID
+        ========================================================== */
 
         #dictionaryGrid {
 
+            display:
+                grid;
+
             grid-template-columns:
-                1fr;
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
 
             gap:
                 14px;
@@ -787,16 +510,537 @@
         }
 
 
+        /* =========================================================
+           WORD CARD
+        ========================================================== */
+
         .word-card {
 
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            width:
+                100%;
+
             padding:
-                19px;
+                20px;
+
+            text-align:
+                left;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                12px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(20, 58, 107, 0.04);
+
+            color:
+                var(--ink);
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            cursor:
+                pointer;
+
+            appearance:
+                none;
+
+            -webkit-appearance:
+                none;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
 
         }
 
-    }
 
-</style>
+        /* =========================================================
+           CARD ACCENT LINE
+        ========================================================== */
+
+        .word-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =========================================================
+           CARD HOVER
+        ========================================================== */
+
+        .word-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                var(--accent);
+
+            box-shadow:
+                0 9px 22px
+                rgba(162, 117, 52, 0.12);
+
+        }
+
+
+        .word-card:focus {
+
+            outline:
+                3px solid
+                rgba(162, 117, 52, 0.16);
+
+            outline-offset:
+                2px;
+
+        }
+
+
+        .word-card:active {
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =========================================================
+           WORD TOP
+        ========================================================== */
+
+        .word-top {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                4px;
+
+        }
+
+
+        /* =========================================================
+           VIETNAMESE
+        ========================================================== */
+
+        .vietnamese {
+
+            color:
+                var(--ink);
+
+            font-size:
+                25px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.3;
+
+        }
+
+
+        /* =========================================================
+           PHONETICS
+        ========================================================== */
+
+        .phonetics {
+
+            color:
+                var(--phonetic);
+
+            font-size:
+                15px;
+
+            font-style:
+                italic;
+
+            line-height:
+                1.4;
+
+            margin-bottom:
+                9px;
+
+        }
+
+
+        /* =========================================================
+           ENGLISH
+        ========================================================== */
+
+        .english {
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                16px;
+
+            font-weight:
+                500;
+
+            line-height:
+                1.45;
+
+        }
+
+
+        /* =========================================================
+           METADATA
+        ========================================================== */
+
+        .metadata {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                6px;
+
+            margin-top:
+                13px;
+
+        }
+
+
+        /* =========================================================
+           TAG
+        ========================================================== */
+
+        .tag {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            padding:
+                4px
+                8px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                7px;
+
+            background:
+                var(--accent-light);
+
+            color:
+                var(--accent-dark);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.3;
+
+        }
+
+
+        /* =========================================================
+           TOPIC TAG
+        ========================================================== */
+
+        .topic-tag {
+
+            background:
+                var(--accent-bg);
+
+            color:
+                var(--ink-soft);
+
+            border-color:
+                var(--line);
+
+        }
+
+
+        /* =========================================================
+           CLICK HINT
+        ========================================================== */
+
+        .click-hint {
+
+            margin-top:
+                13px;
+
+            padding-top:
+                10px;
+
+            border-top:
+                1px solid
+                var(--line);
+
+            color:
+                var(--ink-soft);
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        /* =========================================================
+           MESSAGE
+        ========================================================== */
+
+        .message {
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                50px
+                20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--ink-soft);
+
+        }
+
+
+        .message-icon {
+
+            margin-bottom:
+                10px;
+
+            font-size:
+                38px;
+
+        }
+
+
+        .message h2 {
+
+            margin-bottom:
+                7px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                22px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .message p {
+
+            font-size:
+                15px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding:
+                    20px
+                    14px
+                    35px;
+
+            }
+
+
+            .dictionary-header {
+
+                padding:
+                    25px
+                    22px
+                    21px;
+
+            }
+
+
+            .dictionary-content {
+
+                padding:
+                    24px
+                    22px
+                    30px;
+
+            }
+
+
+            #dictionaryGrid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+
+                padding:
+                    16px
+                    12px
+                    30px;
+
+            }
+
+
+            .back-button {
+
+                margin-bottom:
+                    14px;
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .dictionary-container {
+
+                border-radius:
+                    13px;
+
+            }
+
+
+            .dictionary-header {
+
+                padding:
+                    22px
+                    18px
+                    19px;
+
+            }
+
+
+            .dictionary-content {
+
+                padding:
+                    22px
+                    18px
+                    27px;
+
+            }
+
+
+            .dictionary-title {
+
+                font-size:
+                    43px;
+
+            }
+
+
+            .dictionary-description {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            #searchInput {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .word-card {
+
+                padding:
+                    18px;
+
+            }
+
+
+            .vietnamese {
+
+                font-size:
+                    24px;
+
+            }
+
+        }
+
+
+    </style>
 
 </head>
 
@@ -804,132 +1048,141 @@
 <body>
 
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
-
-<header>
-
-    <div class="header-inner">
-
-        <a
-            href="../index.html"
-            class="logo"
-        >
-            Vietnamese
-        </a>
+<div class="page">
 
 
-        <a
-            href="../index.html"
-            class="back-button"
-        >
-            ← Back to Lobby
-        </a>
+    <!-- =========================================================
+         BACK
+    ========================================================== -->
 
-    </div>
-
-</header>
-
-
-
-<!-- =====================================================
-     HERO
-====================================================== -->
-
-<section class="hero">
-
-    <div class="hero-icon">
-        📖
-    </div>
+    <a
+        href="../index.html"
+        class="back-button"
+    >
+        ← Back to Lobby
+    </a>
 
 
-    <h1>
-        Dictionary
-    </h1>
+    <!-- =========================================================
+         DICTIONARY CONTAINER
+    ========================================================== -->
+
+    <main class="dictionary-container">
 
 
-    <p>
-        Browse and search Vietnamese vocabulary
-        from all vocabulary categories.
-    </p>
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
-</section>
+        <header class="dictionary-header">
 
-
-
-<!-- =====================================================
-     SEARCH
-====================================================== -->
-
-<section class="controls">
-
-    <div class="search-box">
-
-        <span class="search-icon">
-            🔎
-        </span>
+            <h1 class="dictionary-title">
+                Dictionary
+            </h1>
 
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search Vietnamese or English..."
-            autocomplete="off"
-        >
+            <p class="dictionary-description">
 
-    </div>
+                Browse and search Vietnamese vocabulary
+                from all vocabulary categories.
 
+            </p>
 
-    <div class="stats">
-
-        <span>
-            Showing
-            <strong id="resultCount">0</strong>
-            words
-        </span>
-
-    </div>
-
-</section>
+        </header>
 
 
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
 
-<!-- =====================================================
-     DICTIONARY
-====================================================== -->
+        <div class="dictionary-content">
 
-<main>
 
-    <div id="dictionaryGrid">
+            <!-- =================================================
+                 SEARCH
+            ================================================== -->
 
-        <div class="message">
+            <div class="search-box">
 
-            <div class="message-icon">
-                ⏳
+                <span
+                    class="search-icon"
+                    aria-hidden="true"
+                >
+                    🔎
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search Vietnamese or English..."
+                    autocomplete="off"
+                    aria-label="Search dictionary"
+                >
+
             </div>
 
-            <h2>
-                Loading dictionary...
-            </h2>
 
-            <p>
-                Please wait while we load the vocabulary.
-            </p>
+            <!-- =================================================
+                 STATS
+            ================================================== -->
+
+            <div class="stats">
+
+                <span>
+
+                    Showing
+
+                    <strong id="resultCount">
+                        0
+                    </strong>
+
+                    words
+
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY GRID
+            ================================================== -->
+
+            <div id="dictionaryGrid">
+
+                <div class="message">
+
+                    <div class="message-icon">
+                        ⏳
+                    </div>
+
+                    <h2>
+                        Loading dictionary...
+                    </h2>
+
+                    <p>
+                        Please wait while we load the vocabulary.
+                    </p>
+
+                </div>
+
+            </div>
+
 
         </div>
 
-    </div>
-
-</main>
+    </main>
 
 
+</div>
 
-<!-- =====================================================
-     SCRIPT
-====================================================== -->
 
 <script>
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================== */
 
     const dictionaryGrid =
         document.getElementById(
@@ -952,10 +1205,9 @@
     let dictionary = [];
 
 
-
-    /* =====================================================
+    /* =========================================================
        LOAD CATEGORIES.JSON
-    ====================================================== */
+    ========================================================== */
 
     async function loadDictionary() {
 
@@ -966,7 +1218,7 @@
              *
              * Dictionary/
              *
-             * categories.json is in:
+             * categories.json is inside:
              *
              * WEB GAME/
              *
@@ -1040,10 +1292,9 @@
     }
 
 
-
-    /* =====================================================
+    /* =========================================================
        BUILD DICTIONARY
-    ====================================================== */
+    ========================================================== */
 
     function buildDictionary(
         categories
@@ -1057,16 +1308,11 @@
         ).forEach(
             ([categoryName, category]) => {
 
-
                 /*
                  * ONLY vocabulary categories.
                  *
-                 * This means:
-                 *
-                 * type = vocabulary
-                 *
                  * Sentences and Useful Phrases
-                 * are automatically ignored.
+                 * are ignored automatically.
                  */
 
                 if (
@@ -1085,7 +1331,6 @@
                 category.vocab.forEach(
                     topic => {
 
-
                         if (
                             !Array.isArray(
                                 topic.vocabulary
@@ -1099,7 +1344,6 @@
 
                         topic.vocabulary.forEach(
                             word => {
-
 
                                 dictionary.push({
 
@@ -1146,10 +1390,9 @@
     }
 
 
-
-    /* =====================================================
+    /* =========================================================
        RENDER DICTIONARY
-    ====================================================== */
+    ========================================================== */
 
     function renderDictionary(
         words
@@ -1158,6 +1401,10 @@
         resultCount.textContent =
             words.length;
 
+
+        /*
+         * No results.
+         */
 
         if (
             words.length === 0
@@ -1188,6 +1435,10 @@
         }
 
 
+        /*
+         * Create cards.
+         */
+
         dictionaryGrid.innerHTML =
             words.map(
                 (word, index) => `
@@ -1196,9 +1447,6 @@
                         type="button"
                         class="word-card"
                         data-index="${index}"
-                        data-word="${escapeHTML(
-                            word.vietnamese
-                        )}"
                         aria-label="View details for ${escapeHTML(
                             word.vietnamese
                         )}"
@@ -1229,7 +1477,7 @@
 
                                     </div>
 
-                                  `
+                                `
                                 : ""
                         }
 
@@ -1257,7 +1505,7 @@
 
                                         </span>
 
-                                      `
+                                    `
                                     : ""
                             }
 
@@ -1274,7 +1522,7 @@
 
                                         </span>
 
-                                      `
+                                    `
                                     : ""
                             }
 
@@ -1295,16 +1543,16 @@
 
 
         /*
-         * Every word card is clickable.
+         * Add click events.
          *
-         * Clicking a word opens:
+         * Pass:
          *
-         * Dictionary/word.html?word=...&cat=...&topic=...
+         * word
+         * category
+         * topic
          *
-         * We pass category + topic too (not just the word)
-         * so word.html can find the EXACT entry even when
-         * the same Vietnamese word appears in more than one
-         * category (e.g. "cam" = orange fruit AND orange color).
+         * so word.html can identify
+         * the exact dictionary entry.
          */
 
         document
@@ -1318,14 +1566,14 @@
                         "click",
                         () => {
 
-                            const idx =
+                            const index =
                                 Number(
                                     card.dataset.index
                                 );
 
 
                             const word =
-                                words[idx];
+                                words[index];
 
 
                             if (!word) {
@@ -1337,9 +1585,18 @@
 
                             const url =
                                 "word.html" +
-                                "?word=" + encodeURIComponent(word.vietnamese) +
-                                "&cat=" + encodeURIComponent(word.category) +
-                                "&topic=" + encodeURIComponent(word.topic);
+                                "?word=" +
+                                encodeURIComponent(
+                                    word.vietnamese
+                                ) +
+                                "&cat=" +
+                                encodeURIComponent(
+                                    word.category
+                                ) +
+                                "&topic=" +
+                                encodeURIComponent(
+                                    word.topic
+                                );
 
 
                             window.location.href =
@@ -1354,10 +1611,9 @@
     }
 
 
-
-    /* =====================================================
+    /* =========================================================
        SEARCH
-    ====================================================== */
+    ========================================================== */
 
     searchInput.addEventListener(
         "input",
@@ -1369,6 +1625,10 @@
                     .toLowerCase();
 
 
+            /*
+             * Empty search.
+             */
+
             if (!query) {
 
                 renderDictionary(
@@ -1379,6 +1639,14 @@
 
             }
 
+
+            /*
+             * Search Vietnamese,
+             * phonetics,
+             * English,
+             * category,
+             * topic.
+             */
 
             const filtered =
                 dictionary.filter(
@@ -1453,10 +1721,9 @@
     );
 
 
-
-    /* =====================================================
+    /* =========================================================
        HTML ESCAPE
-    ====================================================== */
+    ========================================================== */
 
     function escapeHTML(
         value
@@ -1492,14 +1759,15 @@
     }
 
 
-
-    /* =====================================================
+    /* =========================================================
        START
-    ====================================================== */
+    ========================================================== */
 
     loadDictionary();
 
+
 </script>
+
 
 </body>
 

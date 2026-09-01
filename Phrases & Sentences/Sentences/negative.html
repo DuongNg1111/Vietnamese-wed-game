@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,27 @@
         content="Use negative statements with không to say what someone does not do, like, want, or experience in Vietnamese."
     >
 
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             box-sizing: border-box;
@@ -31,518 +52,814 @@
         }
 
 
+        /* =========================================================
+           THEME
+        ========================================================= */
+
         :root {
 
-            --background: #ffffff;
+            --accent: #2E2E2E;
 
-            --surface: #f7f7f5;
+            --accent-dark: #1F1F1F;
 
-            --text: #171717;
+            --accent-light: #f5f5f5;
 
-            --secondary: #4a4a4a;
+            --accent-bg: #F9F9F9;
 
-            --border: #d5d5d0;
+            --accent-border: #d0d0d0;
 
-            --accent: #a86f00;
+            --ink: #143a6b;
 
-            --accent-soft: #fff4d8;
+            --ink-soft: #66809d;
 
-            --success: #28633b;
+            --line: #e2e6eb;
 
-            --error: #9a3d32;
+            --phonetic: rgb(0, 116, 217);
 
-            --phonetic: #2563eb;
+            --correct: #019b3f;
+
+            --correct-bg: #eaf3ff;
+
+            --wrong: #d9536f;
+
+            --wrong-bg: #fff0f3;
+
+            --white: #ffffff;
         }
 
+
+        /* =========================================================
+           BODY
+        ========================================================= */
 
         body {
 
+            margin: 0;
+
+            min-height: 100vh;
+
+            padding:
+                28px
+                20px
+                45px;
+
             font-family:
                 Calibri,
-                Arial,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
                 sans-serif;
 
-            background:
-                var(--background);
-
             color:
-                var(--text);
+                var(--ink);
 
-            min-height:
-                100vh;
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    var(--accent-bg) 48%,
+                    var(--accent-light) 100%
+                );
         }
 
 
-        /* =========================
+        /* =========================================================
            PAGE
-        ========================= */
+        ========================================================= */
 
         .page {
 
-            width:
-                min(920px, 92%);
+            width: 100%;
 
-            margin:
-                0 auto;
+            max-width: 900px;
 
-            padding:
-                30px 0 70px;
+            margin: 0 auto;
         }
 
 
-        /* =========================
+        /* =========================================================
            BACK
-        ========================= */
+        ========================================================= */
 
         .back-button {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 18px;
 
             color:
-                var(--text);
+                var(--ink-soft);
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            font-size:
-                25px;
+            font-size: 15px;
 
-            font-weight:
-                700;
-
-            margin-bottom:
-                55px;
+            font-weight: 700;
 
             transition:
+                color 0.2s ease,
                 transform 0.2s ease;
         }
 
 
         .back-button:hover {
 
+            color:
+                var(--ink);
+
             transform:
-                translateX(-4px);
+                translateX(-3px);
         }
 
 
-        /* =========================
+        /* =========================================================
+           GAME CONTAINER
+        ========================================================= */
+
+        .game-container {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(20, 58, 107, 0.07);
+        }
+
+
+        /* =========================================================
+           ACCENT LINE
+        ========================================================= */
+
+        .game-container::before {
+
+            content: "";
+
+            display: block;
+
+            width: 100%;
+
+            height: 5px;
+
+            background:
+                var(--accent);
+        }
+
+
+        /* =========================================================
            HEADER
-        ========================= */
+        ========================================================= */
 
-        .header {
+        .game-header {
 
-            padding-bottom:
-                42px;
+            padding:
+                30px
+                32px
+                25px;
 
             border-bottom:
-                2px solid var(--text);
-
-            margin-bottom:
-                55px;
+                1px solid
+                var(--line);
         }
 
 
-        .header h1 {
+        .game-title {
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;;
+
+            color:
+                var(--ink);
 
             font-size:
-                clamp(38px, 5vw, 52px);
+                clamp(34px, 5vw, 46px);
 
             line-height:
                 1.15;
 
             font-weight:
-                800;
-
-            letter-spacing:
-                -1px;
+                700;
 
             margin-bottom:
-                13px;
+                9px;
         }
 
 
-        .question-note {
+        .game-description {
 
-            font-size:
-                26px;
+            max-width:
+                700px;
 
             color:
-                var(--secondary);
+                var(--ink-soft);
+
+            font-size:
+                17px;
 
             line-height:
-                1.6;
+                1.55;
         }
 
 
         .phonetic {
 
             color:
-                var(--phonetic);
+                rgb(0, 116, 217);
 
             font-style:
                 italic;
         }
 
 
-        /* =========================
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .game-content {
+
+            padding:
+                30px
+                32px
+                36px;
+        }
+
+
+        /* =========================================================
            SECTION
-        ========================= */
+        ========================================================= */
 
         .section {
 
             margin-bottom:
-                65px;
+                38px;
+        }
+
+
+        .section:last-child {
+
+            margin-bottom: 0;
         }
 
 
         .section-title {
 
-            font-size:
-                24px;
+            display: flex;
 
-            font-weight:
-                800;
+            align-items: center;
 
-            letter-spacing:
-                1.4px;
-
-            color:
-                var(--text);
+            gap: 12px;
 
             margin-bottom:
                 18px;
-        }
-
-
-        /* =========================
-           PATTERN
-        ========================= */
-
-        .pattern-box {
-
-            background:
-                var(--accent-soft);
-
-            border:
-                2px solid var(--accent);
-
-            border-radius:
-                14px;
-
-            padding:
-                30px;
-
-            font-size:
-                clamp(26px, 3vw, 31px);
-
-            font-weight:
-                700;
-
-            text-align:
-                center;
-
-            line-height:
-                1.6;
-        }
-
-
-        .pattern-word {
-
-            font-weight:
-                900;
 
             color:
+                var(--ink);
+
+            font-size:
+                18px;
+
+            font-weight:
+                800;
+        }
+
+
+        .section-title::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background:
+                var(--line);
+        }
+
+
+        /* =========================================================
+           PATTERN
+        ========================================================= */
+
+        .pattern-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                24px;
+
+            background:
+                var(--accent-bg);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                12px;
+        }
+
+
+        .pattern-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
                 var(--accent);
         }
 
 
-        /* =========================
-           PATTERN EXPLANATION
-        ========================= */
+        .pattern-row {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-bottom:
+                17px;
+
+            text-align: center;
+        }
+
+
+        .pattern-chip {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height:
+                42px;
+
+            padding:
+                8px
+                17px;
+
+            background:
+                var(--white);
+
+            border:
+                1.5px solid
+                var(--accent);
+
+            border-radius:
+                8px;
+
+            color:
+                var(--accent);
+
+            font-size:
+                25px;
+
+            font-weight:
+                700;
+        }
+
+
+        .pattern-plus {
+
+            color:
+                var(--ink);
+
+            font-size:
+                19px;
+
+            font-weight:
+                700;
+        }
+
 
         .pattern-explanation {
 
-            margin-top:
-                18px;
+            color:
+                var(--ink);
+
+            text-align:
+                center;
 
             font-size:
-                26px;
-
-            color:
-                var(--secondary);
+                16px;
 
             line-height:
-                1.7;
-
-            font-weight:
-                500;
+                1.65;
         }
 
 
         .pattern-explanation strong {
 
             color:
-                var(--text);
+                var(--ink);
         }
 
 
         .pattern-explanation .phonetic {
 
             color:
-                var(--phonetic);
+                rgb(0, 116, 217);
 
             font-style:
                 italic;
         }
 
 
-        /* =========================
+        /* =========================================================
            EXAMPLES
-        ========================= */
+        ========================================================= */
 
         .examples {
 
-            border-top:
-                2px solid var(--text);
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                14px;
         }
 
 
-        .example {
+        .example-card {
 
-            display:
-                grid;
+            position: relative;
 
-            grid-template-columns:
-                1fr 1fr;
+            overflow: hidden;
 
-            gap:
-                30px;
-
-            align-items:
-                center;
+            min-height:
+                165px;
 
             padding:
-                22px 8px;
+                20px;
 
-            border-bottom:
-                1px solid var(--border);
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                11px;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .example-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+                var(--accent);
+        }
+
+
+        .example-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(20, 58, 107, 0.07);
         }
 
 
         .example-vietnamese {
 
-            font-size:
-                30px;
-
-            font-weight:
-                800;
-
-            line-height:
-                1.4;
-        }
-
-
-        .example-phonetic {
-
-            font-size:
-                25px;
-
             color:
-                var(--phonetic);
-
-            font-style:
-                italic;
-
-            font-weight:
-                500;
-
-            margin-top:
-                4px;
-        }
-
-
-        .example-english {
+                var(--ink);
 
             font-size:
-                26px;
-
-            color:
-                var(--secondary);
+                19px;
 
             font-weight:
-                500;
-
-            line-height:
-                1.5;
-        }
-
-
-        /* =========================
-           PRACTICE
-        ========================= */
-
-        .practice-intro {
-
-            font-size:
-                26px;
-
-            color:
-                var(--secondary);
-
-            font-weight:
-                500;
-
-            line-height:
-                1.6;
-
-            margin-bottom:
-                28px;
-        }
-
-
-        .practice-list {
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            gap:
-                25px;
-        }
-
-
-        .practice-card {
-
-            border:
-                2px solid var(--text);
-
-            border-radius:
-                14px;
-
-            background:
-                var(--background);
-
-            padding:
-                30px;
-        }
-
-
-        /* =========================
-           NUMBER
-        ========================= */
-
-        .practice-number {
-
-            display:
-                inline-block;
-
-            font-size:
-                22px;
-
-            font-weight:
-                900;
-
-            letter-spacing:
-                1px;
-
-            color:
-                f5f5f5;
-
-            background:
-                var(--text);
-
-            padding:
-                6px 10px;
-
-            border-radius:
-                6px;
-
-            margin-bottom:
-                17px;
-        }
-
-
-        /* =========================
-           PROMPT
-        ========================= */
-
-        .english-prompt {
-
-            font-size:
-                31px;
-
-            font-weight:
-                800;
+                700;
 
             line-height:
                 1.45;
 
             margin-bottom:
-                10px;
+                6px;
         }
 
 
-        .instruction {
-
-            font-size:
-                24px;
+        .example-phonetic {
 
             color:
-                var(--secondary);
+                rgb(0, 116, 217);
 
-            font-weight:
-                500;
+            font-size:
+                14px;
+
+            font-style:
+                italic;
+
+            line-height:
+                1.4;
+
+            margin-bottom:
+                13px;
+        }
+
+
+        .example-english {
+
+            padding-top:
+                11px;
+
+            border-top:
+                1px solid
+                var(--line);
+
+            color:
+                var(--ink);
+
+            font-size:
+                15px;
+
+            line-height:
+                1.45;
+        }
+
+
+        /* =========================================================
+           PRACTICE
+        ========================================================= */
+
+        .practice-intro {
 
             margin-bottom:
                 20px;
+
+            color:
+                var(--ink);
+
+            font-size:
+                16px;
+
+            line-height:
+                1.55;
         }
 
 
-        /* =========================
-           ANSWER AREA
-        ========================= */
+        .practice-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap:
+                18px;
+        }
+
+
+        /* =========================================================
+           PRACTICE CARD
+        ========================================================= */
+
+        .practice-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                24px;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                12px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(20, 58, 107, 0.04);
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .practice-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+                var(--accent);
+        }
+
+
+        /* =========================================================
+           NUMBER
+        ========================================================= */
+
+        .practice-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width:
+                34px;
+
+            height:
+                28px;
+
+            padding:
+                0 7px;
+
+            margin-bottom:
+                12px;
+
+            border-radius:
+                6px;
+
+            background:
+                var(--accent-light);
+
+            color:
+                var(--accent);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.03em;
+        }
+
+
+        /* =========================================================
+           PROMPT
+        ========================================================= */
+
+        .english-prompt {
+
+            color:
+                var(--ink);
+
+            font-size:
+                19px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.45;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        /* =========================================================
+           INSTRUCTION
+        ========================================================= */
+
+        .instruction {
+
+            color:
+                var(--ink);
+
+            font-size:
+                15px;
+
+            line-height:
+                1.5;
+
+            margin-bottom:
+                16px;
+        }
+
+
+        /* =========================================================
+           DROP ZONE
+        ========================================================= */
 
         .drop-zone {
 
-            min-height:
-                64px;
+            display: flex;
 
-            display:
-                flex;
+            align-items: center;
 
-            align-items:
-                center;
-
-            flex-wrap:
-                wrap;
+            flex-wrap: wrap;
 
             gap:
-                9px;
+                8px;
+
+            min-height:
+                58px;
 
             padding:
-                10px;
-
-            border:
-                2px dashed #8b8b85;
-
-            border-radius:
-                10px;
-
-            background:
-                var(--surface);
+                9px;
 
             margin-bottom:
-                22px;
+                14px;
+
+            border:
+                1.5px dashed
+                var(--accent-border);
+
+            border-radius:
+                9px;
+
+            background:
+                var(--accent-bg);
 
             transition:
                 border-color 0.2s ease,
                 background 0.2s ease;
+        }
+
+
+        .drop-zone:empty::before {
+
+            content:
+                "Click or drag words here";
+
+            color:
+                #9aa9b8;
+
+            font-size:
+                14px;
+
+            font-style:
+                italic;
+
+            padding-left:
+                4px;
         }
 
 
@@ -552,88 +869,88 @@
                 var(--accent);
 
             background:
-                var(--accent-soft);
+                var(--accent-light);
         }
 
 
-        /* =========================
-           LABEL
-        ========================= */
+        /* =========================================================
+           WORD BANK LABEL
+        ========================================================= */
 
         .word-bank-label {
 
+            color:
+                var(--ink);
+
             font-size:
-                22px;
+                12px;
 
             font-weight:
                 800;
 
             letter-spacing:
-                1px;
-
-            color:
-                var(--text);
+                0.08em;
 
             margin-bottom:
-                11px;
-        }
-
-
-        /* =========================
-           WORD BANK
-        ========================= */
-
-        .word-bank {
-
-            display:
-                flex;
-
-            flex-wrap:
-                wrap;
-
-            gap:
                 9px;
         }
 
 
-        /* =========================
+        /* =========================================================
+           WORD BANK
+        ========================================================= */
+
+        .word-bank {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap:
+                8px;
+
+            min-height:
+                38px;
+        }
+
+
+        /* =========================================================
            WORD CHIP
-        ========================= */
+        ========================================================= */
 
         .word {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
             min-height:
-                43px;
+                38px;
 
             padding:
-                8px 15px;
+                6px
+                14px;
 
             background:
-                f5f5f5;
+                var(--white);
 
             border:
-                1.5px solid #8f8f89;
+                1.5px solid
+                var(--accent-border);
 
             border-radius:
                 8px;
 
+            color:
+                var(--ink);
+
             font-size:
-                25px;
+                16px;
 
             font-weight:
-                700;
-
-            color:
-                var(--text);
+                600;
 
             cursor:
                 pointer;
@@ -644,7 +961,8 @@
             transition:
                 transform 0.15s ease,
                 background 0.15s ease,
-                border-color 0.15s ease;
+                border-color 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
 
@@ -654,10 +972,14 @@
                 translateY(-2px);
 
             border-color:
-                var(--text);
+                var(--accent);
 
             background:
-                #f4f4f1;
+                var(--accent-light);
+
+            box-shadow:
+                0 3px 8px
+                rgba(0, 0, 0, 0.06);
         }
 
 
@@ -671,48 +993,55 @@
         .word.dragging {
 
             opacity:
-                0.45;
+                0.4;
         }
 
 
-        /* =========================
-           CHECK
-        ========================= */
+        /* =========================================================
+           CHECK BUTTON
+        ========================================================= */
 
         .check-button {
 
+            min-height:
+                40px;
+
             margin-top:
-                24px;
+                16px;
 
             padding:
-                12px 22px;
+                8px
+                18px;
 
             border:
-                2px solid var(--text);
+                1.5px solid
+                var(--accent);
 
             border-radius:
                 8px;
 
             background:
-                var(--text);
+                var(--accent);
 
             color:
-                f5f5f5;
+                var(--white);
 
             font-family:
                 inherit;
 
             font-size:
-                24px;
+                14px;
 
             font-weight:
-                800;
+                700;
 
             cursor:
                 pointer;
 
             transition:
                 transform 0.15s ease,
+                background 0.15s ease,
+                border-color 0.15s ease,
                 opacity 0.15s ease;
         }
 
@@ -721,13 +1050,26 @@
 
             transform:
                 translateY(-2px);
+
+            background:
+                var(--accent-dark);
+
+            border-color:
+                var(--accent-dark);
+        }
+
+
+        .check-button:active {
+
+            transform:
+                scale(0.98);
         }
 
 
         .check-button:disabled {
 
             opacity:
-                0.45;
+                0.5;
 
             cursor:
                 default;
@@ -737,9 +1079,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            FEEDBACK
-        ========================= */
+        ========================================================= */
 
         .feedback {
 
@@ -747,108 +1089,255 @@
                 22px;
 
             margin-top:
-                15px;
+                10px;
 
             font-size:
-                24px;
+                14px;
 
             font-weight:
-                800;
+                700;
+
+            line-height:
+                1.5;
         }
 
 
         .feedback.correct {
 
+            padding:
+                8px
+                11px;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--correct-bg);
+
             color:
-                var(--success);
+                var(--correct);
         }
 
 
         .feedback.wrong {
 
+            padding:
+                8px
+                11px;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--wrong-bg);
+
             color:
-                var(--error);
+                var(--wrong);
         }
 
 
-        /* =========================
+        /* =========================================================
+           CORRECT STATE
+        ========================================================= */
+
+        .practice-card.correct-state {
+
+            border-color:
+                #b9d8c5;
+        }
+
+
+        .practice-card.correct-state::before {
+
+            background:
+                var(--correct);
+        }
+
+
+        .practice-card.correct-state .drop-zone {
+
+            border-style:
+                solid;
+
+            border-color:
+                var(--correct);
+
+            background:
+                var(--correct-bg);
+        }
+
+
+        /* =========================================================
            MOBILE
-        ========================= */
+        ========================================================= */
 
-        @media (max-width: 650px) {
+        @media (max-width: 760px) {
 
-            .page {
+            body {
 
-                width:
-                    90%;
+                padding:
+                    20px
+                    14px
+                    35px;
+            }
 
-                padding-top:
-                    25px;
+
+            .game-header {
+
+                padding:
+                    25px
+                    22px
+                    21px;
+            }
+
+
+            .game-content {
+
+                padding:
+                    24px
+                    22px
+                    30px;
+            }
+
+
+            .examples {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .example-card {
+
+                min-height:
+                    auto;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+
+                padding:
+                    16px
+                    12px
+                    30px;
             }
 
 
             .back-button {
 
                 margin-bottom:
-                    40px;
+                    14px;
+
+                font-size:
+                    14px;
             }
 
 
-            .header {
+            .game-container {
 
-                margin-bottom:
-                    45px;
-
-                padding-bottom:
-                    30px;
+                border-radius:
+                    13px;
             }
 
 
-            .section {
+            .game-title {
 
-                margin-bottom:
-                    50px;
+                font-size:
+                    34px;
             }
 
 
-            .example {
+            .game-description {
 
-                grid-template-columns:
-                    1fr;
+                font-size:
+                    16px;
+            }
 
-                gap:
-                    6px;
+
+            .game-header {
 
                 padding:
-                    20px 5px;
+                    22px
+                    18px
+                    19px;
             }
 
 
-            .example-vietnamese {
+            .game-content {
 
-                font-size:
-                    28px;
+                padding:
+                    22px
+                    18px
+                    27px;
             }
 
 
-            .example-english {
+            .pattern-card {
+
+                padding:
+                    19px
+                    14px;
+            }
+
+
+            .pattern-row {
+
+                gap:
+                    7px;
+            }
+
+
+            .pattern-chip {
+
+                min-height:
+                    38px;
+
+                padding:
+                    7px
+                    11px;
 
                 font-size:
-                    25px;
+                    15px;
+            }
+
+
+            .pattern-plus {
+
+                font-size:
+                    16px;
+            }
+
+
+            .pattern-explanation {
+
+                font-size:
+                    15px;
             }
 
 
             .practice-card {
 
                 padding:
-                    23px;
+                    20px
+                    16px;
             }
 
 
             .english-prompt {
 
                 font-size:
-                    29px;
+                    18px;
+            }
+
+
+            .check-button {
+
+                width:
+                    100%;
             }
 
         }
@@ -864,9 +1353,9 @@
 <div class="page">
 
 
-    <!-- =========================
+    <!-- =========================================================
          BACK
-    ========================= -->
+    ========================================================= -->
 
     <a
         href="../../phrases-and-sentences.html?category=Sentences"
@@ -876,198 +1365,224 @@
     </a>
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
+    <!-- =========================================================
+         GAME CONTAINER
+    ========================================================= -->
 
-    <header class="header">
-
-        <h1>
-            STATEMENT — NEGATIVE
-        </h1>
+    <main class="game-container">
 
 
-        <p class="question-note">
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
-            <strong>"Không"</strong>
+        <header class="game-header">
 
-            <span class="phonetic">
-                /khong/
-            </span>
-
-            <em>
-                is used before the verb to make a statement negative.
-            </em>
-
-        </p>
-
-    </header>
+            <h1 class="game-title">
+                Statement — Negative
+            </h1>
 
 
-    <!-- =========================
-         PATTERN
-    ========================= -->
+            <p class="game-description">
 
-    <section class="section">
+                <strong>"Không"</strong>
 
-        <h2 class="section-title">
-            PATTERN
-        </h2>
+                <span class="phonetic">
+                    /khong/
+                </span>
+
+                is used before the verb to make a statement
+                negative.
+
+            </p>
+
+        </header>
 
 
-        <div class="pattern-box">
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
 
-            subject
+        <div class="game-content">
 
-            +
 
-            <span class="pattern-word">
-                KHÔNG
-            </span>
+            <!-- =================================================
+                 PATTERN
+            ================================================== -->
 
-            +
+            <section class="section">
 
-            verb + noun / verb
+                <h2 class="section-title">
+                    Pattern
+                </h2>
+
+
+                <div class="pattern-card">
+
+                    <div class="pattern-row">
+
+                        <span class="pattern-chip">
+                            subject
+                        </span>
+
+                        <span class="pattern-plus">
+                            +
+                        </span>
+
+                        <span class="pattern-chip">
+                            không
+                        </span>
+
+                        <span class="pattern-plus">
+                            +
+                        </span>
+
+                        <span class="pattern-chip">
+                            verb
+                        </span>
+
+                        <span class="pattern-plus">
+                            +
+                        </span>
+
+                        <span class="pattern-chip">
+                            noun / verb
+                        </span>
+
+                    </div>
+
+
+                    <p class="pattern-explanation">
+
+                        <strong>Không</strong>
+                        <span class="phonetic">
+                            /khong/
+                        </span>
+                        means <strong>"not"</strong>.
+
+                        <br>
+
+                        Put <strong>không</strong> before the verb
+                        to make the sentence negative.
+
+                        <br>
+
+                        The final part can be a
+                        <strong>noun</strong>
+                        or another
+                        <strong>verb</strong>.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXAMPLES
+            ================================================== -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Examples
+                </h2>
+
+
+                <div class="examples">
+
+
+                    <!-- EXAMPLE 1 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Tôi không ăn cơm.
+                        </div>
+
+                        <div class="example-phonetic">
+                            toy khong an kəm.
+                        </div>
+
+                        <div class="example-english">
+                            I don't eat rice.
+                        </div>
+
+                    </article>
+
+
+                    <!-- EXAMPLE 2 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Tôi không uống cà phê.
+                        </div>
+
+                        <div class="example-phonetic">
+                            toy khong uong ka feh.
+                        </div>
+
+                        <div class="example-english">
+                            I don't drink coffee.
+                        </div>
+
+                    </article>
+
+
+                    <!-- EXAMPLE 3 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Tôi không thích ăn bún.
+                        </div>
+
+                        <div class="example-phonetic">
+                            toy khong thich an boon.
+                        </div>
+
+                        <div class="example-english">
+                            I don't like eating noodles.
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TRY IT YOURSELF
+            ================================================== -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Try it yourself
+                </h2>
+
+
+                <p class="practice-intro">
+                    Click or drag the Vietnamese words to build
+                    the correct sentence.
+                </p>
+
+
+                <div
+                    class="practice-list"
+                    id="practiceList"
+                ></div>
+
+            </section>
+
 
         </div>
 
-
-        <p class="pattern-explanation">
-
-            <strong>Không</strong>
-            <span class="phonetic">/khong/</span>
-            means <strong>"not"</strong>.
-
-            <br>
-
-            Put <strong>không</strong> before the verb to make the sentence negative.
-
-            <br>
-
-            The final part can be a
-            <strong>noun</strong>
-            or another
-            <strong>verb</strong>.
-
-        </p>
-
-    </section>
-
-
-    <!-- =========================
-         EXAMPLES
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            EXAMPLES
-        </h2>
-
-
-        <div class="examples">
-
-
-            <!-- EXAMPLE 1 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Tôi không ăn cơm.
-                    </div>
-
-                    <div class="example-phonetic">
-                        toy khong an kəm.
-                    </div>
-
-                </div>
-
-
-                <div class="example-english">
-                    I don't eat rice.
-                </div>
-
-            </div>
-
-
-            <!-- EXAMPLE 2 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Tôi không uống cà phê.
-                    </div>
-
-                    <div class="example-phonetic">
-                        toy khong uong ka feh.
-                    </div>
-
-                </div>
-
-
-                <div class="example-english">
-                    I don't drink coffee.
-                </div>
-
-            </div>
-
-
-            <!-- EXAMPLE 3 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Tôi không thích ăn bún.
-                    </div>
-
-                    <div class="example-phonetic">
-                        toy khong thich an boon.
-                    </div>
-
-                </div>
-
-
-                <div class="example-english">
-                    I don't like eating noodles.
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         TRY IT YOURSELF
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            TRY IT YOURSELF
-        </h2>
-
-
-        <p class="practice-intro">
-            Click or drag the Vietnamese words to build
-            the correct sentence.
-        </p>
-
-
-        <div
-            class="practice-list"
-            id="practiceList"
-        ></div>
-
-    </section>
+    </main>
 
 
 </div>
@@ -1076,9 +1591,9 @@
 <script>
 
 
-    /* =========================
+    /* =========================================================
        PRACTICE DATA
-    ========================= */
+    ========================================================= */
 
     const practiceQuestions = [
 
@@ -1130,9 +1645,9 @@
     let draggedWord = null;
 
 
-    /* =========================
+    /* =========================================================
        SHUFFLE
-    ========================= */
+    ========================================================= */
 
     function shuffle(array) {
 
@@ -1173,9 +1688,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        CREATE WORD
-    ========================= */
+    ========================================================= */
 
     function createWord(word) {
 
@@ -1199,13 +1714,22 @@
             word;
 
 
-        /* =========================
+        /* =====================================================
            CLICK
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "click",
             function() {
+
+                if (
+                    element.draggable === false
+                ) {
+
+                    return;
+
+                }
+
 
                 const parent =
                     element.parentElement;
@@ -1272,13 +1796,24 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            DRAG START
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "dragstart",
             function(event) {
+
+                if (
+                    element.draggable === false
+                ) {
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
 
                 draggedWord =
                     element;
@@ -1296,9 +1831,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            DRAG END
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "dragend",
@@ -1321,9 +1856,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        CREATE PRACTICE CARD
-    ========================= */
+    ========================================================= */
 
     function createPracticeCard(
         question,
@@ -1344,9 +1879,9 @@
             );
 
 
-        /* =========================
+        /* =====================================================
            NUMBER
-        ========================= */
+        ====================================================== */
 
         const number =
             document.createElement("div");
@@ -1365,9 +1900,9 @@
             );
 
 
-        /* =========================
-           ENGLISH
-        ========================= */
+        /* =====================================================
+           PROMPT
+        ====================================================== */
 
         const english =
             document.createElement("div");
@@ -1381,9 +1916,9 @@
             question.english;
 
 
-        /* =========================
+        /* =====================================================
            INSTRUCTION
-        ========================= */
+        ====================================================== */
 
         const instruction =
             document.createElement("div");
@@ -1392,14 +1927,9 @@
         instruction.className =
             "instruction";
 
-
-        instruction.textContent =
-            "Build the Vietnamese sentence.";
-
-
-        /* =========================
+        /* =====================================================
            DROP ZONE
-        ========================= */
+        ====================================================== */
 
         const dropZone =
             document.createElement("div");
@@ -1409,9 +1939,9 @@
             "drop-zone";
 
 
-        /* =========================
+        /* =====================================================
            WORD BANK LABEL
-        ========================= */
+        ====================================================== */
 
         const wordBankLabel =
             document.createElement("div");
@@ -1425,9 +1955,9 @@
             "AVAILABLE WORDS";
 
 
-        /* =========================
+        /* =====================================================
            WORD BANK
-        ========================= */
+        ====================================================== */
 
         const wordBank =
             document.createElement("div");
@@ -1450,9 +1980,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            CHECK BUTTON
-        ========================= */
+        ====================================================== */
 
         const checkButton =
             document.createElement("button");
@@ -1462,13 +1992,17 @@
             "check-button";
 
 
+        checkButton.type =
+            "button";
+
+
         checkButton.textContent =
-            "Check Answer";
+            "Check answer";
 
 
-        /* =========================
+        /* =====================================================
            FEEDBACK
-        ========================= */
+        ====================================================== */
 
         const feedback =
             document.createElement("div");
@@ -1478,15 +2012,25 @@
             "feedback";
 
 
-        /* =========================
-           DROP ZONE
-        ========================= */
+        /* =====================================================
+           DROP ZONE EVENTS
+        ====================================================== */
 
         dropZone.addEventListener(
             "dragover",
             function(event) {
 
                 event.preventDefault();
+
+
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
+                    return;
+
+                }
 
 
                 dropZone.classList.add(
@@ -1521,8 +2065,36 @@
                 );
 
 
-                if (!draggedWord) {
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
                     return;
+
+                }
+
+
+                const sourceCard =
+                    draggedWord.closest(
+                        ".practice-card"
+                    );
+
+
+                /*
+                    Prevent moving a word
+                    between different questions.
+                */
+
+                if (
+                    sourceCard !== card
+                ) {
+
+                    draggedWord =
+                        null;
+
+                    return;
+
                 }
 
 
@@ -1538,9 +2110,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            WORD BANK DROP
-        ========================= */
+        ====================================================== */
 
         wordBank.addEventListener(
             "dragover",
@@ -1559,8 +2131,31 @@
                 event.preventDefault();
 
 
-                if (!draggedWord) {
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
                     return;
+
+                }
+
+
+                const sourceCard =
+                    draggedWord.closest(
+                        ".practice-card"
+                    );
+
+
+                if (
+                    sourceCard !== card
+                ) {
+
+                    draggedWord =
+                        null;
+
+                    return;
+
                 }
 
 
@@ -1576,13 +2171,22 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            CHECK ANSWER
-        ========================= */
+        ====================================================== */
 
         checkButton.addEventListener(
             "click",
             function() {
+
+                if (
+                    checkButton.disabled
+                ) {
+
+                    return;
+
+                }
+
 
                 const currentAnswer =
                     Array.from(
@@ -1604,9 +2208,9 @@
                     );
 
 
-                /* =========================
+                /* =================================================
                    NOT COMPLETE
-                ========================= */
+                ================================================== */
 
                 if (
                     currentAnswer.length !==
@@ -1626,9 +2230,9 @@
                 }
 
 
-                /* =========================
+                /* =================================================
                    CHECK ORDER
-                ========================= */
+                ================================================== */
 
                 const isCorrect =
                     currentAnswer.every(
@@ -1643,9 +2247,9 @@
                     );
 
 
-                /* =========================
+                /* =================================================
                    CORRECT
-                ========================= */
+                ================================================== */
 
                 if (isCorrect) {
 
@@ -1659,6 +2263,11 @@
 
                     checkButton.disabled =
                         true;
+
+
+                    card.classList.add(
+                        "correct-state"
+                    );
 
 
                     /*
@@ -1690,16 +2299,12 @@
                     dropZone.style.borderStyle =
                         "solid";
 
-
-                    dropZone.style.borderColor =
-                        "#28633b";
-
                 }
 
 
-                /* =========================
+                /* =================================================
                    WRONG
-                ========================= */
+                ================================================== */
 
                 else {
 
@@ -1721,9 +2326,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            BUILD CARD
-        ========================= */
+        ====================================================== */
 
         card.appendChild(
             number
@@ -1770,9 +2375,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        RESET QUESTION
-    ========================= */
+    ========================================================= */
 
     function resetQuestion(card) {
 
@@ -1859,9 +2464,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        RENDER
-    ========================= */
+    ========================================================= */
 
     const practiceList =
         document.getElementById(
@@ -1870,7 +2475,10 @@
 
 
     practiceQuestions.forEach(
-        function(question, index) {
+        function(
+            question,
+            index
+        ) {
 
             practiceList.appendChild(
                 createPracticeCard(
@@ -1889,3 +2497,4 @@
 </body>
 
 </html>
+```

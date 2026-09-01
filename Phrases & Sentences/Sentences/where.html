@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,75 +20,160 @@
 
     <meta
         name="sentence-description"
-        content="Use to ask a “where” question in Vietnamese."
+        content="Use ở đâu to ask where questions in Vietnamese."
     >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
 
     <style>
 
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+
+            box-sizing:
+                border-box;
+
+            margin:
+                0;
+
+            padding:
+                0;
+
         }
 
+
+        /* =========================================================
+           THEME
+        ========================================================= */
 
         :root {
-            --background: #ffffff;
-            --surface: #f7f7f5;
-            --text: #171717;
-            --secondary: #4a4a4a;
-            --border: #d5d5d0;
 
-            --accent: #a86f00;
-            --accent-soft: #fff4d8;
+            --accent:
+                #2E2E2E;
 
-            --phonetic: #2563eb;
+            --accent-dark:
+                #1F1F1F;
 
-            --success: #28633b;
-            --error: #9a3d32;
+            --accent-light:
+                #f5f5f5;
+
+            --accent-bg:
+                #F9F9F9;
+
+            --accent-border:
+                #d0d0d0;
+
+            --ink:
+                #143a6b;
+
+            --ink-soft:
+                #66809d;
+
+            --line:
+                #e2e6eb;
+
+            --phonetic:
+                rgb(0, 116, 217);
+
+            --correct:
+                #019b3f;
+
+            --correct-bg:
+                #eaf3ff;
+
+            --wrong:
+                #d9536f;
+
+            --wrong-bg:
+                #fff0f3;
+
+            --white:
+                #ffffff;
+
         }
 
+
+        /* =========================================================
+           BODY
+        ========================================================= */
 
         body {
 
-            font-family:
-                Calibri,
-                Arial,
-                sans-serif;
-
-            background:
-                var(--background);
-
-            color:
-                var(--text);
+            margin:
+                0;
 
             min-height:
                 100vh;
+
+            padding:
+                28px
+                20px
+                45px;
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            color:
+                var(--ink);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    var(--accent-bg) 48%,
+                    var(--accent-light) 100%
+                );
+
         }
 
 
-        /* =========================
+        /* =========================================================
            PAGE
-        ========================= */
+        ========================================================= */
 
         .page {
 
             width:
-                min(920px, 92%);
+                100%;
+
+            max-width:
+                900px;
 
             margin:
                 0 auto;
 
-            padding:
-                30px 0 70px;
         }
 
 
-        /* =========================
+        /* =========================================================
            BACK BUTTON
-        ========================= */
+        ========================================================= */
 
-        .back-btn {
+        .back-button {
 
             display:
                 inline-flex;
@@ -95,289 +181,588 @@
             align-items:
                 center;
 
+            gap:
+                7px;
+
+            margin-bottom:
+                18px;
+
             color:
-                var(--text);
+                var(--ink-soft);
 
             text-decoration:
                 none;
 
             font-size:
-                25px;
+                15px;
 
             font-weight:
                 700;
 
-            margin-bottom:
-                55px;
-
             transition:
+                color 0.2s ease,
                 transform 0.2s ease;
+
         }
 
 
-        .back-btn:hover {
+        .back-button:hover {
+
+            color:
+                var(--ink);
 
             transform:
-                translateX(-4px);
+                translateX(-3px);
+
         }
 
 
-        /* =========================
+        /* =========================================================
+           GAME CONTAINER
+        ========================================================= */
+
+        .game-container {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(20, 58, 107, 0.07);
+
+        }
+
+
+        /* =========================================================
+           ACCENT LINE
+        ========================================================= */
+
+        .game-container::before {
+
+            content:
+                "";
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                5px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =========================================================
            HEADER
-        ========================= */
+        ========================================================= */
 
-        .header {
+        .game-header {
 
-            padding-bottom:
-                42px;
+            padding:
+                30px
+                32px
+                25px;
 
             border-bottom:
-                2px solid var(--text);
+                1px solid
+                var(--line);
 
-            margin-bottom:
-                55px;
         }
 
 
-        .header h1 {
+        .game-title {
+
+            font-family:
+                Calibri,
+                "Segoe UI",
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            color:
+                var(--ink);
 
             font-size:
-                clamp(38px, 5vw, 52px);
+                clamp(34px, 5vw, 46px);
 
             line-height:
                 1.15;
 
             font-weight:
-                800;
-
-            letter-spacing:
-                -1px;
+                700;
 
             margin-bottom:
-                13px;
+                9px;
+
         }
 
 
-        .subtitle {
+        .game-description {
 
-            font-size:
-                27px;
-
-            line-height:
-                1.6;
+            max-width:
+                700px;
 
             color:
-                var(--secondary);
+                var(--ink-soft);
 
-            font-weight:
-                500;
+            font-size:
+                17px;
+
+            line-height:
+                1.55;
+
         }
 
 
         .phonetic {
 
             color:
-                var(--phonetic);
+                rgb(0, 116, 217);
+
+            font-style:
+                italic;
+
         }
 
 
-        /* =========================
-           SECTIONS
-        ========================= */
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .game-content {
+
+            padding:
+                30px
+                32px
+                36px;
+
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
 
         .section {
 
             margin-bottom:
-                65px;
+                38px;
+
+        }
+
+
+        .section:last-child {
+
+            margin-bottom:
+                0;
+
         }
 
 
         .section-title {
 
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                18px;
+
+            color:
+                var(--ink);
+
             font-size:
-                24px;
+                18px;
 
             font-weight:
                 800;
 
-            letter-spacing:
-                1.4px;
-
-            color:
-                var(--text);
-
-            margin-bottom:
-                18px;
         }
 
 
-        /* =========================
-           PATTERN
-        ========================= */
+        .section-title::after {
 
-        .pattern-box {
+            content:
+                "";
+
+            flex:
+                1;
+
+            height:
+                1px;
 
             background:
-                var(--accent-soft);
+                var(--line);
 
-            border:
-                2px solid var(--accent);
+        }
 
-            border-radius:
-                14px;
+
+        /* =========================================================
+           PATTERN
+        ========================================================= */
+
+        .pattern-card {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
 
             padding:
-                30px;
+                24px;
 
-            font-size:
-                clamp(26px, 3vw, 31px);
+            background:
+                var(--accent-bg);
 
-            font-weight:
-                700;
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                12px;
+
+        }
+
+
+        .pattern-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        .pattern-row {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                17px;
 
             text-align:
                 center;
 
-            line-height:
-                1.6;
         }
 
 
-        .question-word {
+        .pattern-chip {
 
-            font-weight:
-                900;
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                42px;
+
+            padding:
+                8px
+                17px;
+
+            background:
+                var(--white);
+
+            border:
+                1.5px solid
+                var(--accent);
+
+            border-radius:
+                8px;
 
             color:
                 var(--accent);
+
+            font-size:
+                25px;
+
+            font-weight:
+                700;
+
         }
 
-        /* =========================
-        PATTERN EXPLANATION
-        ========================= */
+
+        .pattern-plus {
+
+            color:
+                var(--ink);
+
+            font-size:
+                19px;
+
+            font-weight:
+                700;
+
+        }
+
 
         .pattern-explanation {
-            margin-top: 18px;
-            font-size: 26px;
-            color: var(--secondary);
-            line-height: 1.7;
-            font-weight: 500;
-            text-align: left;
+
+            color:
+                var(--ink);
+
+            text-align:
+                center;
+
+            font-size:
+                16px;
+
+            line-height:
+                1.65;
+
         }
+
 
         .pattern-explanation strong {
-            color: var(--text);
+
+            color:
+                var(--ink);
+
         }
+
 
         .pattern-explanation .phonetic {
-            color: var(--phonetic);
-            font-style: italic;
+
+            color:
+                rgb(0, 116, 217);
+
+            font-style:
+                italic;
+
         }
 
-        /* =========================
+
+        /* =========================================================
            EXAMPLES
-        ========================= */
+        ========================================================= */
 
         .examples {
-
-            border-top:
-                2px solid var(--text);
-        }
-
-
-        .example {
 
             display:
                 grid;
 
             grid-template-columns:
-                1fr 1fr;
+                repeat(3, 1fr);
 
             gap:
-                30px;
+                14px;
 
-            align-items:
-                center;
+        }
+
+
+        .example-card {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            min-height:
+                165px;
 
             padding:
-                22px 8px;
+                20px;
 
-            border-bottom:
-                1px solid var(--border);
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                11px;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        .example-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        .example-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(20, 58, 107, 0.07);
+
         }
 
 
         .example-vietnamese {
 
+            color:
+                var(--ink);
+
             font-size:
-                30px;
+                19px;
 
             font-weight:
-                800;
+                700;
 
             line-height:
-                1.4;
+                1.45;
+
+            margin-bottom:
+                6px;
+
         }
 
 
         .example-phonetic {
 
-            font-size:
-                25px;
-
             color:
-                var(--phonetic);
+                rgb(0, 116, 217);
+
+            font-size:
+                14px;
 
             font-style:
                 italic;
 
-            font-weight:
-                500;
+            line-height:
+                1.4;
 
-            margin-top:
-                4px;
+            margin-bottom:
+                13px;
+
         }
 
 
         .example-english {
 
-            font-size:
-                26px;
+            padding-top:
+                11px;
+
+            border-top:
+                1px solid
+                var(--line);
 
             color:
-                var(--secondary);
+                var(--ink);
 
-            font-weight:
-                500;
+            font-size:
+                15px;
+
+            line-height:
+                1.45;
+
         }
 
 
-        /* =========================
+        /* =========================================================
            PRACTICE INTRO
-        ========================= */
+        ========================================================= */
 
         .practice-intro {
 
-            font-size:
-                26px;
+            margin-bottom:
+                20px;
 
             color:
-                var(--secondary);
+                var(--ink);
 
-            font-weight:
-                500;
+            font-size:
+                16px;
 
             line-height:
-                1.6;
+                1.55;
 
-            margin-bottom:
-                28px;
         }
 
 
-        /* =========================
+        /* =========================================================
            PRACTICE LIST
-        ========================= */
+        ========================================================= */
 
         .practice-list {
 
@@ -388,105 +773,171 @@
                 column;
 
             gap:
-                25px;
+                18px;
+
         }
 
+
+        /* =========================================================
+           PRACTICE CARD
+        ========================================================= */
 
         .practice-card {
 
-            border:
-                2px solid var(--text);
+            position:
+                relative;
 
-            border-radius:
-                14px;
-
-            background:
-                var(--background);
+            overflow:
+                hidden;
 
             padding:
-                30px;
+                24px;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius:
+                12px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(20, 58, 107, 0.04);
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
         }
 
 
-        /* =========================
+        .practice-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =========================================================
            QUESTION NUMBER
-        ========================= */
+        ========================================================= */
 
         .practice-number {
 
             display:
-                inline-block;
+                inline-flex;
 
-            font-size:
-                22px;
+            align-items:
+                center;
 
-            font-weight:
-                900;
+            justify-content:
+                center;
 
-            letter-spacing:
-                1px;
+            min-width:
+                34px;
 
-            color:
-                f5f5f5;
-
-            background:
-                var(--text);
+            height:
+                28px;
 
             padding:
-                6px 10px;
+                0 7px;
+
+            margin-bottom:
+                12px;
 
             border-radius:
                 6px;
 
-            margin-bottom:
-                17px;
-        }
+            background:
+                var(--accent-light);
 
-
-        /* =========================
-           ENGLISH PROMPT
-        ========================= */
-
-        .english-prompt {
+            color:
+                var(--accent);
 
             font-size:
-                31px;
+                12px;
 
             font-weight:
                 800;
+
+            letter-spacing:
+                0.03em;
+
+        }
+
+
+        /* =========================================================
+           ENGLISH PROMPT
+        ========================================================= */
+
+        .english-prompt {
+
+            color:
+                var(--ink);
+
+            font-size:
+                19px;
+
+            font-weight:
+                700;
 
             line-height:
                 1.45;
 
             margin-bottom:
-                10px;
+                7px;
+
         }
 
+
+        /* =========================================================
+           INSTRUCTION
+        ========================================================= */
 
         .instruction {
 
-            font-size:
-                24px;
-
             color:
-                var(--secondary);
+                var(--ink);
 
-            font-weight:
-                500;
+            font-size:
+                15px;
+
+            line-height:
+                1.5;
 
             margin-bottom:
-                20px;
+                16px;
+
         }
 
 
-        /* =========================
+        /* =========================================================
            DROP ZONE
-        ========================= */
+        ========================================================= */
 
         .drop-zone {
-
-            min-height:
-                64px;
 
             display:
                 flex;
@@ -498,26 +949,51 @@
                 wrap;
 
             gap:
-                9px;
+                8px;
+
+            min-height:
+                58px;
 
             padding:
-                10px;
-
-            border:
-                2px dashed #8b8b85;
-
-            border-radius:
-                10px;
-
-            background:
-                var(--surface);
+                9px;
 
             margin-bottom:
-                22px;
+                14px;
+
+            border:
+                1.5px dashed
+                var(--accent-border);
+
+            border-radius:
+                9px;
+
+            background:
+                var(--accent-bg);
 
             transition:
                 border-color 0.2s ease,
                 background 0.2s ease;
+
+        }
+
+
+        .drop-zone:empty::before {
+
+            content:
+                "Click or drag words here";
+
+            color:
+                #9aa9b8;
+
+            font-size:
+                14px;
+
+            font-style:
+                italic;
+
+            padding-left:
+                4px;
+
         }
 
 
@@ -527,32 +1003,38 @@
                 var(--accent);
 
             background:
-                var(--accent-soft);
+                var(--accent-light);
+
         }
 
 
-        /* =========================
-           WORD BANK
-        ========================= */
+        /* =========================================================
+           WORD BANK LABEL
+        ========================================================= */
 
         .word-bank-label {
 
+            color:
+                var(--ink);
+
             font-size:
-                22px;
+                12px;
 
             font-weight:
                 800;
 
             letter-spacing:
-                1px;
-
-            color:
-                var(--text);
+                0.08em;
 
             margin-bottom:
-                11px;
+                9px;
+
         }
 
+
+        /* =========================================================
+           WORD BANK
+        ========================================================= */
 
         .word-bank {
 
@@ -563,13 +1045,17 @@
                 wrap;
 
             gap:
-                9px;
+                8px;
+
+            min-height:
+                38px;
+
         }
 
 
-        /* =========================
-           WORD
-        ========================= */
+        /* =========================================================
+           WORD CHIP
+        ========================================================= */
 
         .word {
 
@@ -583,28 +1069,30 @@
                 center;
 
             min-height:
-                43px;
+                38px;
 
             padding:
-                8px 15px;
+                6px
+                14px;
 
             background:
-                f5f5f5;
+                var(--white);
 
             border:
-                1.5px solid #8f8f89;
+                1.5px solid
+                var(--accent-border);
 
             border-radius:
                 8px;
 
+            color:
+                var(--ink);
+
             font-size:
-                25px;
+                16px;
 
             font-weight:
-                700;
-
-            color:
-                var(--text);
+                600;
 
             cursor:
                 pointer;
@@ -615,7 +1103,9 @@
             transition:
                 transform 0.15s ease,
                 background 0.15s ease,
-                border-color 0.15s ease;
+                border-color 0.15s ease,
+                box-shadow 0.15s ease;
+
         }
 
 
@@ -625,10 +1115,15 @@
                 translateY(-2px);
 
             border-color:
-                var(--text);
+                var(--accent);
 
             background:
-                #f4f4f1;
+                var(--accent-light);
+
+            box-shadow:
+                0 3px 8px
+                rgba(0, 0, 0, 0.06);
+
         }
 
 
@@ -636,55 +1131,65 @@
 
             transform:
                 scale(0.97);
+
         }
 
 
         .word.dragging {
 
             opacity:
-                0.45;
+                0.4;
+
         }
 
 
-        /* =========================
+        /* =========================================================
            CHECK BUTTON
-        ========================= */
+        ========================================================= */
 
         .check-button {
 
+            min-height:
+                40px;
+
             margin-top:
-                24px;
+                16px;
 
             padding:
-                12px 22px;
+                8px
+                18px;
 
             border:
-                2px solid var(--text);
+                1.5px solid
+                var(--accent);
 
             border-radius:
                 8px;
 
             background:
-                var(--text);
+                var(--accent);
 
             color:
-                f5f5f5;
+                var(--white);
 
             font-family:
                 inherit;
 
             font-size:
-                24px;
+                14px;
 
             font-weight:
-                800;
+                700;
 
             cursor:
                 pointer;
 
             transition:
                 transform 0.15s ease,
+                background 0.15s ease,
+                border-color 0.15s ease,
                 opacity 0.15s ease;
+
         }
 
 
@@ -692,25 +1197,41 @@
 
             transform:
                 translateY(-2px);
+
+            background:
+                var(--accent-dark);
+
+            border-color:
+                var(--accent-dark);
+
+        }
+
+
+        .check-button:active {
+
+            transform:
+                scale(0.98);
+
         }
 
 
         .check-button:disabled {
 
             opacity:
-                0.45;
+                0.5;
 
             cursor:
                 default;
 
             transform:
                 none;
+
         }
 
 
-        /* =========================
+        /* =========================================================
            FEEDBACK
-        ========================= */
+        ========================================================= */
 
         .feedback {
 
@@ -718,111 +1239,285 @@
                 22px;
 
             margin-top:
-                15px;
+                10px;
 
             font-size:
-                24px;
+                14px;
 
             font-weight:
-                800;
+                700;
+
+            line-height:
+                1.5;
+
         }
 
 
         .feedback.correct {
 
+            padding:
+                8px
+                11px;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--correct-bg);
+
             color:
-                var(--success);
+                var(--correct);
+
         }
 
 
         .feedback.wrong {
 
+            padding:
+                8px
+                11px;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--wrong-bg);
+
             color:
-                var(--error);
+                var(--wrong);
+
         }
 
 
-        /* =========================
+        /* =========================================================
+           CORRECT STATE
+        ========================================================= */
+
+        .practice-card.correct-state {
+
+            border-color:
+                #b9d8c5;
+
+        }
+
+
+        .practice-card.correct-state::before {
+
+            background:
+                var(--correct);
+
+        }
+
+
+        .practice-card.correct-state .drop-zone {
+
+            border-style:
+                solid;
+
+            border-color:
+                var(--correct);
+
+            background:
+                var(--correct-bg);
+
+        }
+
+
+        /* =========================================================
            MOBILE
-        ========================= */
+        ========================================================= */
 
-        @media (max-width: 650px) {
+        @media (max-width: 760px) {
 
-            .page {
+            body {
 
-                width:
-                    90%;
+                padding:
+                    20px
+                    14px
+                    35px;
 
-                padding-top:
-                    25px;
             }
 
 
-            .back-btn {
+            .game-header {
 
-                margin-bottom:
-                    40px;
+                padding:
+                    25px
+                    22px
+                    21px;
+
             }
 
 
-            .header {
+            .game-content {
 
-                margin-bottom:
-                    45px;
-
-                padding-bottom:
+                padding:
+                    24px
+                    22px
                     30px;
+
             }
 
 
-            .section {
-
-                margin-bottom:
-                    50px;
-            }
-
-
-            .example {
+            .examples {
 
                 grid-template-columns:
                     1fr;
 
-                gap:
-                    6px;
+            }
+
+
+            .example-card {
+
+                min-height:
+                    auto;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
 
                 padding:
-                    20px 5px;
+                    16px
+                    12px
+                    30px;
+
             }
 
 
-            .example-vietnamese {
+            .back-button {
+
+                margin-bottom:
+                    14px;
 
                 font-size:
-                    28px;
+                    14px;
+
             }
 
 
-            .example-english {
+            .game-container {
+
+                border-radius:
+                    13px;
+
+            }
+
+
+            .game-title {
 
                 font-size:
-                    25px;
+                    34px;
+
+            }
+
+
+            .game-description {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .game-header {
+
+                padding:
+                    22px
+                    18px
+                    19px;
+
+            }
+
+
+            .game-content {
+
+                padding:
+                    22px
+                    18px
+                    27px;
+
+            }
+
+
+            .pattern-card {
+
+                padding:
+                    19px
+                    14px;
+
+            }
+
+
+            .pattern-row {
+
+                gap:
+                    7px;
+
+            }
+
+
+            .pattern-chip {
+
+                min-height:
+                    38px;
+
+                padding:
+                    7px
+                    11px;
+
+                font-size:
+                    15px;
+
+            }
+
+
+            .pattern-plus {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .pattern-explanation {
+
+                font-size:
+                    15px;
+
             }
 
 
             .practice-card {
 
                 padding:
-                    23px;
+                    20px
+                    16px;
+
             }
 
 
             .english-prompt {
 
                 font-size:
-                    29px;
+                    18px;
+
+            }
+
+
+            .check-button {
+
+                width:
+                    100%;
+
             }
 
         }
+
 
     </style>
 
@@ -835,183 +1530,222 @@
 <div class="page">
 
 
-    <!-- =========================
+    <!-- =========================================================
          BACK
-    ========================= -->
+    ========================================================= -->
 
     <a
         href="../../phrases-and-sentences.html?category=Sentences"
-        class="back-btn"
+        class="back-button"
     >
         ← Back
     </a>
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
+    <!-- =========================================================
+         GAME CONTAINER
+    ========================================================= -->
 
-    <header class="header">
-
-        <h1>
-            WHERE — Ở ĐÂU
-        </h1>
-
-        <p class="subtitle">
-
-            <em>
-                "Ở đâu
-                <span class="phonetic">/uh dow/</span>"
-                is the question word for the Where-question.
-            </em>
-
-        </p>
-
-    </header>
+    <main class="game-container">
 
 
-    <!-- =========================
-         PATTERN
-    ========================= -->
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
-    <section class="section">
+        <header class="game-header">
 
-        <h2 class="section-title">
-            PATTERN
-        </h2>
+            <h1 class="game-title">
+                Where — Ở đâu?
+            </h1>
 
 
-        <div class="pattern-box">
+            <p class="game-description">
 
-            subject + (verb) +
+                <strong>"Ở đâu"</strong>
 
-            <span class="question-word">
-                Ở ĐÂU?
-            </span>
+                <span class="phonetic">
+                    /uh dow/
+                </span>
+
+                is used to ask <em>where</em> questions in Vietnamese.
+
+            </p>
+
+        </header>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+
+        <div class="game-content">
+
+
+            <!-- =================================================
+                 PATTERN
+            ================================================== -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Pattern
+                </h2>
+
+
+                <div class="pattern-card">
+
+                    <div class="pattern-row">
+
+                        <span class="pattern-chip">
+                            Subject
+                        </span>
+
+                        <span class="pattern-plus">
+                            +
+                        </span>
+
+                        <span class="pattern-chip">
+                            (Verb)
+                        </span>
+
+                        <span class="pattern-plus">
+                            +
+                        </span>
+
+                        <span class="pattern-chip">
+                            ở đâu?
+                        </span>
+
+                    </div>
+
+
+                    <p class="pattern-explanation">
+
+                        <strong>Ở đâu</strong>
+
+                        <span class="phonetic">
+                            /uh dow/
+                        </span>
+
+                        means <strong>"where"</strong>.
+
+                        <br>
+
+                        Put <strong>ở đâu</strong> after the subject or verb
+                        to ask where a person, place, or thing is located.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXAMPLES
+            ================================================== -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Examples
+                </h2>
+
+
+                <div class="examples">
+
+
+                    <!-- EXAMPLE 1 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Anh ở đâu?
+                        </div>
+
+                        <div class="example-phonetic">
+                            anh uh dow?
+                        </div>
+
+                        <div class="example-english">
+                            Where are you?
+                        </div>
+
+                    </article>
+
+
+                    <!-- EXAMPLE 2 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Khách sạn ở đâu?
+                        </div>
+
+                        <div class="example-phonetic">
+                            khak san uh dow?
+                        </div>
+
+                        <div class="example-english">
+                            Where is the hotel?
+                        </div>
+
+                    </article>
+
+
+                    <!-- EXAMPLE 3 -->
+
+                    <article class="example-card">
+
+                        <div class="example-vietnamese">
+                            Cà phê ở đâu?
+                        </div>
+
+                        <div class="example-phonetic">
+                            ka feh uh dow?
+                        </div>
+
+                        <div class="example-english">
+                            Where is the coffee?
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TRY IT YOURSELF
+            ================================================== -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Try it yourself
+                </h2>
+
+
+                <p class="practice-intro">
+                    Click or drag the Vietnamese words to build
+                    the correct sentence.
+                </p>
+
+
+                <div
+                    class="practice-list"
+                    id="practiceList"
+                ></div>
+
+            </section>
+
 
         </div>
 
-
-        <p class="pattern-explanation">
-
-            <strong>Ở đâu</strong>
-            <span class="phonetic">/uh dow/</span>
-            is used to ask where a person, place, or thing is located.
-
-        </p>
-
-
-    </section>
-
-
-    <!-- =========================
-         EXAMPLES
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            EXAMPLES
-        </h2>
-
-        <div class="examples">
-
-
-            <!-- EXAMPLE 1 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Anh ở đâu?
-                    </div>
-
-                    <div class="example-phonetic">
-                        anh uh dow?
-                    </div>
-
-                </div>
-
-                <div class="example-english">
-                    Where are you?
-                </div>
-
-            </div>
-
-
-            <!-- EXAMPLE 2 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Khách sạn ở đâu?
-                    </div>
-
-                    <div class="example-phonetic">
-                        khak san uh dow?
-                    </div>
-
-                </div>
-
-                <div class="example-english">
-                    Where is the hotel?
-                </div>
-
-            </div>
-
-
-            <!-- EXAMPLE 3 -->
-
-            <div class="example">
-
-                <div>
-
-                    <div class="example-vietnamese">
-                        Cà phê ở đâu?
-                    </div>
-
-                    <div class="example-phonetic">
-                        ka feh uh dow?
-                    </div>
-
-                </div>
-
-                <div class="example-english">
-                    Where is the coffee?
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         TRY IT YOURSELF
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            TRY IT YOURSELF
-        </h2>
-
-        <p class="practice-intro">
-            Click or drag the Vietnamese words to build
-            the correct sentence.
-        </p>
-
-        <div
-            class="practice-list"
-            id="practiceList"
-        ></div>
-
-    </section>
+    </main>
 
 
 </div>
@@ -1020,13 +1754,14 @@
 <script>
 
 
-    /* =========================
+    /* =========================================================
        PRACTICE DATA
-    ========================= */
+    ========================================================= */
 
     const practiceQuestions = [
 
         {
+
             english:
                 "Where are you?",
 
@@ -1035,10 +1770,12 @@
                     "Anh",
                     "ở đâu?"
                 ]
+
         },
 
 
         {
+
             english:
                 "Where is the hotel?",
 
@@ -1047,10 +1784,12 @@
                     "Khách sạn",
                     "ở đâu?"
                 ]
+
         },
 
 
         {
+
             english:
                 "Where is the coffee?",
 
@@ -1059,17 +1798,19 @@
                     "Cà phê",
                     "ở đâu?"
                 ]
+
         }
 
     ];
 
 
-    let draggedWord = null;
+    let draggedWord =
+        null;
 
 
-    /* =========================
+    /* =========================================================
        SHUFFLE
-    ========================= */
+    ========================================================= */
 
     function shuffle(array) {
 
@@ -1110,9 +1851,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        CREATE WORD
-    ========================= */
+    ========================================================= */
 
     function createWord(word) {
 
@@ -1136,13 +1877,22 @@
             word;
 
 
-        /* =========================
+        /* =====================================================
            CLICK
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "click",
             function() {
+
+                if (
+                    element.draggable === false
+                ) {
+
+                    return;
+
+                }
+
 
                 const parent =
                     element.parentElement;
@@ -1211,13 +1961,24 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            DRAG START
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "dragstart",
             function(event) {
+
+                if (
+                    element.draggable === false
+                ) {
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
 
                 draggedWord =
                     element;
@@ -1235,9 +1996,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            DRAG END
-        ========================= */
+        ====================================================== */
 
         element.addEventListener(
             "dragend",
@@ -1260,9 +2021,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        CREATE PRACTICE CARD
-    ========================= */
+    ========================================================= */
 
     function createPracticeCard(
         question,
@@ -1283,7 +2044,9 @@
             );
 
 
-        /* NUMBER */
+        /* =====================================================
+           NUMBER
+        ====================================================== */
 
         const number =
             document.createElement("div");
@@ -1302,7 +2065,9 @@
             );
 
 
-        /* ENGLISH */
+        /* =====================================================
+           PROMPT
+        ====================================================== */
 
         const english =
             document.createElement("div");
@@ -1316,7 +2081,9 @@
             question.english;
 
 
-        /* INSTRUCTION */
+        /* =====================================================
+           INSTRUCTION
+        ====================================================== */
 
         const instruction =
             document.createElement("div");
@@ -1325,12 +2092,9 @@
         instruction.className =
             "instruction";
 
-
-        instruction.textContent =
-            "Build the Vietnamese sentence.";
-
-
-        /* DROP ZONE */
+        /* =====================================================
+           DROP ZONE
+        ====================================================== */
 
         const dropZone =
             document.createElement("div");
@@ -1340,7 +2104,9 @@
             "drop-zone";
 
 
-        /* WORD BANK LABEL */
+        /* =====================================================
+           WORD BANK LABEL
+        ====================================================== */
 
         const wordBankLabel =
             document.createElement("div");
@@ -1354,7 +2120,9 @@
             "AVAILABLE WORDS";
 
 
-        /* WORD BANK */
+        /* =====================================================
+           WORD BANK
+        ====================================================== */
 
         const wordBank =
             document.createElement("div");
@@ -1377,7 +2145,9 @@
         );
 
 
-        /* CHECK BUTTON */
+        /* =====================================================
+           CHECK BUTTON
+        ====================================================== */
 
         const checkButton =
             document.createElement("button");
@@ -1387,11 +2157,17 @@
             "check-button";
 
 
+        checkButton.type =
+            "button";
+
+
         checkButton.textContent =
-            "Check Answer";
+            "Check answer";
 
 
-        /* FEEDBACK */
+        /* =====================================================
+           FEEDBACK
+        ====================================================== */
 
         const feedback =
             document.createElement("div");
@@ -1401,15 +2177,25 @@
             "feedback";
 
 
-        /* =========================
-           DROP ZONE
-        ========================= */
+        /* =====================================================
+           DROP ZONE EVENTS
+        ====================================================== */
 
         dropZone.addEventListener(
             "dragover",
             function(event) {
 
                 event.preventDefault();
+
+
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
+                    return;
+
+                }
 
 
                 dropZone.classList.add(
@@ -1444,8 +2230,36 @@
                 );
 
 
-                if (!draggedWord) {
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
                     return;
+
+                }
+
+
+                const sourceCard =
+                    draggedWord.closest(
+                        ".practice-card"
+                    );
+
+
+                /*
+                    Prevent moving words
+                    between different questions.
+                */
+
+                if (
+                    sourceCard !== card
+                ) {
+
+                    draggedWord =
+                        null;
+
+                    return;
+
                 }
 
 
@@ -1461,9 +2275,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            WORD BANK DROP
-        ========================= */
+        ====================================================== */
 
         wordBank.addEventListener(
             "dragover",
@@ -1482,8 +2296,31 @@
                 event.preventDefault();
 
 
-                if (!draggedWord) {
+                if (
+                    !draggedWord ||
+                    checkButton.disabled
+                ) {
+
                     return;
+
+                }
+
+
+                const sourceCard =
+                    draggedWord.closest(
+                        ".practice-card"
+                    );
+
+
+                if (
+                    sourceCard !== card
+                ) {
+
+                    draggedWord =
+                        null;
+
+                    return;
+
                 }
 
 
@@ -1499,13 +2336,22 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            CHECK ANSWER
-        ========================= */
+        ====================================================== */
 
         checkButton.addEventListener(
             "click",
             function() {
+
+                if (
+                    checkButton.disabled
+                ) {
+
+                    return;
+
+                }
+
 
                 const currentAnswer =
                     Array.from(
@@ -1527,9 +2373,9 @@
                     );
 
 
-                /* =========================
+                /* =================================================
                    NOT COMPLETE
-                ========================= */
+                ================================================== */
 
                 if (
                     currentAnswer.length !==
@@ -1539,17 +2385,19 @@
                     feedback.textContent =
                         "Please place all the words.";
 
+
                     feedback.className =
                         "feedback wrong";
+
 
                     return;
 
                 }
 
 
-                /* =========================
+                /* =================================================
                    CHECK ORDER
-                ========================= */
+                ================================================== */
 
                 const isCorrect =
                     currentAnswer.every(
@@ -1564,9 +2412,9 @@
                     );
 
 
-                /* =========================
+                /* =================================================
                    CORRECT
-                ========================= */
+                ================================================== */
 
                 if (isCorrect) {
 
@@ -1582,8 +2430,13 @@
                         true;
 
 
+                    card.classList.add(
+                        "correct-state"
+                    );
+
+
                     /*
-                        Lock the question.
+                        Lock all words.
                     */
 
                     card
@@ -1596,8 +2449,10 @@
                                 word.draggable =
                                     false;
 
+
                                 word.style.cursor =
                                     "default";
+
 
                                 word.onclick =
                                     null;
@@ -1609,16 +2464,12 @@
                     dropZone.style.borderStyle =
                         "solid";
 
-
-                    dropZone.style.borderColor =
-                        "#28633b";
-
                 }
 
 
-                /* =========================
+                /* =================================================
                    WRONG
-                ========================= */
+                ================================================== */
 
                 else {
 
@@ -1640,9 +2491,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            APPEND
-        ========================= */
+        ====================================================== */
 
         card.appendChild(
             number
@@ -1689,9 +2540,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        RESET QUESTION
-    ========================= */
+    ========================================================= */
 
     function resetQuestion(card) {
 
@@ -1778,9 +2629,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        RENDER
-    ========================= */
+    ========================================================= */
 
     const practiceList =
         document.getElementById(
@@ -1789,7 +2640,10 @@
 
 
     practiceQuestions.forEach(
-        function(question, index) {
+        function(
+            question,
+            index
+        ) {
 
             practiceList.appendChild(
                 createPracticeCard(
@@ -1808,3 +2662,4 @@
 </body>
 
 </html>
+```

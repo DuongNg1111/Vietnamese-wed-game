@@ -1,0 +1,2659 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Vietnamese 7-Second Speaking Challenge</title>
+
+<meta
+    name="game-title"
+    content="Vietnamese 7-Second Speaking Challenge"
+>
+
+<meta
+    name="game-description"
+    content="Look at the English word, say the Vietnamese word aloud, and test your speaking speed."
+>
+
+<meta
+    name="game-icon"
+    content="🗣️"
+>
+
+<meta
+    name="game-explanation"
+    content="Read the English word and say the Vietnamese word aloud within 7 seconds."
+>
+
+
+<!-- =========================================================
+     FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+
+    --accent: #548C9F;
+
+    --accent-dark: #3B6370;
+
+    --accent-light: #e9f3f7;
+
+    --accent-bg: #F2F8FA;
+
+    --accent-border: #bcdae5;
+
+    --heading-color: var(--ink);
+
+    --ink: #143a6b;
+
+    --ink-soft: #66809d;
+
+    --correct: #019b3f;
+
+    --correct-light: #eaf3ff;
+
+    --wrong: #d9536f;
+
+    --wrong-light: #fff0f3;
+
+    --general-border: #dedede;
+
+    --white: #ffffff;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    padding: 28px 20px 45px;
+
+    font-family:
+        Calibri,
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    color: var(--ink);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bg) 48%,
+            var(--accent-light) 100%
+        );
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width: 100%;
+
+    max-width: 900px;
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn-container {
+
+    width: 100%;
+
+    margin: 0 auto 14px;
+
+    text-align: left;
+
+}
+
+
+.back-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 9px 16px;
+
+    background: #ffffff;
+
+    color: var(--accent-dark);
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+
+.back-btn:hover {
+
+    background: var(--accent-light);
+
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 36px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(
+            84,
+            140,
+            159,
+            0.12
+        );
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   ACCENT LINE
+========================================================= */
+
+.container::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: var(--accent);
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   INTRO SCREEN
+========================================================= */
+
+.intro-screen {
+
+    text-align: center;
+
+    padding: 25px 10px 10px;
+
+    animation: fade 0.5s;
+
+}
+
+
+.intro-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.intro-screen h1 {
+
+    color: var(--heading-color);
+
+    font-family: Kalam, cursive;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+}
+
+
+.intro-description {
+
+    max-width: 680px;
+
+    margin: 0 auto 26px;
+
+    color: var(--ink-soft);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 21px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   INTRO INFO
+========================================================= */
+
+.intro-info {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    max-width: 650px;
+
+    margin: 0 auto 28px;
+
+}
+
+
+.intro-info-box {
+
+    background: var(--accent-bg);
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: var(--accent-dark);
+
+}
+
+
+.intro-info-box span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--accent);
+
+    font-family: Kalam, cursive;
+
+    font-size: 28px;
+
+}
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+.start-game-btn {
+
+    padding: 13px 28px;
+
+    border: 2px solid var(--accent);
+
+    background: var(--accent);
+
+    color: #ffffff;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+
+.start-game-btn:hover {
+
+    background: var(--accent-dark);
+
+    border-color: var(--accent-dark);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
+   GAME AREA
+========================================================= */
+
+#gameArea {
+
+    display: none;
+
+    animation: fade 0.5s;
+
+}
+
+
+/* =========================================================
+   GAME HEADER
+========================================================= */
+
+.game-header {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.game-title {
+
+    color: var(--heading-color);
+
+    font-family: Kalam, cursive;
+
+    margin-bottom: 6px;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+}
+
+
+.game-description {
+
+    color: var(--ink-soft);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 21px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   INFO BOXES
+========================================================= */
+
+.info {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.infoBox {
+
+    background: var(--accent-bg);
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 14px;
+
+    padding: 14px;
+
+    text-align: center;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: var(--accent-dark);
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            84,
+            140,
+            159,
+            0.06
+        );
+
+}
+
+
+.infoBox span {
+
+    color: var(--accent);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progressWrap {
+
+    width: 100%;
+
+    height: 11px;
+
+    background: var(--accent-light);
+
+    border: 1px solid var(--accent-border);
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    margin-bottom: 27px;
+
+}
+
+
+.progressBar {
+
+    height: 100%;
+
+    width: 100%;
+
+    background: var(--accent);
+
+    border-radius: 30px;
+
+    transition: width 1s linear;
+
+}
+
+
+.progressBar.timeout {
+
+    background: var(--wrong);
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer-area {
+
+    text-align: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.timer-label {
+
+    color: var(--ink-soft);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-bottom: 2px;
+
+}
+
+
+.timer {
+
+    color: var(--accent);
+
+    font-family: Kalam, cursive;
+
+    font-size: 48px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+}
+
+
+.timer.warning {
+
+    color: var(--wrong);
+
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+
+    position: relative;
+
+    min-height: 330px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: var(--accent-light);
+
+    border: 2px solid var(--accent-border);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.question-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: var(--accent);
+
+}
+
+
+.question-label {
+
+    color: var(--ink-soft);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.english-word {
+
+    color: var(--accent-dark);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            48px,
+            10vw,
+            100px
+        );
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    word-break: break-word;
+
+}
+
+
+.instruction {
+
+    margin-top: 20px;
+
+    color: var(--ink);
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   ANSWER AREA
+========================================================= */
+
+.answer-area {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    padding: 15px 20px;
+
+    background: var(--correct-light);
+
+    border: 1px solid var(--correct);
+
+    border-radius: 14px;
+
+}
+
+
+.answer-label {
+
+    color: var(--ink-soft);
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.vietnamese-answer {
+
+    color: var(--correct);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.button-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+button {
+
+    border: none;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    border-radius: 999px;
+
+    padding: 13px 24px;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.15s ease;
+
+}
+
+
+button:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+button:active {
+
+    transform: translateY(0);
+
+}
+
+
+.correct-btn {
+
+    background: var(--correct);
+
+    color: #ffffff;
+
+}
+
+
+.correct-btn:hover {
+
+    background: #017d34;
+
+}
+
+
+.wrong-btn {
+
+    background: var(--wrong);
+
+    color: #ffffff;
+
+}
+
+
+.wrong-btn:hover {
+
+    background: #c7435d;
+
+}
+
+
+.primary-btn {
+
+    background: var(--accent);
+
+    color: #ffffff;
+
+}
+
+
+.primary-btn:hover {
+
+    background: var(--accent-dark);
+
+}
+
+
+button:disabled {
+
+    cursor: default;
+
+    opacity: 0.6;
+
+    transform: none;
+
+}
+
+
+/* =========================================================
+   RESULT SCREEN
+========================================================= */
+
+.finished {
+
+    text-align: center;
+
+    display: none;
+
+    animation: fade 0.5s;
+
+    padding: 20px 0 10px;
+
+}
+
+
+.finished .game-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.finished h2 {
+
+    color: var(--heading-color);
+
+    font-family: Kalam, cursive;
+
+    margin-bottom: 15px;
+
+    font-size: 42px;
+
+    line-height: 1.2;
+
+}
+
+
+.finished p {
+
+    color: var(--ink);
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 1.5rem;
+
+    margin: 10px 0;
+
+}
+
+
+#message {
+
+    color: var(--accent-dark);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   FINISH BUTTON
+========================================================= */
+
+.finish-buttons {
+
+    margin-top: 24px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+.play-again {
+
+    padding: 13px 28px;
+
+    border: 2px solid var(--accent);
+
+    background: var(--accent);
+
+    color: #ffffff;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-family:
+        Calibri,
+        Arial,
+        sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+
+.play-again:hover {
+
+    background: var(--accent-dark);
+
+    border-color: var(--accent-dark);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes fade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 18px 14px 35px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .page {
+
+        width: 100%;
+
+    }
+
+
+    .back-btn-container {
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .container {
+
+        padding: 30px 20px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .intro-screen {
+
+        padding: 20px 5px 5px;
+
+    }
+
+
+    .intro-screen h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .intro-description {
+
+        font-size: 19px;
+
+    }
+
+
+    .intro-info {
+
+        grid-template-columns: 1fr;
+
+        max-width: 300px;
+
+    }
+
+
+    .game-title {
+
+        font-size: 36px;
+
+    }
+
+
+    .game-description {
+
+        font-size: 19px;
+
+    }
+
+
+    .info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .question-card {
+
+        min-height: 280px;
+
+        padding: 30px 15px;
+
+    }
+
+
+    .english-word {
+
+        font-size:
+            clamp(
+                42px,
+                14vw,
+                75px
+            );
+
+    }
+
+
+    .instruction {
+
+        font-size: 16px;
+
+    }
+
+
+    .vietnamese-answer {
+
+        font-size: 32px;
+
+    }
+
+
+    button {
+
+        width: 100%;
+
+    }
+
+
+    .button-row {
+
+        width: 100%;
+
+    }
+
+
+    .finished h2 {
+
+        font-size: 37px;
+
+    }
+
+
+    .finished p {
+
+        font-size: 1.35rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    body {
+
+        padding: 14px 10px 30px;
+
+    }
+
+
+    .container {
+
+        padding: 27px 15px;
+
+    }
+
+
+    .intro-screen h1 {
+
+        font-size: 32px;
+
+    }
+
+
+    .game-title {
+
+        font-size: 32px;
+
+    }
+
+
+    .game-description {
+
+        font-size: 18px;
+
+    }
+
+
+    .question-card {
+
+        min-height: 260px;
+
+    }
+
+
+    .english-word {
+
+        font-size:
+            clamp(
+                40px,
+                15vw,
+                68px
+            );
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<!-- =========================================================
+     BACK TO CATEGORY
+========================================================= -->
+
+<div class="back-btn-container">
+
+    <a
+        href="../../category.html?category=Describe%20things"
+        class="back-btn"
+    >
+        ← Back
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN CONTAINER
+========================================================= -->
+
+<div class="container">
+
+
+<!-- =========================================================
+     INTRO SCREEN
+========================================================= -->
+
+<section
+    class="intro-screen"
+    id="introScreen"
+>
+
+    <div class="intro-icon">
+        🗣️
+    </div>
+
+
+    <h1>
+        7-Second Speaking Challenge
+    </h1>
+
+
+    <p class="intro-description">
+
+        Look at the English word and say the Vietnamese
+        word aloud before the 7 seconds are over.
+
+    </p>
+
+
+    <div class="intro-info">
+
+        <div class="intro-info-box">
+
+            Time
+
+            <span>
+                7s
+            </span>
+
+            per question
+
+        </div>
+
+
+        <div class="intro-info-box">
+
+            Questions
+
+            <span>
+                20
+            </span>
+
+            total
+
+        </div>
+
+
+        <div class="intro-info-box">
+
+            Points
+
+            <span>
+                20
+            </span>
+
+            total
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="start-game-btn"
+        id="startGameBtn"
+    >
+
+        Start Game →
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     GAME AREA
+========================================================= -->
+
+<section id="gameArea">
+
+
+<!-- =========================================================
+     GAME HEADER
+========================================================= -->
+
+<header class="game-header">
+
+    <h1 class="game-title">
+
+        7-Second Speaking Challenge
+
+    </h1>
+
+
+    <p class="game-description">
+
+        Say the Vietnamese word!
+
+    </p>
+
+</header>
+
+
+<!-- =========================================================
+     INFO
+========================================================= -->
+
+<div class="info">
+
+    <div class="infoBox">
+
+        Question
+
+        <br>
+
+        <span id="questionNumber">
+            1
+        </span>
+
+        / 20
+
+    </div>
+
+
+    <div class="infoBox">
+
+        Score
+
+        <br>
+
+        <span id="score">
+            0
+        </span>
+
+        / 20
+
+    </div>
+
+
+    <div class="infoBox">
+
+        Time Left
+
+        <br>
+
+        <span id="time">
+            7
+        </span>
+
+        s
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PROGRESS
+========================================================= -->
+
+<div class="progressWrap">
+
+    <div
+        class="progressBar"
+        id="progress"
+    ></div>
+
+</div>
+
+
+<!-- =========================================================
+     TIMER
+========================================================= -->
+
+<div class="timer-area">
+
+    <div class="timer-label">
+        Time left
+    </div>
+
+
+    <div
+        class="timer"
+        id="timer"
+    >
+        7
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     QUESTION CARD
+========================================================= -->
+
+<div class="question-card">
+
+
+    <h2
+        class="english-word"
+        id="englishWord"
+    >
+
+        Big
+
+    </h2>
+
+
+</div>
+
+
+<!-- =========================================================
+     ANSWER
+========================================================= -->
+
+<div
+    class="answer-area hidden"
+    id="answerArea"
+>
+
+    <div class="answer-label">
+
+        Vietnamese answer:
+
+    </div>
+
+
+    <div
+        class="vietnamese-answer"
+        id="vietnameseAnswer"
+    >
+
+        To
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ACTION BUTTONS
+========================================================= -->
+
+<div
+    class="button-row"
+    id="actionButtons"
+>
+
+    <button
+        class="correct-btn"
+        id="gotItBtn"
+    >
+
+        ✓ I Got It
+
+    </button>
+
+
+    <button
+        class="wrong-btn"
+        id="missedBtn"
+    >
+
+        ✗ I Missed It
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     NEXT BUTTON
+========================================================= -->
+
+<div
+    class="button-row hidden"
+    id="nextButtonArea"
+>
+
+    <button
+        class="primary-btn"
+        id="nextBtn"
+    >
+
+        Next Question →
+
+    </button>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+     FINISH SCREEN
+========================================================= -->
+
+<section
+    class="finished"
+    id="finishScreen"
+>
+
+    <div class="game-icon">
+
+        🎉
+
+    </div>
+
+
+    <h2>
+
+        Game Finished!
+
+    </h2>
+
+
+    <p>
+
+        <strong>Final Score:</strong>
+
+        <span id="finalScore"></span>
+
+    </p>
+
+
+    <p>
+
+        <strong>Percentage:</strong>
+
+        <span id="percent"></span>
+
+    </p>
+
+
+    <p id="message"></p>
+
+
+    <div class="finish-buttons">
+
+        <button
+            class="play-again"
+            id="playAgainBtn"
+        >
+
+            Play Again →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   VOCABULARY
+   DESCRIBE THINGS
+========================================================= */
+
+const vocabulary = [
+
+    {
+        english: "Big",
+        vietnamese: "to"
+    },
+
+    {
+        english: "Small",
+        vietnamese: "nhỏ"
+    },
+
+    {
+        english: "Huge / Big",
+        vietnamese: "bự"
+    },
+
+    {
+        english: "Long",
+        vietnamese: "dài"
+    },
+
+    {
+        english: "Short",
+        vietnamese: "ngắn"
+    },
+
+    {
+        english: "Tall / High",
+        vietnamese: "cao"
+    },
+
+    {
+        english: "Low / Short",
+        vietnamese: "thấp"
+    },
+
+    {
+        english: "Wide / Spacious",
+        vietnamese: "rộng"
+    },
+
+    {
+        english: "Tight / Cramped",
+        vietnamese: "chật"
+    },
+
+    {
+        english: "Heavy",
+        vietnamese: "nặng"
+    },
+
+    {
+        english: "Light",
+        vietnamese: "nhẹ"
+    },
+
+    {
+        english: "Hard",
+        vietnamese: "cứng"
+    },
+
+    {
+        english: "Soft",
+        vietnamese: "mềm"
+    },
+
+    {
+        english: "Hot",
+        vietnamese: "nóng"
+    },
+
+    {
+        english: "Cold",
+        vietnamese: "lạnh"
+    },
+
+    {
+        english: "Dry",
+        vietnamese: "khô"
+    },
+
+    {
+        english: "Wet",
+        vietnamese: "ướt"
+    },
+
+    {
+        english: "New",
+        vietnamese: "mới"
+    },
+
+    {
+        english: "Old",
+        vietnamese: "cũ"
+    },
+
+    {
+        english: "Clean",
+        vietnamese: "sạch"
+    },
+
+    {
+        english: "Dirty",
+        vietnamese: "dơ"
+    },
+
+    {
+        english: "Round",
+        vietnamese: "tròn"
+    },
+
+    {
+        english: "Square",
+        vietnamese: "vuông"
+    },
+
+    {
+        english: "Straight",
+        vietnamese: "thẳng"
+    },
+
+    {
+        english: "Curved / Bent",
+        vietnamese: "cong"
+    },
+
+    {
+        english: "Pointed / Sharp",
+        vietnamese: "nhọn"
+    },
+
+    {
+        english: "Curly",
+        vietnamese: "xoăn"
+    },
+
+    {
+        english: "Beautiful / Pretty",
+        vietnamese: "đẹp"
+    },
+
+    {
+        english: "Ugly",
+        vietnamese: "xấu"
+    },
+
+    {
+        english: "Cute",
+        vietnamese: "dễ thương"
+    },
+
+    {
+        english: "Pretty / Lovely",
+        vietnamese: "xinh"
+    },
+
+    {
+        english: "Fierce / Mean",
+        vietnamese: "dữ"
+    },
+
+    {
+        english: "Serious",
+        vietnamese: "nghiêm túc"
+    },
+
+    {
+        english: "Young",
+        vietnamese: "trẻ"
+    },
+
+    {
+        english: "Old",
+        vietnamese: "già"
+    },
+
+    {
+        english: "Thin / Skinny",
+        vietnamese: "ốm"
+    },
+
+    {
+        english: "Fat / Chubby",
+        vietnamese: "mập"
+    },
+
+    {
+        english: "Many / Much",
+        vietnamese: "nhiều"
+    },
+
+    {
+        english: "Few / Little",
+        vietnamese: "ít"
+    },
+
+    {
+        english: "Warm",
+        vietnamese: "ấm"
+    },
+
+    {
+        english: "Cool",
+        vietnamese: "mát"
+    },
+
+    {
+        english: "Sunny",
+        vietnamese: "nắng"
+    },
+
+    {
+        english: "Rainy / Rain",
+        vietnamese: "mưa"
+    },
+
+    {
+        english: "Windy / Wind",
+        vietnamese: "gió"
+    },
+
+    {
+        english: "Cloudy",
+        vietnamese: "nhiều mây"
+    }
+
+];
+
+
+/* =========================================================
+   GAME SETTINGS
+========================================================= */
+
+const TOTAL_QUESTIONS = 20;
+
+const TIME_LIMIT = 7;
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let questions = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let timeLeft = TIME_LIMIT;
+
+let timerInterval = null;
+
+let questionAnswered = false;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const introScreen =
+    document.getElementById(
+        "introScreen"
+    );
+
+const startGameBtn =
+    document.getElementById(
+        "startGameBtn"
+    );
+
+const gameArea =
+    document.getElementById(
+        "gameArea"
+    );
+
+const finishScreen =
+    document.getElementById(
+        "finishScreen"
+    );
+
+const playAgainBtn =
+    document.getElementById(
+        "playAgainBtn"
+    );
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+const scoreEl =
+    document.getElementById(
+        "score"
+    );
+
+const timeEl =
+    document.getElementById(
+        "time"
+    );
+
+const progressEl =
+    document.getElementById(
+        "progress"
+    );
+
+const timerEl =
+    document.getElementById(
+        "timer"
+    );
+
+const englishWord =
+    document.getElementById(
+        "englishWord"
+    );
+
+const answerArea =
+    document.getElementById(
+        "answerArea"
+    );
+
+const vietnameseAnswer =
+    document.getElementById(
+        "vietnameseAnswer"
+    );
+
+const actionButtons =
+    document.getElementById(
+        "actionButtons"
+    );
+
+const nextButtonArea =
+    document.getElementById(
+        "nextButtonArea"
+    );
+
+const gotItBtn =
+    document.getElementById(
+        "gotItBtn"
+    );
+
+const missedBtn =
+    document.getElementById(
+        "missedBtn"
+    );
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+const finalScoreEl =
+    document.getElementById(
+        "finalScore"
+    );
+
+const percentEl =
+    document.getElementById(
+        "percent"
+    );
+
+const messageEl =
+    document.getElementById(
+        "message"
+    );
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array) {
+
+    const result = [...array];
+
+
+    for (
+        let i = result.length - 1;
+
+        i > 0;
+
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            result[i],
+            result[j]
+        ] =
+        [
+            result[j],
+            result[i]
+        ];
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startGame() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    questions =
+        shuffle(
+            vocabulary
+        ).slice(
+            0,
+            TOTAL_QUESTIONS
+        );
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    questionAnswered = false;
+
+
+    scoreEl.textContent = "0";
+
+
+    introScreen.style.display =
+        "none";
+
+
+    finishScreen.style.display =
+        "none";
+
+
+    gameArea.style.display =
+        "block";
+
+
+    showQuestion();
+
+}
+
+
+/* =========================================================
+   SHOW QUESTION
+========================================================= */
+
+function showQuestion() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    questionAnswered = false;
+
+
+    const question =
+        questions[
+            currentQuestion
+        ];
+
+
+    englishWord.textContent =
+        question.english;
+
+
+    vietnameseAnswer.textContent =
+        question.vietnamese;
+
+
+    answerArea.classList.add(
+        "hidden"
+    );
+
+
+    actionButtons.classList.remove(
+        "hidden"
+    );
+
+
+    nextButtonArea.classList.add(
+        "hidden"
+    );
+
+
+    gotItBtn.disabled = false;
+
+    missedBtn.disabled = false;
+
+
+    questionNumber.textContent =
+        currentQuestion + 1;
+
+
+    scoreEl.textContent =
+        score;
+
+
+    progressEl.style.width =
+        "100%";
+
+
+    progressEl.classList.remove(
+        "timeout"
+    );
+
+
+    startTimer();
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    timeLeft = TIME_LIMIT;
+
+
+    timeEl.textContent =
+        timeLeft;
+
+
+    timerEl.textContent =
+        timeLeft;
+
+
+    timerEl.classList.remove(
+        "warning"
+    );
+
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                timeLeft--;
+
+
+                timeEl.textContent =
+                    timeLeft;
+
+
+                timerEl.textContent =
+                    timeLeft;
+
+
+                const progress =
+                    (
+                        timeLeft /
+                        TIME_LIMIT
+                    ) * 100;
+
+
+                progressEl.style.width =
+                    progress + "%";
+
+
+                if (
+                    timeLeft <= 3
+                ) {
+
+                    timerEl.classList.add(
+                        "warning"
+                    );
+
+                }
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    timeUp();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+/* =========================================================
+   TIME UP
+========================================================= */
+
+function timeUp() {
+
+    if (
+        questionAnswered
+    ) {
+
+        return;
+
+    }
+
+
+    questionAnswered = true;
+
+
+    progressEl.style.width =
+        "0%";
+
+
+    progressEl.classList.add(
+        "timeout"
+    );
+
+
+    timerEl.textContent =
+        "0";
+
+
+    timeEl.textContent =
+        "Time Out!";
+
+
+    showAnswer();
+
+}
+
+
+/* =========================================================
+   MARK ANSWER
+========================================================= */
+
+function markAnswer(
+    isCorrect
+) {
+
+    if (
+        questionAnswered
+    ) {
+
+        return;
+
+    }
+
+
+    questionAnswered = true;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    if (
+        isCorrect
+    ) {
+
+        score++;
+
+    }
+
+
+    scoreEl.textContent =
+        score;
+
+
+    showAnswer();
+
+}
+
+
+/* =========================================================
+   SHOW ANSWER
+========================================================= */
+
+function showAnswer() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    vietnameseAnswer.textContent =
+        questions[
+            currentQuestion
+        ].vietnamese;
+
+
+    answerArea.classList.remove(
+        "hidden"
+    );
+
+
+    actionButtons.classList.add(
+        "hidden"
+    );
+
+
+    nextButtonArea.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion() {
+
+    if (
+        !questionAnswered
+    ) {
+
+        return;
+
+    }
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        TOTAL_QUESTIONS
+    ) {
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    showQuestion();
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    gameArea.style.display =
+        "none";
+
+
+    finishScreen.style.display =
+        "block";
+
+
+    finalScoreEl.textContent =
+        score +
+        " / " +
+        TOTAL_QUESTIONS;
+
+
+    const percentage =
+        Math.round(
+            (
+                score /
+                TOTAL_QUESTIONS
+            ) * 100
+        );
+
+
+    percentEl.textContent =
+        percentage +
+        "%";
+
+
+    if (
+        percentage === 100
+    ) {
+
+        messageEl.textContent =
+            "🏆 Perfect! Your Vietnamese speaking is on fire!";
+
+    }
+
+    else if (
+        percentage >= 80
+    ) {
+
+        messageEl.textContent =
+            "🎉 Excellent! You know these words really well!";
+
+    }
+
+    else if (
+        percentage >= 60
+    ) {
+
+        messageEl.textContent =
+            "💪 Great job! Keep practicing your speaking speed!";
+
+    }
+
+    else if (
+        percentage >= 40
+    ) {
+
+        messageEl.textContent =
+            "📚 Good practice! Try again and beat your score!";
+
+    }
+
+    else {
+
+        messageEl.textContent =
+            "😊 Keep practicing! You will get faster!";
+
+    }
+
+}
+
+
+/* =========================================================
+   KEYBOARD SUPPORT
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            gameArea.style.display !==
+            "block"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.code === "Space" &&
+            !questionAnswered
+        ) {
+
+            event.preventDefault();
+
+
+            markAnswer(true);
+
+        }
+
+
+        if (
+            event.code === "ArrowRight" &&
+            questionAnswered
+        ) {
+
+            event.preventDefault();
+
+
+            nextQuestion();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+
+startGameBtn.addEventListener(
+    "click",
+    startGame
+);
+
+
+gotItBtn.addEventListener(
+    "click",
+    function() {
+
+        markAnswer(true);
+
+    }
+);
+
+
+missedBtn.addEventListener(
+    "click",
+    function() {
+
+        markAnswer(false);
+
+    }
+);
+
+
+nextBtn.addEventListener(
+    "click",
+    nextQuestion
+);
+
+
+playAgainBtn.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+introScreen.style.display =
+    "block";
+
+
+gameArea.style.display =
+    "none";
+
+
+finishScreen.style.display =
+    "none";
+
+</script>
+
+
+</body>
+
+</html>
+```
