@@ -1,1710 +1,2087 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-    name="description"
-    content="Learn Vietnamese through interactive games, lessons, sentences, and useful phrases."
->
+    <meta
+        name="description"
+        content="Learn Vietnamese through interactive games, vocabulary, sentences, and useful phrases."
+    >
 
-<title>Vietnamese Category</title>
+    <title>Vietnamese Category</title>
 
 
-<!-- =====================================================
-     GOOGLE FONTS
-====================================================== -->
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
 
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
 
-<style>
+    <style>
 
-/* =====================================================
-   DESIGN TOKENS
-====================================================== */
+    /* =====================================================
+       DESIGN TOKENS
+    ===================================================== */
 
-:root {
+    :root {
 
-    --paper: #f7f9fc;
-    --f5f5f5: #ffffff;
+        --paper: #f7f9fc;
+        --white: #ffffff;
 
-    --ink: #173b68;
-    --ink-soft: #70849b;
+        --ink: #173b68;
+        --ink-soft: #70849b;
 
-    --line: #dce6ef;
+        --line: #dce6ef;
 
-    --category-accent: #2f6fed;
-    --category-accent-light: #6fa4ff;
-    --category-background: #eaf3ff;
-    --category-border: #c4daf6;
+        --category-accent: #2f6fed;
+        --category-accent-light: #6fa4ff;
+        --category-background: #eaf3ff;
+        --category-border: #c4daf6;
 
-}
+        --shadow-soft:
+            0 7px 22px rgba(23,59,104,0.055);
 
-
-/* =====================================================
-   RESET
-====================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-body {
-
-    margin: 0;
-
-    min-height: 100vh;
-
-    font-family:
-        Calibri,
-        "Segoe UI",
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
-
-    color: var(--ink);
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7f9fc 50%,
-            #eef4fa 100%
-        );
-
-}
-
-
-/* =====================================================
-   TOP NAVIGATION
-====================================================== */
-
-.top-nav {
-
-    width: min(1280px, 92%);
-
-    margin: 24px auto 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-.back-btn {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 10px 17px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius: 999px;
-
-    background:
-        rgba(255,255,255,0.9);
-
-    color:
-        var(--ink);
-
-    text-decoration: none;
-
-    font-size: 1.155rem;
-
-    font-weight: 800;
-
-    box-shadow:
-        0 5px 16px
-        rgba(23,59,104,0.07);
-
-    transition: 0.2s ease;
-
-}
-
-
-.back-btn:hover {
-
-    color:
-        var(--category-accent);
-
-    border-color:
-        var(--category-accent);
-
-    transform:
-        translateX(-3px);
-
-}
-
-
-/* =====================================================
-   MAIN CONTAINER
-====================================================== */
-
-.container {
-
-    width: min(1280px, 92%);
-
-    margin: 30px auto 70px;
-
-}
-
-
-/* =====================================================
-   CATEGORY HERO
-====================================================== */
-
-.category-header {
-
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 38px 42px;
-
-    margin-bottom: 24px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff 0%,
-            #ffffff 58%,
-            var(--category-background) 100%
-        );
-
-    box-shadow:
-        0 15px 38px
-        rgba(23,59,104,0.08);
-
-}
-
-
-.category-header::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 7px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--category-accent),
-            var(--category-accent-light)
-        );
-
-}
-
-
-.category-header::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 190px;
-    height: 190px;
-
-    right: -75px;
-    top: -85px;
-
-    border-radius: 50%;
-
-    background:
-        var(--category-accent);
-
-    opacity: 0.06;
-
-}
-
-
-.category-header-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 24px;
-
-}
-
-
-.category-header-icon {
-
-    width: 82px;
-    height: 82px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 23px;
-
-    background:
-        var(--category-background);
-
-    font-size: 3.025rem;
-
-    box-shadow:
-        0 8px 18px
-        rgba(23,59,104,0.07);
-
-}
-
-
-.category-eyebrow {
-
-    margin: 0 0 5px;
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.055rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.12em;
-
-    text-transform: uppercase;
-
-}
-
-
-.category-title {
-
-    margin: 0;
-
-    font-family:
-        "Kalam",
-        cursive;
-
-    color:
-        var(--ink);
-
-    font-size:
-        clamp(
-            2.625rem,
-            5vw,
-            3.875rem
-        );
-
-    line-height: 1;
-
-}
-
-
-.category-description {
-
-    max-width: 760px;
-
-    margin: 10px 0 0;
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.255rem;
-
-    line-height: 1.6;
-
-}
-
-
-/* =====================================================
-   TABS
-====================================================== */
-
-.tabs {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 8px;
-
-    padding: 7px;
-
-    margin-bottom: 30px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.94);
-
-    box-shadow:
-        0 7px 20px
-        rgba(23,59,104,0.06);
-
-}
-
-
-.tabs.hidden {
-
-    display: none;
-
-}
-
-
-.tab-btn {
-
-    min-height: 52px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 9px;
-
-    border: 0;
-
-    border-radius: 13px;
-
-    background:
-        transparent;
-
-    color:
-        var(--ink-soft);
-
-    font-family: inherit;
-
-    font-size: 1.195rem;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-
-}
-
-
-.tab-btn:hover {
-
-    color:
-        var(--category-accent);
-
-    background:
-        var(--category-background);
-
-}
-
-
-.tab-btn.active {
-
-    color:
-        var(--category-accent);
-
-    background:
-        var(--category-background);
-
-    box-shadow:
-        inset 0 0 0 1px
-        var(--category-border);
-
-}
-
-
-.tab-icon {
-
-    font-size: 1.425rem;
-
-}
-
-
-/* =====================================================
-   TAB PANELS
-====================================================== */
-
-.tab-panel {
-
-    display: none;
-
-}
-
-
-.tab-panel.active {
-
-    display: block;
-
-    animation:
-        fadeIn 0.25s ease;
-
-}
-
-
-@keyframes fadeIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(4px);
+        --shadow-card:
+            0 9px 25px rgba(23,59,104,0.065);
 
     }
 
-    to {
 
-        opacity: 1;
+    /* =====================================================
+       RESET
+    ===================================================== */
 
-        transform:
-            translateY(0);
+    * {
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        min-height: 100vh;
+
+        font-family:
+            Calibri,
+            "Segoe UI",
+            Tahoma,
+            Geneva,
+            Verdana,
+            sans-serif;
+
+        color:
+            var(--ink);
+
+        background:
+            #eeeeed 0%;
 
     }
 
-}
 
+    button,
+    a {
 
-/* =====================================================
-   SECTION HEADER
-====================================================== */
+        -webkit-tap-highlight-color:
+            transparent;
 
-.section-heading {
+    }
 
-    display: flex;
 
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 18px;
-
-}
-
-
-.section-heading-left {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-}
-
-
-.section-heading-icon {
-
-    width: 36px;
-    height: 36px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 11px;
-
-    background:
-        var(--category-background);
-
-    border:
-        1px solid
-        var(--category-border);
-
-    font-size: 1.375rem;
-
-}
-
-
-.section-heading h2 {
-
-    margin: 0;
-
-    color:
-        var(--ink);
-
-    font-size: 1.555rem;
-
-    font-weight: 800;
-
-}
-
-
-.item-count {
-
-    padding: 6px 12px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 999px;
-
-    background:
-        var(--category-background);
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.075rem;
-
-    font-weight: 800;
-
-}
-
-
-/* =====================================================
-   GAME GRID
-====================================================== */
-
-.game-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(270px, 1fr)
-        );
-
-    gap: 18px;
-
-}
-
-
-/* =====================================================
-   GAME CARD
-====================================================== */
-
-.game-card {
-
-    position: relative;
-
-    min-height: 245px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 24px;
-
-    overflow: hidden;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 22px;
-
-    background:
-        #ffffff;
-
-    color:
-        var(--ink);
-
-    text-decoration: none;
-
-    box-shadow:
-        0 8px 22px
-        rgba(23,59,104,0.065);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
-
-}
-
-
-.game-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 5px;
-
-    background:
-        var(--category-accent);
-
-}
-
-
-.game-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 150px;
-    height: 150px;
-
-    right: -70px;
-    bottom: -75px;
-
-    border-radius: 50%;
-
-    background:
-        var(--category-accent);
-
-    opacity: 0.055;
-
-    transition:
-        transform 0.25s ease;
-
-}
-
-
-.game-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    border-color:
-        var(--category-accent);
-
-    box-shadow:
-        0 18px 35px
-        rgba(23,59,104,0.12);
-
-}
-
-
-.game-card:hover::after {
-
-    transform:
-        scale(1.3);
-
-}
-
-
-.game-number {
-
-    position: absolute;
-
-    top: 22px;
-    right: 22px;
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.025rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.08em;
-
-}
-
-
-.game-icon {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 58px;
-    height: 58px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin-bottom: 18px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 16px;
-
-    background:
-        var(--category-background);
-
-    font-size: 2.125rem;
-
-    transition:
-        transform 0.22s ease;
-
-}
-
-
-.game-card:hover .game-icon {
-
-    transform:
-        rotate(-4deg)
-        scale(1.08);
-
-}
-
-
-.game-title {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin: 0 0 8px;
-
-    color:
-        var(--ink);
-
-    font-size: 1.475rem;
-
-    line-height: 1.35;
-
-    font-weight: 800;
-
-}
-
-
-.game-description {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin: 0;
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.165rem;
-
-    line-height: 1.55;
-
-}
-
-
-.game-footer {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin-top: auto;
-
-    padding-top: 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-.play-label {
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.075rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.05em;
-
-}
-
-
-.play-arrow {
-
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        var(--category-accent);
-
-    color:
-        #ffffff;
-
-    font-size: 1.275rem;
-
-    font-weight: 800;
-
-    transition:
-        transform 0.2s ease;
-
-}
-
-
-.game-card:hover .play-arrow {
-
-    transform:
-        translateX(4px);
-
-}
-
-
-/* =====================================================
-   VOCABULARY GRID
-====================================================== */
-
-.vocab-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(215px, 1fr)
-        );
-
-    gap: 14px;
-
-}
-
-
-/* =====================================================
-   VOCAB CARD
-====================================================== */
-
-.vocab-card {
-
-    padding: 20px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 18px;
-
-    background:
-        #ffffff;
-
-    box-shadow:
-        0 6px 17px
-        rgba(23,59,104,0.05);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-
-}
-
-
-.vocab-card:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        var(--category-accent);
-
-    box-shadow:
-        0 13px 26px
-        rgba(23,59,104,0.1);
-
-}
-
-
-.vocab-vietnamese {
-
-    margin: 0 0 5px;
-
-    color:
-        var(--ink);
-
-    font-size: 1.535rem;
-
-    font-weight: 800;
-
-}
-
-
-.vocab-meaning {
-
-    margin: 0;
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.175rem;
-
-    line-height: 1.5;
-
-}
-
-
-.vocab-phonetic {
-
-    display: inline-block;
-
-    margin-top: 9px;
-
-    padding: 3px 8px;
-
-    border-radius: 7px;
-
-    background:
-        var(--category-background);
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.095rem;
-
-    font-weight: 700;
-
-}
-
-
-/* =====================================================
-   TOPIC CARDS
-====================================================== */
-
-.vocab-topic-card {
-
-    position: relative;
-
-    padding: 23px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 20px;
-
-    background:
-        #ffffff;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 20px
-        rgba(23,59,104,0.055);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
-
-}
-
-
-.vocab-topic-card:hover {
-
-    transform:
-        translateY(-5px);
-
-    border-color:
-        var(--category-accent);
-
-    box-shadow:
-        0 15px 28px
-        rgba(23,59,104,0.11);
-
-}
-
-
-.vocab-topic-icon {
-
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin-bottom: 16px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 14px;
-
-    background:
-        var(--category-background);
-
-    font-size: 1.775rem;
-
-}
-
-
-.vocab-topic-title {
-
-    margin: 0 0 6px;
-
-    color:
-        var(--ink);
-
-    font-size: 1.455rem;
-
-    font-weight: 800;
-
-}
-
-
-.vocab-topic-count {
-
-    margin: 0;
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.155rem;
-
-}
-
-
-.vocab-topic-arrow {
-
-    margin-top: 19px;
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.055rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.04em;
-
-}
-
-
-/* =====================================================
-   LESSON GRID
-====================================================== */
-
-.lesson-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        );
-
-    gap: 18px;
-
-}
-
-
-/* =====================================================
-   LESSON CARD
-====================================================== */
-
-.lesson-card {
-
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 25px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 22px;
-
-    background:
-        #ffffff;
-
-    box-shadow:
-        0 8px 22px
-        rgba(23,59,104,0.065);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
-
-}
-
-
-.lesson-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 5px;
-
-    background:
-        var(--category-accent);
-
-}
-
-
-.lesson-card:hover {
-
-    transform:
-        translateY(-5px);
-
-    border-color:
-        var(--category-accent);
-
-    box-shadow:
-        0 16px 32px
-        rgba(23,59,104,0.11);
-
-}
-
-
-.lesson-number {
-
-    margin-bottom: 14px;
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.035rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.08em;
-
-}
-
-
-.lesson-title {
-
-    margin: 0 0 10px;
-
-    color:
-        var(--ink);
-
-    font-family:
-        "Kalam",
-        cursive;
-
-    font-size: 1.925rem;
-
-    line-height: 1.25;
-
-}
-
-
-.lesson-phonetic {
-
-    display: inline-block;
-
-    margin-bottom: 13px;
-
-    padding: 4px 9px;
-
-    border-radius: 8px;
-
-    background:
-        var(--category-background);
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.095rem;
-
-    font-weight: 700;
-
-}
-
-
-.lesson-meaning {
-
-    margin: 0;
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.195rem;
-
-    line-height: 1.6;
-
-}
-
-
-.lesson-explanation {
-
-    margin-top: 16px;
-
-    padding-top: 14px;
-
-    border-top:
-        1px solid
-        var(--line);
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.145rem;
-
-    line-height: 1.6;
-
-}
-
-
-.lesson-label {
-
-    display: block;
-
-    margin-bottom: 5px;
-
-    color:
-        var(--category-accent);
-
-    font-size: 1.015rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.08em;
-
-    text-transform: uppercase;
-
-}
-
-
-/* =====================================================
-   TOPIC VOCABULARY VIEW
-====================================================== */
-
-.vocab-back-btn {
-
-    grid-column: 1 / -1;
-
-    width: fit-content;
-
-    padding: 8px 14px;
-
-    border:
-        1px solid
-        var(--category-border);
-
-    border-radius: 999px;
-
-    background:
-        #ffffff;
-
-    color:
-        var(--category-accent);
-
-    font-family: inherit;
-
-    font-size: 1.125rem;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-
-}
-
-
-.vocab-back-btn:hover {
-
-    background:
-        var(--category-background);
-
-    transform:
-        translateX(-3px);
-
-}
-
-
-.vocab-topic-heading {
-
-    grid-column: 1 / -1;
-
-    padding: 4px 0 10px;
-
-}
-
-
-.vocab-topic-heading h3 {
-
-    margin: 0 0 4px;
-
-    color:
-        var(--ink);
-
-    font-size: 1.655rem;
-
-    font-weight: 800;
-
-}
-
-
-.vocab-topic-heading span {
-
-    color:
-        var(--ink-soft);
-
-    font-size: 1.135rem;
-
-    font-weight: 600;
-
-}
-
-
-/* =====================================================
-   EMPTY STATE
-====================================================== */
-
-.empty-message {
-
-    grid-column: 1 / -1;
-
-    padding: 50px 25px;
-
-    border:
-        1px dashed
-        var(--category-border);
-
-    border-radius: 21px;
-
-    background:
-        rgba(255,255,255,0.7);
-
-    color:
-        var(--ink-soft);
-
-    text-align: center;
-
-}
-
-
-.empty-icon {
-
-    margin-bottom: 10px;
-
-    font-size: 2.375rem;
-
-}
-
-
-.empty-title {
-
-    margin: 0 0 6px;
-
-    color:
-        var(--ink);
-
-    font-size: 1.375rem;
-
-    font-weight: 800;
-
-}
-
-
-.empty-text {
-
-    margin: 0;
-
-    font-size: 1.175rem;
-
-}
-
-
-/* =====================================================
-   FOOTER
-====================================================== */
-
-footer {
-
-    width: min(1280px, 92%);
-
-    margin: 0 auto;
-
-    padding: 15px 0 35px;
-
-    color:
-        #7d91a7;
-
-    font-size: 1.135rem;
-
-    text-align: center;
-
-}
-
-
-.footer-line {
-
-    width: 100%;
-
-    height: 1px;
-
-    margin-bottom: 20px;
-
-    background:
-        #d9e4ee;
-
-}
-
-
-/* =====================================================
-   MOBILE
-====================================================== */
-
-@media (max-width: 700px) {
+    /* =====================================================
+       TOP NAVIGATION
+    ====================================================== */
 
     .top-nav {
 
-        width: 92%;
+        width:
+            min(1120px, 92%);
 
-        margin-top: 15px;
+        margin:
+            24px auto 0;
 
     }
 
+
+    .back-btn {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            8px;
+
+        padding:
+            9px 15px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius:
+            999px;
+
+        background:
+            rgba(255,255,255,0.92);
+
+        color:
+            var(--ink);
+
+        text-decoration:
+            none;
+
+        font-size:
+            1.05rem;
+
+        font-weight:
+            800;
+
+        box-shadow:
+            0 5px 15px
+            rgba(23,59,104,0.055);
+
+        transition:
+            0.2s ease;
+
+    }
+
+
+    .back-btn:hover {
+
+        color:
+            var(--category-accent);
+
+        border-color:
+            var(--category-accent);
+
+        transform:
+            translateX(-3px);
+
+    }
+
+
+    /* =====================================================
+       MAIN CONTAINER
+    ====================================================== */
 
     .container {
 
-        width: 92%;
+        width:
+            min(1120px, 92%);
 
-        margin-top: 24px;
+        margin:
+            22px auto 70px;
 
     }
 
 
+    /* =====================================================
+       CATEGORY HEADER
+    ====================================================== */
+
     .category-header {
 
-        padding: 29px 23px;
+        position:
+            relative;
 
-        border-radius: 22px;
+        overflow:
+            hidden;
+
+        padding:
+            30px 34px;
+
+        margin-bottom:
+            20px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            24px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #ffffff 62%,
+                var(--category-background) 100%
+            );
+
+        box-shadow:
+            var(--shadow-soft);
+
+    }
+
+
+    .category-header::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        top:
+            0;
+
+        left:
+            0;
+
+        width:
+            100%;
+
+        height:
+            5px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--category-accent),
+                var(--category-accent-light)
+            );
+
+    }
+
+
+    .category-header::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            170px;
+
+        height:
+            170px;
+
+        right:
+            -72px;
+
+        top:
+            -88px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--category-accent);
+
+        opacity:
+            0.055;
 
     }
 
 
     .category-header-content {
 
-        align-items: flex-start;
+        position:
+            relative;
 
-        gap: 17px;
+        z-index:
+            2;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            20px;
 
     }
 
 
     .category-header-icon {
 
-        width: 62px;
-        height: 62px;
+        width:
+            66px;
 
-        border-radius: 17px;
+        height:
+            66px;
 
-        font-size: 2.375rem;
+        flex-shrink:
+            0;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            18px;
+
+        background:
+            var(--category-background);
+
+        font-size:
+            2.3rem;
+
+        box-shadow:
+            0 6px 15px
+            rgba(23,59,104,0.055);
+
+    }
+
+
+    .category-eyebrow {
+
+        margin:
+            0 0 3px;
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.9rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.13em;
+
+        text-transform:
+            uppercase;
 
     }
 
 
     .category-title {
 
-        font-size: 2.625rem;
+        margin:
+            0;
+
+        font-family:
+            "Kalam",
+            cursive;
+
+        color:
+            var(--ink);
+
+        font-size:
+            clamp(
+                2.35rem,
+                5vw,
+                3.25rem
+            );
+
+        line-height:
+            1.05;
 
     }
 
 
     .category-description {
 
-        font-size: 1.175rem;
+        max-width:
+            700px;
+
+        margin:
+            6px 0 0;
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1.08rem;
+
+        line-height:
+            1.5;
 
     }
 
 
+    /* =====================================================
+       TABS
+    ====================================================== */
+
     .tabs {
 
-        gap: 5px;
+        display:
+            grid;
 
-        padding: 5px;
+        grid-template-columns:
+            1fr 1fr;
 
+        gap:
+            6px;
+
+        padding:
+            5px;
+
+        margin-bottom:
+            28px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius:
+            15px;
+
+        background:
+            rgba(255,255,255,0.95);
+
+        box-shadow:
+            var(--shadow-soft);
+
+    }
+
+
+    .tabs.hidden {
+        display:
+            none;
     }
 
 
     .tab-btn {
 
-        min-height: 46px;
+        min-height:
+            47px;
 
-        padding: 8px;
+        display:
+            flex;
 
-        font-size: 1.095rem;
+        align-items:
+            center;
 
-    }
+        justify-content:
+            center;
 
+        gap:
+            8px;
 
-    .game-grid {
+        border:
+            0;
 
-        grid-template-columns:
-            1fr;
+        border-radius:
+            11px;
 
-        gap: 14px;
+        background:
+            transparent;
 
-    }
+        color:
+            var(--ink-soft);
 
+        font-family:
+            inherit;
 
-    .lesson-grid {
+        font-size:
+            1.05rem;
 
-        grid-template-columns:
-            1fr;
+        font-weight:
+            800;
 
-        gap: 14px;
+        cursor:
+            pointer;
 
-    }
-
-
-    .vocab-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 10px;
-
-    }
-
-
-    .game-card {
-
-        min-height: 220px;
-
-        padding: 21px;
-
-        border-radius: 19px;
+        transition:
+            0.2s ease;
 
     }
 
 
-    .lesson-card {
+    .tab-btn:hover {
 
-        padding: 21px;
+        color:
+            var(--category-accent);
 
-        border-radius: 19px;
-
-    }
-
-
-    .vocab-card {
-
-        padding: 17px;
+        background:
+            var(--category-background);
 
     }
 
 
-    .vocab-vietnamese {
+    .tab-btn.active {
 
-        font-size: 1.425rem;
+        color:
+            var(--category-accent);
 
-    }
+        background:
+            var(--category-background);
 
-}
-
-
-@media (max-width: 430px) {
-
-    .category-header-content {
-
-        flex-direction: column;
+        box-shadow:
+            inset 0 0 0 1px
+            var(--category-border);
 
     }
 
 
-    .category-title {
+    .tab-icon {
+        font-size:
+            1.2rem;
+    }
 
-        font-size: 2.525rem;
+
+    /* =====================================================
+       TAB PANELS
+    ====================================================== */
+
+    .tab-panel {
+        display:
+            none;
+    }
+
+
+    .tab-panel.active {
+
+        display:
+            block;
+
+        animation:
+            fadeIn 0.22s ease;
+
+    }
+
+
+    @keyframes fadeIn {
+
+        from {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(4px);
+
+        }
+
+        to {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SECTION HEADER
+    ====================================================== */
+
+    .section-heading {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        gap:
+            15px;
+
+        margin-bottom:
+            15px;
+
+    }
+
+
+    .section-heading-left {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+    }
+
+
+    .section-heading-icon {
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            10px;
+
+        background:
+            var(--category-background);
+
+        font-size:
+            1.2rem;
 
     }
 
 
     .section-heading h2 {
 
-        font-size: 1.425rem;
+        margin:
+            0;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.4rem;
+
+        font-weight:
+            800;
 
     }
 
+
+    .item-count {
+
+        padding:
+            5px 10px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            999px;
+
+        background:
+            var(--category-background);
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.96rem;
+
+        font-weight:
+            800;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    /* =====================================================
+       GAME GRID
+    ====================================================== */
+
+    .game-grid {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(255px, 1fr)
+            );
+
+        gap:
+            15px;
+
+    }
+
+
+    /* =====================================================
+       GAME CARD
+    ====================================================== */
+
+    .game-card {
+
+        position:
+            relative;
+
+        min-height:
+            220px;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        padding:
+            21px;
+
+        overflow:
+            hidden;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            19px;
+
+        background:
+            var(--white);
+
+        color:
+            var(--ink);
+
+        text-decoration:
+            none;
+
+        box-shadow:
+            var(--shadow-card);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    .game-card::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        top:
+            0;
+
+        left:
+            0;
+
+        width:
+            100%;
+
+        height:
+            4px;
+
+        background:
+            var(--category-accent);
+
+    }
+
+
+    .game-card::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            135px;
+
+        height:
+            135px;
+
+        right:
+            -67px;
+
+        bottom:
+            -68px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--category-accent);
+
+        opacity:
+            0.05;
+
+        transition:
+            transform 0.25s ease;
+
+    }
+
+
+    .game-card:hover {
+
+        transform:
+            translateY(-5px);
+
+        border-color:
+            var(--category-accent);
+
+        box-shadow:
+            0 16px 31px
+            rgba(23,59,104,0.105);
+
+    }
+
+
+    .game-card:hover::after {
+
+        transform:
+            scale(1.25);
+
+    }
+
+
+    .game-number {
+
+        position:
+            absolute;
+
+        top:
+            19px;
+
+        right:
+            19px;
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.88rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.08em;
+
+    }
+
+
+    .game-icon {
+
+        position:
+            relative;
+
+        z-index:
+            2;
+
+        width:
+            52px;
+
+        height:
+            52px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        margin-bottom:
+            15px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            14px;
+
+        background:
+            var(--category-background);
+
+        font-size:
+            1.9rem;
+
+        transition:
+            transform 0.2s ease;
+
+    }
+
+
+    .game-card:hover .game-icon {
+
+        transform:
+            rotate(-4deg)
+            scale(1.06);
+
+    }
+
+
+    .game-title {
+
+        position:
+            relative;
+
+        z-index:
+            2;
+
+        margin:
+            0 0 6px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.3rem;
+
+        line-height:
+            1.35;
+
+        font-weight:
+            800;
+
+    }
+
+
+    .game-description {
+
+        position:
+            relative;
+
+        z-index:
+            2;
+
+        margin:
+            0;
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1.02rem;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    .game-footer {
+
+        position:
+            relative;
+
+        z-index:
+            2;
+
+        margin-top:
+            auto;
+
+        padding-top:
+            17px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+    }
+
+
+    .play-label {
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.91rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.05em;
+
+    }
+
+
+    .play-arrow {
+
+        width:
+            31px;
+
+        height:
+            31px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--category-accent);
+
+        color:
+            #ffffff;
+
+        font-size:
+            1.15rem;
+
+        font-weight:
+            800;
+
+        transition:
+            transform 0.2s ease;
+
+    }
+
+
+    .game-card:hover .play-arrow {
+
+        transform:
+            translateX(4px);
+
+    }
+
+
+    /* =====================================================
+       VOCABULARY GRID
+    ====================================================== */
 
     .vocab-grid {
 
+        display:
+            grid;
+
         grid-template-columns:
-            1fr;
+            repeat(
+                auto-fit,
+                minmax(205px, 1fr)
+            );
+
+        gap:
+            12px;
 
     }
 
-}
 
-</style>
+    /* =====================================================
+       VOCABULARY CARD
+    ====================================================== */
+
+    .vocab-card {
+
+        padding:
+            18px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            16px;
+
+        background:
+            var(--white);
+
+        box-shadow:
+            0 6px 17px
+            rgba(23,59,104,0.045);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    .vocab-card:hover {
+
+        transform:
+            translateY(-3px);
+
+        border-color:
+            var(--category-accent);
+
+        box-shadow:
+            0 12px 24px
+            rgba(23,59,104,0.085);
+
+    }
+
+
+    .vocab-vietnamese {
+
+        margin:
+            0 0 4px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.38rem;
+
+        font-weight:
+            800;
+
+    }
+
+
+    .vocab-meaning {
+
+        margin:
+            0;
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1.03rem;
+
+        line-height:
+            1.45;
+
+    }
+
+
+    .vocab-phonetic {
+
+        display:
+            inline-block;
+
+        margin-top:
+            8px;
+
+        padding:
+            3px 7px;
+
+        border-radius:
+            6px;
+
+        background:
+            var(--category-background);
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.95rem;
+
+        font-weight:
+            700;
+
+    }
+
+
+    /* =====================================================
+       TOPIC CARDS
+    ====================================================== */
+
+    .vocab-topic-card {
+
+        position:
+            relative;
+
+        padding:
+            20px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            17px;
+
+        background:
+            var(--white);
+
+        cursor:
+            pointer;
+
+        box-shadow:
+            0 7px 19px
+            rgba(23,59,104,0.05);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    .vocab-topic-card:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            var(--category-accent);
+
+        box-shadow:
+            0 13px 26px
+            rgba(23,59,104,0.095);
+
+    }
+
+
+    .vocab-topic-icon {
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        margin-bottom:
+            13px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            12px;
+
+        background:
+            var(--category-background);
+
+        font-size:
+            1.55rem;
+
+    }
+
+
+    .vocab-topic-title {
+
+        margin:
+            0 0 5px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.3rem;
+
+        font-weight:
+            800;
+
+    }
+
+
+    .vocab-topic-count {
+
+        margin:
+            0;
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1rem;
+
+    }
+
+
+    .vocab-topic-arrow {
+
+        margin-top:
+            16px;
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.91rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.04em;
+
+    }
+
+
+    /* =====================================================
+       TOPIC VOCABULARY VIEW
+    ====================================================== */
+
+    .vocab-back-btn {
+
+        grid-column:
+            1 / -1;
+
+        width:
+            fit-content;
+
+        padding:
+            7px 12px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            999px;
+
+        background:
+            var(--white);
+
+        color:
+            var(--category-accent);
+
+        font-family:
+            inherit;
+
+        font-size:
+            0.98rem;
+
+        font-weight:
+            800;
+
+        cursor:
+            pointer;
+
+        transition:
+            0.2s ease;
+
+    }
+
+
+    .vocab-back-btn:hover {
+
+        background:
+            var(--category-background);
+
+        transform:
+            translateX(-3px);
+
+    }
+
+
+    .vocab-topic-heading {
+
+        grid-column:
+            1 / -1;
+
+        padding:
+            2px 0 8px;
+
+    }
+
+
+    .vocab-topic-heading h3 {
+
+        margin:
+            0 0 3px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.45rem;
+
+        font-weight:
+            800;
+
+    }
+
+
+    .vocab-topic-heading span {
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1rem;
+
+        font-weight:
+            600;
+
+    }
+
+
+    /* =====================================================
+       LESSON GRID
+    ====================================================== */
+
+    .lesson-grid {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(270px, 1fr)
+            );
+
+        gap:
+            15px;
+
+    }
+
+
+    /* =====================================================
+       LESSON CARD
+    ====================================================== */
+
+    .lesson-card {
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        padding:
+            21px;
+
+        border:
+            1px solid
+            var(--category-border);
+
+        border-radius:
+            19px;
+
+        background:
+            var(--white);
+
+        box-shadow:
+            var(--shadow-card);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    .lesson-card::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        top:
+            0;
+
+        left:
+            0;
+
+        width:
+            100%;
+
+        height:
+            4px;
+
+        background:
+            var(--category-accent);
+
+    }
+
+
+    .lesson-card:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            var(--category-accent);
+
+        box-shadow:
+            0 15px 30px
+            rgba(23,59,104,0.1);
+
+    }
+
+
+    .lesson-number {
+
+        margin-bottom:
+            11px;
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.9rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.08em;
+
+    }
+
+
+    .lesson-title {
+
+        margin:
+            0 0 8px;
+
+        color:
+            var(--ink);
+
+        font-family:
+            "Kalam",
+            cursive;
+
+        font-size:
+            1.72rem;
+
+        line-height:
+            1.25;
+
+    }
+
+
+    .lesson-phonetic {
+
+        display:
+            inline-block;
+
+        margin-bottom:
+            11px;
+
+        padding:
+            3px 8px;
+
+        border-radius:
+            7px;
+
+        background:
+            var(--category-background);
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.96rem;
+
+        font-weight:
+            700;
+
+    }
+
+
+    .lesson-meaning {
+
+        margin:
+            0;
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            1.03rem;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    .lesson-explanation {
+
+        margin-top:
+            14px;
+
+        padding-top:
+            12px;
+
+        border-top:
+            1px solid
+            var(--line);
+
+        color:
+            var(--ink-soft);
+
+        font-size:
+            0.99rem;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    .lesson-label {
+
+        display:
+            block;
+
+        margin-bottom:
+            4px;
+
+        color:
+            var(--category-accent);
+
+        font-size:
+            0.86rem;
+
+        font-weight:
+            800;
+
+        letter-spacing:
+            0.08em;
+
+        text-transform:
+            uppercase;
+
+    }
+
+
+    /* =====================================================
+       EMPTY STATE
+    ====================================================== */
+
+    .empty-message {
+
+        grid-column:
+            1 / -1;
+
+        padding:
+            42px 20px;
+
+        border:
+            1px dashed
+            var(--category-border);
+
+        border-radius:
+            18px;
+
+        background:
+            rgba(255,255,255,0.7);
+
+        color:
+            var(--ink-soft);
+
+        text-align:
+            center;
+
+    }
+
+
+    .empty-icon {
+
+        margin-bottom:
+            8px;
+
+        font-size:
+            2.15rem;
+
+    }
+
+
+    .empty-title {
+
+        margin:
+            0 0 5px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            1.25rem;
+
+        font-weight:
+            800;
+
+    }
+
+
+    .empty-text {
+
+        margin:
+            0;
+
+        font-size:
+            1rem;
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer {
+
+        width:
+            min(1120px, 92%);
+
+        margin:
+            0 auto;
+
+        padding:
+            12px 0 30px;
+
+        color:
+            #7d91a7;
+
+        font-size:
+            0.98rem;
+
+        text-align:
+            center;
+
+    }
+
+
+    .footer-line {
+
+        width:
+            100%;
+
+        height:
+            1px;
+
+        margin-bottom:
+            17px;
+
+        background:
+            #d9e4ee;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 700px) {
+
+        .top-nav {
+
+            width:
+                92%;
+
+            margin-top:
+                15px;
+
+        }
+
+
+        .container {
+
+            width:
+                92%;
+
+            margin-top:
+                18px;
+
+        }
+
+
+        .category-header {
+
+            padding:
+                25px 21px;
+
+            border-radius:
+                20px;
+
+        }
+
+
+        .category-header-content {
+
+            align-items:
+                flex-start;
+
+            gap:
+                15px;
+
+        }
+
+
+        .category-header-icon {
+
+            width:
+                57px;
+
+            height:
+                57px;
+
+            border-radius:
+                15px;
+
+            font-size:
+                2rem;
+
+        }
+
+
+        .category-eyebrow {
+
+            font-size:
+                0.8rem;
+
+        }
+
+
+        .category-title {
+
+            font-size:
+                2.35rem;
+
+        }
+
+
+        .category-description {
+
+            margin-top:
+                5px;
+
+            font-size:
+                1rem;
+
+        }
+
+
+        .tabs {
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .tab-btn {
+
+            min-height:
+                44px;
+
+            font-size:
+                0.98rem;
+
+        }
+
+
+        .game-grid,
+        .lesson-grid {
+
+            grid-template-columns:
+                1fr;
+
+            gap:
+                12px;
+
+        }
+
+
+        .vocab-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                9px;
+
+        }
+
+
+        .game-card {
+
+            min-height:
+                205px;
+
+            padding:
+                19px;
+
+            border-radius:
+                17px;
+
+        }
+
+
+        .game-icon {
+
+            width:
+                49px;
+
+            height:
+                49px;
+
+            margin-bottom:
+                13px;
+
+        }
+
+
+        .game-title {
+
+            font-size:
+                1.22rem;
+
+        }
+
+
+        .game-description {
+
+            font-size:
+                0.98rem;
+
+        }
+
+
+        .lesson-card {
+
+            padding:
+                19px;
+
+            border-radius:
+                17px;
+
+        }
+
+
+        .lesson-title {
+
+            font-size:
+                1.6rem;
+
+        }
+
+
+        .vocab-card {
+
+            padding:
+                15px;
+
+        }
+
+
+        .vocab-vietnamese {
+
+            font-size:
+                1.3rem;
+
+        }
+
+
+        .vocab-meaning {
+
+            font-size:
+                0.98rem;
+
+        }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+        .category-header-content {
+
+            flex-direction:
+                column;
+
+        }
+
+
+        .category-title {
+
+            font-size:
+                2.25rem;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size:
+                1.25rem;
+
+        }
+
+
+        .item-count {
+
+            font-size:
+                0.88rem;
+
+        }
+
+
+        .vocab-grid {
+
+            grid-template-columns:
+                1fr;
+
+        }
+
+    }
+
+    </style>
 
 </head>
 
@@ -1719,10 +2096,10 @@ footer {
 <nav class="top-nav">
 
     <a
-        href="index.html"
+        href="index.html?page=vocabulary"
         class="back-btn"
     >
-        ← Back to Lobby
+        ← Back
     </a>
 
 </nav>
@@ -1790,16 +2167,14 @@ footer {
     <!-- =================================================
          TABS
 
-         ONLY vocabulary categories use tabs.
-
-         vocabulary:
+         Vocabulary:
          Games + Vocabulary
 
-         sentences:
-         NO TABS
+         Sentences:
+         No tabs
 
-         useful-phrases:
-         NO TABS
+         Useful Phrases:
+         No tabs
     ================================================== -->
 
     <nav
@@ -1851,8 +2226,6 @@ footer {
 
     <!-- =================================================
          GAMES PANEL
-
-         ONLY USED BY VOCABULARY CATEGORIES
     ================================================== -->
 
     <section
@@ -1915,16 +2288,7 @@ footer {
 
 
     <!-- =================================================
-         SECOND CONTENT PANEL
-
-         VOCABULARY:
-         Vocabulary cards
-
-         SENTENCES:
-         Lesson cards
-
-         USEFUL PHRASES:
-         Lesson cards
+         VOCABULARY PANEL
     ================================================== -->
 
     <section
@@ -1944,9 +2308,7 @@ footer {
                     🧠
                 </div>
 
-                <h2
-                    id="content-heading"
-                >
+                <h2 id="content-heading">
                     Vocabulary
                 </h2>
 
@@ -1993,10 +2355,8 @@ footer {
          LESSONS PANEL
 
          Used by:
-         sentences
-         useful-phrases
-
-         This is NOT inside tabs.
+         Sentences
+         Useful Phrases
     ================================================== -->
 
     <section
@@ -2016,9 +2376,7 @@ footer {
                     📖
                 </div>
 
-                <h2
-                    id="lessons-heading"
-                >
+                <h2 id="lessons-heading">
                     Lessons
                 </h2>
 
@@ -2077,17 +2435,14 @@ footer {
 </footer>
 
 
-<!-- =====================================================
-     SCRIPT
-====================================================== -->
-
 <script>
 
 /* =====================================================
    CONFIGURATION
 ====================================================== */
 
-const CATEGORY_FILE = "categories.json";
+const CATEGORY_FILE =
+    "categories.json";
 
 
 /* =====================================================
@@ -2244,49 +2599,288 @@ const lessonsHeadingIcon =
 ====================================================== */
 
 const defaultTheme = {
-    accent: "#2f6fed",
-    light: "#6fa4ff",
-    background: "#eaf3ff",
-    border: "#c4daf6"
+
+    accent:
+        "#2f6fed",
+
+    light:
+        "#6fa4ff",
+
+    background:
+        "#eaf3ff",
+
+    border:
+        "#c4daf6"
+
 };
 
-/* ------------------------------------------------------
-   Màu đã được giảm độ chói (desaturate + cân lightness)
-   nhưng vẫn giữ đúng tông màu (hue) của từng category
-   bên lobby, để nhìn hài hòa và dịu mắt hơn.
------------------------------------------------------- */
+
+/* =====================================================
+   CATEGORY THEMES
+====================================================== */
 
 const categoryThemes = {
-    "Activities": { accent: "#BB6258", light: "#D3A29C", background: "#fdeeeb", border: "#f0cec6" },
-    "Clothes": { accent: "#B8885B", light: "#D1B79E", background: "#fbf1e6", border: "#ecdab6" },
-    "Food and Drinks": { accent: "#A99959", light: "#C6BD98", background: "#f9f6e6", border: "#e8dfb2" },
-    "Numbers": { accent: "#7DA15C", light: "#ACC198", background: "#f0f7e8", border: "#d5e6b8" },
-    "Places, Directions & Transportation": { accent: "#5CA16E", light: "#98C1A3", background: "#eaf6ee", border: "#c1e0cc" },
-    "Sentences": { accent: "#2E2E2E", light: "#4A4A4A", background: "#f5f5f5", border: "#d0d0d0" },
-    "Describe Things": { accent: "#548C9F", light: "#8FB3C0", background: "#e9f3f7", border: "#bcdae5" },
-    "People & Pronouns": { accent: "#5F79B4", light: "#A0AECF", background: "#eaf0fa", border: "#c3d4ef" },
-    "Colors": { accent: "#7569AA", light: "#ACA6C9", background: "#efedf9", border: "#d0c9ec" },
-    "Health": { accent: "#9669AA", light: "#BEA6C9", background: "#f6eef9", border: "#dfc9ec" },
-    "Useful Phrases": { accent: "#A95F87", light: "#C79DB4", background: "#f9eaf1", border: "#ecc4dc" },
-    "Dictionary": { accent: "#A27534", light: "#C8A16A", background: "#fff8e7", border: "#efdca8" }
+
+    "Activities": {
+
+        accent:
+            "#BB6258",
+
+        light:
+            "#D3A29C",
+
+        background:
+            "#fdeeeb",
+
+        border:
+            "#f0cec6"
+
+    },
+
+
+    "Clothes": {
+
+        accent:
+            "#B8885B",
+
+        light:
+            "#D1B79E",
+
+        background:
+            "#fbf1e6",
+
+        border:
+            "#ecdab6"
+
+    },
+
+
+    "Food and Drinks": {
+
+        accent:
+            "#A99959",
+
+        light:
+            "#C6BD98",
+
+        background:
+            "#f9f6e6",
+
+        border:
+            "#e8dfb2"
+
+    },
+
+
+    "Numbers": {
+
+        accent:
+            "#7DA15C",
+
+        light:
+            "#ACC198",
+
+        background:
+            "#f0f7e8",
+
+        border:
+            "#d5e6b8"
+
+    },
+
+
+    "Places, Directions & Transportation": {
+
+        accent:
+            "#5CA16E",
+
+        light:
+            "#98C1A3",
+
+        background:
+            "#eaf6ee",
+
+        border:
+            "#c1e0cc"
+
+    },
+
+
+    "Sentences": {
+
+        accent:
+            "#2E2E2E",
+
+        light:
+            "#4A4A4A",
+
+        background:
+            "#f5f5f5",
+
+        border:
+            "#d0d0d0"
+
+    },
+
+
+    "Describe Things": {
+
+        accent:
+            "#548C9F",
+
+        light:
+            "#8FB3C0",
+
+        background:
+            "#e9f3f7",
+
+        border:
+            "#bcdae5"
+
+    },
+
+
+    "People & Pronouns": {
+
+        accent:
+            "#5F79B4",
+
+        light:
+            "#A0AECF",
+
+        background:
+            "#eaf0fa",
+
+        border:
+            "#c3d4ef"
+
+    },
+
+
+    "Colors": {
+
+        accent:
+            "#7569AA",
+
+        light:
+            "#ACA6C9",
+
+        background:
+            "#efedf9",
+
+        border:
+            "#d0c9ec"
+
+    },
+
+
+    "Health": {
+
+        accent:
+            "#9669AA",
+
+        light:
+            "#BEA6C9",
+
+        background:
+            "#f6eef9",
+
+        border:
+            "#dfc9ec"
+
+    },
+
+
+    "Useful Phrases": {
+
+        accent:
+            "#A95F87",
+
+        light:
+            "#C79DB4",
+
+        background:
+            "#f9eaf1",
+
+        border:
+            "#ecc4dc"
+
+    },
+
+
+    "Dictionary": {
+
+        accent:
+            "#A27534",
+
+        light:
+            "#C8A16A",
+
+        background:
+            "#fff8e7",
+
+        border:
+            "#efdca8"
+
+    }
+
 };
 
-function applyCategoryTheme(category, categoryKey) {
 
-    const presetTheme = categoryThemes[categoryKey] || null;
+/* =====================================================
+   APPLY CATEGORY THEME
+====================================================== */
 
-    // bảng màu khớp lobby luôn được ưu tiên cao nhất
+function applyCategoryTheme(
+    category,
+    categoryKey
+) {
+
+    const presetTheme =
+        categoryThemes[
+            categoryKey
+        ] || null;
+
+
     const theme = {
+
         ...defaultTheme,
-        ...(category && category.theme ? category.theme : {}),
-        ...(presetTheme || {})
+
+        ...(presetTheme || {}),
+
+        ...(category &&
+        category.theme
+            ? category.theme
+            : {})
+
     };
 
-    document.documentElement.style.setProperty("--category-accent", theme.accent);
-    document.documentElement.style.setProperty("--category-accent-light", theme.light);
-    document.documentElement.style.setProperty("--category-background", theme.background);
-    document.documentElement.style.setProperty("--category-border", theme.border);
+
+    document.documentElement.style.setProperty(
+        "--category-accent",
+        theme.accent
+    );
+
+
+    document.documentElement.style.setProperty(
+        "--category-accent-light",
+        theme.light
+    );
+
+
+    document.documentElement.style.setProperty(
+        "--category-background",
+        theme.background
+    );
+
+
+    document.documentElement.style.setProperty(
+        "--category-border",
+        theme.border
+    );
+
 }
+
 
 /* =====================================================
    TYPE CONFIGURATION
@@ -2442,27 +3036,6 @@ function findCategoryKey(
 
 
 /* =====================================================
-   APPLY CATEGORY THEME
-====================================================== */
-
-function applyCategoryTheme(category, categoryKey) {
-
-    const presetTheme =
-        categoryThemes[categoryKey] || null;
-
-    const theme = {
-        ...defaultTheme,
-        ...(presetTheme || {}),
-        ...(category && category.theme ? category.theme : {})
-    };
-
-    document.documentElement.style.setProperty("--category-accent", theme.accent);
-    document.documentElement.style.setProperty("--category-accent-light", theme.light);
-    document.documentElement.style.setProperty("--category-background", theme.background);
-    document.documentElement.style.setProperty("--category-border", theme.border);
-}
-
-/* =====================================================
    LOAD CATEGORIES.JSON
 ====================================================== */
 
@@ -2472,7 +3045,8 @@ async function loadCategories() {
         await fetch(
             CATEGORY_FILE,
             {
-                cache: "no-store"
+                cache:
+                    "no-store"
             }
         );
 
@@ -2642,7 +3216,8 @@ function createGameCard(
 
 function renderGames(games) {
 
-    gameGrid.innerHTML = "";
+    gameGrid.innerHTML =
+        "";
 
 
     const validGames =
@@ -2833,7 +3408,8 @@ function renderVocabulary(
         "vocab-grid";
 
 
-    contentGrid.innerHTML = "";
+    contentGrid.innerHTML =
+        "";
 
 
     currentVocabulary =
@@ -2934,7 +3510,8 @@ function renderVocabulary(
        TOPIC-BASED VOCABULARY
     ================================================== */
 
-    let totalWords = 0;
+    let totalWords =
+        0;
 
 
     currentVocabulary.forEach(
@@ -3101,7 +3678,8 @@ function showTopicVocabulary(
         "vocab-grid";
 
 
-    contentGrid.innerHTML = "";
+    contentGrid.innerHTML =
+        "";
 
 
     const backButton =
@@ -3234,10 +3812,6 @@ function getLessonData(
     }
 
 
-    /* ---------------------------------------------
-       Most general format
-    --------------------------------------------- */
-
     if (
         Array.isArray(
             category.lessons
@@ -3248,10 +3822,6 @@ function getLessonData(
 
     }
 
-
-    /* ---------------------------------------------
-       Sentences
-    --------------------------------------------- */
 
     if (
         type === "sentences" &&
@@ -3264,10 +3834,6 @@ function getLessonData(
 
     }
 
-
-    /* ---------------------------------------------
-       Useful phrases
-    --------------------------------------------- */
 
     if (
         type === "useful-phrases"
@@ -3507,7 +4073,8 @@ function renderLessons(
     type
 ) {
 
-    lessonGrid.innerHTML = "";
+    lessonGrid.innerHTML =
+        "";
 
 
     lessonGrid.className =
@@ -3655,10 +4222,6 @@ function configurePageByType(
 
     /* =================================================
        VOCABULARY
-       
-       SHOW:
-       Games tab
-       Vocabulary tab
     ================================================== */
 
     if (
@@ -3713,11 +4276,6 @@ function configurePageByType(
 
     /* =================================================
        SENTENCES
-       
-       NO TABS
-       
-       SHOW:
-       Lesson cards only
     ================================================== */
 
     if (
@@ -3764,11 +4322,6 @@ function configurePageByType(
 
     /* =================================================
        USEFUL PHRASES
-       
-       NO TABS
-       
-       SHOW:
-       Lesson cards only
     ================================================== */
 
     if (
@@ -3925,26 +4478,6 @@ async function renderCategory() {
 
         /* ---------------------------------------------
            DETECT TYPE
-           ---------------------------------------------
-
-           Example:
-
-           {
-               "type": "vocabulary"
-           }
-
-           OR
-
-           {
-               "type": "sentences"
-           }
-
-           OR
-
-           {
-               "type": "useful-phrases"
-           }
-
         --------------------------------------------- */
 
         const type =
@@ -4138,8 +4671,6 @@ async function renderCategory() {
 
 /* =====================================================
    TAB SWITCHING
-       
-   ONLY VOCABULARY CATEGORIES USE THIS.
 ====================================================== */
 
 const tabButtons =
@@ -4154,11 +4685,6 @@ tabButtons.forEach(
         button.addEventListener(
             "click",
             () => {
-
-                /* -----------------------------------------
-                   Safety:
-                   Tabs only work for vocabulary.
-                ----------------------------------------- */
 
                 if (
                     currentCategoryType !==
@@ -4239,3 +4765,4 @@ renderCategory();
 </body>
 
 </html>
+
