@@ -25,6 +25,16 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* =========================================================
@@ -2146,8 +2156,19 @@ function finishGame(){
     ).textContent =
         message;
 
-}
 
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Food - Game 7",
+            score,
+            TOTAL_PAIRS
+        );
+    }
+
+}
 
 /* =========================================================
    RESTART GAME
@@ -2191,6 +2212,10 @@ function restartGame(){
 /* =========================================================
    AUTO START
 ========================================================= */
+
+window.trackGameStart(
+    "Food - Game 7"
+);
 
 startGame();
 

@@ -59,6 +59,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -2286,6 +2295,24 @@ function finishGame() {
     ).textContent =
         performanceText;
 
+
+    /* =====================================================
+       ANALYTICS — GAME COMPLETE
+    ===================================================== */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Colors - Game 4",
+            score,
+            TOTAL_ROUNDS
+        );
+
+    }
+
 }
 
 
@@ -2326,6 +2353,10 @@ playAgain.onclick =
 /* =========================================================
    START GAME
 ========================================================= */
+
+window.trackGameStart(
+    "Colors - Game 4"
+);
 
 createRound();
 

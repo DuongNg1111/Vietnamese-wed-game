@@ -38,6 +38,16 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* ==========================================================
@@ -2140,8 +2150,19 @@ function finishGame() {
     ).textContent =
         message;
 
-}
 
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Numbers - Game 6",
+            score,
+            totalQuestions
+        );
+    }
+
+}
 
 /* ==========================================================
    RESTART GAME
@@ -2157,6 +2178,10 @@ function restartGame() {
 /* ==========================================================
    START
 ========================================================== */
+
+window.trackGameStart(
+    "Numbers - Game 6"
+);
 
 startGame();
 

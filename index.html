@@ -66,7 +66,7 @@
 ></script>
 
 <script 
-    src="analytics.js"
+    src="BACKEND/analytics.js"
 ></script>
 
 <style>
@@ -2326,6 +2326,116 @@ header p {
     box-shadow:
         0 12px 25px
         rgba(20, 58, 107, 0.10);
+
+}
+/* =====================================================
+   DICTIONARY AUDIO BUTTON
+====================================================== */
+
+.dictionary-word-audio {
+
+    position:
+        absolute;
+
+    top:
+        16px;
+
+    right:
+        16px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        #d0d0d0;
+
+    border-radius:
+        50%;
+
+    background:
+        #f5f5f5;
+
+    color:
+        var(--nav-dictionary);
+
+    font-family:
+        inherit;
+
+    font-size:
+        1.15rem;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.dictionary-word-audio:hover {
+
+    transform:
+        scale(1.08);
+
+    background:
+        #ffffff;
+
+    border-color:
+        var(--nav-dictionary);
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 0, 0, 0.10);
+
+}
+
+
+.dictionary-word-audio:active {
+
+    transform:
+        scale(0.94);
+
+}
+
+
+.dictionary-word-audio.playing {
+
+    background:
+        var(--nav-dictionary);
+
+    border-color:
+        var(--nav-dictionary);
+
+    color:
+        white;
+
+}
+
+
+/* Prevent the audio button from looking like
+   part of the clickable dictionary card */
+
+.dictionary-word-card {
+
+    padding-right:
+        72px;
 
 }
 
@@ -5131,6 +5241,120 @@ function getDictionaryWordUrl(
 
 }
 
+/* =====================================================
+   GET AUDIO FILENAME
+====================================================== */
+
+function getAudioFilename(text) {
+
+    let result = text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "-");
+
+    /* =====================================================
+       SPECIAL CASES — DUPLICATE FILENAMES
+    ====================================================== */
+
+    if (text === "bò") {
+        return "bo";
+    }
+
+    if (text === "bơ") {
+        return "bo-2";
+    }
+
+    if (text === "ba") {
+        return "ba";
+    }
+
+    if (text === "bà") {
+        return "ba-2";
+    }
+
+    if (text === "con") {
+        return "con-word";
+    }
+
+    if (text === "dép") {
+        return "dep";
+    }
+
+    if (text === "đẹp") {
+        return "dep-2";
+    }
+
+    if (text === "mười") {
+        return "muoi";
+    }
+
+    if (text === "mươi") {
+        return "muoi-2";
+    }
+
+    if (text === "cảm") {
+        return "cam";
+    }
+
+    if (text === "cam") {
+        return "cam-2";
+    }
+
+    if (text === "đau") {
+        return "dau";
+    }
+
+    if (text === "đầu") {
+        return "dau-2";
+    }
+
+    if (text === "vớ") {
+        return "vo";
+    }
+
+    if (text === "vợ") {
+        return "vo-2";
+    }
+
+    if (text === "dơ") {
+        return "do";
+    }
+
+    if (text === "đỏ") {
+        return "do-2";
+    }
+
+    if (text === "nặng") {
+        return "nang";
+    }
+
+    if (text === "nắng") {
+        return "nang-2";
+    }
+
+    return result;
+}
+
+/* =====================================================
+   GET AUDIO URL
+====================================================== */
+
+function getAudioUrl(item) {
+
+    const word =
+        getVietnameseWord(item);
+
+    const filename =
+        getAudioFilename(word);
+
+    return `audio/vocabulary/${filename}.mp3`;
+
+}
+
 
 /* =====================================================
    CREATE DICTIONARY CARD
@@ -5165,6 +5389,12 @@ function createDictionaryCard(
         ).trim();
 
 
+    const audioUrl =
+        getAudioUrl(
+            item
+        );
+
+
     const card =
         document.createElement(
             "a"
@@ -5182,6 +5412,16 @@ function createDictionaryCard(
 
 
     card.innerHTML = `
+
+        <button
+            type="button"
+            class="dictionary-word-audio"
+            aria-label="Play pronunciation of ${escapeHtml(word)}"
+            title="Play pronunciation"
+        >
+            🔊
+        </button>
+
 
         <p
             class="dictionary-word-vietnamese"
@@ -5243,10 +5483,172 @@ function createDictionaryCard(
     `;
 
 
+    const audioButton =
+        card.querySelector(
+            ".dictionary-word-audio"
+        );
+
+
+    audioButton.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            playDictionaryAudio(
+                audioUrl,
+                audioButton
+            );
+
+        }
+    );
+
+
     return card;
 
 }
 
+/* =====================================================
+   PLAY DICTIONARY AUDIO
+====================================================== */
+
+let currentDictionaryAudio =
+    null;
+
+let currentAudioButton =
+    null;
+
+
+function playDictionaryAudio(
+    audioUrl,
+    button
+) {
+
+    /*
+     * If another audio is currently playing,
+     * stop it first.
+     */
+
+    if (
+        currentDictionaryAudio
+    ) {
+
+        currentDictionaryAudio.pause();
+
+        currentDictionaryAudio.currentTime =
+            0;
+
+    }
+
+
+    if (
+        currentAudioButton
+    ) {
+
+        currentAudioButton.classList.remove(
+            "playing"
+        );
+
+    }
+
+
+    const audio =
+        new Audio(
+            audioUrl
+        );
+
+
+    currentDictionaryAudio =
+        audio;
+
+    currentAudioButton =
+        button;
+
+
+    button.classList.add(
+        "playing"
+    );
+
+
+    audio.play()
+        .catch(
+            error => {
+
+                console.warn(
+                    "Could not play dictionary audio:",
+                    audioUrl,
+                    error
+                );
+
+                button.classList.remove(
+                    "playing"
+                );
+
+            }
+        );
+
+
+    audio.addEventListener(
+        "ended",
+        () => {
+
+            button.classList.remove(
+                "playing"
+            );
+
+
+            if (
+                currentDictionaryAudio ===
+                audio
+            ) {
+
+                currentDictionaryAudio =
+                    null;
+
+                currentAudioButton =
+                    null;
+
+            }
+
+        }
+    );
+
+
+    audio.addEventListener(
+        "error",
+        () => {
+
+            console.warn(
+                "Audio file not found:",
+                audioUrl
+            );
+
+
+            button.classList.remove(
+                "playing"
+            );
+
+
+            if (
+                currentDictionaryAudio ===
+                audio
+            ) {
+
+                currentDictionaryAudio =
+                    null;
+
+                currentAudioButton =
+                    null;
+
+            }
+
+        }
+    );
+
+}
 
 /* =====================================================
    RENDER DICTIONARY

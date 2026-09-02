@@ -53,6 +53,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -2029,8 +2038,19 @@ function finishGame(){
     finalMessage.textContent =
         message;
 
-}
 
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "People - Game 2",
+            score,
+            questions.length
+        );
+    }
+
+}
 
 /* ==========================================================
    RESTART
@@ -2058,6 +2078,10 @@ function backToLobby(){
 /* ==========================================================
    START IMMEDIATELY
 ========================================================== */
+
+window.trackGameStart(
+    "People - Game 2"
+);
 
 startGame();
 

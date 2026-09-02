@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -41,6 +40,17 @@
 >
 
 
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../BACKEND/supabase.js"></script>
+
+<script src="../BACKEND/analytics.js"></script>
+
+
 <style>
 
 /* =====================================================
@@ -49,29 +59,27 @@
 
 :root {
 
-            --accent: #2E2E2E;
- 
-            --accent-dark: #1F1F1F;
- 
-            --accent-light: #f5f5f5;
- 
-            --accent-bg: #F9F9F9;
- 
-            --accent-border: #d0d0d0;
+    --accent: #2E2E2E;
 
-            --ink: #143a6b;
- 
-            --ink-soft: #66809d;
+    --accent-dark: #1F1F1F;
 
-            --phonetic: rgb(0, 116, 217);
+    --accent-light: #f5f5f5;
 
-            --white: #ffffff;
+    --accent-bg: #F9F9F9;
 
+    --accent-border: #d0d0d0;
 
-            --line: #d9e6f2;
+    --ink: #143a6b;
 
+    --ink-soft: #66809d;
 
-            --radius: 17px;
+    --phonetic: rgb(0, 116, 217);
+
+    --white: #ffffff;
+
+    --line: #d9e6f2;
+
+    --radius: 17px;
 
 }
 
@@ -283,7 +291,9 @@ main {
 }
 
 
-/* Gold accent line */
+/* =====================================================
+   ACCENT LINE
+====================================================== */
 
 .word-header::before {
 
@@ -312,6 +322,27 @@ main {
 
 
 /* =====================================================
+   WORD TITLE ROW
+====================================================== */
+
+.word-title-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    width:
+        fit-content;
+
+}
+
+
+/* =====================================================
    WORD
 ====================================================== */
 
@@ -321,7 +352,7 @@ main {
         var(--accent-dark);
 
     font-family:
-         Calibri,
+        Calibri,
         "Segoe UI",
         Tahoma,
         Geneva,
@@ -343,6 +374,138 @@ main {
 
     margin-bottom:
         5px;
+
+}
+
+
+/* =====================================================
+   WORD AUDIO BUTTON
+====================================================== */
+
+.audio-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    flex:
+        0 0 48px;
+
+    margin-top:
+        -5px;
+
+    padding:
+        0;
+
+    border:
+        1px solid
+        var(--accent-border);
+
+    border-radius:
+        50%;
+
+    background:
+        var(--white);
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        1.35rem;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 3px 10px
+        rgba(20, 58, 107, 0.08);
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.audio-button:hover {
+
+    background:
+        var(--accent-light);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.audio-button:active {
+
+    transform:
+        scale(0.94);
+
+}
+
+
+.audio-button.playing {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--white);
+
+}
+
+
+.audio-button.error {
+
+    opacity:
+        0.55;
+
+    cursor:
+        default;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .word-title-row {
+
+        gap:
+            11px;
+
+    }
+
+
+    .audio-button {
+
+        width:
+            43px;
+
+        height:
+            43px;
+
+        flex-basis:
+            43px;
+
+        font-size:
+            1.2rem;
+
+    }
 
 }
 
@@ -967,7 +1130,7 @@ main {
             href="../index.html?page=dictionary"
             class="back-button"
         >
-            ← Back 
+            ← Back
         </a>
 
     </div>
@@ -1045,7 +1208,444 @@ const requestedTopic =
 
 
 /* =====================================================
-   LOAD CATEGORIES.JSON
+   AUDIO STATE
+====================================================== */
+
+let currentAudio = null;
+
+let currentButton = null;
+
+
+/* =====================================================
+   AUDIO FILENAME
+   SAME MAPPING AS dictionary.html
+====================================================== */
+
+function getAudioFilename(text) {
+
+    text =
+        String(
+            text ?? ""
+        ).trim();
+
+
+    let result =
+        text
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .replace(
+                /đ/g,
+                "d"
+            )
+            .replace(
+                /Đ/g,
+                "D"
+            )
+            .toLowerCase()
+            .trim()
+            .replace(
+                /\s+/g,
+                "-"
+            );
+
+
+    /* =================================================
+       SPECIAL CASES
+       Avoid filename collisions
+    ================================================= */
+
+    if (text === "bò")
+        return "bo";
+
+    if (text === "bơ")
+        return "bo-2";
+
+
+    if (text === "ba")
+        return "ba";
+
+    if (text === "bà")
+        return "ba-2";
+
+
+    if (text === "con")
+        return "con-word";
+
+
+    if (text === "dép")
+        return "dep";
+
+    if (text === "đẹp")
+        return "dep-2";
+
+
+    if (text === "mười")
+        return "muoi";
+
+    if (text === "mươi")
+        return "muoi-2";
+
+
+    if (text === "cảm")
+        return "cam";
+
+    if (text === "cam")
+        return "cam-2";
+
+
+    if (text === "đau")
+        return "dau";
+
+    if (text === "đầu")
+        return "dau-2";
+
+
+    if (text === "vớ")
+        return "vo";
+
+    if (text === "vợ")
+        return "vo-2";
+
+
+    if (text === "dơ")
+        return "do";
+
+    if (text === "đỏ")
+        return "do-2";
+
+
+    if (text === "nặng")
+        return "nang";
+
+    if (text === "nắng")
+        return "nang-2";
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   AUDIO URL
+====================================================== */
+
+function getAudioUrl(text) {
+
+    const filename =
+        getAudioFilename(
+            text
+        );
+
+
+    /*
+     * IMPORTANT:
+     *
+     * This file is:
+     *
+     * Dictionary/word.html
+     *
+     * Audio is:
+     *
+     * audio/vocabulary/
+     *
+     * Therefore:
+     *
+     * ../audio/vocabulary/
+     */
+
+    return (
+        "../audio/vocabulary/" +
+        filename +
+        ".mp3"
+    );
+
+}
+
+
+/* =====================================================
+   PLAY WORD AUDIO
+====================================================== */
+
+function playWordAudio(
+    button,
+    word
+) {
+
+    const audioUrl =
+        getAudioUrl(
+            word
+        );
+
+
+    console.log(
+        "WORD:",
+        word
+    );
+
+    console.log(
+        "AUDIO URL:",
+        audioUrl
+    );
+
+
+    /*
+     * Convert relative URL to absolute URL.
+     * This makes comparison with audio.src reliable.
+     */
+
+    const absoluteUrl =
+        new URL(
+            audioUrl,
+            window.location.href
+        ).href;
+
+
+    console.log(
+        "ABSOLUTE AUDIO URL:",
+        absoluteUrl
+    );
+
+
+    /* =================================================
+       CLICK SAME AUDIO → STOP
+    ================================================= */
+
+    if (
+        currentAudio &&
+        currentAudio.src === absoluteUrl &&
+        !currentAudio.paused
+    ) {
+
+        currentAudio.pause();
+
+        currentAudio.currentTime =
+            0;
+
+
+        if (currentButton) {
+
+            currentButton.classList.remove(
+                "playing"
+            );
+
+            currentButton.classList.remove(
+                "error"
+            );
+
+            currentButton.textContent =
+                "🔊";
+
+        }
+
+
+        currentAudio =
+            null;
+
+        currentButton =
+            null;
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       STOP PREVIOUS AUDIO
+    ================================================= */
+
+    if (currentAudio) {
+
+        currentAudio.pause();
+
+        currentAudio.currentTime =
+            0;
+
+    }
+
+
+    if (currentButton) {
+
+        currentButton.classList.remove(
+            "playing"
+        );
+
+        currentButton.classList.remove(
+            "error"
+        );
+
+        currentButton.textContent =
+            "🔊";
+
+    }
+
+
+    /* =================================================
+       CREATE AUDIO
+    ================================================= */
+
+    const audio =
+        new Audio(
+            audioUrl
+        );
+
+
+    audio.preload =
+        "auto";
+
+
+    currentAudio =
+        audio;
+
+    currentButton =
+        button;
+
+
+    button.classList.remove(
+        "error"
+    );
+
+    button.classList.add(
+        "playing"
+    );
+
+    button.textContent =
+        "⏸";
+
+
+    /* =================================================
+       AUDIO ERROR
+    ================================================= */
+
+    audio.onerror =
+        function () {
+
+            console.error(
+                "AUDIO FILE NOT FOUND:",
+                audioUrl
+            );
+
+
+            button.classList.remove(
+                "playing"
+            );
+
+            button.classList.add(
+                "error"
+            );
+
+            button.textContent =
+                "⚠️";
+
+
+            currentAudio =
+                null;
+
+            currentButton =
+                null;
+
+        };
+
+
+    /* =================================================
+       AUDIO ENDED
+    ================================================= */
+
+    audio.onended =
+        function () {
+
+            button.classList.remove(
+                "playing"
+            );
+
+            button.classList.remove(
+                "error"
+            );
+
+            button.textContent =
+                "🔊";
+
+
+            currentAudio =
+                null;
+
+            currentButton =
+                null;
+
+        };
+
+
+    /* =================================================
+       PLAY
+    ================================================= */
+
+    const playPromise =
+        audio.play();
+
+
+    if (
+        playPromise &&
+        typeof playPromise.then ===
+            "function"
+    ) {
+
+        playPromise
+            .then(
+                function () {
+
+                    console.log(
+                        "PLAYING:",
+                        audioUrl
+                    );
+
+                }
+            )
+            .catch(
+                function (error) {
+
+                    console.error(
+                        "AUDIO PLAY ERROR:",
+                        error
+                    );
+
+                    console.error(
+                        "AUDIO URL:",
+                        audioUrl
+                    );
+
+
+                    button.classList.remove(
+                        "playing"
+                    );
+
+                    button.classList.add(
+                        "error"
+                    );
+
+                    button.textContent =
+                        "⚠️";
+
+
+                    currentAudio =
+                        null;
+
+                    currentButton =
+                        null;
+
+                }
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD WORD
 ====================================================== */
 
 async function loadWord() {
@@ -1069,19 +1669,15 @@ async function loadWord() {
          *
          * Dictionary/
          *
-         * categories.json is in the
-         * website root.
-         *
-         * Therefore:
-         *
-         * ../categories.json
+         * categories.json is in root.
          */
 
         const response =
             await fetch(
                 "../categories.json",
                 {
-                    cache: "no-store"
+                    cache:
+                        "no-store"
                 }
             );
 
@@ -1120,13 +1716,56 @@ async function loadWord() {
         }
 
 
+        /* =================================================
+           ANALYTICS
+        ================================================= */
+
+        if (
+            typeof trackEvent ===
+            "function"
+        ) {
+
+            trackEvent(
+                "word_view",
+                {
+
+                    page:
+                        window.location.pathname,
+
+                    metadata: {
+
+                        word:
+                            wordData.vietnamese,
+
+                        phonetics:
+                            wordData.phonetics,
+
+                        english:
+                            wordData.english,
+
+                        category:
+                            wordData.category,
+
+                        topic:
+                            wordData.topic
+
+                    }
+
+                }
+            );
+
+        }
+
+
         renderWord(
             wordData
         );
 
     }
 
-    catch (error) {
+    catch (
+        error
+    ) {
 
         console.error(
             "Dictionary word error:",
@@ -1155,6 +1794,21 @@ function findWord(
     targetTopic
 ) {
 
+    const normalizedTarget =
+        String(
+            targetWord || ""
+        )
+            .trim()
+            .toLowerCase();
+
+
+    if (!normalizedTarget) {
+
+        return null;
+
+    }
+
+
     let exactMatch =
         null;
 
@@ -1163,185 +1817,253 @@ function findWord(
 
 
     /*
-     * Current JSON structure:
+     * categories.json structure:
      *
-     * category
-     *   └── vocab[]
-     *        └── topic
-     *             └── vocabulary[]
-     *                  └── word
-     *
+     * {
+     *     "People & Pronouns": {
+     *         "type": "vocabulary",
+     *         "vocab": [
+     *             {
+     *                 "topic": "Family & People",
+     *                 "vocabulary": [
+     *                     {
+     *                         "vietnamese": "anh",
+     *                         "phonetics": "...",
+     *                         "english": "..."
+     *                     }
+     *                 ]
+     *             }
+     *         ]
+     *     }
+     * }
      */
 
 
-    Object.entries(
-        categories
-    ).forEach(
-        ([categoryName, category]) => {
+    for (
+        const [
+            categoryName,
+            category
+        ]
+        of Object.entries(
+            categories || {}
+        )
+    ) {
+
+        /*
+         * Only vocabulary categories.
+         */
+
+        if (
+            !category ||
+            category.type !==
+                "vocabulary"
+        ) {
+
+            continue;
+
+        }
 
 
-            /*
-             * Dictionary only uses
-             * vocabulary categories.
-             */
+        if (
+            !Array.isArray(
+                category.vocab
+            )
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Optional category filter.
+         */
+
+        const categoryMatches =
+            !targetCategory ||
+            String(
+                categoryName
+            )
+                .trim()
+                .toLowerCase()
+            ===
+            String(
+                targetCategory
+            )
+                .trim()
+                .toLowerCase();
+
+
+        /*
+         * LOOP THROUGH TOPICS
+         */
+
+        for (
+            const topic
+            of category.vocab
+        ) {
 
             if (
-                !category ||
-                category.type !== "vocabulary" ||
+                !topic ||
                 !Array.isArray(
-                    category.vocab
+                    topic.vocabulary
                 )
             ) {
 
-                return;
+                continue;
 
             }
 
 
-            category.vocab.forEach(
-                topic => {
+            const topicName =
+                String(
+                    topic.topic || ""
+                )
+                    .trim();
 
 
-                    if (
-                        !topic ||
-                        !Array.isArray(
-                            topic.vocabulary
-                        )
-                    ) {
+            /*
+             * Optional topic filter.
+             */
 
-                        return;
-
-                    }
-
-
-                    topic.vocabulary.forEach(
-                        word => {
-
-
-                            if (
-                                !word ||
-                                typeof word !== "object"
-                            ) {
-
-                                return;
-
-                            }
+            const topicMatches =
+                !targetTopic ||
+                topicName
+                    .toLowerCase()
+                ===
+                String(
+                    targetTopic
+                )
+                    .trim()
+                    .toLowerCase();
 
 
-                            const vietnamese =
-                                String(
-                                    word.vietnamese ||
-                                    ""
-                                ).trim();
+            /*
+             * LOOP THROUGH WORDS
+             */
 
+            for (
+                const word
+                of topic.vocabulary
+            ) {
 
-                            if (
-                                vietnamese.toLowerCase() !==
-                                String(
-                                    targetWord
-                                ).trim().toLowerCase()
-                            ) {
+                if (
+                    !word ||
+                    typeof word !==
+                        "object"
+                ) {
 
-                                return;
-
-                            }
-
-
-                            const built = {
-
-                                vietnamese:
-                                    vietnamese,
-
-                                phonetics:
-                                    word.phonetics ||
-                                    word.phonetic ||
-                                    "",
-
-                                english:
-                                    word.english ||
-                                    "",
-
-                                wordClass:
-                                    word.wordClass ||
-                                    "",
-
-                                explain:
-                                    word.explain ||
-                                    "",
-
-                                category:
-                                    categoryName,
-
-                                topic:
-                                    topic.topic ||
-                                    "",
-
-                                examples:
-                                    Array.isArray(
-                                        word.examples
-                                    )
-                                        ?
-                                        word.examples
-                                        :
-                                        []
-
-                            };
-
-
-                            /*
-                             * First matching word
-                             * becomes fallback.
-                             */
-
-                            if (
-                                !fallbackMatch
-                            ) {
-
-                                fallbackMatch =
-                                    built;
-
-                            }
-
-
-                            /*
-                             * Prefer exact
-                             * category + topic.
-                             */
-
-                            const categoryMatches =
-                                targetCategory &&
-                                categoryName ===
-                                    targetCategory;
-
-
-                            const topicMatches =
-                                targetTopic &&
-                                (
-                                    topic.topic ||
-                                    ""
-                                ) ===
-                                    targetTopic;
-
-
-                            if (
-                                categoryMatches &&
-                                topicMatches
-                            ) {
-
-                                exactMatch =
-                                    built;
-
-                            }
-
-                        }
-                    );
+                    continue;
 
                 }
-            );
+
+
+                const vietnamese =
+                    String(
+                        word.vietnamese || ""
+                    )
+                        .trim();
+
+
+                /*
+                 * Match Vietnamese word.
+                 */
+
+                if (
+                    vietnamese
+                        .toLowerCase()
+                    !==
+                    normalizedTarget
+                ) {
+
+                    continue;
+
+                }
+
+
+                /*
+                 * Build word object.
+                 */
+
+                const built = {
+
+                    vietnamese:
+                        vietnamese,
+
+                    phonetics:
+                        word.phonetics ||
+                        word.phonetic ||
+                        "",
+
+                    english:
+                        word.english ||
+                        "",
+
+                    wordClass:
+                        word.wordClass ||
+                        "",
+
+                    explain:
+                        word.explain ||
+                        "",
+
+                    category:
+                        categoryName,
+
+                    topic:
+                        topicName,
+
+                    examples:
+                        Array.isArray(
+                            word.examples
+                        )
+                            ? word.examples
+                            : []
+
+                };
+
+
+                /*
+                 * Keep first match
+                 * as fallback.
+                 */
+
+                if (
+                    !fallbackMatch
+                ) {
+
+                    fallbackMatch =
+                        built;
+
+                }
+
+
+                /*
+                 * Exact category + topic
+                 * match.
+                 */
+
+                if (
+                    categoryMatches &&
+                    topicMatches
+                ) {
+
+                    exactMatch =
+                        built;
+
+                }
+
+            }
 
         }
-    );
 
+    }
+
+
+    /*
+     * Prefer exact match.
+     * Otherwise use first match.
+     */
 
     return (
         exactMatch ||
@@ -1360,22 +2082,16 @@ function renderWord(
 ) {
 
     /*
-     * IMPORTANT:
-     *
-     * Do NOT limit examples to 2.
-     *
-     * Render every example available
-     * in the JSON.
+     * Render every example
+     * available in JSON.
      */
 
     const examples =
         Array.isArray(
             word.examples
         )
-            ?
-            word.examples
-            :
-            [];
+            ? word.examples
+            : [];
 
 
     content.innerHTML = `
@@ -1387,17 +2103,45 @@ function renderWord(
                  WORD HEADER
             ============================================== -->
 
-            <section class="word-header">
+            <div class="word-header">
 
 
-                <div class="word">
+                <!-- =========================================
+                     WORD + AUDIO
+                ========================================== -->
 
-                    ${escapeHTML(
-                        word.vietnamese
-                    )}
+                <div class="word-title-row">
+
+                    <div class="word">
+
+                        ${escapeHTML(
+                            word.vietnamese
+                        )}
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="audio-button"
+                        aria-label="Play pronunciation"
+                        title="Play pronunciation"
+                        onclick='playWordAudio(
+                            this,
+                            ${JSON.stringify(
+                                word.vietnamese
+                            )}
+                        )'
+                    >
+                        🔊
+                    </button>
 
                 </div>
 
+
+                <!-- =========================================
+                     PHONETICS
+                ========================================== -->
 
                 ${
                     word.phonetics
@@ -1418,9 +2162,12 @@ function renderWord(
                         :
 
                         ""
-
                 }
 
+
+                <!-- =========================================
+                     ENGLISH
+                ========================================== -->
 
                 ${
                     word.english
@@ -1441,9 +2188,12 @@ function renderWord(
                         :
 
                         ""
-
                 }
 
+
+                <!-- =========================================
+                     WORD CLASS
+                ========================================== -->
 
                 ${
                     word.wordClass
@@ -1464,10 +2214,9 @@ function renderWord(
                         :
 
                         ""
-
                 }
 
-            </section>
+            </div>
 
 
             <!-- =============================================
@@ -1590,7 +2339,6 @@ function renderExample(
     index
 ) {
 
-
     /*
      * Example can be:
      *
@@ -1599,11 +2347,10 @@ function renderExample(
      * OR
      *
      * {
-     *   vietnamese: "...",
-     *   phonetics: "...",
-     *   english: "..."
+     *     vietnamese: "...",
+     *     phonetics: "...",
+     *     english: "..."
      * }
-     *
      */
 
 
@@ -1800,7 +2547,7 @@ function showError(
 
 
             <a
-                href="../index.html"
+                href="../index.html?page=dictionary"
             >
                 ← Back
             </a>
@@ -1865,4 +2612,3 @@ loadWord();
 </body>
 
 </html>
-

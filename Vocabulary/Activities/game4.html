@@ -48,6 +48,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -2291,8 +2300,25 @@ function showResults() {
 
     }
 
-}
 
+    /* ======================================================
+       ANALYTICS — GAME COMPLETE
+    ====================================================== */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Activities - Game 4",
+            score,
+            TOTAL_QUESTIONS
+        );
+
+    }
+
+}
 
 /* =========================================================
    PLAY AGAIN
@@ -2307,6 +2333,10 @@ playAgain.addEventListener(
 /* =========================================================
    INITIALIZE
 ========================================================= */
+
+window.trackGameStart(
+    "Activities - Game 4"
+);
 
 startGame();
 

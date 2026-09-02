@@ -1,326 +1,1182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn useful Vietnamese phrases for everyday communication and travel.">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Learn useful Vietnamese phrases for everyday communication and travel."
+    >
+
     <title>Useful Vietnamese Phrases</title>
-    
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../../BACKEND/supabase.js"></script>
+
+    <script src="../../BACKEND/analytics.js"></script>
+
     <style>
+
         :root {
+
             --bg: #f8fafc;
             --card-bg: #ffffff;
+
             --text-main: #0f172a;
             --text-sub: #475569;
+
             --accent: #2563eb;
             --phonetic: #0284c7;
+
             --border: #e2e8f0;
         }
 
+
+        /* Dark Mode */
+
         @media (prefers-color-scheme: dark) {
+
             :root {
+
                 --bg: #0f172a;
                 --card-bg: #1e293b;
+
                 --text-main: #f8fafc;
                 --text-sub: #94a3b8;
+
                 --accent: #60a5fa;
                 --phonetic: #38bdf8;
+
                 --border: #334155;
             }
         }
 
+
+        /* Reset */
+
         * {
+
             box-sizing: border-box;
+
             margin: 0;
             padding: 0;
         }
 
+
+        /* Body */
+
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                sans-serif;
+
             background-color: var(--bg);
+
             color: var(--text-main);
+
             line-height: 1.5;
+
             padding: 24px 16px;
         }
 
+
+        /* Container */
+
         .container {
+
             max-width: 800px;
+
             margin: 0 auto;
         }
 
+
         /* Navigation */
+
         .back-link {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
+
             color: var(--text-main);
+
             text-decoration: none;
+
             font-weight: 700;
+
             font-size: 1.1rem;
+
             margin-bottom: 24px;
+
             transition: transform 0.2s ease;
         }
 
+
         .back-link:hover {
+
             transform: translateX(-4px);
         }
 
+
         /* Header */
+
         header {
+
             margin-bottom: 32px;
+
             border-bottom: 2px solid var(--border);
+
             padding-bottom: 20px;
         }
 
+
         h1 {
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
+
+            font-size:
+                clamp(
+                    1.5rem,
+                    4vw,
+                    2.25rem
+                );
+
             font-weight: 800;
+
             color: var(--text-main);
+
             letter-spacing: -0.025em;
+
             text-transform: uppercase;
         }
 
+
         .subtitle {
+
             color: var(--text-sub);
+
             font-size: 1rem;
+
             margin-top: 6px;
+
             font-style: italic;
         }
 
+
         /* Phrase List */
+
         .phrase-grid {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 12px;
         }
 
+
+        /* Phrase Card */
+
         .phrase-card {
+
             background: var(--card-bg);
+
             border: 1px solid var(--border);
+
             border-radius: 12px;
+
             padding: 16px 20px;
+
             display: grid;
-            grid-template-columns: 40px 1fr 1fr;
+
+            grid-template-columns:
+                40px
+                1fr
+                1fr;
+
             align-items: center;
+
             gap: 16px;
-            transition: border-color 0.2s, box-shadow 0.2s;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
         }
+
 
         .phrase-card:hover {
+
             border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.05);
         }
 
+
+        /* Number */
+
         .num {
+
             font-weight: 700;
+
             color: var(--text-sub);
+
             font-size: 0.9rem;
+
             background: var(--bg);
+
             width: 32px;
             height: 32px;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
         }
 
+
+        /* Vietnamese Group */
+
         .vi-group {
+
             display: flex;
+
             flex-direction: column;
         }
 
+
+        /* Vietnamese + Audio */
+
+        .vi-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        /* Vietnamese */
+
         .vi-text {
+
             font-size: 1.15rem;
+
             font-weight: 700;
+
             color: var(--text-main);
         }
 
+
+        /* Phonetic */
+
         .phonetic {
+
             font-size: 0.875rem;
+
             color: var(--phonetic);
+
             font-style: italic;
+
             margin-top: 2px;
         }
 
+
+        /* English */
+
         .en-text {
+
             font-size: 1rem;
+
             color: var(--text-sub);
+
             font-weight: 500;
         }
 
-        /* Responsive Layout for Mobile */
+
+        /* Audio Button */
+
+        .audio-btn {
+
+            border: none;
+
+            background: var(--bg);
+
+            color: var(--text-main);
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+
+            flex-shrink: 0;
+        }
+
+
+        .audio-btn:hover {
+
+            transform: scale(1.08);
+
+            background: var(--border);
+        }
+
+
+        .audio-btn:active {
+
+            transform: scale(0.95);
+        }
+
+
+        /* Mobile */
+
         @media (max-width: 640px) {
+
             .phrase-card {
-                grid-template-columns: 36px 1fr;
+
+                grid-template-columns:
+                    36px
+                    1fr;
+
                 gap: 8px 12px;
+
                 padding: 14px 16px;
             }
 
+
             .num {
+
                 grid-row: span 2;
+
                 align-self: start;
             }
 
+
             .en-text {
+
                 grid-column: 2;
+
                 font-size: 0.95rem;
             }
         }
+
     </style>
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-    <a href="../../phrases-and-sentences.html?category=Useful%20Phrases" class="back-link">
+
+    <!-- Back -->
+
+    <a
+        href="../../phrases-and-sentences.html?category=Useful%20Phrases"
+        class="back-link"
+    >
+
         ← Back
+
     </a>
 
+
+    <!-- Header -->
+
     <header>
-        <h1>15 Useful Vietnamese Phrases</h1>
-        <p class="subtitle">Learn practical Vietnamese phrases for everyday communication and travel.</p>
+
+        <h1>
+            15 Useful Vietnamese Phrases
+        </h1>
+
+        <p class="subtitle">
+            Learn practical Vietnamese phrases for everyday communication and travel.
+        </p>
+
     </header>
+
+
+    <!-- Phrase List -->
 
     <main class="phrase-grid">
 
-        <div class="phrase-card">
-            <div class="num">01</div>
-            <div class="vi-group">
-                <span class="vi-text">Xin chào</span>
-                <span class="phonetic">/sin chao/</span>
+
+        <!-- 01 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/01-xin-chao.mp3"
+        >
+
+            <div class="num">
+                01
             </div>
-            <div class="en-text">Hello</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Xin chào
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /sin chao/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Hello
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">02</div>
-            <div class="vi-group">
-                <span class="vi-text">Cảm ơn</span>
-                <span class="phonetic">/kam ən/</span>
+
+
+        <!-- 02 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/02-cam-on.mp3"
+        >
+
+            <div class="num">
+                02
             </div>
-            <div class="en-text">Thank you</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Cảm ơn
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /kam ən/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Thank you
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">03</div>
-            <div class="vi-group">
-                <span class="vi-text">Xin lỗi</span>
-                <span class="phonetic">/sin loy/</span>
+
+
+        <!-- 03 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/03-xin-loi.mp3"
+        >
+
+            <div class="num">
+                03
             </div>
-            <div class="en-text">Sorry / Excuse me</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Xin lỗi
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /sin loy/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Sorry / Excuse me
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">04</div>
-            <div class="vi-group">
-                <span class="vi-text">Không sao / Không có gì</span>
-                <span class="phonetic">/khong sao/ /khong kaw zee/</span>
+
+
+        <!-- 04 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/04-khong-sao-khong-co-gi.mp3"
+        >
+
+            <div class="num">
+                04
             </div>
-            <div class="en-text">It’s okay / No problem / You're welcome</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Không sao / Không có gì
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /khong sao/ /khong kaw zee/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                It’s okay / No problem / You're welcome
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">05</div>
-            <div class="vi-group">
-                <span class="vi-text">Hẹn gặp lại</span>
-                <span class="phonetic">/hen gap lai/</span>
+
+
+        <!-- 05 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/05-hen-gap-lai.mp3"
+        >
+
+            <div class="num">
+                05
             </div>
-            <div class="en-text">See you again</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Hẹn gặp lại
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /hen gap lai/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                See you again
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">06</div>
-            <div class="vi-group">
-                <span class="vi-text">Tạm biệt</span>
-                <span class="phonetic">/tam bee-et/</span>
+
+
+        <!-- 06 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/06-tam-biet.mp3"
+        >
+
+            <div class="num">
+                06
             </div>
-            <div class="en-text">Goodbye</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tạm biệt
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /tam bee-et/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Goodbye
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">07</div>
-            <div class="vi-group">
-                <span class="vi-text">Bạn nói tiếng Anh không?</span>
-                <span class="phonetic">/ban noy tieng Anh khong?/</span>
+
+
+        <!-- 07 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/07-ban-noi-tieng-anh-khong.mp3"
+        >
+
+            <div class="num">
+                07
             </div>
-            <div class="en-text">Do you speak English?</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Bạn nói tiếng Anh không?
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /ban noy tieng Anh khong?/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Do you speak English?
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">08</div>
-            <div class="vi-group">
-                <span class="vi-text">Tôi biết một chút tiếng Việt</span>
-                <span class="phonetic">/toy bee-et mot choot tieng Viet/</span>
+
+
+        <!-- 08 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/08-toi-biet-mot-chut-tieng-viet.mp3"
+        >
+
+            <div class="num">
+                08
             </div>
-            <div class="en-text">I know a little Vietnamese</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tôi biết một chút tiếng Việt
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /toy bee-et mot choot tieng Viet/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                I know a little Vietnamese
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">09</div>
-            <div class="vi-group">
-                <span class="vi-text">Tôi không hiểu</span>
-                <span class="phonetic">/toy khong hyeu/</span>
+
+
+        <!-- 09 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/09-toi-khong-hieu.mp3"
+        >
+
+            <div class="num">
+                09
             </div>
-            <div class="en-text">I don’t understand</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tôi không hiểu
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /toy khong hyeu/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                I don’t understand
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">10</div>
-            <div class="vi-group">
-                <span class="vi-text">Xin nói chậm lại</span>
-                <span class="phonetic">/sin noy cham lai/</span>
+
+
+        <!-- 10 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/10-xin-noi-cham-lai.mp3"
+        >
+
+            <div class="num">
+                10
             </div>
-            <div class="en-text">Please speak more slowly</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Xin nói chậm lại
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /sin noy cham lai/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Please speak more slowly
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">11</div>
-            <div class="vi-group">
-                <span class="vi-text">Tôi bị dị ứng ______</span>
-                <span class="phonetic">/toy bee zee ưng/</span>
+
+
+        <!-- 11 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/11-toi-bi-di-ung.mp3"
+        >
+
+            <div class="num">
+                11
             </div>
-            <div class="en-text">I’m allergic to ______ / I have an allergy to ______</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tôi bị dị ứng ______
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /toy bee zee ưng/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                I’m allergic to ______ / I have an allergy to ______
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">12</div>
-            <div class="vi-group">
-                <span class="vi-text">Giúp tôi với!</span>
-                <span class="phonetic">/zoop toy voy/</span>
+
+
+        <!-- 12 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/12-giup-toi-voi.mp3"
+        >
+
+            <div class="num">
+                12
             </div>
-            <div class="en-text">Help me, please!</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Giúp tôi với!
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /zoop toy voy/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Help me, please!
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">13</div>
-            <div class="vi-group">
-                <span class="vi-text">Chúc ngủ ngon</span>
-                <span class="phonetic">/chook ngoo ngon/</span>
+
+
+        <!-- 13 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/13-chuc-ngu-ngon.mp3"
+        >
+
+            <div class="num">
+                13
             </div>
-            <div class="en-text">Good night</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Chúc ngủ ngon
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /chook ngoo ngon/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                Good night
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">14</div>
-            <div class="vi-group">
-                <span class="vi-text">Tôi không có tiền</span>
-                <span class="phonetic">/toy khong kaw tien/</span>
+
+
+        <!-- 14 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/14-toi-khong-co-tien.mp3"
+        >
+
+            <div class="num">
+                14
             </div>
-            <div class="en-text">I don’t have money</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tôi không có tiền
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /toy khong kaw tien/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                I don’t have money
+            </div>
+
         </div>
 
-        <div class="phrase-card">
-            <div class="num">15</div>
-            <div class="vi-group">
-                <span class="vi-text">Tôi không mua.</span>
-                <span class="phonetic">/toy khong mua/</span>
+
+
+        <!-- 15 -->
+
+        <div
+            class="phrase-card"
+            data-audio="../../audio/useful-phrases/15-toi-khong-mua.mp3"
+        >
+
+            <div class="num">
+                15
             </div>
-            <div class="en-text">I’m not buying it.</div>
+
+
+            <div class="vi-group">
+
+                <div class="vi-row">
+
+                    <span class="vi-text">
+                        Tôi không mua.
+                    </span>
+
+                    <button
+                        class="audio-btn"
+                        type="button"
+                        aria-label="Play audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+                <span class="phonetic">
+                    /toy khong mua/
+                </span>
+
+            </div>
+
+
+            <div class="en-text">
+                I’m not buying it.
+            </div>
+
         </div>
+
 
     </main>
 
+
 </div>
 
+
+<!-- Analytics + Audio -->
+
+<script>
+
+    /* Track Useful Phrases page view */
+
+    trackEvent(
+        "phrase_view",
+        {
+            page: window.location.pathname,
+
+            metadata: {
+                section: "Useful Phrases"
+            }
+        }
+    );
+
+
+    /* Audio */
+
+    document
+        .querySelectorAll(".audio-btn")
+        .forEach((button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const card =
+                        button.closest(".phrase-card");
+
+                    const audioPath =
+                        card?.dataset.audio;
+
+                    if (!audioPath) {
+                        return;
+                    }
+
+
+                    const audio =
+                        new Audio(audioPath);
+
+
+                    audio
+                        .play()
+                        .catch((error) => {
+
+                            console.error(
+                                "Audio playback failed:",
+                                error
+                            );
+
+                        });
+
+                }
+            );
+
+        });
+
+</script>
+
+
 </body>
+
 </html>

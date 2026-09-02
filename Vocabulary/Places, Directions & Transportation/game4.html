@@ -56,6 +56,15 @@
         rel="stylesheet"
     >
 
+    <!-- =====================================================
+        SUPABASE & ANALYTICS
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../../BACKEND/supabase.js"></script>
+
+    <script src="../../BACKEND/analytics.js"></script>
 
     <style>
 
@@ -2717,7 +2726,7 @@
         }
 
 
-        /* =====================================================
+         /* =====================================================
            SHOW RESULTS
         ====================================================== */
 
@@ -2826,6 +2835,18 @@
                 }
             );
 
+
+            if (
+                typeof trackGameComplete ===
+                "function"
+            ) {
+                trackGameComplete(
+                    "Places - Game 4",
+                    score,
+                    20
+                );
+            }
+
         }
 
 
@@ -2891,6 +2912,9 @@
         /* =====================================================
            START GAME
         ====================================================== */
+        window.trackGameStart(
+            "Places - Game 4"
+        );
 
         loadQuestion();
 

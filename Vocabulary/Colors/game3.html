@@ -58,6 +58,16 @@ content="Connect each color with its correct Vietnamese name. Complete all match
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* =========================================================
@@ -2548,8 +2558,25 @@ function showResults() {
     ).textContent =
         resultText;
 
-}
 
+    /* =========================================
+       ANALYTICS — GAME COMPLETE
+    ========================================= */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Colors - Game 3",
+            score,
+            TOTAL_QUESTIONS
+        );
+
+    }
+
+}
 
 /* =========================================
    PLAY AGAIN
@@ -2743,6 +2770,10 @@ window.addEventListener(
 /* =========================================
    START GAME
 ========================================= */
+
+window.trackGameStart(
+    "Colors - Game 3"
+);
 
 loadQuestion();
 

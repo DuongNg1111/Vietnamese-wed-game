@@ -53,6 +53,16 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 
 <style>
 
@@ -2097,8 +2107,19 @@ function finishGame() {
 
     createConfetti();
 
-}
 
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Places - Game 1",
+            score,
+            TOTAL_PAIRS
+        );
+    }
+
+}
 
 /* =========================================================
    PLAY AGAIN
@@ -2214,6 +2235,10 @@ function removeConfetti() {
    START IMMEDIATELY
    NO INTRO
 ========================================================= */
+
+window.trackGameStart(
+    "Places - Game 1"
+);
 
 startGame();
 

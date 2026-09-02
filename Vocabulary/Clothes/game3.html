@@ -50,6 +50,16 @@ content="Complete each English sentence by choosing the correct Vietnamese cloth
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* ==========================================================
@@ -1965,6 +1975,24 @@ function showResults() {
 
     }
 
+
+    /* ======================================================
+       ANALYTICS — GAME COMPLETE
+    ====================================================== */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Clothes - Game 3",
+            score,
+            TOTAL_QUESTIONS
+        );
+
+    }
+
 }
 
 
@@ -1981,6 +2009,14 @@ playAgain.addEventListener(
 /* ==========================================================
    INITIALIZE
 ========================================================== */
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+window.trackGameStart(
+    "Clothes - Game 3"
+);
 
 startGame();
 

@@ -48,6 +48,16 @@ content="🎨"
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* ==========================================================
@@ -1850,8 +1860,25 @@ function showResults() {
 
     }
 
-}
 
+    /* ======================================================
+       ANALYTICS — GAME COMPLETE
+    ====================================================== */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Colors - Game 1",
+            score,
+            TOTAL_QUESTIONS
+        );
+
+    }
+
+}
 
 /* ==========================================================
    PLAY AGAIN
@@ -1866,6 +1893,10 @@ playAgain.addEventListener(
 /* ==========================================================
    INITIALIZE
 ========================================================== */
+
+window.trackGameStart(
+    "Colors - Game 1"
+);
 
 startGame();
 

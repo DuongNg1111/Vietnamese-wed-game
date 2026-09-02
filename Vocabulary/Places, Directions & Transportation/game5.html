@@ -55,6 +55,15 @@
         rel="stylesheet"
     >
 
+    <!-- =====================================================
+        SUPABASE & ANALYTICS
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../../BACKEND/supabase.js"></script>
+
+    <script src="../../BACKEND/analytics.js"></script>
 
     <style>
 
@@ -2587,9 +2596,20 @@
 
             }
 
+
+            if (
+                typeof trackGameComplete ===
+                "function"
+            ) {
+                trackGameComplete(
+                    "Places - Game 5",
+                    score,
+                    TOTAL_ROUNDS
+                );
+            }
+
         }
-
-
+        
         /* =====================================================
            RESTART
         ====================================================== */
@@ -2653,7 +2673,10 @@
             shuffle(
                 vocabulary
             );
-
+        
+        window.trackGameStart(
+            "Places - Game 5"
+        );
 
         startRound();
 

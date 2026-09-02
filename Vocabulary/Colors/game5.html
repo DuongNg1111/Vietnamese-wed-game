@@ -58,6 +58,16 @@ content="Look at the color and choose the correct Vietnamese word. Each correct 
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* =========================================================
@@ -265,7 +275,7 @@ body{
         24px;
 
     background:
-        var(--white);
+        #ffffff;
 
     box-shadow:
         0 14px 35px
@@ -1981,8 +1991,25 @@ function finishGame(){
     performance.textContent =
         resultMessage;
 
-}
 
+    /* =====================================================
+       ANALYTICS — GAME COMPLETE
+    ===================================================== */
+
+    if(
+        typeof trackGameComplete ===
+        "function"
+    ){
+
+        trackGameComplete(
+            "Colors - Game 5",
+            score,
+            TOTAL_QUESTIONS
+        );
+
+    }
+
+}
 
 /* =========================================================
    RESTART
@@ -2008,6 +2035,10 @@ playAgain.addEventListener(
 /* =========================================================
    START
 ========================================================= */
+
+window.trackGameStart(
+    "Colors - Game 5"
+);
 
 startGame();
 

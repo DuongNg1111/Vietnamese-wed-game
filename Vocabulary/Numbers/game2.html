@@ -24,6 +24,16 @@
     content="🔢"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* ==========================================================
@@ -1926,6 +1936,18 @@ function endGame(){
         .innerText =
         text;
 
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Numbers - Game 2",
+            score,
+            TOTAL_QUESTIONS
+        );
+    }
+
 }
 
 
@@ -1956,6 +1978,10 @@ function backToLobby(){
    START IMMEDIATELY
    NO INTRO SCREEN
 ========================================================== */
+
+window.trackGameStart(
+    "Numbers - Game 2"
+);
 
 startGame();
 

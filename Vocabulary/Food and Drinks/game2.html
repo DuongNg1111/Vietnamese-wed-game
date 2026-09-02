@@ -53,6 +53,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -2488,8 +2497,19 @@ function finishGame(){
     ).textContent =
         `${percentage}% — ${result}`;
 
-}
 
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Food - Game 2",
+            score,
+            totalPairs
+        );
+    }
+
+}
 
 /* =========================================================
    RESTART GAME
@@ -2526,6 +2546,10 @@ function restartGame(){
 /* =========================================================
    INITIALIZE
 ========================================================= */
+
+window.trackGameStart(
+    "Food - Game 2"
+);
 
 loadRound();
 

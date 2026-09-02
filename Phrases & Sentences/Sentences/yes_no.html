@@ -38,6 +38,15 @@
         rel="stylesheet"
     >
 
+    <!-- =====================================================
+        SUPABASE & ANALYTICS
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../../BACKEND/supabase.js"></script>
+
+    <script src="../../BACKEND/analytics.js"></script>
 
     <style>
 
@@ -2850,6 +2859,20 @@
 
         }
     );
+
+    trackEvent(
+        "sentence_view",
+        {
+            page:
+                window.location.pathname,
+
+            metadata: {
+                sentence:
+                    "Yes / No"
+            }
+        }
+    );
+
 
 
 </script>

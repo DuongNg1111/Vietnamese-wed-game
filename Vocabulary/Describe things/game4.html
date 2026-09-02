@@ -37,6 +37,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 /* =========================================================
@@ -1774,8 +1783,25 @@ function finishGame() {
         .textContent =
         message;
 
-}
 
+    /* =====================================================
+       ANALYTICS — GAME COMPLETE
+    ===================================================== */
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+
+        trackGameComplete(
+            "Describe Things - Game 4",
+            score,
+            questions.length
+        );
+
+    }
+
+}
 
 /* =========================================================
    RESTART
@@ -1791,6 +1817,10 @@ function restartGame() {
 /* =========================================================
    INITIALIZE
 ========================================================= */
+
+window.trackGameStart(
+    "Describe Things - Game 4"
+);
 
 startGame();
 

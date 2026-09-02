@@ -43,6 +43,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -2226,31 +2235,17 @@ function finishGame(){
     ).textContent =
         message;
 
-}
 
-
-/* =========================================================
-   RESTART GAME
-========================================================= */
-
-function restartGame(){
-
-    currentQuestion = 0;
-
-    score = 0;
-
-    locked = false;
-
-
-    finalScreen.style.display =
-        "none";
-
-
-    gameScreen.style.display =
-        "block";
-
-
-    loadQuestion();
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Food - Game 5",
+            score,
+            questions.length
+        );
+    }
 
 }
 
@@ -2258,6 +2253,9 @@ function restartGame(){
 /* =========================================================
    INITIALIZE
 ========================================================= */
+window.trackGameStart(
+    "Food - Game 5"
+);
 
 loadQuestion();
 

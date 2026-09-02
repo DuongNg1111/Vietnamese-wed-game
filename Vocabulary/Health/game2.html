@@ -54,6 +54,16 @@ content="true"
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
+
 <style>
 
 /* =========================================================
@@ -2255,6 +2265,18 @@ function finishGame() {
         .textContent =
         message;
 
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Health - Game 2",
+            score,
+            TOTAL_QUESTIONS
+        );
+    }
+
 }
 
 
@@ -2272,6 +2294,10 @@ function restartGame() {
 /* =========================================================
    INITIALIZE
 ========================================================= */
+
+window.trackGameStart(
+    "Health - Game 2"
+);
 
 startGame();
 

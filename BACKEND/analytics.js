@@ -1,3 +1,5 @@
+console.log("ANALYTICS.JS LOADED");
+
 "use strict";
 
 /*
@@ -206,18 +208,69 @@ trackEvent(
     }
 );
 
-
-/* ==========================================================
-   DEBUG
-========================================================== */
+trackEvent(
+    "page_view",
+    {
+        page:
+            window.location.pathname +
+            window.location.search
+    }
+);
 
 console.log(
     "Analytics visitor:",
     analyticsVisitorId
 );
 
-
 console.log(
     "Analytics session:",
     analyticsSessionId
 );
+
+window.trackGameStart = function (
+    gameName
+) {
+
+    return trackEvent(
+        "game_start",
+        {
+            page:
+                window.location.pathname +
+                window.location.search,
+
+            game:
+                gameName
+        }
+    );
+
+};
+
+console.log(
+    "TRACK GAME START LOADED:",
+    typeof window.trackGameStart
+);
+
+function trackGameComplete(gameName, score, total) {
+    const safeScore = Number(score) || 0;
+    const safeTotal = Number(total) || 0;
+
+    const accuracy =
+        safeTotal > 0
+            ? Math.round((safeScore / safeTotal) * 100)
+            : 0;
+
+    return trackEvent(
+        "game_complete",
+        {
+            page:
+                window.location.pathname +
+                window.location.search,
+            game: gameName,
+            metadata: {
+                score: safeScore,
+                total: safeTotal,
+                accuracy: accuracy
+            }
+        }
+    );
+}

@@ -64,6 +64,15 @@
     rel="stylesheet"
 >
 
+<!-- =====================================================
+     SUPABASE & ANALYTICS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../../BACKEND/supabase.js"></script>
+
+<script src="../../BACKEND/analytics.js"></script>
 
 <style>
 
@@ -1667,10 +1676,6 @@ footer {
     class="question-card"
 >
 
-    <p class="question-label">
-        Choose the Vietnamese word
-    </p>
-
 
     <h2
         id="question-text"
@@ -2618,6 +2623,18 @@ function showResults() {
 
     createConfetti();
 
+
+    if (
+        typeof trackGameComplete ===
+        "function"
+    ) {
+        trackGameComplete(
+            "Places - Game 2",
+            score,
+            TOTAL_QUESTIONS
+        );
+    }
+
 }
 
 
@@ -2797,7 +2814,11 @@ restartButton.addEventListener(
    START GAME
 ========================================================= */
 
-restartGame();
+window.trackGameStart(
+    "Places - Game 2"
+);
+
+restartGame()
 
 </script>
 
