@@ -1121,16 +1121,20 @@
 
     /* Track Useful Phrases page view */
 
-    trackEvent(
-        "phrase_view",
-        {
-            page: window.location.pathname,
+    if (typeof trackEvent === "function") {
 
-            metadata: {
-                section: "Useful Phrases"
+        trackEvent(
+            "phrase_view",
+            {
+                page: window.location.pathname,
+
+                metadata: {
+                    section: "Useful Phrases"
+                }
             }
-        }
-    );
+        );
+
+    }
 
 
     /* Audio */
@@ -1146,8 +1150,13 @@
                     const card =
                         button.closest(".phrase-card");
 
+                    if (!card) {
+                        return;
+                    }
+
+
                     const audioPath =
-                        card?.dataset.audio;
+                        card.getAttribute("data-audio");
 
                     if (!audioPath) {
                         return;
@@ -1155,19 +1164,22 @@
 
 
                     const audio =
-                        new Audio(audioPath);
+                        new Audio(
+                            new URL(
+                                audioPath,
+                                document.baseURI
+                            ).href
+                        );
 
 
-                    audio
-                        .play()
-                        .catch((error) => {
+                    audio.play().catch((error) => {
 
-                            console.error(
-                                "Audio playback failed:",
-                                error
-                            );
+                        console.error(
+                            "Audio playback failed:",
+                            error
+                        );
 
-                        });
+                    });
 
                 }
             );
@@ -1175,7 +1187,6 @@
         });
 
 </script>
-
 
 </body>
 
