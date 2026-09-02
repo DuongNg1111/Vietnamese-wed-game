@@ -111,18 +111,12 @@
 ====================================================== */
 
 * {
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
 }
-
 
 body {
 
@@ -142,6 +136,43 @@ body {
 
     background:
         #eeeeed;
+
+}
+
+
+/* =====================================================
+   BODY BACKGROUND IMAGE
+====================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background-image:
+        url('banner.jpg');
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    filter:
+        brightness(1.08)
+        saturate(0.92);
+
+    opacity:
+        0.4;
+
+    transform:
+        scale(1.03);
+
+    z-index:
+        -1;
 
 }
 
@@ -170,15 +201,8 @@ header {
 
     padding: 70px 20px 60px;
 
-    overflow: hidden;
 
-    background:
-        linear-gradient(
-            135deg,
-            #dcecff 0%,
-            #eaf6ff 48%,
-            #fff5d8 100%
-        );
+    background-image: url("header.jpg");
 
     box-shadow:
         0 8px 30px
@@ -195,19 +219,13 @@ header::before {
 
     inset: 0;
 
-    background-image:
-        url('banner.jpg');
-
-    background-size: cover;
-
-    background-position: center;
-
-    filter:
-        brightness(1.08)
-        saturate(0.92);
-
-    transform:
-        scale(1.03);
+    background:
+        linear-gradient(
+            135deg,
+            #dcecff 0%,
+            #eaf6ff 48%,
+            #fff5d8 100%
+        );
 
     z-index: 0;
 
@@ -3436,6 +3454,7 @@ footer {
 <main
     class="container"
 >
+
 
 <!-- =================================================
      MAIN NAVIGATION
