@@ -15,1373 +15,778 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./supabase.js"></script>
 
+    <!-- PDF -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
+
+
     <style>
 
-        /* =========================================================
-           VARIABLES
-        ========================================================= */
-
+        
         :root {
-        /* =========================
-        BLACK / WHITE / BLUE THEME
-        ========================= */
+            --accent: #2563eb;
+            --accent-dark: #1d4ed8;
+            --accent-darker: #163b8f;
+            --accent-light: #eff6ff;
+            --accent-bg: #f8fafc;
+            --accent-border: #dbeafe;
 
-        --accent: #2563EB;
-        --accent-dark: #1D4ED8;
-        --accent-darker: #1E3A8A;
+            --ink: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+            --muted-light: #94a3b8;
+            --line: #e2e8f0;
+            --white: #ffffff;
 
-        --accent-light: #EFF6FF;
-        --accent-bg: #F8FAFC;
-        --accent-border: #BFDBFE;
+            --success: #15803d;
+            --success-bg: #f0fdf4;
+            --wrong: #dc3558;
+            --wrong-bg: #fff1f2;
 
-        --ink: #111111;
-        --text: #222222;
-        --muted: #666666;
-        --muted-light: #999999;
-
-        --line: #E5E7EB;
-
-        --white: #FFFFFF;
-
-        /* Correct */
-        --success: #019b3f;
-        --success-bg: #EAF3FF;
-
-        /* Wrong */
-        --wrong: #D9536F;
-        --wrong-bg: #FFF0F3;
-
-        --radius: 14px;
+            --radius: 16px;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, .07);
         }
 
-        /* =========================================================
-           RESET
-        ========================================================= */
+        * { box-sizing: border-box; }
 
-        * {
-            box-sizing: border-box;
-        }
-
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
             min-height: 100vh;
-
-            font-family:
-                "Inter",
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: var(--text);
-
             background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    var(--accent-bg) 48%,
-                    var(--accent-light) 100%
-                );
-
+                radial-gradient(circle at 15% -10%, rgba(37, 99, 235, .08), transparent 28%),
+                radial-gradient(circle at 90% 0%, rgba(59, 130, 246, .06), transparent 24%),
+                #f8fafc;
             -webkit-font-smoothing: antialiased;
         }
 
+        button, input { font-family: inherit; }
 
-        button,
-        input {
-            font-family: inherit;
-        }
-
-
-        /* =========================================================
-           LOGIN
-        ========================================================= */
+        button { -webkit-tap-highlight-color: transparent; }
 
         .login-screen {
             min-height: 100vh;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             padding: 24px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, .14), transparent 34%),
+                linear-gradient(180deg, #f8fbff 0%, #f8fafc 100%);
         }
-
 
         .login-card {
             width: 100%;
-            max-width: 400px;
-
-            background: var(--white);
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: var(--radius);
-
-            padding: 38px 36px;
-
-            box-shadow:
-                0 10px 30px
-                rgba(80, 55, 30, 0.07);
+            max-width: 410px;
+            padding: 40px;
+            background: rgba(255,255,255,.96);
+            border: 1px solid rgba(226,232,240,.9);
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(15,23,42,.10);
         }
-
 
         .login-brand {
-            margin: 0 0 22px;
-
-            font-family: "Kalam", cursive;
-
-            font-size: 23px;
-
+            display: inline-flex;
+            margin: 0 0 24px;
+            padding: 7px 12px;
+            border: 1px solid var(--accent-border);
+            border-radius: 999px;
             color: var(--accent-dark);
+            background: var(--accent-light);
+            font-family: "Kalam", cursive;
+            font-size: 14px;
         }
-
 
         .login-title {
-            margin: 0 0 5px;
-
+            margin: 0 0 7px;
             color: var(--ink);
-
-            font-size: 21px;
-            font-weight: 700;
+            font-size: 25px;
+            line-height: 1.2;
+            font-weight: 750;
+            letter-spacing: -.02em;
         }
-
 
         .login-subtitle {
-            margin: 0 0 26px;
-
+            margin: 0 0 28px;
             color: var(--muted);
-
-            font-size: 13.5px;
+            font-size: 13px;
+            line-height: 1.6;
         }
 
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
+        .form-group { margin-bottom: 17px; }
 
         .form-group label {
             display: block;
-
             margin-bottom: 7px;
-
             color: var(--text);
-
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
         }
-
 
         .form-group input {
             width: 100%;
-
-            padding:
-                11px
-                13px;
-
-            border:
-                1px solid
-                var(--accent-border);
-
-            border-radius: 8px;
-
+            padding: 12px 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
             outline: none;
-
             color: var(--ink);
-
-            background: white;
-
+            background: #fff;
             font-size: 14px;
-
-            transition:
-                border-color .15s,
-                box-shadow .15s;
+            transition: border-color .15s, box-shadow .15s, background .15s;
         }
 
+        .form-group input::placeholder { color: #a8b2c1; }
 
         .form-group input:focus {
-            border-color: var(--accent);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(184, 136, 91, .13);
+            border-color: #93c5fd;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(37,99,235,.10);
         }
-
 
         .login-button {
             width: 100%;
-
-            margin-top: 5px;
-
-            padding: 12px;
-
+            margin-top: 6px;
+            padding: 12px 14px;
             border: 0;
-
-            border-radius: 8px;
-
-            color: white;
-
-            background: var(--accent-dark);
-
-            font-size: 14px;
-            font-weight: 600;
-
+            border-radius: 10px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            box-shadow: 0 7px 16px rgba(37,99,235,.20);
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
-
-            transition:
-                background .15s;
+            transition: transform .15s, box-shadow .15s, filter .15s;
         }
-
 
         .login-button:hover {
-            background: var(--accent-darker);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(37,99,235,.24);
+            filter: brightness(1.02);
         }
 
+        .login-button:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
-        .login-button:disabled {
-            opacity: .6;
-            cursor: not-allowed;
+        .login-error, .error-message {
+            display: none;
+            color: var(--wrong);
+            background: var(--wrong-bg);
+            border: 1px solid #fecdd3;
+            border-radius: 10px;
+            font-size: 12px;
+            line-height: 1.5;
         }
-
 
         .login-error {
-            display: none;
-
             margin-top: 14px;
-
-            padding:
-                10px
-                12px;
-
-            border-radius: 8px;
-
-            color: var(--wrong);
-
-            background: var(--wrong-bg);
-
-            font-size: 13px;
+            padding: 10px 12px;
         }
-
-
-        /* =========================================================
-           DASHBOARD
-        ========================================================= */
 
         .dashboard {
             display: none;
-
             width: 100%;
-            max-width: 1240px;
-
+            max-width: 1320px;
             margin: 0 auto;
-
-            padding:
-                32px
-                24px
-                64px;
+            padding: 34px 26px 72px;
         }
-
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
 
         .dashboard-header {
             display: flex;
-
-            align-items: flex-end;
+            align-items: center;
             justify-content: space-between;
-
-            gap: 20px;
-
+            gap: 24px;
             margin-bottom: 30px;
-            padding-bottom: 18px;
-
-            border-bottom:
-                1px solid
-                var(--line);
+            padding: 0 0 22px;
+            border-bottom: 1px solid var(--line);
         }
-
 
         .brand-row {
             display: flex;
-
-            align-items: baseline;
-
+            align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
-
 
         .dashboard-title {
             margin: 0;
-
             color: var(--ink);
-
-            font-size: 23px;
-            font-weight: 700;
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -.035em;
         }
-
 
         .dashboard-brand-tag {
-            padding:
-                2px
-                10px;
-
-            border-radius: 20px;
-
+            padding: 5px 10px;
+            border: 1px solid var(--accent-border);
+            border-radius: 999px;
             color: var(--accent-dark);
-
             background: var(--accent-light);
-
             font-family: "Kalam", cursive;
-
-            font-size: 14px;
+            font-size: 13px;
+            line-height: 1;
         }
-
 
         .dashboard-subtitle {
-            margin:
-                5px
-                0
-                0;
-
+            margin: 9px 0 0;
             color: var(--muted);
-
-            font-size: 13px;
+            font-size: 12px;
         }
-
 
         .header-actions {
             display: flex;
-
+            align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
-
 
         .action-button {
-            padding:
-                9px
-                15px;
-
-            border:
-                1px solid
-                var(--accent-border);
-
-            border-radius: 8px;
-
-            color: var(--accent-darker);
-
-            background: white;
-
-            font-size: 13px;
-            font-weight: 600;
-
+            padding: 9px 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            color: #334155;
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            font-size: 12px;
+            font-weight: 700;
             cursor: pointer;
+            transition: background .15s, border-color .15s, color .15s, transform .15s;
         }
-
 
         .action-button:hover {
             background: var(--accent-light);
+            border-color: #bfdbfe;
+            color: var(--accent-dark);
+            transform: translateY(-1px);
         }
 
-
-        .action-button:disabled {
-            opacity: .6;
-
-            cursor: not-allowed;
-        }
-
+        .action-button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
 
         .action-button.logout {
             color: var(--wrong);
-
-            border-color:
-                #efcdd6;
+            border-color: #fecdd3;
         }
-
 
         .action-button.logout:hover {
             background: var(--wrong-bg);
+            border-color: #fda4af;
+            color: #be123c;
         }
 
-
-        /* =========================================================
-           GENERAL SECTIONS
-        ========================================================= */
-
-        .section {
-            margin-bottom: 30px;
-        }
-
+        .section { margin-bottom: 30px; }
 
         .section-title {
-            margin:
-                0
-                0
-                12px;
-
-            color: var(--muted);
-
-            font-size: 12px;
-            font-weight: 700;
-
-            letter-spacing: .07em;
-
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 11px;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .11em;
             text-transform: uppercase;
         }
 
+        .section-title::before {
+            content: "";
+            width: 3px;
+            height: 14px;
+            border-radius: 99px;
+            background: var(--accent);
+        }
 
         .card {
-            background: white;
-
-            border:
-                1px solid
-                var(--line);
-
+            background: rgba(255,255,255,.98);
+            border: 1px solid var(--line);
             border-radius: var(--radius);
-
-            box-shadow:
-                0 1px 2px
-                rgba(60, 40, 20, .03);
+            box-shadow: var(--shadow-sm);
         }
-
-
-        /* =========================================================
-           TIMELINE
-        ========================================================= */
 
         .timeline-card {
-            padding:
-                22px
-                22px
-                18px;
-
+            padding: 22px 22px 18px;
             overflow: hidden;
         }
-
 
         .timeline-header {
             display: flex;
-
             align-items: center;
             justify-content: space-between;
-
             gap: 18px;
-
-            margin-bottom: 20px;
-
+            margin-bottom: 18px;
             flex-wrap: wrap;
         }
-
 
         .timeline-description {
             color: var(--muted);
-
-            font-size: 13px;
+            font-size: 12px;
         }
-
 
         .timeline-legend {
             display: flex;
-
             align-items: center;
-
-            gap: 16px;
-
+            gap: 15px;
             flex-wrap: wrap;
         }
-
 
         .legend-item {
             display: flex;
-
             align-items: center;
-
             gap: 6px;
-
-            color: var(--text);
-
-            font-size: 12px;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
         }
 
-
-        .legend-dot {
-            width: 9px;
-            height: 9px;
-
-            border-radius: 50%;
-        }
-
-
-        .legend-views {
-            background: #B8885B;
-        }
-
-
-        .legend-starts {
-            background: #7569AA;
-        }
-
-
-        .legend-completions {
-            background: #019b3f;
-        }
-
-
-        /* =========================================================
-           TIMELINE SCROLL
-        ========================================================= */
+        .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .legend-views { background: #3b82f6; }
+        .legend-starts { background: #8b5cf6; }
+        .legend-completions { background: #16a34a; }
 
         .timeline-wrapper {
             width: 100%;
-
             overflow-x: auto;
             overflow-y: hidden;
-
-            padding-bottom: 6px;
-
+            padding-bottom: 5px;
             scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
         }
 
+        .timeline-wrapper::-webkit-scrollbar { height: 6px; }
+        .timeline-wrapper::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 
-        .timeline-wrapper::-webkit-scrollbar {
-            height: 7px;
-        }
-
-
-        .timeline-wrapper::-webkit-scrollbar-thumb {
-            background: var(--accent-border);
-
-            border-radius: 20px;
-        }
-
-
-        .timeline-chart {
-            min-width: 700px;
-        }
-
-
-        /* =========================================================
-           TIMELINE PLOT
-        ========================================================= */
+        .timeline-chart { min-width: 700px; }
 
         .timeline-plot {
             position: relative;
-
             height: 270px;
-
             padding-left: 55px;
         }
 
-
-        /*
-           Horizontal grid lines.
-        */
-
         .timeline-grid {
             position: absolute;
-
             left: 55px;
             right: 0;
-
             top: 8px;
             bottom: 35px;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: space-between;
-
             pointer-events: none;
-
             z-index: 0;
         }
 
-
         .timeline-grid-line {
             width: 100%;
-
             height: 1px;
-
-            background:
-                var(--line);
+            background: #edf2f7;
         }
-
-
-        /*
-           Y-axis labels.
-        */
 
         .timeline-y-axis {
             position: absolute;
-
             left: 0;
             top: 8px;
-
             width: 45px;
-
             height: 227px;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: space-between;
-
             z-index: 2;
         }
 
-
         .timeline-y-label {
             padding-right: 8px;
-
-            color: var(--muted-light);
-
+            color: #94a3b8;
             text-align: right;
-
             font-size: 10px;
-
-            font-variant-numeric:
-                tabular-nums;
+            font-variant-numeric: tabular-nums;
         }
-
-
-        /*
-           Actual columns.
-        */
 
         .timeline-columns {
             position: absolute;
-
             left: 55px;
             right: 0;
-
             top: 8px;
             bottom: 35px;
-
             display: flex;
-
             align-items: flex-end;
-
             justify-content: space-around;
-
             gap: 18px;
-
             z-index: 1;
         }
 
-
         .timeline-day {
             flex: 1;
-
             min-width: 55px;
-
             max-width: 100px;
-
             height: 100%;
-
             display: flex;
-
             align-items: flex-end;
-
             justify-content: center;
         }
-
 
         .timeline-day-group {
             width: 100%;
-
             height: 100%;
-
             display: flex;
-
             align-items: flex-end;
-
             justify-content: center;
-
             gap: 5px;
         }
-
-
-        /*
-           Each metric is one vertical bar.
-        */
 
         .timeline-bar-wrap {
             height: 100%;
-
             flex: 1;
-
             max-width: 24px;
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             justify-content: flex-end;
-
             position: relative;
         }
-
 
         .timeline-value {
             min-height: 17px;
-
             margin-bottom: 4px;
-
-            color: var(--text);
-
-            font-size: 10px;
-            font-weight: 600;
-
+            color: #475569;
+            font-size: 9px;
+            font-weight: 700;
             line-height: 1;
-
             white-space: nowrap;
-
-            font-variant-numeric:
-                tabular-nums;
+            font-variant-numeric: tabular-nums;
         }
-
 
         .timeline-bar {
             width: 100%;
-
             min-height: 2px;
-
-            border-radius:
-                4px
-                4px
-                0
-                0;
-
-            transition:
-                height .25s ease;
+            border-radius: 5px 5px 2px 2px;
+            transition: height .25s ease;
         }
 
-
-        .timeline-bar.views {
-            background: #B8885B;
-        }
-
-
-        .timeline-bar.starts {
-            background: #7569AA;
-        }
-
-
-        .timeline-bar.completions {
-            background: #019b3f;
-        }
-
-
-        /*
-           Date labels.
-        */
+        .timeline-bar.views { background: #3b82f6; }
+        .timeline-bar.starts { background: #8b5cf6; }
+        .timeline-bar.completions { background: #16a34a; }
 
         .timeline-dates {
             margin-left: 55px;
-
             display: flex;
-
             justify-content: space-around;
-
             gap: 18px;
-
             padding-top: 8px;
         }
 
-
         .timeline-date {
             flex: 1;
-
             min-width: 55px;
             max-width: 100px;
-
             text-align: center;
-
-            color: var(--muted);
-
-            font-size: 10.5px;
-
+            color: #64748b;
+            font-size: 10px;
             white-space: nowrap;
         }
 
-
         .timeline-empty {
-            padding:
-                45px
-                20px;
-
+            padding: 48px 20px;
             color: var(--muted);
-
             text-align: center;
-
-            font-size: 13px;
+            font-size: 12px;
         }
-
-
-        /* =========================================================
-           OVERVIEW
-        ========================================================= */
 
         .overview-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(5, minmax(0, 1fr));
-
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 12px;
-
             margin-bottom: 12px;
         }
 
-
         .metric-card {
+            position: relative;
             min-width: 0;
-
-            padding:
-                17px
-                18px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: 12px;
-
-            background: white;
+            padding: 17px 18px 18px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
 
-
-        /*
-           TITLE / LABEL BOLD
-        */
+        .metric-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: #dbeafe;
+        }
 
         .metric-label {
             margin-bottom: 9px;
-
             color: var(--muted);
-
-            font-size: 11.5px;
-
-            font-weight: 700;
-
-            letter-spacing: .015em;
+            font-size: 10.5px;
+            font-weight: 750;
+            letter-spacing: .02em;
+            text-transform: uppercase;
         }
-
 
         .metric-value {
             color: var(--ink);
-
             font-size: 25px;
-
-            font-weight: 700;
-
+            font-weight: 800;
             line-height: 1.1;
-
-            font-variant-numeric:
-                tabular-nums;
+            letter-spacing: -.025em;
+            font-variant-numeric: tabular-nums;
         }
-
-
-        /* =========================================================
-           COMPLETION RATE
-        ========================================================= */
 
         .completion-card {
-            padding:
-                18px
-                20px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius: 12px;
-
-            background: white;
-
+            padding: 18px 20px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
-
             gap: 30px;
-
             flex-wrap: wrap;
+            box-shadow: var(--shadow-sm);
         }
 
-
-        .completion-info {
-            flex: 1;
-
-            min-width: 200px;
-        }
-
+        .completion-info { flex: 1; min-width: 220px; }
 
         .completion-title {
             margin-bottom: 5px;
-
             color: var(--ink);
-
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 750;
         }
 
+        .completion-subtitle { color: var(--muted); font-size: 11.5px; }
 
-        .completion-subtitle {
-            color: var(--muted);
-
-            font-size: 12px;
-        }
-
-
-        .completion-progress {
-            width: 100%;
-
-            max-width: 470px;
-
-            flex: 1;
-        }
-
+        .completion-progress { width: 100%; max-width: 520px; flex: 1; }
 
         .progress-track {
             width: 100%;
-
-            height: 8px;
-
+            height: 9px;
             overflow: hidden;
-
-            border-radius: 20px;
-
-            background: var(--accent-light);
+            border-radius: 99px;
+            background: #eaf2ff;
         }
-
 
         .progress-fill {
             width: 0%;
-
             height: 100%;
-
-            border-radius: 20px;
-
-            background: var(--accent);
-
-            transition:
-                width .35s ease;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            transition: width .35s ease;
         }
-
 
         .completion-percent {
-            margin-top: 6px;
-
+            margin-top: 7px;
             color: var(--accent-darker);
-
             text-align: right;
-
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 11.5px;
+            font-weight: 800;
         }
-
-
-        /* =========================================================
-           TABLE
-        ========================================================= */
 
         .table-card {
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
-
 
         .table-toolbar {
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
-            padding:
-                13px
-                16px;
-
-            border-bottom:
-                1px solid
-                var(--line);
-
+            padding: 13px 15px;
+            background: #fbfdff;
+            border-bottom: 1px solid var(--line);
             flex-wrap: wrap;
         }
 
-
         .table-filter {
             position: relative;
-
             width: 100%;
-            max-width: 320px;
+            max-width: 330px;
         }
 
+        .table-filter::before {
+            content: "⌕";
+            position: absolute;
+            left: 11px;
+            top: 50%;
+            transform: translateY(-51%);
+            color: #94a3b8;
+            font-size: 15px;
+            pointer-events: none;
+        }
 
         .table-filter input {
             width: 100%;
-
-            padding:
-                9px
-                12px;
-
-            border:
-                1px solid
-                var(--accent-border);
-
-            border-radius: 8px;
-
+            padding: 9px 12px 9px 31px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
             outline: none;
-
-            background:
-                var(--accent-bg);
-
+            background: #fff;
             color: var(--text);
-
-            font-size: 13px;
+            font-size: 12px;
+            transition: border-color .15s, box-shadow .15s;
         }
-
 
         .table-filter input:focus {
-            border-color: var(--accent);
-
-            background: white;
+            border-color: #93c5fd;
+            box-shadow: 0 0 0 3px rgba(37,99,235,.08);
         }
-
 
         .table-row-count {
             margin-left: auto;
-
-            color: var(--muted-light);
-
-            font-size: 12px;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 600;
         }
-
-
-        /*
-           About 5 rows visible.
-        */
 
         .table-scroll {
             max-height: 315px;
-
             overflow-y: auto;
             overflow-x: auto;
-
             scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
         }
 
-
-        .table-scroll::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
-        }
-
-
-        .table-scroll::-webkit-scrollbar-thumb {
-            background: var(--accent-border);
-
-            border-radius: 20px;
-        }
-
+        .table-scroll::-webkit-scrollbar { width: 7px; height: 7px; }
+        .table-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 
         table {
             width: 100%;
-
             min-width: 760px;
-
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
-
-        th,
-        td {
-            padding:
-                11px
-                16px;
-
-            border-bottom:
-                1px solid
-                var(--line);
-
+        th, td {
+            padding: 11px 15px;
+            border-bottom: 1px solid #edf2f7;
             text-align: left;
-
-            font-size: 13px;
+            font-size: 12px;
         }
-
 
         th {
             position: sticky;
-
             top: 0;
-
             z-index: 3;
-
-            background:
-                var(--accent-bg);
-
-            color: var(--muted);
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: .045em;
-
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .06em;
             text-transform: uppercase;
-
             white-space: nowrap;
-
             cursor: pointer;
-
             user-select: none;
         }
 
-
         th:hover {
-            background: var(--accent-light);
-
-            color: var(--accent-darker);
+            background: #eff6ff;
+            color: var(--accent-dark);
         }
 
-
-        th.is-sorted {
-            color: var(--accent-darker);
-        }
-
+        th.is-sorted { color: var(--accent-dark); }
 
         .th-content {
             display: inline-flex;
-
             align-items: center;
-
-            gap: 5px;
+            gap: 6px;
         }
-
 
         .sort-arrow {
             width: 9px;
-
+            color: var(--accent);
             font-size: 8px;
-
-            opacity: .35;
+            opacity: .3;
         }
 
+        th.is-sorted .sort-arrow { opacity: 1; }
 
-        th.is-sorted .sort-arrow {
-            opacity: 1;
-        }
+        td { color: #475569; }
 
+        tbody tr { transition: background .12s; }
+        tbody tr:hover { background: #f8fbff; }
 
-        td {
-            color: var(--text);
-        }
+        tbody tr:last-child td { border-bottom: 0; }
 
-
-        tbody tr:hover {
-            background: #fdfbf8;
-        }
-
-
-        tbody tr:last-child td {
-            border-bottom: 0;
-        }
-
-
-        .game-name,
-        .page-name {
+        .game-name, .page-name {
             color: var(--ink);
-
-            font-weight: 600;
+            font-weight: 700;
         }
-
 
         .number-cell {
-            font-variant-numeric:
-                tabular-nums;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
         }
-
-
-        /* =========================================================
-           RATE PILL
-        ========================================================= */
 
         .rate-pill {
             display: inline-block;
-
-            padding:
-                3px
-                8px;
-
-            border-radius: 20px;
-
-            font-size: 12px;
-            font-weight: 600;
-
-            font-variant-numeric:
-                tabular-nums;
+            min-width: 52px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 750;
+            font-variant-numeric: tabular-nums;
         }
 
-
-        .rate-high {
-            color: var(--success);
-
-            background: #eaf5ee;
-        }
-
-
-        .rate-mid {
-            color: var(--accent-darker);
-
-            background: var(--accent-light);
-        }
-
-
-        .rate-low {
-            color: var(--wrong);
-
-            background: var(--wrong-bg);
-        }
-
+        .rate-high { color: #15803d; background: #f0fdf4; }
+        .rate-mid { color: #1d4ed8; background: #eff6ff; }
+        .rate-low { color: #be123c; background: #fff1f2; }
 
         .empty-row {
-            padding: 35px !important;
-
-            color: var(--muted);
-
+            padding: 38px !important;
+            color: #94a3b8;
             text-align: center;
         }
-
-
-        /* =========================================================
-           LOADING / ERROR
-        ========================================================= */
 
         .loading {
-            padding:
-                45px
-                20px;
-
+            padding: 45px 20px;
             color: var(--muted);
-
             text-align: center;
-
-            font-size: 13px;
+            font-size: 12px;
         }
-
 
         .error-message {
-            display: none;
-
             margin-bottom: 18px;
-
-            padding:
-                11px
-                14px;
-
-            border-radius: 8px;
-
-            color: var(--wrong);
-
-            background: var(--wrong-bg);
-
-            font-size: 13px;
+            padding: 11px 14px;
         }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
 
         @media (max-width: 1050px) {
-
-            .overview-grid {
-                grid-template-columns:
-                    repeat(3, minmax(0, 1fr));
-            }
-
+            .overview-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
-
 
         @media (max-width: 700px) {
-
-            .dashboard {
-                padding:
-                    22px
-                    14px
-                    45px;
-            }
-
-
-            .dashboard-header {
-                align-items: flex-start;
-
-                flex-direction: column;
-            }
-
-
-            .header-actions {
-                width: 100%;
-            }
-
-
-            .action-button {
-                flex: 1;
-            }
-
-
-            .overview-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-
-            .timeline-chart {
-                min-width: 650px;
-            }
-
-
-            .completion-card {
-                align-items: stretch;
-
-                flex-direction: column;
-            }
-
-
-            .completion-progress {
-                max-width: none;
-            }
-
+            .dashboard { padding: 22px 14px 48px; }
+            .dashboard-header { align-items: flex-start; flex-direction: column; }
+            .header-actions { width: 100%; }
+            .action-button { flex: 1; }
+            .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .timeline-chart { min-width: 650px; }
+            .completion-card { align-items: stretch; flex-direction: column; }
+            .completion-progress { max-width: none; }
         }
-
 
         @media (max-width: 450px) {
-
-            .overview-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .brand-row {
-                align-items: flex-start;
-
-                flex-direction: column;
-
-                gap: 4px;
-            }
-
+            .login-card { padding: 30px 24px; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .brand-row { align-items: flex-start; flex-direction: column; gap: 7px; }
+            .dashboard-title { font-size: 25px; }
         }
 
-    </style>
+        @media print {
+            .login-screen, .header-actions, .table-filter { display: none !important; }
+            .dashboard { display: block !important; max-width: none; padding: 0; }
+            body { background: #fff; }
+            .card, .metric-card, .completion-card { box-shadow: none; }
+        }
+</style>
 </head>
 
 
@@ -1518,6 +923,14 @@
                     class="action-button"
                 >
                     ↻ Refresh
+                </button>
+
+
+                <button
+                    id="exportPdfButton"
+                    class="action-button"
+                >
+                    ↓ Export PDF
                 </button>
 
 
@@ -1708,8 +1121,6 @@
 
             </div>
 
-
-            <!-- Completion rate -->
 
             <div class="completion-card">
 
@@ -2006,10 +1417,6 @@
             1000;
 
 
-        /*
-           Timeline starts at September 2, 2026.
-        */
-
         const TIMELINE_START =
             new Date(
                 2026,
@@ -2024,11 +1431,6 @@
 
         let allAnalyticsEvents = [];
 
-
-        /*
-           Default:
-           highest → lowest
-        */
 
         const gamesSort = {
             key: "starts",
@@ -2045,7 +1447,7 @@
 
         /* ========================================================
            DOM
-        ========================================================= */
+        ======================================================== */
 
         const loginScreen =
             document.getElementById(
@@ -2082,6 +1484,11 @@
                 "refreshButton"
             );
 
+        const exportPdfButton =
+            document.getElementById(
+                "exportPdfButton"
+            );
+
         const logoutButton =
             document.getElementById(
                 "logoutButton"
@@ -2111,7 +1518,7 @@
 
         /* ========================================================
            HELPERS
-        ========================================================= */
+        ======================================================== */
 
         function escapeHtml(value) {
 
@@ -2277,6 +1684,33 @@
         }
 
 
+        function getLocalDateString(
+            date = new Date()
+        ) {
+
+            const year =
+                date.getFullYear();
+
+            const month =
+                String(
+                    date.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+            const day =
+                String(
+                    date.getDate()
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+            return `${year}-${month}-${day}`;
+        }
+
+
 
         /* ========================================================
            SORT HEADER
@@ -2368,10 +1802,6 @@
                 `Updated: ${date} - ${time}`;
         }
 
-
-        /*
-           Current time updates every minute.
-        */
 
         setInterval(
             updateDashboardTime,
@@ -2468,10 +1898,12 @@
 
 
         /* ========================================================
-           OVERVIEW
+           OVERVIEW DATA
         ========================================================= */
 
-        function renderOverview(events) {
+        function buildOverviewData(
+            events
+        ) {
 
             const visitors =
                 new Set();
@@ -2540,46 +1972,6 @@
             );
 
 
-            document.getElementById(
-                "uniqueVisitors"
-            ).textContent =
-                formatNumber(
-                    visitors.size
-                );
-
-
-            document.getElementById(
-                "sessions"
-            ).textContent =
-                formatNumber(
-                    sessions.size
-                );
-
-
-            document.getElementById(
-                "pageViews"
-            ).textContent =
-                formatNumber(
-                    pageViews
-                );
-
-
-            document.getElementById(
-                "gameStarts"
-            ).textContent =
-                formatNumber(
-                    gameStarts
-                );
-
-
-            document.getElementById(
-                "gameCompletions"
-            ).textContent =
-                formatNumber(
-                    gameCompletions
-                );
-
-
             const completionRate =
                 gameStarts > 0
                     ? (
@@ -2589,12 +1981,85 @@
                     : 0;
 
 
+            return {
+
+                visitors:
+                    visitors.size,
+
+                sessions:
+                    sessions.size,
+
+                pageViews,
+
+                gameStarts,
+
+                gameCompletions,
+
+                completionRate
+
+            };
+        }
+
+
+
+        /* ========================================================
+           OVERVIEW
+        ========================================================= */
+
+        function renderOverview(events) {
+
+            const stats =
+                buildOverviewData(
+                    events
+                );
+
+
+            document.getElementById(
+                "uniqueVisitors"
+            ).textContent =
+                formatNumber(
+                    stats.visitors
+                );
+
+
+            document.getElementById(
+                "sessions"
+            ).textContent =
+                formatNumber(
+                    stats.sessions
+                );
+
+
+            document.getElementById(
+                "pageViews"
+            ).textContent =
+                formatNumber(
+                    stats.pageViews
+                );
+
+
+            document.getElementById(
+                "gameStarts"
+            ).textContent =
+                formatNumber(
+                    stats.gameStarts
+                );
+
+
+            document.getElementById(
+                "gameCompletions"
+            ).textContent =
+                formatNumber(
+                    stats.gameCompletions
+                );
+
+
             const safeRate =
                 Math.min(
                     100,
                     Math.max(
                         0,
-                        completionRate
+                        stats.completionRate
                     )
                 );
 
@@ -2614,7 +2079,7 @@
             document.getElementById(
                 "completionDescription"
             ).textContent =
-                `${formatNumber(gameCompletions)} completions / ${formatNumber(gameStarts)} starts`;
+                `${formatNumber(stats.gameCompletions)} completions / ${formatNumber(stats.gameStarts)} starts`;
         }
 
 
@@ -3214,13 +2679,12 @@
 
 
         /* ========================================================
-           TIMELINE
-           
-           IMPORTANT:
-           3 VERTICAL BARS PER DAY
+           BUILD TIMELINE DATA
         ========================================================= */
 
-        function renderTimeline(events) {
+        function buildTimelineData(
+            events
+        ) {
 
             const days = {};
 
@@ -3228,11 +2692,6 @@
             const now =
                 new Date();
 
-
-            /*
-               Count only:
-               Sep 2, 2026 → current time.
-            */
 
             events.forEach(
                 event => {
@@ -3316,11 +2775,6 @@
                 }
             );
 
-
-            /*
-               Create every date from Sep 2
-               through today.
-            */
 
             const start =
                 new Date(
@@ -3407,6 +2861,26 @@
             }
 
 
+            return timelineDays;
+        }
+
+
+
+        /* ========================================================
+           TIMELINE
+           
+           IMPORTANT:
+           3 VERTICAL BARS PER DAY
+        ========================================================= */
+
+        function renderTimeline(events) {
+
+            const timelineDays =
+                buildTimelineData(
+                    events
+                );
+
+
             if (
                 !timelineDays.length
             ) {
@@ -3425,11 +2899,6 @@
             }
 
 
-            /*
-               Maximum value determines
-               chart height.
-            */
-
             const maxValue =
                 Math.max(
                     1,
@@ -3447,15 +2916,6 @@
                     )
                 );
 
-
-            /*
-               Scale:
-               0
-               25%
-               50%
-               75%
-               100%
-            */
 
             const steps = 4;
 
@@ -3481,10 +2941,6 @@
                 );
 
 
-            /*
-               Horizontal grid.
-            */
-
             const gridHtml =
                 scaleValues
                     .map(
@@ -3496,10 +2952,6 @@
                     )
                     .join("");
 
-
-            /*
-               Y labels.
-            */
 
             const yLabelsHtml =
                 scaleValues
@@ -3517,20 +2969,11 @@
                     .join("");
 
 
-            /*
-               Helper for each bar.
-            */
-
             function createBar(
                 value,
                 className,
                 label
             ) {
-
-                /*
-                   Give zero bars a tiny height
-                   so their position remains stable.
-                */
 
                 const height =
                     value > 0
@@ -3573,10 +3016,6 @@
             }
 
 
-            /*
-               Three vertical bars per day.
-            */
-
             const columnsHtml =
                 timelineDays
                     .map(
@@ -3617,10 +3056,6 @@
                     .join("");
 
 
-            /*
-               Dates underneath.
-            */
-
             const datesHtml =
                 timelineDays
                     .map(
@@ -3636,10 +3071,6 @@
                     )
                     .join("");
 
-
-            /*
-               Final chart.
-            */
 
             document.getElementById(
                 "timelineContainer"
@@ -3681,6 +3112,580 @@
                 </div>
 
             `;
+        }
+
+
+
+        /* ========================================================
+           PDF HELPERS
+        ========================================================= */
+
+        function addPdfSectionTitle(
+            doc,
+            title
+        ) {
+
+            let y =
+                doc.lastAutoTable
+                    ? doc.lastAutoTable.finalY + 10
+                    : 28;
+
+
+            if (y > 190) {
+
+                doc.addPage();
+
+                y = 18;
+            }
+
+
+            doc.setFont(
+                "helvetica",
+                "bold"
+            );
+
+            doc.setFontSize(
+                13
+            );
+
+            doc.setTextColor(
+                17,
+                17,
+                17
+            );
+
+
+            doc.text(
+                title,
+                14,
+                y
+            );
+
+
+            return y + 5;
+        }
+
+
+        function formatPdfDate(
+            dateString
+        ) {
+
+            const date =
+                new Date(
+                    dateString
+                );
+
+
+            return date.toLocaleDateString(
+                "en-US",
+                {
+                    month:
+                        "short",
+
+                    day:
+                        "numeric",
+
+                    year:
+                        "numeric"
+                }
+            );
+        }
+
+
+        function getPdfNumber(
+            value
+        ) {
+
+            return Number(
+                value || 0
+            ).toLocaleString(
+                "en-US"
+            );
+        }
+
+
+
+        /* ========================================================
+           EXPORT PDF
+           
+           ORDER:
+           1. Timeline
+           2. Overview
+           3. Top 10 Games
+           4. Top 10 Pages
+        ========================================================= */
+
+        async function exportAnalyticsPdf() {
+
+            if (
+                !window.jspdf ||
+                typeof window.jspdf.jsPDF !== "function"
+            ) {
+                dashboardError.textContent =
+                    "PDF library is not available. Please refresh the page and try again.";
+                dashboardError.style.display = "block";
+                return;
+            }
+
+            exportPdfButton.disabled = true;
+            exportPdfButton.textContent = "Exporting…";
+            dashboardError.style.display = "none";
+
+            try {
+
+                const { jsPDF } = window.jspdf;
+
+                const doc = new jsPDF({
+                    orientation: "landscape",
+                    unit: "mm",
+                    format: "a4",
+                    compress: true
+                });
+
+                const W = 297;
+                const H = 210;
+                const M = 16;
+                const BLUE = [37, 99, 235];
+                const NAVY = [15, 23, 42];
+                const SLATE = [71, 85, 105];
+                const MUTED = [100, 116, 139];
+                const LINE = [226, 232, 240];
+                const PALE = [248, 250, 252];
+                const PALE_BLUE = [239, 246, 255];
+                const GREEN = [21, 128, 61];
+
+                const generatedAt = new Date();
+                const generatedDate = generatedAt.toLocaleDateString(
+                    "en-US",
+                    { month: "long", day: "numeric", year: "numeric" }
+                );
+                const generatedTime = generatedAt.toLocaleTimeString(
+                    "en-GB",
+                    { hour: "2-digit", minute: "2-digit", hour12: false }
+                );
+
+                function setText(color = NAVY) {
+                    doc.setTextColor(...color);
+                }
+
+                function drawRoundedBox(x, y, w, h, fill, stroke = LINE, radius = 3) {
+                    doc.setFillColor(...fill);
+                    doc.setDrawColor(...stroke);
+                    doc.setLineWidth(.25);
+                    doc.roundedRect(x, y, w, h, radius, radius, "FD");
+                }
+
+                function sectionHeading(number, title, y) {
+                    doc.setFillColor(...BLUE);
+                    doc.roundedRect(M, y - 4.5, 2.2, 8, 1.1, 1.1, "F");
+
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(13);
+                    setText(NAVY);
+                    doc.text(`${number}. ${title}`, M + 7, y + 1);
+
+                    return y + 8;
+                }
+
+                function ensureSpace(y, needed = 30) {
+                    if (y + needed > 190) {
+                        doc.addPage();
+                        return 24;
+                    }
+                    return y;
+                }
+
+                function drawPageChrome(pageNumber, totalPages) {
+                    doc.setDrawColor(...LINE);
+                    doc.setLineWidth(.25);
+                    doc.line(M, 195, W - M, 195);
+
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(7.5);
+                    setText(MUTED);
+                    doc.text(
+                        "Survival Vietnamese · Analytics Report",
+                        M,
+                        201
+                    );
+                    doc.text(
+                        `${pageNumber} / ${totalPages}`,
+                        W - M,
+                        201,
+                        { align: "right" }
+                    );
+                }
+
+                /* =====================================================
+                   REPORT COVER / HEADER
+                ===================================================== */
+
+                doc.setFillColor(...NAVY);
+                doc.rect(0, 0, W, 33, "F");
+
+                doc.setFillColor(...BLUE);
+                doc.rect(0, 0, 7, 33, "F");
+
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(21);
+                doc.setTextColor(255, 255, 255);
+                doc.text("Analytics Report", M, 14);
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(9);
+                doc.setTextColor(203, 213, 225);
+                doc.text("Survival Vietnamese", M, 21);
+                doc.text(
+                    `Generated ${generatedDate} · ${generatedTime}`,
+                    W - M,
+                    21,
+                    { align: "right" }
+                );
+
+                const overview = buildOverviewData(allAnalyticsEvents);
+
+                let y = 43;
+
+                /* =====================================================
+                   1. TIMELINE
+                ===================================================== */
+
+                y = sectionHeading(1, "Timeline", y);
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(8.5);
+                setText(MUTED);
+                doc.text(
+                    "Daily activity from September 2, 2026",
+                    M,
+                    y
+                );
+
+                const timelineDays = buildTimelineData(allAnalyticsEvents);
+                const timelineRows = timelineDays.map(day => [
+                    formatPdfDate(`${day.key}T00:00:00`),
+                    getPdfNumber(day.views),
+                    getPdfNumber(day.starts),
+                    getPdfNumber(day.completions)
+                ]);
+
+                doc.autoTable({
+                    startY: y + 5,
+                    margin: { left: M, right: M, bottom: 22 },
+                    head: [["Date", "Views", "Game Starts", "Completions"]],
+                    body: timelineRows.length ? timelineRows : [["—", "0", "0", "0"]],
+                    theme: "grid",
+                    styles: {
+                        font: "helvetica",
+                        fontSize: 8,
+                        cellPadding: 2.7,
+                        textColor: NAVY,
+                        lineColor: LINE,
+                        lineWidth: .2,
+                        valign: "middle"
+                    },
+                    headStyles: {
+                        fillColor: NAVY,
+                        textColor: [255, 255, 255],
+                        fontStyle: "bold",
+                        lineColor: NAVY,
+                        lineWidth: .2
+                    },
+                    alternateRowStyles: {
+                        fillColor: [251, 253, 255]
+                    },
+                    columnStyles: {
+                        0: { cellWidth: 55 },
+                        1: { halign: "right" },
+                        2: { halign: "right" },
+                        3: { halign: "right" }
+                    },
+                    didParseCell(data) {
+                        if (data.section === "body" && data.column.index > 0) {
+                            data.cell.styles.fontStyle = "bold";
+                        }
+                    }
+                });
+
+                y = doc.lastAutoTable.finalY + 12;
+
+                /* =====================================================
+                   2. OVERVIEW
+                ===================================================== */
+
+                y = ensureSpace(y, 48);
+                y = sectionHeading(2, "Overview", y);
+
+                const metrics = [
+                    ["Unique visitors", overview.visitors],
+                    ["Sessions", overview.sessions],
+                    ["Page views", overview.pageViews],
+                    ["Game starts", overview.gameStarts],
+                    ["Completions", overview.gameCompletions]
+                ];
+
+                const gap = 4;
+                const cardW = (W - (M * 2) - (gap * 4)) / 5;
+                const cardH = 25;
+
+                metrics.forEach((metric, i) => {
+                    const x = M + i * (cardW + gap);
+                    drawRoundedBox(x, y, cardW, cardH, [255, 255, 255], LINE, 3);
+
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(7);
+                    setText(MUTED);
+                    doc.text(metric[0].toUpperCase(), x + 5, y + 7);
+
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(15);
+                    setText(NAVY);
+                    doc.text(getPdfNumber(metric[1]), x + 5, y + 18);
+                });
+
+                const rateY = y + cardH + 7;
+                drawRoundedBox(M, rateY, W - M * 2, 24, PALE_BLUE, [191, 219, 254], 3);
+
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(8.5);
+                setText(NAVY);
+                doc.text("GAME COMPLETION RATE", M + 6, rateY + 8);
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(7.5);
+                setText(MUTED);
+                doc.text(
+                    `${getPdfNumber(overview.gameCompletions)} completions / ${getPdfNumber(overview.gameStarts)} starts`,
+                    M + 6,
+                    rateY + 15
+                );
+
+                const barX = M + 105;
+                const barW = W - M - barX - 28;
+                const barY = rateY + 9;
+                const safeRate = Math.min(100, Math.max(0, overview.completionRate));
+
+                doc.setFillColor(219, 234, 254);
+                doc.roundedRect(barX, barY, barW, 6, 3, 3, "F");
+
+                if (safeRate > 0) {
+                    doc.setFillColor(...BLUE);
+                    doc.roundedRect(
+                        barX,
+                        barY,
+                        Math.max(2, barW * safeRate / 100),
+                        6,
+                        3,
+                        3,
+                        "F"
+                    );
+                }
+
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(9);
+                setText(BLUE);
+                doc.text(
+                    `${safeRate.toFixed(1)}%`,
+                    W - M - 6,
+                    rateY + 14,
+                    { align: "right" }
+                );
+
+                y = rateY + 35;
+
+                /* =====================================================
+                   3. TOP 10 GAMES
+                ===================================================== */
+
+                y = ensureSpace(y, 60);
+                y = sectionHeading(3, "Top 10 Games", y);
+
+                const games = buildGamesData(allAnalyticsEvents);
+
+                const topGames = [...games]
+                    .sort((a, b) => {
+                        const rateDifference = b.completionRate - a.completionRate;
+                        if (rateDifference !== 0) return rateDifference;
+
+                        const startDifference = b.starts - a.starts;
+                        if (startDifference !== 0) return startDifference;
+
+                        return a.name.localeCompare(
+                            b.name,
+                            undefined,
+                            { sensitivity: "base" }
+                        );
+                    })
+                    .slice(0, 10);
+
+                const gameRows = topGames.map((game, index) => [
+                    String(index + 1),
+                    game.name,
+                    getPdfNumber(game.starts),
+                    getPdfNumber(game.completions),
+                    `${game.completionRate.toFixed(1)}%`,
+                    game.averageScore !== null ? game.averageScore.toFixed(1) : "—",
+                    game.averageAccuracy !== null
+                        ? `${game.averageAccuracy.toFixed(1)}%`
+                        : "—"
+                ]);
+
+                doc.autoTable({
+                    startY: y,
+                    margin: { left: M, right: M, bottom: 22 },
+                    head: [[
+                        "#", "Game", "Starts", "Completions",
+                        "Completion Rate", "Avg Score", "Avg Accuracy"
+                    ]],
+                    body: gameRows.length ? gameRows : [["—", "No game data yet.", "—", "—", "—", "—", "—"]],
+                    theme: "grid",
+                    styles: {
+                        font: "helvetica",
+                        fontSize: 7.7,
+                        cellPadding: 2.6,
+                        textColor: NAVY,
+                        lineColor: LINE,
+                        lineWidth: .2,
+                        valign: "middle"
+                    },
+                    headStyles: {
+                        fillColor: NAVY,
+                        textColor: [255, 255, 255],
+                        fontStyle: "bold",
+                        lineColor: NAVY
+                    },
+                    alternateRowStyles: { fillColor: [251, 253, 255] },
+                    columnStyles: {
+                        0: { cellWidth: 10, halign: "center" },
+                        1: { cellWidth: 91 },
+                        2: { halign: "right" },
+                        3: { halign: "right" },
+                        4: { halign: "right" },
+                        5: { halign: "right" },
+                        6: { halign: "right" }
+                    },
+                    didParseCell(data) {
+                        if (data.section === "body" && data.column.index === 4) {
+                            data.cell.styles.fillColor = PALE_BLUE;
+                            data.cell.styles.textColor = BLUE;
+                            data.cell.styles.fontStyle = "bold";
+                        }
+                    }
+                });
+
+                /* =====================================================
+                   4. TOP 10 PAGES
+                ===================================================== */
+
+                y = doc.lastAutoTable.finalY + 12;
+                y = ensureSpace(y, 55);
+                y = sectionHeading(4, "Top 10 Pages", y);
+
+                const pages = buildPagesData(allAnalyticsEvents);
+                const totalPageViews = overview.pageViews;
+
+                const topPages = [...pages]
+                    .map(page => ({
+                        ...page,
+                        viewShare: totalPageViews > 0
+                            ? (page.views / totalPageViews) * 100
+                            : 0
+                    }))
+                    .sort((a, b) => {
+                        const shareDifference = b.viewShare - a.viewShare;
+                        if (shareDifference !== 0) return shareDifference;
+
+                        const viewDifference = b.views - a.views;
+                        if (viewDifference !== 0) return viewDifference;
+
+                        return a.name.localeCompare(
+                            b.name,
+                            undefined,
+                            { sensitivity: "base" }
+                        );
+                    })
+                    .slice(0, 10);
+
+                const pageRows = topPages.map((page, index) => [
+                    String(index + 1),
+                    page.name,
+                    getPdfNumber(page.views),
+                    `${page.viewShare.toFixed(1)}%`,
+                    getPdfNumber(page.visitors)
+                ]);
+
+                doc.autoTable({
+                    startY: y,
+                    margin: { left: M, right: M, bottom: 22 },
+                    head: [[
+                        "#", "Page", "Page Views",
+                        "% of Total Views", "Unique Visitors"
+                    ]],
+                    body: pageRows.length ? pageRows : [["—", "No page view data yet.", "—", "—", "—"]],
+                    theme: "grid",
+                    styles: {
+                        font: "helvetica",
+                        fontSize: 7.8,
+                        cellPadding: 2.7,
+                        textColor: NAVY,
+                        lineColor: LINE,
+                        lineWidth: .2,
+                        valign: "middle"
+                    },
+                    headStyles: {
+                        fillColor: NAVY,
+                        textColor: [255, 255, 255],
+                        fontStyle: "bold",
+                        lineColor: NAVY
+                    },
+                    alternateRowStyles: { fillColor: [251, 253, 255] },
+                    columnStyles: {
+                        0: { cellWidth: 10, halign: "center" },
+                        1: { cellWidth: 125 },
+                        2: { halign: "right" },
+                        3: { halign: "right" },
+                        4: { halign: "right" }
+                    },
+                    didParseCell(data) {
+                        if (data.section === "body" && data.column.index === 3) {
+                            data.cell.styles.fillColor = PALE_BLUE;
+                            data.cell.styles.textColor = BLUE;
+                            data.cell.styles.fontStyle = "bold";
+                        }
+                    }
+                });
+
+                /* =====================================================
+                   PAGE NUMBERS / FOOTERS
+                ===================================================== */
+
+                const totalPages = doc.internal.getNumberOfPages();
+
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                    doc.setPage(pageNumber);
+                    drawPageChrome(pageNumber, totalPages);
+                }
+
+                const filename =
+                    `survival-vietnamese-analytics-${getLocalDateString()}.pdf`;
+
+                doc.save(filename);
+
+            } catch (error) {
+
+                console.error("PDF export error:", error);
+
+                dashboardError.textContent =
+                    error.message ||
+                    "Unable to export analytics PDF.";
+
+                dashboardError.style.display = "block";
+
+            } finally {
+
+                exportPdfButton.disabled = false;
+                exportPdfButton.textContent = "↓ Export PDF";
+            }
         }
 
 
@@ -3892,6 +3897,17 @@
                     pagesFilter.value
                 );
             }
+        );
+
+
+
+        /* ========================================================
+           EXPORT PDF BUTTON
+        ========================================================= */
+
+        exportPdfButton.addEventListener(
+            "click",
+            exportAnalyticsPdf
         );
 
 
