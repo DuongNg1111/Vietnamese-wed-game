@@ -22,32 +22,37 @@
         ========================================================= */
 
         :root {
-            --accent: #B8885B;
-            --accent-dark: #8E653E;
-            --accent-darker: #6b4a2c;
+        /* =========================
+        BLACK / WHITE / BLUE THEME
+        ========================= */
 
-            --accent-light: #f7ede1;
-            --accent-bg: #FBF8F4;
-            --accent-border: #e7d6bc;
+        --accent: #2563EB;
+        --accent-dark: #1D4ED8;
+        --accent-darker: #1E3A8A;
 
-            --ink: #292421;
-            --text: #403a35;
-            --muted: #85786c;
-            --muted-light: #a89b8e;
+        --accent-light: #EFF6FF;
+        --accent-bg: #F8FAFC;
+        --accent-border: #BFDBFE;
 
-            --line: #e9e0d5;
+        --ink: #111111;
+        --text: #222222;
+        --muted: #666666;
+        --muted-light: #999999;
 
-            --white: #ffffff;
+        --line: #E5E7EB;
 
-            --success: #019b3f;
-            --success-bg: #eaf3ff;
+        --white: #FFFFFF;
 
-            --wrong: #d9536f;
-            --wrong-bg: #fff0f3;
+        /* Correct */
+        --success: #019b3f;
+        --success-bg: #EAF3FF;
 
-            --radius: 14px;
+        /* Wrong */
+        --wrong: #D9536F;
+        --wrong-bg: #FFF0F3;
+
+        --radius: 14px;
         }
-
 
         /* =========================================================
            RESET
@@ -2335,6 +2340,11 @@
             const now =
                 new Date();
 
+            const date = now.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            });
 
             const time =
                 now.toLocaleTimeString(
@@ -2355,7 +2365,7 @@
             document.getElementById(
                 "dashboardSubtitle"
             ).textContent =
-                `Product usage from September 2, 2026 · Updated ${time}`;
+                `Updated: ${date} - ${time}`;
         }
 
 
