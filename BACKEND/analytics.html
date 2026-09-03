@@ -1,0 +1,4215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analytics | Survival Vietnamese</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase.js"></script>
+
+    <style>
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --accent: #B8885B;
+            --accent-dark: #8E653E;
+            --accent-darker: #6b4a2c;
+
+            --accent-light: #f7ede1;
+            --accent-bg: #FBF8F4;
+            --accent-border: #e7d6bc;
+
+            --ink: #292421;
+            --text: #403a35;
+            --muted: #85786c;
+            --muted-light: #a89b8e;
+
+            --line: #e9e0d5;
+
+            --white: #ffffff;
+
+            --success: #019b3f;
+            --success-bg: #eaf3ff;
+
+            --wrong: #d9536f;
+            --wrong-bg: #fff0f3;
+
+            --radius: 14px;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    var(--accent-bg) 48%,
+                    var(--accent-light) 100%
+                );
+
+            -webkit-font-smoothing: antialiased;
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           LOGIN
+        ========================================================= */
+
+        .login-screen {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+        }
+
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+
+            background: var(--white);
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: var(--radius);
+
+            padding: 38px 36px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(80, 55, 30, 0.07);
+        }
+
+
+        .login-brand {
+            margin: 0 0 22px;
+
+            font-family: "Kalam", cursive;
+
+            font-size: 23px;
+
+            color: var(--accent-dark);
+        }
+
+
+        .login-title {
+            margin: 0 0 5px;
+
+            color: var(--ink);
+
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+
+        .login-subtitle {
+            margin: 0 0 26px;
+
+            color: var(--muted);
+
+            font-size: 13.5px;
+        }
+
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--text);
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding:
+                11px
+                13px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            color: var(--ink);
+
+            background: white;
+
+            font-size: 14px;
+
+            transition:
+                border-color .15s,
+                box-shadow .15s;
+        }
+
+
+        .form-group input:focus {
+            border-color: var(--accent);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(184, 136, 91, .13);
+        }
+
+
+        .login-button {
+            width: 100%;
+
+            margin-top: 5px;
+
+            padding: 12px;
+
+            border: 0;
+
+            border-radius: 8px;
+
+            color: white;
+
+            background: var(--accent-dark);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background .15s;
+        }
+
+
+        .login-button:hover {
+            background: var(--accent-darker);
+        }
+
+
+        .login-button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+
+        .login-error {
+            display: none;
+
+            margin-top: 14px;
+
+            padding:
+                10px
+                12px;
+
+            border-radius: 8px;
+
+            color: var(--wrong);
+
+            background: var(--wrong-bg);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
+
+        .dashboard {
+            display: none;
+
+            width: 100%;
+            max-width: 1240px;
+
+            margin: 0 auto;
+
+            padding:
+                32px
+                24px
+                64px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .dashboard-header {
+            display: flex;
+
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+            padding-bottom: 18px;
+
+            border-bottom:
+                1px solid
+                var(--line);
+        }
+
+
+        .brand-row {
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 10px;
+        }
+
+
+        .dashboard-title {
+            margin: 0;
+
+            color: var(--ink);
+
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+
+        .dashboard-brand-tag {
+            padding:
+                2px
+                10px;
+
+            border-radius: 20px;
+
+            color: var(--accent-dark);
+
+            background: var(--accent-light);
+
+            font-family: "Kalam", cursive;
+
+            font-size: 14px;
+        }
+
+
+        .dashboard-subtitle {
+            margin:
+                5px
+                0
+                0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        .header-actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .action-button {
+            padding:
+                9px
+                15px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius: 8px;
+
+            color: var(--accent-darker);
+
+            background: white;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .action-button:hover {
+            background: var(--accent-light);
+        }
+
+
+        .action-button:disabled {
+            opacity: .6;
+
+            cursor: not-allowed;
+        }
+
+
+        .action-button.logout {
+            color: var(--wrong);
+
+            border-color:
+                #efcdd6;
+        }
+
+
+        .action-button.logout:hover {
+            background: var(--wrong-bg);
+        }
+
+
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+
+        .section-title {
+            margin:
+                0
+                0
+                12px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: .07em;
+
+            text-transform: uppercase;
+        }
+
+
+        .card {
+            background: white;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: var(--radius);
+
+            box-shadow:
+                0 1px 2px
+                rgba(60, 40, 20, .03);
+        }
+
+
+        /* =========================================================
+           TIMELINE
+        ========================================================= */
+
+        .timeline-card {
+            padding:
+                22px
+                22px
+                18px;
+
+            overflow: hidden;
+        }
+
+
+        .timeline-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 18px;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .timeline-description {
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        .timeline-legend {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .legend-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: var(--text);
+
+            font-size: 12px;
+        }
+
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+        }
+
+
+        .legend-views {
+            background: #B8885B;
+        }
+
+
+        .legend-starts {
+            background: #7569AA;
+        }
+
+
+        .legend-completions {
+            background: #019b3f;
+        }
+
+
+        /* =========================================================
+           TIMELINE SCROLL
+        ========================================================= */
+
+        .timeline-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            padding-bottom: 6px;
+
+            scrollbar-width: thin;
+        }
+
+
+        .timeline-wrapper::-webkit-scrollbar {
+            height: 7px;
+        }
+
+
+        .timeline-wrapper::-webkit-scrollbar-thumb {
+            background: var(--accent-border);
+
+            border-radius: 20px;
+        }
+
+
+        .timeline-chart {
+            min-width: 700px;
+        }
+
+
+        /* =========================================================
+           TIMELINE PLOT
+        ========================================================= */
+
+        .timeline-plot {
+            position: relative;
+
+            height: 270px;
+
+            padding-left: 55px;
+        }
+
+
+        /*
+           Horizontal grid lines.
+        */
+
+        .timeline-grid {
+            position: absolute;
+
+            left: 55px;
+            right: 0;
+
+            top: 8px;
+            bottom: 35px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            pointer-events: none;
+
+            z-index: 0;
+        }
+
+
+        .timeline-grid-line {
+            width: 100%;
+
+            height: 1px;
+
+            background:
+                var(--line);
+        }
+
+
+        /*
+           Y-axis labels.
+        */
+
+        .timeline-y-axis {
+            position: absolute;
+
+            left: 0;
+            top: 8px;
+
+            width: 45px;
+
+            height: 227px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            z-index: 2;
+        }
+
+
+        .timeline-y-label {
+            padding-right: 8px;
+
+            color: var(--muted-light);
+
+            text-align: right;
+
+            font-size: 10px;
+
+            font-variant-numeric:
+                tabular-nums;
+        }
+
+
+        /*
+           Actual columns.
+        */
+
+        .timeline-columns {
+            position: absolute;
+
+            left: 55px;
+            right: 0;
+
+            top: 8px;
+            bottom: 35px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-around;
+
+            gap: 18px;
+
+            z-index: 1;
+        }
+
+
+        .timeline-day {
+            flex: 1;
+
+            min-width: 55px;
+
+            max-width: 100px;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+        }
+
+
+        .timeline-day-group {
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            gap: 5px;
+        }
+
+
+        /*
+           Each metric is one vertical bar.
+        */
+
+        .timeline-bar-wrap {
+            height: 100%;
+
+            flex: 1;
+
+            max-width: 24px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            position: relative;
+        }
+
+
+        .timeline-value {
+            min-height: 17px;
+
+            margin-bottom: 4px;
+
+            color: var(--text);
+
+            font-size: 10px;
+            font-weight: 600;
+
+            line-height: 1;
+
+            white-space: nowrap;
+
+            font-variant-numeric:
+                tabular-nums;
+        }
+
+
+        .timeline-bar {
+            width: 100%;
+
+            min-height: 2px;
+
+            border-radius:
+                4px
+                4px
+                0
+                0;
+
+            transition:
+                height .25s ease;
+        }
+
+
+        .timeline-bar.views {
+            background: #B8885B;
+        }
+
+
+        .timeline-bar.starts {
+            background: #7569AA;
+        }
+
+
+        .timeline-bar.completions {
+            background: #019b3f;
+        }
+
+
+        /*
+           Date labels.
+        */
+
+        .timeline-dates {
+            margin-left: 55px;
+
+            display: flex;
+
+            justify-content: space-around;
+
+            gap: 18px;
+
+            padding-top: 8px;
+        }
+
+
+        .timeline-date {
+            flex: 1;
+
+            min-width: 55px;
+            max-width: 100px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 10.5px;
+
+            white-space: nowrap;
+        }
+
+
+        .timeline-empty {
+            padding:
+                45px
+                20px;
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           OVERVIEW
+        ========================================================= */
+
+        .overview-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .metric-card {
+            min-width: 0;
+
+            padding:
+                17px
+                18px;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: 12px;
+
+            background: white;
+        }
+
+
+        /*
+           TITLE / LABEL BOLD
+        */
+
+        .metric-label {
+            margin-bottom: 9px;
+
+            color: var(--muted);
+
+            font-size: 11.5px;
+
+            font-weight: 700;
+
+            letter-spacing: .015em;
+        }
+
+
+        .metric-value {
+            color: var(--ink);
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            line-height: 1.1;
+
+            font-variant-numeric:
+                tabular-nums;
+        }
+
+
+        /* =========================================================
+           COMPLETION RATE
+        ========================================================= */
+
+        .completion-card {
+            padding:
+                18px
+                20px;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: 12px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .completion-info {
+            flex: 1;
+
+            min-width: 200px;
+        }
+
+
+        .completion-title {
+            margin-bottom: 5px;
+
+            color: var(--ink);
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        .completion-subtitle {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .completion-progress {
+            width: 100%;
+
+            max-width: 470px;
+
+            flex: 1;
+        }
+
+
+        .progress-track {
+            width: 100%;
+
+            height: 8px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: var(--accent-light);
+        }
+
+
+        .progress-fill {
+            width: 0%;
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: var(--accent);
+
+            transition:
+                width .35s ease;
+        }
+
+
+        .completion-percent {
+            margin-top: 6px;
+
+            color: var(--accent-darker);
+
+            text-align: right;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           TABLE
+        ========================================================= */
+
+        .table-card {
+            overflow: hidden;
+        }
+
+
+        .table-toolbar {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+                13px
+                16px;
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+            flex-wrap: wrap;
+        }
+
+
+        .table-filter {
+            position: relative;
+
+            width: 100%;
+            max-width: 320px;
+        }
+
+
+        .table-filter input {
+            width: 100%;
+
+            padding:
+                9px
+                12px;
+
+            border:
+                1px solid
+                var(--accent-border);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            background:
+                var(--accent-bg);
+
+            color: var(--text);
+
+            font-size: 13px;
+        }
+
+
+        .table-filter input:focus {
+            border-color: var(--accent);
+
+            background: white;
+        }
+
+
+        .table-row-count {
+            margin-left: auto;
+
+            color: var(--muted-light);
+
+            font-size: 12px;
+        }
+
+
+        /*
+           About 5 rows visible.
+        */
+
+        .table-scroll {
+            max-height: 315px;
+
+            overflow-y: auto;
+            overflow-x: auto;
+
+            scrollbar-width: thin;
+        }
+
+
+        .table-scroll::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent-border);
+
+            border-radius: 20px;
+        }
+
+
+        table {
+            width: 100%;
+
+            min-width: 760px;
+
+            border-collapse: collapse;
+        }
+
+
+        th,
+        td {
+            padding:
+                11px
+                16px;
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+            text-align: left;
+
+            font-size: 13px;
+        }
+
+
+        th {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 3;
+
+            background:
+                var(--accent-bg);
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: .045em;
+
+            text-transform: uppercase;
+
+            white-space: nowrap;
+
+            cursor: pointer;
+
+            user-select: none;
+        }
+
+
+        th:hover {
+            background: var(--accent-light);
+
+            color: var(--accent-darker);
+        }
+
+
+        th.is-sorted {
+            color: var(--accent-darker);
+        }
+
+
+        .th-content {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        .sort-arrow {
+            width: 9px;
+
+            font-size: 8px;
+
+            opacity: .35;
+        }
+
+
+        th.is-sorted .sort-arrow {
+            opacity: 1;
+        }
+
+
+        td {
+            color: var(--text);
+        }
+
+
+        tbody tr:hover {
+            background: #fdfbf8;
+        }
+
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+
+        .game-name,
+        .page-name {
+            color: var(--ink);
+
+            font-weight: 600;
+        }
+
+
+        .number-cell {
+            font-variant-numeric:
+                tabular-nums;
+        }
+
+
+        /* =========================================================
+           RATE PILL
+        ========================================================= */
+
+        .rate-pill {
+            display: inline-block;
+
+            padding:
+                3px
+                8px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            font-variant-numeric:
+                tabular-nums;
+        }
+
+
+        .rate-high {
+            color: var(--success);
+
+            background: #eaf5ee;
+        }
+
+
+        .rate-mid {
+            color: var(--accent-darker);
+
+            background: var(--accent-light);
+        }
+
+
+        .rate-low {
+            color: var(--wrong);
+
+            background: var(--wrong-bg);
+        }
+
+
+        .empty-row {
+            padding: 35px !important;
+
+            color: var(--muted);
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           LOADING / ERROR
+        ========================================================= */
+
+        .loading {
+            padding:
+                45px
+                20px;
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+
+        .error-message {
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding:
+                11px
+                14px;
+
+            border-radius: 8px;
+
+            color: var(--wrong);
+
+            background: var(--wrong-bg);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .overview-grid {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .dashboard {
+                padding:
+                    22px
+                    14px
+                    45px;
+            }
+
+
+            .dashboard-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .header-actions {
+                width: 100%;
+            }
+
+
+            .action-button {
+                flex: 1;
+            }
+
+
+            .overview-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+
+            .timeline-chart {
+                min-width: 650px;
+            }
+
+
+            .completion-card {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+
+            .completion-progress {
+                max-width: none;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .brand-row {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 4px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         LOGIN
+    ========================================================= -->
+
+    <div
+        id="loginScreen"
+        class="login-screen"
+    >
+
+        <div class="login-card">
+
+            <p class="login-brand">
+                Survival Vietnamese
+            </p>
+
+
+            <h1 class="login-title">
+                Analytics dashboard
+            </h1>
+
+
+            <p class="login-subtitle">
+                Sign in with your admin account to continue.
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    id="loginButton"
+                    class="login-button"
+                    type="submit"
+                >
+                    Sign in
+                </button>
+
+
+                <div
+                    id="loginError"
+                    class="login-error"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         DASHBOARD
+    ========================================================= -->
+
+    <main
+        id="dashboard"
+        class="dashboard"
+    >
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <div class="brand-row">
+
+                    <h1 class="dashboard-title">
+                        Analytics
+                    </h1>
+
+                    <span class="dashboard-brand-tag">
+                        Survival Vietnamese
+                    </span>
+
+                </div>
+
+
+                <p
+                    id="dashboardSubtitle"
+                    class="dashboard-subtitle"
+                >
+                    Product usage from September 2, 2026 · Updated —
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    id="refreshButton"
+                    class="action-button"
+                >
+                    ↻ Refresh
+                </button>
+
+
+                <button
+                    id="logoutButton"
+                    class="action-button logout"
+                >
+                    Log out
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div
+            id="dashboardError"
+            class="error-message"
+        ></div>
+
+
+
+        <!-- =====================================================
+             TIMELINE
+        ====================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Timeline
+            </h2>
+
+
+            <div class="card timeline-card">
+
+                <div class="timeline-header">
+
+                    <div class="timeline-description">
+                        Daily activity from September 2, 2026
+                    </div>
+
+
+                    <div class="timeline-legend">
+
+                        <div class="legend-item">
+
+                            <span
+                                class="legend-dot legend-views"
+                            ></span>
+
+                            Views
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span
+                                class="legend-dot legend-starts"
+                            ></span>
+
+                            Game starts
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span
+                                class="legend-dot legend-completions"
+                            ></span>
+
+                            Completions
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="timelineContainer">
+
+                    <div class="loading">
+                        Loading timeline…
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             OVERVIEW
+        ====================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Overview
+            </h2>
+
+
+            <div class="overview-grid">
+
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Unique visitors
+                    </div>
+
+                    <div
+                        id="uniqueVisitors"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Sessions
+                    </div>
+
+                    <div
+                        id="sessions"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Page views
+                    </div>
+
+                    <div
+                        id="pageViews"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Game starts
+                    </div>
+
+                    <div
+                        id="gameStarts"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Game completions
+                    </div>
+
+                    <div
+                        id="gameCompletions"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Completion rate -->
+
+            <div class="completion-card">
+
+                <div class="completion-info">
+
+                    <div class="completion-title">
+                        Game completion rate
+                    </div>
+
+                    <div
+                        id="completionDescription"
+                        class="completion-subtitle"
+                    >
+                        Completions compared with game starts
+                    </div>
+
+                </div>
+
+
+                <div class="completion-progress">
+
+                    <div class="progress-track">
+
+                        <div
+                            id="completionProgress"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+
+                    <div
+                        id="completionPercent"
+                        class="completion-percent"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GAMES
+        ====================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Games
+            </h2>
+
+
+            <div class="card table-card">
+
+                <div class="table-toolbar">
+
+                    <div class="table-filter">
+
+                        <input
+                            id="gamesFilter"
+                            type="text"
+                            placeholder="Filter by game name…"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="gamesRowCount"
+                        class="table-row-count"
+                    ></div>
+
+                </div>
+
+
+                <div class="table-scroll">
+
+                    <table>
+
+                        <thead>
+
+                            <tr id="gamesTableHead">
+
+                                <th data-key="name">
+                                    <span class="th-content">
+                                        Game
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="starts">
+                                    <span class="th-content">
+                                        Starts
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="completions">
+                                    <span class="th-content">
+                                        Completions
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="completionRate">
+                                    <span class="th-content">
+                                        Completion rate
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="averageScore">
+                                    <span class="th-content">
+                                        Avg score
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="averageAccuracy">
+                                    <span class="th-content">
+                                        Avg accuracy
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="highestScore">
+                                    <span class="th-content">
+                                        Highest score
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="gamesTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="empty-row"
+                                >
+                                    Loading…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PAGES
+        ====================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Pages
+            </h2>
+
+
+            <div class="card table-card">
+
+                <div class="table-toolbar">
+
+                    <div class="table-filter">
+
+                        <input
+                            id="pagesFilter"
+                            type="text"
+                            placeholder="Filter by page…"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="pagesRowCount"
+                        class="table-row-count"
+                    ></div>
+
+                </div>
+
+
+                <div class="table-scroll">
+
+                    <table>
+
+                        <thead>
+
+                            <tr id="pagesTableHead">
+
+                                <th data-key="name">
+                                    <span class="th-content">
+                                        Page
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="views">
+                                    <span class="th-content">
+                                        Page views
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+
+                                <th data-key="visitors">
+                                    <span class="th-content">
+                                        Unique visitors
+                                        <span class="sort-arrow"></span>
+                                    </span>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="pagesTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="empty-row"
+                                >
+                                    Loading…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        "use strict";
+
+
+        /* ========================================================
+           CONFIG
+        ========================================================= */
+
+        const ADMIN_UID =
+            "a135607e-d828-4992-982b-c518cb383d3c";
+
+        const TABLE_NAME =
+            "analytics_events";
+
+        const PAGE_SIZE =
+            1000;
+
+
+        /*
+           Timeline starts at September 2, 2026.
+        */
+
+        const TIMELINE_START =
+            new Date(
+                2026,
+                8,
+                2,
+                0,
+                0,
+                0,
+                0
+            );
+
+
+        let allAnalyticsEvents = [];
+
+
+        /*
+           Default:
+           highest → lowest
+        */
+
+        const gamesSort = {
+            key: "starts",
+            direction: "desc"
+        };
+
+
+        const pagesSort = {
+            key: "views",
+            direction: "desc"
+        };
+
+
+
+        /* ========================================================
+           DOM
+        ========================================================= */
+
+        const loginScreen =
+            document.getElementById(
+                "loginScreen"
+            );
+
+        const dashboard =
+            document.getElementById(
+                "dashboard"
+            );
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const loginError =
+            document.getElementById(
+                "loginError"
+            );
+
+        const dashboardError =
+            document.getElementById(
+                "dashboardError"
+            );
+
+        const refreshButton =
+            document.getElementById(
+                "refreshButton"
+            );
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+        const gamesFilter =
+            document.getElementById(
+                "gamesFilter"
+            );
+
+        const pagesFilter =
+            document.getElementById(
+                "pagesFilter"
+            );
+
+        const gamesTableHead =
+            document.getElementById(
+                "gamesTableHead"
+            );
+
+        const pagesTableHead =
+            document.getElementById(
+                "pagesTableHead"
+            );
+
+
+
+        /* ========================================================
+           HELPERS
+        ========================================================= */
+
+        function escapeHtml(value) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+        }
+
+
+        function formatNumber(value) {
+
+            return Number(
+                value || 0
+            ).toLocaleString(
+                "en-US"
+            );
+        }
+
+
+        function parseMetadata(metadata) {
+
+            if (!metadata) {
+                return {};
+            }
+
+
+            if (
+                typeof metadata ===
+                "object"
+            ) {
+
+                return metadata;
+            }
+
+
+            if (
+                typeof metadata ===
+                "string"
+            ) {
+
+                try {
+
+                    return JSON.parse(
+                        metadata
+                    );
+
+                }
+
+                catch {
+
+                    return {};
+                }
+
+            }
+
+
+            return {};
+        }
+
+
+        function rateClass(rate) {
+
+            if (rate >= 66) {
+                return "rate-high";
+            }
+
+
+            if (rate >= 33) {
+                return "rate-mid";
+            }
+
+
+            return "rate-low";
+        }
+
+
+        function compareValues(a, b) {
+
+            if (
+                typeof a === "string" ||
+                typeof b === "string"
+            ) {
+
+                return String(a ?? "")
+                    .localeCompare(
+                        String(b ?? ""),
+                        undefined,
+                        {
+                            sensitivity:
+                                "base"
+                        }
+                    );
+            }
+
+
+            const valueA =
+                a === null ||
+                a === undefined
+                    ? -Infinity
+                    : a;
+
+
+            const valueB =
+                b === null ||
+                b === undefined
+                    ? -Infinity
+                    : b;
+
+
+            return valueA - valueB;
+        }
+
+
+        function sortRows(
+            rows,
+            sortState
+        ) {
+
+            const result =
+                [...rows].sort(
+                    (a, b) =>
+                        compareValues(
+                            a[
+                                sortState.key
+                            ],
+                            b[
+                                sortState.key
+                            ]
+                        )
+                );
+
+
+            if (
+                sortState.direction ===
+                "desc"
+            ) {
+
+                result.reverse();
+            }
+
+
+            return result;
+        }
+
+
+
+        /* ========================================================
+           SORT HEADER
+        ========================================================= */
+
+        function updateSortHeaders(
+            head,
+            sortState
+        ) {
+
+            head
+                .querySelectorAll("th")
+                .forEach(th => {
+
+                    const arrow =
+                        th.querySelector(
+                            ".sort-arrow"
+                        );
+
+
+                    if (
+                        th.dataset.key ===
+                        sortState.key
+                    ) {
+
+                        th.classList.add(
+                            "is-sorted"
+                        );
+
+
+                        arrow.textContent =
+                            sortState.direction ===
+                            "asc"
+                                ? "▲"
+                                : "▼";
+
+                    }
+
+                    else {
+
+                        th.classList.remove(
+                            "is-sorted"
+                        );
+
+
+                        arrow.textContent =
+                            "";
+                    }
+
+                });
+        }
+
+
+
+        /* ========================================================
+           TIME
+        ========================================================= */
+
+        function updateDashboardTime() {
+
+            const now =
+                new Date();
+
+
+            const time =
+                now.toLocaleTimeString(
+                    "en-GB",
+                    {
+                        hour:
+                            "2-digit",
+
+                        minute:
+                            "2-digit",
+
+                        hour12:
+                            false
+                    }
+                );
+
+
+            document.getElementById(
+                "dashboardSubtitle"
+            ).textContent =
+                `Product usage from September 2, 2026 · Updated ${time}`;
+        }
+
+
+        /*
+           Current time updates every minute.
+        */
+
+        setInterval(
+            updateDashboardTime,
+            60000
+        );
+
+
+
+        /* ========================================================
+           LOAD EVENTS
+        ========================================================= */
+
+        async function loadAllEvents() {
+
+            const events = [];
+
+            let from = 0;
+
+
+            while (true) {
+
+                const to =
+                    from +
+                    PAGE_SIZE -
+                    1;
+
+
+                const {
+                    data,
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .from(TABLE_NAME)
+                        .select(
+                            `
+                            id,
+                            visitor_id,
+                            session_id,
+                            event_name,
+                            page,
+                            game,
+                            metadata,
+                            created_at
+                            `
+                        )
+                        .order(
+                            "created_at",
+                            {
+                                ascending:
+                                    true
+                            }
+                        )
+                        .range(
+                            from,
+                            to
+                        );
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (
+                    data &&
+                    data.length
+                ) {
+
+                    events.push(
+                        ...data
+                    );
+                }
+
+
+                if (
+                    !data ||
+                    data.length <
+                        PAGE_SIZE
+                ) {
+
+                    break;
+                }
+
+
+                from +=
+                    PAGE_SIZE;
+            }
+
+
+            return events;
+        }
+
+
+
+        /* ========================================================
+           OVERVIEW
+        ========================================================= */
+
+        function renderOverview(events) {
+
+            const visitors =
+                new Set();
+
+            const sessions =
+                new Set();
+
+
+            let pageViews = 0;
+
+            let gameStarts = 0;
+
+            let gameCompletions = 0;
+
+
+            events.forEach(
+                event => {
+
+                    if (
+                        event.visitor_id
+                    ) {
+
+                        visitors.add(
+                            event.visitor_id
+                        );
+                    }
+
+
+                    if (
+                        event.session_id
+                    ) {
+
+                        sessions.add(
+                            event.session_id
+                        );
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "page_view"
+                    ) {
+
+                        pageViews++;
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "game_start"
+                    ) {
+
+                        gameStarts++;
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "game_complete"
+                    ) {
+
+                        gameCompletions++;
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "uniqueVisitors"
+            ).textContent =
+                formatNumber(
+                    visitors.size
+                );
+
+
+            document.getElementById(
+                "sessions"
+            ).textContent =
+                formatNumber(
+                    sessions.size
+                );
+
+
+            document.getElementById(
+                "pageViews"
+            ).textContent =
+                formatNumber(
+                    pageViews
+                );
+
+
+            document.getElementById(
+                "gameStarts"
+            ).textContent =
+                formatNumber(
+                    gameStarts
+                );
+
+
+            document.getElementById(
+                "gameCompletions"
+            ).textContent =
+                formatNumber(
+                    gameCompletions
+                );
+
+
+            const completionRate =
+                gameStarts > 0
+                    ? (
+                        gameCompletions /
+                        gameStarts
+                    ) * 100
+                    : 0;
+
+
+            const safeRate =
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        completionRate
+                    )
+                );
+
+
+            document.getElementById(
+                "completionProgress"
+            ).style.width =
+                `${safeRate}%`;
+
+
+            document.getElementById(
+                "completionPercent"
+            ).textContent =
+                `${safeRate.toFixed(1)}%`;
+
+
+            document.getElementById(
+                "completionDescription"
+            ).textContent =
+                `${formatNumber(gameCompletions)} completions / ${formatNumber(gameStarts)} starts`;
+        }
+
+
+
+        /* ========================================================
+           GAMES DATA
+        ========================================================= */
+
+        function buildGamesData(events) {
+
+            const games = {};
+
+
+            events.forEach(
+                event => {
+
+                    if (
+                        event.event_name !==
+                            "game_start" &&
+                        event.event_name !==
+                            "game_complete"
+                    ) {
+
+                        return;
+                    }
+
+
+                    const name =
+                        event.game ||
+                        "Unknown game";
+
+
+                    if (
+                        !games[name]
+                    ) {
+
+                        games[name] = {
+
+                            starts:
+                                0,
+
+                            completions:
+                                0,
+
+                            scores:
+                                [],
+
+                            accuracies:
+                                [],
+
+                            highestScore:
+                                null
+
+                        };
+                    }
+
+
+                    const game =
+                        games[name];
+
+
+                    if (
+                        event.event_name ===
+                        "game_start"
+                    ) {
+
+                        game.starts++;
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "game_complete"
+                    ) {
+
+                        game.completions++;
+
+
+                        const metadata =
+                            parseMetadata(
+                                event.metadata
+                            );
+
+
+                        const score =
+                            Number(
+                                metadata.score
+                            );
+
+
+                        const accuracy =
+                            Number(
+                                metadata.accuracy
+                            );
+
+
+                        if (
+                            Number.isFinite(
+                                score
+                            )
+                        ) {
+
+                            game.scores.push(
+                                score
+                            );
+
+
+                            if (
+                                game.highestScore ===
+                                    null ||
+                                score >
+                                    game.highestScore
+                            ) {
+
+                                game.highestScore =
+                                    score;
+                            }
+                        }
+
+
+                        if (
+                            Number.isFinite(
+                                accuracy
+                            )
+                        ) {
+
+                            game.accuracies.push(
+                                accuracy
+                            );
+                        }
+
+                    }
+
+                }
+            );
+
+
+            return Object
+                .entries(games)
+                .map(
+                    ([name, game]) => {
+
+                        const completionRate =
+                            game.starts > 0
+                                ? (
+                                    game.completions /
+                                    game.starts
+                                ) * 100
+                                : 0;
+
+
+                        const averageScore =
+                            game.scores.length
+                                ? game.scores.reduce(
+                                    (
+                                        total,
+                                        value
+                                    ) =>
+                                        total +
+                                        value,
+                                    0
+                                ) /
+                                game.scores.length
+                                : null;
+
+
+                        const averageAccuracy =
+                            game.accuracies.length
+                                ? game.accuracies.reduce(
+                                    (
+                                        total,
+                                        value
+                                    ) =>
+                                        total +
+                                        value,
+                                    0
+                                ) /
+                                game.accuracies.length
+                                : null;
+
+
+                        return {
+
+                            name,
+
+                            starts:
+                                game.starts,
+
+                            completions:
+                                game.completions,
+
+                            completionRate,
+
+                            averageScore,
+
+                            averageAccuracy,
+
+                            highestScore:
+                                game.highestScore
+
+                        };
+                    }
+                );
+        }
+
+
+
+        /* ========================================================
+           RENDER GAMES
+        ========================================================= */
+
+        function renderGames(
+            events,
+            filterText = ""
+        ) {
+
+            const rows =
+                buildGamesData(
+                    events
+                );
+
+
+            const keyword =
+                filterText
+                    .trim()
+                    .toLowerCase();
+
+
+            let filtered =
+                rows.filter(
+                    row =>
+                        row.name
+                            .toLowerCase()
+                            .includes(
+                                keyword
+                            )
+                );
+
+
+            filtered =
+                sortRows(
+                    filtered,
+                    gamesSort
+                );
+
+
+            updateSortHeaders(
+                gamesTableHead,
+                gamesSort
+            );
+
+
+            document.getElementById(
+                "gamesRowCount"
+            ).textContent =
+                `${filtered.length} game${filtered.length === 1 ? "" : "s"}`;
+
+
+            const tbody =
+                document.getElementById(
+                    "gamesTableBody"
+                );
+
+
+            if (
+                !filtered.length
+            ) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="empty-row"
+                        >
+                            ${
+                                keyword
+                                    ? "No games match your filter."
+                                    : "No game data yet."
+                            }
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+            }
+
+
+            tbody.innerHTML =
+                filtered
+                    .map(
+                        row => `
+
+                            <tr>
+
+                                <td class="game-name">
+                                    ${escapeHtml(row.name)}
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${formatNumber(row.starts)}
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${formatNumber(row.completions)}
+                                </td>
+
+
+                                <td class="number-cell">
+
+                                    <span
+                                        class="rate-pill ${rateClass(row.completionRate)}"
+                                    >
+                                        ${row.completionRate.toFixed(1)}%
+                                    </span>
+
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${
+                                        row.averageScore !==
+                                        null
+                                            ? row.averageScore.toFixed(1)
+                                            : "—"
+                                    }
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${
+                                        row.averageAccuracy !==
+                                        null
+                                            ? row.averageAccuracy.toFixed(1) + "%"
+                                            : "—"
+                                    }
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${
+                                        row.highestScore !==
+                                        null
+                                            ? formatNumber(
+                                                row.highestScore
+                                            )
+                                            : "—"
+                                    }
+                                </td>
+
+                            </tr>
+
+                        `
+                    )
+                    .join("");
+        }
+
+
+
+        /* ========================================================
+           PAGES DATA
+        ========================================================= */
+
+        function buildPagesData(events) {
+
+            const pages = {};
+
+
+            events.forEach(
+                event => {
+
+                    if (
+                        event.event_name !==
+                        "page_view"
+                    ) {
+
+                        return;
+                    }
+
+
+                    const name =
+                        event.page ||
+                        "Unknown page";
+
+
+                    if (
+                        !pages[name]
+                    ) {
+
+                        pages[name] = {
+
+                            views:
+                                0,
+
+                            visitors:
+                                new Set()
+
+                        };
+                    }
+
+
+                    pages[name].views++;
+
+
+                    if (
+                        event.visitor_id
+                    ) {
+
+                        pages[name]
+                            .visitors
+                            .add(
+                                event.visitor_id
+                            );
+                    }
+
+                }
+            );
+
+
+            return Object
+                .entries(pages)
+                .map(
+                    ([name, page]) => ({
+
+                        name,
+
+                        views:
+                            page.views,
+
+                        visitors:
+                            page.visitors.size
+
+                    })
+                );
+        }
+
+
+
+        /* ========================================================
+           RENDER PAGES
+        ========================================================= */
+
+        function renderPages(
+            events,
+            filterText = ""
+        ) {
+
+            const rows =
+                buildPagesData(
+                    events
+                );
+
+
+            const keyword =
+                filterText
+                    .trim()
+                    .toLowerCase();
+
+
+            let filtered =
+                rows.filter(
+                    row =>
+                        row.name
+                            .toLowerCase()
+                            .includes(
+                                keyword
+                            )
+                );
+
+
+            filtered =
+                sortRows(
+                    filtered,
+                    pagesSort
+                );
+
+
+            updateSortHeaders(
+                pagesTableHead,
+                pagesSort
+            );
+
+
+            document.getElementById(
+                "pagesRowCount"
+            ).textContent =
+                `${filtered.length} page${filtered.length === 1 ? "" : "s"}`;
+
+
+            const tbody =
+                document.getElementById(
+                    "pagesTableBody"
+                );
+
+
+            if (
+                !filtered.length
+            ) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="3"
+                            class="empty-row"
+                        >
+                            ${
+                                keyword
+                                    ? "No pages match your filter."
+                                    : "No page view data yet."
+                            }
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+            }
+
+
+            tbody.innerHTML =
+                filtered
+                    .map(
+                        row => `
+
+                            <tr>
+
+                                <td class="page-name">
+                                    ${escapeHtml(row.name)}
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${formatNumber(row.views)}
+                                </td>
+
+
+                                <td class="number-cell">
+                                    ${formatNumber(row.visitors)}
+                                </td>
+
+                            </tr>
+
+                        `
+                    )
+                    .join("");
+        }
+
+
+
+        /* ========================================================
+           DATE KEY
+        ========================================================= */
+
+        function getLocalDateKey(
+            dateString
+        ) {
+
+            const date =
+                new Date(
+                    dateString
+                );
+
+
+            const year =
+                date.getFullYear();
+
+
+            const month =
+                String(
+                    date.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const day =
+                String(
+                    date.getDate()
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            return `${year}-${month}-${day}`;
+        }
+
+
+
+        /* ========================================================
+           TIMELINE
+           
+           IMPORTANT:
+           3 VERTICAL BARS PER DAY
+        ========================================================= */
+
+        function renderTimeline(events) {
+
+            const days = {};
+
+
+            const now =
+                new Date();
+
+
+            /*
+               Count only:
+               Sep 2, 2026 → current time.
+            */
+
+            events.forEach(
+                event => {
+
+                    const eventDate =
+                        new Date(
+                            event.created_at
+                        );
+
+
+                    if (
+                        eventDate <
+                        TIMELINE_START
+                    ) {
+
+                        return;
+                    }
+
+
+                    if (
+                        eventDate >
+                        now
+                    ) {
+
+                        return;
+                    }
+
+
+                    const key =
+                        getLocalDateKey(
+                            event.created_at
+                        );
+
+
+                    if (
+                        !days[key]
+                    ) {
+
+                        days[key] = {
+
+                            views:
+                                0,
+
+                            starts:
+                                0,
+
+                            completions:
+                                0
+
+                        };
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "page_view"
+                    ) {
+
+                        days[key].views++;
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "game_start"
+                    ) {
+
+                        days[key].starts++;
+                    }
+
+
+                    if (
+                        event.event_name ===
+                        "game_complete"
+                    ) {
+
+                        days[key]
+                            .completions++;
+                    }
+
+                }
+            );
+
+
+            /*
+               Create every date from Sep 2
+               through today.
+            */
+
+            const start =
+                new Date(
+                    TIMELINE_START
+                );
+
+
+            const today =
+                new Date();
+
+
+            today.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            const timelineDays = [];
+
+
+            const current =
+                new Date(
+                    start
+                );
+
+
+            while (
+                current <=
+                today
+            ) {
+
+                const key =
+                    [
+                        current.getFullYear(),
+
+                        String(
+                            current.getMonth() + 1
+                        ).padStart(
+                            2,
+                            "0"
+                        ),
+
+                        String(
+                            current.getDate()
+                        ).padStart(
+                            2,
+                            "0"
+                        )
+
+                    ].join("-");
+
+
+                timelineDays.push({
+
+                    key,
+
+                    label:
+                        `${String(
+                            current.getDate()
+                        ).padStart(2, "0")}/${String(
+                            current.getMonth() + 1
+                        ).padStart(2, "0")}`,
+
+                    views:
+                        days[key]?.views ||
+                        0,
+
+                    starts:
+                        days[key]?.starts ||
+                        0,
+
+                    completions:
+                        days[key]?.completions ||
+                        0
+
+                });
+
+
+                current.setDate(
+                    current.getDate() + 1
+                );
+            }
+
+
+            if (
+                !timelineDays.length
+            ) {
+
+                document.getElementById(
+                    "timelineContainer"
+                ).innerHTML = `
+
+                    <div class="timeline-empty">
+                        No activity data yet.
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            /*
+               Maximum value determines
+               chart height.
+            */
+
+            const maxValue =
+                Math.max(
+                    1,
+
+                    ...timelineDays.flatMap(
+                        day => [
+
+                            day.views,
+
+                            day.starts,
+
+                            day.completions
+
+                        ]
+                    )
+                );
+
+
+            /*
+               Scale:
+               0
+               25%
+               50%
+               75%
+               100%
+            */
+
+            const steps = 4;
+
+
+            const scaleValues =
+                Array.from(
+                    {
+                        length:
+                            steps + 1
+                    },
+                    (_, index) => {
+
+                        return Math.round(
+                            maxValue -
+                            (
+                                maxValue /
+                                steps
+                            ) *
+                            index
+                        );
+
+                    }
+                );
+
+
+            /*
+               Horizontal grid.
+            */
+
+            const gridHtml =
+                scaleValues
+                    .map(
+                        () => `
+                            <div
+                                class="timeline-grid-line"
+                            ></div>
+                        `
+                    )
+                    .join("");
+
+
+            /*
+               Y labels.
+            */
+
+            const yLabelsHtml =
+                scaleValues
+                    .map(
+                        value => `
+
+                            <div
+                                class="timeline-y-label"
+                            >
+                                ${formatNumber(value)}
+                            </div>
+
+                        `
+                    )
+                    .join("");
+
+
+            /*
+               Helper for each bar.
+            */
+
+            function createBar(
+                value,
+                className,
+                label
+            ) {
+
+                /*
+                   Give zero bars a tiny height
+                   so their position remains stable.
+                */
+
+                const height =
+                    value > 0
+                        ? Math.max(
+                            2,
+                            (
+                                value /
+                                maxValue
+                            ) * 190
+                        )
+                        : 2;
+
+
+                return `
+
+                    <div
+                        class="timeline-bar-wrap"
+                        title="${label}: ${formatNumber(value)}"
+                    >
+
+                        <div
+                            class="timeline-value"
+                        >
+                            ${
+                                value > 0
+                                    ? formatNumber(value)
+                                    : ""
+                            }
+                        </div>
+
+
+                        <div
+                            class="timeline-bar ${className}"
+                            style="height:${height}px;"
+                        ></div>
+
+                    </div>
+
+                `;
+            }
+
+
+            /*
+               Three vertical bars per day.
+            */
+
+            const columnsHtml =
+                timelineDays
+                    .map(
+                        day => `
+
+                            <div
+                                class="timeline-day"
+                            >
+
+                                <div
+                                    class="timeline-day-group"
+                                >
+
+                                    ${createBar(
+                                        day.views,
+                                        "views",
+                                        `Views · ${day.label}`
+                                    )}
+
+                                    ${createBar(
+                                        day.starts,
+                                        "starts",
+                                        `Game starts · ${day.label}`
+                                    )}
+
+                                    ${createBar(
+                                        day.completions,
+                                        "completions",
+                                        `Completions · ${day.label}`
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        `
+                    )
+                    .join("");
+
+
+            /*
+               Dates underneath.
+            */
+
+            const datesHtml =
+                timelineDays
+                    .map(
+                        day => `
+
+                            <div
+                                class="timeline-date"
+                            >
+                                ${day.label}
+                            </div>
+
+                        `
+                    )
+                    .join("");
+
+
+            /*
+               Final chart.
+            */
+
+            document.getElementById(
+                "timelineContainer"
+            ).innerHTML = `
+
+                <div class="timeline-wrapper">
+
+                    <div class="timeline-chart">
+
+
+                        <div class="timeline-plot">
+
+
+                            <div class="timeline-y-axis">
+                                ${yLabelsHtml}
+                            </div>
+
+
+                            <div class="timeline-grid">
+                                ${gridHtml}
+                            </div>
+
+
+                            <div class="timeline-columns">
+                                ${columnsHtml}
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="timeline-dates">
+                            ${datesHtml}
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `;
+        }
+
+
+
+        /* ========================================================
+           LOAD DASHBOARD
+        ========================================================= */
+
+        async function loadDashboard() {
+
+            dashboardError.style.display =
+                "none";
+
+
+            try {
+
+                allAnalyticsEvents =
+                    await loadAllEvents();
+
+
+                renderTimeline(
+                    allAnalyticsEvents
+                );
+
+
+                renderOverview(
+                    allAnalyticsEvents
+                );
+
+
+                renderGames(
+                    allAnalyticsEvents,
+                    gamesFilter.value
+                );
+
+
+                renderPages(
+                    allAnalyticsEvents,
+                    pagesFilter.value
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+
+                dashboardError.textContent =
+                    error.message ||
+                    "Unable to load analytics data.";
+
+
+                dashboardError.style.display =
+                    "block";
+            }
+        }
+
+
+
+        /* ========================================================
+           GAMES FILTER
+        ========================================================= */
+
+        gamesFilter.addEventListener(
+            "input",
+            () => {
+
+                renderGames(
+                    allAnalyticsEvents,
+                    gamesFilter.value
+                );
+
+            }
+        );
+
+
+
+        /* ========================================================
+           PAGES FILTER
+        ========================================================= */
+
+        pagesFilter.addEventListener(
+            "input",
+            () => {
+
+                renderPages(
+                    allAnalyticsEvents,
+                    pagesFilter.value
+                );
+
+            }
+        );
+
+
+
+        /* ========================================================
+           GAMES SORT
+        ========================================================= */
+
+        gamesTableHead.addEventListener(
+            "click",
+            event => {
+
+                const th =
+                    event.target.closest(
+                        "th"
+                    );
+
+
+                if (!th) {
+                    return;
+                }
+
+
+                const key =
+                    th.dataset.key;
+
+
+                if (
+                    gamesSort.key ===
+                    key
+                ) {
+
+                    gamesSort.direction =
+                        gamesSort.direction ===
+                        "asc"
+                            ? "desc"
+                            : "asc";
+
+                }
+
+                else {
+
+                    gamesSort.key =
+                        key;
+
+
+                    gamesSort.direction =
+                        key === "name"
+                            ? "asc"
+                            : "desc";
+                }
+
+
+                renderGames(
+                    allAnalyticsEvents,
+                    gamesFilter.value
+                );
+            }
+        );
+
+
+
+        /* ========================================================
+           PAGES SORT
+        ========================================================= */
+
+        pagesTableHead.addEventListener(
+            "click",
+            event => {
+
+                const th =
+                    event.target.closest(
+                        "th"
+                    );
+
+
+                if (!th) {
+                    return;
+                }
+
+
+                const key =
+                    th.dataset.key;
+
+
+                if (
+                    pagesSort.key ===
+                    key
+                ) {
+
+                    pagesSort.direction =
+                        pagesSort.direction ===
+                        "asc"
+                            ? "desc"
+                            : "asc";
+
+                }
+
+                else {
+
+                    pagesSort.key =
+                        key;
+
+
+                    pagesSort.direction =
+                        key === "name"
+                            ? "asc"
+                            : "desc";
+                }
+
+
+                renderPages(
+                    allAnalyticsEvents,
+                    pagesFilter.value
+                );
+            }
+        );
+
+
+
+        /* ========================================================
+           SHOW DASHBOARD
+        ========================================================= */
+
+        async function showDashboardScreen() {
+
+            loginScreen.style.display =
+                "none";
+
+
+            dashboard.style.display =
+                "block";
+
+
+            updateDashboardTime();
+
+
+            await loadDashboard();
+        }
+
+
+
+        /* ========================================================
+           AUTH CHECK
+        ========================================================= */
+
+        async function checkCurrentUser() {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .auth
+                        .getUser();
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                const user =
+                    data?.user;
+
+
+                if (!user) {
+
+                    loginScreen.style.display =
+                        "flex";
+
+                    dashboard.style.display =
+                        "none";
+
+                    return;
+                }
+
+
+                if (
+                    user.id !==
+                    ADMIN_UID
+                ) {
+
+                    await window
+                        .supabaseClient
+                        .auth
+                        .signOut();
+
+
+                    loginError.textContent =
+                        "You are not authorized to access this dashboard.";
+
+
+                    loginError.style.display =
+                        "block";
+
+
+                    return;
+                }
+
+
+                await showDashboardScreen();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Auth error:",
+                    error
+                );
+
+
+                loginError.textContent =
+                    error.message ||
+                    "Unable to verify account.";
+
+
+                loginError.style.display =
+                    "block";
+            }
+        }
+
+
+
+        /* ========================================================
+           LOGIN
+        ========================================================= */
+
+        loginForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                loginError.style.display =
+                    "none";
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "email"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "password"
+                        )
+                        .value;
+
+
+                loginButton.disabled =
+                    true;
+
+
+                loginButton.textContent =
+                    "Signing in…";
+
+
+                try {
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await window
+                            .supabaseClient
+                            .auth
+                            .signInWithPassword(
+                                {
+                                    email,
+                                    password
+                                }
+                            );
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    const user =
+                        data?.user;
+
+
+                    if (
+                        !user ||
+                        user.id !==
+                        ADMIN_UID
+                    ) {
+
+                        await window
+                            .supabaseClient
+                            .auth
+                            .signOut();
+
+
+                        throw new Error(
+                            "You are not authorized to access this dashboard."
+                        );
+                    }
+
+
+                    await showDashboardScreen();
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    loginError.textContent =
+                        error.message ||
+                        "Login failed.";
+
+
+                    loginError.style.display =
+                        "block";
+
+                }
+
+                finally {
+
+                    loginButton.disabled =
+                        false;
+
+
+                    loginButton.textContent =
+                        "Sign in";
+                }
+
+            }
+        );
+
+
+
+        /* ========================================================
+           REFRESH
+        ========================================================= */
+
+        refreshButton.addEventListener(
+            "click",
+            async () => {
+
+                refreshButton.disabled =
+                    true;
+
+
+                refreshButton.textContent =
+                    "↻ Loading…";
+
+
+                updateDashboardTime();
+
+
+                await loadDashboard();
+
+
+                refreshButton.disabled =
+                    false;
+
+
+                refreshButton.textContent =
+                    "↻ Refresh";
+            }
+        );
+
+
+
+        /* ========================================================
+           LOGOUT
+        ========================================================= */
+
+        logoutButton.addEventListener(
+            "click",
+            async () => {
+
+                await window
+                    .supabaseClient
+                    .auth
+                    .signOut();
+
+            }
+        );
+
+
+
+        /* ========================================================
+           AUTH STATE
+        ========================================================= */
+
+        window
+            .supabaseClient
+            .auth
+            .onAuthStateChange(
+                async event => {
+
+                    if (
+                        event ===
+                        "SIGNED_OUT"
+                    ) {
+
+                        dashboard.style.display =
+                            "none";
+
+
+                        loginScreen.style.display =
+                            "flex";
+
+
+                        loginForm.reset();
+
+
+                        loginError.style.display =
+                            "none";
+                    }
+
+                }
+            );
+
+
+
+        /* ========================================================
+           INIT
+        ========================================================= */
+
+        updateDashboardTime();
+
+        checkCurrentUser();
+
+    </script>
+
+</body>
+</html>
