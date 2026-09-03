@@ -1433,29 +1433,19 @@ function generateQuestions() {
 
 function startGame() {
 
+    trackGameStart(
+        "Clothes - Game 1"
+    );
+
     generateQuestions();
 
+    currentQuestion = 0;
+    score = 0;
 
-    currentQuestion =
-        0;
-
-
-    score =
-        0;
-
-
-    gameScreen.classList.remove(
-        "hidden"
-    );
-
-
-    resultScreen.classList.add(
-        "hidden"
-    );
-
+    gameScreen.classList.remove("hidden");
+    resultScreen.classList.add("hidden");
 
     loadQuestion();
-
 }
 
 
@@ -1820,10 +1810,6 @@ playAgain.addEventListener(
 /* ==========================================================
    INITIALIZE
 ========================================================== */
-
-window.trackGameStart(
-    "Clothes - Game 1"
-);
 
 startGame();
 
