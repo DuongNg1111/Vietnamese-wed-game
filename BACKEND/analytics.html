@@ -2332,224 +2332,334 @@
                 `${formatNumber(stats.gameCompletions)} completions / ${formatNumber(stats.gameStarts)} starts`;
         }
 
-
-
         /* ========================================================
-           GAMES DATA
+        GAMES DATA
 
-           Completion rate per game is calculated purely from raw
-           event counts: total "game_start" events vs total
-           "game_complete" events for that game. No session/ID
-           dedupe — every event counts.
-        ========================================================= */
+        Completion rate per game is calculated by matching
+        "game_start" events with "game_complete" events
+        within the same game + session.
+
+        Each game_start can match only one game_complete.
+        Extra game_complete events without an unmatched
+        game_start are ignored.
+
+        Score / accuracy statistics are calculated only from
+        matched game_complete events.
+        ======================================================== */
 
         function buildGamesData(events) {
 
             const games = {};
 
 
-            events.forEach(
-                event => {
+            /*
+            * ======================================================
+            * GROUP EVENTS BY GAME + SESSION
+            * ======================================================
+            */
 
-                    if (
-                        event.event_name !==
-                            "game_start" &&
-                        event.event_name !==
-                            "game_complete"
-                    ) {
-
-                        return;
-                    }
+            const sessions = {};
 
 
-                    const name =
-                        event.game ||
-                        "Unknown game";
+            events.forEach(event => {
+
+                if (
+                    event.event_name !== "game_start" &&
+                    event.event_name !== "game_complete"
+                ) {
+                    return;
+                }
 
 
-                    if (
-                        !games[name]
-                    ) {
-
-                        games[name] = {
-
-                            starts:
-                                0,
-
-                            completions:
-                                0,
-
-                            scores:
-                                [],
-
-                            accuracies:
-                                [],
-
-                            highestScore:
-                                null
-
-                        };
-                    }
+                const game =
+                    event.game ||
+                    "Unknown game";
 
 
-                    const game =
-                        games[name];
+                const session =
+                    event.session_id ||
+                    "unknown-session";
 
 
-                    if (
-                        event.event_name ===
-                        "game_start"
-                    ) {
-
-                        game.starts++;
-                    }
+                const key =
+                    game +
+                    "||" +
+                    session;
 
 
-                    if (
-                        event.event_name ===
-                        "game_complete"
-                    ) {
+                if (!sessions[key]) {
 
-                        game.completions++;
+                    sessions[key] = [];
 
-
-                        const metadata =
-                            parseMetadata(
-                                event.metadata
-                            );
+                }
 
 
-                        const score =
-                            Number(
-                                metadata.score
-                            );
+                sessions[key].push(event);
+
+            });
 
 
-                        const accuracy =
-                            Number(
-                                metadata.accuracy
-                            );
+            /*
+            * ======================================================
+            * MATCH START → COMPLETE
+            * ======================================================
+            */
 
+            Object.values(sessions).forEach(
+                sessionEvents => {
+
+                    /*
+                    * Process events chronologically.
+                    */
+
+                    sessionEvents.sort(
+                        (a, b) =>
+                            new Date(a.created_at) -
+                            new Date(b.created_at)
+                    );
+
+
+                    let openStarts = 0;
+
+
+                    sessionEvents.forEach(event => {
+
+                        const game =
+                            event.game ||
+                            "Unknown game";
+
+
+                        /*
+                        * Create game record if needed.
+                        */
+
+                        if (!games[game]) {
+
+                            games[game] = {
+
+                                starts: 0,
+
+                                completions: 0,
+
+                                totalScore: 0,
+
+                                totalAccuracy: 0,
+
+                                scoreCount: 0,
+
+                                accuracyCount: 0,
+
+                                highestScore: null
+
+                            };
+
+                        }
+
+
+                        /*
+                        * ==================================================
+                        * GAME START
+                        * ==================================================
+                        */
 
                         if (
-                            Number.isFinite(
-                                score
-                            )
+                            event.event_name ===
+                            "game_start"
                         ) {
 
-                            game.scores.push(
-                                score
-                            );
+                            games[game].starts++;
 
+                            openStarts++;
+
+                        }
+
+
+                        /*
+                        * ==================================================
+                        * GAME COMPLETE
+                        *
+                        * Only count the completion if there is an
+                        * unmatched game_start in the same game + session.
+                        * ==================================================
+                        */
+
+                        else if (
+                            event.event_name ===
+                            "game_complete"
+                        ) {
+
+                            /*
+                            * Ignore unmatched completion events.
+                            */
+
+                            if (openStarts <= 0) {
+                                return;
+                            }
+
+
+                            /*
+                            * Match this completion to one start.
+                            */
+
+                            games[game].completions++;
+
+                            openStarts--;
+
+
+                            /*
+                            * ==================================================
+                            * SCORE / ACCURACY
+                            * ==================================================
+                            */
+
+                            const metadata =
+                                event.metadata || {};
+
+
+                            const score =
+                                Number(
+                                    metadata.score
+                                );
+
+
+                            const accuracy =
+                                Number(
+                                    metadata.accuracy
+                                );
+
+
+                            /*
+                            * Average score
+                            */
 
                             if (
-                                game.highestScore ===
-                                    null ||
-                                score >
-                                    game.highestScore
+                                Number.isFinite(score)
                             ) {
 
-                                game.highestScore =
+                                games[game].totalScore +=
                                     score;
+
+                                games[game].scoreCount++;
+
                             }
+
+
+                            /*
+                            * Average accuracy
+                            */
+
+                            if (
+                                Number.isFinite(accuracy)
+                            ) {
+
+                                games[game].totalAccuracy +=
+                                    accuracy;
+
+                                games[game].accuracyCount++;
+
+                            }
+
+
+                            /*
+                            * Highest score
+                            */
+
+                            if (
+                                Number.isFinite(score)
+                            ) {
+
+                                if (
+                                    games[game].highestScore ===
+                                    null ||
+                                    score >
+                                    games[game].highestScore
+                                ) {
+
+                                    games[game].highestScore =
+                                        score;
+
+                                }
+
+                            }
+
                         }
 
-
-                        if (
-                            Number.isFinite(
-                                accuracy
-                            )
-                        ) {
-
-                            game.accuracies.push(
-                                accuracy
-                            );
-                        }
-
-                    }
+                    });
 
                 }
             );
 
 
-            return Object
-                .entries(games)
-                .map(
-                    ([name, game]) => {
+            /*
+            * ======================================================
+            * BUILD FINAL DATA
+            * ======================================================
+            */
 
-                        const starts =
-                            game.starts;
+            return Object.entries(games).map(
+                ([game, data]) => {
 
-                        const completions =
-                            game.completions;
-
-
-                        const completionRate =
-                            starts > 0
-                                ? (
-                                    completions /
-                                    starts
-                                ) * 100
-                                : 0;
+                    const completionRate =
+                        data.starts > 0
+                            ? (
+                                data.completions /
+                                data.starts
+                            ) * 100
+                            : 0;
 
 
-                        const averageScore =
-                            game.scores.length
-                                ? game.scores.reduce(
-                                    (
-                                        total,
-                                        value
-                                    ) =>
-                                        total +
-                                        value,
-                                    0
-                                ) /
-                                game.scores.length
-                                : null;
+                    const averageScore =
+                        data.scoreCount > 0
+                            ? (
+                                data.totalScore /
+                                data.scoreCount
+                            )
+                            : null;
 
 
-                        const averageAccuracy =
-                            game.accuracies.length
-                                ? game.accuracies.reduce(
-                                    (
-                                        total,
-                                        value
-                                    ) =>
-                                        total +
-                                        value,
-                                    0
-                                ) /
-                                game.accuracies.length
-                                : null;
+                    const averageAccuracy =
+                        data.accuracyCount > 0
+                            ? (
+                                data.totalAccuracy /
+                                data.accuracyCount
+                            )
+                            : null;
 
 
-                        return {
+                    return {
 
-                            name,
+                        name:
+                            game,
 
-                            starts,
+                        starts:
+                            data.starts,
 
-                            completions,
+                        completions:
+                            data.completions,
 
+                        completionRate:
                             completionRate,
 
+                        averageScore:
                             averageScore,
 
+                        averageAccuracy:
                             averageAccuracy,
 
-                            highestScore:
-                                game.highestScore
+                        highestScore:
+                            data.highestScore
 
-                        };
-                    }
-                );
+                    };
+
+                }
+            );
+
         }
 
 
-
         /* ========================================================
-           RENDER GAMES
-        ========================================================= */
+        RENDER GAMES
+        ======================================================== */
 
         function renderGames(
             events,
@@ -2702,86 +2812,94 @@
                     .join("");
         }
 
-
-
         /* ========================================================
-           PAGES DATA
-        ========================================================= */
+        PAGES DATA
+        ======================================================== */
 
         function buildPagesData(events) {
 
             const pages = {};
 
 
-            events.forEach(
-                event => {
+            events.forEach(event => {
 
-                    if (
-                        event.event_name !==
-                        "page_view"
-                    ) {
-
-                        return;
-                    }
+                if (
+                    event.event_name !==
+                    "page_view"
+                ) {
+                    return;
+                }
 
 
-                    const name =
-                        event.page ||
-                        "Unknown page";
+                const page =
+                    event.page ||
+                    "Unknown page";
 
 
-                    if (
-                        !pages[name]
-                    ) {
+                if (!pages[page]) {
 
-                        pages[name] = {
+                    pages[page] = {
 
-                            views:
-                                0,
+                        views: 0,
 
-                            visitors:
-                                new Set()
+                        visitors: new Set()
 
-                        };
-                    }
+                    };
+
+                }
 
 
-                    pages[name].views++;
+                /*
+                * Every page_view counts as one view.
+                */
+
+                pages[page].views++;
 
 
-                    if (
+                /*
+                * Count unique visitors.
+                */
+
+                if (
+                    event.visitor_id
+                ) {
+
+                    pages[page].visitors.add(
                         event.visitor_id
-                    ) {
+                    );
 
-                        pages[name]
-                            .visitors
-                            .add(
-                                event.visitor_id
-                            );
-                    }
+                }
+
+            });
+
+
+            /*
+            * Convert internal data into the
+            * structure expected by renderPages().
+            */
+
+            return Object.entries(
+                pages
+            ).map(
+                ([page, data]) => {
+
+                    return {
+
+                        name:
+                            page,
+
+                        views:
+                            data.views,
+
+                        visitors:
+                            data.visitors.size
+
+                    };
 
                 }
             );
 
-
-            return Object
-                .entries(pages)
-                .map(
-                    ([name, page]) => ({
-
-                        name,
-
-                        views:
-                            page.views,
-
-                        visitors:
-                            page.visitors.size
-
-                    })
-                );
         }
-
-
 
         /* ========================================================
            RENDER PAGES
