@@ -1390,6 +1390,84 @@
         </section>
 
 
+
+        <!-- =====================================================
+             FEEDBACK
+        ====================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Feedback
+            </h2>
+
+
+            <div class="card table-card">
+
+                <div class="table-toolbar">
+
+                    <div class="table-filter">
+
+                        <input
+                            id="feedbackFilter"
+                            type="text"
+                            placeholder="Filter feedback…"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="feedbackRowCount"
+                        class="table-row-count"
+                    ></div>
+
+                </div>
+
+
+                <div class="table-scroll">
+
+                    <table id="feedbackTable">
+
+                        <thead>
+
+                            <tr id="feedbackTableHead">
+
+                                <th>
+                                    <span class="th-content">
+                                        Feedback
+                                    </span>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="feedbackTableBody">
+
+                            <tr>
+
+                                <td
+                                    class="empty-row"
+                                >
+                                    Loading…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
     </main>
 
 
@@ -1413,6 +1491,9 @@
         const TABLE_NAME =
             "analytics_events";
 
+        const FEEDBACK_TABLE_NAME =
+            "feedback";
+
         const PAGE_SIZE =
             1000;
 
@@ -1431,6 +1512,8 @@
 
         let allAnalyticsEvents = [];
 
+        let allFeedbackRows = [];
+
 
         const gamesSort = {
             key: "starts",
@@ -1440,6 +1523,12 @@
 
         const pagesSort = {
             key: "views",
+            direction: "desc"
+        };
+
+
+        const feedbackSort = {
+            key: "created_at",
             direction: "desc"
         };
 
@@ -1504,6 +1593,11 @@
                 "pagesFilter"
             );
 
+        const feedbackFilter =
+            document.getElementById(
+                "feedbackFilter"
+            );
+
         const gamesTableHead =
             document.getElementById(
                 "gamesTableHead"
@@ -1512,6 +1606,11 @@
         const pagesTableHead =
             document.getElementById(
                 "pagesTableHead"
+            );
+
+        const feedbackTableHead =
+            document.getElementById(
+                "feedbackTableHead"
             );
 
 
@@ -1554,6 +1653,84 @@
                 value || 0
             ).toLocaleString(
                 "en-US"
+            );
+        }
+
+
+        function formatFeedbackValue(value) {
+
+            if (
+                value === null ||
+                value === undefined ||
+                value === ""
+            ) {
+                return "—";
+            }
+
+
+            if (
+                typeof value === "object"
+            ) {
+
+                try {
+                    return JSON.stringify(value);
+                }
+
+                catch {
+                    return String(value);
+                }
+            }
+
+
+            if (
+                typeof value === "boolean"
+            ) {
+                return value ? "Yes" : "No";
+            }
+
+
+            return String(value);
+        }
+
+
+        function formatFeedbackHeader(key) {
+
+            return String(key)
+                .replace(/_/g, " ")
+                .replace(/\b\w/g, char => char.toUpperCase());
+        }
+
+
+        function formatFeedbackDate(value) {
+
+            if (!value) {
+                return "—";
+            }
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+                return formatFeedbackValue(value);
+            }
+
+
+            return date.toLocaleString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false
+                }
             );
         }
 
@@ -1898,7 +2075,80 @@
 
 
         /* ========================================================
+           LOAD FEEDBACK
+        ========================================================= */
+
+        async function loadAllFeedback() {
+
+            const rows = [];
+
+            let from = 0;
+
+
+            while (true) {
+
+                const to =
+                    from +
+                    PAGE_SIZE -
+                    1;
+
+
+                const {
+                    data,
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .from(FEEDBACK_TABLE_NAME)
+                        .select("*")
+                        .range(
+                            from,
+                            to
+                        );
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (
+                    data &&
+                    data.length
+                ) {
+
+                    rows.push(
+                        ...data
+                    );
+                }
+
+
+                if (
+                    !data ||
+                    data.length <
+                        PAGE_SIZE
+                ) {
+
+                    break;
+                }
+
+
+                from +=
+                    PAGE_SIZE;
+            }
+
+
+            return rows;
+        }
+
+
+
+        /* ========================================================
            OVERVIEW DATA
+
+           Completion rate is calculated purely from raw event
+           counts: total "game_start" events vs total
+           "game_complete" events. No session/ID dedupe.
         ========================================================= */
 
         function buildOverviewData(
@@ -2073,7 +2323,7 @@
             document.getElementById(
                 "completionPercent"
             ).textContent =
-                `${safeRate.toFixed(1)}%`;
+                `${stats.completionRate.toFixed(1)}%`;
 
 
             document.getElementById(
@@ -2086,6 +2336,11 @@
 
         /* ========================================================
            GAMES DATA
+
+           Completion rate per game is calculated purely from raw
+           event counts: total "game_start" events vs total
+           "game_complete" events for that game. No session/ID
+           dedupe — every event counts.
         ========================================================= */
 
         function buildGamesData(events) {
@@ -2222,11 +2477,18 @@
                 .map(
                     ([name, game]) => {
 
+                        const starts =
+                            game.starts;
+
+                        const completions =
+                            game.completions;
+
+
                         const completionRate =
-                            game.starts > 0
+                            starts > 0
                                 ? (
-                                    game.completions /
-                                    game.starts
+                                    completions /
+                                    starts
                                 ) * 100
                                 : 0;
 
@@ -2265,11 +2527,9 @@
 
                             name,
 
-                            starts:
-                                game.starts,
+                            starts,
 
-                            completions:
-                                game.completions,
+                            completions,
 
                             completionRate,
 
@@ -2627,6 +2887,360 @@
                                 <td class="number-cell">
                                     ${formatNumber(row.visitors)}
                                 </td>
+
+                            </tr>
+
+                        `
+                    )
+                    .join("");
+        }
+
+
+
+        /* ========================================================
+           FEEDBACK
+        ========================================================= */
+
+        function getFeedbackColumns(rows) {
+
+            if (!rows.length) {
+                return [];
+            }
+
+
+            const allKeys =
+                Array.from(
+                    new Set(
+                        rows.flatMap(
+                            row =>
+                                Object.keys(
+                                    row || {}
+                                )
+                        )
+                    )
+                );
+
+
+            const hiddenKeys =
+                new Set([
+                    "id"
+                ]);
+
+
+            const priority = [
+                "created_at",
+                "date",
+                "rating",
+                "type",
+                "category",
+                "page",
+                "game",
+                "message",
+                "feedback",
+                "comment",
+                "email",
+                "visitor_id",
+                "user_id"
+            ];
+
+
+            return [
+                ...priority.filter(
+                    key =>
+                        allKeys.includes(key) &&
+                        !hiddenKeys.has(key)
+                ),
+
+                ...allKeys.filter(
+                    key =>
+                        !priority.includes(key) &&
+                        !hiddenKeys.has(key)
+                )
+            ];
+        }
+
+
+        function getFeedbackSortValue(
+            row,
+            key
+        ) {
+
+            const value =
+                row?.[key];
+
+
+            if (
+                key === "created_at" ||
+                key === "date"
+            ) {
+
+                const time =
+                    new Date(
+                        value
+                    ).getTime();
+
+
+                return Number.isFinite(time)
+                    ? time
+                    : -Infinity;
+            }
+
+
+            if (
+                typeof value === "number"
+            ) {
+                return value;
+            }
+
+
+            return formatFeedbackValue(
+                value
+            );
+        }
+
+
+        function renderFeedback(
+            rows,
+            filterText = ""
+        ) {
+
+            const keyword =
+                filterText
+                    .trim()
+                    .toLowerCase();
+
+
+            let filtered =
+                rows.filter(
+                    row => {
+
+                        if (!keyword) {
+                            return true;
+                        }
+
+
+                        return Object
+                            .values(
+                                row || {}
+                            )
+                            .some(
+                                value =>
+                                    formatFeedbackValue(
+                                        value
+                                    )
+                                    .toLowerCase()
+                                    .includes(
+                                        keyword
+                                    )
+                            );
+                    }
+                );
+
+
+            const columns =
+                getFeedbackColumns(
+                    filtered.length
+                        ? filtered
+                        : rows
+                );
+
+
+            if (
+                columns.length &&
+                !columns.includes(
+                    feedbackSort.key
+                )
+            ) {
+
+                feedbackSort.key =
+                    columns.includes(
+                        "created_at"
+                    )
+                        ? "created_at"
+                        : columns[0];
+
+
+                feedbackSort.direction =
+                    feedbackSort.key ===
+                    "created_at"
+                        ? "desc"
+                        : "asc";
+            }
+
+
+            if (
+                feedbackSort.key
+            ) {
+
+                filtered =
+                    [...filtered]
+                        .sort(
+                            (a, b) =>
+                                compareValues(
+                                    getFeedbackSortValue(
+                                        a,
+                                        feedbackSort.key
+                                    ),
+                                    getFeedbackSortValue(
+                                        b,
+                                        feedbackSort.key
+                                    )
+                                )
+                        );
+
+
+                if (
+                    feedbackSort.direction ===
+                    "desc"
+                ) {
+                    filtered.reverse();
+                }
+            }
+
+
+            document.getElementById(
+                "feedbackRowCount"
+            ).textContent =
+                `${filtered.length} feedback entr${filtered.length === 1 ? "y" : "ies"}`;
+
+
+            const thead =
+                document.getElementById(
+                    "feedbackTableHead"
+                );
+
+
+            const tbody =
+                document.getElementById(
+                    "feedbackTableBody"
+                );
+
+
+            if (
+                !columns.length
+            ) {
+
+                thead.innerHTML = `
+                    <th>
+                        <span class="th-content">
+                            Feedback
+                        </span>
+                    </th>
+                `;
+
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td class="empty-row">
+                            No feedback yet.
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+
+            thead.innerHTML =
+                columns
+                    .map(
+                        key => `
+
+                            <th
+                                data-key="${escapeHtml(key)}"
+                                class="${feedbackSort.key === key ? "is-sorted" : ""}"
+                            >
+                                <span class="th-content">
+
+                                    ${escapeHtml(formatFeedbackHeader(key))}
+
+                                    <span class="sort-arrow">
+                                        ${
+                                            feedbackSort.key === key
+                                                ? (
+                                                    feedbackSort.direction === "asc"
+                                                        ? "▲"
+                                                        : "▼"
+                                                )
+                                                : ""
+                                        }
+                                    </span>
+
+                                </span>
+                            </th>
+
+                        `
+                    )
+                    .join("");
+
+
+            if (
+                !filtered.length
+            ) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="${columns.length}"
+                            class="empty-row"
+                        >
+                            No feedback matches your filter.
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+            }
+
+
+            tbody.innerHTML =
+                filtered
+                    .map(
+                        row => `
+
+                            <tr>
+
+                                ${columns
+                                    .map(
+                                        key => {
+
+                                            const rawValue =
+                                                row?.[key];
+
+
+                                            const displayValue =
+                                                (
+                                                    key === "created_at" ||
+                                                    key === "date"
+                                                )
+                                                    ? formatFeedbackDate(
+                                                        rawValue
+                                                    )
+                                                    : formatFeedbackValue(
+                                                        rawValue
+                                                    );
+
+
+                                            const cellClass =
+                                                (
+                                                    typeof rawValue === "number"
+                                                )
+                                                    ? "number-cell"
+                                                    : "";
+
+
+                                            return `
+                                                <td class="${cellClass}">
+                                                    ${escapeHtml(displayValue)}
+                                                </td>
+                                            `;
+                                        }
+                                    )
+                                    .join("")}
 
                             </tr>
 
@@ -3213,6 +3827,7 @@
            2. Overview
            3. Top 10 Games
            4. Top 10 Pages
+           5. Feedback
         ========================================================= */
 
         async function exportAnalyticsPdf() {
@@ -3369,11 +3984,37 @@
                     getPdfNumber(day.completions)
                 ]);
 
-                doc.autoTable({
+                const timelineTotal = [
+                    "Total",
+                    getPdfNumber(
+                        timelineDays.reduce(
+                            (sum, day) => sum + Number(day.views || 0),
+                            0
+                        )
+                    ),
+                    getPdfNumber(
+                        timelineDays.reduce(
+                            (sum, day) => sum + Number(day.starts || 0),
+                            0
+                        )
+                    ),
+                    getPdfNumber(
+                        timelineDays.reduce(
+                            (sum, day) => sum + Number(day.completions || 0),
+                            0
+                        )
+                    )
+                ];
+                                doc.autoTable({
                     startY: y + 5,
                     margin: { left: M, right: M, bottom: 22 },
                     head: [["Date", "Views", "Game Starts", "Completions"]],
-                    body: timelineRows.length ? timelineRows : [["—", "0", "0", "0"]],
+                    body: timelineRows.length
+                        ? [
+                            ...timelineRows,
+                            timelineTotal
+                        ]
+                        : [["Total", "0", "0", "0"]],
                     theme: "grid",
                     styles: {
                         font: "helvetica",
@@ -3401,8 +4042,24 @@
                         3: { halign: "right" }
                     },
                     didParseCell(data) {
-                        if (data.section === "body" && data.column.index > 0) {
+
+                        if (
+                            data.section === "body" &&
+                            data.column.index > 0
+                        ) {
                             data.cell.styles.fontStyle = "bold";
+                        }
+
+
+                        // Total row
+                        if (
+                            data.section === "body" &&
+                            data.row.index === timelineRows.length
+                        ) {
+
+                            data.cell.styles.fontStyle = "bold";
+                            data.cell.styles.fillColor = [245, 247, 252];
+                            data.cell.styles.lineWidth = 0.4;
                         }
                     }
                 });
@@ -3485,7 +4142,7 @@
                 doc.setFontSize(9);
                 setText(BLUE);
                 doc.text(
-                    `${safeRate.toFixed(1)}%`,
+                    `${overview.completionRate.toFixed(1)}%`,
                     W - M - 6,
                     rateY + 14,
                     { align: "right" }
@@ -3656,6 +4313,139 @@
                 });
 
                 /* =====================================================
+                   5. FEEDBACK
+                ===================================================== */
+
+                y = doc.lastAutoTable.finalY + 12;
+                y = ensureSpace(y, 55);
+                y = sectionHeading(5, "Feedback", y);
+
+                const feedbackColumns =
+                    getFeedbackColumns(
+                        allFeedbackRows
+                    );
+
+                const pdfFeedbackColumns =
+                    feedbackColumns.slice(
+                        0,
+                        7
+                    );
+
+                const sortedFeedback =
+                    [...allFeedbackRows]
+                        .sort(
+                            (a, b) => {
+
+                                const aTime =
+                                    new Date(
+                                        a?.created_at || 0
+                                    ).getTime() || 0;
+
+                                const bTime =
+                                    new Date(
+                                        b?.created_at || 0
+                                    ).getTime() || 0;
+
+
+                                return bTime - aTime;
+                            }
+                        );
+
+                const feedbackRows =
+                    sortedFeedback.map(
+                        row =>
+                            pdfFeedbackColumns.map(
+                                key => {
+
+                                    if (
+                                        key === "created_at" ||
+                                        key === "date"
+                                    ) {
+                                        return formatFeedbackDate(
+                                            row?.[key]
+                                        );
+                                    }
+
+
+                                    return formatFeedbackValue(
+                                        row?.[key]
+                                    );
+                                }
+                            )
+                    );
+
+
+                if (
+                    pdfFeedbackColumns.length
+                ) {
+
+                    doc.autoTable({
+                        startY: y,
+                        margin: {
+                            left: M,
+                            right: M,
+                            bottom: 22
+                        },
+                        head: [[
+                            ...pdfFeedbackColumns.map(
+                                formatFeedbackHeader
+                            )
+                        ]],
+                        body: feedbackRows.length
+                            ? feedbackRows
+                            : [[
+                                ...pdfFeedbackColumns.map(
+                                    () => "—"
+                                )
+                            ]],
+                        theme: "grid",
+                        styles: {
+                            font: "helvetica",
+                            fontSize: 7.4,
+                            cellPadding: 2.5,
+                            textColor: NAVY,
+                            lineColor: LINE,
+                            lineWidth: .2,
+                            valign: "middle",
+                            overflow: "linebreak"
+                        },
+                        headStyles: {
+                            fillColor: NAVY,
+                            textColor: [255, 255, 255],
+                            fontStyle: "bold",
+                            lineColor: NAVY
+                        },
+                        alternateRowStyles: {
+                            fillColor: [251, 253, 255]
+                        }
+                    });
+
+                }
+
+                else {
+
+                    doc.setFont(
+                        "helvetica",
+                        "normal"
+                    );
+
+                    doc.setFontSize(
+                        8
+                    );
+
+                    setText(
+                        MUTED
+                    );
+
+                    doc.text(
+                        "No feedback yet.",
+                        M,
+                        y
+                    );
+                }
+
+
+                /* =====================================================
                    PAGE NUMBERS / FOOTERS
                 ===================================================== */
 
@@ -3702,8 +4492,14 @@
 
             try {
 
-                allAnalyticsEvents =
-                    await loadAllEvents();
+                [
+                    allAnalyticsEvents,
+                    allFeedbackRows
+                ] =
+                    await Promise.all([
+                        loadAllEvents(),
+                        loadAllFeedback()
+                    ]);
 
 
                 renderTimeline(
@@ -3725,6 +4521,12 @@
                 renderPages(
                     allAnalyticsEvents,
                     pagesFilter.value
+                );
+
+
+                renderFeedback(
+                    allFeedbackRows,
+                    feedbackFilter.value
                 );
 
             }
@@ -3780,6 +4582,85 @@
                     pagesFilter.value
                 );
 
+            }
+        );
+
+
+
+        /* ========================================================
+           FEEDBACK FILTER
+        ========================================================= */
+
+        feedbackFilter.addEventListener(
+            "input",
+            () => {
+
+                renderFeedback(
+                    allFeedbackRows,
+                    feedbackFilter.value
+                );
+
+            }
+        );
+
+
+
+        /* ========================================================
+           FEEDBACK SORT
+        ========================================================= */
+
+        feedbackTableHead.addEventListener(
+            "click",
+            event => {
+
+                const th =
+                    event.target.closest(
+                        "th[data-key]"
+                    );
+
+
+                if (!th) {
+                    return;
+                }
+
+
+                const key =
+                    th.dataset.key;
+
+
+                if (
+                    feedbackSort.key ===
+                    key
+                ) {
+
+                    feedbackSort.direction =
+                        feedbackSort.direction ===
+                        "asc"
+                            ? "desc"
+                            : "asc";
+
+                }
+
+                else {
+
+                    feedbackSort.key =
+                        key;
+
+
+                    feedbackSort.direction =
+                        (
+                            key === "created_at" ||
+                            key === "date"
+                        )
+                            ? "desc"
+                            : "asc";
+                }
+
+
+                renderFeedback(
+                    allFeedbackRows,
+                    feedbackFilter.value
+                );
             }
         );
 
